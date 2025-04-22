@@ -118,41 +118,146 @@ struct EmergencyContactsView: View {
 // MARK: - Main Profile View
 struct ProfileView: View {
     @EnvironmentObject private var userSettings: UserSettings
-    @State private var isEditing = false
-    @State private var showingEmergencyContactSheet = false
+    @State private var showingProfileSetup = false
+    @State private var showingDeleteAlert = false
     
     var body: some View {
         NavigationView {
             List {
-                ProfileHeaderView()
-                HealthInformationView()
-                HealthGoalsView()
-                DietaryRestrictionsView()
-                EmergencyContactsView(showingEmergencyContactSheet: $showingEmergencyContactSheet)
+                if let profile = userSettings.userProfile {
+                    Section(header: Text("Personal Information").font(.system(size: userSettings.textSize.size))) {
+                        HStack {
+                            Text("Name")
+                                .font(.system(size: userSettings.textSize.size))
+                            Spacer()
+                            Text(profile.fullName)
+                                .font(.system(size: userSettings.textSize.size))
+                        }
+                        HStack {
+                            Text("Age")
+                                .font(.system(size: userSettings.textSize.size))
+                            Spacer()
+                            Text("\(profile.age)")
+                                .font(.system(size: userSettings.textSize.size))
+                        }
+                        HStack {
+                            Text("Gender")
+                                .font(.system(size: userSettings.textSize.size))
+                            Spacer()
+                            Text(profile.gender)
+                                .font(.system(size: userSettings.textSize.size))
+                        }
+                    }
+                    
+                    Section(header: Text("Health Information").font(.system(size: userSettings.textSize.size))) {
+                        if let height = profile.height {
+                            HStack {
+                                Text("Height")
+                                    .font(.system(size: userSettings.textSize.size))
+                                Spacer()
+                                Text("\(Int(height)) cm")
+                                    .font(.system(size: userSettings.textSize.size))
+                            }
+                        }
+                        if let weight = profile.weight {
+                            HStack {
+                                Text("Weight")
+                                    .font(.system(size: userSettings.textSize.size))
+                                Spacer()
+                                Text("\(Int(weight)) kg")
+                                    .font(.system(size: userSettings.textSize.size))
+                            }
+                        }
+                    }
+                    
+                    if !profile.medicalConditions.isEmpty {
+                        Section(header: Text("Medical Conditions").font(.system(size: userSettings.textSize.size))) {
+                            ForEach(profile.medicalConditions, id: \.self) { condition in
+                                Text(condition)
+                                    .font(.system(size: userSettings.textSize.size))
+                            }
+                        }
+                    }
+                    
+                    if !profile.dietaryRestrictions.isEmpty {
+                        Section(header: Text("Dietary Restrictions").font(.system(size: userSettings.textSize.size))) {
+                            ForEach(profile.dietaryRestrictions, id: \.self) { restriction in
+                                Text(restriction)
+                                    .font(.system(size: userSettings.textSize.size))
+                            }
+                        }
+                    }
+                    
+                    if let emergencyContact = profile.emergencyContact {
+                        Section(header: Text("Emergency Contact").font(.system(size: userSettings.textSize.size))) {
+                            HStack {
+                                Text("Name")
+                                    .font(.system(size: userSettings.textSize.size))
+                                Spacer()
+                                Text(emergencyContact.name)
+                                    .font(.system(size: userSettings.textSize.size))
+                            }
+                            HStack {
+                                Text("Relationship")
+                                    .font(.system(size: userSettings.textSize.size))
+                                Spacer()
+                                Text(emergencyContact.relationship.rawValue)
+                                    .font(.system(size: userSettings.textSize.size))
+                            }
+                            HStack {
+                                Text("Phone")
+                                    .font(.system(size: userSettings.textSize.size))
+                                Spacer()
+                                Text(emergencyContact.phoneNumber)
+                                    .font(.system(size: userSettings.textSize.size))
+                            }
+                        }
+                    }
+                    
+                    Section {
+                        Button(action: {
+                            showingDeleteAlert = true
+                        }) {
+                            HStack {
+                                Spacer()
+                                Text("Delete Profile")
+                                    .foregroundColor(.red)
+                                    .font(.system(size: userSettings.textSize.size))
+                                Spacer()
+                            }
+                        }
+                    }
+                } else {
+                    Section {
+                        Text("No profile information available")
+                            .font(.system(size: userSettings.textSize.size))
+                    }
+                }
             }
-            .listStyle(InsetGroupedListStyle())
             .navigationTitle("Profile")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        isEditing = true
+                        showingProfileSetup = true
                     }) {
-                        Text("Edit")
-                            .font(.system(size: userSettings.textSize.size))
+                        Image(systemName: userSettings.userProfile == nil ? "person.crop.circle.badge.plus" : "pencil")
+                            .imageScale(.large)
                     }
                 }
             }
-            .sheet(isPresented: $isEditing) {
-                EditProfileView(isPresented: $isEditing)
-                    .environmentObject(userSettings)
+            .sheet(isPresented: $showingProfileSetup) {
+                UserProfileSetupView()
             }
-            .sheet(isPresented: $showingEmergencyContactSheet) {
-                EditEmergencyContactView(isPresented: $showingEmergencyContactSheet)
-                    .environmentObject(userSettings)
+            .alert("Delete Profile", isPresented: $showingDeleteAlert) {
+                Button("Cancel", role: .cancel) { }
+                Button("Delete", role: .destructive) {
+                    userSettings.userProfile = nil
+                }
+            } message: {
+                Text("Are you sure you want to delete your profile? This action cannot be undone.")
             }
         }
-        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

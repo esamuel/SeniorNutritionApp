@@ -31,23 +31,6 @@ enum Relationship: String, CaseIterable, Identifiable, Codable {
     var id: String { self.rawValue }
 }
 
-// Text size options
-enum TextSize: String, CaseIterable, Identifiable, Codable {
-    case medium = "Medium (18pt)"
-    case large = "Large (20pt)"
-    case extraLarge = "Extra Large (24pt)"
-    
-    var id: String { self.rawValue }
-    
-    var size: CGFloat {
-        switch self {
-        case .medium: return 18
-        case .large: return 20
-        case .extraLarge: return 24
-        }
-    }
-}
-
 // Fasting protocol options
 enum FastingProtocol: String, CaseIterable, Identifiable, Codable {
     case twelveEight = "12:8 (Gentle)"
@@ -132,4 +115,26 @@ struct PersistentData: Codable {
     let userHealthGoals: [String]
     let userDietaryRestrictions: [String]
     let userEmergencyContacts: [EmergencyContact]
+}
+
+// User profile model
+struct UserProfile: Codable {
+    var id: UUID
+    var firstName: String
+    var lastName: String
+    var dateOfBirth: Date
+    var gender: String
+    var height: Double? // in centimeters
+    var weight: Double? // in kilograms
+    var medicalConditions: [String]
+    var dietaryRestrictions: [String]
+    var emergencyContact: EmergencyContact?
+    
+    var fullName: String {
+        "\(firstName) \(lastName)"
+    }
+    
+    var age: Int {
+        Calendar.current.dateComponents([.year], from: dateOfBirth, to: Date()).year ?? 0
+    }
 } 

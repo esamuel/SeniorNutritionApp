@@ -28,11 +28,58 @@ class UserSettings: ObservableObject {
     @Published var userDietaryRestrictions: [String] = []
     @Published var userEmergencyContacts: [EmergencyContact] = []
     
+    @Published var userProfile: UserProfile? {
+        didSet {
+            if let encoded = try? JSONEncoder().encode(userProfile) {
+                UserDefaults.standard.set(encoded, forKey: "userProfile")
+            }
+        }
+    }
+    
+    @Published var isDarkMode: Bool = false {
+        didSet {
+            UserDefaults.standard.set(isDarkMode, forKey: "isDarkMode")
+        }
+    }
+    
+    @Published var notificationsEnabled: Bool = true {
+        didSet {
+            UserDefaults.standard.set(notificationsEnabled, forKey: "notificationsEnabled")
+        }
+    }
+    
     private var cancellables = Set<AnyCancellable>()
     private let localDataKey = "userData"
     private var saveTimer: Timer?
     
     init() {
+        self.userName = UserDefaults.standard.string(forKey: "userName") ?? ""
+        
+        // Handle both string and integer legacy values for text size
+        if let savedTextSize = UserDefaults.standard.string(forKey: "textSize"),
+           let textSize = TextSize(rawValue: savedTextSize) {
+            self.textSize = textSize
+        } else if let savedTextSize = UserDefaults.standard.integer(forKey: "textSize") as Int? {
+            // Legacy integer values
+            switch savedTextSize {
+            case 16: self.textSize = .small
+            case 18: self.textSize = .medium
+            case 20: self.textSize = .large
+            case 22: self.textSize = .extraLarge
+            default: self.textSize = .medium
+            }
+        } else {
+            self.textSize = .medium
+        }
+        
+        self.isDarkMode = UserDefaults.standard.bool(forKey: "isDarkMode")
+        self.notificationsEnabled = UserDefaults.standard.bool(forKey: "notificationsEnabled")
+        
+        if let savedProfile = UserDefaults.standard.data(forKey: "userProfile"),
+           let decodedProfile = try? JSONDecoder().decode(UserProfile.self, from: savedProfile) {
+            self.userProfile = decodedProfile
+        }
+        
         setupSubscribers()
         loadUserData()
     }
@@ -113,5 +160,10 @@ class UserSettings: ObservableObject {
         self.userHealthGoals = data.userHealthGoals
         self.userDietaryRestrictions = data.userDietaryRestrictions
         self.userEmergencyContacts = data.userEmergencyContacts
+    }
+    
+    func updateProfile(_ profile: UserProfile) {
+        self.userProfile = profile
+        self.userName = profile.firstName
     }
 } 

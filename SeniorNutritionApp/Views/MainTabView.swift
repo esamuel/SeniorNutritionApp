@@ -29,6 +29,12 @@ struct MainTabView: View {
                     Label("Medication", systemImage: "pills")
                 }
                 .tag(3)
+            
+            ProfileView()
+                .tabItem {
+                    Label("Profile", systemImage: "person.circle")
+                }
+                .tag(4)
         }
         .onAppear {
             // Set up tab bar appearance

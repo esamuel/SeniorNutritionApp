@@ -46,8 +46,13 @@ struct HomeView: View {
     // Welcome section with user name and current status
     private var welcomeSection: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("Good \(timeOfDay), \(userSettings.userName)")
+            Text("Good \(timeOfDay), \(userSettings.userProfile?.firstName ?? userSettings.userName)")
                 .font(.system(size: userSettings.textSize.size + 4, weight: .bold))
+            
+            if let profile = userSettings.userProfile {
+                Text("Age: \(profile.age)")
+                    .font(.system(size: userSettings.textSize.size))
+            }
             
             Text("Today is \(formattedDate)")
                 .font(.system(size: userSettings.textSize.size))
