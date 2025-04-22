@@ -6,6 +6,8 @@ struct MedicationView: View {
     @State private var showingAddMedication = false
     @State private var showingMedicationDetail: Medication? = nil
     @State private var showingVoiceInput = false
+    @State private var showingDeleteAlert = false
+    @State private var medicationToDelete: Medication? = nil
     
     var body: some View {
         NavigationView {
@@ -24,12 +26,16 @@ struct MedicationView: View {
                         showingAddMedication = true
                     }) {
                         HStack {
-                            Image(systemName: "plus")
+                            Image(systemName: "plus.circle.fill")
                                 .imageScale(.large)
                             
-                            Text("Add")
+                            Text("Add Medication")
                                 .font(.system(size: userSettings.textSize.size))
                         }
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .background(Color.blue.opacity(0.1))
+                        .cornerRadius(12)
                     }
                 }
             }
@@ -40,7 +46,24 @@ struct MedicationView: View {
                 }
             }
             .sheet(item: $showingMedicationDetail) { medication in
-                MedicationDetailView(medication: medication)
+                EditMedicationView(medication: medication) { updatedMedication in
+                    if let index = medications.firstIndex(where: { $0.id == updatedMedication.id }) {
+                        medications[index] = updatedMedication
+                        userSettings.medications = medications
+                    }
+                }
+            }
+            .alert("Delete Medication", isPresented: $showingDeleteAlert) {
+                Button("Cancel", role: .cancel) { }
+                Button("Delete", role: .destructive) {
+                    if let medication = medicationToDelete,
+                       let index = medications.firstIndex(where: { $0.id == medication.id }) {
+                        medications.remove(at: index)
+                        userSettings.medications = medications
+                    }
+                }
+            } message: {
+                Text("Are you sure you want to delete this medication? This action cannot be undone.")
             }
             .onAppear {
                 // Load medications from userSettings
@@ -65,7 +88,7 @@ struct MedicationView: View {
             Text("No Medications Added")
                 .font(.system(size: userSettings.textSize.size + 2, weight: .bold))
             
-            Text("Tap the Add button to start tracking your medications and coordinate them with your fasting schedule.")
+            Text("Tap the Add Medication button to start tracking your medications.")
                 .font(.system(size: userSettings.textSize.size))
                 .multilineTextAlignment(.center)
                 .foregroundColor(.secondary)
@@ -91,34 +114,27 @@ struct MedicationView: View {
     
     // Medication list view
     private var medicationListView: some View {
-        VStack(spacing: 0) {
-            // Today's medications
-            todayScheduleSection
-            
-            // Quick action buttons
-            quickActionsSection
-                .padding()
-            
-            // Full medication list
-            ScrollView {
-                VStack(spacing: 15) {
-                    ForEach(medications) { medication in
-                        medicationCard(medication: medication)
-                            .onTapGesture {
-                                showingMedicationDetail = medication
-                            }
-                    }
+        ScrollView {
+            VStack(spacing: 20) {
+                // Today's medications
+                if !todayMedications.isEmpty {
+                    todayScheduleSection
                 }
-                .padding()
+                
+                // All medications
+                ForEach(medications) { medication in
+                    medicationCard(medication: medication)
+                }
             }
+            .padding()
         }
     }
     
     // Today's medication schedule section
     private var todayScheduleSection: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 15) {
             Text("Today's Schedule")
-                .font(.system(size: userSettings.textSize.size, weight: .bold))
+                .font(.system(size: userSettings.textSize.size + 2, weight: .bold))
                 .padding(.horizontal)
             
             ScrollView(.horizontal, showsIndicators: false) {
@@ -132,58 +148,8 @@ struct MedicationView: View {
         }
         .padding(.vertical)
         .background(Color(.systemBackground))
-    }
-    
-    // Quick action buttons section
-    private var quickActionsSection: some View {
-        HStack(spacing: 20) {
-            Button(action: {
-                showingAddMedication = true
-            }) {
-                quickActionButton(
-                    icon: "plus.circle.fill",
-                    title: "Add New",
-                    color: .blue
-                )
-            }
-            
-            Button(action: {
-                showingVoiceInput = true
-            }) {
-                quickActionButton(
-                    icon: "mic.fill",
-                    title: "Voice Add",
-                    color: .green
-                )
-            }
-            
-            Button(action: {
-                // Action to print medication list
-            }) {
-                quickActionButton(
-                    icon: "printer.fill",
-                    title: "Print List",
-                    color: .purple
-                )
-            }
-        }
-    }
-    
-    // Helper for quick action buttons
-    private func quickActionButton(icon: String, title: String, color: Color) -> some View {
-        VStack(spacing: 8) {
-            Image(systemName: icon)
-                .font(.system(size: 30))
-                .foregroundColor(color)
-            
-            Text(title)
-                .font(.system(size: userSettings.textSize.size - 2))
-                .foregroundColor(.primary)
-        }
-        .frame(maxWidth: .infinity)
-        .padding()
-        .background(color.opacity(0.1))
-        .cornerRadius(12)
+        .cornerRadius(16)
+        .shadow(radius: 2)
     }
     
     // Card for today's medications
@@ -206,99 +172,93 @@ struct MedicationView: View {
             
             Text(medication.dosage)
                 .font(.system(size: userSettings.textSize.size - 2))
-                .foregroundColor(.white.opacity(0.9))
+                .foregroundColor(.white.opacity(0.8))
         }
         .padding()
-        .frame(width: 180, height: 130)
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(medication.takeWithFood ? Color.orange : Color.blue)
-        )
-        .shadow(radius: 2)
+        .frame(width: 200)
+        .background(Color.blue)
+        .cornerRadius(12)
     }
     
-    // Card for medication in the full list
+    // Card for medication list
     private func medicationCard(medication: Medication) -> some View {
-        HStack(spacing: 15) {
-            Image(systemName: "pill.fill")
-                .font(.system(size: 24))
-                .foregroundColor(.white)
-                .frame(width: 50, height: 50)
-                .background(Color.blue)
-                .cornerRadius(12)
-            
-            VStack(alignment: .leading, spacing: 5) {
-                Text(medication.name)
-                    .font(.system(size: userSettings.textSize.size))
-                
-                Text(medication.dosage)
-                    .font(.system(size: userSettings.textSize.size - 2))
-                    .foregroundColor(.secondary)
-                
-                if medication.takeWithFood {
-                    HStack {
-                        Image(systemName: "fork.knife")
-                            .foregroundColor(.orange)
-                        
-                        Text("Take with food")
-                            .font(.system(size: userSettings.textSize.size - 4))
-                            .foregroundColor(.orange)
-                    }
-                }
-            }
-            
-            Spacer()
-            
-            VStack(alignment: .trailing, spacing: 5) {
-                if let nextSchedule = medication.schedule.first {
-                    Text(timeFormatter.string(from: nextSchedule))
-                        .font(.system(size: userSettings.textSize.size))
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(medication.name)
+                        .font(.system(size: userSettings.textSize.size + 2, weight: .bold))
                     
-                    Text(isScheduledToday(nextSchedule) ? "Today" : "Tomorrow")
-                        .font(.system(size: userSettings.textSize.size - 4))
+                    Text(medication.dosage)
+                        .font(.system(size: userSettings.textSize.size))
                         .foregroundColor(.secondary)
                 }
                 
-                Image(systemName: "chevron.right")
-                    .foregroundColor(.gray)
+                Spacer()
+                
+                if medication.takeWithFood {
+                    Image(systemName: "fork.knife")
+                        .foregroundColor(.blue)
+                }
+            }
+            
+            if let notes = medication.notes, !notes.isEmpty {
+                Text(notes)
+                    .font(.system(size: userSettings.textSize.size - 1))
+                    .foregroundColor(.secondary)
+                    .padding(.top, 4)
+            }
+            
+            HStack {
+                Text("Next dose: \(nextDoseTime(for: medication))")
+                    .font(.system(size: userSettings.textSize.size - 1))
+                    .foregroundColor(.secondary)
+                
+                Spacer()
+                
+                Button(action: {
+                    showingMedicationDetail = medication
+                }) {
+                    Image(systemName: "pencil")
+                        .foregroundColor(.blue)
+                }
+                
+                Button(action: {
+                    medicationToDelete = medication
+                    showingDeleteAlert = true
+                }) {
+                    Image(systemName: "trash")
+                        .foregroundColor(.red)
+                }
             }
         }
         .padding()
         .background(Color(.systemBackground))
-        .cornerRadius(16)
+        .cornerRadius(12)
         .shadow(radius: 2)
     }
     
-    // Helper to check if a date is today
-    private func isScheduledToday(_ date: Date) -> Bool {
-        Calendar.current.isDateInToday(date)
-    }
-    
-    // Helper to format the next dose time
-    private func nextDoseTime(for medication: Medication) -> String {
-        guard let nextDose = medication.schedule.first else {
-            return "No time"
-        }
-        
-        return timeFormatter.string(from: nextDose)
-    }
-    
-    // Computed property for today's medications
+    // Helper computed properties
     private var todayMedications: [Medication] {
-        medications.filter { medication in
-            guard let nextDose = medication.schedule.first else {
-                return false
+        let calendar = Calendar.current
+        let today = Date()
+        
+        return medications.filter { medication in
+            medication.schedule.contains { time in
+                calendar.isDate(time, inSameDayAs: today)
             }
-            
-            return Calendar.current.isDateInToday(nextDose)
         }
     }
     
-    // Time formatter
     private var timeFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.timeStyle = .short
         return formatter
+    }
+    
+    private func nextDoseTime(for medication: Medication) -> String {
+        let now = Date()
+        let nextDose = medication.schedule.first { $0 > now } ?? medication.schedule[0]
+        return timeFormatter.string(from: nextDose)
     }
     
     // Create sample medication data
