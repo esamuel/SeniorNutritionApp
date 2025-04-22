@@ -36,6 +36,7 @@ enum FastingProtocol: String, CaseIterable, Identifiable, Codable {
     case twelveEight = "12:8 (Gentle)"
     case fourteenTen = "14:10 (Moderate)"
     case sixteenEight = "16:8 (Standard)"
+    case custom = "Custom Protocol"
     
     var id: String { self.rawValue }
     
@@ -47,7 +48,32 @@ enum FastingProtocol: String, CaseIterable, Identifiable, Codable {
             return "Fast for 14 hours, eat within a 10-hour window. Moderate intensity."
         case .sixteenEight:
             return "Fast for 16 hours, eat within an 8-hour window. Standard protocol."
+        case .custom:
+            return "Custom fasting protocol with your preferred hours."
         }
+    }
+    
+    var fastingHours: Int {
+        switch self {
+        case .twelveEight: return 12
+        case .fourteenTen: return 14
+        case .sixteenEight: return 16
+        case .custom: return UserDefaults.standard.integer(forKey: "customFastingHours")
+        }
+    }
+    
+    var eatingHours: Int {
+        switch self {
+        case .twelveEight: return 12
+        case .fourteenTen: return 10
+        case .sixteenEight: return 8
+        case .custom: return UserDefaults.standard.integer(forKey: "customEatingHours")
+        }
+    }
+    
+    static func setCustomProtocol(fastingHours: Int, eatingHours: Int) {
+        UserDefaults.standard.set(fastingHours, forKey: "customFastingHours")
+        UserDefaults.standard.set(eatingHours, forKey: "customEatingHours")
     }
 }
 
