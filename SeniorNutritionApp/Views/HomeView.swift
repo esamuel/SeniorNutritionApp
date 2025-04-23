@@ -1,11 +1,13 @@
 #if os(iOS)
 import SwiftUI
+import UserNotifications
 
 struct HomeView: View {
     @EnvironmentObject private var userSettings: UserSettings
     @StateObject private var fastingManager = FastingManager.shared
     @StateObject private var voiceManager = VoiceManager.shared
     @State private var showingHelpSheet = false
+    @State private var medicationNotifications: [UUID: Date] = [:]
     
     var body: some View {
         NavigationView {
@@ -39,6 +41,10 @@ struct HomeView: View {
         .navigationViewStyle(StackNavigationViewStyle())
         .onAppear {
             fastingManager.setUserSettings(userSettings)
+            scheduleMedicationNotifications()
+        }
+        .onReceive(Timer.publish(every: 60, on: .main, in: .common).autoconnect()) { _ in
+            checkMedicationNotifications()
         }
     }
     
@@ -60,19 +66,23 @@ struct HomeView: View {
             }
             
             if let profile = userSettings.userProfile {
-                Text("Age: \(profile.age)")
+                Text("Age: \(profile.age) years")
                     .font(.system(size: userSettings.textSize.size))
             }
             
             Text("Today is \(formattedDate)")
                 .font(.system(size: userSettings.textSize.size))
             
-            if !upcomingMedications.isEmpty {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Upcoming Medications")
-                        .font(.system(size: userSettings.textSize.size, weight: .bold))
-                        .foregroundColor(.red)
-                    
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Medication Reminders")
+                    .font(.system(size: userSettings.textSize.size, weight: .bold))
+                    .foregroundColor(.red)
+                
+                if upcomingMedications.isEmpty {
+                    Text("No medications scheduled for today")
+                        .font(.system(size: userSettings.textSize.size))
+                        .foregroundColor(.secondary)
+                } else {
                     ForEach(upcomingMedications.prefix(3)) { medication in
                         HStack {
                             Image(systemName: "bell.fill")
@@ -83,10 +93,10 @@ struct HomeView: View {
                         }
                     }
                 }
-                .padding()
-                .background(Color.red.opacity(0.1))
-                .cornerRadius(12)
             }
+            .padding()
+            .background(Color.red.opacity(0.1))
+            .cornerRadius(12)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
@@ -393,6 +403,51 @@ struct HomeView: View {
         let sweepAngle = fastingManager.fastingState == .fasting ? fastingDegrees : eatingDegrees
         
         return startAngle + (sweepAngle * progress)
+    }
+    
+    private func scheduleMedicationNotifications() {
+        let now = Date()
+        let calendar = Calendar.current
+        
+        for medication in userSettings.medications {
+            for scheduleTime in medication.schedule {
+                if scheduleTime > now {
+                    // Schedule notification 30 minutes before
+                    let notificationTime = calendar.date(byAdding: .minute, value: -30, to: scheduleTime) ?? scheduleTime
+                    
+                    if notificationTime > now {
+                        medicationNotifications[medication.id] = notificationTime
+                        
+                        // Schedule local notification
+                        let content = UNMutableNotificationContent()
+                        content.title = "Medication Reminder"
+                        content.body = "Time to take \(medication.name) in 30 minutes"
+                        content.sound = .default
+                        
+                        let triggerDate = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: notificationTime)
+                        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
+                        
+                        let request = UNNotificationRequest(identifier: medication.id.uuidString, content: content, trigger: trigger)
+                        
+                        UNUserNotificationCenter.current().add(request) { error in
+                            if let error = error {
+                                print("Error scheduling notification: \(error)")
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    private func checkMedicationNotifications() {
+        let now = Date()
+        for (id, notificationTime) in medicationNotifications {
+            if now >= notificationTime {
+                // Show alert or update UI
+                medicationNotifications.removeValue(forKey: id)
+            }
+        }
     }
     
     // Help Guide View

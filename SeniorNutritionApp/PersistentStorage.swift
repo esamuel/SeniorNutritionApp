@@ -54,8 +54,9 @@ class PersistentStorage {
                 let encoder = JSONEncoder()
                 let encodedData = try encoder.encode(data)
                 try encodedData.write(to: self.dataFileURL)
+                print("Successfully saved data for key: \(key)")
             } catch {
-                print("Error saving data: \(error)")
+                print("Error saving data for key \(key): \(error)")
             }
         }
     }
@@ -65,23 +66,23 @@ class PersistentStorage {
         do {
             let data = try Data(contentsOf: dataFileURL)
             let decoder = JSONDecoder()
-            return try decoder.decode(T.self, from: data)
+            let decodedData = try decoder.decode(T.self, from: data)
+            print("Successfully loaded data for key: \(key)")
+            return decodedData
         } catch {
-            print("Error loading data: \(error)")
+            print("Error loading data for key \(key): \(error)")
             return nil
         }
     }
     
-    // Remove all saved data
-    func clearAllData() {
+    // Delete data from persistent storage
+    func deleteData(forKey key: String) {
         saveQueue.async {
             do {
-                if FileManager.default.fileExists(atPath: self.dataFileURL.path) {
-                    try FileManager.default.removeItem(at: self.dataFileURL)
-                    print("All data cleared")
-                }
+                try FileManager.default.removeItem(at: self.dataFileURL)
+                print("Successfully deleted data for key: \(key)")
             } catch {
-                print("Error clearing data: \(error)")
+                print("Error deleting data for key \(key): \(error)")
             }
         }
     }

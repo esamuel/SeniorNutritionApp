@@ -145,22 +145,23 @@ struct PersistentData: Codable {
 
 // User profile model
 struct UserProfile: Codable {
-    var id: UUID
     var firstName: String
     var lastName: String
     var dateOfBirth: Date
     var gender: String
-    var height: Double? // in centimeters
-    var weight: Double? // in kilograms
+    var height: Double
+    var weight: Double
     var medicalConditions: [String]
     var dietaryRestrictions: [String]
-    var emergencyContact: EmergencyContact?
+    var emergencyContacts: [EmergencyContact]
     
     var fullName: String {
         "\(firstName) \(lastName)"
     }
     
     var age: Int {
-        Calendar.current.dateComponents([.year], from: dateOfBirth, to: Date()).year ?? 0
+        let calendar = Calendar.current
+        let ageComponents = calendar.dateComponents([.year], from: dateOfBirth, to: Date())
+        return ageComponents.year ?? 0
     }
 } 

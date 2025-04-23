@@ -125,138 +125,131 @@ struct ProfileView: View {
         NavigationView {
             List {
                 if let profile = userSettings.userProfile {
-                    Section(header: Text("Personal Information").font(.system(size: userSettings.textSize.size))) {
-                        HStack {
-                            Text("Name")
-                                .font(.system(size: userSettings.textSize.size))
-                            Spacer()
-                            Text(profile.fullName)
-                                .font(.system(size: userSettings.textSize.size))
-                        }
-                        HStack {
-                            Text("Age")
-                                .font(.system(size: userSettings.textSize.size))
-                            Spacer()
-                            Text("\(profile.age)")
-                                .font(.system(size: userSettings.textSize.size))
-                        }
-                        HStack {
-                            Text("Gender")
-                                .font(.system(size: userSettings.textSize.size))
-                            Spacer()
-                            Text(profile.gender)
-                                .font(.system(size: userSettings.textSize.size))
-                        }
-                    }
-                    
-                    Section(header: Text("Health Information").font(.system(size: userSettings.textSize.size))) {
-                        if let height = profile.height {
-                            HStack {
-                                Text("Height")
-                                    .font(.system(size: userSettings.textSize.size))
-                                Spacer()
-                                Text("\(Int(height)) cm")
-                                    .font(.system(size: userSettings.textSize.size))
-                            }
-                        }
-                        if let weight = profile.weight {
-                            HStack {
-                                Text("Weight")
-                                    .font(.system(size: userSettings.textSize.size))
-                                Spacer()
-                                Text("\(Int(weight)) kg")
-                                    .font(.system(size: userSettings.textSize.size))
-                            }
-                        }
-                    }
-                    
-                    if !profile.medicalConditions.isEmpty {
-                        Section(header: Text("Medical Conditions").font(.system(size: userSettings.textSize.size))) {
-                            ForEach(profile.medicalConditions, id: \.self) { condition in
-                                Text(condition)
-                                    .font(.system(size: userSettings.textSize.size))
-                            }
-                        }
-                    }
-                    
-                    if !profile.dietaryRestrictions.isEmpty {
-                        Section(header: Text("Dietary Restrictions").font(.system(size: userSettings.textSize.size))) {
-                            ForEach(profile.dietaryRestrictions, id: \.self) { restriction in
-                                Text(restriction)
-                                    .font(.system(size: userSettings.textSize.size))
-                            }
-                        }
-                    }
-                    
-                    if let emergencyContact = profile.emergencyContact {
-                        Section(header: Text("Emergency Contact").font(.system(size: userSettings.textSize.size))) {
-                            HStack {
-                                Text("Name")
-                                    .font(.system(size: userSettings.textSize.size))
-                                Spacer()
-                                Text(emergencyContact.name)
-                                    .font(.system(size: userSettings.textSize.size))
-                            }
-                            HStack {
-                                Text("Relationship")
-                                    .font(.system(size: userSettings.textSize.size))
-                                Spacer()
-                                Text(emergencyContact.relationship.rawValue)
-                                    .font(.system(size: userSettings.textSize.size))
-                            }
-                            HStack {
-                                Text("Phone")
-                                    .font(.system(size: userSettings.textSize.size))
-                                Spacer()
-                                Text(emergencyContact.phoneNumber)
-                                    .font(.system(size: userSettings.textSize.size))
-                            }
-                        }
-                    }
-                    
-                    Section {
-                        Button(action: {
-                            showingDeleteAlert = true
-                        }) {
-                            HStack {
-                                Spacer()
-                                Text("Delete Profile")
-                                    .foregroundColor(.red)
-                                    .font(.system(size: userSettings.textSize.size))
-                                Spacer()
-                            }
-                        }
-                    }
-                } else {
-                    Section {
-                        Text("No profile information available")
-                            .font(.system(size: userSettings.textSize.size))
-                    }
+                    personalInformationSection(profile)
+                    healthInformationSection(profile)
+                    medicalConditionsSection(profile)
+                    dietaryRestrictionsSection(profile)
+                    emergencyContactsSection(profile)
                 }
             }
             .navigationTitle("Profile")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
+                    Button("Edit") {
                         showingProfileSetup = true
-                    }) {
-                        Image(systemName: userSettings.userProfile == nil ? "person.crop.circle.badge.plus" : "pencil")
-                            .imageScale(.large)
                     }
                 }
             }
             .sheet(isPresented: $showingProfileSetup) {
                 UserProfileSetupView()
             }
-            .alert("Delete Profile", isPresented: $showingDeleteAlert) {
-                Button("Cancel", role: .cancel) { }
-                Button("Delete", role: .destructive) {
-                    userSettings.userProfile = nil
+        }
+    }
+    
+    private func personalInformationSection(_ profile: UserProfile) -> some View {
+        Section(header: Text("Personal Information").font(.system(size: userSettings.textSize.size))) {
+            profileRow(title: "Name", value: profile.fullName)
+            profileRow(title: "Age", value: "\(profile.age) years")
+            profileRow(title: "Gender", value: profile.gender)
+        }
+    }
+    
+    private func healthInformationSection(_ profile: UserProfile) -> some View {
+        Section(header: Text("Health Information").font(.system(size: userSettings.textSize.size))) {
+            profileRow(title: "Height", value: "\(Int(profile.height)) cm")
+            profileRow(title: "Weight", value: "\(Int(profile.weight)) kg")
+        }
+    }
+    
+    private func medicalConditionsSection(_ profile: UserProfile) -> some View {
+        Group {
+            if !profile.medicalConditions.isEmpty {
+                Section(header: Text("Medical Conditions").font(.system(size: userSettings.textSize.size))) {
+                    ForEach(profile.medicalConditions, id: \.self) { condition in
+                        Text(condition)
+                            .font(.system(size: userSettings.textSize.size))
+                    }
                 }
-            } message: {
-                Text("Are you sure you want to delete your profile? This action cannot be undone.")
             }
+        }
+    }
+    
+    private func dietaryRestrictionsSection(_ profile: UserProfile) -> some View {
+        Group {
+            if !profile.dietaryRestrictions.isEmpty {
+                Section(header: Text("Dietary Restrictions").font(.system(size: userSettings.textSize.size))) {
+                    ForEach(profile.dietaryRestrictions, id: \.self) { restriction in
+                        Text(restriction)
+                            .font(.system(size: userSettings.textSize.size))
+                    }
+                }
+            }
+        }
+    }
+    
+    private func emergencyContactsSection(_ profile: UserProfile) -> some View {
+        Section(header: Text("Emergency Contacts").font(.system(size: userSettings.textSize.size))) {
+            ForEach(profile.emergencyContacts) { contact in
+                VStack(alignment: .leading, spacing: 8) {
+                    HStack {
+                        Text(contact.name)
+                            .font(.system(size: userSettings.textSize.size, weight: .bold))
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            // TODO: Implement edit contact functionality
+                        }) {
+                            Image(systemName: "pencil.circle.fill")
+                                .foregroundColor(.blue)
+                                .font(.system(size: 20))
+                        }
+                        
+                        Button(action: {
+                            if let index = profile.emergencyContacts.firstIndex(where: { $0.id == contact.id }) {
+                                var updatedProfile = profile
+                                updatedProfile.emergencyContacts.remove(at: index)
+                                userSettings.updateProfile(updatedProfile)
+                            }
+                        }) {
+                            Image(systemName: "trash.circle.fill")
+                                .foregroundColor(.red)
+                                .font(.system(size: 20))
+                        }
+                    }
+                    
+                    Text(contact.phoneNumber)
+                        .font(.system(size: userSettings.textSize.size))
+                    
+                    Text(contact.relationship.rawValue)
+                        .font(.system(size: userSettings.textSize.size))
+                        .foregroundColor(.secondary)
+                }
+                .padding(.vertical, 4)
+            }
+            
+            Button(action: {
+                showingProfileSetup = true
+            }) {
+                HStack {
+                    Image(systemName: "plus.circle.fill")
+                    Text("Add Emergency Contact")
+                }
+                .foregroundColor(.blue)
+                .font(.system(size: userSettings.textSize.size))
+            }
+            .padding(.top, 8)
+        }
+    }
+    
+    private func profileRow(title: String, value: String) -> some View {
+        HStack {
+            Text(title)
+                .font(.system(size: userSettings.textSize.size))
+            Spacer()
+            Text(value)
+                .font(.system(size: userSettings.textSize.size))
         }
     }
 }

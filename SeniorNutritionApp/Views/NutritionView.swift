@@ -2,56 +2,33 @@ import SwiftUI
 
 struct NutritionView: View {
     @EnvironmentObject private var userSettings: UserSettings
+    @StateObject private var mealManager = MealManager()
     @State private var showingAddMeal = false
     @State private var showingBarcodeScan = false
     @State private var showingVoiceInput = false
     @State private var selectedMealType: MealType = .breakfast
-    @State private var meals: [Meal] = []
-    
-    enum MealType: String, CaseIterable, Identifiable {
-        case breakfast = "Breakfast"
-        case lunch = "Lunch"
-        case dinner = "Dinner"
-        case snack = "Snack"
-        
-        var id: String { self.rawValue }
-        
-        var icon: String {
-            switch self {
-            case .breakfast: return "sunrise.fill"
-            case .lunch: return "sun.max.fill"
-            case .dinner: return "sunset.fill"
-            case .snack: return "lightbulb.fill"
-            }
-        }
-        
-        var color: Color {
-            switch self {
-            case .breakfast: return .orange
-            case .lunch: return .yellow
-            case .dinner: return .blue
-            case .snack: return .green
-            }
-        }
-    }
+    @State private var selectedTab = 0
+    @State private var mealToEdit: Meal?
+    @State private var showingDeleteAlert = false
+    @State private var mealToDelete: Meal?
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack(spacing: 25) {
-                    // Quick add meal options
-                    quickAddSection
-                    
-                    // Today's meals
-                    todayMealsSection
-                    
-                    // Common meals
-                    commonMealsSection
-                    
-                    // Nutrition tips
-                    nutritionTipsSection
+            VStack {
+                // Tab selector
+                Picker("View", selection: $selectedTab) {
+                    Text("Dashboard").tag(0)
+                    Text("Meals").tag(1)
                 }
+                .pickerStyle(SegmentedPickerStyle())
                 .padding()
+                
+                // Content based on selected tab
+                if selectedTab == 0 {
+                    NutritionalDashboardView(mealManager: mealManager)
+                } else {
+                    mealsView
+                }
             }
             .navigationTitle("Nutrition")
             .navigationBarTitleDisplayMode(.large)
@@ -67,17 +44,49 @@ struct NutritionView: View {
             }
             .sheet(isPresented: $showingAddMeal) {
                 AddMealView(selectedMealType: $selectedMealType) { newMeal in
-                    meals.append(newMeal)
+                    mealManager.addMeal(newMeal)
                 }
             }
-            .onAppear {
-                // Load sample meals if none exist
-                if meals.isEmpty {
-                    loadSampleMeals()
+            .sheet(item: $mealToEdit) { meal in
+                EditMealView(meal: meal) { updatedMeal in
+                    mealManager.updateMeal(updatedMeal)
                 }
+            }
+            .alert("Delete Meal", isPresented: $showingDeleteAlert) {
+                Button("Delete", role: .destructive) {
+                    if let meal = mealToDelete {
+                        mealManager.removeMeal(meal)
+                    }
+                }
+                Button("Cancel", role: .cancel) {}
+            } message: {
+                Text("Are you sure you want to delete this meal?")
+            }
+            .onAppear {
+                mealManager.loadMeals()
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
+    }
+    
+    // Meals view
+    private var mealsView: some View {
+        ScrollView {
+            VStack(spacing: 25) {
+                // Quick add meal options
+                quickAddSection
+                
+                // Today's meals
+                todayMealsSection
+                
+                // Common meals
+                commonMealsSection
+                
+                // Nutrition tips
+                nutritionTipsSection
+            }
+            .padding()
+        }
     }
     
     // Quick add meal section
@@ -139,6 +148,34 @@ struct NutritionView: View {
         }
     }
     
+    // Today's meals list view
+    private var todayMealsList: some View {
+        ScrollView {
+            LazyVStack(spacing: 15) {
+                ForEach(mealManager.mealsForDate(Date())) { meal in
+                    mealRow(meal: meal)
+                        .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                            Button(role: .destructive) {
+                                mealToDelete = meal
+                                showingDeleteAlert = true
+                            } label: {
+                                Label("Delete", systemImage: "trash")
+                            }
+                            
+                            Button {
+                                mealToEdit = meal
+                            } label: {
+                                Label("Edit", systemImage: "pencil")
+                            }
+                            .tint(.blue)
+                        }
+                }
+            }
+            .padding(.horizontal)
+        }
+        .background(Color.clear)
+    }
+    
     // Today's meals section
     private var todayMealsSection: some View {
         VStack(alignment: .leading, spacing: 15) {
@@ -159,16 +196,15 @@ struct NutritionView: View {
                     .foregroundColor(.blue)
                 }
             }
+            .padding(.horizontal)
             
-            if todayMeals.isEmpty {
+            if mealManager.mealsForDate(Date()).isEmpty {
                 emptyMealsView
             } else {
-                ForEach(todayMeals) { meal in
-                    mealRow(meal: meal)
-                }
+                todayMealsList
             }
         }
-        .padding()
+        .padding(.vertical)
         .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(radius: 2)
@@ -204,55 +240,59 @@ struct NutritionView: View {
     
     // Meal row for today's meals
     private func mealRow(meal: Meal) -> some View {
-        HStack(spacing: 15) {
-            Image(systemName: meal.type.icon)
-                .font(.system(size: 24))
-                .foregroundColor(.white)
-                .frame(width: 50, height: 50)
-                .background(meal.type.color)
-                .cornerRadius(12)
-            
-            VStack(alignment: .leading, spacing: 5) {
-                Text(meal.name)
-                    .font(.system(size: userSettings.textSize.size))
+        Button(action: {
+            mealToEdit = meal
+        }) {
+            HStack(spacing: 15) {
+                Image(systemName: meal.type.icon)
+                    .font(.system(size: 24))
+                    .foregroundColor(.white)
+                    .frame(width: 50, height: 50)
+                    .background(meal.type.color)
+                    .cornerRadius(12)
                 
-                HStack {
-                    Text(meal.type.rawValue)
-                        .font(.system(size: userSettings.textSize.size - 4))
-                        .foregroundColor(.secondary)
-                    
-                    Text("•")
-                        .foregroundColor(.secondary)
-                    
-                    Text(timeFormatter.string(from: meal.time))
-                        .font(.system(size: userSettings.textSize.size - 4))
-                        .foregroundColor(.secondary)
-                }
-            }
-            
-            Spacer()
-            
-            if let protein = meal.nutritionInfo["protein"] {
-                VStack(alignment: .trailing, spacing: 2) {
-                    Text("\(protein)g")
+                VStack(alignment: .leading, spacing: 5) {
+                    Text(meal.name)
                         .font(.system(size: userSettings.textSize.size))
                         .foregroundColor(.primary)
                     
-                    Text("Protein")
+                    HStack {
+                        Text(meal.type.rawValue)
+                            .font(.system(size: userSettings.textSize.size - 4))
+                            .foregroundColor(.secondary)
+                        
+                        Text("•")
+                            .foregroundColor(.secondary)
+                        
+                        Text(timeFormatter.string(from: meal.time))
+                            .font(.system(size: userSettings.textSize.size - 4))
+                            .foregroundColor(.secondary)
+                    }
+                }
+                
+                Spacer()
+                
+                VStack(alignment: .trailing, spacing: 2) {
+                    Text("\(Int(meal.adjustedNutritionalInfo.calories))")
+                        .font(.system(size: userSettings.textSize.size))
+                        .foregroundColor(.primary)
+                    
+                    Text("calories")
                         .font(.system(size: userSettings.textSize.size - 4))
                         .foregroundColor(.secondary)
                 }
             }
+            .padding()
+            .background(Color(.systemGray6))
+            .cornerRadius(12)
         }
-        .padding()
-        .background(Color(.systemGray6))
-        .cornerRadius(12)
+        .buttonStyle(PlainButtonStyle())
     }
     
     // Common meals section
     private var commonMealsSection: some View {
         VStack(alignment: .leading, spacing: 15) {
-            Text("Quick-Add Common Meals")
+            Text("Common Meals")
                 .font(.system(size: userSettings.textSize.size, weight: .bold))
             
             ScrollView(.horizontal, showsIndicators: false) {
@@ -261,7 +301,6 @@ struct NutritionView: View {
                         commonMealCard(meal: meal)
                     }
                 }
-                .padding(.horizontal, 2)
             }
         }
         .padding()
@@ -273,7 +312,9 @@ struct NutritionView: View {
     // Common meal card
     private func commonMealCard(meal: Meal) -> some View {
         Button(action: {
-            addMealNow(meal)
+            var newMeal = meal
+            newMeal.time = Date() // Set current time when adding the meal
+            mealManager.addMeal(newMeal)
         }) {
             VStack(alignment: .leading, spacing: 10) {
                 Image(systemName: meal.type.icon)
@@ -289,11 +330,9 @@ struct NutritionView: View {
                     .multilineTextAlignment(.leading)
                     .lineLimit(2)
                 
-                if let protein = meal.nutritionInfo["protein"] {
-                    Text("\(protein)g protein")
-                        .font(.system(size: userSettings.textSize.size - 4))
-                        .foregroundColor(.secondary)
-                }
+                Text("\(Int(meal.adjustedNutritionalInfo.calories)) calories")
+                    .font(.system(size: userSettings.textSize.size - 4))
+                    .foregroundColor(.secondary)
                 
                 Text("Tap to add")
                     .font(.system(size: userSettings.textSize.size - 4))
@@ -365,52 +404,178 @@ struct NutritionView: View {
         .padding(.vertical, 5)
     }
     
-    // Add meal now with current time
-    private func addMealNow(_ meal: Meal) {
-        var newMeal = meal
-        newMeal.id = UUID()
-        newMeal.time = Date()
-        meals.append(newMeal)
-    }
-    
-    // Computed property for today's meals
-    private var todayMeals: [Meal] {
-        meals.filter { Calendar.current.isDateInToday($0.time) }
-            .sorted { $0.time > $1.time }
-    }
-    
     // Sample common meals
     private var commonMeals: [Meal] {
         [
             Meal(
                 name: "Oatmeal with Berries",
                 type: .breakfast,
-                time: Date(),
-                nutritionInfo: ["calories": 350, "protein": 12, "carbs": 55, "fat": 10]
+                nutritionalInfo: NutritionalInfo(
+                    calories: 350,
+                    protein: 12,
+                    carbohydrates: 55,
+                    fat: 10,
+                    fiber: 8,
+                    sugar: 15,
+                    vitaminA: 0,
+                    vitaminC: 30,
+                    vitaminD: 0,
+                    vitaminE: 0,
+                    vitaminK: 0,
+                    thiamin: 0,
+                    riboflavin: 0,
+                    niacin: 0,
+                    vitaminB6: 0,
+                    vitaminB12: 0,
+                    folate: 0,
+                    calcium: 200,
+                    iron: 4,
+                    magnesium: 0,
+                    phosphorus: 0,
+                    potassium: 0,
+                    sodium: 0,
+                    zinc: 0,
+                    selenium: 0,
+                    omega3: 0,
+                    omega6: 0,
+                    cholesterol: 0
+                )
             ),
             Meal(
                 name: "Greek Yogurt with Nuts",
                 type: .breakfast,
-                time: Date(),
-                nutritionInfo: ["calories": 250, "protein": 15, "carbs": 12, "fat": 15]
+                nutritionalInfo: NutritionalInfo(
+                    calories: 250,
+                    protein: 15,
+                    carbohydrates: 12,
+                    fat: 15,
+                    fiber: 3,
+                    sugar: 8,
+                    vitaminA: 0,
+                    vitaminC: 0,
+                    vitaminD: 100,
+                    vitaminE: 0,
+                    vitaminK: 0,
+                    thiamin: 0,
+                    riboflavin: 0,
+                    niacin: 0,
+                    vitaminB6: 0,
+                    vitaminB12: 0,
+                    folate: 0,
+                    calcium: 300,
+                    iron: 0,
+                    magnesium: 0,
+                    phosphorus: 0,
+                    potassium: 0,
+                    sodium: 0,
+                    zinc: 0,
+                    selenium: 0,
+                    omega3: 0,
+                    omega6: 0,
+                    cholesterol: 0
+                )
             ),
             Meal(
                 name: "Grilled Chicken Salad",
                 type: .lunch,
-                time: Date(),
-                nutritionInfo: ["calories": 400, "protein": 30, "carbs": 20, "fat": 18]
+                nutritionalInfo: NutritionalInfo(
+                    calories: 400,
+                    protein: 30,
+                    carbohydrates: 20,
+                    fat: 18,
+                    fiber: 5,
+                    sugar: 3,
+                    vitaminA: 5000,
+                    vitaminC: 45,
+                    vitaminD: 0,
+                    vitaminE: 0,
+                    vitaminK: 0,
+                    thiamin: 0,
+                    riboflavin: 0,
+                    niacin: 0,
+                    vitaminB6: 0,
+                    vitaminB12: 0,
+                    folate: 0,
+                    calcium: 150,
+                    iron: 3,
+                    magnesium: 0,
+                    phosphorus: 0,
+                    potassium: 0,
+                    sodium: 0,
+                    zinc: 0,
+                    selenium: 0,
+                    omega3: 0,
+                    omega6: 0,
+                    cholesterol: 0
+                )
             ),
             Meal(
                 name: "Salmon with Vegetables",
                 type: .dinner,
-                time: Date(),
-                nutritionInfo: ["calories": 450, "protein": 35, "carbs": 15, "fat": 25]
+                nutritionalInfo: NutritionalInfo(
+                    calories: 450,
+                    protein: 35,
+                    carbohydrates: 15,
+                    fat: 25,
+                    fiber: 6,
+                    sugar: 4,
+                    vitaminA: 0,
+                    vitaminC: 0,
+                    vitaminD: 600,
+                    vitaminE: 0,
+                    vitaminK: 0,
+                    thiamin: 0,
+                    riboflavin: 0,
+                    niacin: 0,
+                    vitaminB6: 0,
+                    vitaminB12: 0,
+                    folate: 0,
+                    calcium: 100,
+                    iron: 2,
+                    magnesium: 0,
+                    phosphorus: 0,
+                    potassium: 0,
+                    sodium: 0,
+                    zinc: 0,
+                    selenium: 0,
+                    omega3: 2.5,
+                    omega6: 0,
+                    cholesterol: 0
+                )
             ),
             Meal(
                 name: "Apple with Peanut Butter",
                 type: .snack,
-                time: Date(),
-                nutritionInfo: ["calories": 220, "protein": 7, "carbs": 25, "fat": 12]
+                nutritionalInfo: NutritionalInfo(
+                    calories: 220,
+                    protein: 7,
+                    carbohydrates: 25,
+                    fat: 12,
+                    fiber: 4,
+                    sugar: 18,
+                    vitaminA: 0,
+                    vitaminC: 8,
+                    vitaminD: 0,
+                    vitaminE: 0,
+                    vitaminK: 0,
+                    thiamin: 0,
+                    riboflavin: 0,
+                    niacin: 0,
+                    vitaminB6: 0,
+                    vitaminB12: 0,
+                    folate: 0,
+                    calcium: 50,
+                    iron: 1,
+                    magnesium: 0,
+                    phosphorus: 0,
+                    potassium: 0,
+                    sodium: 0,
+                    zinc: 0,
+                    selenium: 0,
+                    omega3: 0,
+                    omega6: 0,
+                    cholesterol: 0
+                )
             )
         ]
     }
@@ -421,159 +586,97 @@ struct NutritionView: View {
         formatter.timeStyle = .short
         return formatter
     }
-    
-    // Load sample meals
-    private func loadSampleMeals() {
-        // Create breakfast 3 hours ago
-        let breakfastTime = Calendar.current.date(byAdding: .hour, value: -3, to: Date())!
-        
-        // Create yesterday's dinner
-        var yesterdayComponents = DateComponents()
-        yesterdayComponents.day = -1
-        yesterdayComponents.hour = 18
-        let yesterdayDinner = Calendar.current.date(from: yesterdayComponents)!
-        
-        meals = [
-            Meal(
-                name: "Oatmeal with Blueberries",
-                type: .breakfast,
-                time: breakfastTime,
-                nutritionInfo: ["calories": 320, "protein": 10, "carbs": 50, "fat": 8]
-            ),
-            Meal(
-                name: "Grilled Chicken with Steamed Vegetables",
-                type: .dinner,
-                time: yesterdayDinner,
-                nutritionInfo: ["calories": 450, "protein": 35, "carbs": 25, "fat": 15]
-            )
-        ]
-    }
 }
 
-// Meal structure
-struct Meal: Identifiable {
-    var id = UUID()
-    var name: String
-    var type: NutritionView.MealType
-    var time: Date
-    var nutritionInfo: [String: Int]
-    var notes: String?
-}
-
-// Add Meal View
-struct AddMealView: View {
+// Edit Meal View
+struct EditMealView: View {
     @EnvironmentObject private var userSettings: UserSettings
     @Environment(\.presentationMode) private var presentationMode
     
-    @Binding var selectedMealType: NutritionView.MealType
-    @State private var mealName: String = ""
-    @State private var mealTime = Date()
-    @State private var showingVoiceInput = false
-    @State private var mealPortionSize: PortionSize = .medium
+    let meal: Meal
+    let onSave: (Meal) -> Void
     
-    var onSave: (Meal) -> Void
+    @State private var mealName: String
+    @State private var mealTime: Date
+    @State private var mealPortion: MealPortion
+    @State private var nutritionalInfo: NutritionalInfo
+    @State private var notes: String
     
-    enum PortionSize: String, CaseIterable, Identifiable {
-        case small = "Small"
-        case medium = "Medium"
-        case large = "Large"
-        
-        var id: String { self.rawValue }
-        
-        var calorieMultiplier: Double {
-            switch self {
-            case .small: return 0.75
-            case .medium: return 1.0
-            case .large: return 1.5
-            }
-        }
+    init(meal: Meal, onSave: @escaping (Meal) -> Void) {
+        self.meal = meal
+        self.onSave = onSave
+        _mealName = State(initialValue: meal.name)
+        _mealTime = State(initialValue: meal.time)
+        _mealPortion = State(initialValue: meal.portion)
+        _nutritionalInfo = State(initialValue: meal.nutritionalInfo)
+        _notes = State(initialValue: meal.notes ?? "")
     }
     
     var body: some View {
         NavigationView {
             Form {
                 Section(header: Text("Meal Details").font(.system(size: userSettings.textSize.size))) {
-                    HStack {
-                        Text("Meal Type")
-                            .font(.system(size: userSettings.textSize.size))
-                        
-                        Spacer()
-                        
-                        Picker("", selection: $selectedMealType) {
-                            ForEach(NutritionView.MealType.allCases) { type in
-                                HStack {
-                                    Image(systemName: type.icon)
-                                    Text(type.rawValue)
-                                }
-                                .tag(type)
-                            }
-                        }
-                        .pickerStyle(MenuPickerStyle())
+                    TextField("Meal name", text: $mealName)
                         .font(.system(size: userSettings.textSize.size))
-                    }
                     
-                    HStack {
-                        Text("Name")
-                            .font(.system(size: userSettings.textSize.size))
-                        
-                        TextField("Meal name", text: $mealName)
-                            .font(.system(size: userSettings.textSize.size))
-                        
-                        Button(action: {
-                            showingVoiceInput = true
-                        }) {
-                            Image(systemName: "mic.fill")
-                                .foregroundColor(.blue)
+                    DatePicker("Time", selection: $mealTime, displayedComponents: .hourAndMinute)
+                        .font(.system(size: userSettings.textSize.size))
+                }
+                
+                Section(header: Text("Portion Size").font(.system(size: userSettings.textSize.size))) {
+                    Picker("Portion", selection: $mealPortion) {
+                        ForEach(MealPortion.allCases) { size in
+                            Text(size.rawValue).tag(size)
                         }
                     }
-                    
-                    HStack {
-                        Text("Time")
-                            .font(.system(size: userSettings.textSize.size))
-                        
-                        Spacer()
-                        
-                        DatePicker("", selection: $mealTime, displayedComponents: .hourAndMinute)
-                            .font(.system(size: userSettings.textSize.size))
-                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .font(.system(size: userSettings.textSize.size))
                 }
                 
-                Section(header: Text("Simple Portion Size").font(.system(size: userSettings.textSize.size))) {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Select Portion Size")
-                            .font(.system(size: userSettings.textSize.size))
-                        
-                        HStack(spacing: 15) {
-                            ForEach(PortionSize.allCases) { size in
-                                portionSizeButton(size)
-                            }
+                Section(header: Text("Nutritional Information").font(.system(size: userSettings.textSize.size))) {
+                    Group {
+                        HStack {
+                            Text("Calories")
+                            Spacer()
+                            TextField("Calories", value: $nutritionalInfo.calories, format: .number)
+                                .keyboardType(.decimalPad)
+                                .multilineTextAlignment(.trailing)
                         }
-                        .padding(.vertical, 5)
+                        
+                        HStack {
+                            Text("Protein (g)")
+                            Spacer()
+                            TextField("Protein", value: $nutritionalInfo.protein, format: .number)
+                                .keyboardType(.decimalPad)
+                                .multilineTextAlignment(.trailing)
+                        }
+                        
+                        HStack {
+                            Text("Carbs (g)")
+                            Spacer()
+                            TextField("Carbs", value: $nutritionalInfo.carbohydrates, format: .number)
+                                .keyboardType(.decimalPad)
+                                .multilineTextAlignment(.trailing)
+                        }
+                        
+                        HStack {
+                            Text("Fat (g)")
+                            Spacer()
+                            TextField("Fat", value: $nutritionalInfo.fat, format: .number)
+                                .keyboardType(.decimalPad)
+                                .multilineTextAlignment(.trailing)
+                        }
                     }
+                    .font(.system(size: userSettings.textSize.size))
                 }
                 
-                Section(header: Text("Common Options").font(.system(size: userSettings.textSize.size))) {
-                    commonMealButton("Oatmeal with Berries", icon: "circle.fill", color: .brown)
-                    commonMealButton("Grilled Chicken Salad", icon: "leaf.fill", color: .green)
-                    commonMealButton("Fish with Vegetables", icon: "fish.fill", color: .blue)
-                    commonMealButton("Yogurt with Fruit", icon: "cup.and.saucer.fill", color: .purple)
+                Section(header: Text("Notes").font(.system(size: userSettings.textSize.size))) {
+                    TextEditor(text: $notes)
+                        .frame(height: 100)
+                        .font(.system(size: userSettings.textSize.size))
                 }
-                
-                Section {
-                    Button(action: saveMeal) {
-                        Text("Save Meal")
-                            .font(.system(size: userSettings.textSize.size))
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.blue)
-                            .cornerRadius(10)
-                    }
-                    .disabled(mealName.isEmpty)
-                }
-                .listRowBackground(Color.clear)
             }
-            .navigationTitle("Add Meal")
+            .navigationTitle("Edit Meal")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -582,84 +685,24 @@ struct AddMealView: View {
                     }
                     .font(.system(size: userSettings.textSize.size))
                 }
-            }
-        }
-    }
-    
-    // Helper for portion size buttons
-    private func portionSizeButton(_ size: PortionSize) -> some View {
-        Button(action: {
-            mealPortionSize = size
-        }) {
-            VStack(spacing: 8) {
-                ZStack {
-                    Circle()
-                        .stroke(mealPortionSize == size ? Color.blue : Color.gray, lineWidth: 2)
-                        .frame(width: size == .small ? 40 : (size == .medium ? 55 : 70),
-                               height: size == .small ? 40 : (size == .medium ? 55 : 70))
-                    
-                    if mealPortionSize == size {
-                        Circle()
-                            .fill(Color.blue)
-                            .frame(width: 15, height: 15)
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Save") {
+                        let updatedMeal = Meal(
+                            id: meal.id,
+                            name: mealName,
+                            type: meal.type,
+                            time: mealTime,
+                            portion: mealPortion,
+                            nutritionalInfo: nutritionalInfo,
+                            notes: notes.isEmpty ? nil : notes
+                        )
+                        onSave(updatedMeal)
+                        presentationMode.wrappedValue.dismiss()
                     }
-                }
-                
-                Text(size.rawValue)
-                    .font(.system(size: userSettings.textSize.size - 2))
-                    .foregroundColor(mealPortionSize == size ? .blue : .primary)
-            }
-            .frame(maxWidth: .infinity)
-        }
-    }
-    
-    // Helper for common meal buttons
-    private func commonMealButton(_ name: String, icon: String, color: Color) -> some View {
-        Button(action: {
-            mealName = name
-        }) {
-            HStack {
-                Image(systemName: icon)
-                    .foregroundColor(color)
-                
-                Text(name)
                     .font(.system(size: userSettings.textSize.size))
-                    .foregroundColor(.primary)
-                
-                Spacer()
-                
-                Image(systemName: "checkmark")
-                    .foregroundColor(.blue)
-                    .opacity(mealName == name ? 1 : 0)
+                }
             }
-            .contentShape(Rectangle())
         }
-    }
-    
-    // Save meal
-    private func saveMeal() {
-        // Calculate approximate nutrition based on portion size
-        let baseCalories = 350
-        let baseProtein = 20
-        let baseCarbs = 30
-        let baseFat = 15
-        
-        let calorieMultiplier = mealPortionSize.calorieMultiplier
-        
-        let newMeal = Meal(
-            name: mealName,
-            type: selectedMealType,
-            time: mealTime,
-            nutritionInfo: [
-                "calories": Int(Double(baseCalories) * calorieMultiplier),
-                "protein": Int(Double(baseProtein) * calorieMultiplier),
-                "carbs": Int(Double(baseCarbs) * calorieMultiplier),
-                "fat": Int(Double(baseFat) * calorieMultiplier)
-            ]
-        )
-        
-        onSave(newMeal)
-        presentationMode.wrappedValue.dismiss()
     }
 }
 
