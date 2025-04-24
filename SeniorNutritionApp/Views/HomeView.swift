@@ -108,66 +108,83 @@ struct HomeView: View {
     // Fasting status section
     private var fastingStatusSection: some View {
         VStack(spacing: 15) {
-            HStack {
-                Text("Fasting Status")
+            // Protocol Header
+            VStack(alignment: .leading, spacing: 5) {
+                Text("Current Protocol: \(userSettings.activeFastingProtocol.rawValue)")
                     .font(.system(size: userSettings.textSize.size, weight: .bold))
-                
-                Spacer()
-                
-                Button(action: {
-                    let status = "Current status: \(fastingManager.fastingState.title). \(formatRemainingTime()) remaining. \(calculatePercentageRemaining())% complete."
-                    voiceManager.speak(status)
-                }) {
-                    Image(systemName: voiceManager.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
-                        .foregroundColor(.blue)
-                }
+                Text(userSettings.activeFastingProtocol.description)
+                    .font(.system(size: userSettings.textSize.size - 2))
+                    .foregroundColor(.secondary)
             }
-            
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color(.systemGray6))
+            .cornerRadius(12)
+
+            // Timer Circle
             ZStack {
-                // Complete background circle in gray
+                // Background circle
                 Circle()
-                    .stroke(style: StrokeStyle(lineWidth: 15))
-                    .foregroundColor(Color(.systemGray5))
+                    .stroke(Color(.systemGray5), lineWidth: 20)
                 
-                // Fasting period (red)
+                // Progress circle (completed portion in mint green)
                 Circle()
-                    .trim(from: 0, to: calculateFastingPortion())
-                    .stroke(style: StrokeStyle(lineWidth: 15, lineCap: .butt))
-                    .foregroundColor(fastingManager.fastingState == .fasting ? .red : .red.opacity(0.3))
-                    .rotationEffect(Angle(degrees: -90))
-                    .animation(.easeInOut, value: fastingManager.fastingState)
+                    .trim(from: 0, to: 1 - calculateFastingPortion())
+                    .stroke(Color.mint, lineWidth: 20)
+                    .rotationEffect(.degrees(-90))
                 
-                // Eating period (green)
+                // Progress circle (remaining portion in red)
                 Circle()
-                    .trim(from: calculateFastingPortion(), to: 1)
-                    .stroke(style: StrokeStyle(lineWidth: 15, lineCap: .butt))
-                    .foregroundColor(fastingManager.fastingState == .eating ? .green : .green.opacity(0.3))
-                    .rotationEffect(Angle(degrees: -90))
-                    .animation(.easeInOut, value: fastingManager.fastingState)
+                    .trim(from: 1 - calculateFastingPortion(), to: 1)
+                    .stroke(Color.red, lineWidth: 20)
+                    .rotationEffect(.degrees(-90))
                 
-                // Progress indicator
-                Circle()
-                    .trim(from: 0, to: 0.03)
-                    .stroke(style: StrokeStyle(lineWidth: 3))
-                    .foregroundColor(.blue)
-                    .rotationEffect(Angle(degrees: calculateProgressDegrees()))
-                    .animation(.easeInOut, value: fastingManager.currentTime)
-                
-                VStack {
-                    Text(fastingManager.fastingState.title)
-                        .font(.system(size: userSettings.textSize.size, weight: .bold))
-                        .foregroundColor(fastingManager.fastingState.color)
+                // Center content
+                VStack(spacing: 5) {
+                    Text("Fasting")
+                        .font(.system(size: userSettings.textSize.size + 4, weight: .bold))
+                        .foregroundColor(.red)
                     
                     Text(formatRemainingTime())
-                        .font(.system(size: userSettings.textSize.size + 4, weight: .bold))
+                        .font(.system(size: userSettings.textSize.size + 12, weight: .bold))
+                        .contentTransition(.numericText())
+                        .animation(.linear(duration: 0.5), value: fastingManager.currentTime)
                     
-                    Text("\(calculatePercentageRemaining())% Complete")
-                        .font(.system(size: userSettings.textSize.size - 2))
+                    Text("\(calculatePercentageRemaining())% remain")
+                        .font(.system(size: userSettings.textSize.size))
+                        .foregroundColor(.secondary)
+                    
+                    Text("of fasting")
+                        .font(.system(size: userSettings.textSize.size))
                         .foregroundColor(.secondary)
                 }
             }
-            .frame(height: 200)
-            .padding()
+            .frame(height: 250)
+            .padding(.vertical)
+
+            // Meal Times
+            HStack {
+                VStack(alignment: .leading) {
+                    Text("Last Meal")
+                        .font(.system(size: userSettings.textSize.size))
+                        .foregroundColor(.secondary)
+                    Text(formatTime(fastingManager.lastMealTime))
+                        .font(.system(size: userSettings.textSize.size, weight: .medium))
+                        .foregroundColor(.blue)
+                }
+                
+                Spacer()
+                
+                VStack(alignment: .trailing) {
+                    Text("Next Meal")
+                        .font(.system(size: userSettings.textSize.size))
+                        .foregroundColor(.secondary)
+                    Text(formatTime(fastingManager.nextMealTime))
+                        .font(.system(size: userSettings.textSize.size, weight: .medium))
+                        .foregroundColor(.blue)
+                }
+            }
+            .padding(.horizontal)
         }
         .padding()
         .background(Color(.systemBackground))
@@ -632,6 +649,13 @@ struct HomeView: View {
             .cornerRadius(16)
             .shadow(radius: 2)
         }
+    }
+    
+    // Add this helper function for formatting time
+    private func formatTime(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        return formatter.string(from: date)
     }
 }
 

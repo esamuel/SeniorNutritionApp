@@ -78,21 +78,34 @@ class FoodDatabaseService: ObservableObject {
     @Published var customFoodItems: [FoodItem] = []
     
     init() {
+        // Force reset the database to include new foods
+        resetToDefaultFoods()
+    }
+    
+    // Add this new method to reset the database
+    func resetToDefaultFoods() {
+        print("\n=== Resetting food database to defaults ===")
+        // Remove saved foods from UserDefaults
+        UserDefaults.standard.removeObject(forKey: "savedFoods")
+        UserDefaults.standard.removeObject(forKey: "savedCustomFoods")
+        
+        // Reload the database
         loadFoodDatabase()
+        print("=== Reset complete ===\n")
     }
     
     // Load food database
     func loadFoodDatabase() {
         print("\n=== Starting to load food database ===")
         
-        // Load all foods (sample and regional)
-        var allFoods = SampleFoodData.foods + 
-                      RegionalFoodData.northAmericanFoods +
-                      RegionalFoodData.southAmericanFoods +
-                      RegionalFoodData.europeanFoods +
-                      RegionalFoodData.mediterraneanFoods
+        // Load all foods from SampleFoodData only
+        var allFoods = SampleFoodData.foods
         
         print("\nInitial food count: \(allFoods.count)")
+        print("\nAvailable foods:")
+        for food in allFoods {
+            print("- \(food.name) (\(food.category.rawValue))")
+        }
         
         // Remove duplicates based on food names (case-insensitive)
         var seenNames = Set<String>()

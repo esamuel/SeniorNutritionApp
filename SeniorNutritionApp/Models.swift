@@ -33,7 +33,7 @@ enum Relationship: String, CaseIterable, Identifiable, Codable {
 
 // Fasting protocol options
 enum FastingProtocol: String, CaseIterable, Identifiable, Codable {
-    case twelveEight = "12:8 (Gentle)"
+    case twelveTwelve = "12:12 (Gentle)"
     case fourteenTen = "14:10 (Moderate)"
     case sixteenEight = "16:8 (Standard)"
     case custom = "Custom Protocol"
@@ -42,8 +42,8 @@ enum FastingProtocol: String, CaseIterable, Identifiable, Codable {
     
     var description: String {
         switch self {
-        case .twelveEight: 
-            return "Fast for 12 hours, eat within an 8-hour window. Ideal for beginners."
+        case .twelveTwelve: 
+            return "Fast for 12 hours, eat within a 12-hour window. Ideal for beginners."
         case .fourteenTen:
             return "Fast for 14 hours, eat within a 10-hour window. Moderate intensity."
         case .sixteenEight:
@@ -55,7 +55,7 @@ enum FastingProtocol: String, CaseIterable, Identifiable, Codable {
     
     var fastingHours: Int {
         switch self {
-        case .twelveEight: return 12
+        case .twelveTwelve: return 12
         case .fourteenTen: return 14
         case .sixteenEight: return 16
         case .custom: return UserDefaults.standard.integer(forKey: "customFastingHours")
@@ -64,7 +64,7 @@ enum FastingProtocol: String, CaseIterable, Identifiable, Codable {
     
     var eatingHours: Int {
         switch self {
-        case .twelveEight: return 12
+        case .twelveTwelve: return 12
         case .fourteenTen: return 10
         case .sixteenEight: return 8
         case .custom: return UserDefaults.standard.integer(forKey: "customEatingHours")
@@ -74,6 +74,12 @@ enum FastingProtocol: String, CaseIterable, Identifiable, Codable {
     static func setCustomProtocol(fastingHours: Int, eatingHours: Int) {
         UserDefaults.standard.set(fastingHours, forKey: "customFastingHours")
         UserDefaults.standard.set(eatingHours, forKey: "customEatingHours")
+    }
+    
+    static func getCustomProtocol() -> (fastingHours: Int, eatingHours: Int) {
+        let fastingHours = UserDefaults.standard.integer(forKey: "customFastingHours")
+        let eatingHours = UserDefaults.standard.integer(forKey: "customEatingHours")
+        return (fastingHours, eatingHours)
     }
 }
 

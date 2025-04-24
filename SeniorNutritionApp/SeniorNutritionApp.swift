@@ -4,6 +4,7 @@ import UserNotifications
 @main
 struct SeniorNutritionApp: App {
     @StateObject private var userSettings = UserSettings()
+    @StateObject private var foodDatabase = FoodDatabaseService()
     
     init() {
         // Request notification permissions
@@ -21,9 +22,11 @@ struct SeniorNutritionApp: App {
             if userSettings.isOnboardingComplete {
                 MainTabView()
                     .environmentObject(userSettings)
+                    .environmentObject(foodDatabase)
             } else {
                 OnboardingView()
                     .environmentObject(userSettings)
+                    .environmentObject(foodDatabase)
             }
         }
     }

@@ -11,6 +11,7 @@ struct FastingTimerView: View {
     @State private var showingCustomProtocolSheet = false
     @State private var customFastingHours = 16
     @State private var customEatingHours = 8
+    @State private var showingCustomProtocol = false
     
     var body: some View {
         NavigationView {
@@ -41,10 +42,19 @@ struct FastingTimerView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        showingProtocolPicker = true
+                        if userSettings.activeFastingProtocol == .custom {
+                            showingCustomProtocol = true
+                        } else {
+                            showingProtocolPicker = true
+                        }
                     }) {
-                        Image(systemName: "gear")
-                            .imageScale(.large)
+                        HStack {
+                            Text(userSettings.activeFastingProtocol.rawValue)
+                                .font(.system(size: userSettings.textSize.size))
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(.gray)
+                        }
                     }
                     .accessibilityLabel("Change Fasting Protocol")
                 }
@@ -71,6 +81,9 @@ struct FastingTimerView: View {
                 )) {
                     showingNextMealPicker = false
                 }
+            }
+            .sheet(isPresented: $showingCustomProtocol) {
+                CustomFastingProtocolView()
             }
             .alert(isPresented: $showingEmergencyAlert) {
                 Alert(
@@ -145,13 +158,13 @@ struct FastingTimerView: View {
                         .contentTransition(.numericText())
                         .animation(.linear(duration: 0.5), value: fastingManager.currentTime)
                     
-                    Text("\(calculatePercentageRemaining())%")
+                    Text("\(calculatePercentageRemaining())% remain")
                         .font(.system(size: userSettings.textSize.size))
                         .foregroundColor(.secondary)
                         .contentTransition(.numericText())
                         .animation(.linear(duration: 0.5), value: fastingManager.currentTime)
                     
-                    Text("Remaining")
+                    Text(fastingManager.fastingState == .fasting ? "of fasting" : "of eating window")
                         .font(.system(size: userSettings.textSize.size - 2))
                         .foregroundColor(.secondary)
                 }
@@ -534,7 +547,7 @@ struct FastingTimerView: View {
         
         private var benefits: [String] {
             switch `protocol` {
-            case .twelveEight:
+            case .twelveTwelve:
                 return [
                     "Gentle introduction to intermittent fasting",
                     "Helps regulate blood sugar levels",
@@ -569,7 +582,7 @@ struct FastingTimerView: View {
         
         private var recommendedFor: [String] {
             switch `protocol` {
-            case .twelveEight:
+            case .twelveTwelve:
                 return [
                     "Beginners to intermittent fasting",
                     "Those with regular medication schedules",
@@ -602,7 +615,7 @@ struct FastingTimerView: View {
         
         private var guidelines: [String] {
             switch `protocol` {
-            case .twelveEight:
+            case .twelveTwelve:
                 return [
                     "Start your fast after dinner",
                     "Skip breakfast or have it later",

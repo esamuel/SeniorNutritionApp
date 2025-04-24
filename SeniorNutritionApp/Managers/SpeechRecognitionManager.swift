@@ -1,6 +1,8 @@
 import Foundation
 import Speech
+import AVFoundation
 
+@MainActor
 class SpeechRecognitionManager: NSObject, ObservableObject {
     static let shared = SpeechRecognitionManager()
     
@@ -23,6 +25,7 @@ class SpeechRecognitionManager: NSObject, ObservableObject {
     @Published var isRecording = false
     @Published var transcribedText = ""
     @Published var errorMessage: String?
+    @Published var isAuthorized = false
     
     private var speechRecognizer: SFSpeechRecognizer?
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
@@ -49,19 +52,34 @@ class SpeechRecognitionManager: NSObject, ObservableObject {
     }
     
     private func requestAuthorization() {
+        // Request speech recognition authorization
         SFSpeechRecognizer.requestAuthorization { [weak self] status in
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 switch status {
                 case .authorized:
+                    self?.isAuthorized = true
                     self?.errorMessage = nil
                 case .denied:
-                    self?.errorMessage = "Speech recognition permission denied"
+                    self?.isAuthorized = false
+                    self?.errorMessage = "Speech recognition permission denied. Please enable it in Settings."
                 case .restricted:
+                    self?.isAuthorized = false
                     self?.errorMessage = "Speech recognition is restricted on this device"
                 case .notDetermined:
+                    self?.isAuthorized = false
                     self?.errorMessage = "Speech recognition not yet authorized"
                 @unknown default:
+                    self?.isAuthorized = false
                     self?.errorMessage = "Unknown authorization status"
+                }
+            }
+        }
+        
+        // Request microphone authorization
+        AVAudioSession.sharedInstance().requestRecordPermission { [weak self] granted in
+            Task { @MainActor in
+                if !granted {
+                    self?.errorMessage = "Microphone access denied. Please enable it in Settings."
                 }
             }
         }
@@ -69,6 +87,12 @@ class SpeechRecognitionManager: NSObject, ObservableObject {
     
     func startRecording() {
         guard !isRecording else { return }
+        
+        // Check authorization status
+        guard isAuthorized else {
+            errorMessage = "Speech recognition not authorized. Please enable it in Settings."
+            return
+        }
         
         // Reset any existing task
         if recognitionTask != nil {
@@ -99,13 +123,15 @@ class SpeechRecognitionManager: NSObject, ObservableObject {
             guard let self = self else { return }
             
             if let result = result {
-                DispatchQueue.main.async {
+                Task { @MainActor in
                     self.transcribedText = result.bestTranscription.formattedString
                 }
             }
             
             if error != nil {
-                self.stopRecording()
+                Task { @MainActor in
+                    self.stopRecording()
+                }
             }
         }
         

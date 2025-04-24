@@ -343,6 +343,21 @@ struct NutritionView: View {
             .background(Color(.systemGray6))
             .cornerRadius(16)
         }
+        .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+            Button(role: .destructive) {
+                mealToDelete = meal
+                showingDeleteAlert = true
+            } label: {
+                Label("Delete", systemImage: "trash")
+            }
+            
+            Button {
+                mealToEdit = meal
+            } label: {
+                Label("Edit", systemImage: "pencil")
+            }
+            .tint(.blue)
+        }
     }
     
     // Nutrition tips section
@@ -598,6 +613,7 @@ struct EditMealView: View {
     
     @State private var mealName: String
     @State private var mealTime: Date
+    @State private var mealType: MealType
     @State private var mealPortion: MealPortion
     @State private var nutritionalInfo: NutritionalInfo
     @State private var notes: String
@@ -607,6 +623,7 @@ struct EditMealView: View {
         self.onSave = onSave
         _mealName = State(initialValue: meal.name)
         _mealTime = State(initialValue: meal.time)
+        _mealType = State(initialValue: meal.type)
         _mealPortion = State(initialValue: meal.portion)
         _nutritionalInfo = State(initialValue: meal.nutritionalInfo)
         _notes = State(initialValue: meal.notes ?? "")
@@ -618,6 +635,18 @@ struct EditMealView: View {
                 Section(header: Text("Meal Details").font(.system(size: userSettings.textSize.size))) {
                     TextField("Meal name", text: $mealName)
                         .font(.system(size: userSettings.textSize.size))
+                    
+                    Picker("Meal Type", selection: $mealType) {
+                        ForEach(MealType.allCases) { type in
+                            HStack {
+                                Image(systemName: type.icon)
+                                    .foregroundColor(type.color)
+                                Text(type.rawValue)
+                            }
+                            .tag(type)
+                        }
+                    }
+                    .font(.system(size: userSettings.textSize.size))
                     
                     DatePicker("Time", selection: $mealTime, displayedComponents: .hourAndMinute)
                         .font(.system(size: userSettings.textSize.size))
@@ -633,48 +662,25 @@ struct EditMealView: View {
                     .font(.system(size: userSettings.textSize.size))
                 }
                 
-                Section(header: Text("Nutritional Information").font(.system(size: userSettings.textSize.size))) {
-                    Group {
-                        HStack {
-                            Text("Calories")
-                            Spacer()
-                            TextField("Calories", value: $nutritionalInfo.calories, format: .number)
-                                .keyboardType(.decimalPad)
-                                .multilineTextAlignment(.trailing)
-                        }
-                        
-                        HStack {
-                            Text("Protein (g)")
-                            Spacer()
-                            TextField("Protein", value: $nutritionalInfo.protein, format: .number)
-                                .keyboardType(.decimalPad)
-                                .multilineTextAlignment(.trailing)
-                        }
-                        
-                        HStack {
-                            Text("Carbs (g)")
-                            Spacer()
-                            TextField("Carbs", value: $nutritionalInfo.carbohydrates, format: .number)
-                                .keyboardType(.decimalPad)
-                                .multilineTextAlignment(.trailing)
-                        }
-                        
-                        HStack {
-                            Text("Fat (g)")
-                            Spacer()
-                            TextField("Fat", value: $nutritionalInfo.fat, format: .number)
-                                .keyboardType(.decimalPad)
-                                .multilineTextAlignment(.trailing)
-                        }
-                    }
-                    .font(.system(size: userSettings.textSize.size))
-                }
-                
                 Section(header: Text("Notes").font(.system(size: userSettings.textSize.size))) {
                     TextEditor(text: $notes)
                         .frame(height: 100)
                         .font(.system(size: userSettings.textSize.size))
                 }
+                
+                Section {
+                    Button(action: saveMealChanges) {
+                        Text("Save Changes")
+                            .font(.system(size: userSettings.textSize.size))
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.blue)
+                            .cornerRadius(10)
+                    }
+                    .disabled(mealName.isEmpty)
+                }
+                .listRowBackground(Color.clear)
             }
             .navigationTitle("Edit Meal")
             .navigationBarTitleDisplayMode(.inline)
@@ -685,24 +691,22 @@ struct EditMealView: View {
                     }
                     .font(.system(size: userSettings.textSize.size))
                 }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Save") {
-                        let updatedMeal = Meal(
-                            id: meal.id,
-                            name: mealName,
-                            type: meal.type,
-                            time: mealTime,
-                            portion: mealPortion,
-                            nutritionalInfo: nutritionalInfo,
-                            notes: notes.isEmpty ? nil : notes
-                        )
-                        onSave(updatedMeal)
-                        presentationMode.wrappedValue.dismiss()
-                    }
-                    .font(.system(size: userSettings.textSize.size))
-                }
             }
         }
+    }
+    
+    private func saveMealChanges() {
+        let updatedMeal = Meal(
+            id: meal.id,
+            name: mealName,
+            type: mealType,
+            time: mealTime,
+            portion: mealPortion,
+            nutritionalInfo: nutritionalInfo,
+            notes: notes.isEmpty ? nil : notes
+        )
+        onSave(updatedMeal)
+        presentationMode.wrappedValue.dismiss()
     }
 }
 

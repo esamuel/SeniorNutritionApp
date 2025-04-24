@@ -107,37 +107,73 @@ class UserSettings: ObservableObject {
     
     private let localDataKey = "userData"
     
+    private var cancellables = Set<AnyCancellable>()
+    
     init() {
         loadUserData()
+        setupMedicationObservers()
+    }
+    
+    private func setupMedicationObservers() {
+        $medications
+            .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.saveUserData()
+            }
+            .store(in: &cancellables)
     }
     
     // Save user data to persistent storage
-    func saveUserData() {
-        let data = PersistentData(
-            textSize: textSize,
-            highContrastMode: highContrastMode,
-            useVoiceInput: useVoiceInput,
-            activeFastingProtocol: activeFastingProtocol,
-            medications: medications,
-            isOnboardingComplete: isOnboardingComplete,
-            userName: userName,
-            userAge: userAge,
-            userGender: userGender,
-            userHeight: userHeight,
-            userWeight: userWeight,
-            userHealthGoals: userHealthGoals,
-            userDietaryRestrictions: userDietaryRestrictions,
-            userEmergencyContacts: userEmergencyContacts
-        )
-        
-        // Save to persistent storage
-        PersistentStorage.shared.saveData(data, forKey: localDataKey)
+    private func saveUserData() {
+        Task {
+            do {
+                let data = PersistentData(
+                    textSize: textSize,
+                    highContrastMode: highContrastMode,
+                    useVoiceInput: useVoiceInput,
+                    activeFastingProtocol: activeFastingProtocol,
+                    medications: medications,
+                    isOnboardingComplete: isOnboardingComplete,
+                    userName: userName,
+                    userAge: userAge,
+                    userGender: userGender,
+                    userHeight: userHeight,
+                    userWeight: userWeight,
+                    userHealthGoals: userHealthGoals,
+                    userDietaryRestrictions: userDietaryRestrictions,
+                    userEmergencyContacts: userEmergencyContacts
+                )
+                
+                try await PersistentStorage.shared.saveData(data, forKey: localDataKey)
+            } catch {
+                print("Error saving user data: \(error)")
+            }
+        }
     }
     
     // Load user data from persistent storage
-    func loadUserData() {
-        if let data: PersistentData = PersistentStorage.shared.loadData(forKey: localDataKey) {
-            self.updateSettings(from: data)
+    private func loadUserData() {
+        Task {
+            do {
+                if let data: PersistentData = try await PersistentStorage.shared.loadData(forKey: localDataKey) {
+                    textSize = data.textSize
+                    highContrastMode = data.highContrastMode
+                    useVoiceInput = data.useVoiceInput
+                    activeFastingProtocol = data.activeFastingProtocol
+                    medications = data.medications
+                    isOnboardingComplete = data.isOnboardingComplete
+                    userName = data.userName
+                    userAge = data.userAge
+                    userGender = data.userGender
+                    userHeight = data.userHeight
+                    userWeight = data.userWeight
+                    userHealthGoals = data.userHealthGoals
+                    userDietaryRestrictions = data.userDietaryRestrictions
+                    userEmergencyContacts = data.userEmergencyContacts
+                }
+            } catch {
+                print("Error loading user data: \(error)")
+            }
         }
         
         // Load user profile
@@ -149,24 +185,6 @@ class UserSettings: ObservableObject {
         // Load other settings
         self.isDarkMode = UserDefaults.standard.bool(forKey: "isDarkMode")
         self.notificationsEnabled = UserDefaults.standard.bool(forKey: "notificationsEnabled")
-    }
-    
-    // Update settings from loaded data
-    private func updateSettings(from data: PersistentData) {
-        self.textSize = data.textSize
-        self.highContrastMode = data.highContrastMode
-        self.useVoiceInput = data.useVoiceInput
-        self.activeFastingProtocol = data.activeFastingProtocol
-        self.medications = data.medications
-        self.isOnboardingComplete = data.isOnboardingComplete
-        self.userName = data.userName
-        self.userAge = data.userAge
-        self.userGender = data.userGender
-        self.userHeight = data.userHeight
-        self.userWeight = data.userWeight
-        self.userHealthGoals = data.userHealthGoals
-        self.userDietaryRestrictions = data.userDietaryRestrictions
-        self.userEmergencyContacts = data.userEmergencyContacts
     }
     
     func updateProfile(_ profile: UserProfile) {

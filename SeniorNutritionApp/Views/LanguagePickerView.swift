@@ -3,18 +3,18 @@ import SwiftUI
 struct LanguagePickerView: View {
     @Environment(\.dismiss) private var dismiss
     @Binding var selectedIndex: Int
-    let languages: [String]
+    let languages: [(locale: Locale, name: String)]
     
     var body: some View {
         NavigationView {
             List {
-                ForEach(0..<languages.count, id: \.self) { index in
+                ForEach(languages.indices, id: \.self) { index in
                     Button(action: {
                         selectedIndex = index
                         dismiss()
                     }) {
                         HStack {
-                            Text(languages[index])
+                            Text(languages[index].name)
                             Spacer()
                             if index == selectedIndex {
                                 Image(systemName: "checkmark")
@@ -27,8 +27,8 @@ struct LanguagePickerView: View {
             .navigationTitle("Select Language")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Done") {
                         dismiss()
                     }
                 }

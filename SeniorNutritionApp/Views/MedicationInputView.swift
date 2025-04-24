@@ -17,89 +17,166 @@ struct MedicationInputView: View {
     
     var body: some View {
         NavigationView {
-            Form {
-                Section(header: Text("Medication Details")) {
-                    HStack {
-                        TextField("Medication Name", text: $medicationName)
+            ScrollView {
+                VStack(spacing: 20) {
+                    // Medication Details Section
+                    VStack(alignment: .leading, spacing: 15) {
+                        Text("Medication Details")
+                            .font(.system(size: userSettings.textSize.size, weight: .bold))
+                            .padding(.horizontal)
                         
-                        Button(action: {
-                            if speechManager.isRecording {
-                                speechManager.stopRecording()
-                            } else {
-                                speechManager.startRecording()
+                        VStack(spacing: 15) {
+                            // Name Input
+                            HStack {
+                                TextField("Medication Name", text: $medicationName)
+                                    .font(.system(size: userSettings.textSize.size))
+                                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                                
+                                Button(action: {
+                                    if speechManager.isRecording {
+                                        speechManager.stopRecording()
+                                    } else {
+                                        speechManager.startRecording()
+                                    }
+                                }) {
+                                    Image(systemName: speechManager.isRecording ? "mic.fill" : "mic")
+                                        .foregroundColor(speechManager.isRecording ? .red : .blue)
+                                        .font(.system(size: userSettings.textSize.size))
+                                }
+                                
+                                Button(action: {
+                                    showingLanguagePicker = true
+                                }) {
+                                    Image(systemName: "globe")
+                                        .foregroundColor(.blue)
+                                        .font(.system(size: userSettings.textSize.size))
+                                }
                             }
-                        }) {
-                            Image(systemName: speechManager.isRecording ? "mic.fill" : "mic")
-                                .foregroundColor(speechManager.isRecording ? .red : .blue)
+                            
+                            if !speechManager.transcribedText.isEmpty {
+                                Text(speechManager.transcribedText)
+                                    .font(.system(size: userSettings.textSize.size))
+                                    .foregroundColor(.secondary)
+                                    .onTapGesture {
+                                        medicationName = speechManager.transcribedText
+                                        speechManager.transcribedText = ""
+                                    }
+                            }
+                            
+                            if let error = speechManager.errorMessage {
+                                Text(error)
+                                    .font(.system(size: userSettings.textSize.size - 2))
+                                    .foregroundColor(.red)
+                            }
+                            
+                            // Dosage Input
+                            TextField("Dosage", text: $dosage)
+                                .font(.system(size: userSettings.textSize.size))
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
                         }
+                        .padding()
+                        .background(Color(.systemBackground))
+                        .cornerRadius(16)
+                        .shadow(radius: 2)
+                    }
+                    .padding(.horizontal)
+                    
+                    // Schedule Section
+                    VStack(alignment: .leading, spacing: 15) {
+                        Text("Schedule")
+                            .font(.system(size: userSettings.textSize.size, weight: .bold))
+                            .padding(.horizontal)
                         
-                        Button(action: {
-                            showingLanguagePicker = true
-                        }) {
-                            Image(systemName: "globe")
+                        VStack(spacing: 15) {
+                            ForEach(schedule.indices, id: \.self) { index in
+                                HStack {
+                                    Text(timeFormatter.string(from: schedule[index]))
+                                        .font(.system(size: userSettings.textSize.size))
+                                    
+                                    Spacer()
+                                    
+                                    Button("Edit") {
+                                        selectedTimeIndex = index
+                                        showingTimePicker = true
+                                    }
+                                    .font(.system(size: userSettings.textSize.size))
+                                    .foregroundColor(.blue)
+                                }
+                            }
+                            .onDelete(perform: deleteTime)
+                            
+                            Button(action: {
+                                schedule.append(Date())
+                            }) {
+                                HStack {
+                                    Image(systemName: "plus.circle.fill")
+                                    Text("Add Time")
+                                }
+                                .font(.system(size: userSettings.textSize.size))
                                 .foregroundColor(.blue)
-                        }
-                    }
-                    
-                    if !speechManager.transcribedText.isEmpty {
-                        Text(speechManager.transcribedText)
-                            .foregroundColor(.secondary)
-                            .onTapGesture {
-                                medicationName = speechManager.transcribedText
-                                speechManager.transcribedText = ""
-                            }
-                    }
-                    
-                    if let error = speechManager.errorMessage {
-                        Text(error)
-                            .foregroundColor(.red)
-                            .font(.caption)
-                    }
-                    
-                    TextField("Dosage", text: $dosage)
-                }
-                
-                Section(header: Text("Schedule")) {
-                    ForEach(schedule.indices, id: \.self) { index in
-                        HStack {
-                            Text(timeFormatter.string(from: schedule[index]))
-                            Spacer()
-                            Button("Edit") {
-                                selectedTimeIndex = index
-                                showingTimePicker = true
                             }
                         }
+                        .padding()
+                        .background(Color(.systemBackground))
+                        .cornerRadius(16)
+                        .shadow(radius: 2)
                     }
-                    .onDelete(perform: deleteTime)
+                    .padding(.horizontal)
                     
-                    Button("Add Time") {
-                        schedule.append(Date())
+                    // Take with Food Toggle
+                    VStack(alignment: .leading, spacing: 15) {
+                        Text("Additional Settings")
+                            .font(.system(size: userSettings.textSize.size, weight: .bold))
+                            .padding(.horizontal)
+                        
+                        Toggle("Take with Food", isOn: $takeWithFood)
+                            .font(.system(size: userSettings.textSize.size))
+                            .padding()
+                            .background(Color(.systemBackground))
+                            .cornerRadius(16)
+                            .shadow(radius: 2)
                     }
+                    .padding(.horizontal)
+                    
+                    // Notes Section
+                    VStack(alignment: .leading, spacing: 15) {
+                        Text("Notes")
+                            .font(.system(size: userSettings.textSize.size, weight: .bold))
+                            .padding(.horizontal)
+                        
+                        TextEditor(text: $notes)
+                            .font(.system(size: userSettings.textSize.size))
+                            .frame(height: 100)
+                            .padding()
+                            .background(Color(.systemBackground))
+                            .cornerRadius(16)
+                            .shadow(radius: 2)
+                    }
+                    .padding(.horizontal)
+                    
+                    // Save Button
+                    Button(action: saveMedication) {
+                        Text("Save Medication")
+                            .font(.system(size: userSettings.textSize.size, weight: .bold))
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(medicationName.isEmpty || schedule.isEmpty ? Color.gray : Color.blue)
+                            .cornerRadius(16)
+                    }
+                    .disabled(medicationName.isEmpty || schedule.isEmpty)
+                    .padding(.horizontal)
                 }
-                
-                Section {
-                    Toggle("Take with Food", isOn: $takeWithFood)
-                }
-                
-                Section(header: Text("Notes")) {
-                    TextEditor(text: $notes)
-                        .frame(height: 100)
-                }
+                .padding(.vertical)
             }
             .navigationTitle("Add Medication")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Save") {
-                        saveMedication()
-                    }
-                    .disabled(medicationName.isEmpty || schedule.isEmpty)
-                }
-                
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Cancel") {
                         dismiss()
                     }
+                    .font(.system(size: userSettings.textSize.size))
                 }
             }
             .sheet(isPresented: $showingTimePicker) {
@@ -125,7 +202,7 @@ struct MedicationInputView: View {
             dosage: dosage,
             schedule: schedule,
             takeWithFood: takeWithFood,
-            notes: notes
+            notes: notes.isEmpty ? nil : notes
         )
         userSettings.medications.append(medication)
         dismiss()
@@ -139,42 +216,5 @@ struct MedicationInputView: View {
         let formatter = DateFormatter()
         formatter.timeStyle = .short
         return formatter
-    }
-}
-
-struct LanguagePickerView: View {
-    @Environment(\.dismiss) private var dismiss
-    @Binding var selectedIndex: Int
-    let languages: [(locale: Locale, name: String)]
-    
-    var body: some View {
-        NavigationView {
-            List {
-                ForEach(languages.indices, id: \.self) { index in
-                    Button(action: {
-                        selectedIndex = index
-                        dismiss()
-                    }) {
-                        HStack {
-                            Text(languages[index].name)
-                            Spacer()
-                            if index == selectedIndex {
-                                Image(systemName: "checkmark")
-                                    .foregroundColor(.blue)
-                            }
-                        }
-                    }
-                }
-            }
-            .navigationTitle("Select Language")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Done") {
-                        dismiss()
-                    }
-                }
-            }
-        }
     }
 } 

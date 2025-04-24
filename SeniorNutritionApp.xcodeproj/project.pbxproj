@@ -400,6 +400,7 @@
 				DEVELOPMENT_TEAM = 2X955T7VJ9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "SeniorNutritionApp/SeniorNutritionApp-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Senior Nutrition app";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -430,6 +431,7 @@
 				DEVELOPMENT_TEAM = 2X955T7VJ9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "SeniorNutritionApp/SeniorNutritionApp-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Senior Nutrition app";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
