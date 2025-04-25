@@ -1,5 +1,7 @@
 import SwiftUI
 import Combine
+import UserNotifications
+import Foundation
 
 // User settings management
 @MainActor
@@ -127,6 +129,11 @@ class UserSettings: ObservableObject {
     private func saveUserData() {
         Task {
             do {
+                print("DEBUG: Saving medications count: \(medications.count)")
+                for medication in medications {
+                    print("DEBUG: Saving medication: \(medication.name) with schedule: \(medication.schedule)")
+                }
+                
                 let data = PersistentData(
                     textSize: textSize,
                     highContrastMode: highContrastMode,
@@ -145,6 +152,7 @@ class UserSettings: ObservableObject {
                 )
                 
                 try await PersistentStorage.shared.saveData(data, forKey: localDataKey)
+                print("DEBUG: Successfully saved user data")
             } catch {
                 print("Error saving user data: \(error)")
             }
@@ -156,6 +164,11 @@ class UserSettings: ObservableObject {
         Task {
             do {
                 if let data: PersistentData = try await PersistentStorage.shared.loadData(forKey: localDataKey) {
+                    print("DEBUG: Loading medications count: \(data.medications.count)")
+                    for medication in data.medications {
+                        print("DEBUG: Loading medication: \(medication.name) with schedule: \(medication.schedule)")
+                    }
+                    
                     textSize = data.textSize
                     highContrastMode = data.highContrastMode
                     useVoiceInput = data.useVoiceInput
@@ -170,6 +183,10 @@ class UserSettings: ObservableObject {
                     userHealthGoals = data.userHealthGoals
                     userDietaryRestrictions = data.userDietaryRestrictions
                     userEmergencyContacts = data.userEmergencyContacts
+                    
+                    print("DEBUG: Successfully loaded user data")
+                } else {
+                    print("DEBUG: No saved user data found")
                 }
             } catch {
                 print("Error loading user data: \(error)")

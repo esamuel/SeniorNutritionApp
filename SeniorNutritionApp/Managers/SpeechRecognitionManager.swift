@@ -76,10 +76,26 @@ class SpeechRecognitionManager: NSObject, ObservableObject {
         }
         
         // Request microphone authorization
-        AVAudioSession.sharedInstance().requestRecordPermission { [weak self] granted in
-            Task { @MainActor in
-                if !granted {
-                    self?.errorMessage = "Microphone access denied. Please enable it in Settings."
+        requestMicrophonePermission()
+    }
+    
+    private func requestMicrophonePermission() {
+        if #available(iOS 17.0, *) {
+            AVAudioApplication.requestRecordPermission { [weak self] granted in
+                DispatchQueue.main.async {
+                    self?.isRecording = granted
+                    if !granted {
+                        self?.errorMessage = "Microphone access is required for voice input"
+                    }
+                }
+            }
+        } else {
+            AVAudioSession.sharedInstance().requestRecordPermission { [weak self] granted in
+                DispatchQueue.main.async {
+                    self?.isRecording = granted
+                    if !granted {
+                        self?.errorMessage = "Microphone access is required for voice input"
+                    }
                 }
             }
         }

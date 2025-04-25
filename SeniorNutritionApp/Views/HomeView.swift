@@ -8,6 +8,8 @@ struct HomeView: View {
     @StateObject private var voiceManager = VoiceManager.shared
     @State private var showingHelpSheet = false
     @State private var medicationNotifications: [UUID: Date] = [:]
+    @State private var selectedMealType: MealType = .breakfast
+    @State private var showingAddMeal = false
     
     var body: some View {
         NavigationView {
@@ -36,6 +38,11 @@ struct HomeView: View {
             }
             .sheet(isPresented: $showingHelpSheet) {
                 HelpGuideView()
+            }
+            .sheet(isPresented: $showingAddMeal) {
+                AddMealView(selectedMealType: $selectedMealType) { _ in
+                    showingAddMeal = false
+                }
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
@@ -108,19 +115,6 @@ struct HomeView: View {
     // Fasting status section
     private var fastingStatusSection: some View {
         VStack(spacing: 15) {
-            // Protocol Header
-            VStack(alignment: .leading, spacing: 5) {
-                Text("Current Protocol: \(userSettings.activeFastingProtocol.rawValue)")
-                    .font(.system(size: userSettings.textSize.size, weight: .bold))
-                Text(userSettings.activeFastingProtocol.description)
-                    .font(.system(size: userSettings.textSize.size - 2))
-                    .foregroundColor(.secondary)
-            }
-            .padding()
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Color(.systemGray6))
-            .cornerRadius(12)
-
             // Timer Circle
             ZStack {
                 // Background circle
@@ -153,38 +147,10 @@ struct HomeView: View {
                     Text("\(calculatePercentageRemaining())% remain")
                         .font(.system(size: userSettings.textSize.size))
                         .foregroundColor(.secondary)
-                    
-                    Text("of fasting")
-                        .font(.system(size: userSettings.textSize.size))
-                        .foregroundColor(.secondary)
                 }
             }
             .frame(height: 250)
             .padding(.vertical)
-
-            // Meal Times
-            HStack {
-                VStack(alignment: .leading) {
-                    Text("Last Meal")
-                        .font(.system(size: userSettings.textSize.size))
-                        .foregroundColor(.secondary)
-                    Text(formatTime(fastingManager.lastMealTime))
-                        .font(.system(size: userSettings.textSize.size, weight: .medium))
-                        .foregroundColor(.blue)
-                }
-                
-                Spacer()
-                
-                VStack(alignment: .trailing) {
-                    Text("Next Meal")
-                        .font(.system(size: userSettings.textSize.size))
-                        .foregroundColor(.secondary)
-                    Text(formatTime(fastingManager.nextMealTime))
-                        .font(.system(size: userSettings.textSize.size, weight: .medium))
-                        .foregroundColor(.blue)
-                }
-            }
-            .padding(.horizontal)
         }
         .padding()
         .background(Color(.systemBackground))
@@ -200,9 +166,36 @@ struct HomeView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             HStack(spacing: 20) {
-                quickActionButton(icon: "plus.circle.fill", title: "Add Meal", action: {})
-                quickActionButton(icon: "pill.fill", title: "Log Medicine", action: {})
-                quickActionButton(icon: "phone.fill", title: "Get Help", action: {})
+                quickActionButton(
+                    icon: "plus.circle.fill",
+                    title: "Add Meal",
+                    action: {
+                        showingAddMeal = true
+                    }
+                )
+                
+                quickActionButton(
+                    icon: "pill.fill",
+                    title: "Log Medicine",
+                    action: {
+                        // Navigate to MedicationInputView
+                        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                           let window = windowScene.windows.first {
+                            let medicationInputView = MedicationInputView()
+                            let hostingController = UIHostingController(rootView: medicationInputView.environmentObject(userSettings))
+                            window.rootViewController?.present(hostingController, animated: true)
+                        }
+                    }
+                )
+                
+                quickActionButton(
+                    icon: "phone.fill",
+                    title: "Get Help",
+                    action: {
+                        // Show help sheet
+                        showingHelpSheet = true
+                    }
+                )
             }
         }
         .padding()
@@ -257,6 +250,7 @@ struct HomeView: View {
                     .multilineTextAlignment(.center)
             }
             .frame(maxWidth: .infinity)
+            .frame(height: 100) // Fixed height for all buttons
             .padding()
             .background(Color.blue.opacity(0.1))
             .cornerRadius(12)
@@ -333,15 +327,51 @@ struct HomeView: View {
     
     private var upcomingMedications: [Medication] {
         let now = Date()
-        return userSettings.medications
+        let calendar = Calendar.current
+        print("DEBUG: Current medications count: \(userSettings.medications.count)")
+        print("DEBUG: Current time: \(now)")
+        
+        let filteredMedications = userSettings.medications
             .filter { medication in
-                medication.schedule.contains { $0 > now }
+                let hasUpcoming = medication.schedule.contains { scheduleTime in
+                    // If the time has passed today, check if it's for tomorrow
+                    if scheduleTime <= now {
+                        // Get the same time tomorrow
+                        if let tomorrow = calendar.date(byAdding: .day, value: 1, to: scheduleTime) {
+                            return tomorrow > now
+                        }
+                        return false
+                    }
+                    return scheduleTime > now
+                }
+                print("DEBUG: Medication \(medication.name) has upcoming: \(hasUpcoming)")
+                print("DEBUG: Medication \(medication.name) schedule: \(medication.schedule)")
+                return hasUpcoming
             }
             .sorted { medication1, medication2 in
-                let nextDose1 = medication1.schedule.first { $0 > now } ?? medication1.schedule[0]
-                let nextDose2 = medication2.schedule.first { $0 > now } ?? medication2.schedule[0]
+                let nextDose1 = medication1.schedule.first { $0 > now } ?? {
+                    // If no future time today, get the first time for tomorrow
+                    if let firstTime = medication1.schedule.first,
+                       let tomorrow = calendar.date(byAdding: .day, value: 1, to: firstTime) {
+                        return tomorrow
+                    }
+                    return medication1.schedule[0]
+                }()
+                
+                let nextDose2 = medication2.schedule.first { $0 > now } ?? {
+                    // If no future time today, get the first time for tomorrow
+                    if let firstTime = medication2.schedule.first,
+                       let tomorrow = calendar.date(byAdding: .day, value: 1, to: firstTime) {
+                        return tomorrow
+                    }
+                    return medication2.schedule[0]
+                }()
+                
                 return nextDose1 < nextDose2
             }
+        
+        print("DEBUG: Filtered medications count: \(filteredMedications.count)")
+        return filteredMedications
     }
     
     private var nextMedication: Medication? {
@@ -359,7 +389,6 @@ struct HomeView: View {
         
         let currentMinutes = calendar.component(.hour, from: now) * 60 + calendar.component(.minute, from: now)
         let lastMealMinutes = calendar.component(.hour, from: fastingManager.lastMealTime) * 60 + calendar.component(.minute, from: fastingManager.lastMealTime)
-        let nextMealMinutes = calendar.component(.hour, from: fastingManager.nextMealTime) * 60 + calendar.component(.minute, from: fastingManager.nextMealTime)
         
         // Calculate elapsed minutes since last meal
         var elapsedMinutes: Int

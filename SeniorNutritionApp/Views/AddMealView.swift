@@ -192,8 +192,8 @@ struct AddMealView: View {
             .sheet(isPresented: $showingFoodSearch) {
                 FoodSearchView(foodDatabase: foodDatabase, selectedFood: $selectedFood)
             }
-            .onChange(of: selectedFood) { newFood in
-                if let food = newFood {
+            .onChange(of: selectedFood) { oldValue, newValue in
+                if let food = newValue {
                     mealName = food.name
                     nutritionalInfo = food.nutritionalInfo
                 }

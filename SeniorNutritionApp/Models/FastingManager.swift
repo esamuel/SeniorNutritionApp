@@ -1,4 +1,5 @@
 import SwiftUI
+import Combine
 
 @MainActor
 class FastingManager: ObservableObject {
@@ -20,7 +21,7 @@ class FastingManager: ObservableObject {
         }
     }
     
-    private var timer: Timer?
+    private var timer: AnyCancellable?
     private var userSettings: UserSettings?
     
     enum FastingState {
@@ -67,19 +68,21 @@ class FastingManager: ObservableObject {
         }
     }
     
-    func startTimer() {
-        timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
-            Task { @MainActor in
-                await self?.updateProgress()
+    private func startTimer() {
+        timer = Timer.publish(every: 1, on: .main, in: .common)
+            .autoconnect()
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                self.currentTime = Date()
+                self.updateFastingState()
             }
-        }
-        RunLoop.current.add(timer!, forMode: .common)
     }
     
-    func stopTimer() {
-        timer?.invalidate()
-        timer = nil
+    nonisolated func stopTimer() {
+        Task { @MainActor in
+            timer?.cancel()
+            timer = nil
+        }
     }
     
     private func updateProgress() async {
@@ -116,8 +119,6 @@ class FastingManager: ObservableObject {
     }
     
     deinit {
-        Task { @MainActor in
-            stopTimer()
-        }
+        stopTimer()
     }
 } 
