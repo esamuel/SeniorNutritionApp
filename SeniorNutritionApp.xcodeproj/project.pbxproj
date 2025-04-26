@@ -29,9 +29,22 @@
 		40F4677F2DB783BA00DD21A2 /* SeniorNutritionAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeniorNutritionAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		4096D1CB2DBCB4C100407CCD /* Exceptions for "SeniorNutritionApp" folder in "SeniorNutritionApp" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"SeniorNutritionApp-Info.plist",
+			);
+			target = 40F467622DB783B600DD21A2 /* SeniorNutritionApp */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		40F467652DB783B600DD21A2 /* SeniorNutritionApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				4096D1CB2DBCB4C100407CCD /* Exceptions for "SeniorNutritionApp" folder in "SeniorNutritionApp" target */,
+			);
 			path = SeniorNutritionApp;
 			sourceTree = "<group>";
 		};

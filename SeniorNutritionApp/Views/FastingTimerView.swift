@@ -1,4 +1,6 @@
 import SwiftUI
+import UIKit
+// Import models and views needed for this file
 
 struct FastingTimerView: View {
     @EnvironmentObject private var userSettings: UserSettings
@@ -121,278 +123,42 @@ struct FastingTimerView: View {
     
     // Timer section with large display
     private var timerSection: some View {
-        VStack(spacing: 20) {
-            Text(fastingManager.fastingState.title)
-                .font(.system(size: userSettings.textSize.size + 4, weight: .bold))
-                .foregroundColor(fastingManager.fastingState.color)
-            
-            ZStack {
-                // Complete background circle in gray
-                Circle()
-                    .stroke(style: StrokeStyle(lineWidth: 20))
-                    .foregroundColor(Color(.systemGray5))
-                
-                // Fasting period (red)
-                Circle()
-                    .trim(from: 0, to: calculateFastingPortion())
-                    .stroke(fastingManager.fastingState == .fasting ? Color.red : Color.red.opacity(0.3), lineWidth: 20)
-                    .rotationEffect(.degrees(-90))
-                
-                // Eating period (green)
-                Circle()
-                    .trim(from: calculateFastingPortion(), to: 1)
-                    .stroke(fastingManager.fastingState == .eating ? Color.green : Color.green.opacity(0.3), lineWidth: 20)
-                    .rotationEffect(.degrees(-90))
-                
-                // Progress indicator
-                Circle()
-                    .trim(from: 0, to: 0.03)
-                    .stroke(style: StrokeStyle(lineWidth: 3))
-                    .foregroundColor(.blue)
-                    .rotationEffect(Angle(degrees: calculateProgressDegrees()))
-                
-                VStack(spacing: 5) {
-                    let remaining = calculateRemainingTime()
-                    Text(formatTimeString(hours: remaining.hours, minutes: remaining.minutes))
-                        .font(.system(size: userSettings.textSize.size + 12, weight: .bold))
-                        .contentTransition(.numericText())
-                        .animation(.linear(duration: 0.5), value: fastingManager.currentTime)
-                    
-                    Text("\(calculatePercentageRemaining())% remain")
-                        .font(.system(size: userSettings.textSize.size))
-                        .foregroundColor(.secondary)
-                        .contentTransition(.numericText())
-                        .animation(.linear(duration: 0.5), value: fastingManager.currentTime)
-                    
-                    Text(fastingManager.fastingState == .fasting ? "of fasting" : "of eating window")
-                        .font(.system(size: userSettings.textSize.size - 2))
-                        .foregroundColor(.secondary)
-                }
-            }
-            .frame(width: 250, height: 250)
-            .padding(.bottom, 20)
-            
-            HStack {
-                VStack(alignment: .leading) {
-                    Text("Last Meal")
-                        .font(.system(size: userSettings.textSize.size - 2))
-                        .foregroundColor(.secondary)
-                    
-                    Button(action: {
-                        showingLastMealPicker = true
-                    }) {
-                        Text(timeFormatter.string(from: fastingManager.lastMealTime))
-                            .font(.system(size: userSettings.textSize.size))
-                            .foregroundColor(.blue)
-                    }
-                }
-                
-                Spacer()
-                
-                VStack(alignment: .trailing) {
-                    Text("Next Meal")
-                        .font(.system(size: userSettings.textSize.size - 2))
-                        .foregroundColor(.secondary)
-                    
-                    Button(action: {
-                        showingNextMealPicker = true
-                    }) {
-                        Text(timeFormatter.string(from: fastingManager.nextMealTime))
-                            .font(.system(size: userSettings.textSize.size))
-                            .foregroundColor(.blue)
-                    }
-                }
-            }
-            .padding(.horizontal)
-        }
-        .padding()
-        .background(Color(.systemBackground))
-        .cornerRadius(16)
-        .shadow(radius: 2)
+        TimerSectionView(
+            fastingState: fastingManager.fastingState,
+            currentTime: fastingManager.currentTime,
+            lastMealTime: fastingManager.lastMealTime,
+            nextMealTime: fastingManager.nextMealTime,
+            textSize: userSettings.textSize.size,
+            onShowLastMealPicker: { showingLastMealPicker = true },
+            onShowNextMealPicker: { showingNextMealPicker = true },
+            timeFormatter: timeFormatter
+        )
     }
     
-    // Visual timeline section
+    // Timeline section
     private var timelineSection: some View {
-        VStack(alignment: .leading, spacing: 15) {
-            Text("Today's Schedule")
-                .font(.system(size: userSettings.textSize.size, weight: .bold))
-            
-            timelineView
-                .frame(height: 80)
-            
-            // Fasting and eating windows
-            VStack(spacing: 10) {
-                HStack {
-                    Image(systemName: "moon.fill")
-                        .foregroundColor(.blue)
-                    Text("Fasting Window: \(formatTimeRange(start: fastingManager.lastMealTime, end: fastingManager.nextMealTime))")
-                        .font(.system(size: userSettings.textSize.size))
-                }
-                
-                HStack {
-                    Image(systemName: "sun.max.fill")
-                        .foregroundColor(.orange)
-                    Text("Eating Window: \(formatTimeRange(start: fastingManager.nextMealTime, end: fastingManager.lastMealTime))")
-                        .font(.system(size: userSettings.textSize.size))
-                }
-            }
-            .padding(.top, 10)
-            
-            if !userSettings.medications.isEmpty {
-                Text("Medication Schedule")
-                    .font(.system(size: userSettings.textSize.size - 2, weight: .medium))
-                    .padding(.top, 5)
-                
-                // Show medication dots on timeline
-                ForEach(userSettings.medications) { medication in
-                    HStack {
-                        Image(systemName: "pill.fill")
-                            .foregroundColor(.blue)
-                        
-                        Text(medication.name)
-                            .font(.system(size: userSettings.textSize.size - 2))
-                        
-                        Spacer()
-                        
-                        Text(timeFormatter.string(from: medication.schedule[0]))
-                            .font(.system(size: userSettings.textSize.size - 2))
-                            .foregroundColor(.secondary)
-                    }
-                    .padding(.vertical, 5)
-                }
-            }
-        }
-        .padding()
-        .background(Color(.systemBackground))
-        .cornerRadius(16)
-        .shadow(radius: 2)
-    }
-    
-    // Visual timeline implementation
-    private var timelineView: some View {
-        GeometryReader { geometry in
-            ZStack(alignment: .leading) {
-                // Background track
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(Color(.systemGray5))
-                    .frame(height: 40)
-                
-                // Fasting window segment
-                let fastingStartPosition = timeToPosition(date: fastingManager.lastMealTime, width: geometry.size.width)
-                let fastingEndPosition = timeToPosition(date: fastingManager.nextMealTime, width: geometry.size.width)
-                let fastingWidth = fastingEndPosition - fastingStartPosition
-                
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(Color.red)
-                    .frame(width: fastingWidth, height: 40)
-                    .position(x: fastingStartPosition + fastingWidth/2, y: 20)
-                
-                // Eating window segment
-                let eatingStartPosition = fastingEndPosition
-                let eatingEndPosition = timeToPosition(date: fastingManager.lastMealTime, width: geometry.size.width) + geometry.size.width
-                let eatingWidth = eatingEndPosition - eatingStartPosition
-                
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(Color.green)
-                    .frame(width: eatingWidth, height: 40)
-                    .position(x: eatingStartPosition + eatingWidth/2, y: 20)
-                
-                // Current time indicator
-                Rectangle()
-                    .fill(Color.red)
-                    .frame(width: 2, height: 50)
-                    .position(x: timeToPosition(date: Date(), width: geometry.size.width), y: 20)
-                
-                // Time labels
-                VStack {
-                    Spacer()
-                    HStack {
-                        Text("12 AM")
-                            .font(.system(size: userSettings.textSize.size - 4))
-                            .foregroundColor(.secondary)
-                        
-                        Spacer()
-                        
-                        Text("12 PM")
-                            .font(.system(size: userSettings.textSize.size - 4))
-                            .foregroundColor(.secondary)
-                        
-                        Spacer()
-                        
-                        Text("12 AM")
-                            .font(.system(size: userSettings.textSize.size - 4))
-                            .foregroundColor(.secondary)
-                    }
-                }
-            }
-        }
+        TimelineSectionView(
+            medications: userSettings.medications,
+            lastMealTime: fastingManager.lastMealTime,
+            nextMealTime: fastingManager.nextMealTime,
+            textSize: userSettings.textSize.size,
+            timeFormatter: timeFormatter
+        )
     }
     
     // Action buttons section
     private var actionButtonsSection: some View {
-        VStack(spacing: 15) {
-            Button(action: {
-                if fastingManager.fastingState == .fasting {
-                    showingEmergencyAlert = true
-                } else {
-                    showingLastMealPicker = true
-                }
-            }) {
-                Text(fastingManager.fastingState == .fasting ? "End Fasting Early" : "Start Fasting")
-                    .font(.system(size: userSettings.textSize.size))
-                    .foregroundColor(.white)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(fastingManager.fastingState == .fasting ? Color.red : Color.green)
-                    .cornerRadius(12)
-            }
-            
-            if fastingManager.fastingState == .fasting {
-                Button(action: {
-                    showingEmergencyAlert = true
-                }) {
-                    HStack {
-                        Image(systemName: "exclamationmark.triangle.fill")
-                            .foregroundColor(.red)
-                        
-                        Text("Emergency Override")
-                            .font(.system(size: userSettings.textSize.size))
-                            .foregroundColor(.red)
-                    }
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.red.opacity(0.1))
-                    .cornerRadius(12)
-                }
-            }
-        }
+        ActionButtonsSectionView(
+            fastingState: fastingManager.fastingState,
+            textSize: userSettings.textSize.size,
+            onEndFasting: { showingEmergencyAlert = true },
+            onStartFasting: { showingLastMealPicker = true }
+        )
     }
     
     // Help tips section
     private var helpTipsSection: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text("Health Tips")
-                .font(.system(size: userSettings.textSize.size, weight: .bold))
-            
-            tipRow(icon: "drop.fill", text: "Remember to drink plenty of water during your fast")
-            
-            tipRow(icon: "exclamationmark.triangle", text: "If you feel unwell, end your fast immediately")
-            
-            tipRow(icon: "bed.double.fill", text: "Quality sleep helps with fasting results")
-            
-            Button(action: {
-                // Action to show more health tips
-            }) {
-                Text("View More Health Tips")
-                    .font(.system(size: userSettings.textSize.size - 2))
-                    .foregroundColor(.blue)
-                    .padding(.top, 5)
-            }
-        }
-        .padding()
-        .background(Color(.systemBackground))
-        .cornerRadius(16)
-        .shadow(radius: 2)
+        HelpTipsSectionView(textSize: userSettings.textSize.size)
     }
     
     // Protocol picker view
@@ -742,22 +508,6 @@ struct FastingTimerView: View {
         }
     }
     
-    // Helper method for tip rows
-    private func tipRow(icon: String, text: String) -> some View {
-        HStack(alignment: .top, spacing: 10) {
-            Image(systemName: icon)
-                .foregroundColor(.blue)
-                .frame(width: 20)
-            
-            Text(text)
-                .font(.system(size: userSettings.textSize.size - 2))
-                .fixedSize(horizontal: false, vertical: true)
-            
-            Spacer()
-        }
-        .padding(.vertical, 5)
-    }
-    
     // Computed properties and helper methods
     private var timeRemaining: String {
         let duration = fastingManager.nextMealTime.timeIntervalSince(Date())
@@ -870,6 +620,384 @@ struct FastingTimerView: View {
         let formatter = DateFormatter()
         formatter.timeStyle = .short
         return "\(formatter.string(from: start)) - \(formatter.string(from: end))"
+    }
+}
+
+// MARK: - TimerSectionView
+private struct TimerSectionView: View {
+    let fastingState: FastingManager.FastingState
+    let currentTime: Date
+    let lastMealTime: Date
+    let nextMealTime: Date
+    let textSize: CGFloat
+    let onShowLastMealPicker: () -> Void
+    let onShowNextMealPicker: () -> Void
+    let timeFormatter: DateFormatter
+    
+    var body: some View {
+        VStack(spacing: 20) {
+            Text(fastingState.title)
+                .font(.system(size: textSize + 4, weight: .bold))
+                .foregroundColor(fastingState.color)
+            ZStack {
+                // Complete background circle in gray
+                Circle()
+                    .stroke(style: StrokeStyle(lineWidth: 20))
+                    .foregroundColor(Color(.systemGray5))
+                // Fasting period (red)
+                Circle()
+                    .trim(from: 0, to: calculateFastingPortion())
+                    .stroke(fastingState == .fasting ? Color.red : Color.red.opacity(0.3), lineWidth: 20)
+                    .rotationEffect(.degrees(-90))
+                // Eating period (green)
+                Circle()
+                    .trim(from: calculateFastingPortion(), to: 1)
+                    .stroke(fastingState == .eating ? Color.green : Color.green.opacity(0.3), lineWidth: 20)
+                    .rotationEffect(.degrees(-90))
+                // Progress indicator
+                Circle()
+                    .trim(from: 0, to: 0.03)
+                    .stroke(style: StrokeStyle(lineWidth: 3))
+                    .foregroundColor(.blue)
+                    .rotationEffect(Angle(degrees: calculateProgressDegrees()))
+                VStack(spacing: 5) {
+                    let remaining = calculateRemainingTime()
+                    Text(formatTimeString(hours: remaining.hours, minutes: remaining.minutes))
+                        .font(.system(size: textSize + 12, weight: .bold))
+                        .contentTransition(.numericText())
+                    Text("\(calculatePercentageRemaining())% remain")
+                        .font(.system(size: textSize))
+                        .foregroundColor(.secondary)
+                        .contentTransition(.numericText())
+                    Text(fastingState == .fasting ? "of fasting" : "of eating window")
+                        .font(.system(size: textSize - 2))
+                        .foregroundColor(.secondary)
+                }
+            }
+            .frame(width: 250, height: 250)
+            .padding(.bottom, 20)
+            HStack {
+                VStack(alignment: .leading) {
+                    Text("Last Meal")
+                        .font(.system(size: textSize - 2))
+                        .foregroundColor(.secondary)
+                    Button(action: onShowLastMealPicker) {
+                        Text(timeFormatter.string(from: lastMealTime))
+                            .font(.system(size: textSize))
+                            .foregroundColor(.blue)
+                    }
+                }
+                Spacer()
+                VStack(alignment: .trailing) {
+                    Text("Next Meal")
+                        .font(.system(size: textSize - 2))
+                        .foregroundColor(.secondary)
+                    Button(action: onShowNextMealPicker) {
+                        Text(timeFormatter.string(from: nextMealTime))
+                            .font(.system(size: textSize))
+                            .foregroundColor(.blue)
+                    }
+                }
+            }
+            .padding(.horizontal)
+        }
+        .padding()
+        .background(Color(.systemBackground))
+        .cornerRadius(16)
+        .shadow(radius: 2)
+    }
+    // Helper methods
+    private func calculateFastingPortion() -> CGFloat {
+        // Assume 24-hour cycle, fasting window is before nextMealTime
+        let fastingHours = hoursBetween(start: lastMealTime, end: nextMealTime)
+        return CGFloat(fastingHours) / 24.0
+    }
+    private func calculateRemainingTime() -> (hours: Int, minutes: Int) {
+        let calendar = Calendar.current
+        let now = currentTime
+        let currentMinutes = calendar.component(.hour, from: now) * 60 + calendar.component(.minute, from: now)
+        let lastMealMinutes = calendar.component(.hour, from: lastMealTime) * 60 + calendar.component(.minute, from: lastMealTime)
+        let nextMealMinutes = calendar.component(.hour, from: nextMealTime) * 60 + calendar.component(.minute, from: nextMealTime)
+        var remainingMinutes: Int
+        if fastingState == .fasting {
+            if nextMealMinutes > currentMinutes {
+                remainingMinutes = nextMealMinutes - currentMinutes
+            } else {
+                remainingMinutes = (nextMealMinutes + 24 * 60) - currentMinutes
+            }
+        } else {
+            if lastMealMinutes > currentMinutes {
+                remainingMinutes = lastMealMinutes - currentMinutes
+            } else {
+                remainingMinutes = (lastMealMinutes + 24 * 60) - currentMinutes
+            }
+        }
+        let hours = remainingMinutes / 60
+        let minutes = remainingMinutes % 60
+        return (hours, minutes)
+    }
+    private func calculatePercentageRemaining() -> Int {
+        let calendar = Calendar.current
+        let now = currentTime
+        let currentMinutes = calendar.component(.hour, from: now) * 60 + calendar.component(.minute, from: now)
+        let lastMealMinutes = calendar.component(.hour, from: lastMealTime) * 60 + calendar.component(.minute, from: lastMealTime)
+        let nextMealMinutes = calendar.component(.hour, from: nextMealTime) * 60 + calendar.component(.minute, from: nextMealTime)
+        let totalMinutes: Int
+        let remainingMinutes: Int
+        if fastingState == .fasting {
+            if nextMealMinutes > lastMealMinutes {
+                totalMinutes = nextMealMinutes - lastMealMinutes
+            } else {
+                totalMinutes = (nextMealMinutes + 24 * 60) - lastMealMinutes
+            }
+            if nextMealMinutes > currentMinutes {
+                remainingMinutes = nextMealMinutes - currentMinutes
+            } else {
+                remainingMinutes = (nextMealMinutes + 24 * 60) - currentMinutes
+            }
+        } else {
+            if lastMealMinutes > nextMealMinutes {
+                totalMinutes = lastMealMinutes - nextMealMinutes
+            } else {
+                totalMinutes = (lastMealMinutes + 24 * 60) - nextMealMinutes
+            }
+            if lastMealMinutes > currentMinutes {
+                remainingMinutes = lastMealMinutes - currentMinutes
+            } else {
+                remainingMinutes = (lastMealMinutes + 24 * 60) - currentMinutes
+            }
+        }
+        let percentage = (Double(remainingMinutes) / Double(totalMinutes)) * 100
+        return min(100, max(0, Int(round(percentage))))
+    }
+    private func calculateProgressDegrees() -> Double {
+        let percent = 1.0 - (Double(calculatePercentageRemaining()) / 100.0)
+        return -90.0 + (360.0 * percent)
+    }
+    private func formatTimeString(hours: Int, minutes: Int) -> String {
+        return String(format: "%02d:%02d", hours, minutes)
+    }
+    private func hoursBetween(start: Date, end: Date) -> Int {
+        let calendar = Calendar.current
+        let startMinutes = calendar.component(.hour, from: start) * 60 + calendar.component(.minute, from: start)
+        let endMinutes = calendar.component(.hour, from: end) * 60 + calendar.component(.minute, from: end)
+        if endMinutes >= startMinutes {
+            return (endMinutes - startMinutes) / 60
+        } else {
+            return ((endMinutes + 24 * 60) - startMinutes) / 60
+        }
+    }
+}
+
+// MARK: - TimelineSectionView
+private struct TimelineSectionView: View {
+    let medications: [Medication]
+    let lastMealTime: Date
+    let nextMealTime: Date
+    let textSize: CGFloat
+    let timeFormatter: DateFormatter
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 15) {
+            Text("Today's Schedule")
+                .font(.system(size: textSize, weight: .bold))
+            TimelineView(
+                lastMealTime: lastMealTime,
+                nextMealTime: nextMealTime,
+                medications: medications,
+                textSize: textSize,
+                timeFormatter: timeFormatter
+            )
+            .frame(height: 80)
+            // Fasting and eating windows
+            VStack(spacing: 10) {
+                HStack {
+                    Image(systemName: "moon.fill")
+                        .foregroundColor(.blue)
+                    Text("Fasting Window: \(formatTimeRange(start: lastMealTime, end: nextMealTime))")
+                        .font(.system(size: textSize))
+                }
+                HStack {
+                    Image(systemName: "sun.max.fill")
+                        .foregroundColor(.orange)
+                    Text("Eating Window: \(formatTimeRange(start: nextMealTime, end: lastMealTime))")
+                        .font(.system(size: textSize))
+                }
+            }
+            .padding(.top, 10)
+            if !medications.isEmpty {
+                Text("Medication Schedule")
+                    .font(.system(size: textSize - 2, weight: .medium))
+                    .padding(.top, 5)
+                ForEach(medications) { medication in
+                    HStack {
+                        Image(systemName: "pill.fill")
+                            .foregroundColor(.blue)
+                        Text(medication.name)
+                            .font(.system(size: textSize - 2))
+                        Spacer()
+                        Text(timeFormatter.string(from: medication.schedule[0]))
+                            .font(.system(size: textSize - 2))
+                            .foregroundColor(.secondary)
+                    }
+                    .padding(.vertical, 5)
+                }
+            }
+        }
+        .padding()
+        .background(Color(.systemBackground))
+        .cornerRadius(16)
+        .shadow(radius: 2)
+    }
+    private func formatTimeRange(start: Date, end: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        return "\(formatter.string(from: start)) - \(formatter.string(from: end))"
+    }
+}
+
+// MARK: - TimelineView
+private struct TimelineView: View {
+    let lastMealTime: Date
+    let nextMealTime: Date
+    let medications: [Medication]
+    let textSize: CGFloat
+    let timeFormatter: DateFormatter
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack(alignment: .leading) {
+                // Background track
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color(.systemGray5))
+                    .frame(height: 40)
+                // Fasting window segment
+                let fastingStartPosition = timeToPosition(date: lastMealTime, width: geometry.size.width)
+                let fastingEndPosition = timeToPosition(date: nextMealTime, width: geometry.size.width)
+                let fastingWidth = fastingEndPosition - fastingStartPosition
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color.red)
+                    .frame(width: fastingWidth, height: 40)
+                    .position(x: fastingStartPosition + fastingWidth/2, y: 20)
+                // Eating window segment
+                let eatingStartPosition = fastingEndPosition
+                let eatingEndPosition = timeToPosition(date: lastMealTime, width: geometry.size.width) + geometry.size.width
+                let eatingWidth = eatingEndPosition - eatingStartPosition
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color.green)
+                    .frame(width: eatingWidth, height: 40)
+                    .position(x: eatingStartPosition + eatingWidth/2, y: 20)
+                // Current time indicator
+                Rectangle()
+                    .fill(Color.red)
+                    .frame(width: 2, height: 50)
+                    .position(x: timeToPosition(date: Date(), width: geometry.size.width), y: 20)
+                // Time labels
+                VStack {
+                    Spacer()
+                    HStack {
+                        Text("12 AM")
+                            .font(.system(size: textSize - 4))
+                            .foregroundColor(.secondary)
+                        Spacer()
+                        Text("12 PM")
+                            .font(.system(size: textSize - 4))
+                            .foregroundColor(.secondary)
+                        Spacer()
+                        Text("12 AM")
+                            .font(.system(size: textSize - 4))
+                            .foregroundColor(.secondary)
+                    }
+                }
+            }
+        }
+    }
+    private func timeToPosition(date: Date, width: CGFloat) -> CGFloat {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.hour, .minute], from: date)
+        let totalMinutes = (components.hour ?? 0) * 60 + (components.minute ?? 0)
+        let percentage = CGFloat(totalMinutes) / CGFloat(24 * 60)
+        return percentage * width
+    }
+}
+
+// MARK: - ActionButtonsSectionView
+private struct ActionButtonsSectionView: View {
+    let fastingState: FastingManager.FastingState
+    let textSize: CGFloat
+    let onEndFasting: () -> Void
+    let onStartFasting: () -> Void
+    
+    var body: some View {
+        VStack(spacing: 15) {
+            Button(action: {
+                if fastingState == .fasting {
+                    onEndFasting()
+                } else {
+                    onStartFasting()
+                }
+            }) {
+                Text(fastingState == .fasting ? "End Fasting Early" : "Start Fasting")
+                    .font(.system(size: textSize))
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(fastingState == .fasting ? Color.red : Color.green)
+                    .cornerRadius(12)
+            }
+            if fastingState == .fasting {
+                Button(action: onEndFasting) {
+                    HStack {
+                        Image(systemName: "exclamationmark.triangle.fill")
+                            .foregroundColor(.red)
+                        Text("Emergency Override")
+                            .font(.system(size: textSize))
+                            .foregroundColor(.red)
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.red.opacity(0.1))
+                    .cornerRadius(12)
+                }
+            }
+        }
+    }
+}
+
+// MARK: - HelpTipsSectionView
+private struct HelpTipsSectionView: View {
+    let textSize: CGFloat
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Health Tips")
+                .font(.system(size: textSize, weight: .bold))
+            tipRow(icon: "drop.fill", text: "Remember to drink plenty of water during your fast")
+            tipRow(icon: "exclamationmark.triangle", text: "If you feel unwell, end your fast immediately")
+            tipRow(icon: "bed.double.fill", text: "Quality sleep helps with fasting results")
+            Button(action: {
+                // Action to show more health tips
+            }) {
+                Text("View More Health Tips")
+                    .font(.system(size: textSize - 2))
+                    .foregroundColor(.blue)
+                    .padding(.top, 5)
+            }
+        }
+        .padding()
+        .background(Color(.systemBackground))
+        .cornerRadius(16)
+        .shadow(radius: 2)
+    }
+    private func tipRow(icon: String, text: String) -> some View {
+        HStack(alignment: .top, spacing: 10) {
+            Image(systemName: icon)
+                .foregroundColor(.blue)
+                .frame(width: 20)
+            Text(text)
+                .font(.system(size: textSize - 2))
+                .fixedSize(horizontal: false, vertical: true)
+            Spacer()
+        }
+        .padding(.vertical, 5)
     }
 }
 

@@ -5,7 +5,8 @@ import UserNotifications
 struct SeniorNutritionApp: App {
     @StateObject private var userSettings = UserSettings()
     @StateObject private var foodDatabase = FoodDatabaseService()
-    
+    @StateObject private var mealManager = MealManager() // <-- Add this
+
     init() {
         // Request notification permissions
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
@@ -16,18 +17,20 @@ struct SeniorNutritionApp: App {
             }
         }
     }
-    
+
     var body: some Scene {
         WindowGroup {
             if userSettings.isOnboardingComplete {
                 MainTabView()
                     .environmentObject(userSettings)
                     .environmentObject(foodDatabase)
+                    .environmentObject(mealManager) // <-- Add this
             } else {
                 OnboardingView()
                     .environmentObject(userSettings)
                     .environmentObject(foodDatabase)
+                    .environmentObject(mealManager) // <-- Add this
             }
         }
     }
-} 
+}

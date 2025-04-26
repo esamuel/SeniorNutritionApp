@@ -4,6 +4,7 @@ import UserNotifications
 
 struct HomeView: View {
     @EnvironmentObject private var userSettings: UserSettings
+    @EnvironmentObject private var mealManager: MealManager
     @StateObject private var fastingManager = FastingManager.shared
     @StateObject private var voiceManager = VoiceManager.shared
     @State private var showingHelpSheet = false
@@ -40,7 +41,8 @@ struct HomeView: View {
                 HelpGuideView()
             }
             .sheet(isPresented: $showingAddMeal) {
-                AddMealView(selectedMealType: $selectedMealType) { _ in
+                AddMealView(selectedMealType: $selectedMealType) { newMeal in
+                    mealManager.addMeal(newMeal)
                     showingAddMeal = false
                 }
             }
@@ -65,7 +67,22 @@ struct HomeView: View {
                 Spacer()
                 
                 Button(action: {
-                    voiceManager.speak("Good \(timeOfDay), \(userSettings.userProfile?.firstName ?? userSettings.userName)")
+                    var speech = "Good \(timeOfDay), \(userSettings.userProfile?.firstName ?? userSettings.userName). "
+                    speech += "Medication Reminders. "
+                    if nextMedicationDoses.isEmpty {
+                        speech += "No medications scheduled for today."
+                    } else {
+                        for pair in nextMedicationDoses.prefix(3) {
+                            let medName = pair.medication.name
+                            let timeString = timeUntil(pair.nextDose)
+                            speech += "\(medName) in \(timeString). "
+                        }
+                    }
+                    // Add fasting status (from the fasting circle)
+                    speech += " And your fasting status: \(fastingManager.fastingState.title). "
+                    speech += "Time remaining: \(formatRemainingTime()). "
+                    speech += "\(calculatePercentageRemaining()) percent remain."
+                    voiceManager.speak(speech)
                 }) {
                     Image(systemName: voiceManager.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
                         .foregroundColor(.blue)
@@ -85,16 +102,16 @@ struct HomeView: View {
                     .font(.system(size: userSettings.textSize.size, weight: .bold))
                     .foregroundColor(.red)
                 
-                if upcomingMedications.isEmpty {
+                if nextMedicationDoses.isEmpty {
                     Text("No medications scheduled for today")
                         .font(.system(size: userSettings.textSize.size))
                         .foregroundColor(.secondary)
                 } else {
-                    ForEach(upcomingMedications.prefix(3)) { medication in
+                    ForEach(Array(nextMedicationDoses.prefix(3))) { pair in
                         HStack {
                             Image(systemName: "bell.fill")
                                 .foregroundColor(.red)
-                            Text("\(medication.name) in \(timeUntil(medication.schedule[0]))")
+                            Text("\(pair.medication.name) in \(timeUntil(pair.nextDose))")
                                 .font(.system(size: userSettings.textSize.size))
                                 .foregroundColor(.red)
                         }
@@ -219,13 +236,13 @@ struct HomeView: View {
                     color: .green
                 )
                 
-                ForEach(upcomingMedications) { medication in
+                ForEach(nextMedicationDoses) { pair in
                     upcomingItem(
                         icon: "pill.fill",
-                        title: medication.name,
-                        time: medication.schedule[0],
+                        title: pair.medication.name,
+                        time: pair.nextDose,
                         color: .blue,
-                        subtitle: medication.takeWithFood ? "Take with food" : nil
+                        subtitle: pair.medication.takeWithFood ? "Take with food" : nil
                     )
                 }
             }
@@ -325,57 +342,49 @@ struct HomeView: View {
         return "Now"
     }
     
-    private var upcomingMedications: [Medication] {
-        let now = Date()
-        let calendar = Calendar.current
-        print("DEBUG: Current medications count: \(userSettings.medications.count)")
-        print("DEBUG: Current time: \(now)")
-        
-        let filteredMedications = userSettings.medications
-            .filter { medication in
-                let hasUpcoming = medication.schedule.contains { scheduleTime in
-                    // If the time has passed today, check if it's for tomorrow
-                    if scheduleTime <= now {
-                        // Get the same time tomorrow
-                        if let tomorrow = calendar.date(byAdding: .day, value: 1, to: scheduleTime) {
-                            return tomorrow > now
-                        }
-                        return false
-                    }
-                    return scheduleTime > now
-                }
-                print("DEBUG: Medication \(medication.name) has upcoming: \(hasUpcoming)")
-                print("DEBUG: Medication \(medication.name) schedule: \(medication.schedule)")
-                return hasUpcoming
-            }
-            .sorted { medication1, medication2 in
-                let nextDose1 = medication1.schedule.first { $0 > now } ?? {
-                    // If no future time today, get the first time for tomorrow
-                    if let firstTime = medication1.schedule.first,
-                       let tomorrow = calendar.date(byAdding: .day, value: 1, to: firstTime) {
-                        return tomorrow
-                    }
-                    return medication1.schedule[0]
-                }()
-                
-                let nextDose2 = medication2.schedule.first { $0 > now } ?? {
-                    // If no future time today, get the first time for tomorrow
-                    if let firstTime = medication2.schedule.first,
-                       let tomorrow = calendar.date(byAdding: .day, value: 1, to: firstTime) {
-                        return tomorrow
-                    }
-                    return medication2.schedule[0]
-                }()
-                
-                return nextDose1 < nextDose2
-            }
-        
-        print("DEBUG: Filtered medications count: \(filteredMedications.count)")
-        return filteredMedications
+    private struct NextMedicationDose: Identifiable {
+        let medication: Medication
+        let nextDose: Date
+        var id: UUID { medication.id }
     }
     
-    private var nextMedication: Medication? {
-        upcomingMedications.first
+    private func nextOccurrencesToday(for medication: Medication) -> [NextMedicationDose] {
+        let calendar = Calendar.current
+        let now = Date()
+        let midnight = calendar.startOfDay(for: calendar.date(byAdding: .day, value: 1, to: now)!)
+        return medication.schedule.compactMap { time in
+            let timeComponents = calendar.dateComponents([.hour, .minute], from: time)
+            if let todayDose = calendar.date(bySettingHour: timeComponents.hour ?? 0, minute: timeComponents.minute ?? 0, second: 0, of: now),
+               todayDose > now, todayDose < midnight {
+                return NextMedicationDose(medication: medication, nextDose: todayDose)
+            }
+            return nil
+        }
+    }
+    
+    private func firstOccurrenceTomorrow(for medication: Medication) -> NextMedicationDose? {
+        let calendar = Calendar.current
+        let now = Date()
+        let tomorrow = calendar.date(byAdding: .day, value: 1, to: now)!
+        let tomorrowStart = calendar.startOfDay(for: tomorrow)
+        return medication.schedule.compactMap { time in
+            let timeComponents = calendar.dateComponents([.hour, .minute], from: time)
+            if let tomorrowDose = calendar.date(bySettingHour: timeComponents.hour ?? 0, minute: timeComponents.minute ?? 0, second: 0, of: tomorrow) {
+                return NextMedicationDose(medication: medication, nextDose: tomorrowDose)
+            }
+            return nil
+        }.sorted { $0.nextDose < $1.nextDose }.first
+    }
+    
+    private var nextMedicationDoses: [NextMedicationDose] {
+        let todayDoses = userSettings.medications.flatMap { nextOccurrencesToday(for: $0) }
+        if !todayDoses.isEmpty {
+            return todayDoses.sorted { $0.nextDose < $1.nextDose }
+        } else {
+            // If no more doses today, show the first dose for each medication for tomorrow
+            return userSettings.medications.compactMap { firstOccurrenceTomorrow(for: $0) }
+                .sorted { $0.nextDose < $1.nextDose }
+        }
     }
     
     // Helper methods
