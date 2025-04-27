@@ -99,7 +99,7 @@ class FoodDatabaseService: ObservableObject {
         print("\n=== Starting to load food database ===")
         
         // Load all foods from all food item files
-        var allFoods = SampleFoodData.foods + NewFoodItems.foods + AdditionalFoodItems.foods + DairyFoodItems.foods + BeverageFoodItems.foods + SnackFoodItems.foods
+        var allFoods = SampleFoodData.foods + NewFoodItems.foods + AdditionalFoodItems.foods + DairyFoodItems.foods + BeverageFoodItems.foods + SnackFoodItems.foods + FruitFoodItems.foods
         
         print("\nInitial food count: \(allFoods.count)")
         print("\nAvailable foods:")
