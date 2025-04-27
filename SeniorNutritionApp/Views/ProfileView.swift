@@ -1,31 +1,5 @@
 import SwiftUI
 
-// MARK: - Profile Header View
-struct ProfileHeaderView: View {
-    @EnvironmentObject private var userSettings: UserSettings
-    
-    var body: some View {
-        HStack {
-            Image(systemName: "person.circle.fill")
-                .font(.system(size: 80))
-                .foregroundColor(.blue)
-            
-            VStack(alignment: .leading, spacing: 5) {
-                Text(userSettings.userName)
-                    .font(.system(size: userSettings.textSize.size + 4, weight: .bold))
-                
-                Text("Age: \(userSettings.userAge)")
-                    .font(.system(size: userSettings.textSize.size))
-                
-                Text(userSettings.userGender)
-                    .font(.system(size: userSettings.textSize.size))
-            }
-            .padding(.leading, 10)
-        }
-        .padding(.vertical, 10)
-    }
-}
-
 // MARK: - Health Information View
 struct HealthInformationView: View {
     @EnvironmentObject private var userSettings: UserSettings
