@@ -12,9 +12,13 @@ struct UserProfileSetupView: View {
     @State private var weight: String = ""
     @State private var medicalConditions: [String] = []
     @State private var dietaryRestrictions: [String] = []
+    
+    // Emergency contact states
+    @State private var emergencyContacts: [EmergencyContact] = []
     @State private var emergencyContactName: String = ""
     @State private var emergencyContactRelationship: Relationship = .other
     @State private var emergencyContactPhone: String = ""
+    @State private var showingAddContactAlert = false
     
     // Color theme for a happier UI
     private let sectionColors: [Color] = [.blue.opacity(0.1), .green.opacity(0.1), .orange.opacity(0.1), .purple.opacity(0.1), .pink.opacity(0.1)]
@@ -75,8 +79,11 @@ struct UserProfileSetupView: View {
                         .cornerRadius(8)
                     
                     // Display calculated age from date of birth
-                    let age = Calendar.current.dateComponents([.year], from: dateOfBirth, to: Date()).year ?? 0
-                    Text("Age: \(age) years")
+                    let ageComponents = Calendar.current.dateComponents([.year, .month], from: dateOfBirth, to: Date())
+                    let years = ageComponents.year ?? 0
+                    let months = ageComponents.month ?? 0
+                    let ageText = years > 0 ? "\(years) years, \(months) months" : "\(months) months"
+                    Text("Age: \(ageText)")
                         .padding(8)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .background(Color.blue.opacity(0.1))
@@ -153,10 +160,52 @@ struct UserProfileSetupView: View {
                 }
                 .listRowBackground(Color.clear)
                 
-                Section(header: Text("Emergency Contact")
+                // Enhanced Emergency Contacts Section with list of current contacts
+                Section(header: Text("Emergency Contacts")
                         .font(.headline)
                         .foregroundColor(.pink)) {
-                    TextField("Name", text: $emergencyContactName)
+                    
+                    // Show existing emergency contacts
+                    ForEach(emergencyContacts) { contact in
+                        VStack(alignment: .leading, spacing: 5) {
+                            HStack {
+                                Image(systemName: "person.crop.circle.fill")
+                                    .foregroundColor(.pink)
+                                Text(contact.name)
+                                    .fontWeight(.bold)
+                                
+                                Spacer()
+                                
+                                Button(action: {
+                                    // Remove this contact
+                                    emergencyContacts.removeAll { $0.id == contact.id }
+                                }) {
+                                    Image(systemName: "trash.circle.fill")
+                                        .foregroundColor(.red)
+                                        .font(.system(size: 20))
+                                }
+                            }
+                            
+                            HStack {
+                                Image(systemName: "phone.fill")
+                                    .foregroundColor(.green)
+                                Text(contact.phoneNumber)
+                            }
+                            
+                            HStack {
+                                Image(systemName: "person.2.fill")
+                                    .foregroundColor(.blue)
+                                Text(contact.relationship.rawValue)
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                        .padding(8)
+                        .background(Color.pink.opacity(0.1))
+                        .cornerRadius(8)
+                    }
+                    
+                    // Add new contact form
+                    TextField("Contact Name", text: $emergencyContactName)
                         .padding(8)
                         .background(Color.pink.opacity(0.1))
                         .cornerRadius(8)
@@ -175,6 +224,24 @@ struct UserProfileSetupView: View {
                         .padding(8)
                         .background(Color.pink.opacity(0.1))
                         .cornerRadius(8)
+                    
+                    Button(action: {
+                        addEmergencyContact()
+                    }) {
+                        HStack {
+                            Image(systemName: "plus.circle.fill")
+                            Text("Add Contact")
+                        }
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding(10)
+                        .background(
+                            (!emergencyContactName.isEmpty && !emergencyContactPhone.isEmpty) ? 
+                                Color.pink : Color.gray.opacity(0.5)
+                        )
+                        .cornerRadius(8)
+                    }
+                    .disabled(emergencyContactName.isEmpty || emergencyContactPhone.isEmpty)
                 }
                 .listRowBackground(Color.clear)
             }
@@ -203,6 +270,22 @@ struct UserProfileSetupView: View {
         }
     }
     
+    // Function to add a new emergency contact
+    private func addEmergencyContact() {
+        let newContact = EmergencyContact(
+            name: emergencyContactName,
+            relationship: emergencyContactRelationship,
+            phoneNumber: emergencyContactPhone
+        )
+        
+        emergencyContacts.append(newContact)
+        
+        // Clear form for next entry
+        emergencyContactName = ""
+        emergencyContactRelationship = .other
+        emergencyContactPhone = ""
+    }
+    
     // Load existing profile data when editing
     private func loadExistingProfile() {
         if let profile = userSettings.userProfile {
@@ -215,44 +298,15 @@ struct UserProfileSetupView: View {
             weight = String(Int(profile.weight))
             medicalConditions = profile.medicalConditions
             dietaryRestrictions = profile.dietaryRestrictions
+            emergencyContacts = profile.emergencyContacts
             
-            // If there's at least one emergency contact, load it
-            if let firstContact = profile.emergencyContacts.first {
-                emergencyContactName = firstContact.name
-                emergencyContactRelationship = firstContact.relationship
-                emergencyContactPhone = firstContact.phoneNumber
-            }
-            
-            print("DEBUG: Loaded existing profile - \(profile.firstName) \(profile.lastName)")
+            print("DEBUG: Loaded existing profile - \(profile.firstName) \(profile.lastName) with \(profile.emergencyContacts.count) contacts")
         } else {
             print("DEBUG: No existing profile found, using default values")
         }
     }
     
     private func saveProfile() {
-        // Create emergency contacts array
-        var emergencyContacts: [EmergencyContact] = []
-        
-        // Add the new emergency contact if provided
-        if !emergencyContactName.isEmpty && !emergencyContactPhone.isEmpty {
-            let newContact = EmergencyContact(
-                name: emergencyContactName,
-                relationship: emergencyContactRelationship,
-                phoneNumber: emergencyContactPhone
-            )
-            emergencyContacts.append(newContact)
-        }
-        
-        // If editing an existing profile, preserve existing emergency contacts
-        if let existingProfile = userSettings.userProfile {
-            // Add existing contacts (except any that match the newly entered one)
-            for contact in existingProfile.emergencyContacts {
-                if contact.name != emergencyContactName || contact.phoneNumber != emergencyContactPhone {
-                    emergencyContacts.append(contact)
-                }
-            }
-        }
-        
         let profile = UserProfile(
             firstName: firstName,
             lastName: lastName,
@@ -264,6 +318,8 @@ struct UserProfileSetupView: View {
             dietaryRestrictions: dietaryRestrictions,
             emergencyContacts: emergencyContacts
         )
+        
+        print("DEBUG: Saving profile with \(emergencyContacts.count) emergency contacts")
         
         userSettings.userProfile = profile
         userSettings.isOnboardingComplete = true

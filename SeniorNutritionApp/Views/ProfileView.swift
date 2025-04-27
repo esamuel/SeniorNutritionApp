@@ -128,9 +128,13 @@ struct ProfileView: View {
             
             profileRow(title: "Name", value: profile.fullName, iconName: "person.fill", color: .blue)
             
-            // Calculate and display age from date of birth
-            let age = Calendar.current.dateComponents([.year], from: profile.dateOfBirth, to: Date()).year ?? 0
-            profileRow(title: "Age", value: "\(age) years", iconName: "calendar", color: .green)
+            // Calculate and display age from date of birth with months
+            let ageComponents = Calendar.current.dateComponents([.year, .month], from: profile.dateOfBirth, to: Date())
+            let years = ageComponents.year ?? 0
+            let months = ageComponents.month ?? 0
+            let ageText = years > 0 ? "\(years) years, \(months) months" : "\(months) months"
+            profileRow(title: "Age", value: ageText, iconName: "calendar", color: .green)
+            
             profileRow(title: "Date of Birth", value: formatDate(profile.dateOfBirth), iconName: "birthday.cake", color: .orange)
             profileRow(title: "Gender", value: profile.gender, iconName: "person.crop.circle", color: .purple)
         }
