@@ -148,29 +148,50 @@ struct ProfileView: View {
     }
     
     private func personalInformationSection(_ profile: UserProfile) -> some View {
-        Section(header: Text("Personal Information").font(.system(size: userSettings.textSize.size))) {
-            profileRow(title: "Name", value: profile.fullName)
-            profileRow(title: "Age", value: "\(profile.age) years")
-            profileRow(title: "Gender", value: profile.gender)
+        Section(header: Text("Personal Information")
+            .font(.system(size: userSettings.textSize.size, weight: .bold))
+            .foregroundColor(.blue)) {
+            
+            profileRow(title: "Name", value: profile.fullName, iconName: "person.fill", color: .blue)
+            
+            // Calculate and display age from date of birth
+            let age = Calendar.current.dateComponents([.year], from: profile.dateOfBirth, to: Date()).year ?? 0
+            profileRow(title: "Age", value: "\(age) years", iconName: "calendar", color: .green)
+            profileRow(title: "Date of Birth", value: formatDate(profile.dateOfBirth), iconName: "birthday.cake", color: .orange)
+            profileRow(title: "Gender", value: profile.gender, iconName: "person.crop.circle", color: .purple)
         }
+        .listRowBackground(Color.blue.opacity(0.05))
     }
     
     private func healthInformationSection(_ profile: UserProfile) -> some View {
-        Section(header: Text("Health Information").font(.system(size: userSettings.textSize.size))) {
-            profileRow(title: "Height", value: "\(Int(profile.height)) cm")
-            profileRow(title: "Weight", value: "\(Int(profile.weight)) kg")
+        Section(header: Text("Health Information")
+            .font(.system(size: userSettings.textSize.size, weight: .bold))
+            .foregroundColor(.green)) {
+            
+            profileRow(title: "Height", value: "\(Int(profile.height)) cm", iconName: "ruler", color: .teal)
+            profileRow(title: "Weight", value: "\(Int(profile.weight)) kg", iconName: "scalemass", color: .cyan)
         }
+        .listRowBackground(Color.green.opacity(0.05))
     }
     
     private func medicalConditionsSection(_ profile: UserProfile) -> some View {
         Group {
             if !profile.medicalConditions.isEmpty {
-                Section(header: Text("Medical Conditions").font(.system(size: userSettings.textSize.size))) {
+                Section(header: Text("Medical Conditions")
+                    .font(.system(size: userSettings.textSize.size, weight: .bold))
+                    .foregroundColor(.red)) {
+                    
                     ForEach(profile.medicalConditions, id: \.self) { condition in
-                        Text(condition)
-                            .font(.system(size: userSettings.textSize.size))
+                        HStack {
+                            Image(systemName: "heart.text.square")
+                                .foregroundColor(.red)
+                            Text(condition)
+                                .font(.system(size: userSettings.textSize.size))
+                        }
+                        .padding(.vertical, 4)
                     }
                 }
+                .listRowBackground(Color.red.opacity(0.05))
             }
         }
     }
@@ -178,21 +199,36 @@ struct ProfileView: View {
     private func dietaryRestrictionsSection(_ profile: UserProfile) -> some View {
         Group {
             if !profile.dietaryRestrictions.isEmpty {
-                Section(header: Text("Dietary Restrictions").font(.system(size: userSettings.textSize.size))) {
+                Section(header: Text("Dietary Restrictions")
+                    .font(.system(size: userSettings.textSize.size, weight: .bold))
+                    .foregroundColor(.orange)) {
+                    
                     ForEach(profile.dietaryRestrictions, id: \.self) { restriction in
-                        Text(restriction)
-                            .font(.system(size: userSettings.textSize.size))
+                        HStack {
+                            Image(systemName: "fork.knife")
+                                .foregroundColor(.orange)
+                            Text(restriction)
+                                .font(.system(size: userSettings.textSize.size))
+                        }
+                        .padding(.vertical, 4)
                     }
                 }
+                .listRowBackground(Color.orange.opacity(0.05))
             }
         }
     }
     
     private func emergencyContactsSection(_ profile: UserProfile) -> some View {
-        Section(header: Text("Emergency Contacts").font(.system(size: userSettings.textSize.size))) {
+        Section(header: Text("Emergency Contacts")
+            .font(.system(size: userSettings.textSize.size, weight: .bold))
+            .foregroundColor(.purple)) {
+            
             ForEach(profile.emergencyContacts) { contact in
                 VStack(alignment: .leading, spacing: 8) {
                     HStack {
+                        Image(systemName: "person.crop.circle.fill.badge.checkmark")
+                            .foregroundColor(.purple)
+                        
                         Text(contact.name)
                             .font(.system(size: userSettings.textSize.size, weight: .bold))
                         
@@ -219,12 +255,20 @@ struct ProfileView: View {
                         }
                     }
                     
-                    Text(contact.phoneNumber)
-                        .font(.system(size: userSettings.textSize.size))
+                    HStack {
+                        Image(systemName: "phone.fill")
+                            .foregroundColor(.green)
+                        Text(contact.phoneNumber)
+                            .font(.system(size: userSettings.textSize.size))
+                    }
                     
-                    Text(contact.relationship.rawValue)
-                        .font(.system(size: userSettings.textSize.size))
-                        .foregroundColor(.secondary)
+                    HStack {
+                        Image(systemName: "person.2.fill")
+                            .foregroundColor(.blue)
+                        Text(contact.relationship.rawValue)
+                            .font(.system(size: userSettings.textSize.size))
+                            .foregroundColor(.secondary)
+                    }
                 }
                 .padding(.vertical, 4)
             }
@@ -234,23 +278,41 @@ struct ProfileView: View {
             }) {
                 HStack {
                     Image(systemName: "plus.circle.fill")
+                        .foregroundColor(.green)
                     Text("Add Emergency Contact")
+                        .foregroundColor(.green)
                 }
-                .foregroundColor(.blue)
                 .font(.system(size: userSettings.textSize.size))
             }
             .padding(.top, 8)
         }
+        .listRowBackground(Color.purple.opacity(0.05))
     }
     
-    private func profileRow(title: String, value: String) -> some View {
+    // Helper function to format dates nicely
+    private func formatDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        formatter.timeStyle = .none
+        return formatter.string(from: date)
+    }
+    
+    private func profileRow(title: String, value: String, iconName: String, color: Color) -> some View {
         HStack {
+            Image(systemName: iconName)
+                .foregroundColor(color)
+                .frame(width: 30)
+            
             Text(title)
                 .font(.system(size: userSettings.textSize.size))
+            
             Spacer()
+            
             Text(value)
                 .font(.system(size: userSettings.textSize.size))
+                .foregroundColor(.secondary)
         }
+        .padding(.vertical, 4)
     }
 }
 
