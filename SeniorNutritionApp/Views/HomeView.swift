@@ -68,6 +68,20 @@ struct HomeView: View {
                 
                 Button(action: {
                     var speech = "Good \(timeOfDay), \(userSettings.userProfile?.firstName ?? userSettings.userName). "
+                    
+                    // Add age with months if profile exists
+                    if let profile = userSettings.userProfile {
+                        let ageComponents = Calendar.current.dateComponents([.year, .month], from: profile.dateOfBirth, to: Date())
+                        let years = ageComponents.year ?? 0
+                        let months = ageComponents.month ?? 0
+                        
+                        if years > 0 {
+                            speech += "You are \(years) years and \(months) months old. "
+                        } else {
+                            speech += "You are \(months) months old. "
+                        }
+                    }
+                    
                     speech += "Medication Reminders. "
                     if nextMedicationDoses.isEmpty {
                         speech += "No medications scheduled for today."
@@ -90,8 +104,28 @@ struct HomeView: View {
             }
             
             if let profile = userSettings.userProfile {
-                Text("Age: \(profile.age) years")
-                    .font(.system(size: userSettings.textSize.size))
+                // Enhanced age display with years and months
+                let ageComponents = Calendar.current.dateComponents([.year, .month], from: profile.dateOfBirth, to: Date())
+                let years = ageComponents.year ?? 0
+                let months = ageComponents.month ?? 0
+                
+                HStack {
+                    Image(systemName: "calendar")
+                        .foregroundColor(.green)
+                    
+                    if years > 0 {
+                        Text("Age: \(years) years, \(months) months")
+                            .font(.system(size: userSettings.textSize.size))
+                            .foregroundColor(.green)
+                    } else {
+                        Text("Age: \(months) months")
+                            .font(.system(size: userSettings.textSize.size))
+                            .foregroundColor(.green)
+                    }
+                }
+                .padding(8)
+                .background(Color.green.opacity(0.1))
+                .cornerRadius(8)
             }
             
             Text("Today is \(formattedDate)")

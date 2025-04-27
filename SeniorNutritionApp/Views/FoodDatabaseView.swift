@@ -30,6 +30,15 @@ struct FoodDatabaseView: View {
                             .imageScale(.large)
                     }
                 }
+                
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        foodDatabase.resetToDefaultFoods()
+                    }) {
+                        Label("Reset", systemImage: "arrow.clockwise")
+                            .font(.system(size: userSettings.textSize.size - 2))
+                    }
+                }
             }
             .sheet(isPresented: $showingAddFood) {
                 AddFoodView { newFood in

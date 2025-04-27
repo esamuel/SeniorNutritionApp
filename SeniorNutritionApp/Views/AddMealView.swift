@@ -5,6 +5,7 @@ struct AddMealView: View {
     @EnvironmentObject private var userSettings: UserSettings
     @Environment(\.presentationMode) private var presentationMode
     @StateObject private var foodDatabase = FoodDatabaseService()
+    @StateObject private var nutritionalAnalysisService = NutritionalAnalysisService()
     
     @Binding var selectedMealType: MealType
     @State private var mealName: String = ""
@@ -17,6 +18,10 @@ struct AddMealView: View {
     @State private var searchText = ""
     @State private var selectedFood: FoodItem?
     @State private var showingFoodSearch = false
+    
+    // Analysis results states
+    @State private var showingAnalysisResults = false
+    @State private var analysisResult: MealAnalysisResult?
     
     var onSave: (Meal) -> Void
     
@@ -155,6 +160,17 @@ struct AddMealView: View {
                 }
                 
                 Section {
+                    Button(action: analyzeAndShowResults) {
+                        Text("Analyze Nutrition")
+                            .font(.system(size: userSettings.textSize.size))
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.green)
+                            .cornerRadius(10)
+                    }
+                    .disabled(mealName.isEmpty)
+                    
                     Button(action: saveMeal) {
                         Text("Save Meal")
                             .font(.system(size: userSettings.textSize.size))
@@ -180,6 +196,58 @@ struct AddMealView: View {
             }
             .sheet(isPresented: $showingFoodSearch) {
                 FoodSearchView(foodDatabase: foodDatabase, selectedFood: $selectedFood)
+            }
+            .sheet(isPresented: $showingAnalysisResults) {
+                if let result = analysisResult {
+                    NavigationView {
+                        VStack(spacing: 0) {
+                            MealAnalysisView(analysisResult: result)
+                                .environmentObject(userSettings)
+                                .padding(.horizontal)
+                                
+                            Divider()
+                                .padding(.vertical, 8)
+                            
+                            HStack(spacing: 20) {
+                                Button(action: {
+                                    showingAnalysisResults = false
+                                }) {
+                                    Text("Edit Meal")
+                                        .font(.headline)
+                                        .foregroundColor(.white)
+                                        .frame(maxWidth: .infinity)
+                                        .padding()
+                                        .background(Color.orange)
+                                        .cornerRadius(10)
+                                }
+                                
+                                Button(action: {
+                                    showingAnalysisResults = false
+                                    saveMeal()
+                                }) {
+                                    Text("Save Anyway")
+                                        .font(.headline)
+                                        .foregroundColor(.white)
+                                        .frame(maxWidth: .infinity)
+                                        .padding()
+                                        .background(Color.blue)
+                                        .cornerRadius(10)
+                                }
+                            }
+                            .padding(.horizontal)
+                            .padding(.bottom)
+                        }
+                        .navigationTitle("Nutrition Analysis")
+                        .navigationBarTitleDisplayMode(.inline)
+                        .toolbar {
+                            ToolbarItem(placement: .navigationBarLeading) {
+                                Button("Close") {
+                                    showingAnalysisResults = false
+                                }
+                            }
+                        }
+                    }
+                }
             }
             .onChange(of: selectedFood) { oldValue, newValue in
                 if let food = newValue {
@@ -247,6 +315,31 @@ struct AddMealView: View {
         }
         
         print("DEBUG: Suggesting meal type \(selectedMealType) based on hour \(hour)")
+    }
+    
+    // Analyze nutritional content and show results
+    private func analyzeAndShowResults() {
+        guard let userProfile = userSettings.userProfile else {
+            // Handle case where user profile isn't set up
+            saveMeal()
+            return
+        }
+        
+        let tempMeal = Meal(
+            name: mealName,
+            type: selectedMealType,
+            time: Date(),
+            portion: mealPortion,
+            nutritionalInfo: nutritionalInfo,
+            notes: notes.isEmpty ? nil : notes
+        )
+        
+        // Analyze the meal
+        // tempMeal and userProfile automatically conform to MealAnalyzable and UserProfileAnalyzable
+        analysisResult = nutritionalAnalysisService.analyzeMeal(tempMeal, for: userProfile)
+        
+        // Show the analysis results
+        showingAnalysisResults = true
     }
     
     // Save meal

@@ -170,4 +170,12 @@ struct UserProfile: Codable {
         let ageComponents = calendar.dateComponents([.year], from: dateOfBirth, to: Date())
         return ageComponents.year ?? 0
     }
+}
+
+// MARK: - UserProfileAnalyzable Conformance 
+extension UserProfile: UserProfileAnalyzable {
+    // UserProfile already has the required properties:
+    // - medicalConditions: [String]
+    // - dietaryRestrictions: [String] 
+    // - weight: Double
 } 

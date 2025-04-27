@@ -1,5 +1,4 @@
 import SwiftUI
-import UIKit
 // Import models and views needed for this file
 
 struct FastingTimerView: View {
@@ -873,7 +872,7 @@ private struct TimelineView: View {
                 // Fasting window segment
                 let fastingStartPosition = timeToPosition(date: lastMealTime, width: geometry.size.width)
                 let fastingEndPosition = timeToPosition(date: nextMealTime, width: geometry.size.width)
-                let fastingWidth = fastingEndPosition - fastingStartPosition
+                let fastingWidth = max(0, fastingEndPosition - fastingStartPosition)
                 RoundedRectangle(cornerRadius: 10)
                     .fill(Color.red)
                     .frame(width: fastingWidth, height: 40)
@@ -881,7 +880,7 @@ private struct TimelineView: View {
                 // Eating window segment
                 let eatingStartPosition = fastingEndPosition
                 let eatingEndPosition = timeToPosition(date: lastMealTime, width: geometry.size.width) + geometry.size.width
-                let eatingWidth = eatingEndPosition - eatingStartPosition
+                let eatingWidth = max(0, eatingEndPosition - eatingStartPosition)
                 RoundedRectangle(cornerRadius: 10)
                     .fill(Color.green)
                     .frame(width: eatingWidth, height: 40)

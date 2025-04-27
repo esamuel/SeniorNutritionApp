@@ -5,7 +5,10 @@ import Combine
 class MealManager: ObservableObject {
     @Published var meals: [Meal] = []
     @Published var nutritionalGoals: NutritionalGoals = NutritionalGoals()
+    @Published var currentAnalysisResult: MealAnalysisResult?
+    @Published var showingNutritionalAlert: Bool = false
     
+    private let nutritionalAnalysisService = NutritionalAnalysisService()
     private let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     private var mealsFileURL: URL {
         documentsDirectory.appendingPathComponent("meals.json")
@@ -15,13 +18,45 @@ class MealManager: ObservableObject {
         loadMeals()
     }
     
-    // Add a new meal
-    func addMeal(_ meal: Meal) {
+    // Add a new meal with nutritional analysis
+    func addMeal(_ meal: Meal, userProfile: UserProfile? = nil) {
         print("Adding new meal: \(meal.name) at time: \(meal.time)")
         meals.append(meal)
         saveMeals()
         print("Total meals after adding: \(meals.count)")
         print("Meals for today: \(mealsForDate(Date()).count)")
+        
+        // Perform nutritional analysis if user profile is available
+        if let profile = userProfile {
+            analyzeAndAlertIfNeeded(meal: meal, userProfile: profile)
+        }
+    }
+    
+    // Analyze a meal and show an alert if there are concerns
+    func analyzeAndAlertIfNeeded(meal: Meal, userProfile: UserProfile) {
+        // Analyze the meal for health warnings and positive effects
+        // Meal and UserProfile automatically conform to MealAnalyzable and UserProfileAnalyzable
+        let analysisResult = nutritionalAnalysisService.analyzeMeal(meal, for: userProfile)
+        
+        // Store the analysis result
+        currentAnalysisResult = analysisResult
+        
+        // Show an alert if there are any high-severity health warnings
+        let hasHighSeverityWarnings = analysisResult.healthWarnings.contains { $0.severity == .high }
+        
+        if hasHighSeverityWarnings || (analysisResult.healthWarnings.count > 0 && analysisResult.positiveEffects.count > 0) {
+            showingNutritionalAlert = true
+        }
+    }
+    
+    // Get the most recent analysis result
+    func getCurrentAnalysisResult() -> MealAnalysisResult? {
+        return currentAnalysisResult
+    }
+    
+    // Dismiss the nutritional alert
+    func dismissNutritionalAlert() {
+        showingNutritionalAlert = false
     }
     
     // Remove a meal
