@@ -8,7 +8,6 @@ struct AddMealView: View {
     
     @Binding var selectedMealType: MealType
     @State private var mealName: String = ""
-    @State private var mealTime = Date()
     @State private var showingVoiceInput = false
     @State private var mealPortion: MealPortion = .medium
     @State private var nutritionalInfo = NutritionalInfo()
@@ -24,52 +23,6 @@ struct AddMealView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Meal Details").font(.system(size: userSettings.textSize.size))) {
-                    HStack {
-                        Text("Meal Type")
-                            .font(.system(size: userSettings.textSize.size))
-                        
-                        Spacer()
-                        
-                        Picker("", selection: $selectedMealType) {
-                            ForEach(MealType.allCases) { type in
-                                HStack {
-                                    Image(systemName: type.icon)
-                                    Text(type.rawValue)
-                                }
-                                .tag(type)
-                            }
-                        }
-                        .pickerStyle(MenuPickerStyle())
-                        .font(.system(size: userSettings.textSize.size))
-                    }
-                    
-                    HStack {
-                        Text("Name")
-                            .font(.system(size: userSettings.textSize.size))
-                        
-                        TextField("Meal name", text: $mealName)
-                            .font(.system(size: userSettings.textSize.size))
-                        
-                        Button(action: {
-                            showingVoiceInput = true
-                        }) {
-                            Image(systemName: "mic.fill")
-                                .foregroundColor(.blue)
-                        }
-                    }
-                    
-                    HStack {
-                        Text("Time")
-                            .font(.system(size: userSettings.textSize.size))
-                        
-                        Spacer()
-                        
-                        DatePicker("", selection: $mealTime, displayedComponents: .hourAndMinute)
-                            .font(.system(size: userSettings.textSize.size))
-                    }
-                }
-                
                 Section(header: Text("Food Selection").font(.system(size: userSettings.textSize.size))) {
                     Button(action: {
                         showingFoodSearch = true
@@ -103,6 +56,42 @@ struct AddMealView: View {
                             .foregroundColor(.secondary)
                         }
                         .padding(.vertical, 4)
+                    }
+                }
+                
+                Section(header: Text("Meal Details").font(.system(size: userSettings.textSize.size))) {
+                    HStack {
+                        Text("Meal Type")
+                            .font(.system(size: userSettings.textSize.size))
+                        
+                        Spacer()
+                        
+                        Picker("", selection: $selectedMealType) {
+                            ForEach(MealType.allCases) { type in
+                                HStack {
+                                    Image(systemName: type.icon)
+                                    Text(type.rawValue)
+                                }
+                                .tag(type)
+                            }
+                        }
+                        .pickerStyle(MenuPickerStyle())
+                        .font(.system(size: userSettings.textSize.size))
+                    }
+                    
+                    HStack {
+                        Text("Name")
+                            .font(.system(size: userSettings.textSize.size))
+                        
+                        TextField("Meal name", text: $mealName)
+                            .font(.system(size: userSettings.textSize.size))
+                        
+                        Button(action: {
+                            showingVoiceInput = true
+                        }) {
+                            Image(systemName: "mic.fill")
+                                .foregroundColor(.blue)
+                        }
                     }
                 }
                 
@@ -200,6 +189,7 @@ struct AddMealView: View {
             }
             .onAppear {
                 foodDatabase.loadFoodDatabase()
+                suggestMealTypeBasedOnTime()
             }
         }
     }
@@ -234,16 +224,47 @@ struct AddMealView: View {
         .buttonStyle(PlainButtonStyle())
     }
     
+    // Function to suggest meal type based on time
+    private func suggestMealTypeBasedOnTime() {
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: Date())
+        
+        // Early morning (5-10): Breakfast
+        if hour >= 5 && hour < 10 {
+            selectedMealType = .breakfast
+        }
+        // Late morning to early afternoon (10-15): Lunch
+        else if hour >= 10 && hour < 15 {
+            selectedMealType = .lunch
+        }
+        // Late afternoon to evening (15-21): Dinner
+        else if hour >= 15 && hour < 21 {
+            selectedMealType = .dinner
+        }
+        // Else (late night or early morning): Snack
+        else {
+            selectedMealType = .snack
+        }
+        
+        print("DEBUG: Suggesting meal type \(selectedMealType) based on hour \(hour)")
+    }
+    
     // Save meal
     private func saveMeal() {
+        // Use current time to ensure the meal is added for today
+        let now = Date()
+        print("DEBUG: Adding meal '\(mealName)' with time: \(now)")
+
         let newMeal = Meal(
             name: mealName,
             type: selectedMealType,
-            time: mealTime,
+            time: now,
             portion: mealPortion,
             nutritionalInfo: nutritionalInfo,
             notes: notes.isEmpty ? nil : notes
         )
+        
+        print("DEBUG: Created new meal with ID: \(newMeal.id)")
         
         onSave(newMeal)
         presentationMode.wrappedValue.dismiss()

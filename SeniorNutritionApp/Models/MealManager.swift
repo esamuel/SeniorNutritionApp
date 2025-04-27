@@ -47,9 +47,32 @@ class MealManager: ObservableObject {
     // Get meals for a specific date
     func mealsForDate(_ date: Date) -> [Meal] {
         let calendar = Calendar.current
-        let meals = meals.filter { calendar.isDate($0.time, inSameDayAs: date) }
-        print("Found \(meals.count) meals for date: \(date)")
-        return meals
+        print("DEBUG: Filtering meals for date: \(date)")
+        print("DEBUG: Total meals in memory: \(meals.count)")
+        
+        // Get the start and end of the requested day
+        let startOfDay = calendar.startOfDay(for: date)
+        let endOfDayComponents = DateComponents(day: 1, second: -1)
+        let endOfDay = calendar.date(byAdding: endOfDayComponents, to: startOfDay) ?? date
+        
+        print("DEBUG: Looking for meals between \(startOfDay) and \(endOfDay)")
+        
+        // Debug print all meals with their times
+        for meal in meals {
+            let isSameDay = calendar.isDate(meal.time, inSameDayAs: date)
+            let isAfterStart = meal.time >= startOfDay
+            let isBeforeEnd = meal.time <= endOfDay
+            print("DEBUG: Meal: \(meal.name), time: \(meal.time), isSameDay: \(isSameDay), isAfterStart: \(isAfterStart), isBeforeEnd: \(isBeforeEnd)")
+        }
+        
+        // Filter the meals for the specified date
+        let filteredMeals = meals.filter { meal in
+            calendar.isDate(meal.time, inSameDayAs: date)
+        }
+        
+        print("DEBUG: Found \(filteredMeals.count) meals for date \(date)")
+        
+        return filteredMeals
     }
     
     // Get total nutritional info for a specific date
@@ -91,6 +114,7 @@ class MealManager: ObservableObject {
     
     // Save meals to persistent storage
     private func saveMeals() {
+        print("DEBUG: Attempting to save \(meals.count) meals")
         do {
             let encoder = JSONEncoder()
             encoder.outputFormatting = .prettyPrinted
@@ -106,32 +130,40 @@ class MealManager: ObservableObject {
             }
             try FileManager.default.moveItem(at: tempURL, to: mealsFileURL)
             
-            print("Successfully saved \(meals.count) meals to file")
+            print("DEBUG: Successfully saved \(meals.count) meals to \(mealsFileURL.path)")
         } catch {
-            print("Error saving meals: \(error)")
+            print("ERROR: Failed to save meals: \(error)")
         }
     }
     
     // Load meals from persistent storage
     func loadMeals() {
+        print("DEBUG: Attempting to load meals from \(mealsFileURL.path)")
         do {
             guard FileManager.default.fileExists(atPath: mealsFileURL.path) else {
-                print("No meals file found - starting with empty meals array")
+                print("DEBUG: No meals file found - starting with empty meals array")
                 meals = []
                 return
             }
             
             let data = try Data(contentsOf: mealsFileURL)
+            print("DEBUG: Loaded \(data.count) bytes from meals file")
+            
             let decoder = JSONDecoder()
             meals = try decoder.decode([Meal].self, from: data)
             
-            print("Successfully loaded \(meals.count) meals")
-            print("\nAll loaded meals:")
-            for meal in meals {
-                print("- \(meal.name) at \(meal.time)")
+            print("DEBUG: Successfully loaded \(meals.count) meals")
+            
+            if meals.isEmpty {
+                print("DEBUG: Warning: Loaded meals array is empty")
+            } else {
+                print("DEBUG: All loaded meals:")
+                for meal in meals {
+                    print("DEBUG: - \(meal.name) at \(meal.time)")
+                }
             }
         } catch {
-            print("Error loading meals: \(error)")
+            print("ERROR: Failed to load meals: \(error)")
             // If loading fails, start with empty array
             meals = []
         }
