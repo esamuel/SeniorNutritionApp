@@ -147,6 +147,8 @@ struct PersistentData: Codable {
     let userHealthGoals: [String]
     let userDietaryRestrictions: [String]
     let userEmergencyContacts: [EmergencyContact]
+    let preferredVoiceGender: VoiceGender
+    let speechRate: SpeechRate
 }
 
 // User profile model

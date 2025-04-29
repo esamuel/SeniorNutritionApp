@@ -37,6 +37,20 @@ struct FoodSearchView: View {
                 // Category filter
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 10) {
+                        // All foods button
+                        Button(action: {
+                            selectedCategory = nil
+                        }) {
+                            Text("All")
+                                .font(.system(size: userSettings.textSize.size - 2))
+                                .padding(.horizontal, 15)
+                                .padding(.vertical, 8)
+                                .background(selectedCategory == nil ? Color.blue : Color(.systemGray6))
+                                .foregroundColor(selectedCategory == nil ? .white : .primary)
+                                .cornerRadius(20)
+                        }
+                        
+                        // Category buttons
                         ForEach(FoodCategory.allCases, id: \.self) { category in
                             categoryButton(category)
                         }

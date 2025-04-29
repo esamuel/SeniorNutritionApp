@@ -168,27 +168,28 @@ struct HomeView: View {
         VStack(spacing: 15) {
             // Timer Circle
             ZStack {
-                // Background circle
+                // Complete background circle in gray
                 Circle()
-                    .stroke(Color(.systemGray5), lineWidth: 20)
+                    .stroke(style: StrokeStyle(lineWidth: 20))
+                    .foregroundColor(Color(.systemGray5))
                 
-                // Progress circle (completed portion in mint green)
+                // Fasting period (red)
                 Circle()
-                    .trim(from: 0, to: 1 - calculateFastingPortion())
-                    .stroke(Color.mint, lineWidth: 20)
+                    .trim(from: 0, to: calculateFastingPortion())
+                    .stroke(fastingManager.fastingState == .fasting ? Color.red : Color.red.opacity(0.3), lineWidth: 20)
                     .rotationEffect(.degrees(-90))
                 
-                // Progress circle (remaining portion in red)
+                // Eating period (green)
                 Circle()
-                    .trim(from: 1 - calculateFastingPortion(), to: 1)
-                    .stroke(Color.red, lineWidth: 20)
+                    .trim(from: calculateFastingPortion(), to: 1)
+                    .stroke(fastingManager.fastingState == .eating ? Color.green : Color.green.opacity(0.3), lineWidth: 20)
                     .rotationEffect(.degrees(-90))
                 
                 // Center content
                 VStack(spacing: 5) {
-                    Text("Fasting")
+                    Text(fastingManager.fastingState.title)
                         .font(.system(size: userSettings.textSize.size + 4, weight: .bold))
-                        .foregroundColor(.red)
+                        .foregroundColor(fastingManager.fastingState.color)
                     
                     Text(formatRemainingTime())
                         .font(.system(size: userSettings.textSize.size + 12, weight: .bold))
@@ -197,6 +198,10 @@ struct HomeView: View {
                     
                     Text("\(calculatePercentageRemaining())% remain")
                         .font(.system(size: userSettings.textSize.size))
+                        .foregroundColor(.secondary)
+                    
+                    Text(fastingManager.fastingState == .fasting ? "of fasting" : "of eating window")
+                        .font(.system(size: userSettings.textSize.size - 2))
                         .foregroundColor(.secondary)
                 }
             }

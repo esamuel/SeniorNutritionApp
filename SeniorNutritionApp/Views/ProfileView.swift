@@ -94,6 +94,9 @@ struct ProfileView: View {
     @EnvironmentObject private var userSettings: UserSettings
     @State private var showingProfileSetup = false
     @State private var showingDeleteAlert = false
+    @State private var showingEditEmergencyContact = false
+    @State private var contactToEdit: EmergencyContact?
+    @State private var showingOnboarding = false
     
     var body: some View {
         NavigationView {
@@ -104,7 +107,15 @@ struct ProfileView: View {
                     medicalConditionsSection(profile)
                     dietaryRestrictionsSection(profile)
                     emergencyContactsSection(profile)
+                } else {
+                    Text("Please set up your profile")
+                        .font(.system(size: userSettings.textSize.size))
                 }
+                
+                appSettingsSection
+                
+                // App Information Section
+                appInformationSection
             }
             .navigationTitle("Profile")
             .navigationBarTitleDisplayMode(.large)
@@ -117,6 +128,13 @@ struct ProfileView: View {
             }
             .sheet(isPresented: $showingProfileSetup) {
                 UserProfileSetupView()
+            }
+            .sheet(isPresented: $showingEditEmergencyContact) {
+                if let contact = contactToEdit {
+                    EditEmergencyContactView(isPresented: $showingEditEmergencyContact, contact: contact)
+                } else {
+                    EditEmergencyContactView(isPresented: $showingEditEmergencyContact)
+                }
             }
         }
     }
@@ -142,7 +160,7 @@ struct ProfileView: View {
     }
     
     private func healthInformationSection(_ profile: UserProfile) -> some View {
-        Section(header: Text("Health Information")
+        Section(header: Text("Physical Information")
             .font(.system(size: userSettings.textSize.size, weight: .bold))
             .foregroundColor(.green)) {
             
@@ -213,12 +231,15 @@ struct ProfileView: View {
                         Spacer()
                         
                         Button(action: {
-                            // TODO: Implement edit contact functionality
+                            // Edit contact functionality
+                            showingEditEmergencyContact = true
+                            contactToEdit = contact
                         }) {
                             Image(systemName: "pencil.circle.fill")
                                 .foregroundColor(.blue)
                                 .font(.system(size: 20))
                         }
+                        .buttonStyle(BorderlessButtonStyle()) // Prevent tap propagation
                         
                         Button(action: {
                             if let index = profile.emergencyContacts.firstIndex(where: { $0.id == contact.id }) {
@@ -231,6 +252,7 @@ struct ProfileView: View {
                                 .foregroundColor(.red)
                                 .font(.system(size: 20))
                         }
+                        .buttonStyle(BorderlessButtonStyle()) // Prevent tap propagation
                     }
                     
                     HStack {
@@ -281,16 +303,101 @@ struct ProfileView: View {
                 .foregroundColor(color)
                 .frame(width: 30)
             
-            Text(title)
-                .font(.system(size: userSettings.textSize.size))
-            
-            Spacer()
-            
-            Text(value)
-                .font(.system(size: userSettings.textSize.size))
-                .foregroundColor(.secondary)
+            VStack(alignment: .leading, spacing: 4) {
+                Text(title)
+                    .font(.system(size: userSettings.textSize.size - 2))
+                    .foregroundColor(.secondary)
+                Text(value)
+                    .font(.system(size: userSettings.textSize.size))
+            }
         }
         .padding(.vertical, 4)
+    }
+    
+    private var appSettingsSection: some View {
+        Section(header: Text("App Settings")
+            .font(.system(size: userSettings.textSize.size, weight: .bold))
+            .foregroundColor(.blue)) {
+            
+            Toggle(isOn: $userSettings.isDarkMode) {
+                HStack {
+                    Image(systemName: "moon.fill")
+                        .foregroundColor(.blue)
+                    Text("Dark Mode")
+                        .font(.system(size: userSettings.textSize.size))
+                }
+            }
+            
+            Toggle(isOn: $userSettings.notificationsEnabled) {
+                HStack {
+                    Image(systemName: "bell.fill")
+                        .foregroundColor(.blue)
+                    Text("Notifications")
+                        .font(.system(size: userSettings.textSize.size))
+                }
+            }
+            
+            Picker("Text Size", selection: $userSettings.textSize) {
+                ForEach(TextSize.allCases, id: \.self) { size in
+                    Text(size.rawValue)
+                        .font(.system(size: size.size))
+                        .tag(size)
+                }
+            }
+            .font(.system(size: userSettings.textSize.size))
+            
+            Divider()
+            
+            Text("Voice Settings")
+                .font(.system(size: userSettings.textSize.size - 2, weight: .semibold))
+                .foregroundColor(.secondary)
+                .padding(.top, 5)
+            
+            Picker("Voice Gender", selection: $userSettings.preferredVoiceGender) {
+                ForEach(VoiceGender.allCases, id: \.self) { gender in
+                    Text(gender.rawValue)
+                        .font(.system(size: userSettings.textSize.size))
+                        .tag(gender)
+                }
+            }
+            .font(.system(size: userSettings.textSize.size))
+            
+            Picker("Speech Rate", selection: $userSettings.speechRate) {
+                ForEach(SpeechRate.allCases, id: \.self) { rate in
+                    Text(rate.rawValue)
+                        .font(.system(size: userSettings.textSize.size))
+                        .tag(rate)
+                }
+            }
+            .font(.system(size: userSettings.textSize.size))
+        }
+        .listRowBackground(Color.blue.opacity(0.05))
+    }
+    
+    private var appInformationSection: some View {
+        Section(header: Text("App Information")
+            .font(.system(size: userSettings.textSize.size, weight: .bold))
+            .foregroundColor(.indigo)) {
+            
+            Button(action: {
+                showingOnboarding = true
+            }) {
+                HStack {
+                    Image(systemName: "info.circle.fill")
+                        .foregroundColor(.indigo)
+                    Text("View App Introduction")
+                        .font(.system(size: userSettings.textSize.size))
+                }
+            }
+            
+            Text("Version 1.0")
+                .font(.system(size: userSettings.textSize.size - 2))
+                .foregroundColor(.secondary)
+        }
+        .listRowBackground(Color.indigo.opacity(0.05))
+        .fullScreenCover(isPresented: $showingOnboarding) {
+            OnboardingView(isFirstLaunch: false)
+        }
     }
 }
 
@@ -483,9 +590,23 @@ struct EditEmergencyContactView: View {
     @State private var name: String = ""
     @State private var selectedRelationship: Relationship = .spouse
     @State private var phoneNumber: String = ""
+    @State private var contactId: UUID
+    @State private var isEditMode: Bool = false
     
-    init(isPresented: Binding<Bool>) {
+    init(isPresented: Binding<Bool>, contact: EmergencyContact? = nil) {
         _isPresented = isPresented
+        
+        if let contact = contact {
+            // Edit mode
+            _name = State(initialValue: contact.name)
+            _selectedRelationship = State(initialValue: contact.relationship)
+            _phoneNumber = State(initialValue: contact.phoneNumber)
+            _contactId = State(initialValue: contact.id)
+            _isEditMode = State(initialValue: true)
+        } else {
+            // Create mode
+            _contactId = State(initialValue: UUID())
+        }
     }
     
     var body: some View {
@@ -531,11 +652,35 @@ struct EditEmergencyContactView: View {
     
     private func saveContact() {
         let contact = EmergencyContact(
+            id: contactId,
             name: name,
             relationship: selectedRelationship,
             phoneNumber: phoneNumber
         )
-        userSettings.userEmergencyContacts.append(contact)
+        
+        if isEditMode {
+            // Update existing contact
+            if let index = userSettings.userEmergencyContacts.firstIndex(where: { $0.id == contactId }) {
+                userSettings.userEmergencyContacts[index] = contact
+            }
+            
+            // Also update in user profile if it exists
+            if var profile = userSettings.userProfile {
+                if let index = profile.emergencyContacts.firstIndex(where: { $0.id == contactId }) {
+                    profile.emergencyContacts[index] = contact
+                    userSettings.updateProfile(profile)
+                }
+            }
+        } else {
+            // Add new contact
+            userSettings.userEmergencyContacts.append(contact)
+            
+            // Also add to user profile if it exists
+            if var profile = userSettings.userProfile {
+                profile.emergencyContacts.append(contact)
+                userSettings.updateProfile(profile)
+            }
+        }
     }
 }
 

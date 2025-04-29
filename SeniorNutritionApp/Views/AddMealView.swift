@@ -23,6 +23,9 @@ struct AddMealView: View {
     @State private var showingAnalysisResults = false
     @State private var analysisResult: MealAnalysisResult?
     
+    // UI states
+    @State private var showingPortionInfo = false
+    
     var onSave: (Meal) -> Void
     
     var body: some View {
@@ -102,8 +105,71 @@ struct AddMealView: View {
                 
                 Section(header: Text("Portion Size").font(.system(size: userSettings.textSize.size))) {
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("Select Portion Size")
-                            .font(.system(size: userSettings.textSize.size))
+                        HStack {
+                            Text("Select Portion Size")
+                                .font(.system(size: userSettings.textSize.size))
+                            
+                            Button(action: {
+                                showingPortionInfo.toggle()
+                            }) {
+                                Image(systemName: "info.circle")
+                                    .foregroundColor(.blue)
+                            }
+                            .popover(isPresented: $showingPortionInfo) {
+                                VStack(alignment: .leading, spacing: 0) {
+                                    Text("Portion Size Guide")
+                                        .font(.system(size: 22, weight: .bold))
+                                        .padding(.bottom, 10)
+                                        .frame(maxWidth: .infinity, alignment: .center)
+                                    
+                                    ScrollView {
+                                        VStack(spacing: 20) {
+                                            portionInfoCard(
+                                                title: "Small",
+                                                subtitle: "(3/4 of standard serving)",
+                                                examples: [
+                                                    "Protein: 2-3 oz (60-85g)",
+                                                    "Vegetables: 1/2 cup (75g)",
+                                                    "Grains: 1/3 cup (60g)",
+                                                    "Fruit: 1 small piece or 1/2 cup"
+                                                ],
+                                                color: .blue.opacity(0.1),
+                                                borderColor: .blue
+                                            )
+                                            
+                                            portionInfoCard(
+                                                title: "Medium",
+                                                subtitle: "(Standard serving)",
+                                                examples: [
+                                                    "Protein: 3-4 oz (85-115g)",
+                                                    "Vegetables: 3/4 cup (100g)",
+                                                    "Grains: 1/2 cup (80g)",
+                                                    "Fruit: 1 medium piece or 3/4 cup"
+                                                ],
+                                                color: .green.opacity(0.1),
+                                                borderColor: .green
+                                            )
+                                            
+                                            portionInfoCard(
+                                                title: "Large",
+                                                subtitle: "(1.5x standard serving)",
+                                                examples: [
+                                                    "Protein: 5-6 oz (140-170g)",
+                                                    "Vegetables: 1 cup (150g)",
+                                                    "Grains: 3/4 cup (120g)",
+                                                    "Fruit: 1 large piece or 1 cup"
+                                                ],
+                                                color: .orange.opacity(0.1),
+                                                borderColor: .orange
+                                            )
+                                        }
+                                        .padding(.horizontal)
+                                    }
+                                }
+                                .padding()
+                                .frame(width: 350, height: 500)
+                            }
+                        }
                         
                         HStack(spacing: 15) {
                             ForEach(MealPortion.allCases) { size in
@@ -361,5 +427,41 @@ struct AddMealView: View {
         
         onSave(newMeal)
         presentationMode.wrappedValue.dismiss()
+    }
+    
+    // Helper for portion size info cards
+    private func portionInfoCard(title: String, subtitle: String, examples: [String], color: Color, borderColor: Color) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                    .font(.system(size: userSettings.textSize.size + 2, weight: .bold))
+                Text(subtitle)
+                    .font(.system(size: userSettings.textSize.size - 1))
+                    .foregroundColor(.secondary)
+            }
+            
+            Divider()
+            
+            VStack(alignment: .leading, spacing: 6) {
+                ForEach(examples, id: \.self) { example in
+                    HStack(alignment: .top, spacing: 6) {
+                        Image(systemName: "circle.fill")
+                            .font(.system(size: 6))
+                            .padding(.top, 6)
+                        
+                        Text(example)
+                            .font(.system(size: userSettings.textSize.size))
+                    }
+                }
+            }
+        }
+        .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(color)
+        .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(borderColor, lineWidth: 1)
+        )
     }
 } 

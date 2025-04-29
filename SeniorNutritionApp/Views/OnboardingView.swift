@@ -3,6 +3,12 @@ import SwiftUI
 struct OnboardingView: View {
     @EnvironmentObject private var userSettings: UserSettings
     @State private var currentPage = 0
+    @Environment(\.presentationMode) private var presentationMode
+    let isFirstLaunch: Bool
+    
+    init(isFirstLaunch: Bool = true) {
+        self.isFirstLaunch = isFirstLaunch
+    }
     
     // Define pages for onboarding
     private let pages: [OnboardingPage] = [
@@ -49,9 +55,13 @@ struct OnboardingView: View {
                 HStack {
                     Spacer()
                     Button(action: {
-                        userSettings.isOnboardingComplete = true
+                        if isFirstLaunch {
+                            userSettings.isOnboardingComplete = true
+                        } else {
+                            presentationMode.wrappedValue.dismiss()
+                        }
                     }) {
-                        Text("Skip")
+                        Text(isFirstLaunch ? "Skip" : "Close")
                             .foregroundColor(.blue)
                             .padding()
                     }
@@ -94,9 +104,13 @@ struct OnboardingView: View {
                         }
                     } else {
                         Button(action: {
-                            userSettings.isOnboardingComplete = true
+                            if isFirstLaunch {
+                                userSettings.isOnboardingComplete = true
+                            } else {
+                                presentationMode.wrappedValue.dismiss()
+                            }
                         }) {
-                            Text("Get Started")
+                            Text(isFirstLaunch ? "Get Started" : "Return to Profile")
                                 .foregroundColor(.white)
                                 .padding()
                                 .background(Color.blue)

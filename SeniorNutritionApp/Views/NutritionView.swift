@@ -12,6 +12,8 @@ struct NutritionView: View {
     @State private var mealToDelete: Meal?
     @State private var showingCommonMealAdded = false
     @State private var commonMealAddedName = ""
+    @State private var showingPersonalizedTips = false
+    @State private var showingFoodDatabase = false
 
     var body: some View {
         NavigationView {
@@ -90,6 +92,14 @@ struct NutritionView: View {
             } message: {
                 Text("\(commonMealAddedName) has been added to your common meals.")
             }
+            .sheet(isPresented: $showingPersonalizedTips) {
+                PersonalizedNutritionTipsView()
+                    .environmentObject(userSettings)
+            }
+            .sheet(isPresented: $showingFoodDatabase) {
+                FoodDatabaseBrowserView()
+                    .environmentObject(userSettings)
+            }
             .onAppear {
                 print("DEBUG: NutritionView appeared - reloading meals")
                 mealManager.loadMeals()
@@ -117,6 +127,7 @@ struct NutritionView: View {
                 todayMealsSection
                 commonMealsSection
                 nutritionTipsSection
+                foodDatabaseSection
             }
             .padding()
         }
@@ -337,7 +348,7 @@ struct NutritionView: View {
                 description: "Include sources of healthy fats like olive oil, avocados, and nuts."
             )
             Button(action: {
-                // Action to show more nutrition tips
+                showingPersonalizedTips = true
             }) {
                 Text("View More Tips")
                     .font(.system(size: userSettings.textSize.size - 2))
@@ -368,6 +379,39 @@ struct NutritionView: View {
         .padding(.vertical, 5)
     }
 
+    private var foodDatabaseSection: some View {
+        VStack(alignment: .leading, spacing: 15) {
+            Text("Food Database")
+                .font(.system(size: userSettings.textSize.size, weight: .bold))
+            
+            HStack(spacing: 15) {
+                Image(systemName: "fork.knife.circle.fill")
+                    .font(.system(size: 40))
+                    .foregroundColor(.orange)
+                
+                VStack(alignment: .leading, spacing: 5) {
+                    Text("Browse All Food Items")
+                        .font(.system(size: userSettings.textSize.size))
+                    
+                    Text("View detailed nutrition information for all foods, including pasta dishes and more")
+                        .font(.system(size: userSettings.textSize.size - 2))
+                        .foregroundColor(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+            .padding()
+            .background(Color(.systemGray6))
+            .cornerRadius(12)
+            .onTapGesture {
+                showingFoodDatabase = true
+            }
+        }
+        .padding()
+        .background(Color(.systemBackground))
+        .cornerRadius(16)
+        .shadow(radius: 2)
+    }
+    
     private var timeFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.timeStyle = .short

@@ -965,6 +965,9 @@ private struct ActionButtonsSectionView: View {
 // MARK: - HelpTipsSectionView
 private struct HelpTipsSectionView: View {
     let textSize: CGFloat
+    @EnvironmentObject private var userSettings: UserSettings
+    @State private var showingHealthTips = false
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Health Tips")
@@ -973,7 +976,7 @@ private struct HelpTipsSectionView: View {
             tipRow(icon: "exclamationmark.triangle", text: "If you feel unwell, end your fast immediately")
             tipRow(icon: "bed.double.fill", text: "Quality sleep helps with fasting results")
             Button(action: {
-                // Action to show more health tips
+                showingHealthTips = true
             }) {
                 Text("View More Health Tips")
                     .font(.system(size: textSize - 2))
@@ -985,7 +988,12 @@ private struct HelpTipsSectionView: View {
         .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(radius: 2)
+        .sheet(isPresented: $showingHealthTips) {
+            PersonalizedHealthTipsView()
+                .environmentObject(userSettings)
+        }
     }
+    
     private func tipRow(icon: String, text: String) -> some View {
         HStack(alignment: .top, spacing: 10) {
             Image(systemName: icon)

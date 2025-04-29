@@ -1,5 +1,6 @@
 import Foundation
 import AVFoundation
+import SwiftUI
 
 @MainActor
 class VoiceManager: NSObject, ObservableObject {
@@ -13,7 +14,7 @@ class VoiceManager: NSObject, ObservableObject {
         synthesizer.delegate = self
     }
     
-    func speak(_ text: String) {
+    func speak(_ text: String, userSettings: UserSettings? = nil) {
         Task { @MainActor in
             // Stop any ongoing speech
             if isSpeaking {
@@ -21,14 +22,34 @@ class VoiceManager: NSObject, ObservableObject {
             }
             
             let utterance = AVSpeechUtterance(string: text)
-            utterance.rate = 0.5 // Slower rate for better clarity
+            
+            // Use user's preferred speech rate
+            if let settings = userSettings {
+                // Apply speech rate - AVSpeechUtterance rate is between 0 (slowest) and 1 (fastest)
+                utterance.rate = settings.speechRate.rate
+                
+                // Use user's preferred voice gender
+                if let voice = settings.preferredVoiceGender.getVoice() {
+                    utterance.voice = voice
+                    print("Using voice: \(voice.name) for gender: \(settings.preferredVoiceGender.rawValue)")
+                } else {
+                    print("Could not find appropriate voice for gender: \(settings.preferredVoiceGender.rawValue)")
+                    if let defaultVoice = AVSpeechSynthesisVoice(language: "en-US") {
+                        utterance.voice = defaultVoice
+                    }
+                }
+                
+                print("Speech rate set to: \(settings.speechRate.rawValue) (\(settings.speechRate.rate))")
+            } else {
+                // Default settings if user settings not available
+                utterance.rate = 0.5
+                if let voice = AVSpeechSynthesisVoice(language: "en-US") {
+                    utterance.voice = voice
+                }
+            }
+            
             utterance.pitchMultiplier = 1.0
             utterance.volume = 1.0
-            
-            // Get the user's preferred voice
-            if let voice = AVSpeechSynthesisVoice(language: "en-US") {
-                utterance.voice = voice
-            }
             
             synthesizer.speak(utterance)
             isSpeaking = true

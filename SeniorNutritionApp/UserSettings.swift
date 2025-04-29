@@ -107,6 +107,19 @@ class UserSettings: ObservableObject {
         }
     }
     
+    // Voice settings
+    @Published var preferredVoiceGender: VoiceGender = .female {
+        didSet {
+            saveUserData()
+        }
+    }
+    
+    @Published var speechRate: SpeechRate = .normal {
+        didSet {
+            saveUserData()
+        }
+    }
+    
     private let localDataKey = "userData"
     
     private var cancellables = Set<AnyCancellable>()
@@ -148,7 +161,9 @@ class UserSettings: ObservableObject {
                     userWeight: userWeight,
                     userHealthGoals: userHealthGoals,
                     userDietaryRestrictions: userDietaryRestrictions,
-                    userEmergencyContacts: userEmergencyContacts
+                    userEmergencyContacts: userEmergencyContacts,
+                    preferredVoiceGender: preferredVoiceGender,
+                    speechRate: speechRate
                 )
                 
                 try await PersistentStorage.shared.saveData(data, forKey: localDataKey)
@@ -183,6 +198,8 @@ class UserSettings: ObservableObject {
                     userHealthGoals = data.userHealthGoals
                     userDietaryRestrictions = data.userDietaryRestrictions
                     userEmergencyContacts = data.userEmergencyContacts
+                    preferredVoiceGender = data.preferredVoiceGender
+                    speechRate = data.speechRate
                     
                     print("DEBUG: Successfully loaded user data")
                 } else {
