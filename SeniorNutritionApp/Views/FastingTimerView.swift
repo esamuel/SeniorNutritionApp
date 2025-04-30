@@ -559,6 +559,19 @@ struct FastingTimerView: View {
         let eatingMinutes = userSettings.activeFastingProtocol.eatingHours * 60
         let totalCycleMinutes = fastingMinutes + eatingMinutes
         
+        // Ensure totalCycleMinutes is not zero before modulo operation
+        guard totalCycleMinutes > 0 else {
+            // Handle the case where cycle duration is zero (e.g., return 0 or default value)
+            // Depending on the desired behavior, you might want to log an error or show a message.
+            // For now, just avoid the crash by not performing the modulo.
+            // You might need to adjust the subsequent logic as well.
+            print("Error: totalCycleMinutes is zero, cannot calculate remaining time.")
+            // Potentially set elapsedMinutes to 0 or handle differently
+            elapsedMinutes = 0 
+            // Consider returning early or setting remainingMinutes appropriately
+            return (hours: 0, minutes: 0, totalMinutes: 0) // Example: return 0 time remaining
+        }
+        
         // Normalize elapsed minutes to current cycle
         elapsedMinutes = elapsedMinutes % totalCycleMinutes
         
@@ -835,7 +848,7 @@ private struct TimelineSectionView: View {
                         Text(medication.name)
                             .font(.system(size: textSize - 2))
                         Spacer()
-                        Text(timeFormatter.string(from: medication.schedule[0]))
+                        Text(formatFirstTime(for: medication))
                             .font(.system(size: textSize - 2))
                             .foregroundColor(.secondary)
                     }
@@ -848,10 +861,30 @@ private struct TimelineSectionView: View {
         .cornerRadius(16)
         .shadow(radius: 2)
     }
+    
     private func formatTimeRange(start: Date, end: Date) -> String {
         let formatter = DateFormatter()
         formatter.timeStyle = .short
         return "\(formatter.string(from: start)) - \(formatter.string(from: end))"
+    }
+    
+    private func formatFirstTime(for medication: Medication) -> String {
+        guard let firstTime = medication.timesOfDay.first else {
+            return "--:--" // No time scheduled
+        }
+        
+        let calendar = Calendar.current
+        var components = DateComponents()
+        components.hour = firstTime.hour
+        components.minute = firstTime.minute
+        
+        // Get a Date object for today with the specified time for formatting
+        if let dateForFormatting = calendar.date(from: components) {
+            return timeFormatter.string(from: dateForFormatting)
+        } else {
+            // Fallback formatting if Date creation fails
+            return String(format: "%02d:%02d", firstTime.hour, firstTime.minute)
+        }
     }
 }
 
@@ -862,6 +895,7 @@ private struct TimelineView: View {
     let medications: [Medication]
     let textSize: CGFloat
     let timeFormatter: DateFormatter
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .leading) {
@@ -910,6 +944,7 @@ private struct TimelineView: View {
             }
         }
     }
+    
     private func timeToPosition(date: Date, width: CGFloat) -> CGFloat {
         let calendar = Calendar.current
         let components = calendar.dateComponents([.hour, .minute], from: date)

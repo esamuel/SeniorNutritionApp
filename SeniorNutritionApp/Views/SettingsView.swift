@@ -1,37 +1,16 @@
 import SwiftUI
 
+// Main Settings View
 struct SettingsView: View {
     @EnvironmentObject private var userSettings: UserSettings
-    @State private var userName: String = "Jane"
     @State private var showingHelpOptions = false
     @State private var showingPrintOptions = false
     @State private var showingResetAlert = false
-    
+    @State private var showingBackupInfoAlert = false // For backup/restore info
+
     var body: some View {
         NavigationView {
             List {
-                // User profile section
-                Section(header: sectionHeader("Profile")) {
-                    VStack(alignment: .center, spacing: 15) {
-                        Image(systemName: "person.crop.circle.fill")
-                            .font(.system(size: 70))
-                            .foregroundColor(.blue)
-                        
-                        Text(userName)
-                            .font(.system(size: userSettings.textSize.size + 2, weight: .bold))
-                        
-                        Button(action: {
-                            // Edit profile action
-                        }) {
-                            Text("Edit Profile")
-                                .font(.system(size: userSettings.textSize.size - 2))
-                                .foregroundColor(.blue)
-                        }
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 20)
-                }
-                
                 // Accessibility section
                 Section(header: sectionHeader("Accessibility")) {
                     // Text size picker
@@ -58,7 +37,7 @@ struct SettingsView: View {
                     // High contrast mode
                     Toggle(isOn: $userSettings.highContrastMode) {
                         HStack {
-                            Image(systemName: "circle.contrast")
+                            Image(systemName: "circle.lefthalf.filled") // Corrected icon
                                 .foregroundColor(.blue)
                                 .frame(width: 30)
                             
@@ -69,14 +48,23 @@ struct SettingsView: View {
                     .padding(.vertical, 8)
                     .toggleStyle(SwitchToggleStyle(tint: .blue))
                     
-                    // Voice input
-                    Toggle(isOn: $userSettings.useVoiceInput) {
+                    // Voice Settings Navigation
+                    NavigationLink(destination: VoiceSettingsView()) {
+                        settingsRowContent(
+                            icon: "waveform.circle.fill", // Icon for voice settings
+                            title: "Voice Settings",
+                            color: .blue
+                        )
+                    }
+                    
+                    // Dark Mode Toggle
+                    Toggle(isOn: $userSettings.isDarkMode) {
                         HStack {
-                            Image(systemName: "mic.fill")
+                            Image(systemName: "moon.fill") // Icon for Dark Mode
                                 .foregroundColor(.blue)
                                 .frame(width: 30)
                             
-                            Text("Voice Input")
+                            Text("Dark Mode")
                                 .font(.system(size: userSettings.textSize.size))
                         }
                     }
@@ -84,55 +72,32 @@ struct SettingsView: View {
                     .toggleStyle(SwitchToggleStyle(tint: .blue))
                 }
                 
-                // Fasting protocol section
-                Section(header: sectionHeader("Fasting Protocol")) {
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text("Your Current Protocol")
-                            .font(.system(size: userSettings.textSize.size))
-                            .foregroundColor(.secondary)
-                        
-                        ForEach(FastingProtocol.allCases) { proto in
-                            protocolButton(for: proto)
-                        }
-                    }
-                }
-                
                 // Help & support section
                 Section(header: sectionHeader("Help & Support")) {
-                    // Video tutorials
                     settingsRow(
                         icon: "video.fill",
                         title: "Video Tutorials",
                         color: .red,
-                        action: {
-                            // Show video tutorials
-                        }
+                        action: { /* Show video tutorials */ }
                     )
                     
-                    // Live support
                     settingsRow(
                         icon: "person.fill.questionmark",
                         title: "Get Live Support",
                         color: .green,
-                        action: {
-                            showingHelpOptions = true
-                        }
+                        action: { showingHelpOptions = true }
                     )
                     
-                    // Print materials
                     settingsRow(
                         icon: "printer.fill",
                         title: "Print Instructions",
                         color: .purple,
-                        action: {
-                            showingPrintOptions = true
-                        }
+                        action: { showingPrintOptions = true }
                     )
                 }
                 
                 // Additional options section
                 Section(header: sectionHeader("Additional Options")) {
-                    // Notifications
                     NavigationLink(destination: NotificationsSettingsView()) {
                         settingsRowContent(
                             icon: "bell.fill",
@@ -141,19 +106,26 @@ struct SettingsView: View {
                         )
                     }
                     
-                    // Backup and restore
-                    NavigationLink(destination: Text("Backup Settings").font(.system(size: userSettings.textSize.size))) {
+                    // Backup Data Button
+                    Button(action: { showingBackupInfoAlert = true }) {
                         settingsRowContent(
-                            icon: "arrow.clockwise",
-                            title: "Backup & Restore",
-                            color: .blue
+                            icon: "arrow.clockwise", // Changed icon for consistency
+                            title: "Backup Data",
+                            color: .orange
                         )
                     }
                     
-                    // Reset app
-                    Button(action: {
-                        showingResetAlert = true
-                    }) {
+                    // Restore Data Button
+                    Button(action: { showingBackupInfoAlert = true }) {
+                        settingsRowContent(
+                            icon: "arrow.clockwise", // Changed icon for consistency
+                            title: "Restore Data",
+                            color: .orange
+                        )
+                    }
+                    
+                    // Reset app Button
+                    Button(action: { showingResetAlert = true }) {
                         settingsRowContent(
                             icon: "arrow.counterclockwise",
                             title: "Reset App",
@@ -164,46 +136,45 @@ struct SettingsView: View {
                 
                 // About section
                 Section(header: sectionHeader("About")) {
-                    // App version
                     HStack {
                         Text("Version")
                             .font(.system(size: userSettings.textSize.size))
-                        
                         Spacer()
-                        
-                        Text("1.0.0")
+                        Text("1.0.0") // Example version
                             .font(.system(size: userSettings.textSize.size))
                             .foregroundColor(.secondary)
                     }
                     .padding(.vertical, 8)
                     
-                    // Privacy policy
-                    NavigationLink(destination: Text("Privacy Policy").font(.system(size: userSettings.textSize.size))) {
+                    NavigationLink(destination: PrivacyPolicyView()) {
                         Text("Privacy Policy")
                             .font(.system(size: userSettings.textSize.size))
+                            .padding(.vertical, 8)
                     }
-                    .padding(.vertical, 8)
                     
-                    // Terms of service
-                    NavigationLink(destination: Text("Terms of Service").font(.system(size: userSettings.textSize.size))) {
+                    NavigationLink(destination: TermsOfUseView()) {
                         Text("Terms of Service")
                             .font(.system(size: userSettings.textSize.size))
+                            .padding(.vertical, 8)
                     }
-                    .padding(.vertical, 8)
                 }
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.large)
             .listStyle(InsetGroupedListStyle())
-            .alert(isPresented: $showingResetAlert) {
-                Alert(
-                    title: Text("Reset App?"),
-                    message: Text("This will reset all settings and delete your data. This cannot be undone."),
-                    primaryButton: .destructive(Text("Reset")) {
-                        // Reset app action
-                    },
-                    secondaryButton: .cancel()
-                )
+            .alert("ARE YOU ABSOLUTELY SURE?", isPresented: $showingResetAlert) { // Strengthened Reset Alert
+                Button("Cancel", role: .cancel) { }
+                Button("Reset App", role: .destructive) {
+                    userSettings.resetAllSettings()
+                    // TODO: Add reset actions for other data managers if needed
+                }
+            } message: {
+                Text("Resetting the app will permanently delete ALL your data, including profile, medications, fasting history, and settings. This action cannot be undone.")
+            }
+            .alert("Backup & Restore Info", isPresented: $showingBackupInfoAlert) { // Backup Info Alert
+                Button("OK") { }
+            } message: {
+                Text("Your app data (settings, medications, etc.) is typically included in your device's standard backups (iCloud or computer backups) if you have enabled them in your device settings. Restore data by restoring your device from a backup.")
             }
             .sheet(isPresented: $showingHelpOptions) {
                 HelpOptionsView()
@@ -228,10 +199,9 @@ struct SettingsView: View {
         Button(action: action) {
             settingsRowContent(icon: icon, title: title, color: color)
         }
-        .padding(.vertical, 8)
     }
     
-    // Helper for settings row content
+    // Helper for settings row content (used by Button and NavigationLink)
     private func settingsRowContent(icon: String, title: String, color: Color) -> some View {
         HStack {
             Image(systemName: icon)
@@ -244,45 +214,19 @@ struct SettingsView: View {
             
             Spacer()
             
-            Image(systemName: "chevron.right")
-                .foregroundColor(.gray)
-                .font(.system(size: 14))
+            // Only show chevron for NavigationLinks implicitly
+            // For Buttons, we don't need an explicit chevron
+            // Image(systemName: "chevron.right").foregroundColor(.gray).font(.system(size: 14))
         }
-    }
-    
-    // Fasting protocol selection button
-    private func protocolButton(for proto: FastingProtocol) -> some View {
-        Button(action: {
-            userSettings.activeFastingProtocol = proto
-        }) {
-            HStack {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(proto.rawValue)
-                        .font(.system(size: userSettings.textSize.size))
-                        .foregroundColor(.primary)
-                    
-                    Text(proto.description)
-                        .font(.system(size: userSettings.textSize.size - 4))
-                        .foregroundColor(.secondary)
-                        .lineLimit(2)
-                }
-                
-                Spacer()
-                
-                if userSettings.activeFastingProtocol == proto {
-                    Image(systemName: "checkmark")
-                        .foregroundColor(.blue)
-                }
-            }
-            .padding(.vertical, 8)
-            .contentShape(Rectangle())
-        }
+        .padding(.vertical, 8) // Apply padding here for consistent row height
+        .contentShape(Rectangle()) // Ensures the whole row is tappable for Buttons
     }
 }
 
-// Notifications Settings View
+// Notifications Settings View (Restored)
 struct NotificationsSettingsView: View {
     @EnvironmentObject private var userSettings: UserSettings
+    // Add @State vars tied to UserSettings for actual functionality
     @State private var medicationReminders = true
     @State private var fastingReminders = true
     @State private var mealWindowReminders = true
@@ -308,18 +252,15 @@ struct NotificationsSettingsView: View {
                     .padding(.vertical, 8)
             }
             
+            // Reminder Style section needs actual state/logic
             Section(header: Text("Reminder Style").font(.system(size: userSettings.textSize.size, weight: .bold))) {
-                notificationStyleButton(title: "Regular", description: "Standard notifications")
-                
-                notificationStyleButton(title: "Gentle", description: "Quieter, less intrusive notifications")
-                
-                notificationStyleButton(title: "Urgent", description: "More noticeable for important reminders")
+                 notificationStyleButton(title: "Regular", description: "Standard notifications", isSelected: true) // Example selection
+                 notificationStyleButton(title: "Gentle", description: "Quieter, less intrusive notifications", isSelected: false)
+                 notificationStyleButton(title: "Urgent", description: "More noticeable for important reminders", isSelected: false)
             }
             
             Section {
-                Button(action: {
-                    // Save notification settings
-                }) {
+                Button(action: { /* Save notification settings */ }) {
                     Text("Save Settings")
                         .font(.system(size: userSettings.textSize.size))
                         .foregroundColor(.white)
@@ -333,33 +274,38 @@ struct NotificationsSettingsView: View {
             .listRowBackground(Color.clear)
         }
         .navigationTitle("Notifications")
-        .navigationBarTitleDisplayMode(.large)
+        .navigationBarTitleDisplayMode(.inline)
         .listStyle(InsetGroupedListStyle())
     }
     
-    // Notification style selection button
-    private func notificationStyleButton(title: String, description: String) -> some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 4) {
-                Text(title)
-                    .font(.system(size: userSettings.textSize.size))
+    // Notification style selection button (needs state management)
+    private func notificationStyleButton(title: String, description: String, isSelected: Bool) -> some View {
+        Button(action: { /* Select this style */ }) {
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(title)
+                        .font(.system(size: userSettings.textSize.size))
+                    
+                    Text(description)
+                        .font(.system(size: userSettings.textSize.size - 4))
+                        .foregroundColor(.secondary)
+                }
                 
-                Text(description)
-                    .font(.system(size: userSettings.textSize.size - 4))
-                    .foregroundColor(.secondary)
+                Spacer()
+                
+                if isSelected {
+                    Image(systemName: "checkmark")
+                        .foregroundColor(.blue)
+                }
             }
-            
-            Spacer()
-            
-            Image(systemName: "checkmark")
-                .foregroundColor(.blue)
-                .opacity(title == "Regular" ? 1 : 0)
+            .padding(.vertical, 8)
+            .contentShape(Rectangle())
         }
-        .padding(.vertical, 8)
+        .buttonStyle(.plain) // Use plain style to avoid default button appearance in List
     }
 }
 
-// Help Options View
+// Help Options View (Restored)
 struct HelpOptionsView: View {
     @EnvironmentObject private var userSettings: UserSettings
     @Environment(\.presentationMode) private var presentationMode
@@ -372,36 +318,28 @@ struct HelpOptionsView: View {
                         icon: "phone.fill",
                         title: "Call Support",
                         description: "Speak with our support team",
-                        action: {
-                            // Call support action
-                        }
+                        action: { /* Call support action */ }
                     )
                     
                     helpOptionButton(
                         icon: "message.fill",
                         title: "Send Message",
                         description: "Send us a message for help",
-                        action: {
-                            // Send message action
-                        }
+                        action: { /* Send message action */ }
                     )
                     
                     helpOptionButton(
                         icon: "video.fill",
                         title: "Video Chat",
                         description: "Schedule a video call with support",
-                        action: {
-                            // Video chat action
-                        }
+                        action: { /* Video chat action */ }
                     )
                     
                     helpOptionButton(
                         icon: "questionmark.circle.fill",
                         title: "Guided Tour",
                         description: "Restart the app tour",
-                        action: {
-                            // Restart tour action
-                        }
+                        action: { /* Restart tour action */ }
                     )
                 }
             }
@@ -427,7 +365,7 @@ struct HelpOptionsView: View {
                     .font(.system(size: 24))
                     .foregroundColor(.white)
                     .frame(width: 50, height: 50)
-                    .background(Color.blue)
+                    .background(Color.green) // Changed color for Help section
                     .cornerRadius(10)
                 
                 VStack(alignment: .leading, spacing: 5) {
@@ -448,13 +386,22 @@ struct HelpOptionsView: View {
             .padding(.vertical, 8)
             .contentShape(Rectangle())
         }
+        .buttonStyle(.plain)
     }
 }
 
-// Print Options View
+// Print Options View (Incorporating previous alert changes)
 struct PrintOptionsView: View {
     @EnvironmentObject private var userSettings: UserSettings
     @Environment(\.presentationMode) private var presentationMode
+    
+    // State for confirmation alerts
+    @State private var showMedicationPrintAlert = false
+    @State private var showFastingPrintAlert = false
+    @State private var showMealsPrintAlert = false
+    @State private var showInstructionsPrintAlert = false
+    @State private var alertTitle = ""
+    @State private var alertMessage = ""
     
     var body: some View {
         NavigationView {
@@ -463,25 +410,45 @@ struct PrintOptionsView: View {
                     printOptionButton(
                         title: "Medication Schedule",
                         description: "Print your current medication schedule",
-                        icon: "pill.fill"
+                        icon: "pill.fill",
+                        action: { // Action for Medication Schedule
+                            alertTitle = "Print Medication Schedule?"
+                            alertMessage = "This would send your medication schedule to the printer."
+                            showMedicationPrintAlert = true
+                        }
                     )
                     
                     printOptionButton(
                         title: "Fasting Guide",
                         description: "Print your fasting protocol guide",
-                        icon: "timer"
+                        icon: "timer",
+                        action: { // Action for Fasting Guide
+                            alertTitle = "Print Fasting Guide?"
+                            alertMessage = "This would send your fasting guide to the printer."
+                            showFastingPrintAlert = true
+                        }
                     )
                     
                     printOptionButton(
                         title: "Meal Suggestions",
                         description: "Print healthy meal suggestions",
-                        icon: "fork.knife"
+                        icon: "fork.knife",
+                        action: { // Action for Meal Suggestions
+                            alertTitle = "Print Meal Suggestions?"
+                            alertMessage = "This would send meal suggestions to the printer."
+                            showMealsPrintAlert = true
+                        }
                     )
                     
                     printOptionButton(
                         title: "App Instructions",
                         description: "Print step-by-step app instructions",
-                        icon: "doc.text.fill"
+                        icon: "doc.text.fill",
+                        action: { // Action for App Instructions
+                            alertTitle = "Print App Instructions?"
+                            alertMessage = "This would send the app instructions to the printer."
+                            showInstructionsPrintAlert = true
+                        }
                     )
                 }
             }
@@ -496,20 +463,30 @@ struct PrintOptionsView: View {
                     .font(.system(size: userSettings.textSize.size))
                 }
             }
+            // Add alerts for each print option
+            .alert(alertTitle, isPresented: $showMedicationPrintAlert, actions: { printAlertActions() }, message: { Text(alertMessage) })
+            .alert(alertTitle, isPresented: $showFastingPrintAlert, actions: { printAlertActions() }, message: { Text(alertMessage) })
+            .alert(alertTitle, isPresented: $showMealsPrintAlert, actions: { printAlertActions() }, message: { Text(alertMessage) })
+            .alert(alertTitle, isPresented: $showInstructionsPrintAlert, actions: { printAlertActions() }, message: { Text(alertMessage) })
         }
     }
     
-    // Print option button
-    private func printOptionButton(title: String, description: String, icon: String) -> some View {
-        Button(action: {
-            // Print action
-        }) {
+    // Helper for alert actions
+    @ViewBuilder
+    private func printAlertActions() -> some View {
+        Button("Cancel", role: .cancel) { }
+        Button("Print") { /* Actual print logic would go here */ }
+    }
+    
+    // Print option button (updated to include action closure)
+    private func printOptionButton(title: String, description: String, icon: String, action: @escaping () -> Void) -> some View {
+        Button(action: action) { // Use the passed-in action
             HStack(spacing: 15) {
                 Image(systemName: icon)
                     .font(.system(size: 24))
                     .foregroundColor(.white)
                     .frame(width: 50, height: 50)
-                    .background(Color.purple)
+                    .background(Color.purple) // Changed color for Print section
                     .cornerRadius(10)
                 
                 VStack(alignment: .leading, spacing: 5) {
@@ -524,18 +501,22 @@ struct PrintOptionsView: View {
                 
                 Spacer()
                 
-                Image(systemName: "printer.fill")
+                Image(systemName: "printer.fill") // Keep printer icon indicator
                     .foregroundColor(.purple)
             }
             .padding(.vertical, 8)
             .contentShape(Rectangle())
         }
+        .buttonStyle(.plain)
     }
 }
 
+// Preview Provider (Restored)
+#if DEBUG
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
-            .environmentObject(UserSettings())
+            .environmentObject(UserSettings()) // Provide environment object for preview
     }
-} 
+}
+#endif

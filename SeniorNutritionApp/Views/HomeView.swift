@@ -8,7 +8,6 @@ struct HomeView: View {
     @StateObject private var fastingManager = FastingManager.shared
     @StateObject private var voiceManager = VoiceManager.shared
     @State private var showingHelpSheet = false
-    @State private var medicationNotifications: [UUID: Date] = [:]
     @State private var selectedMealType: MealType = .breakfast
     @State private var showingAddMeal = false
     
@@ -27,14 +26,25 @@ struct HomeView: View {
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        showingHelpSheet = true
-                    }) {
-                        Image(systemName: "questionmark.circle.fill")
-                            .imageScale(.large)
-                            .foregroundColor(.blue)
+                    HStack {
+                        // Settings Button
+                        NavigationLink(destination: SettingsView()) {
+                            Image(systemName: "gearshape.fill")
+                                .imageScale(.large)
+                                .foregroundColor(.blue)
+                        }
+                        .accessibilityLabel("Open Settings")
+                        
+                        // Help Button (Existing)
+                        Button(action: {
+                            showingHelpSheet = true
+                        }) {
+                            Image(systemName: "questionmark.circle.fill")
+                                .imageScale(.large)
+                                .foregroundColor(.blue)
+                        }
+                        .accessibilityLabel("Get Help")
                     }
-                    .accessibilityLabel("Get Help")
                 }
             }
             .sheet(isPresented: $showingHelpSheet) {
@@ -51,9 +61,6 @@ struct HomeView: View {
         .onAppear {
             fastingManager.setUserSettings(userSettings)
             scheduleMedicationNotifications()
-        }
-        .onReceive(Timer.publish(every: 60, on: .main, in: .common).autoconnect()) { _ in
-            checkMedicationNotifications()
         }
     }
     
@@ -387,42 +394,43 @@ struct HomeView: View {
         var id: UUID { medication.id }
     }
     
-    private func nextOccurrencesToday(for medication: Medication) -> [NextMedicationDose] {
-        let calendar = Calendar.current
-        let now = Date()
-        let midnight = calendar.startOfDay(for: calendar.date(byAdding: .day, value: 1, to: now)!)
-        return medication.schedule.compactMap { time in
-            let timeComponents = calendar.dateComponents([.hour, .minute], from: time)
-            if let todayDose = calendar.date(bySettingHour: timeComponents.hour ?? 0, minute: timeComponents.minute ?? 0, second: 0, of: now),
-               todayDose > now, todayDose < midnight {
-                return NextMedicationDose(medication: medication, nextDose: todayDose)
-            }
-            return nil
-        }
-    }
-    
-    private func firstOccurrenceTomorrow(for medication: Medication) -> NextMedicationDose? {
-        let calendar = Calendar.current
-        let now = Date()
-        let tomorrow = calendar.date(byAdding: .day, value: 1, to: now)!
-        let tomorrowStart = calendar.startOfDay(for: tomorrow)
-        return medication.schedule.compactMap { time in
-            let timeComponents = calendar.dateComponents([.hour, .minute], from: time)
-            if let tomorrowDose = calendar.date(bySettingHour: timeComponents.hour ?? 0, minute: timeComponents.minute ?? 0, second: 0, of: tomorrow) {
-                return NextMedicationDose(medication: medication, nextDose: tomorrowDose)
-            }
-            return nil
-        }.sorted { $0.nextDose < $1.nextDose }.first
-    }
-    
     private var nextMedicationDoses: [NextMedicationDose] {
-        let todayDoses = userSettings.medications.flatMap { nextOccurrencesToday(for: $0) }
+        let calendar = Calendar.current
+        let today = Date()
+        
+        // Get doses for today that are still upcoming
+        let todayDoses = userSettings.medications.flatMap { med -> [NextMedicationDose] in
+            // Check if due today
+            guard med.isDue(on: today, calendar: calendar) else { return [] }
+            
+            // Find times today that are after 'now'
+            return med.timesOfDay.compactMap { timeOfDay in
+                if let potentialDose = calendar.date(bySettingHour: timeOfDay.hour, minute: timeOfDay.minute, second: 0, of: today),
+                   potentialDose > today {
+                    return NextMedicationDose(medication: med, nextDose: potentialDose)
+                }
+                return nil
+            }
+        }.sorted { $0.nextDose < $1.nextDose } // Sort today's upcoming doses
+        
         if !todayDoses.isEmpty {
-            return todayDoses.sorted { $0.nextDose < $1.nextDose }
+            return todayDoses
         } else {
-            // If no more doses today, show the first dose for each medication for tomorrow
-            return userSettings.medications.compactMap { firstOccurrenceTomorrow(for: $0) }
-                .sorted { $0.nextDose < $1.nextDose }
+            // If no more doses today, show the first dose for each medication for *tomorrow*
+            let tomorrow = calendar.date(byAdding: .day, value: 1, to: today)!
+            
+            // Find the first dose time for each med scheduled for tomorrow
+            return userSettings.medications.compactMap { med -> NextMedicationDose? in
+                guard med.isDue(on: tomorrow, calendar: calendar), let firstTime = med.timesOfDay.first else {
+                    return nil // Not due tomorrow or no times scheduled
+                }
+                
+                // Construct the date for tomorrow's first dose
+                if let doseDate = calendar.date(bySettingHour: firstTime.hour, minute: firstTime.minute, second: 0, of: tomorrow) {
+                    return NextMedicationDose(medication: med, nextDose: doseDate)
+                }
+                return nil
+            }.sorted { $0.nextDose < $1.nextDose } // Sort tomorrow's first doses
         }
     }
     
@@ -449,6 +457,12 @@ struct HomeView: View {
         let fastingMinutes = userSettings.activeFastingProtocol.fastingHours * 60
         let eatingMinutes = userSettings.activeFastingProtocol.eatingHours * 60
         let totalCycleMinutes = fastingMinutes + eatingMinutes
+        
+        // Ensure totalCycleMinutes is not zero before modulo operation
+        guard totalCycleMinutes > 0 else {
+            print("Error: totalCycleMinutes is zero in HomeView, cannot calculate remaining time.")
+            return (hours: 0, minutes: 0, totalMinutes: 0) // Return zero time
+        }
         
         // Normalize elapsed minutes to current cycle
         elapsedMinutes = elapsedMinutes % totalCycleMinutes
@@ -500,49 +514,98 @@ struct HomeView: View {
     }
     
     private func scheduleMedicationNotifications() {
-        let now = Date()
-        let calendar = Calendar.current
+        print("Scheduling notifications for all medications...")
+        // Clear potentially outdated UI state (if checkMedicationNotifications relies on it)
+        // self.medicationNotifications = [:] // Consider if needed
         
+        // Iterate through all medications and schedule the *next* notification for each
         for medication in userSettings.medications {
-            for scheduleTime in medication.schedule {
-                if scheduleTime > now {
-                    // Schedule notification 30 minutes before
-                    let notificationTime = calendar.date(byAdding: .minute, value: -30, to: scheduleTime) ?? scheduleTime
-                    
-                    if notificationTime > now {
-                        medicationNotifications[medication.id] = notificationTime
-                        
-                        // Schedule local notification
-                        let content = UNMutableNotificationContent()
-                        content.title = "Medication Reminder"
-                        content.body = "Time to take \(medication.name) in 30 minutes"
-                        content.sound = .default
-                        
-                        let triggerDate = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: notificationTime)
-                        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
-                        
-                        let request = UNNotificationRequest(identifier: medication.id.uuidString, content: content, trigger: trigger)
-                        
-                        UNUserNotificationCenter.current().add(request) { error in
-                            if let error = error {
-                                print("Error scheduling notification: \(error)")
-                            }
-                        }
+            scheduleNextNotification(for: medication) // Call the new helper function
+        }
+        print("Notification scheduling complete.")
+    }
+    
+    // MARK: - Notification Scheduling
+    
+    /// Schedules the single, next upcoming notification for a given medication.
+    /// Note: This cancels any previous notifications for the same medication ID.
+    private func scheduleNextNotification(for medication: Medication) {
+        let center = UNUserNotificationCenter.current()
+        let calendar = Calendar.current
+        let now = Date()
+        
+        // 1. Find the absolute next due date/time for this medication
+        var nextDoseDate: Date? = nil
+        
+        // Check today first
+        if medication.isDue(on: now, calendar: calendar) {
+            for timeOfDay in medication.timesOfDay {
+                if let potentialDose = calendar.date(bySettingHour: timeOfDay.hour, minute: timeOfDay.minute, second: 0, of: now),
+                   potentialDose > now {
+                    nextDoseDate = potentialDose // Found the next dose today
+                    break
+                }
+            }
+        }
+        
+        // If no dose found for later today, check subsequent days
+        if nextDoseDate == nil {
+            var checkDate = calendar.date(byAdding: .day, value: 1, to: now)!
+            for _ in 0..<30 { // Check up to 30 days ahead (adjust as needed)
+                if medication.isDue(on: checkDate, calendar: calendar) {
+                    if let firstTime = medication.timesOfDay.first,
+                       let potentialDose = calendar.date(bySettingHour: firstTime.hour, minute: firstTime.minute, second: 0, of: checkDate) {
+                        nextDoseDate = potentialDose // Found the next dose on a future day
+                        break
                     }
                 }
+                checkDate = calendar.date(byAdding: .day, value: 1, to: checkDate)!
+            }
+        }
+        
+        // 2. If a next dose was found, schedule the notification (30 mins prior)
+        guard let actualNextDose = nextDoseDate else {
+            // No upcoming dose found within the check range, maybe remove existing notification?
+            // Or handle based on specific app logic (e.g., log, do nothing)
+            center.removePendingNotificationRequests(withIdentifiers: [medication.id.uuidString]) // Remove any old ones
+            print("No upcoming dose found for \(medication.name) to schedule notification.")
+            return
+        }
+        
+        let notificationTime = calendar.date(byAdding: .minute, value: -30, to: actualNextDose) ?? actualNextDose
+        
+        // Ensure notification time is in the future
+        guard notificationTime > now else {
+            print("Calculated notification time for \(medication.name) is in the past.")
+            // Maybe remove pending notification if it's now definitely passed
+            center.removePendingNotificationRequests(withIdentifiers: [medication.id.uuidString])
+            return
+        }
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Medication Reminder"
+        content.body = "Time to take your \(medication.name) (\(medication.dosage))"
+        content.sound = .default
+        
+        let triggerDateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: notificationTime)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDateComponents, repeats: false) // Schedule only the single next dose
+        
+        // Use a consistent identifier for the medication's *next* notification
+        let requestIdentifier = medication.id.uuidString
+        
+        // Add the request, overwriting any previous one with the same identifier
+        center.add(UNNotificationRequest(identifier: requestIdentifier, content: content, trigger: trigger)) { error in
+            if let error = error {
+                print("Error scheduling notification for \(medication.name): \(error.localizedDescription)")
+            } else {
+                print("Successfully scheduled next notification for \(medication.name) at \(notificationTime)")
             }
         }
     }
     
-    private func checkMedicationNotifications() {
-        let now = Date()
-        for (id, notificationTime) in medicationNotifications {
-            if now >= notificationTime {
-                // Show alert or update UI
-                medicationNotifications.removeValue(forKey: id)
-            }
-        }
-    }
+    // MARK: - Fasting Calculations
+    @State private var fastingStartTime: Date?
+    @State private var fastingEndTime: Date?
     
     // Help Guide View
     private struct HelpGuideView: View {
@@ -742,4 +805,4 @@ struct HomeView_Previews: PreviewProvider {
             .environmentObject(UserSettings())
     }
 }
-#endif 
+#endif

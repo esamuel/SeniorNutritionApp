@@ -127,6 +127,46 @@ class UserSettings: ObservableObject {
     init() {
         loadUserData()
         setupMedicationObservers()
+        
+        // Initialize with empty medications array
+        // This allows the user to add their own medications
+        print("DEBUG: Initializing with empty medications array")
+        self.medications = []
+    }
+    
+    // Force save user data synchronously
+    @MainActor
+    func forceSaveUserData() async {
+        print("DEBUG: Force saving medications count: \(medications.count)")
+        for medication in medications {
+            print("DEBUG: Force saving medication: \(medication.name) with frequency: \(medication.frequency)")
+        }
+        
+        let data = PersistentData(
+            textSize: textSize,
+            highContrastMode: highContrastMode,
+            useVoiceInput: useVoiceInput,
+            activeFastingProtocol: activeFastingProtocol,
+            medications: medications,
+            isOnboardingComplete: isOnboardingComplete,
+            userName: userName,
+            userAge: userAge,
+            userGender: userGender,
+            userHeight: userHeight,
+            userWeight: userWeight,
+            userHealthGoals: userHealthGoals,
+            userDietaryRestrictions: userDietaryRestrictions,
+            userEmergencyContacts: userEmergencyContacts,
+            preferredVoiceGender: preferredVoiceGender,
+            speechRate: speechRate
+        )
+        
+        do {
+            try await PersistentStorage.shared.saveData(data, forKey: localDataKey)
+            print("DEBUG: Successfully force saved user data")
+        } catch {
+            print("Error force saving user data: \(error)")
+        }
     }
     
     private func setupMedicationObservers() {
@@ -144,7 +184,7 @@ class UserSettings: ObservableObject {
             do {
                 print("DEBUG: Saving medications count: \(medications.count)")
                 for medication in medications {
-                    print("DEBUG: Saving medication: \(medication.name) with schedule: \(medication.schedule)")
+                    print("DEBUG: Saving medication: \(medication.name) with frequency: \(medication.frequency)")
                 }
                 
                 let data = PersistentData(
@@ -181,7 +221,7 @@ class UserSettings: ObservableObject {
                 if let data: PersistentData = try await PersistentStorage.shared.loadData(forKey: localDataKey) {
                     print("DEBUG: Loading medications count: \(data.medications.count)")
                     for medication in data.medications {
-                        print("DEBUG: Loading medication: \(medication.name) with schedule: \(medication.schedule)")
+                        print("DEBUG: Loading medication: \(medication.name) with frequency: \(medication.frequency)")
                     }
                     
                     textSize = data.textSize
@@ -225,4 +265,61 @@ class UserSettings: ObservableObject {
         self.userProfile = profile
         self.userName = profile.firstName
     }
-} 
+    
+    // Function to reset all settings to default
+    @MainActor
+    func resetAllSettings() {
+        print("DEBUG: Resetting all settings to default values.")
+
+        // Reset basic preferences
+        textSize = .medium
+        highContrastMode = false
+        useVoiceInput = true
+        activeFastingProtocol = .sixteenEight // Or whatever your default protocol is
+
+        // Clear medications
+        medications = []
+
+        // Reset onboarding status
+        isOnboardingComplete = false // Force re-onboarding if desired, or keep true if not
+
+        // Reset profile data (to default/placeholder values)
+        userName = "User"
+        userAge = 65
+        userGender = "Other"
+        userHeight = 170.0
+        userWeight = 70.0
+        userHealthGoals = []
+        userDietaryRestrictions = []
+        userEmergencyContacts = []
+        userProfile = nil // Or reset to a default profile if applicable
+
+        // Reset appearance and notification settings stored in UserDefaults
+        isDarkMode = false
+        notificationsEnabled = true // Assuming notifications are enabled by default
+
+        // Reset voice settings
+        preferredVoiceGender = .female
+        speechRate = .normal
+
+        // Clear UserDefaults data explicitly
+        UserDefaults.standard.removeObject(forKey: "userProfile")
+        UserDefaults.standard.removeObject(forKey: "isDarkMode")
+        UserDefaults.standard.removeObject(forKey: "notificationsEnabled")
+
+        // Clear persistent storage (Important!)
+        Task {
+            do {
+                try await PersistentStorage.shared.deleteData(forKey: localDataKey)
+                print("DEBUG: Successfully cleared persistent storage for key: \(localDataKey)")
+            } catch {
+                print("Error clearing persistent storage: \(error)")
+            }
+        }
+
+        // Trigger save of the now-default state (optional, depending on desired flow)
+        // saveUserData() // Might be redundant if properties trigger saveUserData anyway
+
+        print("DEBUG: All settings reset.")
+    }
+}

@@ -111,11 +111,6 @@ struct ProfileView: View {
                     Text("Please set up your profile")
                         .font(.system(size: userSettings.textSize.size))
                 }
-                
-                appSettingsSection
-                
-                // App Information Section
-                appInformationSection
             }
             .navigationTitle("Profile")
             .navigationBarTitleDisplayMode(.large)
@@ -312,92 +307,6 @@ struct ProfileView: View {
             }
         }
         .padding(.vertical, 4)
-    }
-    
-    private var appSettingsSection: some View {
-        Section(header: Text("App Settings")
-            .font(.system(size: userSettings.textSize.size, weight: .bold))
-            .foregroundColor(.blue)) {
-            
-            Toggle(isOn: $userSettings.isDarkMode) {
-                HStack {
-                    Image(systemName: "moon.fill")
-                        .foregroundColor(.blue)
-                    Text("Dark Mode")
-                        .font(.system(size: userSettings.textSize.size))
-                }
-            }
-            
-            Toggle(isOn: $userSettings.notificationsEnabled) {
-                HStack {
-                    Image(systemName: "bell.fill")
-                        .foregroundColor(.blue)
-                    Text("Notifications")
-                        .font(.system(size: userSettings.textSize.size))
-                }
-            }
-            
-            Picker("Text Size", selection: $userSettings.textSize) {
-                ForEach(TextSize.allCases, id: \.self) { size in
-                    Text(size.rawValue)
-                        .font(.system(size: size.size))
-                        .tag(size)
-                }
-            }
-            .font(.system(size: userSettings.textSize.size))
-            
-            Divider()
-            
-            Text("Voice Settings")
-                .font(.system(size: userSettings.textSize.size - 2, weight: .semibold))
-                .foregroundColor(.secondary)
-                .padding(.top, 5)
-            
-            Picker("Voice Gender", selection: $userSettings.preferredVoiceGender) {
-                ForEach(VoiceGender.allCases, id: \.self) { gender in
-                    Text(gender.rawValue)
-                        .font(.system(size: userSettings.textSize.size))
-                        .tag(gender)
-                }
-            }
-            .font(.system(size: userSettings.textSize.size))
-            
-            Picker("Speech Rate", selection: $userSettings.speechRate) {
-                ForEach(SpeechRate.allCases, id: \.self) { rate in
-                    Text(rate.rawValue)
-                        .font(.system(size: userSettings.textSize.size))
-                        .tag(rate)
-                }
-            }
-            .font(.system(size: userSettings.textSize.size))
-        }
-        .listRowBackground(Color.blue.opacity(0.05))
-    }
-    
-    private var appInformationSection: some View {
-        Section(header: Text("App Information")
-            .font(.system(size: userSettings.textSize.size, weight: .bold))
-            .foregroundColor(.indigo)) {
-            
-            Button(action: {
-                showingOnboarding = true
-            }) {
-                HStack {
-                    Image(systemName: "info.circle.fill")
-                        .foregroundColor(.indigo)
-                    Text("View App Introduction")
-                        .font(.system(size: userSettings.textSize.size))
-                }
-            }
-            
-            Text("Version 1.0")
-                .font(.system(size: userSettings.textSize.size - 2))
-                .foregroundColor(.secondary)
-        }
-        .listRowBackground(Color.indigo.opacity(0.05))
-        .fullScreenCover(isPresented: $showingOnboarding) {
-            OnboardingView(isFirstLaunch: false)
-        }
     }
 }
 
@@ -689,4 +598,4 @@ struct ProfileView_Previews: PreviewProvider {
         ProfileView()
             .environmentObject(UserSettings())
     }
-} 
+}

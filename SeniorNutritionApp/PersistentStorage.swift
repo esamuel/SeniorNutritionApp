@@ -48,15 +48,19 @@ class PersistentStorage {
     }
     
     // Save data to persistent storage
-    func saveData<T: Encodable>(_ data: T, forKey key: String) {
-        saveQueue.async {
-            do {
-                let encoder = JSONEncoder()
-                let encodedData = try encoder.encode(data)
-                try encodedData.write(to: self.dataFileURL)
-                print("Successfully saved data for key: \(key)")
-            } catch {
-                print("Error saving data for key \(key): \(error)")
+    func saveData<T: Encodable>(_ data: T, forKey key: String) async throws {
+        return try await withCheckedThrowingContinuation { continuation in
+            saveQueue.async {
+                do {
+                    let encoder = JSONEncoder()
+                    let encodedData = try encoder.encode(data)
+                    try encodedData.write(to: self.dataFileURL)
+                    print("Successfully saved data for key: \(key)")
+                    continuation.resume(returning: ())
+                } catch {
+                    print("Error saving data for key \(key): \(error)")
+                    continuation.resume(throwing: error)
+                }
             }
         }
     }
