@@ -46,11 +46,17 @@ struct MainTabView: View {
                 }
                 .tag(4)
             
+            HealthDataTabView()
+                .tabItem {
+                    Label("Health", systemImage: "heart.fill")
+                }
+                .tag(5)
+            
             ProfileView()
                 .tabItem {
                     Label("Profile", systemImage: "person.circle.fill")
                 }
-                .tag(5)
+                .tag(6)
         }
         .tint(tabColors[selectedTab])
         .onAppear {

@@ -1,4 +1,5 @@
 import SwiftUI
+import CoreData
 
 @main
 struct SeniorNutritionApp: App {
@@ -6,6 +7,7 @@ struct SeniorNutritionApp: App {
     @StateObject private var mealManager = MealManager()
     @StateObject private var foodDatabase = FoodDatabaseService()
     @StateObject private var userCommonMeals = UserCommonMeals()
+    let persistenceController = PersistenceController.shared
     
     var body: some Scene {
         WindowGroup {
@@ -15,12 +17,14 @@ struct SeniorNutritionApp: App {
                     .environmentObject(mealManager)
                     .environmentObject(foodDatabase)
                     .environmentObject(userCommonMeals)
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
             } else {
                 OnboardingView()
                     .environmentObject(userSettings)
                     .environmentObject(mealManager)
                     .environmentObject(foodDatabase)
                     .environmentObject(userCommonMeals)
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
             }
         }
     }
