@@ -79,10 +79,18 @@ struct UserProfileSetupView: View {
                         .cornerRadius(8)
                     
                     // Display calculated age from date of birth
-                    let ageComponents = Calendar.current.dateComponents([.year, .month], from: dateOfBirth, to: Date())
-                    let years = ageComponents.year ?? 0
-                    let months = ageComponents.month ?? 0
-                    let ageText = years > 0 ? "\(years) years, \(months) months" : "\(months) months"
+                    let tempProfile = UserProfile(
+                        firstName: firstName,
+                        lastName: lastName,
+                        dateOfBirth: dateOfBirth,
+                        gender: gender,
+                        height: Double(height) ?? 0,
+                        weight: Double(weight) ?? 0,
+                        medicalConditions: medicalConditions,
+                        dietaryRestrictions: dietaryRestrictions,
+                        emergencyContacts: emergencyContacts
+                    )
+                    let ageText = tempProfile.age > 0 ? "\(tempProfile.age) years, \(tempProfile.ageMonths) months" : "\(tempProfile.ageMonths) months"
                     Text("Age: \(ageText)")
                         .padding(8)
                         .frame(maxWidth: .infinity, alignment: .leading)

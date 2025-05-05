@@ -356,8 +356,38 @@ struct UserProfile: Codable {
     
     var age: Int {
         let calendar = Calendar.current
-        let ageComponents = calendar.dateComponents([.year], from: dateOfBirth, to: Date())
-        return ageComponents.year ?? 0
+        let now = calendar.startOfDay(for: Date())
+        let birth = dateOfBirth
+        let components = calendar.dateComponents([.year, .month, .day], from: birth, to: now)
+        var years = components.year ?? 0
+        let birthDay = calendar.component(.day, from: birth)
+        let birthMonth = calendar.component(.month, from: birth)
+        let currentYear = calendar.component(.year, from: now)
+        let thisYearBirthday = calendar.date(from: DateComponents(year: currentYear, month: birthMonth, day: birthDay)) ?? birth
+        let thisYearBirthdayStart = calendar.startOfDay(for: thisYearBirthday)
+        if now < thisYearBirthdayStart {
+            years -= 1
+        }
+        return years
+    }
+    
+    var ageMonths: Int {
+        let calendar = Calendar.current
+        let now = calendar.startOfDay(for: Date())
+        let birth = dateOfBirth
+        let components = calendar.dateComponents([.year, .month, .day], from: birth, to: now)
+        var months = components.month ?? 0
+        let birthDay = calendar.component(.day, from: birth)
+        let birthMonth = calendar.component(.month, from: birth)
+        let currentYear = calendar.component(.year, from: now)
+        let thisYearBirthday = calendar.date(from: DateComponents(year: currentYear, month: birthMonth, day: birthDay)) ?? birth
+        let thisYearBirthdayStart = calendar.startOfDay(for: thisYearBirthday)
+        if now < thisYearBirthdayStart {
+            months = (months + 11) % 12
+        } else {
+            months = months % 12
+        }
+        return months
     }
 }
 
@@ -402,5 +432,85 @@ extension Color {
         let blue = Int(components[2] * 255.0)
 
         return String(format: "#%02X%02X%02X", red, green, blue)
+    }
+}
+
+// MARK: - Water Reminder Models
+
+/// Represents the frequency of water reminders
+enum ReminderFrequency: String, CaseIterable, Identifiable, Codable {
+    case every30Minutes = "Every 30 Minutes"
+    case everyHour = "Every Hour"
+    case every2Hours = "Every 2 Hours"
+    case every3Hours = "Every 3 Hours"
+    case custom = "Custom"
+    
+    var id: String { self.rawValue }
+    
+    var minutes: Int {
+        switch self {
+        case .every30Minutes: return 30
+        case .everyHour: return 60
+        case .every2Hours: return 120
+        case .every3Hours: return 180
+        case .custom: return UserDefaults.standard.integer(forKey: "customReminderMinutes")
+        }
+    }
+}
+
+/// Represents a single water intake entry
+struct WaterIntake: Identifiable, Codable {
+    var id: UUID
+    var amount: Int // in ml
+    var timestamp: Date
+    
+    init(id: UUID = UUID(), amount: Int, timestamp: Date = Date()) {
+        self.id = id
+        self.amount = amount
+        self.timestamp = timestamp
+    }
+}
+
+/// Main water reminder settings and tracking
+struct WaterReminder: Codable {
+    var dailyGoal: Int // in ml
+    var reminderFrequency: ReminderFrequency
+    var customReminderMinutes: Int?
+    var reminderStartTime: TimeOfDay
+    var reminderEndTime: TimeOfDay
+    var intakeHistory: [WaterIntake]
+    var isEnabled: Bool
+    
+    init(
+        dailyGoal: Int = 2000, // Default 2L
+        reminderFrequency: ReminderFrequency = .everyHour,
+        customReminderMinutes: Int? = nil,
+        reminderStartTime: TimeOfDay = TimeOfDay(hour: 8, minute: 0),
+        reminderEndTime: TimeOfDay = TimeOfDay(hour: 20, minute: 0),
+        intakeHistory: [WaterIntake] = [],
+        isEnabled: Bool = true
+    ) {
+        self.dailyGoal = dailyGoal
+        self.reminderFrequency = reminderFrequency
+        self.customReminderMinutes = customReminderMinutes
+        self.reminderStartTime = reminderStartTime
+        self.reminderEndTime = reminderEndTime
+        self.intakeHistory = intakeHistory
+        self.isEnabled = isEnabled
+    }
+    
+    /// Calculate total intake for a specific date
+    func totalIntake(for date: Date) -> Int {
+        let calendar = Calendar.current
+        return intakeHistory
+            .filter { calendar.isDate($0.timestamp, inSameDayAs: date) }
+            .reduce(0) { $0 + $1.amount }
+    }
+    
+    /// Calculate progress percentage for the current day
+    func progressPercentage() -> Double {
+        let today = Date()
+        let total = totalIntake(for: today)
+        return min(Double(total) / Double(dailyGoal), 1.0)
     }
 }

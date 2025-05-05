@@ -17,28 +17,31 @@ struct ContentView: View {
     private var items: FetchedResults<Item>
 
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
-                    }
+        TabView {
+            NavigationView {
+                List {
+                    Text("Home")
                 }
-                .onDelete(perform: deleteItems)
+                .navigationTitle("Home")
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
+            .tabItem {
+                Label("Home", systemImage: "house")
             }
-            Text("Select an item")
+            
+            WaterReminderView()
+                .tabItem {
+                    Label("Water", systemImage: "drop")
+                }
+            
+            NavigationView {
+                List {
+                    Text("Settings")
+                }
+                .navigationTitle("Settings")
+            }
+            .tabItem {
+                Label("Settings", systemImage: "gear")
+            }
         }
     }
 

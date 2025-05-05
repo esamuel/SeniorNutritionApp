@@ -74,36 +74,26 @@ struct HomeView: View {
                 Spacer()
                 
                 Button(action: {
-                    var speech = "Good \(timeOfDay), \(userSettings.userProfile?.firstName ?? userSettings.userName). "
-                    
-                    // Add age with months if profile exists
-                    if let profile = userSettings.userProfile {
-                        let ageComponents = Calendar.current.dateComponents([.year, .month], from: profile.dateOfBirth, to: Date())
-                        let years = ageComponents.year ?? 0
-                        let months = ageComponents.month ?? 0
-                        
-                        if years > 0 {
-                            speech += "You are \(years) years and \(months) months old. "
-                        } else {
-                            speech += "You are \(months) months old. "
-                        }
-                    }
-                    
-                    speech += "Medication Reminders. "
-                    if nextMedicationDoses.isEmpty {
-                        speech += "No medications scheduled for today."
+                    if voiceManager.isSpeaking {
+                        voiceManager.stopSpeaking()
                     } else {
-                        for pair in nextMedicationDoses.prefix(3) {
-                            let medName = pair.medication.name
-                            let timeString = timeUntil(pair.nextDose)
-                            speech += "\(medName) in \(timeString). "
+                        var speech = "Good \(timeOfDay), \(userSettings.userProfile?.firstName ?? userSettings.userName). "
+                        speech += "Medication Reminders. "
+                        if nextMedicationDoses.isEmpty {
+                            speech += "No medications scheduled for today."
+                        } else {
+                            for pair in nextMedicationDoses.prefix(3) {
+                                let medName = pair.medication.name
+                                let timeString = timeUntil(pair.nextDose)
+                                speech += "\(medName) in \(timeString). "
+                            }
                         }
+                        // Add fasting status (from the fasting circle)
+                        speech += " And your fasting status: \(fastingManager.fastingState.title). "
+                        speech += "Time remaining: \(formatRemainingTime()). "
+                        speech += "\(calculatePercentageRemaining()) percent remain."
+                        voiceManager.speak(speech, userSettings: userSettings)
                     }
-                    // Add fasting status (from the fasting circle)
-                    speech += " And your fasting status: \(fastingManager.fastingState.title). "
-                    speech += "Time remaining: \(formatRemainingTime()). "
-                    speech += "\(calculatePercentageRemaining()) percent remain."
-                    voiceManager.speak(speech)
                 }) {
                     Image(systemName: voiceManager.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
                         .foregroundColor(.blue)
@@ -111,21 +101,15 @@ struct HomeView: View {
             }
             
             if let profile = userSettings.userProfile {
-                // Enhanced age display with years and months
-                let ageComponents = Calendar.current.dateComponents([.year, .month], from: profile.dateOfBirth, to: Date())
-                let years = ageComponents.year ?? 0
-                let months = ageComponents.month ?? 0
-                
                 HStack {
                     Image(systemName: "calendar")
                         .foregroundColor(.green)
-                    
-                    if years > 0 {
-                        Text("Age: \(years) years, \(months) months")
+                    if profile.age > 0 {
+                        Text("Age: \(profile.age) years, \(profile.ageMonths) months")
                             .font(.system(size: userSettings.textSize.size))
                             .foregroundColor(.green)
                     } else {
-                        Text("Age: \(months) months")
+                        Text("Age: \(profile.ageMonths) months")
                             .font(.system(size: userSettings.textSize.size))
                             .foregroundColor(.green)
                     }

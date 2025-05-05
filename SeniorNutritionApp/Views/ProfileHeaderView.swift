@@ -14,17 +14,13 @@ struct ProfileHeaderView: View {
                     .font(.system(size: userSettings.textSize.size + 4, weight: .bold))
                 
                 // Calculate age from date of birth with months
-                if let dateOfBirth = userSettings.userProfile?.dateOfBirth {
-                    let ageComponents = Calendar.current.dateComponents([.year, .month], from: dateOfBirth, to: Date())
-                    let years = ageComponents.year ?? 0
-                    let months = ageComponents.month ?? 0
-                    
-                    if years > 0 {
-                        Text("Age: \(years) years, \(months) months")
+                if let profile = userSettings.userProfile {
+                    if profile.age > 0 {
+                        Text("Age: \(profile.age) years, \(profile.ageMonths) months")
                             .font(.system(size: userSettings.textSize.size))
                             .foregroundColor(.green)
                     } else {
-                        Text("Age: \(months) months")
+                        Text("Age: \(profile.ageMonths) months")
                             .font(.system(size: userSettings.textSize.size))
                             .foregroundColor(.green)
                     }

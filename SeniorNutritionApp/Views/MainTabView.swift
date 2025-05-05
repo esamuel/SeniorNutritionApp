@@ -4,11 +4,21 @@ struct MainTabView: View {
     @EnvironmentObject var userSettings: UserSettings
     @State private var selectedTab = 0
     
+    // Define a color for each tab
+    private let tabColors: [Color] = [
+        .blue,    // Home
+        .orange,  // Fasting
+        .cyan,    // Water
+        .green,   // Nutrition
+        .purple,  // Medication
+        .indigo   // Profile
+    ]
+    
     var body: some View {
         TabView(selection: $selectedTab) {
             HomeView()
                 .tabItem {
-                    Label("Home", systemImage: "house")
+                    Label("Home", systemImage: "house.fill")
                 }
                 .tag(0)
             
@@ -18,26 +28,32 @@ struct MainTabView: View {
                 }
                 .tag(1)
             
+            WaterReminderView()
+                .tabItem {
+                    Label("Water", systemImage: "drop.fill")
+                }
+                .tag(2)
+            
             NutritionView()
                 .tabItem {
                     Label("Nutrition", systemImage: "fork.knife")
                 }
-                .tag(2)
+                .tag(3)
             
             MedicationView()
                 .tabItem {
-                    Label("Medication", systemImage: "pills")
+                    Label("Medication", systemImage: "pills.fill")
                 }
-                .tag(3)
+                .tag(4)
             
             ProfileView()
                 .tabItem {
-                    Label("Profile", systemImage: "person.circle")
+                    Label("Profile", systemImage: "person.circle.fill")
                 }
-                .tag(4)
+                .tag(5)
         }
+        .tint(tabColors[selectedTab])
         .onAppear {
-            // Set up tab bar appearance
             let appearance = UITabBarAppearance()
             appearance.configureWithOpaqueBackground()
             UITabBar.appearance().standardAppearance = appearance
