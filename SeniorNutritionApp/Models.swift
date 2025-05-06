@@ -26,6 +26,8 @@ enum Relationship: String, CaseIterable, Identifiable, Codable {
     case friend = "Friend"
     case neighbor = "Neighbor"
     case caregiver = "Caregiver"
+    case doctor = "Doctor"
+    case medicInstitute = "Medic Institute"
     case other = "Other"
     
     var id: String { self.rawValue }

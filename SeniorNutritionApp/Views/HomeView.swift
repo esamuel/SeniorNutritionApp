@@ -7,9 +7,14 @@ struct HomeView: View {
     @EnvironmentObject private var mealManager: MealManager
     @StateObject private var fastingManager = FastingManager.shared
     @StateObject private var voiceManager = VoiceManager.shared
+    @StateObject private var waterManager = WaterReminderManager()
     @State private var showingHelpSheet = false
     @State private var selectedMealType: MealType = .breakfast
     @State private var showingAddMeal = false
+    @State private var showingWaterTracker = false
+    @State private var showingEmergencyContacts = false
+    @State private var showingHealthDashboard = false
+    @State private var showingFastingTimer = false
     
     var body: some View {
         NavigationView {
@@ -18,7 +23,7 @@ struct HomeView: View {
                     welcomeSection
                     fastingStatusSection
                     quickActionsSection
-                    upcomingSection
+                    todayScheduleSection
                 }
                 .padding()
             }
@@ -209,72 +214,225 @@ struct HomeView: View {
     private var quickActionsSection: some View {
         VStack(alignment: .leading, spacing: 15) {
             Text("Quick Actions")
-                .font(.system(size: userSettings.textSize.size, weight: .bold))
+                .font(.system(size: userSettings.textSize.size + 4, weight: .bold))
                 .frame(maxWidth: .infinity, alignment: .leading)
             
-            HStack(spacing: 20) {
-                quickActionButton(
-                    icon: "plus.circle.fill",
-                    title: "Add Meal",
-                    action: {
-                        showingAddMeal = true
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
+                // Add Medication button
+                Button(action: {
+                    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                       let window = windowScene.windows.first {
+                        let medicationInputView = MedicationInputView()
+                        let hostingController = UIHostingController(rootView: medicationInputView.environmentObject(userSettings))
+                        window.rootViewController?.present(hostingController, animated: true)
                     }
-                )
+                }) {
+                    VStack(spacing: 10) {
+                        RoundedRectangle(cornerRadius: 24)
+                            .fill(Color(red: 0.55, green: 0.27, blue: 0.68))
+                            .frame(width: 110, height: 110)
+                            .overlay(
+                                ZStack {
+                                    // First pill - capsule at an angle
+                                    Capsule()
+                                        .fill(Color.white)
+                                        .frame(width: 20, height: 40)
+                                        .rotationEffect(.degrees(30))
+                                        .offset(x: -10, y: -5)
+                                    
+                                    // Second pill - round tablet
+                                    Circle()
+                                        .fill(Color.white)
+                                        .frame(width: 30)
+                                        .offset(x: 12, y: 8)
+                                }
+                                .scaleEffect(1.4) // Scale up to match other icons
+                            )
+                        
+                        Text("Add Medication")
+                            .font(.system(size: userSettings.textSize.size))
+                            .foregroundColor(Color(red: 0.55, green: 0.27, blue: 0.68))
+                            .multilineTextAlignment(.center)
+                    }
+                    .frame(maxWidth: .infinity)
+                }
                 
-                quickActionButton(
-                    icon: "pill.fill",
-                    title: "Log Medicine",
-                    action: {
-                        // Navigate to MedicationInputView
-                        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                           let window = windowScene.windows.first {
-                            let medicationInputView = MedicationInputView()
-                            let hostingController = UIHostingController(rootView: medicationInputView.environmentObject(userSettings))
-                            window.rootViewController?.present(hostingController, animated: true)
-                        }
+                // Track Water button
+                Button(action: {
+                    showingWaterTracker = true
+                }) {
+                    VStack(spacing: 10) {
+                        RoundedRectangle(cornerRadius: 24)
+                            .fill(Color(red: 0.0, green: 0.45, blue: 0.9))
+                            .frame(width: 110, height: 110)
+                            .overlay(
+                                Image(systemName: "drop.fill")
+                                    .font(.system(size: 44))
+                                    .foregroundColor(.white)
+                            )
+                        
+                        Text("Track Water")
+                            .font(.system(size: userSettings.textSize.size))
+                            .foregroundColor(Color(red: 0.0, green: 0.45, blue: 0.9))
+                            .multilineTextAlignment(.center)
                     }
-                )
+                    .frame(maxWidth: .infinity)
+                }
                 
-                quickActionButton(
-                    icon: "phone.fill",
-                    title: "Get Help",
-                    action: {
-                        // Show help sheet
-                        showingHelpSheet = true
+                // Log Meal button
+                Button(action: {
+                    showingAddMeal = true
+                }) {
+                    VStack(spacing: 10) {
+                        RoundedRectangle(cornerRadius: 24)
+                            .fill(Color(red: 0.25, green: 0.65, blue: 0.25))
+                            .frame(width: 110, height: 110)
+                            .overlay(
+                                Image(systemName: "fork.knife")
+                                    .font(.system(size: 42))
+                                    .foregroundColor(.white)
+                                    .offset(y: -3)
+                            )
+                        
+                        Text("Log Meal")
+                            .font(.system(size: userSettings.textSize.size))
+                            .foregroundColor(Color(red: 0.25, green: 0.65, blue: 0.25))
+                            .multilineTextAlignment(.center)
                     }
-                )
+                    .frame(maxWidth: .infinity)
+                }
+                
+                // Fasting quick access button
+                Button(action: {
+                    showingFastingTimer = true
+                }) {
+                    VStack(spacing: 10) {
+                        RoundedRectangle(cornerRadius: 24)
+                            .fill(Color.orange)
+                            .frame(width: 110, height: 110)
+                            .overlay(
+                                Image(systemName: "timer")
+                                    .font(.system(size: 44))
+                                    .foregroundColor(.white)
+                            )
+                        Text("Fasting")
+                            .font(.system(size: userSettings.textSize.size))
+                            .foregroundColor(Color.orange)
+                            .multilineTextAlignment(.center)
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+                
+                // Emergency button
+                Button(action: {
+                    showingEmergencyContacts = true
+                }) {
+                    VStack(spacing: 10) {
+                        RoundedRectangle(cornerRadius: 24)
+                            .fill(Color(red: 0.9, green: 0.15, blue: 0.15))
+                            .frame(width: 110, height: 110)
+                            .overlay(
+                                Image(systemName: "phone.fill")
+                                    .font(.system(size: 44))
+                                    .foregroundColor(.white)
+                            )
+                        
+                        Text("Emergency")
+                            .font(.system(size: userSettings.textSize.size))
+                            .foregroundColor(Color(red: 0.9, green: 0.15, blue: 0.15))
+                            .multilineTextAlignment(.center)
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+                
+                // Health quick access button
+                Button(action: {
+                    showingHealthDashboard = true
+                }) {
+                    VStack(spacing: 10) {
+                        RoundedRectangle(cornerRadius: 24)
+                            .fill(Color(red: 0.95, green: 0.45, blue: 0.15))
+                            .frame(width: 110, height: 110)
+                            .overlay(
+                                Image(systemName: "heart.text.square")
+                                    .font(.system(size: 44))
+                                    .foregroundColor(.white)
+                            )
+                        
+                        Text("Health")
+                            .font(.system(size: userSettings.textSize.size))
+                            .foregroundColor(Color(red: 0.95, green: 0.45, blue: 0.15))
+                            .multilineTextAlignment(.center)
+                    }
+                    .frame(maxWidth: .infinity)
+                }
             }
         }
         .padding()
         .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(radius: 2)
+        .sheet(isPresented: $showingWaterTracker) {
+            WaterReminderView()
+                .environmentObject(userSettings)
+        }
+        .sheet(isPresented: $showingEmergencyContacts) {
+            EmergencyContactsView()
+                .environmentObject(userSettings)
+        }
+        .sheet(isPresented: $showingHealthDashboard) {
+            HealthDataTabView()
+        }
+        .sheet(isPresented: $showingFastingTimer) {
+            FastingTimerView()
+                .environmentObject(userSettings)
+        }
     }
     
-    // Upcoming section for meals and medications
-    private var upcomingSection: some View {
+    // Today's Schedule Section
+    private var todayScheduleSection: some View {
         VStack(alignment: .leading, spacing: 15) {
-            Text("Coming Up Next")
-                .font(.system(size: userSettings.textSize.size, weight: .bold))
+            Text("Today's Schedule")
+                .font(.system(size: userSettings.textSize.size + 4, weight: .bold))
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             VStack(spacing: 15) {
-                upcomingItem(
-                    icon: "fork.knife",
-                    title: "Next Meal Window",
-                    time: fastingManager.nextMealTime,
-                    color: .green
-                )
-                
-                ForEach(nextMedicationDoses) { pair in
-                    upcomingItem(
-                        icon: "pill.fill",
-                        title: pair.medication.name,
-                        time: pair.nextDose,
-                        color: .blue,
-                        subtitle: pair.medication.takeWithFood ? "Take with food" : nil
-                    )
+                // Water reminder
+                HStack {
+                    Circle()
+                        .fill(Color.blue.opacity(0.3))
+                        .frame(width: 50, height: 50)
+                        .overlay(
+                            Image(systemName: "drop.fill")
+                                .font(.system(size: 24))
+                                .foregroundColor(.blue)
+                        )
+                    
+                    VStack(alignment: .leading) {
+                        Text("Drink Water")
+                            .font(.system(size: userSettings.textSize.size, weight: .semibold))
+                        
+                        Text("7:00 PM")
+                            .font(.system(size: userSettings.textSize.size))
+                            .foregroundColor(.secondary)
+                    }
+                    
+                    Spacer()
+                    
+                    Circle()
+                        .strokeBorder(Color.blue, lineWidth: 2)
+                        .background(Circle().fill(Color.blue.opacity(0.1)))
+                        .frame(width: 40, height: 40)
+                        .overlay(
+                            Image(systemName: "checkmark")
+                                .font(.system(size: 16, weight: .bold))
+                                .foregroundColor(.blue)
+                        )
                 }
+                .padding()
+                .background(Color(.systemBackground))
+                .cornerRadius(12)
+                .shadow(radius: 1)
             }
         }
         .padding()
@@ -284,59 +442,25 @@ struct HomeView: View {
     }
     
     // Helper for quick action buttons
-    private func quickActionButton(icon: String, title: String, action: @escaping () -> Void) -> some View {
+    private func quickActionButton(icon: String, title: String, color: Color, action: @escaping () -> Void) -> some View {
         Button(action: action) {
-            VStack(spacing: 10) {
-                Image(systemName: icon)
-                    .font(.system(size: 30))
-                    .foregroundColor(.blue)
+            VStack(spacing: 15) {
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(color)
+                    .frame(width: 90, height: 90)
+                    .overlay(
+                        Image(systemName: icon)
+                            .font(.system(size: 38))
+                            .foregroundColor(.white)
+                    )
                 
                 Text(title)
-                    .font(.system(size: userSettings.textSize.size - 1))
-                    .foregroundColor(.primary)
+                    .font(.system(size: userSettings.textSize.size))
+                    .foregroundColor(color)
                     .multilineTextAlignment(.center)
             }
             .frame(maxWidth: .infinity)
-            .frame(height: 100) // Fixed height for all buttons
-            .padding()
-            .background(Color.blue.opacity(0.1))
-            .cornerRadius(12)
         }
-    }
-    
-    // Helper for upcoming items
-    private func upcomingItem(icon: String, title: String, time: Date, color: Color, subtitle: String? = nil) -> some View {
-        HStack(spacing: 15) {
-            Image(systemName: icon)
-                .font(.system(size: 24))
-                .foregroundColor(color)
-                .frame(width: 40, height: 40)
-                .background(color.opacity(0.2))
-                .cornerRadius(8)
-            
-            VStack(alignment: .leading, spacing: 5) {
-                Text(title)
-                    .font(.system(size: userSettings.textSize.size))
-                
-                if let subtitle = subtitle {
-                    Text(subtitle)
-                        .font(.system(size: userSettings.textSize.size - 2))
-                        .foregroundColor(.secondary)
-                }
-                
-                Text(timeUntil(time))
-                    .font(.system(size: userSettings.textSize.size - 2))
-                    .foregroundColor(.secondary)
-            }
-            
-            Spacer()
-            
-            Image(systemName: "chevron.right")
-                .foregroundColor(.gray)
-        }
-        .padding()
-        .background(Color(.systemGray6))
-        .cornerRadius(12)
     }
     
     // Helper computed properties

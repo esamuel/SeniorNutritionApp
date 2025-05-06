@@ -19,12 +19,6 @@ struct MedicationView: View {
                             title: "Add Medication",
                             action: { showingAddMedication = true }
                         )
-                        
-                        quickActionButton(
-                            icon: "bell.fill",
-                            title: "Reminders",
-                            action: { /* TODO: Show reminders settings */ }
-                        )
                     }
                     .padding(.horizontal)
                     

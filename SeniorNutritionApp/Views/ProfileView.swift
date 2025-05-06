@@ -53,7 +53,7 @@ struct DietaryRestrictionsView: View {
 }
 
 // MARK: - Emergency Contacts View
-struct EmergencyContactsView: View {
+struct ProfileEmergencyContactsView: View {
     @EnvironmentObject private var userSettings: UserSettings
     @Binding var showingEmergencyContactSheet: Bool
     
