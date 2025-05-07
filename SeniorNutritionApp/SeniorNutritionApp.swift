@@ -7,6 +7,7 @@ struct SeniorNutritionApp: App {
     @StateObject private var mealManager = MealManager()
     @StateObject private var foodDatabase = FoodDatabaseService()
     @StateObject private var userCommonMeals = UserCommonMeals()
+    @StateObject private var appointmentManager = AppointmentManager()
     let persistenceController = PersistenceController.shared
     
     var body: some Scene {
@@ -17,6 +18,7 @@ struct SeniorNutritionApp: App {
                     .environmentObject(mealManager)
                     .environmentObject(foodDatabase)
                     .environmentObject(userCommonMeals)
+                    .environmentObject(appointmentManager)
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
             } else {
                 OnboardingView()
@@ -24,6 +26,7 @@ struct SeniorNutritionApp: App {
                     .environmentObject(mealManager)
                     .environmentObject(foodDatabase)
                     .environmentObject(userCommonMeals)
+                    .environmentObject(appointmentManager)
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
             }
         }

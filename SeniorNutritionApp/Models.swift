@@ -516,3 +516,73 @@ struct WaterReminder: Codable {
         return min(Double(total) / Double(dailyGoal), 1.0)
     }
 }
+
+// MARK: - Appointment Models
+
+/// Represents different types of appointments
+enum AppointmentType: String, CaseIterable, Identifiable, Codable {
+    case doctor = "Doctor"
+    case dentist = "Dentist"
+    case lab = "Lab"
+    case therapy = "Therapy"
+    case nutrition = "Nutrition"
+    case pharmacy = "Pharmacy"
+    case specialist = "Specialist"
+    case physicalTherapy = "Physical Therapy"
+    case other = "Other"
+    
+    var id: String { self.rawValue }
+}
+
+/// Represents a reminder time before an appointment
+enum ReminderTime: String, CaseIterable, Identifiable, Codable {
+    case none = "None"
+    case tenMinutes = "10 minutes before"
+    case thirtyMinutes = "30 minutes before"
+    case oneHour = "1 hour before"
+    case twoHours = "2 hours before"
+    case oneDay = "1 day before"
+    
+    var id: String { self.rawValue }
+    
+    var timeInterval: TimeInterval {
+        switch self {
+        case .none: return 0
+        case .tenMinutes: return 10 * 60
+        case .thirtyMinutes: return 30 * 60
+        case .oneHour: return 60 * 60
+        case .twoHours: return 2 * 60 * 60
+        case .oneDay: return 24 * 60 * 60
+        }
+    }
+}
+
+/// Represents a scheduled appointment
+struct Appointment: Identifiable, Codable {
+    var id: UUID
+    var title: String
+    var type: AppointmentType
+    var date: Date
+    var location: String
+    var notes: String
+    var reminder: ReminderTime
+    var isCompleted: Bool
+    
+    init(id: UUID = UUID(), 
+         title: String, 
+         type: AppointmentType, 
+         date: Date, 
+         location: String = "", 
+         notes: String = "", 
+         reminder: ReminderTime = .oneHour,
+         isCompleted: Bool = false) {
+        self.id = id
+        self.title = title
+        self.type = type
+        self.date = date
+        self.location = location
+        self.notes = notes
+        self.reminder = reminder
+        self.isCompleted = isCompleted
+    }
+}

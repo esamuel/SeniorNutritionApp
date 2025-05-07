@@ -8,6 +8,7 @@ struct HomeView: View {
     @StateObject private var fastingManager = FastingManager.shared
     @StateObject private var voiceManager = VoiceManager.shared
     @StateObject private var waterManager = WaterReminderManager()
+    @EnvironmentObject private var appointmentManager: AppointmentManager
     @State private var showingHelpSheet = false
     @State private var selectedMealType: MealType = .breakfast
     @State private var showingAddMeal = false
@@ -15,6 +16,8 @@ struct HomeView: View {
     @State private var showingEmergencyContacts = false
     @State private var showingHealthDashboard = false
     @State private var showingFastingTimer = false
+    @State private var showingAddAppointment = false
+    @State private var appointmentToEdit: Appointment?
     
     var body: some View {
         NavigationView {
@@ -396,49 +399,133 @@ struct HomeView: View {
                 .font(.system(size: userSettings.textSize.size + 4, weight: .bold))
                 .frame(maxWidth: .infinity, alignment: .leading)
             
-            VStack(spacing: 15) {
-                // Water reminder
+            // Upcoming Appointments Section
+            VStack(alignment: .leading, spacing: 10) {
                 HStack {
-                    Circle()
-                        .fill(Color.blue.opacity(0.3))
-                        .frame(width: 50, height: 50)
-                        .overlay(
-                            Image(systemName: "drop.fill")
-                                .font(.system(size: 24))
-                                .foregroundColor(.blue)
-                        )
+                    Image(systemName: "calendar")
+                        .font(.system(size: 18))
+                        .foregroundColor(.primary)
                     
-                    VStack(alignment: .leading) {
-                        Text("Drink Water")
-                            .font(.system(size: userSettings.textSize.size, weight: .semibold))
-                        
-                        Text("7:00 PM")
-                            .font(.system(size: userSettings.textSize.size))
-                            .foregroundColor(.secondary)
-                    }
+                    Text("Upcoming Appointments")
+                        .font(.system(size: userSettings.textSize.size, weight: .semibold))
                     
                     Spacer()
                     
-                    Circle()
-                        .strokeBorder(Color.blue, lineWidth: 2)
-                        .background(Circle().fill(Color.blue.opacity(0.1)))
-                        .frame(width: 40, height: 40)
-                        .overlay(
-                            Image(systemName: "checkmark")
-                                .font(.system(size: 16, weight: .bold))
-                                .foregroundColor(.blue)
-                        )
+                    NavigationLink(destination: AppointmentsView()) {
+                        Text("See All")
+                            .font(.system(size: userSettings.textSize.size - 2))
+                            .foregroundColor(.blue)
+                    }
                 }
-                .padding()
-                .background(Color(.systemBackground))
-                .cornerRadius(12)
-                .shadow(radius: 1)
+                
+                if appointmentManager.upcomingAppointments.isEmpty {
+                    HStack {
+                        Spacer()
+                        VStack(spacing: 10) {
+                            Text("No upcoming appointments")
+                                .font(.system(size: userSettings.textSize.size - 2))
+                                .foregroundColor(.gray)
+                            
+                            Button("Add Appointment") {
+                                showingAddAppointment = true
+                            }
+                            .font(.system(size: userSettings.textSize.size - 2))
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 8)
+                            .background(Color.blue)
+                            .cornerRadius(8)
+                        }
+                        .padding(.vertical, 15)
+                        Spacer()
+                    }
+                } else {
+                    ForEach(appointmentManager.upcomingAppointments.prefix(2)) { appointment in
+                        HStack {
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(appointment.title)
+                                    .font(.system(size: userSettings.textSize.size))
+                                    .lineLimit(1)
+                                
+                                Text(formatAppointmentDate(appointment.date))
+                                    .font(.system(size: userSettings.textSize.size - 2))
+                                    .foregroundColor(.secondary)
+                                    .lineLimit(1)
+                            }
+                            
+                            Spacer()
+                            
+                            Text(daysUntilAppointment(appointment.date))
+                                .font(.caption)
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 3)
+                                .background(Color.blue.opacity(0.1))
+                                .cornerRadius(8)
+                        }
+                        .padding(.vertical, 5)
+                        .contentShape(Rectangle())
+                        .contextMenu {
+                            Button(action: {
+                                appointmentToEdit = appointment
+                            }) {
+                                Label("Edit", systemImage: "pencil")
+                            }
+                            Button(role: .destructive, action: {
+                                if let index = appointmentManager.upcomingAppointments.firstIndex(where: { $0.id == appointment.id }) {
+                                    appointmentManager.deleteAppointment(at: IndexSet([index]), from: appointmentManager.upcomingAppointments)
+                                }
+                            }) {
+                                Label("Delete", systemImage: "trash")
+                            }
+                        }
+                        .onLongPressGesture {
+                            appointmentToEdit = appointment
+                        }
+                    }
+                    
+                    // Add Appointment button
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            showingAddAppointment = true
+                        }) {
+                            HStack {
+                                Image(systemName: "plus")
+                                    .font(.system(size: 14, weight: .semibold))
+                                Text("Add Appointment")
+                                    .font(.system(size: userSettings.textSize.size - 2, weight: .semibold))
+                            }
+                            .foregroundColor(.blue)
+                            .padding(.vertical, 8)
+                            .padding(.horizontal, 12)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color.blue, lineWidth: 1)
+                            )
+                        }
+                    }
+                    .padding(.top, 5)
+                }
             }
+            .padding()
+            .background(Color(.systemBackground))
+            .cornerRadius(12)
+            .shadow(radius: 1)
         }
         .padding()
         .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(radius: 2)
+        .sheet(isPresented: $showingAddAppointment) {
+            AddAppointmentView { newAppointment in
+                appointmentManager.addAppointment(newAppointment)
+            }
+        }
+        .sheet(item: $appointmentToEdit) { appointment in
+            EditAppointmentView(appointment: appointment) { updatedAppointment in
+                appointmentManager.updateAppointment(updatedAppointment)
+            }
+        }
     }
     
     // Helper for quick action buttons
@@ -904,6 +991,34 @@ struct HomeView: View {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
         return formatter.string(from: date)
+    }
+    
+    // Add a new helper method for formatting appointment dates
+    private func formatAppointmentDate(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.setLocalizedDateFormatFromTemplate("MMM d, yyyy h:mm a")
+        return dateFormatter.string(from: date)
+    }
+    
+    // Add a new helper method for calculating days until appointment
+    private func daysUntilAppointment(_ date: Date) -> String {
+        let calendar = Calendar.current
+        let now = Date()
+        
+        if calendar.isDateInToday(date) {
+            return "Today"
+        }
+        
+        if calendar.isDateInTomorrow(date) {
+            return "Tomorrow"
+        }
+        
+        let components = calendar.dateComponents([.day], from: now, to: date)
+        if let days = components.day, days > 0 {
+            return "\(days) day\(days == 1 ? "" : "s")"
+        } else {
+            return "Past"
+        }
     }
 }
 
