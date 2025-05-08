@@ -13,34 +13,46 @@ struct OnboardingView: View {
     // Define pages for onboarding
     private let pages: [OnboardingPage] = [
         OnboardingPage(
-            title: "Welcome to Your Health App",
-            description: "We've designed this app specifically for seniors to make healthy eating and fasting simple.",
+            title: "Welcome to Senior Nutrition App",
+            description: "A comprehensive health management app designed specifically for seniors, with enhanced accessibility features and intuitive navigation.",
             imageName: "person.fill.checkmark",
-            tips: ["Large text for easy reading", "Simple navigation", "Help available anytime"]
+            tips: ["Customizable text and voice settings", "Simple, uncluttered interface", "Voice-guided assistance available"]
         ),
         OnboardingPage(
-            title: "Track Your Meals",
-            description: "Easily record what you eat with simple options tailored for you.",
+            title: "Track Your Meals & Nutrition",
+            description: "Monitor your diet with our easy-to-use food tracking system, including nutritional analysis and personalized recommendations.",
             imageName: "fork.knife",
-            tips: ["Take photos of your meals", "Scan barcodes for packaged foods", "Use voice input instead of typing"]
+            tips: ["Photo-based meal logging", "Built-in barcode scanner", "Voice input for hands-free recording"]
         ),
         OnboardingPage(
-            title: "Fasting Made Simple",
-            description: "Follow gentle fasting schedules designed specifically for seniors.",
+            title: "Personalized Fasting Protocols",
+            description: "Follow gentle, senior-friendly intermittent fasting schedules with built-in safety features and health monitoring.",
             imageName: "timer",
-            tips: ["Easy to read timer", "Clear eating windows", "Emergency override button"]
+            tips: ["Multiple preset protocols available", "Real-time progress tracking", "Emergency override with one tap"]
         ),
         OnboardingPage(
-            title: "Medication Management",
-            description: "Never miss a dose with our simple medication tracker.",
+            title: "Health Data Tracking",
+            description: "Monitor vital health metrics like blood pressure, weight, blood sugar, and heart rate with detailed visualizations and trend analysis.",
+            imageName: "heart.text.square",
+            tips: ["Easy data entry with voice option", "Visual trends and patterns", "Exportable reports for doctor visits"]
+        ),
+        OnboardingPage(
+            title: "Appointment Management",
+            description: "Never miss a medical appointment with our comprehensive calendar system, reminders, and location tracking.",
+            imageName: "calendar",
+            tips: ["Schedule doctor visits and check-ups", "Get timely reminders", "Store location and provider details"]
+        ),
+        OnboardingPage(
+            title: "Comprehensive Medication Management",
+            description: "Keep track of all your medications with automatic reminders and integration with your fasting schedule.",
             imageName: "pill.fill",
-            tips: ["Reminders when to take medications", "Shows if meds should be taken with food", "Coordinates with your fasting schedule"]
+            tips: ["Visual pill identification", "Meal requirements tracking", "Smart notifications synchronized with your routine"]
         ),
         OnboardingPage(
-            title: "Help When You Need It",
-            description: "We're always here to help if you have any questions.",
+            title: "Health Monitoring & Support",
+            description: "Track key health metrics and get personalized guidance with continuous support whenever you need it.",
             imageName: "person.fill.questionmark",
-            tips: ["Video tutorials", "Phone support", "Print instructions for offline reference"]
+            tips: ["Video tutorials and live support", "Health data visualization", "Emergency contact system"]
         )
     ]
     

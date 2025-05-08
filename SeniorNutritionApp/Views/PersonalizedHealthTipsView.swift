@@ -138,14 +138,28 @@ struct PersonalizedHealthTipsView: View {
                         readAction()
                     }
                 }) {
-                    Image(systemName: isReading.wrappedValue ? "speaker.wave.3.fill" : "speaker.wave.2")
-                        .foregroundColor(isReading.wrappedValue ? color : .gray)
-                        .padding(8)
-                        .background(
-                            Circle()
-                                .fill(isReading.wrappedValue ? color.opacity(0.2) : Color(.systemGray6))
-                        )
+                    HStack(spacing: 4) {
+                        Image(systemName: isReading.wrappedValue ? "speaker.wave.2.fill" : "speaker.wave.2")
+                            .foregroundColor(.white)
+                            .imageScale(.large)
+                        
+                        if isReading.wrappedValue {
+                            Text("Stop")
+                                .font(.system(size: userSettings.textSize.size - 2))
+                                .foregroundColor(.white)
+                        } else {
+                            Text("Read")
+                                .font(.system(size: userSettings.textSize.size - 2))
+                                .foregroundColor(.white)
+                        }
+                    }
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 6)
+                    .background(Color.blue)
+                    .cornerRadius(20)
                 }
+                .accessibilityLabel("Read \(title)")
+                .accessibilityHint("Reads out \(title.lowercased()) information")
             }
             
             content()

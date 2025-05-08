@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct MedicationView: View {
     @EnvironmentObject private var userSettings: UserSettings
@@ -7,6 +8,7 @@ struct MedicationView: View {
     @State private var selectedMedication: Medication?
     @State private var showingDeleteAlert = false
     @State private var medicationToDelete: Medication?
+    @State private var showingPillPreview = false
     
     var body: some View {
         NavigationView {
@@ -18,6 +20,12 @@ struct MedicationView: View {
                             icon: "plus.circle.fill",
                             title: "Add Medication",
                             action: { showingAddMedication = true }
+                        )
+                        
+                        quickActionButton(
+                            icon: "pill.fill",
+                            title: "Pill Design Preview",
+                            action: { showingPillPreview = true }
                         )
                     }
                     .padding(.horizontal)
@@ -80,6 +88,9 @@ struct MedicationView: View {
                     EditMedicationView(medication: medication)
                 }
             }
+            .sheet(isPresented: $showingPillPreview) {
+                ClassicPillPreview()
+            }
             .alert("Delete Medication", isPresented: $showingDeleteAlert) {
                 Button("Cancel", role: .cancel) { }
                 Button("Delete", role: .destructive) {
@@ -128,7 +139,7 @@ struct MedicationView: View {
         }
         .frame(maxWidth: .infinity)
         .padding()
-        .background(Color(.systemBackground))
+        .background(Color(UIColor.systemBackground))
         .cornerRadius(16)
         .shadow(radius: 2)
         .padding(.horizontal)
@@ -205,7 +216,7 @@ struct MedicationCard: View {
             }
         }
         .padding()
-        .background(Color(.systemBackground))
+        .background(Color(UIColor.systemBackground))
         .cornerRadius(16)
         .shadow(radius: 2)
         .padding(.horizontal)

@@ -1,5 +1,6 @@
 import SwiftUI
 import Foundation
+import UserNotifications
 
 struct MedicationInputView: View {
     @Environment(\.dismiss) private var dismiss
@@ -195,8 +196,45 @@ struct MedicationInputView: View {
                                     .font(.system(size: userSettings.textSize.size, weight: .semibold))
                                 
                                 HStack {
-                                    pillShapePreview(shape: selectedShape)
-                                        .frame(width: 40, height: 40)
+                                    // Direct shape rendering
+                                    Group {
+                                        switch selectedShape {
+                                        case .round:
+                                            Circle()
+                                                .fill(selectedColor)
+                                                .overlay(Circle().stroke(Color.gray, lineWidth: 1))
+                                        case .oval:
+                                            Capsule()
+                                                .fill(selectedColor)
+                                                .frame(width: 40, height: 25)
+                                                .overlay(Capsule().stroke(Color.gray, lineWidth: 1))
+                                        case .capsule:
+                                            Capsule()
+                                                .fill(selectedColor)
+                                                .frame(width: 40, height: 20)
+                                                .overlay(Capsule().stroke(Color.gray, lineWidth: 1))
+                                        case .rectangle:
+                                            RoundedRectangle(cornerRadius: 2)
+                                                .fill(selectedColor)
+                                                .frame(width: 35, height: 25)
+                                                .overlay(RoundedRectangle(cornerRadius: 2).stroke(Color.gray, lineWidth: 1))
+                                        case .diamond:
+                                            PillDiamondShape()
+                                                .fill(selectedColor)
+                                                .frame(width: 30, height: 30)
+                                                .overlay(PillDiamondShape().stroke(Color.gray, lineWidth: 1))
+                                        case .triangle:
+                                            PillTriangleShape()
+                                                .fill(selectedColor)
+                                                .frame(width: 35, height: 30)
+                                                .overlay(PillTriangleShape().stroke(Color.gray, lineWidth: 1))
+                                        case .other:
+                                            Text("?")
+                                                .font(.system(size: 25))
+                                                .foregroundColor(selectedColor)
+                                        }
+                                    }
+                                    .frame(width: 40, height: 40)
                                     
                                     Button("Select Shape") {
                                         showingShapePicker = true
@@ -208,6 +246,7 @@ struct MedicationInputView: View {
                                 }
                                 .sheet(isPresented: $showingShapePicker) {
                                     PillShapeView(selectedShape: $selectedShape)
+                                        .environmentObject(userSettings)
                                 }
                             }
                             
@@ -341,47 +380,6 @@ struct MedicationInputView: View {
         // Ensure sorting after deletion if necessary, though indices should handle it
         timesOfDay.remove(atOffsets: offsets)
         timesOfDay.sort() // Re-sort after deletion
-    }
-    
-    // Function to preview the pill shape
-    private func pillShapePreview(shape: PillShape) -> some View {
-        Group {
-            switch shape {
-            case .round:
-                Circle()
-                    .fill(selectedColor)
-                    .overlay(Circle().stroke(Color.gray, lineWidth: 1))
-            case .oval:
-                Capsule()
-                    .fill(selectedColor)
-                    .frame(width: 40, height: 25)
-                    .overlay(Capsule().stroke(Color.gray, lineWidth: 1))
-            case .capsule:
-                Capsule()
-                    .fill(selectedColor)
-                    .frame(width: 40, height: 20)
-                    .overlay(Capsule().stroke(Color.gray, lineWidth: 1))
-            case .rectangle:
-                RoundedRectangle(cornerRadius: 2)
-                    .fill(selectedColor)
-                    .frame(width: 35, height: 25)
-                    .overlay(RoundedRectangle(cornerRadius: 2).stroke(Color.gray, lineWidth: 1))
-            case .diamond:
-                Diamond()
-                    .fill(selectedColor)
-                    .frame(width: 30, height: 30)
-                    .overlay(Diamond().stroke(Color.gray, lineWidth: 1))
-            case .triangle:
-                Triangle()
-                    .fill(selectedColor)
-                    .frame(width: 35, height: 30)
-                    .overlay(Triangle().stroke(Color.gray, lineWidth: 1))
-            case .other:
-                Text("?")
-                    .font(.system(size: 25))
-                    .foregroundColor(selectedColor)
-            }
-        }
     }
 }
 

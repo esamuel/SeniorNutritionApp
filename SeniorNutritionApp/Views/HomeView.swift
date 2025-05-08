@@ -103,9 +103,28 @@ struct HomeView: View {
                         voiceManager.speak(speech, userSettings: userSettings)
                     }
                 }) {
-                    Image(systemName: voiceManager.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
-                        .foregroundColor(.blue)
+                    HStack(spacing: 4) {
+                        Image(systemName: voiceManager.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
+                            .foregroundColor(.white)
+                            .imageScale(.large)
+                            
+                        if voiceManager.isSpeaking {
+                            Text("Stop")
+                                .font(.system(size: userSettings.textSize.size - 2))
+                                .foregroundColor(.white)
+                        } else {
+                            Text("Read")
+                                .font(.system(size: userSettings.textSize.size - 2))
+                                .foregroundColor(.white)
+                        }
+                    }
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 6)
+                    .background(Color.blue)
+                    .cornerRadius(20)
                 }
+                .accessibilityLabel("Read Welcome Summary")
+                .accessibilityHint("Reads out your greeting and medication reminders")
             }
             
             if let profile = userSettings.userProfile {
@@ -395,9 +414,40 @@ struct HomeView: View {
     // Today's Schedule Section
     private var todayScheduleSection: some View {
         VStack(alignment: .leading, spacing: 15) {
-            Text("Today's Schedule")
-                .font(.system(size: userSettings.textSize.size + 4, weight: .bold))
-                .frame(maxWidth: .infinity, alignment: .leading)
+            HStack {
+                Text("Today's Schedule")
+                    .font(.system(size: userSettings.textSize.size + 4, weight: .bold))
+                
+                Spacer()
+                
+                // Add voice reading button for Today's Schedule
+                Button(action: {
+                    readTodaysSchedule()
+                }) {
+                    HStack(spacing: 4) {
+                        Image(systemName: voiceManager.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
+                            .foregroundColor(.white)
+                            .imageScale(.large)
+                            
+                        if voiceManager.isSpeaking {
+                            Text("Stop")
+                                .font(.system(size: userSettings.textSize.size - 2))
+                                .foregroundColor(.white)
+                        } else {
+                            Text("Read")
+                                .font(.system(size: userSettings.textSize.size - 2))
+                                .foregroundColor(.white)
+                        }
+                    }
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 6)
+                    .background(Color.blue)
+                    .cornerRadius(20)
+                }
+                .accessibilityLabel("Read Today's Schedule")
+                .accessibilityHint("Reads out your appointments and medications for today")
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
             
             // Upcoming Appointments Section
             VStack(alignment: .leading, spacing: 10) {
@@ -816,9 +866,9 @@ struct HomeView: View {
                         InfoSection(
                             title: "Welcome to Senior Nutrition App",
                             icon: "app.fill",
-                            content: "Your personal assistant for managing fasting, nutrition, and medications. This guide will help you understand the main features of the app.",
+                            content: "Your comprehensive health companion for managing nutrition, fasting, medications, and wellness tracking. This guide will help you navigate the app's features effectively.",
                             onSpeak: {
-                                voiceManager.speak("Welcome to Senior Nutrition App. Your personal assistant for managing fasting, nutrition, and medications. This guide will help you understand the main features of the app.")
+                                voiceManager.speak("Welcome to Senior Nutrition App. Your comprehensive health companion for managing nutrition, fasting, medications, and wellness tracking. This guide will help you navigate the app's features effectively.")
                             }
                         )
                         
@@ -827,13 +877,13 @@ struct HomeView: View {
                             title: "Fasting Timer",
                             icon: "timer",
                             items: [
-                                "Track your fasting and eating windows",
-                                "Choose from different fasting protocols",
-                                "View your progress in real-time",
-                                "Get notifications when it's time to eat or fast"
+                                "Advanced fasting protocol options for seniors",
+                                "Real-time tracking with health safety indicators",
+                                "Customizable fasting and eating windows",
+                                "Integration with medication and meal schedules"
                             ],
                             onSpeak: {
-                                voiceManager.speak("Fasting Timer features: Track your fasting and eating windows, choose from different fasting protocols, view your progress in real-time, and get notifications when it's time to eat or fast.")
+                                voiceManager.speak("Fasting Timer features: Advanced fasting protocol options for seniors, real-time tracking with health safety indicators, customizable fasting and eating windows, and integration with medication and meal schedules.")
                             }
                         )
                         
@@ -842,11 +892,41 @@ struct HomeView: View {
                             title: "Nutrition Tracking",
                             icon: "fork.knife",
                             items: [
-                                "Log your meals easily",
-                                "Track your eating patterns",
-                                "Get reminders for meal times",
-                                "View nutrition history"
+                                "Simplified meal logging with photos or voice input",
+                                "Nutritional analysis with senior-specific recommendations",
+                                "Customizable meal reminders and hydration tracking",
+                                "Food database with barcode scanning capability"
                             ]
+                        )
+                        
+                        // Appointment Section
+                        InfoSection(
+                            title: "Appointment Management",
+                            icon: "calendar",
+                            items: [
+                                "Easy scheduling and tracking of medical appointments",
+                                "Automatic reminders with customizable advance notice",
+                                "Location and provider information storage",
+                                "Calendar integration and sharing with caregivers"
+                            ],
+                            onSpeak: {
+                                voiceManager.speak("Appointment Management features: Easy scheduling and tracking of medical appointments, automatic reminders with customizable advance notice, location and provider information storage, and calendar integration and sharing with caregivers.")
+                            }
+                        )
+                        
+                        // Health Tracking Section
+                        InfoSection(
+                            title: "Health Monitoring",
+                            icon: "heart.fill",
+                            items: [
+                                "Track vital signs including blood pressure, heart rate, and weight",
+                                "Blood sugar monitoring with customizable target ranges",
+                                "Visual data trends with weekly and monthly analysis",
+                                "Health data export for healthcare provider review"
+                            ],
+                            onSpeak: {
+                                voiceManager.speak("Health Monitoring features: Track vital signs including blood pressure, heart rate, and weight, blood sugar monitoring with customizable target ranges, visual data trends with weekly and monthly analysis, and health data export for healthcare provider review.")
+                            }
                         )
                         
                         // Medication Section
@@ -854,10 +934,10 @@ struct HomeView: View {
                             title: "Medication Management",
                             icon: "pill.fill",
                             items: [
-                                "Set up medication schedules",
-                                "Get timely reminders",
-                                "Track medication compliance",
-                                "Notes for food requirements"
+                                "Visual medication identification system",
+                                "Smart scheduling with fasting compatibility alerts",
+                                "Refill reminders and medication history tracking",
+                                "Food and timing requirement notifications"
                             ]
                         )
                         
@@ -866,10 +946,10 @@ struct HomeView: View {
                             title: "Quick Actions",
                             icon: "bolt.fill",
                             items: [
-                                "Add meals with one tap",
-                                "Log medications quickly",
-                                "Get immediate help when needed",
-                                "Access emergency contacts"
+                                "One-tap meal and medication logging",
+                                "Voice-activated commands for hands-free operation",
+                                "Emergency contact access with location sharing",
+                                "Instant health data recording and visualization"
                             ]
                         )
                         
@@ -878,10 +958,10 @@ struct HomeView: View {
                             title: "Important Tips",
                             icon: "lightbulb.fill",
                             items: [
-                                "Always take medications as prescribed",
-                                "Stay hydrated during fasting",
-                                "Listen to your body's signals",
-                                "Contact healthcare provider if unsure"
+                                "Always consult healthcare providers before changing medication routines",
+                                "Stay hydrated with at least 8 glasses of water daily, especially during fasting",
+                                "Monitor for dizziness, weakness, or discomfort during fasting periods",
+                                "Use the emergency override feature if you experience any concerning symptoms"
                             ]
                         )
                         
@@ -889,10 +969,10 @@ struct HomeView: View {
                         InfoSection(
                             title: "Emergency Information",
                             icon: "exclamationmark.triangle.fill",
-                            content: "If you feel unwell during fasting, stop immediately and eat something. Contact your healthcare provider or emergency services if symptoms persist.",
+                            content: "If you experience dizziness, weakness, confusion, or any unusual symptoms during fasting, stop immediately and eat something with protein and carbohydrates. Contact your healthcare provider or emergency services if symptoms persist or worsen.",
                             isWarning: true,
                             onSpeak: {
-                                voiceManager.speak("Emergency Information: If you feel unwell during fasting, stop immediately and eat something. Contact your healthcare provider or emergency services if symptoms persist.")
+                                voiceManager.speak("Emergency Information: If you experience dizziness, weakness, confusion, or any unusual symptoms during fasting, stop immediately and eat something with protein and carbohydrates. Contact your healthcare provider or emergency services if symptoms persist or worsen.")
                             }
                         )
                         
@@ -900,7 +980,7 @@ struct HomeView: View {
                         InfoSection(
                             title: "Need More Help?",
                             icon: "questionmark.circle.fill",
-                            content: "Contact our support team or your healthcare provider for personalized assistance."
+                            content: "Contact our support team via the Help & Support section in the More tab, or use the voice assistance feature for immediate guidance."
                         )
                     }
                     .padding()
@@ -1019,6 +1099,72 @@ struct HomeView: View {
         } else {
             return "Past"
         }
+    }
+    
+    // Add a new helper method for reading today's schedule
+    private func readTodaysSchedule() {
+        if voiceManager.isSpeaking {
+            voiceManager.stopSpeaking()
+            return
+        }
+        
+        var speechText = "Today's schedule: "
+        
+        if appointmentManager.upcomingAppointments.isEmpty {
+            speechText += "You have no upcoming appointments."
+        } else {
+            // Get only appointments for today and tomorrow for the speech
+            let calendar = Calendar.current
+            let today = calendar.startOfDay(for: Date())
+            let tomorrow = calendar.date(byAdding: .day, value: 1, to: today)!
+            let endOfTomorrow = calendar.date(byAdding: .day, value: 1, to: tomorrow)!
+            
+            let nearTermAppointments = appointmentManager.upcomingAppointments.filter { 
+                let appointmentDate = $0.date
+                return appointmentDate >= today && appointmentDate < endOfTomorrow
+            }
+            
+            if nearTermAppointments.isEmpty {
+                speechText += "You have \(appointmentManager.upcomingAppointments.count) upcoming appointments, but none today or tomorrow. "
+                
+                // Add first upcoming appointment if there is one
+                if let nextAppointment = appointmentManager.upcomingAppointments.first {
+                    let daysUntil = formatAppointmentDate(nextAppointment.date)
+                    speechText += "Your next appointment is \(nextAppointment.title), \(daysUntil)."
+                }
+            } else {
+                speechText += "You have \(nearTermAppointments.count) appointment\(nearTermAppointments.count > 1 ? "s" : "") in the next two days. "
+                
+                for appointment in nearTermAppointments {
+                    let appointmentDate = appointment.date
+                    let isToday = calendar.isDate(appointmentDate, inSameDayAs: today)
+                    
+                    let timeFormatter = DateFormatter()
+                    timeFormatter.timeStyle = .short
+                    timeFormatter.dateStyle = .none
+                    let timeString = timeFormatter.string(from: appointmentDate)
+                    
+                    speechText += "\(appointment.title) \(isToday ? "today" : "tomorrow") at \(timeString). "
+                    
+                    if !appointment.location.isEmpty {
+                        speechText += "Location: \(appointment.location). "
+                    }
+                }
+            }
+        }
+        
+        // Add medication information to the schedule reading
+        if !nextMedicationDoses.isEmpty {
+            speechText += " Medications due: "
+            for (index, pair) in nextMedicationDoses.prefix(3).enumerated() {
+                if index > 0 {
+                    speechText += ", "
+                }
+                speechText += "\(pair.medication.name) in \(timeUntil(pair.nextDose))"
+            }
+        }
+        
+        voiceManager.speak(speechText, userSettings: userSettings)
     }
 }
 

@@ -8,13 +8,16 @@ class VoiceManager: NSObject, ObservableObject {
     private let synthesizer: AVSpeechSynthesizer
     @Published var isSpeaking = false
     
+    // Replace the string-based dictionary with an utterance-based one
+    private var completionHandlers: [AVSpeechUtterance: (Bool) -> Void] = [:]
+    
     private override init() {
         synthesizer = AVSpeechSynthesizer()
         super.init()
         synthesizer.delegate = self
     }
     
-    func speak(_ text: String, userSettings: UserSettings? = nil) {
+    func speak(_ text: String, userSettings: UserSettings? = nil, completion: ((Bool) -> Void)? = nil) {
         Task { @MainActor in
             // Stop any ongoing speech
             if isSpeaking {
@@ -22,6 +25,11 @@ class VoiceManager: NSObject, ObservableObject {
             }
             
             let utterance = AVSpeechUtterance(string: text)
+            
+            // Store the completion handler if provided
+            if let completion = completion {
+                completionHandlers[utterance] = completion
+            }
             
             // Use user's preferred speech rate
             if let settings = userSettings {
@@ -115,12 +123,24 @@ extension VoiceManager: AVSpeechSynthesizerDelegate {
     nonisolated func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         Task { @MainActor in
             isSpeaking = false
+            
+            // Call completion handler if exists
+            if let completion = completionHandlers[utterance] {
+                completion(true)
+                completionHandlers.removeValue(forKey: utterance)
+            }
         }
     }
     
     nonisolated func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {
         Task { @MainActor in
             self.isSpeaking = false
+            
+            // Call completion handler if exists, indicating cancellation
+            if let completion = completionHandlers[utterance] {
+                completion(false)
+                completionHandlers.removeValue(forKey: utterance)
+            }
         }
     }
 } 

@@ -1,4 +1,6 @@
 import SwiftUI
+import UIKit
+// Add import for our print preview views
 
 // Main Settings View
 struct SettingsView: View {
@@ -313,33 +315,95 @@ struct HelpOptionsView: View {
     var body: some View {
         NavigationView {
             List {
-                Section {
+                Section(header: Text("Connect with Support")) {
                     helpOptionButton(
                         icon: "phone.fill",
                         title: "Call Support",
-                        description: "Speak with our support team",
+                        description: "Speak with our dedicated senior support team",
                         action: { /* Call support action */ }
                     )
                     
                     helpOptionButton(
                         icon: "message.fill",
                         title: "Send Message",
-                        description: "Send us a message for help",
+                        description: "Send a text message for non-urgent help",
                         action: { /* Send message action */ }
                     )
                     
                     helpOptionButton(
                         icon: "video.fill",
-                        title: "Video Chat",
-                        description: "Schedule a video call with support",
+                        title: "Video Assistance",
+                        description: "Schedule a live video call for personalized help",
                         action: { /* Video chat action */ }
+                    )
+                }
+                
+                Section(header: Text("Self-Help Resources")) {
+                    helpOptionButton(
+                        icon: "questionmark.circle.fill",
+                        title: "Interactive App Tour",
+                        description: "Get a guided walkthrough of app features",
+                        action: { /* Restart tour action */ }
                     )
                     
                     helpOptionButton(
-                        icon: "questionmark.circle.fill",
-                        title: "Guided Tour",
-                        description: "Restart the app tour",
-                        action: { /* Restart tour action */ }
+                        icon: "doc.text.fill",
+                        title: "Help Documentation",
+                        description: "Access detailed user guides and FAQs",
+                        action: { /* Open documentation action */ }
+                    )
+                    
+                    helpOptionButton(
+                        icon: "play.rectangle.fill",
+                        title: "Video Tutorials",
+                        description: "Watch step-by-step instructional videos",
+                        action: { /* Open video tutorials action */ }
+                    )
+                }
+                
+                Section(header: Text("Health & Appointments")) {
+                    helpOptionButton(
+                        icon: "heart.text.square.fill",
+                        title: "Health Tracking Guide",
+                        description: "Learn how to monitor vitals and analyze data",
+                        action: { /* Open health guide action */ }
+                    )
+                    
+                    helpOptionButton(
+                        icon: "calendar.badge.plus",
+                        title: "Appointment Management",
+                        description: "How to schedule and track medical visits",
+                        action: { /* Open appointment guide action */ }
+                    )
+                    
+                    helpOptionButton(
+                        icon: "square.and.arrow.up",
+                        title: "Sharing Health Data",
+                        description: "Securely share records with healthcare providers",
+                        action: { /* Open sharing guide action */ }
+                    )
+                }
+                
+                Section(header: Text("Accessibility Support")) {
+                    helpOptionButton(
+                        icon: "ear.fill",
+                        title: "Voice Assistance",
+                        description: "Get help with voice navigation settings",
+                        action: { /* Voice assistance action */ }
+                    )
+                    
+                    helpOptionButton(
+                        icon: "textformat.size",
+                        title: "Text Size Help",
+                        description: "Adjust the app for better readability",
+                        action: { /* Text size help action */ }
+                    )
+                    
+                    helpOptionButton(
+                        icon: "hand.raised.fill",
+                        title: "Gesture Controls",
+                        description: "Learn about simplified touch controls",
+                        action: { /* Gesture controls help action */ }
                     )
                 }
             }
@@ -400,8 +464,20 @@ struct PrintOptionsView: View {
     @State private var showFastingPrintAlert = false
     @State private var showMealsPrintAlert = false
     @State private var showInstructionsPrintAlert = false
+    @State private var showPrintHelpAlert = false
     @State private var alertTitle = ""
     @State private var alertMessage = ""
+    
+    // State for previews
+    @State private var selectedPreview: PrintPreviewType?
+    @State private var showPreview = false
+    
+    enum PrintPreviewType {
+        case medication
+        case fasting
+        case meals
+        case instructions
+    }
     
     var body: some View {
         NavigationView {
@@ -412,9 +488,8 @@ struct PrintOptionsView: View {
                         description: "Print your current medication schedule",
                         icon: "pill.fill",
                         action: { // Action for Medication Schedule
-                            alertTitle = "Print Medication Schedule?"
-                            alertMessage = "This would send your medication schedule to the printer."
-                            showMedicationPrintAlert = true
+                            selectedPreview = .medication
+                            showPreview = true
                         }
                     )
                     
@@ -423,9 +498,8 @@ struct PrintOptionsView: View {
                         description: "Print your fasting protocol guide",
                         icon: "timer",
                         action: { // Action for Fasting Guide
-                            alertTitle = "Print Fasting Guide?"
-                            alertMessage = "This would send your fasting guide to the printer."
-                            showFastingPrintAlert = true
+                            selectedPreview = .fasting
+                            showPreview = true
                         }
                     )
                     
@@ -434,9 +508,8 @@ struct PrintOptionsView: View {
                         description: "Print healthy meal suggestions",
                         icon: "fork.knife",
                         action: { // Action for Meal Suggestions
-                            alertTitle = "Print Meal Suggestions?"
-                            alertMessage = "This would send meal suggestions to the printer."
-                            showMealsPrintAlert = true
+                            selectedPreview = .meals
+                            showPreview = true
                         }
                     )
                     
@@ -445,11 +518,28 @@ struct PrintOptionsView: View {
                         description: "Print step-by-step app instructions",
                         icon: "doc.text.fill",
                         action: { // Action for App Instructions
-                            alertTitle = "Print App Instructions?"
-                            alertMessage = "This would send the app instructions to the printer."
-                            showInstructionsPrintAlert = true
+                            selectedPreview = .instructions
+                            showPreview = true
                         }
                     )
+                }
+                
+                Section {
+                    Button(action: {
+                        showPrintHelpAlert = true
+                    }) {
+                        HStack {
+                            Image(systemName: "questionmark.circle.fill")
+                                .font(.system(size: 24))
+                                .foregroundColor(.blue)
+                            
+                            Text("Help with Printing")
+                                .font(.system(size: userSettings.textSize.size))
+                            
+                            Spacer()
+                        }
+                        .padding(.vertical, 8)
+                    }
                 }
             }
             .navigationTitle("Print Materials")
@@ -463,19 +553,33 @@ struct PrintOptionsView: View {
                     .font(.system(size: userSettings.textSize.size))
                 }
             }
-            // Add alerts for each print option
-            .alert(alertTitle, isPresented: $showMedicationPrintAlert, actions: { printAlertActions() }, message: { Text(alertMessage) })
-            .alert(alertTitle, isPresented: $showFastingPrintAlert, actions: { printAlertActions() }, message: { Text(alertMessage) })
-            .alert(alertTitle, isPresented: $showMealsPrintAlert, actions: { printAlertActions() }, message: { Text(alertMessage) })
-            .alert(alertTitle, isPresented: $showInstructionsPrintAlert, actions: { printAlertActions() }, message: { Text(alertMessage) })
+            .alert("Printing Instructions", isPresented: $showPrintHelpAlert) {
+                Button("OK", role: .cancel) { }
+            } message: {
+                Text(MedicationPrintService.shared.showPrintingInstructions())
+            }
+            .sheet(isPresented: $showPreview) {
+                PrintPreviewSheet(
+                    type: selectedPreview ?? .medication,
+                    onPrint: {
+                        switch selectedPreview {
+                        case .medication:
+                            let medications = userSettings.medications.isEmpty ? [] : userSettings.medications
+                            MedicationPrintService.shared.printMedicationSchedule(medications: medications)
+                        case .fasting:
+                            MedicationPrintService.shared.printFastingProtocol(protocol: userSettings.activeFastingProtocol)
+                        case .meals:
+                            MedicationPrintService.shared.printMealSuggestions()
+                        case .instructions:
+                            MedicationPrintService.shared.printAppInstructions()
+                        case .none:
+                            break
+                        }
+                    }
+                )
+                .environmentObject(userSettings)
+            }
         }
-    }
-    
-    // Helper for alert actions
-    @ViewBuilder
-    private func printAlertActions() -> some View {
-        Button("Cancel", role: .cancel) { }
-        Button("Print") { /* Actual print logic would go here */ }
     }
     
     // Print option button (updated to include action closure)
@@ -508,6 +612,96 @@ struct PrintOptionsView: View {
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
+    }
+}
+
+// Print Preview Sheet 
+struct PrintPreviewSheet: View {
+    let type: PrintOptionsView.PrintPreviewType
+    let onPrint: () -> Void
+    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject private var userSettings: UserSettings
+    
+    var body: some View {
+        NavigationView {
+            VStack {
+                ScrollView {
+                    VStack {
+                        switch type {
+                        case .medication:
+                            MedicationPrintPreview()
+                                .environmentObject(userSettings)
+                        case .fasting:
+                            FastingProtocolPreview()
+                                .environmentObject(userSettings)
+                        case .meals:
+                            MealSuggestionsPreview()
+                        case .instructions:
+                            AppInstructionsPreview()
+                        }
+                    }
+                    .padding()
+                }
+                
+                Divider()
+                
+                HStack(spacing: 20) {
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Text("Cancel")
+                            .foregroundColor(.gray)
+                            .font(.system(size: userSettings.textSize.size))
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.gray.opacity(0.2))
+                            .cornerRadius(10)
+                    }
+                    
+                    Button(action: {
+                        onPrint()
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        HStack {
+                            Image(systemName: "printer.fill")
+                            Text("Print")
+                        }
+                        .foregroundColor(.white)
+                        .font(.system(size: userSettings.textSize.size))
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.purple)
+                        .cornerRadius(10)
+                    }
+                }
+                .padding()
+            }
+            .navigationTitle(getTitle())
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(.gray)
+                    }
+                }
+            }
+        }
+    }
+    
+    private func getTitle() -> String {
+        switch type {
+        case .medication:
+            return "Medication Schedule"
+        case .fasting:
+            return "Fasting Protocol Guide"
+        case .meals:
+            return "Meal Suggestions"
+        case .instructions:
+            return "App Instructions"
+        }
     }
 }
 

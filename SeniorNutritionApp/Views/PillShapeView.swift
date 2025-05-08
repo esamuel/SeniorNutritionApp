@@ -2,6 +2,8 @@ import SwiftUI
 
 struct PillShapeView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.colorScheme) private var colorScheme
+    @EnvironmentObject private var userSettings: UserSettings
     @Binding var selectedShape: PillShape
     
     var body: some View {
@@ -28,7 +30,7 @@ struct PillShapeView: View {
                     }
                 }
             }
-            .background(Color(.systemGroupedBackground))
+            .background(Color.gray.opacity(0.1))
         }
     }
     
@@ -39,42 +41,34 @@ struct PillShapeView: View {
             VStack {
                 ZStack {
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(Color(.systemBackground))
+                        .fill(colorScheme == .dark ? Color.black.opacity(0.3) : Color.white)
                         .frame(height: 80)
                         .shadow(radius: 1)
                         .overlay(
                             Group {
                                 switch shape {
                                 case .round:
-                                    Circle()
-                                        .fill(Color.blue.opacity(0.7))
+                                    Pill3DView(shape: .round, color: getPillColor(isSelected: selectedShape == shape))
                                         .frame(width: 60, height: 60)
                                 case .oval:
-                                    Capsule()
-                                        .fill(Color.blue.opacity(0.7))
+                                    Pill3DView(shape: .oval, color: getPillColor(isSelected: selectedShape == shape))
                                         .frame(width: 70, height: 40)
                                 case .capsule:
-                                    Capsule()
-                                        .fill(Color.blue.opacity(0.7))
+                                    Pill3DView(shape: .capsule, color: getPillColor(isSelected: selectedShape == shape))
                                         .frame(width: 80, height: 30)
                                 case .rectangle:
-                                    RoundedRectangle(cornerRadius: 2)
-                                        .fill(Color.blue.opacity(0.7))
+                                    Pill3DView(shape: .rectangle, color: getPillColor(isSelected: selectedShape == shape))
                                         .frame(width: 70, height: 40)
                                 case .diamond:
-                                    PillDiamondShape()
-                                        .fill(selectedShape == shape ? Color.blue : Color.gray.opacity(0.3))
+                                    Pill3DView(shape: .diamond, color: getPillColor(isSelected: selectedShape == shape))
                                         .frame(width: 40, height: 40)
-                                        .overlay(PillDiamondShape().stroke(Color.gray, lineWidth: 1))
                                 case .triangle:
-                                    PillTriangleShape()
-                                        .fill(selectedShape == shape ? Color.blue : Color.gray.opacity(0.3))
+                                    Pill3DView(shape: .triangle, color: getPillColor(isSelected: selectedShape == shape))
                                         .frame(width: 40, height: 40)
-                                        .overlay(PillTriangleShape().stroke(Color.gray, lineWidth: 1))
                                 case .other:
                                     Text("?")
                                         .font(.system(size: 40))
-                                        .foregroundColor(Color.blue.opacity(0.7))
+                                        .foregroundColor(getPillColor(isSelected: selectedShape == shape))
                                 }
                             }
                         )
@@ -84,6 +78,7 @@ struct PillShapeView: View {
                             .foregroundColor(.green)
                             .font(.system(size: 24))
                             .position(x: 80, y: 15)
+                            .accessibility(label: Text("Selected"))
                     }
                 }
                 
@@ -92,39 +87,23 @@ struct PillShapeView: View {
                     .foregroundColor(.primary)
             }
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(Text("\(shape.rawValue) pill shape"))
+        .accessibilityAddTraits(selectedShape == shape ? [.isSelected] : [])
     }
-}
-
-// Custom shapes for pill visualization in PillShapeView
-struct PillDiamondShape: Shape {
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        
-        path.move(to: CGPoint(x: rect.midX, y: rect.minY))
-        path.addLine(to: CGPoint(x: rect.maxX, y: rect.midY))
-        path.addLine(to: CGPoint(x: rect.midX, y: rect.maxY))
-        path.addLine(to: CGPoint(x: rect.minX, y: rect.midY))
-        path.closeSubpath()
-        
-        return path
+    
+    // Helper function to determine appropriate colors based on settings
+    private func getPillColor(isSelected: Bool) -> Color {
+        if userSettings.highContrastMode {
+            // High contrast mode colors
+            return isSelected ? .white : .black
+        } else {
+            // Regular colors with dark mode support
+            if isSelected {
+                return .blue
+            } else {
+                return colorScheme == .dark ? Color.gray.opacity(0.5) : Color.gray.opacity(0.3)
+            }
+        }
     }
-}
-
-struct PillTriangleShape: Shape {
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        
-        path.move(to: CGPoint(x: rect.midX, y: rect.minY))
-        path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
-        path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
-        path.closeSubpath()
-        
-        return path
-    }
-}
-
-struct PillShapeView_Previews: PreviewProvider {
-    static var previews: some View {
-        PillShapeView(selectedShape: .constant(.capsule))
-    }
-}
+} 

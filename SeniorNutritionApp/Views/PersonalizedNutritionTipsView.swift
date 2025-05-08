@@ -49,9 +49,28 @@ struct PersonalizedNutritionTipsView: View {
                 Button(action: {
                     readGeneralTips()
                 }) {
-                    Image(systemName: voiceManager.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
-                        .foregroundColor(.blue)
+                    HStack(spacing: 4) {
+                        Image(systemName: voiceManager.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
+                            .foregroundColor(.white)
+                            .imageScale(.large)
+                        
+                        if voiceManager.isSpeaking {
+                            Text("Stop")
+                                .font(.system(size: userSettings.textSize.size - 2))
+                                .foregroundColor(.white)
+                        } else {
+                            Text("Read")
+                                .font(.system(size: userSettings.textSize.size - 2))
+                                .foregroundColor(.white)
+                        }
+                    }
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 6)
+                    .background(Color.blue)
+                    .cornerRadius(20)
                 }
+                .accessibilityLabel("Read General Tips")
+                .accessibilityHint("Reads out general nutrition tips for seniors")
             }
             
             nutritionTip(
@@ -102,9 +121,28 @@ struct PersonalizedNutritionTipsView: View {
                 Button(action: {
                     readMedicalConditionTips(conditions)
                 }) {
-                    Image(systemName: voiceManager.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
-                        .foregroundColor(.blue)
+                    HStack(spacing: 4) {
+                        Image(systemName: voiceManager.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
+                            .foregroundColor(.white)
+                            .imageScale(.large)
+                        
+                        if voiceManager.isSpeaking {
+                            Text("Stop")
+                                .font(.system(size: userSettings.textSize.size - 2))
+                                .foregroundColor(.white)
+                        } else {
+                            Text("Read")
+                                .font(.system(size: userSettings.textSize.size - 2))
+                                .foregroundColor(.white)
+                        }
+                    }
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 6)
+                    .background(Color.blue)
+                    .cornerRadius(20)
                 }
+                .accessibilityLabel("Read Medical Condition Tips")
+                .accessibilityHint("Reads out nutrition tips for your medical conditions")
             }
             
             ForEach(conditions, id: \.self) { condition in
@@ -137,9 +175,28 @@ struct PersonalizedNutritionTipsView: View {
                 Button(action: {
                     readDietaryRestrictionTips(restrictions)
                 }) {
-                    Image(systemName: voiceManager.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
-                        .foregroundColor(.blue)
+                    HStack(spacing: 4) {
+                        Image(systemName: voiceManager.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
+                            .foregroundColor(.white)
+                            .imageScale(.large)
+                        
+                        if voiceManager.isSpeaking {
+                            Text("Stop")
+                                .font(.system(size: userSettings.textSize.size - 2))
+                                .foregroundColor(.white)
+                        } else {
+                            Text("Read")
+                                .font(.system(size: userSettings.textSize.size - 2))
+                                .foregroundColor(.white)
+                        }
+                    }
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 6)
+                    .background(Color.blue)
+                    .cornerRadius(20)
                 }
+                .accessibilityLabel("Read Dietary Restriction Tips")
+                .accessibilityHint("Reads out nutrition tips for your dietary restrictions")
             }
             
             ForEach(restrictions, id: \.self) { restriction in
@@ -172,9 +229,28 @@ struct PersonalizedNutritionTipsView: View {
                 Button(action: {
                     readSupplementTips()
                 }) {
-                    Image(systemName: voiceManager.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
-                        .foregroundColor(.blue)
+                    HStack(spacing: 4) {
+                        Image(systemName: voiceManager.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
+                            .foregroundColor(.white)
+                            .imageScale(.large)
+                        
+                        if voiceManager.isSpeaking {
+                            Text("Stop")
+                                .font(.system(size: userSettings.textSize.size - 2))
+                                .foregroundColor(.white)
+                        } else {
+                            Text("Read")
+                                .font(.system(size: userSettings.textSize.size - 2))
+                                .foregroundColor(.white)
+                        }
+                    }
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 6)
+                    .background(Color.blue)
+                    .cornerRadius(20)
                 }
+                .accessibilityLabel("Read Supplement Tips")
+                .accessibilityHint("Reads out supplement recommendations for seniors")
             }
             
             nutritionTip(
