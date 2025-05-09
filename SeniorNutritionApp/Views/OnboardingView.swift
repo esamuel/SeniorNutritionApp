@@ -63,6 +63,10 @@ struct OnboardingView: View {
                 .edgesIgnoringSafeArea(.all)
             
             VStack(spacing: 20) {
+                Text(NSLocalizedString("Onboarding Loaded", comment: "Debug message for onboarding view loaded"))
+                    .font(.largeTitle)
+                    .foregroundColor(.red)
+                    .padding()
                 // Header
                 HStack {
                     Spacer()
@@ -73,7 +77,7 @@ struct OnboardingView: View {
                             presentationMode.wrappedValue.dismiss()
                         }
                     }) {
-                        Text(isFirstLaunch ? "Skip" : "Close")
+                        Text(NSLocalizedString(isFirstLaunch ? "Skip" : "Close", comment: "Skip or close onboarding"))
                             .foregroundColor(.blue)
                             .padding()
                     }
@@ -96,7 +100,7 @@ struct OnboardingView: View {
                                 currentPage -= 1
                             }
                         }) {
-                            Text("Previous")
+                            Text(NSLocalizedString("Previous", comment: "Go to previous onboarding page"))
                                 .foregroundColor(.blue)
                                 .padding()
                         }
@@ -110,7 +114,7 @@ struct OnboardingView: View {
                                 currentPage += 1
                             }
                         }) {
-                            Text("Next")
+                            Text(NSLocalizedString("Next", comment: "Go to next onboarding page"))
                                 .foregroundColor(.blue)
                                 .padding()
                         }
@@ -122,7 +126,7 @@ struct OnboardingView: View {
                                 presentationMode.wrappedValue.dismiss()
                             }
                         }) {
-                            Text(isFirstLaunch ? "Get Started" : "Return to Profile")
+                            Text(NSLocalizedString(isFirstLaunch ? "Get Started" : "Return to Profile", comment: "Finish onboarding"))
                                 .foregroundColor(.white)
                                 .padding()
                                 .background(Color.blue)
@@ -146,12 +150,12 @@ struct OnboardingPageView: View {
                 .foregroundColor(.blue)
                 .padding()
             
-            Text(page.title)
+            Text(NSLocalizedString(page.title, comment: "Onboarding page title"))
                 .font(.title)
                 .fontWeight(.bold)
                 .multilineTextAlignment(.center)
             
-            Text(page.description)
+            Text(NSLocalizedString(page.description, comment: "Onboarding page description"))
                 .font(.body)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
@@ -161,7 +165,7 @@ struct OnboardingPageView: View {
                     HStack {
                         Image(systemName: "checkmark.circle.fill")
                             .foregroundColor(.blue)
-                        Text(tip)
+                        Text(NSLocalizedString(tip, comment: "Onboarding tip"))
                     }
                 }
             }

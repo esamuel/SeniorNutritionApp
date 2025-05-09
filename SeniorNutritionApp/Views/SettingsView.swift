@@ -9,6 +9,7 @@ struct SettingsView: View {
     @State private var showingPrintOptions = false
     @State private var showingResetAlert = false
     @State private var showingBackupInfoAlert = false // For backup/restore info
+    @State private var showingOnboarding = false // NEW: controls onboarding sheet
 
     var body: some View {
         NavigationView {
@@ -106,6 +107,19 @@ struct SettingsView: View {
                             title: "Notifications",
                             color: .orange
                         )
+                    }
+                    
+                    // Revisit Onboarding Button
+                    Button(action: { showingOnboarding = true }) {
+                        settingsRowContent(
+                            icon: "questionmark.circle.fill",
+                            title: "Show Onboarding Again",
+                            color: .blue
+                        )
+                    }
+                    .sheet(isPresented: $showingOnboarding) {
+                        OnboardingView(isFirstLaunch: false)
+                            .environmentObject(userSettings)
                     }
                     
                     // Backup Data Button
