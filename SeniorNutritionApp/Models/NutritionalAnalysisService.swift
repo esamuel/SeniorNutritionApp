@@ -47,6 +47,7 @@ protocol UserProfileAnalyzable {
     var medicalConditions: [String] { get }
     var dietaryRestrictions: [String] { get }
     var weight: Double { get }
+    var bmi: Double? { get }
 }
 
 // MARK: - Nutritional Analysis Service
@@ -171,6 +172,76 @@ class NutritionalAnalysisService: ObservableObject {
     // Special analysis for senior-specific nutritional needs
     private func analyzeSeniorNutritionNeeds(meal: MealAnalyzable, userProfile: UserProfileAnalyzable, healthWarnings: inout [HealthWarning], positiveEffects: inout [PositiveEffect]) {
         let nutrition = meal.nutritionalContent
+        
+        // Analyze based on BMI if available
+        if let bmi = userProfile.bmi {
+            let isOverweight = bmi >= 25
+            let isObese = bmi >= 30
+            let isUnderweight = bmi < 18.5
+            
+            if isObese {
+                if nutrition.calories > 600 {
+                    healthWarnings.append(HealthWarning(
+                        type: .generalNutrition,
+                        severity: .high,
+                        nutrient: "Calories",
+                        message: "This meal is high in calories. Consider lower-calorie alternatives to support healthy weight management."
+                    ))
+                }
+                
+                if nutrition.fat > 20 {
+                    healthWarnings.append(HealthWarning(
+                        type: .generalNutrition,
+                        severity: .moderate,
+                        nutrient: "Fat",
+                        message: "This meal is high in fat. Consider leaner protein sources and more vegetables."
+                    ))
+                }
+                
+                if nutrition.fiber > 5 {
+                    positiveEffects.append(PositiveEffect(
+                        type: .generalNutrition,
+                        nutrient: "Fiber",
+                        message: "Good fiber content helps you feel full longer and supports healthy weight management."
+                    ))
+                }
+            } else if isOverweight {
+                if nutrition.calories > 700 {
+                    healthWarnings.append(HealthWarning(
+                        type: .generalNutrition,
+                        severity: .moderate,
+                        nutrient: "Calories",
+                        message: "Consider portion control while ensuring you get essential nutrients."
+                    ))
+                }
+                
+                if nutrition.fiber > 5 {
+                    positiveEffects.append(PositiveEffect(
+                        type: .generalNutrition,
+                        nutrient: "Fiber",
+                        message: "Good fiber content supports healthy digestion and weight management."
+                    ))
+                }
+            } else if isUnderweight {
+                if nutrition.calories < 400 {
+                    healthWarnings.append(HealthWarning(
+                        type: .generalNutrition,
+                        severity: .moderate,
+                        nutrient: "Calories",
+                        message: "This meal is relatively low in calories. Consider adding healthy fats or protein to increase caloric intake."
+                    ))
+                }
+                
+                if nutrition.protein < 15 {
+                    healthWarnings.append(HealthWarning(
+                        type: .generalNutrition,
+                        severity: .moderate,
+                        nutrient: "Protein",
+                        message: "Consider adding more protein to support healthy weight gain and maintain muscle mass."
+                    ))
+                }
+            }
+        }
         
         // Check for protein adequacy (seniors need more protein)
         // The general recommendation for seniors is 1.0-1.2g per kg of body weight daily

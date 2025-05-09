@@ -113,11 +113,35 @@ class UserSettings: ObservableObject {
             saveUserData()
         }
     }
-    
+    @Published var preferredVoiceIdentifier: String? {
+        didSet {
+            saveUserData()
+        }
+    }
     @Published var speechRate: SpeechRate = .normal {
         didSet {
             saveUserData()
         }
+    }
+    
+    // Add notification settings
+    @Published var medicationRemindersEnabled: Bool = true {
+        didSet { saveUserData() }
+    }
+    @Published var medicationReminderLeadTime: Int = 30 {
+        didSet { saveUserData() }
+    }
+    @Published var mealWindowRemindersEnabled: Bool = true {
+        didSet { saveUserData() }
+    }
+    @Published var fastingRemindersEnabled: Bool = true {
+        didSet { saveUserData() }
+    }
+    @Published var dailyTipsEnabled: Bool = true {
+        didSet { saveUserData() }
+    }
+    @Published var notificationStyle: NotificationStyle = .regular {
+        didSet { saveUserData() }
     }
     
     private let localDataKey = "userData"
@@ -302,6 +326,14 @@ class UserSettings: ObservableObject {
         preferredVoiceGender = .female
         speechRate = .normal
 
+        // Reset notification settings
+        medicationRemindersEnabled = true
+        medicationReminderLeadTime = 30
+        mealWindowRemindersEnabled = true
+        fastingRemindersEnabled = true
+        dailyTipsEnabled = true
+        notificationStyle = .regular
+
         // Clear UserDefaults data explicitly
         UserDefaults.standard.removeObject(forKey: "userProfile")
         UserDefaults.standard.removeObject(forKey: "isDarkMode")
@@ -322,4 +354,12 @@ class UserSettings: ObservableObject {
 
         print("DEBUG: All settings reset.")
     }
+}
+
+// Notification style enum
+enum NotificationStyle: String, CaseIterable, Identifiable, Codable {
+    case regular = "Regular"
+    case gentle = "Gentle"
+    case urgent = "Urgent"
+    var id: String { self.rawValue }
 }

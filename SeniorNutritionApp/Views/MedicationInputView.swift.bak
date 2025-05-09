@@ -1,0 +1,736 @@
+import SwiftUI
+import Foundation
+import UserNotifications
+import Combine
+import UIKit
+
+// Define necessary types and components inline to avoid import issues
+
+// MARK: - UserSettings
+class UserSettings: ObservableObject {
+    @Published var textSize: TextSize = .medium
+    @Published var medications: [Medication] = []
+    // Add other properties as needed
+}
+
+// MARK: - TextSize
+enum TextSize: String, CaseIterable, Identifiable {
+    case small = "Small"
+    case medium = "Medium"
+    case large = "Large"
+    
+    var id: String { self.rawValue }
+    
+    var size: CGFloat {
+        switch self {
+        case .small: return 14
+        case .medium: return 18
+        case .large: return 22
+        }
+    }
+}
+
+// MARK: - SpeechRecognitionManager
+class SpeechRecognitionManager: ObservableObject {
+    static let shared = SpeechRecognitionManager()
+    
+    @Published var transcribedText = ""
+    @Published var isRecording = false
+    @Published var errorMessage: String? = nil
+    @Published var selectedLanguageIndex = 0
+    
+    var availableLanguages: [String] = ["English", "Spanish", "French"]
+    
+    func startRecording() {
+        isRecording = true
+        // Implement actual recording logic here
+    }
+    
+    func stopRecording() {
+        isRecording = false
+        // Implement actual stop logic here
+    }
+}
+
+// MARK: - Pill Shape Types
+enum PillShape: String, CaseIterable, Identifiable {
+    case round = "Round"
+    case oval = "Oval"
+    case capsule = "Capsule"
+    case rectangle = "Rectangle"
+    case diamond = "Diamond"
+    case triangle = "Triangle"
+    case other = "Other"
+    
+    var id: String { self.rawValue }
+}
+
+// MARK: - Medication Model
+struct Medication: Identifiable {
+    var id: UUID
+    var name: String
+    var dosage: String
+    var frequency: ScheduleDetails
+    var timesOfDay: [TimeOfDay]
+    var takeWithFood: Bool
+    var notes: String?
+    var color: Color
+    var shape: PillShape
+}
+
+// MARK: - Schedule Details
+enum ScheduleDetails {
+    case daily
+    case weekly(days: Set<Weekday>)
+    case interval(days: Int, startDate: Date)
+    case monthly(day: Int)
+}
+
+// MARK: - Weekday
+enum Weekday: Int, CaseIterable, Identifiable {
+    case sunday = 1
+    case monday = 2
+    case tuesday = 3
+    case wednesday = 4
+    case thursday = 5
+    case friday = 6
+    case saturday = 7
+    
+    var id: Int { self.rawValue }
+    
+    var shortName: String {
+        switch self {
+        case .sunday: return "Sun"
+        case .monday: return "Mon"
+        case .tuesday: return "Tue"
+        case .wednesday: return "Wed"
+        case .thursday: return "Thu"
+        case .friday: return "Fri"
+        case .saturday: return "Sat"
+        }
+    }
+}
+
+// MARK: - Time of Day
+struct TimeOfDay: Comparable, Identifiable {
+    var hour: Int
+    var minute: Int
+    
+    var id: String { "\(hour):\(minute)" }
+    
+    var dateRepresentation: Date {
+        let calendar = Calendar.current
+        let components = DateComponents(hour: hour, minute: minute)
+        return calendar.date(from: components) ?? Date()
+    }
+    
+    static func < (lhs: TimeOfDay, rhs: TimeOfDay) -> Bool {
+        if lhs.hour != rhs.hour {
+            return lhs.hour < rhs.hour
+        }
+        return lhs.minute < rhs.minute
+    }
+}
+
+// MARK: - Enhanced3DPillView
+struct Enhanced3DPillView: View {
+    enum PillShape {
+        case round, oval, capsule, diamond, rectangle, triangle
+    }
+    
+    var shape: PillShape
+    var color: Color
+    var secondaryColor: Color? = nil
+    
+    var body: some View {
+        ZStack {
+            // Base pill shape
+            pillShape
+                .fill(color)
+                .shadow(color: .black.opacity(0.2), radius: 2, x: 2, y: 2)
+            
+            // Secondary color if provided
+            if let secondColor = secondaryColor {
+                pillShape
+                    .fill(secondColor)
+                    .mask(
+                        Rectangle()
+                            .frame(height: 20)
+                            .offset(y: -10)
+                    )
+            }
+            
+            // Highlight
+            pillShape
+                .fill(Color.white.opacity(0.3))
+                .mask(
+                    Rectangle()
+                        .frame(height: 10)
+                        .offset(y: -15)
+                )
+        }
+    }
+    
+    @ViewBuilder
+    private var pillShape: some Shape {
+        switch shape {
+        case .round:
+            Circle()
+        case .oval:
+            Capsule()
+                .frame(width: 60, height: 40)
+        case .capsule:
+            Capsule()
+        case .diamond:
+            Diamond()
+        case .rectangle:
+            RoundedRectangle(cornerRadius: 5)
+        case .triangle:
+            Triangle()
+        }
+    }
+}
+
+// MARK: - Custom Shapes
+struct Diamond: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        let center = CGPoint(x: rect.midX, y: rect.midY)
+        let width = rect.width / 2
+        let height = rect.height / 2
+        
+        path.move(to: CGPoint(x: center.x, y: center.y - height))
+        path.addLine(to: CGPoint(x: center.x + width, y: center.y))
+        path.addLine(to: CGPoint(x: center.x, y: center.y + height))
+        path.addLine(to: CGPoint(x: center.x - width, y: center.y))
+        path.closeSubpath()
+        
+        return path
+    }
+}
+
+struct Triangle: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        
+        path.move(to: CGPoint(x: rect.midX, y: rect.minY))
+        path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
+        path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
+        path.closeSubpath()
+        
+        return path
+    }
+}
+
+// MARK: - PillShapeView
+struct PillShapeView: View {
+    @Binding var selectedShape: PillShape
+    @EnvironmentObject var userSettings: UserSettings
+    
+    var body: some View {
+        List {
+            ForEach(PillShape.allCases) { shape in
+                Button(action: {
+                    selectedShape = shape
+                }) {
+                    HStack {
+                        Text(shape.rawValue)
+                            .font(.system(size: userSettings.textSize.size))
+                        Spacer()
+                        if selectedShape == shape {
+                            Image(systemName: "checkmark")
+                                .foregroundColor(.blue)
+                        }
+                    }
+                }
+            }
+        }
+        .navigationTitle("Select Pill Shape")
+    }
+}
+
+// MARK: - ColorPickerView
+struct ColorPickerView: View {
+    @Binding var selectedColor: Color
+    @Environment(\.presentationMode) var presentationMode
+    
+    let colors: [Color] = [
+        .red, .orange, .yellow, .green, .blue, .purple, .pink,
+        .gray, .black, .white
+    ]
+    
+    var body: some View {
+        VStack {
+            Text("Select Color")
+                .font(.headline)
+                .padding()
+            
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 60))], spacing: 20) {
+                ForEach(0..<colors.count, id: \.self) { index in
+                    Circle()
+                        .fill(colors[index])
+                        .frame(width: 50, height: 50)
+                        .overlay(Circle().stroke(Color.gray, lineWidth: 1))
+                        .overlay(
+                            Circle()
+                                .stroke(Color.blue, lineWidth: 3)
+                                .opacity(colorsAreEqual(colors[index], selectedColor) ? 1 : 0)
+                        )
+                        .onTapGesture {
+                            selectedColor = colors[index]
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                }
+            }
+            .padding()
+            
+            Button("Custom Color") {
+                // In a real app, this would show a color picker
+                // For now, we'll just use a random color
+                selectedColor = Color(
+                    red: Double.random(in: 0...1),
+                    green: Double.random(in: 0...1),
+                    blue: Double.random(in: 0...1)
+                )
+                presentationMode.wrappedValue.dismiss()
+            }
+            .padding()
+        }
+    }
+    
+    // Helper to compare colors (since Color doesn't conform to Equatable)
+    private func colorsAreEqual(_ color1: Color, _ color2: Color) -> Bool {
+        // This is a simplification - in a real app you'd need a better comparison
+        let uiColor1 = UIColor(color1)
+        let uiColor2 = UIColor(color2)
+        
+        var red1: CGFloat = 0, green1: CGFloat = 0, blue1: CGFloat = 0, alpha1: CGFloat = 0
+        var red2: CGFloat = 0, green2: CGFloat = 0, blue2: CGFloat = 0, alpha2: CGFloat = 0
+        
+        uiColor1.getRed(&red1, green: &green1, blue: &blue1, alpha: &alpha1)
+        uiColor2.getRed(&red2, green: &green2, blue: &blue2, alpha: &alpha2)
+        
+        return abs(red1 - red2) < 0.1 && abs(green1 - green2) < 0.1 && abs(blue1 - blue2) < 0.1
+    }
+}
+
+// MARK: - SpeechLanguagePickerView
+struct SpeechLanguagePickerView: View {
+    @Binding var selectedIndex: Int
+    let languages: [String]
+    @Environment(\.presentationMode) var presentationMode
+    
+    var body: some View {
+        List {
+            ForEach(0..<languages.count, id: \.self) { index in
+                Button(action: {
+                    selectedIndex = index
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    HStack {
+                        Text(languages[index])
+                        Spacer()
+                        if index == selectedIndex {
+                            Image(systemName: "checkmark")
+                                .foregroundColor(.blue)
+                        }
+                    }
+                }
+            }
+        }
+        .navigationTitle("Select Language")
+    }
+}
+
+struct MedicationInputView: View {
+    // ... existing properties ...
+    
+    // MARK: - Pill Appearance Section
+    @ViewBuilder
+    private func pillAppearanceSection() -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Pill Appearance")
+                .font(.system(size: userSettings.textSize.size, weight: .semibold))
+            // 3D Pill Preview
+            HStack(alignment: .center, spacing: 16) {
+                Enhanced3DPillView(
+                    shape: mapToEnhancedShape(selectedShape),
+                    color: selectedColor
+                )
+                .frame(width: 80, height: 40)
+                // The pill preview is now always visible as part of the Add Medication UI.
+                VStack(alignment: .leading, spacing: 8) {
+
+                    Button("Primary Color") { showingColorPicker = true }
+                        .font(.system(size: userSettings.textSize.size))
+                        .sheet(isPresented: $showingColorPicker) {
+                            ColorPickerView(selectedColor: $selectedColor)
+                        }
+                    Toggle("Has Secondary Color", isOn: $hasSecondaryColor)
+                        .font(.system(size: userSettings.textSize.size))
+                    if hasSecondaryColor {
+                        Button("Secondary Color") { showingSecondaryColorPicker = true }
+                            .font(.system(size: userSettings.textSize.size))
+                            .sheet(isPresented: $showingSecondaryColorPicker) {
+                                ColorPickerView(selectedColor: Binding($secondaryColor, replacingNilWith: .gray))
+                            }
+                    }
+                }
+            }
+        }
+    }
+
+    @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject private var userSettings: UserSettings
+    @StateObject private var speechManager = SpeechRecognitionManager.shared
+    
+    @State private var medicationName = ""
+    // New State Variables for Scheduling
+    @State private var selectedFrequencyType: FrequencyType = .daily
+    @State private var timesOfDay: [TimeOfDay] = [TimeOfDay(hour: 8, minute: 0)] // Default to one time
+    @State private var weeklySelectedDays: Set<Weekday> = []
+    @State private var intervalDays: Int = 2 // Default to every 2 days
+    @State private var intervalStartDate: Date = Date()
+    @State private var monthlySelectedDay: Int = 1 // Default to 1st of the month
+    
+    @State private var takeWithFood = false
+    @State private var notes = ""
+    @State private var showingLanguagePicker = false
+    @State private var dosage = ""
+    @State private var selectedColor: Color = .blue
+    @State private var secondaryColor: Color? = nil
+    @State private var hasSecondaryColor: Bool = false
+    @State private var selectedShape: PillShape = .capsule
+    @State private var showingColorPicker = false
+    @State private var showingSecondaryColorPicker = false
+    @State private var showingShapePicker = false
+    
+    var body: some View {
+        NavigationView {
+            ScrollView {
+                VStack(spacing: 20) {
+                    // Medication Details Section
+                    VStack(alignment: .leading, spacing: 15) {
+                        Text("Medication Details")
+                            .font(.system(size: userSettings.textSize.size, weight: .bold))
+                            .padding(.horizontal)
+                        
+                        VStack(spacing: 15) {
+                            pillAppearanceSection()
+                            // Name Input
+                            HStack {
+                                TextField("Medication Name", text: $medicationName)
+                                    .font(.system(size: userSettings.textSize.size))
+                                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                                
+                                Button(action: {
+                                    if speechManager.isRecording {
+                                        speechManager.stopRecording()
+                                    } else {
+                                        speechManager.startRecording()
+                                    }
+                                }) {
+                                    Image(systemName: speechManager.isRecording ? "mic.fill" : "mic")
+                                        .foregroundColor(speechManager.isRecording ? .red : .blue)
+                                        .font(.system(size: userSettings.textSize.size))
+                                }
+                                
+                                Button(action: {
+                                    showingLanguagePicker = true
+                                }) {
+                                    Image(systemName: "globe")
+                                        .foregroundColor(.blue)
+                                        .font(.system(size: userSettings.textSize.size))
+                                }
+                            }
+                            
+                            if !speechManager.transcribedText.isEmpty {
+                                Text(speechManager.transcribedText)
+                                    .font(.system(size: userSettings.textSize.size))
+                                    .foregroundColor(.secondary)
+                                    .onTapGesture {
+                                        medicationName = speechManager.transcribedText
+                                        speechManager.transcribedText = ""
+                                    }
+                            }
+                            
+                            if let error = speechManager.errorMessage {
+                                Text(error)
+                                    .font(.system(size: userSettings.textSize.size - 2))
+                                    .foregroundColor(.red)
+                            }
+                            
+                            // Dosage Input
+                            TextField("Dosage", text: $dosage)
+                                .font(.system(size: userSettings.textSize.size))
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                        }
+                        .padding()
+                        .background(Color(.systemBackground))
+                        .cornerRadius(16)
+                        .shadow(radius: 2)
+                    }
+                    .padding(.horizontal)
+                    
+                    // Schedule Section
+                    VStack(alignment: .leading, spacing: 15) {
+                        Text("Schedule")
+                            .font(.system(size: userSettings.textSize.size, weight: .bold))
+                            .padding(.horizontal)
+                        
+                        VStack(spacing: 15) {
+                            // Frequency Type Picker
+                            Picker("Frequency", selection: $selectedFrequencyType) {
+                                ForEach(FrequencyType.allCases) { type in
+                                    Text(type.rawValue).tag(type)
+                                }
+                            }
+                            .pickerStyle(SegmentedPickerStyle())
+                            .padding(.bottom, 5)
+                            
+                            // Conditional Inputs based on Frequency Type
+                            switch selectedFrequencyType {
+                            case .weekly:
+                                WeekdayMultiSelector(selectedDays: $weeklySelectedDays)
+                                    .padding(.vertical, 5)
+                            case .interval:
+                                Stepper("Every \(intervalDays) days", value: $intervalDays, in: 1...30)
+                                DatePicker("Starting From", selection: $intervalStartDate, displayedComponents: .date)
+                            case .monthly:
+                                Picker("Day of the Month", selection: $monthlySelectedDay) {
+                                    ForEach(1...31, id: \.self) { day in
+                                        Text("\(day)").tag(day)
+                                    }
+                                }
+                                .pickerStyle(MenuPickerStyle())
+                            case .daily:
+                                // No specific controls for daily frequency itself
+                                EmptyView()
+                            }
+                            
+                            Divider().padding(.vertical, 5)
+                            
+                            Text("Time(s) to Take Medication")
+                                .font(.system(size: userSettings.textSize.size - 1, weight: .semibold))
+                                .foregroundColor(.secondary)
+                            
+                            let times = timesOfDay
+                            ForEach(times.indices, id: \.self) { index in
+                                HStack {
+                                    // Use DatePicker bound to a Date representation of TimeOfDay
+                                    DatePicker(
+                                        "",
+                                        selection: Binding(
+                                            get: { timesOfDay[index].dateRepresentation }, // Convert TimeOfDay to Date
+                                            set: { date in
+                                                // Convert Date back to TimeOfDay and update state
+                                                let components = Calendar.current.dateComponents([.hour, .minute], from: date)
+                                                if let hour = components.hour, let minute = components.minute {
+                                                    timesOfDay[index] = TimeOfDay(hour: hour, minute: minute)
+                                                    timesOfDay.sort() // Keep sorted after edit
+                                                }
+                                            }
+                                        ),
+                                        displayedComponents: .hourAndMinute
+                                    )
+                                    .labelsHidden() // Hide the default label
+                                    .font(.system(size: userSettings.textSize.size))
+                                    
+                                    Spacer()
+                                }
+                            }
+                            .onDelete(perform: deleteTime)
+                            
+                            Button(action: {
+                                timesOfDay.append(TimeOfDay(hour: 8, minute: 0))
+                            }) {
+                                HStack {
+                                    Image(systemName: "plus.circle.fill")
+                                    Text("Add Time")
+                                }
+                                .font(.system(size: userSettings.textSize.size))
+                                .foregroundColor(.blue)
+                            }
+                        }
+                        .padding()
+                        .background(Color(.systemBackground))
+                        .cornerRadius(16)
+                        .shadow(radius: 2)
+                    }
+                    .padding(.horizontal)
+                    
+                    // Take with Food Toggle and Appearance Settings
+                    VStack(alignment: .leading, spacing: 15) {
+                        Text("Additional Settings")
+                            .font(.system(size: userSettings.textSize.size, weight: .bold))
+                            .padding(.horizontal)
+                        
+                        VStack(spacing: 15) {
+                            Toggle("Take with Food", isOn: $takeWithFood)
+                                .font(.system(size: userSettings.textSize.size))
+                            
+                            Divider()
+                            
+                            // Pill Shape Selection
+                            VStack(alignment: .leading, spacing: 10) {
+                                Text("Pill Shape")
+                                    .font(.system(size: userSettings.textSize.size, weight: .semibold))
+                                
+                                HStack(spacing: 20) {
+                                    // Enhanced 3D Pill Preview
+                                    VStack {
+                                        Enhanced3DPillView(
+                                            shape: mapToEnhancedShape(selectedShape),
+                                            color: selectedColor,
+                                            secondaryColor: hasSecondaryColor ? secondaryColor : nil
+                                        )
+                                        .frame(width: 100, height: 60)
+                                        
+                                        Text("Tap to change")
+                                            .font(.system(size: userSettings.textSize.size - 2))
+                                            .foregroundColor(.secondary)
+                                    }
+                                    .onTapGesture {
+                                        showingShapePicker = true
+                                    }
+                                    
+                                    Spacer()
+                                }
+                                .sheet(isPresented: $showingShapePicker) {
+                                    PillShapeView(selectedShape: $selectedShape)
+                                        .environmentObject(userSettings)
+                                }
+                            }
+                        }
+                        .padding()
+                        .background(Color(.systemBackground))
+                        .cornerRadius(16)
+                        .shadow(radius: 2)
+                    }
+                    .padding(.horizontal)
+                    
+                    // Notes Section
+                    VStack(alignment: .leading, spacing: 15) {
+                        Text("Notes")
+                            .font(.system(size: userSettings.textSize.size, weight: .bold))
+                            .padding(.horizontal)
+                        
+                        TextEditor(text: $notes)
+                            .font(.system(size: userSettings.textSize.size))
+                            .frame(height: 100)
+                            .padding()
+                            .background(Color(.systemBackground))
+                            .cornerRadius(16)
+                            .shadow(radius: 2)
+                    }
+                    .padding(.horizontal)
+                    
+                    // Save Button
+                    Button(action: saveMedication) {
+                        Text("Save Medication")
+                            .font(.system(size: userSettings.textSize.size, weight: .bold))
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(isSaveButtonDisabled ? Color.gray : Color.blue)
+                            .cornerRadius(16)
+                    }
+                    .disabled(isSaveButtonDisabled)
+                    .padding(.horizontal)
+                }
+                .padding(.vertical)
+            }
+            .navigationTitle("Add Medication")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Cancel") {
+                        dismiss()
+                    }
+                    .font(.system(size: userSettings.textSize.size))
+                }
+            }
+            .sheet(isPresented: $showingLanguagePicker) {
+                SpeechLanguagePickerView(
+                    selectedIndex: $speechManager.selectedLanguageIndex,
+                    languages: speechManager.availableLanguages
+                )
+            }
+        }
+    }
+    
+    private func saveMedication() {
+        let medication = Medication(
+            id: UUID(), // Ensure a new ID is generated
+            name: medicationName,
+            dosage: dosage,
+            frequency: createScheduleDetails(), // Create ScheduleDetails
+            timesOfDay: timesOfDay.sorted(), // Use the sorted times
+            takeWithFood: takeWithFood,
+            notes: notes.isEmpty ? nil : notes,
+            color: selectedColor, // Already Codable via hex
+            shape: selectedShape // Already Codable
+        )
+        userSettings.medications.append(medication)
+        dismiss()
+    }
+    
+    // Helper function to create ScheduleDetails
+    private func createScheduleDetails() -> ScheduleDetails {
+        switch selectedFrequencyType {
+        case .daily:
+            return .daily
+        case .weekly:
+            return .weekly(days: weeklySelectedDays) // Pass the Set directly
+        case .interval:
+            return .interval(days: intervalDays, startDate: intervalStartDate)
+        case .monthly:
+            return .monthly(day: monthlySelectedDay)
+        }
+    }
+    
+    // Computed property for save button disable state
+    private var isSaveButtonDisabled: Bool {
+        if medicationName.isEmpty || timesOfDay.isEmpty {
+            return true
+        }
+        // Add specific validation for frequency types if needed
+        if selectedFrequencyType == .weekly && weeklySelectedDays.isEmpty {
+            return true // Must select at least one day for weekly
+        }
+        // Add other validation as necessary (e.g., interval days > 0)
+        return false
+    }
+    
+    private func deleteTime(at offsets: IndexSet) {
+        // Ensure sorting after deletion if necessary, though indices should handle it
+        timesOfDay.remove(atOffsets: offsets)
+        timesOfDay.sort() // Re-sort after deletion
+    }
+}
+
+struct MedicationInputView_Previews: PreviewProvider {
+    static var previews: some View {
+        MedicationInputView()
+    }
+}
+
+// Helper for mapping app pill shape to Enhanced3DPillView
+private func mapToEnhancedShape(_ shape: PillShape) -> Enhanced3DPillView.PillShape {
+    switch shape {
+    case .round: return .round
+    case .oval: return .oval
+    case .capsule: return .capsule
+    case .diamond: return .diamond
+    case .rectangle: return .rectangle
+    case .triangle: return .triangle
+    case .other: return .capsule
+    }
+}
+
+// Helper Binding to allow optional Color in ColorPickerView
+extension Binding where Value == Color {
+    init(_ source: Binding<Color?>, replacingNilWith defaultValue: Color) {
+        self.init(get: { source.wrappedValue ?? defaultValue }, set: { source.wrappedValue = $0 })
+    }
+}

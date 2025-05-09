@@ -21,12 +21,6 @@ struct MedicationView: View {
                             title: "Add Medication",
                             action: { showingAddMedication = true }
                         )
-                        
-                        quickActionButton(
-                            icon: "pill.fill",
-                            title: "Pill Design Preview",
-                            action: { showingPillPreview = true }
-                        )
                     }
                     .padding(.horizontal)
                     
@@ -87,9 +81,6 @@ struct MedicationView: View {
                 if let medication = selectedMedication {
                     EditMedicationView(medication: medication)
                 }
-            }
-            .sheet(isPresented: $showingPillPreview) {
-                ClassicPillPreview()
             }
             .alert("Delete Medication", isPresented: $showingDeleteAlert) {
                 Button("Cancel", role: .cancel) { }

@@ -108,7 +108,6 @@ struct AddMealView: View {
                         HStack {
                             Text("Select Portion Size")
                                 .font(.system(size: userSettings.textSize.size))
-                            
                             Button(action: {
                                 showingPortionInfo.toggle()
                             }) {
@@ -121,7 +120,6 @@ struct AddMealView: View {
                                         .font(.system(size: 22, weight: .bold))
                                         .padding(.bottom, 10)
                                         .frame(maxWidth: .infinity, alignment: .center)
-                                    
                                     ScrollView {
                                         VStack(spacing: 20) {
                                             portionInfoCard(
@@ -136,7 +134,6 @@ struct AddMealView: View {
                                                 color: .blue.opacity(0.1),
                                                 borderColor: .blue
                                             )
-                                            
                                             portionInfoCard(
                                                 title: "Medium",
                                                 subtitle: "(Standard serving)",
@@ -149,7 +146,6 @@ struct AddMealView: View {
                                                 color: .green.opacity(0.1),
                                                 borderColor: .green
                                             )
-                                            
                                             portionInfoCard(
                                                 title: "Large",
                                                 subtitle: "(1.5x standard serving)",
@@ -170,11 +166,47 @@ struct AddMealView: View {
                                 .frame(width: 350, height: 500)
                             }
                         }
-                        
-                        HStack(spacing: 15) {
-                            ForEach(MealPortion.allCases) { size in
-                                portionSizeButton(size)
+                        // Slider for portion size
+                        VStack(alignment: .center, spacing: 8) {
+                            // Show selected label
+                            Text(mealPortion.rawValue)
+                                .font(.system(size: userSettings.textSize.size + 2, weight: .bold))
+                                .frame(maxWidth: .infinity, alignment: .center)
+                            // 3-point slider
+                            Slider(
+                                value: Binding(
+                                    get: {
+                                        switch mealPortion {
+                                        case .small: return 0
+                                        case .medium: return 1
+                                        case .large: return 2
+                                        }
+                                    },
+                                    set: { newValue in
+                                        let rounded = Int(round(newValue))
+                                        switch rounded {
+                                        case 0: mealPortion = .small
+                                        case 1: mealPortion = .medium
+                                        case 2: mealPortion = .large
+                                        default: mealPortion = .medium
+                                        }
+                                    }
+                                ),
+                                in: 0...2,
+                                step: 1
+                            ) {
+                                Text("Portion Size")
                             }
+                            .accentColor(.blue)
+                            // Custom tick labels
+                            HStack {
+                                Text("Small").font(.system(size: userSettings.textSize.size - 2))
+                                Spacer()
+                                Text("Medium").font(.system(size: userSettings.textSize.size - 2))
+                                Spacer()
+                                Text("Large").font(.system(size: userSettings.textSize.size - 2))
+                            }
+                            .padding(.horizontal, 4)
                         }
                         .padding(.vertical, 5)
                     }
@@ -328,34 +360,40 @@ struct AddMealView: View {
         }
     }
     
-    // Helper for portion size buttons
-    private func portionSizeButton(_ size: MealPortion) -> some View {
-        Button(action: {
-            withAnimation {
-                mealPortion = size
+    // Helper for portion size info cards
+    private func portionInfoCard(title: String, subtitle: String, examples: [String], color: Color, borderColor: Color) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                    .font(.system(size: userSettings.textSize.size + 2, weight: .bold))
+                Text(subtitle)
+                    .font(.system(size: userSettings.textSize.size - 1))
+                    .foregroundColor(.secondary)
             }
-        }) {
-            VStack(spacing: 8) {
-                ZStack {
-                    Circle()
-                        .stroke(mealPortion == size ? Color.blue : Color.gray, lineWidth: 2)
-                        .frame(width: size == .small ? 40 : (size == .medium ? 55 : 70),
-                               height: size == .small ? 40 : (size == .medium ? 55 : 70))
-                    
-                    if mealPortion == size {
-                        Circle()
-                            .fill(Color.blue)
-                            .frame(width: 15, height: 15)
+            
+            Divider()
+            
+            VStack(alignment: .leading, spacing: 6) {
+                ForEach(examples, id: \.self) { example in
+                    HStack(alignment: .top, spacing: 6) {
+                        Image(systemName: "circle.fill")
+                            .font(.system(size: 6))
+                            .padding(.top, 6)
+                        
+                        Text(example)
+                            .font(.system(size: userSettings.textSize.size))
                     }
                 }
-                
-                Text(size.rawValue)
-                    .font(.system(size: userSettings.textSize.size - 2))
-                    .foregroundColor(mealPortion == size ? .blue : .primary)
             }
-            .frame(maxWidth: .infinity)
         }
-        .buttonStyle(PlainButtonStyle())
+        .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(color)
+        .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(borderColor, lineWidth: 1)
+        )
     }
     
     // Function to suggest meal type based on time
@@ -427,41 +465,5 @@ struct AddMealView: View {
         
         onSave(newMeal)
         presentationMode.wrappedValue.dismiss()
-    }
-    
-    // Helper for portion size info cards
-    private func portionInfoCard(title: String, subtitle: String, examples: [String], color: Color, borderColor: Color) -> some View {
-        VStack(alignment: .leading, spacing: 10) {
-            VStack(alignment: .leading, spacing: 2) {
-                Text(title)
-                    .font(.system(size: userSettings.textSize.size + 2, weight: .bold))
-                Text(subtitle)
-                    .font(.system(size: userSettings.textSize.size - 1))
-                    .foregroundColor(.secondary)
-            }
-            
-            Divider()
-            
-            VStack(alignment: .leading, spacing: 6) {
-                ForEach(examples, id: \.self) { example in
-                    HStack(alignment: .top, spacing: 6) {
-                        Image(systemName: "circle.fill")
-                            .font(.system(size: 6))
-                            .padding(.top, 6)
-                        
-                        Text(example)
-                            .font(.system(size: userSettings.textSize.size))
-                    }
-                }
-            }
-        }
-        .padding()
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(color)
-        .cornerRadius(12)
-        .overlay(
-            RoundedRectangle(cornerRadius: 12)
-                .stroke(borderColor, lineWidth: 1)
-        )
     }
 } 

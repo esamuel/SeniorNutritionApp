@@ -352,6 +352,13 @@ struct UserProfile: Codable {
     var dietaryRestrictions: [String]
     var emergencyContacts: [EmergencyContact]
     
+    /// BMI calculated as weight (kg) / (height (m))^2
+    var bmi: Double? {
+        guard height > 0, weight > 0 else { return nil }
+        let heightMeters = height / 100.0
+        return weight / (heightMeters * heightMeters)
+    }
+    
     var fullName: String {
         "\(firstName) \(lastName)"
     }

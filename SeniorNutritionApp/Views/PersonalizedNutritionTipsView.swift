@@ -39,6 +39,16 @@ struct PersonalizedNutritionTipsView: View {
     
     private var generalTipsSection: some View {
         VStack(alignment: .leading, spacing: 15) {
+            // BMI-specific tips
+            if let profile = userSettings.userProfile,
+               let bmi = profile.bmi {
+                let (icon, title, description) = bmiBasedTip(bmi: bmi)
+                nutritionTip(
+                    icon: icon,
+                    title: title,
+                    description: description
+                )
+            }
             HStack {
                 Text("General Nutrition Tips for Seniors")
                     .font(.system(size: userSettings.textSize.size, weight: .bold))
@@ -451,8 +461,36 @@ struct PersonalizedNutritionTipsView: View {
     }
     
     // Helper methods for text-to-speech
+    private func bmiBasedTip(bmi: Double) -> (icon: String, title: String, description: String) {
+        if bmi >= 30 {
+            return ("scale.3d",
+                    "Weight Management Focus",
+                    "Focus on nutrient-dense, lower-calorie foods. Include plenty of vegetables, lean proteins, and high-fiber foods to feel satisfied while managing portions.")
+        } else if bmi >= 25 {
+            return ("figure.walk",
+                    "Balanced Nutrition",
+                    "Maintain a balanced diet with portion control. Choose whole grains, lean proteins, and plenty of vegetables to support healthy weight management.")
+        } else if bmi < 18.5 {
+            return ("plus.circle",
+                    "Nutrient-Rich Foods",
+                    "Include nutrient-dense foods with healthy fats like nuts, avocados, and olive oil. Focus on protein-rich foods to support healthy weight gain.")
+        } else {
+            return ("heart.circle",
+                    "Maintain Healthy Balance",
+                    "Continue with a balanced diet rich in whole foods. Include a variety of nutrients to maintain your healthy weight.")
+        }
+    }
+    
     private func readGeneralTips() {
-        let speech = "General Nutrition Tips for Seniors. " +
+        var speech = "General Nutrition Tips for Seniors. "
+        
+        if let profile = userSettings.userProfile,
+           let bmi = profile.bmi {
+            let tip = bmiBasedTip(bmi: bmi)
+            speech += "\(tip.title): \(tip.description) "
+        }
+        
+        speech += 
                    "Protein is Essential: Aim for 1-1.2g of protein per kg of body weight daily to maintain muscle mass and strength. " +
                    "Hydration Matters: Drink at least 8 glasses of water daily, more if you're active or in hot weather. " +
                    "Healthy Fats: Include sources of omega-3 fatty acids like fatty fish, flaxseeds, and walnuts for heart and brain health. " +

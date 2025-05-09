@@ -67,19 +67,36 @@ class MedicationPrintService {
         }
     }
     
-    // Private helper to handle direct printing (added as alternative option)
+    // Method to handle direct printing - presents the system print dialog
     private func printPDF(data: Data) {
+        // Get the print controller
         let printController = UIPrintInteractionController.shared
+        
+        // Configure print job
         let printInfo = UIPrintInfo(dictionary: nil)
         printInfo.outputType = .general
         printInfo.jobName = "Senior Nutrition App Document"
-        
         printController.printInfo = printInfo
+        
+        // Set the PDF data as the printing item
         printController.printingItem = data
         
-        printController.present(animated: true) { (controller, success, error) in
-            if let error = error {
-                print("Printing error: \(error.localizedDescription)")
+        // Find the key window to present from
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let rootViewController = windowScene.windows.first?.rootViewController {
+            
+            // Present from the root view controller to ensure it appears
+            printController.present(animated: true, completionHandler: { (controller, success, error) in
+                if let error = error {
+                    print("Printing error: \(error.localizedDescription)")
+                }
+            })
+        } else {
+            // Fallback to standard presentation if we can't find the root view controller
+            printController.present(animated: true) { (controller, success, error) in
+                if let error = error {
+                    print("Printing error: \(error.localizedDescription)")
+                }
             }
         }
     }
@@ -142,45 +159,42 @@ class MedicationPrintService {
     func printMedicationSchedule(medications: [Medication]) {
         let printContent = MedicationPrintContentView(medications: medications)
         let height = CGFloat(medications.count) * 150 + 200
+        
         if let pdfData = getPDFData(from: printContent, height: height) {
-            // Option 1: Direct printing
+            // Always use direct printing to ensure the print dialog appears
             printPDF(data: pdfData)
         } else {
-            // Option 2: Fallback to sharing menu
-            displayPrintSheet(for: printContent, filename: "Medication_Schedule", height: height)
+            print("Failed to generate PDF for medication schedule")
         }
     }
     
     func printFastingProtocol(protocol fastingProtocol: FastingProtocol) {
         let printContent = FastingProtocolPrintView(fastingProtocol: fastingProtocol)
         if let pdfData = getPDFData(from: printContent, height: 500) {
-            // Option 1: Direct printing
+            // Always use direct printing to ensure the print dialog appears
             printPDF(data: pdfData)
         } else {
-            // Option 2: Fallback to sharing menu
-            displayPrintSheet(for: printContent, filename: "Fasting_Protocol", height: 500)
+            print("Failed to generate PDF for fasting protocol")
         }
     }
     
     func printMealSuggestions() {
         let printContent = MealSuggestionsPrintView()
         if let pdfData = getPDFData(from: printContent, height: 700) {
-            // Option 1: Direct printing
+            // Always use direct printing to ensure the print dialog appears
             printPDF(data: pdfData)
         } else {
-            // Option 2: Fallback to sharing menu
-            displayPrintSheet(for: printContent, filename: "Meal_Suggestions", height: 700)
+            print("Failed to generate PDF for meal suggestions")
         }
     }
     
     func printAppInstructions() {
         let printContent = AppInstructionsPrintView()
         if let pdfData = getPDFData(from: printContent, height: 800) {
-            // Option 1: Direct printing
+            // Always use direct printing to ensure the print dialog appears
             printPDF(data: pdfData)
         } else {
-            // Option 2: Fallback to sharing menu
-            displayPrintSheet(for: printContent, filename: "App_Instructions", height: 800)
+            print("Failed to generate PDF for app instructions")
         }
     }
 }

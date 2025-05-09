@@ -107,10 +107,43 @@ struct EditMealView: View {
                     VStack(alignment: .leading, spacing: 8) {
                         Text("Select Portion Size")
                             .font(.system(size: userSettings.textSize.size))
-                        HStack(spacing: 15) {
-                            ForEach(MealPortion.allCases) { size in
-                                portionSizeButton(size)
+                        VStack(alignment: .center, spacing: 8) {
+                            Text(mealPortion.rawValue)
+                                .font(.system(size: userSettings.textSize.size + 2, weight: .bold))
+                                .frame(maxWidth: .infinity, alignment: .center)
+                            Slider(
+                                value: Binding(
+                                    get: {
+                                        switch mealPortion {
+                                        case .small: return 0
+                                        case .medium: return 1
+                                        case .large: return 2
+                                        }
+                                    },
+                                    set: { newValue in
+                                        let rounded = Int(round(newValue))
+                                        switch rounded {
+                                        case 0: mealPortion = .small
+                                        case 1: mealPortion = .medium
+                                        case 2: mealPortion = .large
+                                        default: mealPortion = .medium
+                                        }
+                                    }
+                                ),
+                                in: 0...2,
+                                step: 1
+                            ) {
+                                Text("Portion Size")
                             }
+                            .accentColor(.blue)
+                            HStack {
+                                Text("Small").font(.system(size: userSettings.textSize.size - 2))
+                                Spacer()
+                                Text("Medium").font(.system(size: userSettings.textSize.size - 2))
+                                Spacer()
+                                Text("Large").font(.system(size: userSettings.textSize.size - 2))
+                            }
+                            .padding(.horizontal, 4)
                         }
                         .padding(.vertical, 5)
                     }
@@ -192,33 +225,6 @@ struct EditMealView: View {
                 foodDatabase.loadFoodDatabase()
             }
         }
-    }
-    
-    private func portionSizeButton(_ size: MealPortion) -> some View {
-        Button(action: {
-            withAnimation {
-                mealPortion = size
-            }
-        }) {
-            VStack(spacing: 8) {
-                ZStack {
-                    Circle()
-                        .stroke(mealPortion == size ? Color.blue : Color.gray, lineWidth: 2)
-                        .frame(width: size == .small ? 40 : (size == .medium ? 55 : 70),
-                               height: size == .small ? 40 : (size == .medium ? 55 : 70))
-                    if mealPortion == size {
-                        Circle()
-                            .fill(Color.blue)
-                            .frame(width: 15, height: 15)
-                    }
-                }
-                Text(size.rawValue)
-                    .font(.system(size: userSettings.textSize.size - 2))
-                    .foregroundColor(mealPortion == size ? .blue : .primary)
-            }
-            .frame(maxWidth: .infinity)
-        }
-        .buttonStyle(PlainButtonStyle())
     }
     
     private func saveMeal() {

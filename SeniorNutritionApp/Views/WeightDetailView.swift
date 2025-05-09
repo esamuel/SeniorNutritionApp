@@ -4,6 +4,7 @@ import Charts
 
 struct WeightDetailView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @EnvironmentObject private var userSettings: UserSettings
     @FetchRequest private var entries: FetchedResults<WeightEntry>
     
     @State private var showingAddEntry = false
@@ -44,10 +45,12 @@ struct WeightDetailView: View {
         .sheet(isPresented: $showingAddEntry) {
             AddWeightView()
                 .environment(\.managedObjectContext, viewContext)
+                .environmentObject(userSettings)
         }
         .sheet(item: $selectedEntry) { entry in
             EditWeightView(entry: entry)
                 .environment(\.managedObjectContext, viewContext)
+                .environmentObject(userSettings)
         }
         .alert("Delete Entry", isPresented: $showingDeleteAlert) {
             Button("Delete", role: .destructive) {
@@ -389,6 +392,7 @@ private let dateFormatter: DateFormatter = {
 struct AddWeightView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject private var userSettings: UserSettings
     
     @State private var weight = ""
     @State private var date = Date()
@@ -438,6 +442,13 @@ struct AddWeightView: View {
         
         do {
             try viewContext.save()
+            
+            // Update user profile with the latest weight
+            if var profile = userSettings.userProfile {
+                profile.weight = weightValue
+                userSettings.updateProfile(profile)
+            }
+            
             dismiss()
         } catch {
             self.error = "Failed to save: \(error.localizedDescription)"
@@ -448,6 +459,7 @@ struct AddWeightView: View {
 struct EditWeightView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject private var userSettings: UserSettings
     
     let entry: WeightEntry
     
@@ -503,6 +515,19 @@ struct EditWeightView: View {
         
         do {
             try viewContext.save()
+            
+            // Update user profile with the latest weight if this is the most recent entry
+            let request = WeightEntry.fetchRequest()
+            request.sortDescriptors = [NSSortDescriptor(keyPath: \WeightEntry.date, ascending: false)]
+            request.fetchLimit = 1
+            
+            if let latestEntry = try viewContext.fetch(request).first,
+               latestEntry.id == entry.id,
+               var profile = userSettings.userProfile {
+                profile.weight = weightValue
+                userSettings.updateProfile(profile)
+            }
+            
             dismiss()
         } catch {
             self.error = "Failed to save: \(error.localizedDescription)"

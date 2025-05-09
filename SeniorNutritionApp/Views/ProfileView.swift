@@ -158,9 +158,13 @@ struct ProfileView: View {
         Section(header: Text("Physical Information")
             .font(.system(size: userSettings.textSize.size, weight: .bold))
             .foregroundColor(.green)) {
-            
             profileRow(title: "Height", value: "\(Int(profile.height)) cm", iconName: "ruler", color: .teal)
             profileRow(title: "Weight", value: "\(Int(profile.weight)) kg", iconName: "scalemass", color: .cyan)
+            if let bmi = profile.bmi {
+                profileRow(title: "BMI", value: String(format: "%.1f", bmi), iconName: "figure.stand", color: .mint)
+            } else {
+                profileRow(title: "BMI", value: "-", iconName: "figure.stand", color: .mint)
+            }
         }
         .listRowBackground(Color.green.opacity(0.05))
     }

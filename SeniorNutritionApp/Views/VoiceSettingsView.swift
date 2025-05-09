@@ -67,6 +67,10 @@ struct VoiceSettingsView: View {
                         Text(gender.rawValue).tag(gender)
                     }
                 }
+                .onChange(of: userSettings.preferredVoiceGender) { newGender in
+                    // When gender changes, clear preferredVoiceIdentifier so the app uses the best for that gender
+                    userSettings.preferredVoiceIdentifier = nil
+                }
                 
                 Picker("Speech Rate", selection: $userSettings.speechRate) {
                     ForEach(SpeechRate.allCases) { rate in
@@ -121,7 +125,7 @@ struct VoiceListView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var userSettings: UserSettings
     @StateObject private var voiceManager = VoiceManager.shared
-    @State private var selectedVoice: AVSpeechSynthesisVoice?
+    @State private var selectedVoice: AVSpeechSynthesisVoice? = nil
     @State private var isTestingVoice = false
     @State private var showingDownloadInstructions = false
     
@@ -226,7 +230,8 @@ struct VoiceListView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done") {
                         if let selectedVoice = selectedVoice {
-                            // Update user settings based on the selected voice
+                            userSettings.preferredVoiceIdentifier = selectedVoice.identifier
+                            // Optionally update gender for legacy compatibility
                             if selectedVoice.name.lowercased().contains("male") {
                                 userSettings.preferredVoiceGender = .male
                             } else if selectedVoice.name.lowercased().contains("female") {
@@ -263,6 +268,7 @@ struct VoiceListView: View {
         let tempSettings = UserSettings()
         tempSettings.speechRate = userSettings.speechRate
         tempSettings.preferredVoiceGender = voice.name.lowercased().contains("male") ? .male : .female
+        tempSettings.preferredVoiceIdentifier = voice.identifier
         
         // Use the public speak method with callback for completion
         voiceManager.speak(sampleText, userSettings: tempSettings) { finished in
@@ -349,9 +355,13 @@ struct VoiceListView: View {
             .contentShape(Rectangle())
             .onTapGesture {
                 selectedVoice = voice
+                userSettings.preferredVoiceIdentifier = voice.identifier
+                // Set gender based on selected voice
+                let gender = getVoiceGenderEnum(voice)
+                userSettings.preferredVoiceGender = gender
                 testVoice(voice)
             }
-            .background(selectedVoice?.identifier == voice.identifier ? Color.blue.opacity(0.1) : Color.clear)
+            .background((userSettings.preferredVoiceIdentifier == voice.identifier) ? Color.blue.opacity(0.15) : Color.clear)
             .cornerRadius(8)
         }
     }
@@ -398,6 +408,23 @@ struct VoiceListView: View {
             return "Male"
         } else {
             return "Unknown"
+        }
+    }
+
+    // Helper to get VoiceGender enum from AVSpeechSynthesisVoice
+    private func getVoiceGenderEnum(_ voice: AVSpeechSynthesisVoice) -> VoiceGender {
+        let voiceName = voice.name.lowercased()
+        if voiceName.contains("male") {
+            return .male
+        } else if voiceName.contains("female") {
+            return .female
+        } else if voice.name.contains("Samantha") || voice.name.contains("Siri") || voice.name.contains("Karen") ||
+                  voice.name.contains("Tessa") || voice.name.contains("Veena") {
+            return .female
+        } else if voice.name.contains("Alex") || voice.name.contains("Fred") || voice.name.contains("Tom") {
+            return .male
+        } else {
+            return .female // Default to female if unknown
         }
     }
 

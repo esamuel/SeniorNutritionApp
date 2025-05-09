@@ -20,6 +20,7 @@ struct SeniorNutritionApp: App {
                     .environmentObject(userCommonMeals)
                     .environmentObject(appointmentManager)
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                    .preferredColorScheme(userSettings.isDarkMode ? .dark : .light)
             } else {
                 OnboardingView()
                     .environmentObject(userSettings)
@@ -28,6 +29,7 @@ struct SeniorNutritionApp: App {
                     .environmentObject(userCommonMeals)
                     .environmentObject(appointmentManager)
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                    .preferredColorScheme(userSettings.isDarkMode ? .dark : .light)
             }
         }
     }
