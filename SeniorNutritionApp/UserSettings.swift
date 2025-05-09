@@ -144,17 +144,14 @@ class UserSettings: ObservableObject {
         didSet { saveUserData() }
     }
     
+    @Published var isLoaded: Bool = false
+    
     private let localDataKey = "userData"
     
     private var cancellables = Set<AnyCancellable>()
     
     init() {
-        loadUserData()
         setupMedicationObservers()
-        
-        // Initialize with empty medications array
-        // This allows the user to add their own medications
-        print("DEBUG: Initializing with empty medications array")
         self.medications = []
     }
     
@@ -264,13 +261,15 @@ class UserSettings: ObservableObject {
                     userEmergencyContacts = data.userEmergencyContacts
                     preferredVoiceGender = data.preferredVoiceGender
                     speechRate = data.speechRate
-                    
+                    isLoaded = true
                     print("DEBUG: Successfully loaded user data")
                 } else {
                     print("DEBUG: No saved user data found")
+                    isLoaded = true
                 }
             } catch {
                 print("Error loading user data: \(error)")
+                isLoaded = true
             }
         }
         
@@ -353,6 +352,12 @@ class UserSettings: ObservableObject {
         // saveUserData() // Might be redundant if properties trigger saveUserData anyway
 
         print("DEBUG: All settings reset.")
+    }
+    
+    func loadUserDataIfNeeded() {
+        if !isLoaded {
+            loadUserData()
+        }
     }
 }
 
