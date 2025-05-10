@@ -19,31 +19,31 @@ struct MainTabView: View {
         TabView(selection: $selectedTab) {
             HomeView()
                 .tabItem {
-                    Label("Home", systemImage: "house.fill")
+                    Label(NSLocalizedString("Home", comment: ""), systemImage: "house.fill")
                 }
                 .tag(0)
             
             FastingTimerView()
                 .tabItem {
-                    Label("Fasting", systemImage: "timer")
+                    Label(NSLocalizedString("Fasting", comment: ""), systemImage: "timer")
                 }
                 .tag(1)
             
             WaterReminderView()
                 .tabItem {
-                    Label("Water", systemImage: "drop.fill")
+                    Label(NSLocalizedString("Water", comment: ""), systemImage: "drop.fill")
                 }
                 .tag(2)
             
             NutritionView()
                 .tabItem {
-                    Label("Nutrition", systemImage: "fork.knife")
+                    Label(NSLocalizedString("Nutrition", comment: ""), systemImage: "fork.knife")
                 }
                 .tag(3)
             
             MoreTabView()
                 .tabItem {
-                    Label("More", systemImage: "ellipsis")
+                    Label(NSLocalizedString("More", comment: ""), systemImage: "ellipsis")
                 }
                 .tag(4)
         }

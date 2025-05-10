@@ -9,6 +9,7 @@ struct HomeView: View {
     @StateObject private var voiceManager = VoiceManager.shared
     @StateObject private var waterManager = WaterReminderManager()
     @EnvironmentObject private var appointmentManager: AppointmentManager
+    @EnvironmentObject var languageManager: LanguageManager
     @State private var showingHelpSheet = false
     @State private var selectedMealType: MealType = .breakfast
     @State private var showingAddMeal = false
@@ -30,7 +31,7 @@ struct HomeView: View {
                 }
                 .padding()
             }
-            .navigationTitle("Home")
+            .navigationTitle(NSLocalizedString("Home", comment: ""))
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -41,7 +42,7 @@ struct HomeView: View {
                                 .imageScale(.large)
                                 .foregroundColor(.blue)
                         }
-                        .accessibilityLabel("Open Settings")
+                        .accessibilityLabel(NSLocalizedString("Open Settings", comment: ""))
                         
                         // Help Button (Existing)
                         Button(action: {
@@ -51,7 +52,7 @@ struct HomeView: View {
                                 .imageScale(.large)
                                 .foregroundColor(.blue)
                         }
-                        .accessibilityLabel("Get Help")
+                        .accessibilityLabel(NSLocalizedString("Get Help", comment: ""))
                     }
                 }
             }
@@ -76,7 +77,7 @@ struct HomeView: View {
     private var welcomeSection: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
-                Text("Good \(timeOfDay), \(userSettings.userProfile?.firstName ?? userSettings.userName)")
+                Text(String(format: NSLocalizedString("Good %@, %@", comment: ""), timeOfDay, userSettings.userProfile?.firstName ?? userSettings.userName))
                     .font(.system(size: userSettings.textSize.size + 4, weight: .bold))
                 
                 Spacer()
@@ -85,21 +86,20 @@ struct HomeView: View {
                     if voiceManager.isSpeaking {
                         voiceManager.stopSpeaking()
                     } else {
-                        var speech = "Good \(timeOfDay), \(userSettings.userProfile?.firstName ?? userSettings.userName). "
-                        speech += "Medication Reminders. "
+                        var speech = String(format: NSLocalizedString("Good %@, %@. ", comment: ""), timeOfDay, userSettings.userProfile?.firstName ?? userSettings.userName)
+                        speech += NSLocalizedString("Medication Reminders.", comment: "")
                         if nextMedicationDoses.isEmpty {
-                            speech += "No medications scheduled for today."
+                            speech += NSLocalizedString("No medications scheduled for today.", comment: "")
                         } else {
                             for pair in nextMedicationDoses.prefix(3) {
                                 let medName = pair.medication.name
                                 let timeString = timeUntil(pair.nextDose)
-                                speech += "\(medName) in \(timeString). "
+                                speech += String(format: NSLocalizedString("%@ in %@.", comment: ""), medName, timeString)
                             }
                         }
-                        // Add fasting status (from the fasting circle)
-                        speech += " And your fasting status: \(fastingManager.fastingState.title). "
-                        speech += "Time remaining: \(formatRemainingTime()). "
-                        speech += "\(calculatePercentageRemaining()) percent remain."
+                        speech += String(format: NSLocalizedString("And your fasting status: %@. ", comment: ""), fastingManager.fastingState.title)
+                        speech += String(format: NSLocalizedString("Time remaining: %@. ", comment: ""), formatRemainingTime())
+                        speech += String(format: NSLocalizedString("%d percent remain.", comment: ""), calculatePercentageRemaining())
                         voiceManager.speak(speech, userSettings: userSettings)
                     }
                 }) {
@@ -109,11 +109,11 @@ struct HomeView: View {
                             .imageScale(.large)
                             
                         if voiceManager.isSpeaking {
-                            Text("Stop")
+                            Text(NSLocalizedString("Stop", comment: ""))
                                 .font(.system(size: userSettings.textSize.size - 2))
                                 .foregroundColor(.white)
                         } else {
-                            Text("Read")
+                            Text(NSLocalizedString("Read", comment: ""))
                                 .font(.system(size: userSettings.textSize.size - 2))
                                 .foregroundColor(.white)
                         }
@@ -123,8 +123,8 @@ struct HomeView: View {
                     .background(Color.blue)
                     .cornerRadius(20)
                 }
-                .accessibilityLabel("Read Welcome Summary")
-                .accessibilityHint("Reads out your greeting and medication reminders")
+                .accessibilityLabel(NSLocalizedString("Read Welcome Summary", comment: ""))
+                .accessibilityHint(NSLocalizedString("Reads out your greeting and medication reminders", comment: ""))
             }
             
             if let profile = userSettings.userProfile {
@@ -132,11 +132,11 @@ struct HomeView: View {
                     Image(systemName: "calendar")
                         .foregroundColor(.green)
                     if profile.age > 0 {
-                        Text("Age: \(profile.age) years, \(profile.ageMonths) months")
+                        Text(String(format: NSLocalizedString("Age: %d years, %d months", comment: ""), profile.age, profile.ageMonths))
                             .font(.system(size: userSettings.textSize.size))
                             .foregroundColor(.green)
                     } else {
-                        Text("Age: \(profile.ageMonths) months")
+                        Text(String(format: NSLocalizedString("Age: %d months", comment: ""), profile.ageMonths))
                             .font(.system(size: userSettings.textSize.size))
                             .foregroundColor(.green)
                     }
@@ -146,16 +146,16 @@ struct HomeView: View {
                 .cornerRadius(8)
             }
             
-            Text("Today is \(formattedDate)")
+            Text(String(format: NSLocalizedString("Today is %@", comment: ""), formattedDate))
                 .font(.system(size: userSettings.textSize.size))
             
             VStack(alignment: .leading, spacing: 8) {
-                Text("Medication Reminders")
+                Text(NSLocalizedString("Medication Reminders", comment: ""))
                     .font(.system(size: userSettings.textSize.size, weight: .bold))
                     .foregroundColor(.red)
                 
                 if nextMedicationDoses.isEmpty {
-                    Text("No medications scheduled for today")
+                    Text(NSLocalizedString("No medications scheduled for today", comment: ""))
                         .font(.system(size: userSettings.textSize.size))
                         .foregroundColor(.secondary)
                 } else {
@@ -163,7 +163,7 @@ struct HomeView: View {
                         HStack {
                             Image(systemName: "bell.fill")
                                 .foregroundColor(.red)
-                            Text("\(pair.medication.name) in \(timeUntil(pair.nextDose))")
+                            Text(String(format: NSLocalizedString("%@ in %@", comment: ""), pair.medication.name, timeUntil(pair.nextDose)))
                                 .font(.system(size: userSettings.textSize.size))
                                 .foregroundColor(.red)
                         }
@@ -218,7 +218,7 @@ struct HomeView: View {
                         .font(.system(size: userSettings.textSize.size))
                         .foregroundColor(.secondary)
                     
-                    Text(fastingManager.fastingState == .fasting ? "of fasting" : "of eating window")
+                    Text(fastingManager.fastingState == .fasting ? NSLocalizedString("of fasting", comment: "") : NSLocalizedString("of eating window", comment: ""))
                         .font(.system(size: userSettings.textSize.size - 2))
                         .foregroundColor(.secondary)
                 }
@@ -235,7 +235,7 @@ struct HomeView: View {
     // Quick actions section
     private var quickActionsSection: some View {
         VStack(alignment: .leading, spacing: 15) {
-            Text("Quick Actions")
+            Text(NSLocalizedString("Quick Actions", comment: ""))
                 .font(.system(size: userSettings.textSize.size + 4, weight: .bold))
                 .frame(maxWidth: .infinity, alignment: .leading)
             
@@ -271,7 +271,7 @@ struct HomeView: View {
                                 .scaleEffect(1.4) // Scale up to match other icons
                             )
                         
-                        Text("Add Medication")
+                        Text(NSLocalizedString("Add Medication", comment: ""))
                             .font(.system(size: userSettings.textSize.size))
                             .foregroundColor(Color(red: 0.55, green: 0.27, blue: 0.68))
                             .multilineTextAlignment(.center)
@@ -293,7 +293,7 @@ struct HomeView: View {
                                     .foregroundColor(.white)
                             )
                         
-                        Text("Track Water")
+                        Text(NSLocalizedString("Track Water", comment: ""))
                             .font(.system(size: userSettings.textSize.size))
                             .foregroundColor(Color(red: 0.0, green: 0.45, blue: 0.9))
                             .multilineTextAlignment(.center)
@@ -316,7 +316,7 @@ struct HomeView: View {
                                     .offset(y: -3)
                             )
                         
-                        Text("Log Meal")
+                        Text(NSLocalizedString("Log Meal", comment: ""))
                             .font(.system(size: userSettings.textSize.size))
                             .foregroundColor(Color(red: 0.25, green: 0.65, blue: 0.25))
                             .multilineTextAlignment(.center)
@@ -337,7 +337,7 @@ struct HomeView: View {
                                     .font(.system(size: 44))
                                     .foregroundColor(.white)
                             )
-                        Text("Fasting")
+                        Text(NSLocalizedString("Fasting", comment: ""))
                             .font(.system(size: userSettings.textSize.size))
                             .foregroundColor(Color.orange)
                             .multilineTextAlignment(.center)
@@ -359,7 +359,7 @@ struct HomeView: View {
                                     .foregroundColor(.white)
                             )
                         
-                        Text("Emergency")
+                        Text(NSLocalizedString("Emergency", comment: ""))
                             .font(.system(size: userSettings.textSize.size))
                             .foregroundColor(Color(red: 0.9, green: 0.15, blue: 0.15))
                             .multilineTextAlignment(.center)
@@ -381,7 +381,7 @@ struct HomeView: View {
                                     .foregroundColor(.white)
                             )
                         
-                        Text("Health")
+                        Text(NSLocalizedString("Health", comment: ""))
                             .font(.system(size: userSettings.textSize.size))
                             .foregroundColor(Color(red: 0.95, green: 0.45, blue: 0.15))
                             .multilineTextAlignment(.center)
@@ -415,7 +415,7 @@ struct HomeView: View {
     private var todayScheduleSection: some View {
         VStack(alignment: .leading, spacing: 15) {
             HStack {
-                Text("Today's Schedule")
+                Text(NSLocalizedString("Today's Schedule", comment: ""))
                     .font(.system(size: userSettings.textSize.size + 4, weight: .bold))
                 
                 Spacer()
@@ -430,11 +430,11 @@ struct HomeView: View {
                             .imageScale(.large)
                             
                         if voiceManager.isSpeaking {
-                            Text("Stop")
+                            Text(NSLocalizedString("Stop", comment: ""))
                                 .font(.system(size: userSettings.textSize.size - 2))
                                 .foregroundColor(.white)
                         } else {
-                            Text("Read")
+                            Text(NSLocalizedString("Read", comment: ""))
                                 .font(.system(size: userSettings.textSize.size - 2))
                                 .foregroundColor(.white)
                         }
@@ -444,8 +444,8 @@ struct HomeView: View {
                     .background(Color.blue)
                     .cornerRadius(20)
                 }
-                .accessibilityLabel("Read Today's Schedule")
-                .accessibilityHint("Reads out your appointments and medications for today")
+                .accessibilityLabel(NSLocalizedString("Read Today's Schedule", comment: ""))
+                .accessibilityHint(NSLocalizedString("Reads out your appointments and medications for today", comment: ""))
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             
@@ -456,13 +456,13 @@ struct HomeView: View {
                         .font(.system(size: 18))
                         .foregroundColor(.primary)
                     
-                    Text("Upcoming Appointments")
+                    Text(NSLocalizedString("Upcoming Appointments", comment: ""))
                         .font(.system(size: userSettings.textSize.size, weight: .semibold))
                     
                     Spacer()
                     
                     NavigationLink(destination: AppointmentsView()) {
-                        Text("See All")
+                        Text(NSLocalizedString("See All", comment: ""))
                             .font(.system(size: userSettings.textSize.size - 2))
                             .foregroundColor(.blue)
                     }
@@ -472,11 +472,11 @@ struct HomeView: View {
                     HStack {
                         Spacer()
                         VStack(spacing: 10) {
-                            Text("No upcoming appointments")
+                            Text(NSLocalizedString("No upcoming appointments", comment: ""))
                                 .font(.system(size: userSettings.textSize.size - 2))
                                 .foregroundColor(.gray)
                             
-                            Button("Add Appointment") {
+                            Button(NSLocalizedString("Add Appointment", comment: "")) {
                                 showingAddAppointment = true
                             }
                             .font(.system(size: userSettings.textSize.size - 2))
@@ -518,14 +518,14 @@ struct HomeView: View {
                             Button(action: {
                                 appointmentToEdit = appointment
                             }) {
-                                Label("Edit", systemImage: "pencil")
+                                Label(NSLocalizedString("Edit", comment: ""), systemImage: "pencil")
                             }
                             Button(role: .destructive, action: {
                                 if let index = appointmentManager.upcomingAppointments.firstIndex(where: { $0.id == appointment.id }) {
                                     appointmentManager.deleteAppointment(at: IndexSet([index]), from: appointmentManager.upcomingAppointments)
                                 }
                             }) {
-                                Label("Delete", systemImage: "trash")
+                                Label(NSLocalizedString("Delete", comment: ""), systemImage: "trash")
                             }
                         }
                         .onLongPressGesture {
@@ -542,7 +542,7 @@ struct HomeView: View {
                             HStack {
                                 Image(systemName: "plus")
                                     .font(.system(size: 14, weight: .semibold))
-                                Text("Add Appointment")
+                                Text(NSLocalizedString("Add Appointment", comment: ""))
                                     .font(.system(size: userSettings.textSize.size - 2, weight: .semibold))
                             }
                             .foregroundColor(.blue)
@@ -604,11 +604,11 @@ struct HomeView: View {
     private var timeOfDay: String {
         let hour = Calendar.current.component(.hour, from: Date())
         if hour < 12 {
-            return "Morning"
+            return NSLocalizedString("Morning", comment: "")
         } else if hour < 17 {
-            return "Afternoon"
+            return NSLocalizedString("Afternoon", comment: "")
         } else {
-            return "Evening"
+            return NSLocalizedString("Evening", comment: "")
         }
     }
     
@@ -624,13 +624,13 @@ struct HomeView: View {
         
         if let hour = components.hour, let minute = components.minute {
             if hour > 0 {
-                return "\(hour) hour\(hour == 1 ? "" : "s") \(minute) min"
+                return "\(hour) hour\(hour == 1 ? NSLocalizedString("s", comment: "") : "") \(minute) min"
             } else {
-                return "\(minute) minute\(minute == 1 ? "" : "s")"
+                return "\(minute) minute\(minute == 1 ? NSLocalizedString("s", comment: "") : "")"
             }
         }
         
-        return "Now"
+        return NSLocalizedString("Now", comment: "")
     }
     
     private struct NextMedicationDose: Identifiable {
@@ -828,8 +828,8 @@ struct HomeView: View {
         }
         
         let content = UNMutableNotificationContent()
-        content.title = "Medication Reminder"
-        content.body = "Time to take your \(medication.name) (\(medication.dosage))"
+        content.title = NSLocalizedString("Medication Reminder", comment: "")
+        content.body = NSLocalizedString("Time to take your \(medication.name) (\(medication.dosage))", comment: "")
         content.sound = .default
         
         let triggerDateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: notificationTime)
@@ -864,132 +864,132 @@ struct HomeView: View {
                     VStack(spacing: 25) {
                         // App Overview Section
                         InfoSection(
-                            title: "Welcome to Senior Nutrition App",
+                            title: NSLocalizedString("Welcome to Senior Nutrition App", comment: ""),
                             icon: "app.fill",
-                            content: "Your comprehensive health companion for managing nutrition, fasting, medications, and wellness tracking. This guide will help you navigate the app's features effectively.",
+                            content: NSLocalizedString("Your comprehensive health companion for managing nutrition, fasting, medications, and wellness tracking. This guide will help you navigate the app's features effectively.", comment: ""),
                             onSpeak: {
-                                voiceManager.speak("Welcome to Senior Nutrition App. Your comprehensive health companion for managing nutrition, fasting, medications, and wellness tracking. This guide will help you navigate the app's features effectively.")
+                                voiceManager.speak(NSLocalizedString("Welcome to Senior Nutrition App. Your comprehensive health companion for managing nutrition, fasting, medications, and wellness tracking. This guide will help you navigate the app's features effectively.", comment: ""))
                             }
                         )
                         
                         // Fasting Timer Section
                         InfoSection(
-                            title: "Fasting Timer",
+                            title: NSLocalizedString("Fasting Timer", comment: ""),
                             icon: "timer",
                             items: [
-                                "Advanced fasting protocol options for seniors",
-                                "Real-time tracking with health safety indicators",
-                                "Customizable fasting and eating windows",
-                                "Integration with medication and meal schedules"
+                                NSLocalizedString("Advanced fasting protocol options for seniors", comment: ""),
+                                NSLocalizedString("Real-time tracking with health safety indicators", comment: ""),
+                                NSLocalizedString("Customizable fasting and eating windows", comment: ""),
+                                NSLocalizedString("Integration with medication and meal schedules", comment: "")
                             ],
                             onSpeak: {
-                                voiceManager.speak("Fasting Timer features: Advanced fasting protocol options for seniors, real-time tracking with health safety indicators, customizable fasting and eating windows, and integration with medication and meal schedules.")
+                                voiceManager.speak(NSLocalizedString("Fasting Timer features: Advanced fasting protocol options for seniors, real-time tracking with health safety indicators, customizable fasting and eating windows, and integration with medication and meal schedules.", comment: ""))
                             }
                         )
                         
                         // Nutrition Section
                         InfoSection(
-                            title: "Nutrition Tracking",
+                            title: NSLocalizedString("Nutrition Tracking", comment: ""),
                             icon: "fork.knife",
                             items: [
-                                "Simplified meal logging with photos or voice input",
-                                "Nutritional analysis with senior-specific recommendations",
-                                "Customizable meal reminders and hydration tracking",
-                                "Food database with barcode scanning capability"
+                                NSLocalizedString("Simplified meal logging with photos or voice input", comment: ""),
+                                NSLocalizedString("Nutritional analysis with senior-specific recommendations", comment: ""),
+                                NSLocalizedString("Customizable meal reminders and hydration tracking", comment: ""),
+                                NSLocalizedString("Food database with barcode scanning capability", comment: "")
                             ]
                         )
                         
                         // Appointment Section
                         InfoSection(
-                            title: "Appointment Management",
+                            title: NSLocalizedString("Appointment Management", comment: ""),
                             icon: "calendar",
                             items: [
-                                "Easy scheduling and tracking of medical appointments",
-                                "Automatic reminders with customizable advance notice",
-                                "Location and provider information storage",
-                                "Calendar integration and sharing with caregivers"
+                                NSLocalizedString("Easy scheduling and tracking of medical appointments", comment: ""),
+                                NSLocalizedString("Automatic reminders with customizable advance notice", comment: ""),
+                                NSLocalizedString("Location and provider information storage", comment: ""),
+                                NSLocalizedString("Calendar integration and sharing with caregivers", comment: "")
                             ],
                             onSpeak: {
-                                voiceManager.speak("Appointment Management features: Easy scheduling and tracking of medical appointments, automatic reminders with customizable advance notice, location and provider information storage, and calendar integration and sharing with caregivers.")
+                                voiceManager.speak(NSLocalizedString("Appointment Management features: Easy scheduling and tracking of medical appointments, automatic reminders with customizable advance notice, location and provider information storage, and calendar integration and sharing with caregivers.", comment: ""))
                             }
                         )
                         
                         // Health Tracking Section
                         InfoSection(
-                            title: "Health Monitoring",
+                            title: NSLocalizedString("Health Monitoring", comment: ""),
                             icon: "heart.fill",
                             items: [
-                                "Track vital signs including blood pressure, heart rate, and weight",
-                                "Blood sugar monitoring with customizable target ranges",
-                                "Visual data trends with weekly and monthly analysis",
-                                "Health data export for healthcare provider review"
+                                NSLocalizedString("Track vital signs including blood pressure, heart rate, and weight", comment: ""),
+                                NSLocalizedString("Blood sugar monitoring with customizable target ranges", comment: ""),
+                                NSLocalizedString("Visual data trends with weekly and monthly analysis", comment: ""),
+                                NSLocalizedString("Health data export for healthcare provider review", comment: "")
                             ],
                             onSpeak: {
-                                voiceManager.speak("Health Monitoring features: Track vital signs including blood pressure, heart rate, and weight, blood sugar monitoring with customizable target ranges, visual data trends with weekly and monthly analysis, and health data export for healthcare provider review.")
+                                voiceManager.speak(NSLocalizedString("Health Monitoring features: Track vital signs including blood pressure, heart rate, and weight, blood sugar monitoring with customizable target ranges, visual data trends with weekly and monthly analysis, and health data export for healthcare provider review.", comment: ""))
                             }
                         )
                         
                         // Medication Section
                         InfoSection(
-                            title: "Medication Management",
+                            title: NSLocalizedString("Medication Management", comment: ""),
                             icon: "pill.fill",
                             items: [
-                                "Visual medication identification system",
-                                "Smart scheduling with fasting compatibility alerts",
-                                "Refill reminders and medication history tracking",
-                                "Food and timing requirement notifications"
+                                NSLocalizedString("Visual medication identification system", comment: ""),
+                                NSLocalizedString("Smart scheduling with fasting compatibility alerts", comment: ""),
+                                NSLocalizedString("Refill reminders and medication history tracking", comment: ""),
+                                NSLocalizedString("Food and timing requirement notifications", comment: "")
                             ]
                         )
                         
                         // Quick Actions Section
                         InfoSection(
-                            title: "Quick Actions",
+                            title: NSLocalizedString("Quick Actions", comment: ""),
                             icon: "bolt.fill",
                             items: [
-                                "One-tap meal and medication logging",
-                                "Voice-activated commands for hands-free operation",
-                                "Emergency contact access with location sharing",
-                                "Instant health data recording and visualization"
+                                NSLocalizedString("One-tap meal and medication logging", comment: ""),
+                                NSLocalizedString("Voice-activated commands for hands-free operation", comment: ""),
+                                NSLocalizedString("Emergency contact access with location sharing", comment: ""),
+                                NSLocalizedString("Instant health data recording and visualization", comment: "")
                             ]
                         )
                         
                         // Tips Section
                         InfoSection(
-                            title: "Important Tips",
+                            title: NSLocalizedString("Important Tips", comment: ""),
                             icon: "lightbulb.fill",
                             items: [
-                                "Always consult healthcare providers before changing medication routines",
-                                "Stay hydrated with at least 8 glasses of water daily, especially during fasting",
-                                "Monitor for dizziness, weakness, or discomfort during fasting periods",
-                                "Use the emergency override feature if you experience any concerning symptoms"
+                                NSLocalizedString("Always consult healthcare providers before changing medication routines", comment: ""),
+                                NSLocalizedString("Stay hydrated with at least 8 glasses of water daily, especially during fasting", comment: ""),
+                                NSLocalizedString("Monitor for dizziness, weakness, or discomfort during fasting periods", comment: ""),
+                                NSLocalizedString("Use the emergency override feature if you experience any concerning symptoms", comment: "")
                             ]
                         )
                         
                         // Emergency Section
                         InfoSection(
-                            title: "Emergency Information",
+                            title: NSLocalizedString("Emergency Information", comment: ""),
                             icon: "exclamationmark.triangle.fill",
-                            content: "If you experience dizziness, weakness, confusion, or any unusual symptoms during fasting, stop immediately and eat something with protein and carbohydrates. Contact your healthcare provider or emergency services if symptoms persist or worsen.",
+                            content: NSLocalizedString("If you experience dizziness, weakness, confusion, or any unusual symptoms during fasting, stop immediately and eat something with protein and carbohydrates. Contact your healthcare provider or emergency services if symptoms persist or worsen.", comment: ""),
                             isWarning: true,
                             onSpeak: {
-                                voiceManager.speak("Emergency Information: If you experience dizziness, weakness, confusion, or any unusual symptoms during fasting, stop immediately and eat something with protein and carbohydrates. Contact your healthcare provider or emergency services if symptoms persist or worsen.")
+                                voiceManager.speak(NSLocalizedString("Emergency Information: If you experience dizziness, weakness, confusion, or any unusual symptoms during fasting, stop immediately and eat something with protein and carbohydrates. Contact your healthcare provider or emergency services if symptoms persist or worsen.", comment: ""))
                             }
                         )
                         
                         // Support Section
                         InfoSection(
-                            title: "Need More Help?",
+                            title: NSLocalizedString("Need More Help?", comment: ""),
                             icon: "questionmark.circle.fill",
-                            content: "Contact our support team via the Help & Support section in the More tab, or use the voice assistance feature for immediate guidance."
+                            content: NSLocalizedString("Contact our support team via the Help & Support section in the More tab, or use the voice assistance feature for immediate guidance.", comment: "")
                         )
                     }
                     .padding()
                 }
-                .navigationTitle("Help Guide")
+                .navigationTitle(NSLocalizedString("Help Guide", comment: ""))
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        Button("Done") {
+                        Button(NSLocalizedString("Done", comment: "")) {
                             voiceManager.stopSpeaking()
                             dismiss()
                         }
@@ -1086,18 +1086,18 @@ struct HomeView: View {
         let now = Date()
         
         if calendar.isDateInToday(date) {
-            return "Today"
+            return NSLocalizedString("Today", comment: "")
         }
         
         if calendar.isDateInTomorrow(date) {
-            return "Tomorrow"
+            return NSLocalizedString("Tomorrow", comment: "")
         }
         
         let components = calendar.dateComponents([.day], from: now, to: date)
         if let days = components.day, days > 0 {
-            return "\(days) day\(days == 1 ? "" : "s")"
+            return "\(days) day\(days == 1 ? NSLocalizedString("s", comment: "") : "")"
         } else {
-            return "Past"
+            return NSLocalizedString("Past", comment: "")
         }
     }
     
@@ -1108,10 +1108,10 @@ struct HomeView: View {
             return
         }
         
-        var speechText = "Today's schedule: "
+        var speechText = NSLocalizedString("Today's schedule: ", comment: "")
         
         if appointmentManager.upcomingAppointments.isEmpty {
-            speechText += "You have no upcoming appointments."
+            speechText += NSLocalizedString("You have no upcoming appointments.", comment: "")
         } else {
             // Get only appointments for today and tomorrow for the speech
             let calendar = Calendar.current
@@ -1125,15 +1125,15 @@ struct HomeView: View {
             }
             
             if nearTermAppointments.isEmpty {
-                speechText += "You have \(appointmentManager.upcomingAppointments.count) upcoming appointments, but none today or tomorrow. "
+                speechText += NSLocalizedString("You have \(appointmentManager.upcomingAppointments.count) upcoming appointments, but none today or tomorrow. ", comment: "")
                 
                 // Add first upcoming appointment if there is one
                 if let nextAppointment = appointmentManager.upcomingAppointments.first {
                     let daysUntil = formatAppointmentDate(nextAppointment.date)
-                    speechText += "Your next appointment is \(nextAppointment.title), \(daysUntil)."
+                    speechText += NSLocalizedString("Your next appointment is \(nextAppointment.title), \(daysUntil).", comment: "")
                 }
             } else {
-                speechText += "You have \(nearTermAppointments.count) appointment\(nearTermAppointments.count > 1 ? "s" : "") in the next two days. "
+                speechText += NSLocalizedString("You have \(nearTermAppointments.count) appointment\(nearTermAppointments.count > 1 ? NSLocalizedString("s", comment: "") : "") in the next two days. ", comment: "")
                 
                 for appointment in nearTermAppointments {
                     let appointmentDate = appointment.date
@@ -1144,10 +1144,10 @@ struct HomeView: View {
                     timeFormatter.dateStyle = .none
                     let timeString = timeFormatter.string(from: appointmentDate)
                     
-                    speechText += "\(appointment.title) \(isToday ? "today" : "tomorrow") at \(timeString). "
+                    speechText += NSLocalizedString("\(appointment.title) \(isToday ? NSLocalizedString("today", comment: "") : NSLocalizedString("tomorrow", comment: "")) at \(timeString). ", comment: "")
                     
                     if !appointment.location.isEmpty {
-                        speechText += "Location: \(appointment.location). "
+                        speechText += NSLocalizedString("Location: \(appointment.location). ", comment: "")
                     }
                 }
             }
@@ -1155,12 +1155,12 @@ struct HomeView: View {
         
         // Add medication information to the schedule reading
         if !nextMedicationDoses.isEmpty {
-            speechText += " Medications due: "
+            speechText += NSLocalizedString(" Medications due: ", comment: "")
             for (index, pair) in nextMedicationDoses.prefix(3).enumerated() {
                 if index > 0 {
-                    speechText += ", "
+                    speechText += NSLocalizedString(", ", comment: "")
                 }
-                speechText += "\(pair.medication.name) in \(timeUntil(pair.nextDose))"
+                speechText += NSLocalizedString("\(pair.medication.name) in \(timeUntil(pair.nextDose))", comment: "")
             }
         }
         

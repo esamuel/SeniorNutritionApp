@@ -8,6 +8,7 @@ struct SeniorNutritionApp: App {
     @StateObject private var foodDatabase = FoodDatabaseService()
     @StateObject private var userCommonMeals = UserCommonMeals()
     @StateObject private var appointmentManager = AppointmentManager()
+    @StateObject private var languageManager = LanguageManager.shared
     let persistenceController = PersistenceController.shared
     
     var body: some Scene {
@@ -33,7 +34,9 @@ struct SeniorNutritionApp: App {
                         .environmentObject(foodDatabase)
                         .environmentObject(userCommonMeals)
                         .environmentObject(appointmentManager)
+                        .environmentObject(languageManager)
                         .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                        .environment(\.layoutDirection, languageManager.layoutDirection)
                         .preferredColorScheme(userSettings.isDarkMode ? .dark : .light)
                 } else {
                     OnboardingView()
@@ -42,7 +45,9 @@ struct SeniorNutritionApp: App {
                         .environmentObject(foodDatabase)
                         .environmentObject(userCommonMeals)
                         .environmentObject(appointmentManager)
+                        .environmentObject(languageManager)
                         .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                        .environment(\.layoutDirection, languageManager.layoutDirection)
                         .preferredColorScheme(userSettings.isDarkMode ? .dark : .light)
                 }
             }
