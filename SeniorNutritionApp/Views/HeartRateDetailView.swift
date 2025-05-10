@@ -416,6 +416,7 @@ struct AddHeartRateView: View {
     @Environment(\.dismiss) private var dismiss
     
     @State private var bpm = ""
+    @FocusState private var bpmFieldIsFocused: Bool
     @State private var date = Date()
     @State private var error: String?
     
@@ -425,6 +426,7 @@ struct AddHeartRateView: View {
                 Section(header: Text("Heart Rate")) {
                     TextField("BPM (Beats Per Minute)", text: $bpm)
                         .keyboardType(.numberPad)
+                        .focused($bpmFieldIsFocused)
                     DatePicker("Date & Time", selection: $date)
                 }
                 
@@ -445,6 +447,11 @@ struct AddHeartRateView: View {
                     Button("Cancel") {
                         dismiss()
                     }
+                }
+            }
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.bpmFieldIsFocused = true
                 }
             }
         }

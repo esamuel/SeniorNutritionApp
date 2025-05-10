@@ -432,6 +432,7 @@ struct AddBloodSugarView: View {
     @Environment(\.dismiss) private var dismiss
     
     @State private var glucose = ""
+    @FocusState private var glucoseFieldIsFocused: Bool
     @State private var date = Date()
     @State private var error: String?
     
@@ -441,6 +442,7 @@ struct AddBloodSugarView: View {
                 Section(header: Text("Blood Sugar")) {
                     TextField("Glucose (mg/dL)", text: $glucose)
                         .keyboardType(.numberPad)
+                        .focused($glucoseFieldIsFocused)
                     DatePicker("Date & Time", selection: $date)
                 }
                 
@@ -462,6 +464,11 @@ struct AddBloodSugarView: View {
                         dismiss()
                     }
                 }
+            }
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.glucoseFieldIsFocused = true
             }
         }
     }

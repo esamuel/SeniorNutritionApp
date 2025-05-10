@@ -397,6 +397,7 @@ struct AddWeightView: View {
     @State private var weight = ""
     @State private var date = Date()
     @State private var error: String?
+    @FocusState private var weightFieldIsFocused: Bool
     
     var body: some View {
         NavigationView {
@@ -404,6 +405,7 @@ struct AddWeightView: View {
                 Section(header: Text("Weight")) {
                     TextField("Weight (kg)", text: $weight)
                         .keyboardType(.decimalPad)
+                        .focused($weightFieldIsFocused)
                     DatePicker("Date & Time", selection: $date)
                 }
                 
@@ -425,6 +427,11 @@ struct AddWeightView: View {
                         dismiss()
                     }
                 }
+            }
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.weightFieldIsFocused = true
             }
         }
     }
@@ -466,6 +473,7 @@ struct EditWeightView: View {
     @State private var weight: String
     @State private var date: Date
     @State private var error: String?
+    @FocusState private var weightFieldIsFocused: Bool
     
     init(entry: WeightEntry) {
         self.entry = entry
@@ -479,6 +487,7 @@ struct EditWeightView: View {
                 Section(header: Text("Weight")) {
                     TextField("Weight (kg)", text: $weight)
                         .keyboardType(.decimalPad)
+                        .focused($weightFieldIsFocused)
                     DatePicker("Date & Time", selection: $date)
                 }
                 
@@ -500,6 +509,11 @@ struct EditWeightView: View {
                         saveChanges()
                     }
                 }
+            }
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.weightFieldIsFocused = true
             }
         }
     }

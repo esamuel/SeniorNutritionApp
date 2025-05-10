@@ -462,10 +462,11 @@ struct EditBloodPressureView: View {
     
     let entry: BloodPressureEntry
     
-    @State private var systolic: String
+    @State private var systolic = ""
     @State private var diastolic: String
     @State private var date: Date
     @State private var error: String?
+    @FocusState private var systolicFieldIsFocused: Bool
     
     init(entry: BloodPressureEntry) {
         self.entry = entry
@@ -480,6 +481,7 @@ struct EditBloodPressureView: View {
                 Section(header: Text("Blood Pressure")) {
                     TextField("Systolic (top)", text: $systolic)
                         .keyboardType(.numberPad)
+                        .focused($systolicFieldIsFocused)
                     TextField("Diastolic (bottom)", text: $diastolic)
                         .keyboardType(.numberPad)
                     DatePicker("Date & Time", selection: $date)
@@ -503,6 +505,11 @@ struct EditBloodPressureView: View {
                         saveChanges()
                     }
                 }
+            }
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.systolicFieldIsFocused = true
             }
         }
     }

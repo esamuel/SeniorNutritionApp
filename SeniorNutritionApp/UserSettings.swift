@@ -146,6 +146,10 @@ class UserSettings: ObservableObject {
     
     @Published var isLoaded: Bool = false
     
+    @Published var selectedLanguage: String = Locale.current.languageCode ?? "en" // Default to system or English
+    
+    let supportedLanguages: [String] = ["en", "es", "fr", "de", "he"]
+    
     private let localDataKey = "userData"
     
     private var cancellables = Set<AnyCancellable>()
@@ -236,7 +240,8 @@ class UserSettings: ObservableObject {
     }
     
     // Load user data from persistent storage
-    private func loadUserData() {
+    private func loadUserData(startTime: Date? = nil) {
+        let loadStart = startTime ?? Date()
         Task {
             do {
                 if let data: PersistentData = try await PersistentStorage.shared.loadData(forKey: localDataKey) {
@@ -262,14 +267,19 @@ class UserSettings: ObservableObject {
                     preferredVoiceGender = data.preferredVoiceGender
                     speechRate = data.speechRate
                     isLoaded = true
-                    print("DEBUG: Successfully loaded user data")
+                    let elapsed = Date().timeIntervalSince(loadStart)
+                    print("DEBUG: User data loaded in \(elapsed) seconds")
                 } else {
                     print("DEBUG: No saved user data found")
                     isLoaded = true
+                    let elapsed = Date().timeIntervalSince(loadStart)
+                    print("DEBUG: User data load (empty) in \(elapsed) seconds")
                 }
             } catch {
                 print("Error loading user data: \(error)")
                 isLoaded = true
+                let elapsed = Date().timeIntervalSince(loadStart)
+                print("DEBUG: User data load failed after \(elapsed) seconds")
             }
         }
         
@@ -354,9 +364,9 @@ class UserSettings: ObservableObject {
         print("DEBUG: All settings reset.")
     }
     
-    func loadUserDataIfNeeded() {
+    func loadUserDataIfNeeded(startTime: Date? = nil) {
         if !isLoaded {
-            loadUserData()
+            loadUserData(startTime: startTime)
         }
     }
 }

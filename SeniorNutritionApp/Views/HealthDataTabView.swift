@@ -39,6 +39,9 @@ struct HealthDataTabView: View {
     @State private var showingAddWeight = false
     @State private var weightEntryToEdit: WeightEntry?
     
+    @State private var systolic = ""
+    @FocusState private var systolicFieldIsFocused: Bool
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -371,6 +374,7 @@ struct AddBloodPressureView: View {
     @State private var systolic = ""
     @State private var diastolic = ""
     @State private var error: String?
+    @FocusState private var systolicFieldIsFocused: Bool
     
     var body: some View {
         NavigationView {
@@ -378,6 +382,7 @@ struct AddBloodPressureView: View {
                 Section(header: Text("Enter Blood Pressure")) {
                     TextField("Systolic (top)", text: $systolic)
                         .keyboardType(.numberPad)
+                        .focused($systolicFieldIsFocused)
                     TextField("Diastolic (bottom)", text: $diastolic)
                         .keyboardType(.numberPad)
                 }
@@ -398,6 +403,11 @@ struct AddBloodPressureView: View {
                         dismiss()
                     }
                 }
+            }
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.systolicFieldIsFocused = true
             }
         }
     }

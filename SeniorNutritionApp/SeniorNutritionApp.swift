@@ -22,7 +22,9 @@ struct SeniorNutritionApp: App {
                         Spacer()
                     }
                     .onAppear {
-                        userSettings.loadUserDataIfNeeded()
+                        let start = Date()
+                        print("DEBUG: App appeared at \(start)")
+                        userSettings.loadUserDataIfNeeded(startTime: start)
                     }
                 } else if userSettings.isOnboardingComplete {
                     MainTabView()

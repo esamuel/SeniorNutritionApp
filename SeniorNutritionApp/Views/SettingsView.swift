@@ -1,5 +1,4 @@
 import SwiftUI
-import UIKit
 // Add import for our print preview views
 
 // Main Settings View
@@ -73,6 +72,20 @@ struct SettingsView: View {
                     }
                     .padding(.vertical, 8)
                     .toggleStyle(SwitchToggleStyle(tint: .blue))
+                }
+                
+                // Language section
+                Section(header: Text("Language").font(.system(size: userSettings.textSize.size, weight: .bold))) {
+                    Picker("App Language", selection: $userSettings.selectedLanguage) {
+                        ForEach(userSettings.supportedLanguages, id: \.self) { code in
+                            Text(languageDisplayName(for: code)).tag(code)
+                        }
+                    }
+                    .pickerStyle(MenuPickerStyle())
+                    .font(.system(size: userSettings.textSize.size))
+                    .onChange(of: userSettings.selectedLanguage) { newLang in
+                        Bundle.setLanguage(newLang)
+                    }
                 }
                 
                 // Help & support section
@@ -236,6 +249,18 @@ struct SettingsView: View {
         }
         .padding(.vertical, 8) // Apply padding here for consistent row height
         .contentShape(Rectangle()) // Ensures the whole row is tappable for Buttons
+    }
+    
+    // Helper function for language display names
+    private func languageDisplayName(for code: String) -> String {
+        switch code {
+        case "en": return "English"
+        case "es": return "Español"
+        case "fr": return "Français"
+        case "de": return "Deutsch"
+        case "he": return "עברית"
+        default: return code
+        }
     }
 }
 
