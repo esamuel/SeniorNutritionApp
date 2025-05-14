@@ -296,20 +296,7 @@ struct PersonalizedNutritionTipsView: View {
     }
     
     private func nutritionTip(icon: String, title: String, description: String) -> some View {
-        HStack(alignment: .top, spacing: 15) {
-            Image(systemName: icon)
-                .foregroundColor(.green)
-                .frame(width: 20)
-            VStack(alignment: .leading, spacing: 5) {
-                Text(title)
-                    .font(.system(size: userSettings.textSize.size))
-                Text(description)
-                    .font(.system(size: userSettings.textSize.size - 2))
-                    .foregroundColor(.secondary)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-        }
-        .padding(.vertical, 5)
+        TipRowView(icon: icon, title: title, description: description, textSize: userSettings.textSize.size, iconColor: .green)
     }
     
     // Helper function to get nutrition tips for specific medical conditions

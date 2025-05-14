@@ -858,9 +858,9 @@ struct FastingTimerView: View {
             VStack(alignment: .leading, spacing: 10) {
                 Text("Health Tips")
                     .font(.system(size: textSize, weight: .bold))
-                tipRow(icon: "drop.fill", text: NSLocalizedString("Remember to drink plenty of water during your fast", comment: ""))
-                tipRow(icon: "exclamationmark.triangle", text: NSLocalizedString("If you feel unwell, end your fast immediately", comment: ""))
-                tipRow(icon: "bed.double.fill", text: NSLocalizedString("Quality sleep helps with fasting results", comment: ""))
+                TipRowView(icon: "drop.fill", title: NSLocalizedString("Remember to drink plenty of water during your fast", comment: ""), description: nil, textSize: textSize, iconColor: .blue)
+                TipRowView(icon: "exclamationmark.triangle", title: NSLocalizedString("If you feel unwell, end your fast immediately", comment: ""), description: nil, textSize: textSize, iconColor: .orange)
+                TipRowView(icon: "bed.double.fill", title: NSLocalizedString("Quality sleep helps with fasting results", comment: ""), description: nil, textSize: textSize, iconColor: .purple)
                 Button(action: {
                     showingHealthTips = true
                 }) {
@@ -878,19 +878,6 @@ struct FastingTimerView: View {
                 PersonalizedHealthTipsView()
                     .environmentObject(userSettings)
             }
-        }
-        
-        private func tipRow(icon: String, text: String) -> some View {
-            HStack(alignment: .top, spacing: 10) {
-                Image(systemName: icon)
-                    .foregroundColor(.blue)
-                    .frame(width: 20)
-                Text(text)
-                    .font(.system(size: textSize - 2))
-                    .fixedSize(horizontal: false, vertical: true)
-                Spacer()
-            }
-            .padding(.vertical, 5)
         }
     }
     

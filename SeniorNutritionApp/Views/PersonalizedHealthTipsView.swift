@@ -175,17 +175,7 @@ struct PersonalizedHealthTipsView: View {
     }
     
     private func tipRow(title: String, description: String) -> some View {
-        VStack(alignment: .leading, spacing: 5) {
-            Text(title)
-                .font(.system(size: userSettings.textSize.size, weight: .medium))
-                .foregroundColor(.primary)
-            
-            Text(description)
-                .font(.system(size: userSettings.textSize.size - 2))
-                .foregroundColor(.secondary)
-                .fixedSize(horizontal: false, vertical: true)
-        }
-        .padding(.vertical, 5)
+        TipRowView(icon: nil, title: title, description: description, textSize: userSettings.textSize.size)
     }
     
     // MARK: - Data
