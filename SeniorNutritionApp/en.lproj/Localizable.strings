@@ -155,4 +155,193 @@
 "Check labels for ingredients like whey, casein, and lactose which indicate dairy content." = "Check labels for ingredients like whey, casein, and lactose which indicate dairy content.";
 "Calcium Alternatives" = "Calcium Alternatives";
 "Include non-dairy calcium sources like fortified plant milks, tofu, leafy greens, and canned fish with bones." = "Include non-dairy calcium sources like fortified plant milks, tofu, leafy greens, and canned fish with bones.";
-"Hinweis: Konsultieren Sie immer Ihren Arzt, bevor Sie mit der Einnahme von Nahrungsergänzungsmitteln beginnen." = "Note: Always consult with your healthcare provider before starting any supplement regimen."; 
+"Hinweis: Konsultieren Sie immer Ihren Arzt, bevor Sie mit der Einnahme von Nahrungsergänzungsmitteln beginnen." = "Note: Always consult with your healthcare provider before starting any supplement regimen.";
+
+/* Nutrition Help Guide */
+"Help: Nutrition" = "Help: Nutrition";
+"The Nutrition section helps you track your meals, monitor nutrient intake, and maintain a balanced diet suited for your health needs. This guide explains how to use all features in the Nutrition tab." = "The Nutrition section helps you track your meals, monitor nutrient intake, and maintain a balanced diet suited for your health needs. This guide explains how to use all features in the Nutrition tab.";
+
+"Main Sections" = "Main Sections";
+"Dashboard: View your daily nutrient intake with visualizations" = "Dashboard: View your daily nutrient intake with visualizations";
+"Meals: Log and manage your daily meals and access common meals" = "Meals: Log and manage your daily meals and access common meals";
+"Food Database: Browse detailed nutrition information for thousands of foods" = "Food Database: Browse detailed nutrition information for thousands of foods";
+"Nutrition Tips: Get personalized advice based on your health profile" = "Nutrition Tips: Get personalized advice based on your health profile";
+
+"Dashboard Features" = "Dashboard Features";
+"The Dashboard provides a visual overview of your daily nutrition with easy-to-read charts and progress indicators." = "The Dashboard provides a visual overview of your daily nutrition with easy-to-read charts and progress indicators.";
+"Date Selector: Navigate between days to see nutrition history" = "Date Selector: Navigate between days to see nutrition history";
+"Daily Summary: Shows your calorie intake versus your daily goal" = "Daily Summary: Shows your calorie intake versus your daily goal";
+"Macronutrients: Tracks protein, carbohydrates, and fat intake" = "Macronutrients: Tracks protein, carbohydrates, and fat intake";
+"Vitamins & Minerals: Monitors essential micronutrients important for seniors" = "Vitamins & Minerals: Monitors essential micronutrients important for seniors";
+
+"Using the Dashboard" = "Using the Dashboard";
+"View Daily Summary: The top card shows your current calorie intake compared to your goal" = "View Daily Summary: The top card shows your current calorie intake compared to your goal";
+"Check Macronutrients: Progress bars show how close you are to your protein, carbs, and fat goals" = "Check Macronutrients: Progress bars show how close you are to your protein, carbs, and fat goals";
+"Monitor Micronutrients: Circular indicators show vitamin and mineral intake" = "Monitor Micronutrients: Circular indicators show vitamin and mineral intake";
+"Change Date: Use the arrows in the date selector to view different days" = "Change Date: Use the arrows in the date selector to view different days";
+
+"Meals Section" = "Meals Section";
+"The Meals section lets you log and manage your daily meals, access commonly eaten items, and view nutrition tips." = "The Meals section lets you log and manage your daily meals, access commonly eaten items, and view nutrition tips.";
+"Today's Meals: Lists all meals logged for the current day" = "Today's Meals: Lists all meals logged for the current day";
+"Common Meals: Quick access to your frequently eaten meals" = "Common Meals: Quick access to your frequently eaten meals";
+"Nutrition Tips: Provides advice tailored to your health profile" = "Nutrition Tips: Provides advice tailored to your health profile";
+"Food Database: Access to detailed nutritional information" = "Food Database: Access to detailed nutritional information";
+
+"Managing Meals" = "Managing Meals";
+"Add a Meal: Tap the + button in the header or the Add button in Today's Meals" = "Add a Meal: Tap the + button in the header or the Add button in Today's Meals";
+"Edit a Meal: Tap on any meal in your Today's Meals list to edit it" = "Edit a Meal: Tap on any meal in your Today's Meals list to edit it";
+"Use Common Meals: Tap any meal in the Common Meals section to quickly add it to today" = "Use Common Meals: Tap any meal in the Common Meals section to quickly add it to today";
+"Add to Common Meals: Long-press on a meal and select Add to Common Meals" = "Add to Common Meals: Long-press on a meal and select Add to Common Meals";
+"Delete a Meal: Long-press on a meal and select Delete" = "Delete a Meal: Long-press on a meal and select Delete";
+
+"Adding a New Meal" = "Adding a New Meal";
+"When adding a meal, follow these steps:" = "When adding a meal, follow these steps:";
+"Search for Food: Tap 'Search Food Database' to find foods" = "Search for Food: Tap 'Search Food Database' to find foods";
+"Enter Meal Details: Add a name, select meal type (breakfast, lunch, dinner, or snack)" = "Enter Meal Details: Add a name, select meal type (breakfast, lunch, dinner, or snack)";
+"Set Portion Size: Choose small, medium, or large to adjust calories accordingly" = "Set Portion Size: Choose small, medium, or large to adjust calories accordingly";
+"Add Notes: Optionally add notes about the meal" = "Add Notes: Optionally add notes about the meal";
+"Analyze Nutrition: View detailed nutritional breakdown before saving" = "Analyze Nutrition: View detailed nutritional breakdown before saving";
+"Save Meal: Tap 'Save Meal' to add it to your day" = "Save Meal: Tap 'Save Meal' to add it to your day";
+
+"Finding Foods" = "Finding Foods";
+"The food search feature helps you quickly find foods and their nutritional information:" = "The food search feature helps you quickly find foods and their nutritional information:";
+"Search Bar: Type food names to filter results" = "Search Bar: Type food names to filter results";
+"Category Filter: Use category buttons to narrow down options" = "Category Filter: Use category buttons to narrow down options";
+"Food Selection: Tap any food item to select it" = "Food Selection: Tap any food item to select it";
+"Food Details: View calories, protein, carbs, and fat for each food" = "Food Details: View calories, protein, carbs, and fat for each food";
+"Custom Foods: Items marked 'Custom Food' are ones you've added yourself" = "Custom Foods: Items marked 'Custom Food' are ones you've added yourself";
+
+"Food Database" = "Food Database";
+"The Food Database section provides detailed nutritional information for thousands of foods:" = "The Food Database section provides detailed nutritional information for thousands of foods:";
+"Access the Database: Scroll down in the Meals tab and tap the Food Database card" = "Access the Database: Scroll down in the Meals tab and tap the Food Database card";
+"Browse Foods: Search or filter by category to find specific items" = "Browse Foods: Search or filter by category to find specific items";
+"View Details: Tap any food to see complete nutritional information" = "View Details: Tap any food to see complete nutritional information";
+"Detailed Nutrients: See macronutrients, vitamins, minerals, and serving information" = "Detailed Nutrients: See macronutrients, vitamins, minerals, and serving information";
+"Return to Meals: Tap the back button to go back to the Meals section" = "Return to Meals: Tap the back button to go back to the Meals section";
+
+"Nutrition Tips" = "Nutrition Tips";
+"Access personalized nutrition recommendations based on your health profile:" = "Access personalized nutrition recommendations based on your health profile:";
+"View Tips: See general tips directly in the Meals section" = "View Tips: See general tips directly in the Meals section";
+"Personalized Advice: Tap 'View More Tips' for recommendations tailored to your health conditions" = "Personalized Advice: Tap 'View More Tips' for recommendations tailored to your health conditions";
+"Medical Condition Tips: Get advice specific to conditions you've entered in your profile" = "Medical Condition Tips: Get advice specific to conditions you've entered in your profile";
+"Dietary Restriction Tips: Receive guidance for your specific dietary needs" = "Dietary Restriction Tips: Receive guidance for your specific dietary needs";
+"Supplement Recommendations: Learn about supplements that may benefit your health" = "Supplement Recommendations: Learn about supplements that may benefit your health";
+
+"Tips for Seniors" = "Tips for Seniors";
+"Senior-Friendly Nutrition Tips:" = "Senior-Friendly Nutrition Tips:";
+"Focus on protein-rich foods to maintain muscle mass" = "Focus on protein-rich foods to maintain muscle mass";
+"Choose nutrient-dense foods over empty calories" = "Choose nutrient-dense foods over empty calories";
+"Stay well-hydrated throughout the day" = "Stay well-hydrated throughout the day";
+"Include calcium and vitamin D for bone health" = "Include calcium and vitamin D for bone health";
+"Eat fiber-rich foods for digestive health" = "Eat fiber-rich foods for digestive health";
+"Incorporate omega-3 fatty acids for heart and brain health" = "Incorporate omega-3 fatty acids for heart and brain health";
+
+"Troubleshooting" = "Troubleshooting";
+"Meals Not Appearing: Pull down to refresh if recently added meals don't show" = "Meals Not Appearing: Pull down to refresh if recently added meals don't show";
+"Search Not Working: Try simplifying your search terms or use category filters" = "Search Not Working: Try simplifying your search terms or use category filters";
+"Nutrient Goals: Your nutrient goals are based on your profile information" = "Nutrient Goals: Your nutrient goals are based on your profile information";
+"Adding Custom Foods: If you can't find a food, you can add custom entries" = "Adding Custom Foods: If you can't find a food, you can add custom entries";
+"Meal History: View past days using the date selector in the Dashboard" = "Meal History: View past days using the date selector in the Dashboard";
+
+"Need More Help?" = "Need More Help?";
+"For additional assistance with the Nutrition features, tap the Support button in Settings or use the voice assistant by tapping the microphone icon at the top of the screen." = "For additional assistance with the Nutrition features, tap the Support button in Settings or use the voice assistant by tapping the microphone icon at the top of the screen.";
+
+/* More Section Help Guide */
+"Help: More" = "Help: More";
+"The More section provides access to essential app settings, your profile, help resources, and additional tools. This centralized hub lets you customize the app experience and access important information." = "The More section provides access to essential app settings, your profile, help resources, and additional tools. This centralized hub lets you customize the app experience and access important information.";
+
+"Main Features" = "Main Features";
+"Settings: Customize app appearance, notifications, and preferences" = "Settings: Customize app appearance, notifications, and preferences";
+"Profile: View and update your personal health information" = "Profile: View and update your personal health information";
+"Help & Support: Access guides, tutorials, and contact support" = "Help & Support: Access guides, tutorials, and contact support";
+"About: View app version, privacy policy, and terms of service" = "About: View app version, privacy policy, and terms of service";
+"Print Materials: Generate printable health summaries and reports" = "Print Materials: Generate printable health summaries and reports";
+
+"Settings Options" = "Settings Options";
+"The Settings section allows you to customize how the app works and looks:" = "The Settings section allows you to customize how the app works and looks:";
+"Text Size: Adjust text size for better readability" = "Text Size: Adjust text size for better readability";
+"Voice Settings: Configure voice assistant and reading features" = "Voice Settings: Configure voice assistant and reading features";
+"Appearance: Toggle dark mode, high contrast, and other visual options" = "Appearance: Toggle dark mode, high contrast, and other visual options";
+"Language: Change the app language (English, Spanish, French, German, Hebrew)" = "Language: Change the app language (English, Spanish, French, German, Hebrew)";
+"Notifications: Customize alert types, sounds, and timing" = "Notifications: Customize alert types, sounds, and timing";
+"Data Management: Back up and restore your app data" = "Data Management: Back up and restore your app data";
+
+"Using Settings" = "Using Settings";
+"Access Settings: Tap the Settings option in the More screen" = "Access Settings: Tap the Settings option in the More screen";
+"Adjust Text: Use the text size slider to make text larger or smaller" = "Adjust Text: Use the text size slider to make text larger or smaller";
+"Change Language: Tap Language to select from available options" = "Change Language: Tap Language to select from available options";
+"Manage Notifications: Customize timing and types of alerts" = "Manage Notifications: Customize timing and types of alerts";
+"Toggle Features: Turn features on/off using the switches" = "Toggle Features: Turn features on/off using the switches";
+"Save Changes: Most settings are applied immediately when changed" = "Save Changes: Most settings are applied immediately when changed";
+
+"Profile Management" = "Profile Management";
+"Your profile contains important information that helps personalize the app:" = "Your profile contains important information that helps personalize the app:";
+"Personal Information: Name, age, gender, and contact details" = "Personal Information: Name, age, gender, and contact details";
+"Medical Conditions: Health conditions that affect recommendations" = "Medical Conditions: Health conditions that affect recommendations";
+"Dietary Restrictions: Food allergies, intolerances, and preferences" = "Dietary Restrictions: Food allergies, intolerances, and preferences";
+"Medications: Current medication list that integrates with reminders" = "Medications: Current medication list that integrates with reminders";
+"Emergency Contacts: People to contact in case of emergency" = "Emergency Contacts: People to contact in case of emergency";
+
+"Updating Profile" = "Updating Profile";
+"Access Profile: Tap the Profile option in the More screen" = "Access Profile: Tap the Profile option in the More screen";
+"Edit Information: Tap Edit button to modify any section" = "Edit Information: Tap Edit button to modify any section";
+"Add Items: Use + buttons to add new conditions, medications, etc." = "Add Items: Use + buttons to add new conditions, medications, etc.";
+"Remove Items: Swipe left on any item to delete it" = "Remove Items: Swipe left on any item to delete it";
+"Save Changes: Tap Save button to confirm your updates" = "Save Changes: Tap Save button to confirm your updates";
+
+"Help & Support Options" = "Help & Support Options";
+"Find assistance with using the app through various resources:" = "Find assistance with using the app through various resources:";
+"Help Guides: Detailed instructions for each app section" = "Help Guides: Detailed instructions for each app section";
+"Video Tutorials: Step-by-step visual guides for key features" = "Video Tutorials: Step-by-step visual guides for key features";
+"Contact Support: Email, phone, or in-app messaging options" = "Contact Support: Email, phone, or in-app messaging options";
+"Interactive Tour: Guided walkthrough of app features" = "Interactive Tour: Guided walkthrough of app features";
+"FAQ: Answers to common questions" = "FAQ: Answers to common questions";
+
+"Getting Help" = "Getting Help";
+"Access Help: Tap Help & Support in the More screen" = "Access Help: Tap Help & Support in the More screen";
+"Browse Topics: Select from available help categories" = "Browse Topics: Select from available help categories";
+"Watch Videos: Tap any video tutorial to start playback" = "Watch Videos: Tap any video tutorial to start playback";
+"Contact Team: Use the Contact Support option to reach our team" = "Contact Team: Use the Contact Support option to reach our team";
+"Emergency Help: Use the Emergency button on the home screen for urgent issues" = "Emergency Help: Use the Emergency button on the home screen for urgent issues";
+
+"Print Materials" = "Print Materials";
+"Generate printer-friendly documents for various purposes:" = "Generate printer-friendly documents for various purposes:";
+"Health Summary: Comprehensive overview of your health data" = "Health Summary: Comprehensive overview of your health data";
+"Medication List: Detailed list of current medications" = "Medication List: Detailed list of current medications";
+"Nutrition Report: Summary of your dietary intake and patterns" = "Nutrition Report: Summary of your dietary intake and patterns";
+"Appointment Schedule: List of upcoming medical appointments" = "Appointment Schedule: List of upcoming medical appointments";
+"Fasting Protocol: Details of your current fasting schedule" = "Fasting Protocol: Details of your current fasting schedule";
+
+"Printing Documents" = "Printing Documents";
+"Access Print: Tap Print Materials in the More screen" = "Access Print: Tap Print Materials in the More screen";
+"Select Document: Choose which report to generate" = "Select Document: Choose which report to generate";
+"Set Date Range: Specify the time period for the report" = "Set Date Range: Specify the time period for the report";
+"Preview: Review the document before printing" = "Preview: Review the document before printing";
+"Print or Share: Send to a printer or share digitally" = "Print or Share: Send to a printer or share digitally";
+"Help with Printing: Get assistance with printer setup if needed" = "Help with Printing: Get assistance with printer setup if needed";
+
+"Accessibility Features" = "Accessibility Features";
+"The More section includes several helpful accessibility options:" = "The More section includes several helpful accessibility options:";
+"Voice Assistant: Get spoken guidance through app features" = "Voice Assistant: Get spoken guidance through app features";
+"Text to Speech: Have content read aloud to you" = "Text to Speech: Have content read aloud to you";
+"High Contrast: Make text and buttons more visible" = "High Contrast: Make text and buttons more visible";
+"Large Text: Increase text size throughout the app" = "Large Text: Increase text size throughout the app";
+"Button Labels: Add descriptive text to all buttons" = "Button Labels: Add descriptive text to all buttons";
+
+"Tips for Seniors" = "Tips for Seniors";
+"Make the most of the More section with these helpful tips:" = "Make the most of the More section with these helpful tips:";
+"Customize First: Take time to adjust text size and contrast for optimal viewing" = "Customize First: Take time to adjust text size and contrast for optimal viewing";
+"Set Up Voice: Configure voice features for hands-free navigation" = "Set Up Voice: Configure voice features for hands-free navigation";
+"Emergency Contacts: Keep your emergency contact list updated" = "Emergency Contacts: Keep your emergency contact list updated";
+"Regular Backups: Use the backup feature to protect your data" = "Regular Backups: Use the backup feature to protect your data";
+"Print Key Info: Consider printing your medication list to keep in your wallet" = "Print Key Info: Consider printing your medication list to keep in your wallet";
+
+"Troubleshooting" = "Troubleshooting";
+"Settings Not Saving: Restart the app if settings aren't being applied" = "Settings Not Saving: Restart the app if settings aren't being applied";
+"Profile Updates: Make sure to tap Save after changing profile information" = "Profile Updates: Make sure to tap Save after changing profile information";
+"Printing Problems: Ensure your device is connected to a printer or sharing service" = "Printing Problems: Ensure your device is connected to a printer or sharing service";
+"Language Issues: If text appears cut off after changing language, restart the app" = "Language Issues: If text appears cut off after changing language, restart the app";
+"Help Videos: If videos won't play, check your internet connection" = "Help Videos: If videos won't play, check your internet connection";
+
+"Need Additional Help?" = "Need Additional Help?";
+"If you need further assistance with the More section or any other features, please contact our support team through the Help & Support option or call our senior support line." = "If you need further assistance with the More section or any other features, please contact our support team through the Help & Support option or call our senior support line."; 

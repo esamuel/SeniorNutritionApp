@@ -497,7 +497,7 @@ struct PersonalizedNutritionTipsView: View {
                    "Fiber for Digestion: Consume 25-30g of fiber daily from fruits, vegetables, and whole grains to maintain digestive health. " +
                    "Vitamin D: Get adequate vitamin D through sunlight exposure and foods like fatty fish, egg yolks, and fortified foods."
         
-        voiceManager.speak(speech)
+        voiceManager.speak(speech, userSettings: userSettings)
     }
     
     private func readMedicalConditionTips(_ conditions: [String]) {
@@ -512,7 +512,7 @@ struct PersonalizedNutritionTipsView: View {
             }
         }
         
-        voiceManager.speak(speech)
+        voiceManager.speak(speech, userSettings: userSettings)
     }
     
     private func readDietaryRestrictionTips(_ restrictions: [String]) {
@@ -527,7 +527,7 @@ struct PersonalizedNutritionTipsView: View {
             }
         }
         
-        voiceManager.speak(speech)
+        voiceManager.speak(speech, userSettings: userSettings)
     }
     
     private func readSupplementTips() {
@@ -537,7 +537,7 @@ struct PersonalizedNutritionTipsView: View {
                    "Vitamin D3: Important for calcium absorption and immune function. Consider a supplement if you have limited sun exposure. " +
                    "Note: Always consult with your healthcare provider before starting any supplement regimen."
         
-        voiceManager.speak(speech)
+        voiceManager.speak(speech, userSettings: userSettings)
     }
 }
 

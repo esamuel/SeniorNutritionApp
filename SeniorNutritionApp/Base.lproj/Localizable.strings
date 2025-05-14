@@ -520,3 +520,162 @@
 "Tipps für Ihre Ernährungseinschränkungen" = "Tips for Your Dietary Restrictions";
 "Lesen" = "Read";
 "Hinweis: Konsultieren Sie immer Ihren Arzt, bevor Sie mit der Einnahme von Nahrungsergänzungsmitteln beginnen." = "Note: Always consult with your healthcare provider before starting any supplement regimen.";
+
+/* Detailed Help Guide */
+"Help: %@" = "Help: %@";
+"Close" = "Close";
+"Dashboard Overview" = "Dashboard Overview";
+"The Home dashboard provides a complete overview of your daily health information. Here you can see your fasting status, upcoming medications, water intake progress, and recent meals all in one place." = "The Home dashboard provides a complete overview of your daily health information. Here you can see your fasting status, upcoming medications, water intake progress, and recent meals all in one place.";
+"Main Features" = "Main Features";
+"Health Status Cards: Quick view of vital health metrics" = "Health Status Cards: Quick view of vital health metrics";
+"Fasting Timer: Current fasting status and progress" = "Fasting Timer: Current fasting status and progress";
+"Medication Reminders: Upcoming medication alerts" = "Medication Reminders: Upcoming medication alerts";
+"Water Tracking: Daily hydration progress" = "Water Tracking: Daily hydration progress";
+"Recent Meals: Latest nutrition entries" = "Recent Meals: Latest nutrition entries";
+"How to Use" = "How to Use";
+"Tap any card to access detailed information for that feature" = "Tap any card to access detailed information for that feature";
+"Pull down to refresh dashboard data" = "Pull down to refresh dashboard data";
+"Use quick action buttons to record meals, medications or water" = "Use quick action buttons to record meals, medications or water";
+"View summary graphs for health trends at a glance" = "View summary graphs for health trends at a glance";
+"Senior-Friendly Tips" = "Senior-Friendly Tips";
+"Increase text size in Settings if needed for better visibility" = "Increase text size in Settings if needed for better visibility";
+"Use voice commands by tapping the microphone icon" = "Use voice commands by tapping the microphone icon";
+"Enable high contrast mode for improved readability" = "Enable high contrast mode for improved readability";
+"Set up medication reminders to never miss a dose" = "Set up medication reminders to never miss a dose";
+"Check water intake regularly to ensure proper hydration" = "Check water intake regularly to ensure proper hydration";
+"Customization" = "Customization";
+"Rearrange dashboard cards by long-pressing and dragging" = "Rearrange dashboard cards by long-pressing and dragging";
+"Hide specific metrics you don't use from Settings" = "Hide specific metrics you don't use from Settings";
+"Adjust goal values for water, nutrition, and activity" = "Adjust goal values for water, nutrition, and activity";
+"Change color theme and contrast settings" = "Change color theme and contrast settings";
+"Visual Guide" = "Visual Guide";
+"The Home screen is organized into clearly labeled sections for easy navigation:" = "The Home screen is organized into clearly labeled sections for easy navigation:";
+"(Screenshot representation of the Home screen)" = "(Screenshot representation of the Home screen)";
+"For additional assistance with the Home dashboard, tap the Support button in Settings or use the voice assistant by tapping the microphone icon at the top of the screen." = "For additional assistance with the Home dashboard, tap the Support button in Settings or use the voice assistant by tapping the microphone icon at the top of the screen.";
+
+/* Fasting Help Guide */
+"The Fasting Timer provides a complete visualization of your intermittent fasting schedule. It shows your current fasting status, remaining time, and daily schedule in an easy-to-understand format." = "The Fasting Timer provides a complete visualization of your intermittent fasting schedule. It shows your current fasting status, remaining time, and daily schedule in an easy-to-understand format.";
+
+"The Fasting Timer provides a complete visualization of your intermittent fasting schedule. It shows your current fasting status, remaining time, and daily schedule in an easy-to-understand format. The circular timer gives you an immediate visual indicator of your progress." = "The Fasting Timer provides a complete visualization of your intermittent fasting schedule. It shows your current fasting status, remaining time, and daily schedule in an easy-to-understand format. The circular timer gives you an immediate visual indicator of your progress.";
+
+"Fasting Protocols: Choose from multiple pre-set protocols (12:12, 14:10, 16:8) or create your custom protocol" = "Fasting Protocols: Choose from multiple pre-set protocols (12:12, 14:10, 16:8) or create your custom protocol";
+"Real-time Timer: Circular timer showing percentage and time remaining in current window" = "Real-time Timer: Circular timer showing percentage and time remaining in current window";
+"Today's Schedule: Overview of fasting and eating windows" = "Today's Schedule: Overview of fasting and eating windows";
+"Medication Integration: View medications scheduled during fasting/eating periods" = "Medication Integration: View medications scheduled during fasting/eating periods";
+"Emergency Override: One-tap option to safely end fasting early if needed" = "Emergency Override: One-tap option to safely end fasting early if needed";
+"Custom Protocol Setup: Create your own personalized fasting/eating schedule" = "Custom Protocol Setup: Create your own personalized fasting/eating schedule";
+
+"Change Protocol: Tap the protocol name in the top-right to select a different fasting schedule" = "Change Protocol: Tap the protocol name in the top-right to select a different fasting schedule";
+"Start/End Fasting: Use the green/red button at the bottom to start or end your fasting period" = "Start/End Fasting: Use the green/red button at the bottom to start or end your fasting period";
+"Adjust Times: Tap on \"Last Meal\" or \"Next Meal\" to adjust your specific timing" = "Adjust Times: Tap on \"Last Meal\" or \"Next Meal\" to adjust your specific timing";
+"View Schedule: The \"Today's Schedule\" card shows your full day timeline" = "View Schedule: The \"Today's Schedule\" card shows your full day timeline";
+"Emergency Override: If you need to end a fast early, use the red \"Emergency Override\" button" = "Emergency Override: If you need to end a fast early, use the red \"Emergency Override\" button";
+
+"Health Tips for Seniors" = "Health Tips for Seniors";
+"Stay Hydrated: Always drink plenty of water during your fasting periods" = "Stay Hydrated: Always drink plenty of water during your fasting periods";
+"Monitor Your Health: If you feel dizzy, weak, or unwell, end your fast immediately" = "Monitor Your Health: If you feel dizzy, weak, or unwell, end your fast immediately";
+"Consult Your Doctor: Discuss fasting with your healthcare provider, especially if you have chronic conditions" = "Consult Your Doctor: Discuss fasting with your healthcare provider, especially if you have chronic conditions";
+"Start Gradually: If you're new to fasting, begin with shorter fasting periods (12:12) before advancing" = "Start Gradually: If you're new to fasting, begin with shorter fasting periods (12:12) before advancing";
+"Take Medications As Prescribed: Never skip medications - adjust your eating window if necessary" = "Take Medications As Prescribed: Never skip medications - adjust your eating window if necessary";
+
+"Protocol Guide" = "Protocol Guide";
+"12:12 Protocol" = "12:12 Protocol";
+"14:10 Protocol" = "14:10 Protocol";
+"16:8 Protocol" = "16:8 Protocol";
+"Custom Protocol" = "Custom Protocol";
+
+"Best for" = "Best for";
+"Benefits" = "Benefits";
+"How it works" = "How it works";
+
+"Beginners, those with medication schedules, active social lives" = "Beginners, those with medication schedules, active social lives";
+"Gentle introduction to fasting, better sleep, minimal disruption to routines" = "Gentle introduction to fasting, better sleep, minimal disruption to routines";
+"Fast for 12 hours (often overnight), eat during a 12-hour window" = "Fast for 12 hours (often overnight), eat during a 12-hour window";
+
+"Those with some fasting experience seeking more benefits" = "Those with some fasting experience seeking more benefits";
+"Enhanced fat burning, improved metabolic flexibility, better appetite control" = "Enhanced fat burning, improved metabolic flexibility, better appetite control";
+"Fast for 14 hours, eat during a 10-hour window" = "Fast for 14 hours, eat during a 10-hour window";
+
+"Experienced fasters seeking maximum benefits" = "Experienced fasters seeking maximum benefits";
+"Maximum autophagy, significant fat burning, improved insulin sensitivity" = "Maximum autophagy, significant fat burning, improved insulin sensitivity";
+"Fast for 16 hours, eat during an 8-hour window" = "Fast for 16 hours, eat during an 8-hour window";
+
+"Those with unique scheduling needs or specific health considerations" = "Those with unique scheduling needs or specific health considerations";
+"Tailored to your specific lifestyle and needs" = "Tailored to your specific lifestyle and needs";
+"Set your own fasting and eating hours (must total 24 hours)" = "Set your own fasting and eating hours (must total 24 hours)";
+
+"Troubleshooting" = "Troubleshooting";
+"Timer Not Updating: Pull down to refresh or restart the app" = "Timer Not Updating: Pull down to refresh or restart the app";
+"Protocol Reset: If your protocol settings are lost, simply reselect your preferred protocol" = "Protocol Reset: If your protocol settings are lost, simply reselect your preferred protocol";
+"Time Adjustment: If you need to correct your last meal time, tap on \"Last Meal\" to adjust" = "Time Adjustment: If you need to correct your last meal time, tap on \"Last Meal\" to adjust";
+"Medication Conflicts: Review your medication schedule in the Medications section if you notice conflicts" = "Medication Conflicts: Review your medication schedule in the Medications section if you notice conflicts";
+
+"Using with Other Features" = "Using with Other Features";
+"Water Tracking: Remember to maintain hydration during fasting periods" = "Water Tracking: Remember to maintain hydration during fasting periods";
+"Medication Management: The app will help you schedule medications appropriately during eating windows when possible" = "Medication Management: The app will help you schedule medications appropriately during eating windows when possible";
+"Nutrition Tracking: Track meals during your eating window to ensure balanced nutrition" = "Nutrition Tracking: Track meals during your eating window to ensure balanced nutrition";
+
+/* Water Help Guide */
+"The Water Tracking feature helps you monitor and maintain proper hydration throughout the day. Staying hydrated is crucial for seniors to support overall health and well-being." = "The Water Tracking feature helps you monitor and maintain proper hydration throughout the day. Staying hydrated is crucial for seniors to support overall health and well-being.";
+
+"Feature Overview" = "Feature Overview";
+"The Water Tracking feature helps you monitor and maintain proper hydration throughout the day. Staying hydrated is crucial for seniors to support overall health and well-being, aid digestion, regulate body temperature, and prevent urinary tract infections." = "The Water Tracking feature helps you monitor and maintain proper hydration throughout the day. Staying hydrated is crucial for seniors to support overall health and well-being, aid digestion, regulate body temperature, and prevent urinary tract infections.";
+
+"Daily Water Goal: Customizable daily hydration target based on your needs" = "Daily Water Goal: Customizable daily hydration target based on your needs";
+"One-Tap Tracking: Quickly record water intake with preset amounts" = "One-Tap Tracking: Quickly record water intake with preset amounts";
+"Visual Progress: Clear visual indicators of your daily hydration progress" = "Visual Progress: Clear visual indicators of your daily hydration progress";
+"Custom Amounts: Add specific water quantities for precise tracking" = "Custom Amounts: Add specific water quantities for precise tracking";
+"Hydration Reminders: Customizable alerts to help you stay on track" = "Hydration Reminders: Customizable alerts to help you stay on track";
+"History View: See your hydration patterns over time" = "History View: See your hydration patterns over time";
+
+"Add Water: Tap the quick-add buttons (150ml, 250ml, etc.) to log water intake" = "Add Water: Tap the quick-add buttons (150ml, 250ml, etc.) to log water intake";
+"Custom Amount: Tap \"Add Custom Amount\" to enter a specific quantity" = "Custom Amount: Tap \"Add Custom Amount\" to enter a specific quantity";
+"Set Daily Goal: Adjust your daily water target in Settings" = "Set Daily Goal: Adjust your daily water target in Settings";
+"Configure Reminders: Set up hydration reminders with your preferred frequency" = "Configure Reminders: Set up hydration reminders with your preferred frequency";
+"Track Progress: View your daily progress with the circular indicator" = "Track Progress: View your daily progress with the circular indicator";
+"View History: Swipe to see your hydration history and patterns" = "View History: Swipe to see your hydration history and patterns";
+
+"Hydration Tips for Seniors" = "Hydration Tips for Seniors";
+"Drink Before You're Thirsty: Thirst sensation decreases with age, so drink regularly" = "Drink Before You're Thirsty: Thirst sensation decreases with age, so drink regularly";
+"Morning Routine: Start each day with a glass of water before breakfast" = "Morning Routine: Start each day with a glass of water before breakfast";
+"Carry Water: Keep a water bottle with you throughout the day" = "Carry Water: Keep a water bottle with you throughout the day";
+"Set Reminders: Use the app's reminder feature as your sense of thirst may be diminished" = "Set Reminders: Use the app's reminder feature as your sense of thirst may be diminished";
+"Monitor Color: Check your urine - pale yellow indicates good hydration" = "Monitor Color: Check your urine - pale yellow indicates good hydration";
+"Limit Caffeine & Alcohol: These can contribute to dehydration" = "Limit Caffeine & Alcohol: These can contribute to dehydration";
+
+"Understanding Hydration Needs" = "Understanding Hydration Needs";
+"Individual Needs Vary: Your water needs depend on weight, activity level, and climate" = "Individual Needs Vary: Your water needs depend on weight, activity level, and climate";
+"Medications Matter: Some medications may increase hydration needs" = "Medications Matter: Some medications may increase hydration needs";
+"Activity Adjustments: Increase water intake during physical activity" = "Activity Adjustments: Increase water intake during physical activity";
+"Seasonal Changes: You need more water in hot weather or heated indoor environments" = "Seasonal Changes: You need more water in hot weather or heated indoor environments";
+"Medical Conditions: Heart failure, kidney disease and other conditions may require specific fluid intake - consult your doctor" = "Medical Conditions: Heart failure, kidney disease and other conditions may require specific fluid intake - consult your doctor";
+
+"Beyond Plain Water" = "Beyond Plain Water";
+"Hydrating Foods: Fruits like watermelon, oranges, and vegetables like cucumber contribute to hydration" = "Hydrating Foods: Fruits like watermelon, oranges, and vegetables like cucumber contribute to hydration";
+"Herbal Teas: Caffeine-free herbal teas count toward daily fluid intake" = "Herbal Teas: Caffeine-free herbal teas count toward daily fluid intake";
+"Milk & Alternatives: Milk, fortified plant milks provide hydration plus nutrients" = "Milk & Alternatives: Milk, fortified plant milks provide hydration plus nutrients";
+"Soup & Broth: Clear soups and broths are excellent hydration sources" = "Soup & Broth: Clear soups and broths are excellent hydration sources";
+"Flavor Your Water: Add slices of fruit for taste without added sugar" = "Flavor Your Water: Add slices of fruit for taste without added sugar";
+
+"Signs of Dehydration" = "Signs of Dehydration";
+"Increased Thirst: Persistent thirst or dry mouth" = "Increased Thirst: Persistent thirst or dry mouth";
+"Dark Urine: Dark yellow or amber-colored urine" = "Dark Urine: Dark yellow or amber-colored urine";
+"Fatigue: Unusual tiredness or lethargy" = "Fatigue: Unusual tiredness or lethargy";
+"Dizziness: Feeling lightheaded, especially when standing" = "Dizziness: Feeling lightheaded, especially when standing";
+"Confusion: Mental fogginess or unusual confusion" = "Confusion: Mental fogginess or unusual confusion";
+"Dry Skin: Skin that lacks elasticity when pinched" = "Dry Skin: Skin that lacks elasticity when pinched";
+"Headache: Persistent headache that doesn't respond to pain relievers" = "Headache: Persistent headache that doesn't respond to pain relievers";
+
+"Emergency Information" = "Emergency Information";
+"Severe dehydration requires medical attention. Seek immediate help if you experience extreme thirst, no urination, shriveled skin, confusion, irritability, or dizziness. For seniors, dehydration can become dangerous quickly, especially during illness or hot weather." = "Severe dehydration requires medical attention. Seek immediate help if you experience extreme thirst, no urination, shriveled skin, confusion, irritability, or dizziness. For seniors, dehydration can become dangerous quickly, especially during illness or hot weather.";
+
+"Progress Not Updating: Pull down to refresh the screen" = "Progress Not Updating: Pull down to refresh the screen";
+"Reminders Not Working: Check notification permissions in device settings" = "Reminders Not Working: Check notification permissions in device settings";
+"Goal Adjustments: If you can't reach your goal consistently, try lowering it temporarily" = "Goal Adjustments: If you can't reach your goal consistently, try lowering it temporarily";
+"Data Discrepancies: If history doesn't match your entries, restart the app" = "Data Discrepancies: If history doesn't match your entries, restart the app";
+"Custom Amount Problems: If custom amounts aren't saving, try using preset buttons" = "Custom Amount Problems: If custom amounts aren't saving, try using preset buttons";
+
+"Fasting Integration: The app will remind you to stay hydrated during fasting periods" = "Fasting Integration: The app will remind you to stay hydrated during fasting periods";
+"Medication Reminders: Water reminders can be synchronized with medication times" = "Medication Reminders: Water reminders can be synchronized with medication times";
+"Health Tracking: Your hydration status contributes to your overall health assessment" = "Health Tracking: Your hydration status contributes to your overall health assessment";
+"Reports: Hydration data is included in health reports you can share with providers" = "Reports: Hydration data is included in health reports you can share with providers";

@@ -1,6 +1,6 @@
 # Senior Nutrition App
 
-A comprehensive iOS app designed to support seniors (ages 50–120) in managing their nutrition, medication, and daily wellness. Built with SwiftUI, the app prioritizes accessibility, ease of use, and compliance with Apple's App Store guidelines.
+A comprehensive iOS app designed to support seniors (ages 50–120) in managing their nutrition, medication, and daily wellness. Built with SwiftUI, the app prioritizes accessibility, ease of use, and multilingual support (including RTL languages), and compliance with Apple's App Store guidelines.
 
 ---
 
@@ -10,15 +10,39 @@ A comprehensive iOS app designed to support seniors (ages 50–120) in managing 
   - Add, edit, and track medications
   - 3D pill shape and color selection for easy identification
   - Customizable medication reminders with lead time and sound options
+  - Integration with fasting schedules
+
+- **Fasting Timer**
+  - Multiple fasting protocols (12:12, 14:10, 16:8, custom)
+  - Real-time tracking with progress visualization
+  - Emergency override with one-tap access
+  - Smart integration with medication schedules
 
 - **Meal Tracking**
   - Log meals with portion size (intuitive slider)
   - Track meal times and receive reminders for healthy eating windows
+  - Nutritional analysis with personalized recommendations
+
+- **Health Monitoring**
+  - Track vital signs (blood pressure, heart rate, weight)
+  - Blood sugar monitoring with customizable target ranges
+  - Visual trends and analytics for health metrics
 
 - **Reminders & Notifications**
   - Medication, meal, fasting, and daily tip notifications
   - Customizable notification style (gentle, regular, urgent)
   - Full control to enable/disable each reminder type
+
+- **Detailed Help Guide System**
+  - Comprehensive in-app guidance for each feature
+  - Step-by-step instructions with visual aids
+  - Voice readout option for accessibility
+  - Context-sensitive help throughout the app
+
+- **Multilingual Support**
+  - Full translations in English, German, French, Spanish
+  - Complete Right-to-Left (RTL) language support for Hebrew
+  - Optimized layouts for text expansion/contraction in different languages
 
 - **Accessibility**
   - Large, adjustable text sizes
@@ -30,11 +54,13 @@ A comprehensive iOS app designed to support seniors (ages 50–120) in managing 
   - Select from available system voices (male/female)
   - Test and preview voices
   - Adjust speech rate for clarity
+  - Voice commands for hands-free operation
 
 - **Other Features**
-  - Water and fasting reminders
-  - Easy-to-use settings panel
+  - Water tracking and reminders
+  - Appointment management with calendar integration
   - Data persistence and privacy
+  - Emergency contacts with one-tap access
 
 ---
 
@@ -61,6 +87,18 @@ A comprehensive iOS app designed to support seniors (ages 50–120) in managing 
 - Color choices and contrast are optimized for visual clarity
 - Voice features support users with low vision or reading difficulties
 - Simple navigation and clear feedback for every action
+- Comprehensive help system with voice guidance
+- Supports right-to-left languages like Hebrew
+
+---
+
+## Multilingual Support
+- English (default)
+- Hebrew (with full RTL support)
+- German
+- French
+- Spanish
+- Customized layouts for each language to ensure proper text display
 
 ---
 
@@ -70,6 +108,16 @@ A comprehensive iOS app designed to support seniors (ages 50–120) in managing 
 - No health/medical advice is given—reminders and tracking only
 - Data is stored locally and not shared without consent
 - Fully supports Apple's accessibility guidelines
+
+---
+
+## Recent Updates
+- Added comprehensive in-app help guide system with detailed information for each feature
+- Implemented full RTL support for Hebrew language
+- Enhanced fasting timer with customizable protocols
+- Added voice guidance throughout the app
+- Fixed UI issues with modal presentations and sheet dismissal
+- Improved navigation and user experience for senior users
 
 ---
 

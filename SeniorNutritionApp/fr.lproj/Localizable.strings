@@ -597,3 +597,340 @@
 "Calcium Alternatives" = "Alternatives au Calcium";
 "Include non-dairy calcium sources like fortified plant milks, tofu, leafy greens, and canned fish with bones." = "Incluez des sources de calcium non laitières comme les laits végétaux enrichis, le tofu, les légumes verts et le poisson en conserve avec des arêtes.";
 "Hinweis: Konsultieren Sie immer Ihren Arzt, bevor Sie mit der Einnahme von Nahrungsergänzungsmitteln beginnen." = "Remarque : Consultez toujours votre médecin avant de commencer tout régime de suppléments.";
+
+/* Detailed Help Guide */
+"Help: %@" = "Aide : %@";
+"Close" = "Fermer";
+"Dashboard Overview" = "Aperçu du tableau de bord";
+"The Home dashboard provides a complete overview of your daily health information. Here you can see your fasting status, upcoming medications, water intake progress, and recent meals all in one place." = "Le tableau de bord Accueil fournit une vue d'ensemble complète de vos informations de santé quotidiennes. Vous pouvez y voir votre état de jeûne, les médicaments à venir, la progression de votre consommation d'eau et les repas récents, le tout en un seul endroit.";
+"Main Features" = "Fonctionnalités principales";
+"Health Status Cards: Quick view of vital health metrics" = "Cartes d'état de santé : Aperçu rapide des indicateurs de santé vitaux";
+"Fasting Timer: Current fasting status and progress" = "Minuteur de jeûne : État actuel du jeûne et progression";
+"Medication Reminders: Upcoming medication alerts" = "Rappels de médicaments : Alertes pour les médicaments à venir";
+"Water Tracking: Daily hydration progress" = "Suivi de l'eau : Progression de l'hydratation quotidienne";
+"Recent Meals: Latest nutrition entries" = "Repas récents : Dernières entrées nutritionnelles";
+"How to Use" = "Comment utiliser";
+"Tap any card to access detailed information for that feature" = "Appuyez sur n'importe quelle carte pour accéder aux informations détaillées de cette fonctionnalité";
+"Pull down to refresh dashboard data" = "Tirez vers le bas pour actualiser les données du tableau de bord";
+"Use quick action buttons to record meals, medications or water" = "Utilisez les boutons d'action rapide pour enregistrer les repas, les médicaments ou l'eau";
+"View summary graphs for health trends at a glance" = "Consultez les graphiques récapitulatifs pour les tendances de santé en un coup d'œil";
+"Senior-Friendly Tips" = "Conseils adaptés aux seniors";
+"Increase text size in Settings if needed for better visibility" = "Augmentez la taille du texte dans les Paramètres si nécessaire pour une meilleure visibilité";
+"Use voice commands by tapping the microphone icon" = "Utilisez les commandes vocales en appuyant sur l'icône du microphone";
+"Enable high contrast mode for improved readability" = "Activez le mode contraste élevé pour une meilleure lisibilité";
+"Set up medication reminders to never miss a dose" = "Configurez des rappels de médicaments pour ne jamais manquer une dose";
+"Check water intake regularly to ensure proper hydration" = "Vérifiez régulièrement votre consommation d'eau pour assurer une bonne hydratation";
+"Customization" = "Personnalisation";
+"Rearrange dashboard cards by long-pressing and dragging" = "Réorganisez les cartes du tableau de bord en appuyant longuement et en les faisant glisser";
+"Hide specific metrics you don't use from Settings" = "Masquez les métriques spécifiques que vous n'utilisez pas dans les Paramètres";
+"Adjust goal values for water, nutrition, and activity" = "Ajustez les valeurs cibles pour l'eau, la nutrition et l'activité";
+"Change color theme and contrast settings" = "Modifiez le thème de couleur et les paramètres de contraste";
+"Visual Guide" = "Guide visuel";
+"The Home screen is organized into clearly labeled sections for easy navigation:" = "L'écran d'accueil est organisé en sections clairement étiquetées pour une navigation facile :";
+"(Screenshot representation of the Home screen)" = "(Représentation par capture d'écran de l'écran d'accueil)";
+"Need More Help?" = "Besoin de plus d'aide ?";
+"For additional assistance with the Home dashboard, tap the Support button in Settings or use the voice assistant by tapping the microphone icon at the top of the screen." = "Pour une assistance supplémentaire concernant le tableau de bord Accueil, appuyez sur le bouton Support dans les Paramètres ou utilisez l'assistant vocal en appuyant sur l'icône du microphone en haut de l'écran.";
+
+/* Fasting Help Guide */
+"The Fasting Timer provides a complete visualization of your intermittent fasting schedule. It shows your current fasting status, remaining time, and daily schedule in an easy-to-understand format." = "Le Minuteur de Jeûne fournit une visualisation complète de votre programme de jeûne intermittent. Il montre votre état de jeûne actuel, le temps restant et votre programme quotidien dans un format facile à comprendre.";
+"The Fasting Timer provides a complete visualization of your intermittent fasting schedule. It shows your current fasting status, remaining time, and daily schedule in an easy-to-understand format. The circular timer gives you an immediate visual indicator of your progress." = "Le Minuteur de Jeûne fournit une visualisation complète de votre programme de jeûne intermittent. Il montre votre état de jeûne actuel, le temps restant et votre programme quotidien dans un format facile à comprendre. Le minuteur circulaire vous donne un indicateur visuel immédiat de votre progression.";
+"Fasting Protocols: Choose from multiple pre-set protocols (12:12, 14:10, 16:8) or create your custom protocol" = "Protocoles de Jeûne : Choisissez parmi plusieurs protocoles préétablis (12:12, 14:10, 16:8) ou créez votre protocole personnalisé";
+"Real-time Timer: Circular timer showing percentage and time remaining in current window" = "Minuteur en Temps Réel : Minuteur circulaire indiquant le pourcentage et le temps restant dans la fenêtre actuelle";
+"Today's Schedule: Overview of fasting and eating windows" = "Programme du Jour : Aperçu des fenêtres de jeûne et d'alimentation";
+"Medication Integration: View medications scheduled during fasting/eating periods" = "Intégration des Médicaments : Affichez les médicaments programmés pendant les périodes de jeûne/alimentation";
+"Emergency Override: One-tap option to safely end fasting early if needed" = "Arrêt d'Urgence : Option en un clic pour terminer le jeûne en toute sécurité si nécessaire";
+"Custom Protocol Setup: Create your own personalized fasting/eating schedule" = "Configuration de Protocole Personnalisé : Créez votre propre programme de jeûne/alimentation personnalisé";
+"Change Protocol: Tap the protocol name in the top-right to select a different fasting schedule" = "Changer de Protocole : Appuyez sur le nom du protocole en haut à droite pour sélectionner un horaire de jeûne différent";
+"Start/End Fasting: Use the green/red button at the bottom to start or end your fasting period" = "Démarrer/Terminer le Jeûne : Utilisez le bouton vert/rouge en bas pour démarrer ou terminer votre période de jeûne";
+"Adjust Times: Tap on \"Last Meal\" or \"Next Meal\" to adjust your specific timing" = "Ajuster les Horaires : Appuyez sur \"Dernier Repas\" ou \"Prochain Repas\" pour ajuster votre timing spécifique";
+"View Schedule: The \"Today's Schedule\" card shows your full day timeline" = "Voir le Programme : La carte \"Programme du Jour\" montre votre chronologie quotidienne complète";
+"Emergency Override: If you need to end a fast early, use the red \"Emergency Override\" button" = "Arrêt d'Urgence : Si vous devez terminer un jeûne plus tôt, utilisez le bouton rouge \"Arrêt d'Urgence\"";
+"Health Tips for Seniors" = "Conseils Santé pour les Seniors";
+"Stay Hydrated: Always drink plenty of water during your fasting periods" = "Restez Hydraté : Buvez toujours beaucoup d'eau pendant vos périodes de jeûne";
+"Monitor Your Health: If you feel dizzy, weak, or unwell, end your fast immediately" = "Surveillez Votre Santé : Si vous vous sentez étourdi, faible ou mal, terminez immédiatement votre jeûne";
+"Consult Your Doctor: Discuss fasting with your healthcare provider, especially if you have chronic conditions" = "Consultez Votre Médecin : Discutez du jeûne avec votre professionnel de santé, surtout si vous avez des conditions chroniques";
+"Start Gradually: If you're new to fasting, begin with shorter fasting periods (12:12) before advancing" = "Commencez Progressivement : Si vous débutez dans le jeûne, commencez par des périodes plus courtes (12:12) avant de progresser";
+"Take Medications As Prescribed: Never skip medications - adjust your eating window if necessary" = "Prenez les Médicaments Comme Prescrits : Ne sautez jamais de médicaments - ajustez votre fenêtre d'alimentation si nécessaire";
+"Protocol Guide" = "Guide des Protocoles";
+"12:12 Protocol" = "Protocole 12:12";
+"14:10 Protocol" = "Protocole 14:10";
+"16:8 Protocol" = "Protocole 16:8";
+"Custom Protocol" = "Protocole Personnalisé";
+"Best for" = "Idéal pour";
+"Benefits" = "Bénéfices";
+"How it works" = "Comment ça fonctionne";
+"Beginners, those with medication schedules, active social lives" = "Débutants, personnes avec horaires de médicaments, vies sociales actives";
+"Gentle introduction to fasting, better sleep, minimal disruption to routines" = "Introduction douce au jeûne, meilleur sommeil, perturbation minimale des routines";
+"Fast for 12 hours (often overnight), eat during a 12-hour window" = "Jeûnez pendant 12 heures (souvent la nuit), mangez pendant une fenêtre de 12 heures";
+"Those with some fasting experience seeking more benefits" = "Personnes ayant une certaine expérience du jeûne recherchant plus de bénéfices";
+"Enhanced fat burning, improved metabolic flexibility, better appetite control" = "Combustion accrue des graisses, meilleure flexibilité métabolique, meilleur contrôle de l'appétit";
+"Fast for 14 hours, eat during a 10-hour window" = "Jeûnez pendant 14 heures, mangez pendant une fenêtre de 10 heures";
+"Experienced fasters seeking maximum benefits" = "Jeûneurs expérimentés recherchant des bénéfices maximaux";
+"Maximum autophagy, significant fat burning, improved insulin sensitivity" = "Autophagie maximale, combustion significative des graisses, sensibilité à l'insuline améliorée";
+"Fast for 16 hours, eat during an 8-hour window" = "Jeûnez pendant 16 heures, mangez pendant une fenêtre de 8 heures";
+"Those with unique scheduling needs or specific health considerations" = "Personnes ayant des besoins d'horaires uniques ou des considérations de santé spécifiques";
+"Tailored to your specific lifestyle and needs" = "Adapté à votre style de vie et besoins spécifiques";
+"Set your own fasting and eating hours (must total 24 hours)" = "Définissez vos propres heures de jeûne et d'alimentation (doit totaliser 24 heures)";
+"Troubleshooting" = "Dépannage";
+"Timer Not Updating: Pull down to refresh or restart the app" = "Minuteur Qui Ne Se Met Pas à Jour : Tirez vers le bas pour actualiser ou redémarrez l'application";
+"Protocol Reset: If your protocol settings are lost, simply reselect your preferred protocol" = "Réinitialisation de Protocole : Si vos paramètres de protocole sont perdus, sélectionnez simplement à nouveau votre protocole préféré";
+"Time Adjustment: If you need to correct your last meal time, tap on \"Last Meal\" to adjust" = "Ajustement de l'Heure : Si vous devez corriger l'heure de votre dernier repas, appuyez sur \"Dernier Repas\" pour ajuster";
+"Medication Conflicts: Review your medication schedule in the Medications section if you notice conflicts" = "Conflits de Médicaments : Examinez votre calendrier de médicaments dans la section Médicaments si vous remarquez des conflits";
+"Using with Other Features" = "Utilisation avec d'autres fonctionnalités";
+"Water Tracking: Remember to maintain hydration during fasting periods" = "Suivi de l'Eau : N'oubliez pas de maintenir l'hydratation pendant les périodes de jeûne";
+"Medication Management: The app will help you schedule medications appropriately during eating windows when possible" = "Gestion des Médicaments : L'application vous aidera à planifier les médicaments de manière appropriée pendant les fenêtres d'alimentation lorsque possible";
+"Nutrition Tracking: Track meals during your eating window to ensure balanced nutrition" = "Suivi Nutritionnel : Suivez les repas pendant votre fenêtre d'alimentation pour assurer une nutrition équilibrée";
+
+/* Water Help Guide */
+"The Water Tracking feature helps you monitor and maintain proper hydration throughout the day. Staying hydrated is crucial for seniors to support overall health and well-being." = "La fonction de Suivi de l'Eau vous aide à surveiller et à maintenir une bonne hydratation tout au long de la journée. Rester hydraté est crucial pour les seniors afin de soutenir la santé et le bien-être général.";
+
+"Feature Overview" = "Aperçu des fonctionnalités";
+"The Water Tracking feature helps you monitor and maintain proper hydration throughout the day. Staying hydrated is crucial for seniors to support overall health and well-being, aid digestion, regulate body temperature, and prevent urinary tract infections." = "La fonction de Suivi de l'Eau vous aide à surveiller et à maintenir une bonne hydratation tout au long de la journée. Rester hydraté est crucial pour les seniors afin de soutenir la santé et le bien-être général, faciliter la digestion, réguler la température corporelle et prévenir les infections urinaires.";
+
+"Daily Water Goal: Customizable daily hydration target based on your needs" = "Objectif Quotidien d'Eau : Cible d'hydratation quotidienne personnalisable selon vos besoins";
+"One-Tap Tracking: Quickly record water intake with preset amounts" = "Suivi en Un Clic : Enregistrez rapidement votre consommation d'eau avec des quantités prédéfinies";
+"Visual Progress: Clear visual indicators of your daily hydration progress" = "Progression Visuelle : Indicateurs visuels clairs de votre progression d'hydratation quotidienne";
+"Custom Amounts: Add specific water quantities for precise tracking" = "Quantités Personnalisées : Ajoutez des quantités d'eau spécifiques pour un suivi précis";
+"Hydration Reminders: Customizable alerts to help you stay on track" = "Rappels d'Hydratation : Alertes personnalisables pour vous aider à rester sur la bonne voie";
+"History View: See your hydration patterns over time" = "Vue Historique : Visualisez vos habitudes d'hydratation au fil du temps";
+
+"Add Water: Tap the quick-add buttons (150ml, 250ml, etc.) to log water intake" = "Ajouter de l'Eau : Appuyez sur les boutons d'ajout rapide (150ml, 250ml, etc.) pour enregistrer votre consommation d'eau";
+"Custom Amount: Tap \"Add Custom Amount\" to enter a specific quantity" = "Quantité Personnalisée : Appuyez sur \"Ajouter une Quantité Personnalisée\" pour saisir une quantité spécifique";
+"Set Daily Goal: Adjust your daily water target in Settings" = "Définir un Objectif Quotidien : Ajustez votre objectif d'eau quotidien dans les Paramètres";
+"Configure Reminders: Set up hydration reminders with your preferred frequency" = "Configurer les Rappels : Configurez des rappels d'hydratation avec votre fréquence préférée";
+"Track Progress: View your daily progress with the circular indicator" = "Suivre la Progression : Visualisez votre progression quotidienne avec l'indicateur circulaire";
+"View History: Swipe to see your hydration history and patterns" = "Voir l'Historique : Balayez pour voir votre historique d'hydratation et vos habitudes";
+
+"Hydration Tips for Seniors" = "Conseils d'Hydratation pour les Seniors";
+"Drink Before You're Thirsty: Thirst sensation decreases with age, so drink regularly" = "Buvez Avant d'Avoir Soif : La sensation de soif diminue avec l'âge, alors buvez régulièrement";
+"Morning Routine: Start each day with a glass of water before breakfast" = "Routine Matinale : Commencez chaque jour avec un verre d'eau avant le petit-déjeuner";
+"Carry Water: Keep a water bottle with you throughout the day" = "Emportez de l'Eau : Gardez une bouteille d'eau avec vous tout au long de la journée";
+"Set Reminders: Use the app's reminder feature as your sense of thirst may be diminished" = "Définissez des Rappels : Utilisez la fonction de rappel de l'application car votre sensation de soif peut être diminuée";
+"Monitor Color: Check your urine - pale yellow indicates good hydration" = "Surveillez la Couleur : Vérifiez votre urine - jaune pâle indique une bonne hydratation";
+"Limit Caffeine & Alcohol: These can contribute to dehydration" = "Limitez la Caféine et l'Alcool : Ceux-ci peuvent contribuer à la déshydratation";
+
+"Understanding Hydration Needs" = "Comprendre les Besoins d'Hydratation";
+"Individual Needs Vary: Your water needs depend on weight, activity level, and climate" = "Les Besoins Individuels Varient : Vos besoins en eau dépendent du poids, du niveau d'activité et du climat";
+"Medications Matter: Some medications may increase hydration needs" = "Les Médicaments Comptent : Certains médicaments peuvent augmenter les besoins d'hydratation";
+"Activity Adjustments: Increase water intake during physical activity" = "Ajustements d'Activité : Augmentez la consommation d'eau pendant l'activité physique";
+"Seasonal Changes: You need more water in hot weather or heated indoor environments" = "Changements Saisonniers : Vous avez besoin de plus d'eau par temps chaud ou dans des environnements intérieurs chauffés";
+"Medical Conditions: Heart failure, kidney disease and other conditions may require specific fluid intake - consult your doctor" = "Conditions Médicales : L'insuffisance cardiaque, les maladies rénales et d'autres conditions peuvent nécessiter une consommation de liquide spécifique - consultez votre médecin";
+
+"Beyond Plain Water" = "Au-delà de l'Eau Simple";
+"Hydrating Foods: Fruits like watermelon, oranges, and vegetables like cucumber contribute to hydration" = "Aliments Hydratants : Les fruits comme la pastèque, les oranges et les légumes comme le concombre contribuent à l'hydratation";
+"Herbal Teas: Caffeine-free herbal teas count toward daily fluid intake" = "Tisanes : Les tisanes sans caféine comptent pour l'apport quotidien en liquide";
+"Milk & Alternatives: Milk, fortified plant milks provide hydration plus nutrients" = "Lait et Alternatives : Le lait et les boissons végétales enrichies fournissent hydratation et nutriments";
+"Soup & Broth: Clear soups and broths are excellent hydration sources" = "Soupe et Bouillon : Les soupes claires et les bouillons sont d'excellentes sources d'hydratation";
+"Flavor Your Water: Add slices of fruit for taste without added sugar" = "Aromatisez Votre Eau : Ajoutez des tranches de fruits pour le goût sans sucre ajouté";
+
+"Signs of Dehydration" = "Signes de Déshydratation";
+"Increased Thirst: Persistent thirst or dry mouth" = "Soif Accrue : Soif persistante ou bouche sèche";
+"Dark Urine: Dark yellow or amber-colored urine" = "Urine Foncée : Urine jaune foncé ou ambrée";
+"Fatigue: Unusual tiredness or lethargy" = "Fatigue : Fatigue inhabituelle ou léthargie";
+"Dizziness: Feeling lightheaded, especially when standing" = "Vertiges : Sensation d'étourdissement, surtout en position debout";
+"Confusion: Mental fogginess or unusual confusion" = "Confusion : Brouillard mental ou confusion inhabituelle";
+"Dry Skin: Skin that lacks elasticity when pinched" = "Peau Sèche : Peau qui manque d'élasticité lorsqu'elle est pincée";
+"Headache: Persistent headache that doesn't respond to pain relievers" = "Maux de Tête : Maux de tête persistants qui ne répondent pas aux analgésiques";
+
+"Emergency Information" = "Informations d'Urgence";
+"Severe dehydration requires medical attention. Seek immediate help if you experience extreme thirst, no urination, shriveled skin, confusion, irritability, or dizziness. For seniors, dehydration can become dangerous quickly, especially during illness or hot weather." = "Une déshydratation sévère nécessite une attention médicale. Cherchez une aide immédiate si vous ressentez une soif extrême, une absence d'urination, une peau ridée, de la confusion, de l'irritabilité ou des vertiges. Pour les seniors, la déshydratation peut devenir rapidement dangereuse, surtout pendant une maladie ou par temps chaud.";
+
+"Progress Not Updating: Pull down to refresh the screen" = "Progression Qui Ne Se Met Pas à Jour : Tirez vers le bas pour actualiser l'écran";
+"Reminders Not Working: Check notification permissions in device settings" = "Rappels Qui Ne Fonctionnent Pas : Vérifiez les autorisations de notification dans les paramètres de l'appareil";
+"Goal Adjustments: If you can't reach your goal consistently, try lowering it temporarily" = "Ajustements d'Objectif : Si vous ne pouvez pas atteindre votre objectif régulièrement, essayez de le baisser temporairement";
+"Data Discrepancies: If history doesn't match your entries, restart the app" = "Divergences de Données : Si l'historique ne correspond pas à vos entrées, redémarrez l'application";
+"Custom Amount Problems: If custom amounts aren't saving, try using preset buttons" = "Problèmes de Quantité Personnalisée : Si les quantités personnalisées ne s'enregistrent pas, essayez d'utiliser les boutons prédéfinis";
+
+"Fasting Integration: The app will remind you to stay hydrated during fasting periods" = "Intégration au Jeûne : L'application vous rappellera de rester hydraté pendant les périodes de jeûne";
+"Medication Reminders: Water reminders can be synchronized with medication times" = "Rappels de Médicaments : Les rappels d'eau peuvent être synchronisés avec les heures de prise de médicaments";
+"Health Tracking: Your hydration status contributes to your overall health assessment" = "Suivi de Santé : Votre état d'hydratation contribue à l'évaluation globale de votre santé";
+"Reports: Hydration data is included in health reports you can share with providers" = "Rapports : Les données d'hydratation sont incluses dans les rapports de santé que vous pouvez partager avec les prestataires";
+
+/* Nutrition Help Guide */
+"Help: Nutrition" = "Aide : Nutrition";
+"The Nutrition section helps you track your meals, monitor nutrient intake, and maintain a balanced diet suited for your health needs. This guide explains how to use all features in the Nutrition tab." = "La section Nutrition vous aide à suivre vos repas, surveiller votre apport en nutriments et maintenir une alimentation équilibrée adaptée à vos besoins de santé. Ce guide explique comment utiliser toutes les fonctionnalités de l'onglet Nutrition.";
+
+"Main Sections" = "Sections principales";
+"Dashboard: View your daily nutrient intake with visualizations" = "Tableau de bord : Visualisez votre apport quotidien en nutriments avec des graphiques";
+"Meals: Log and manage your daily meals and access common meals" = "Repas : Enregistrez et gérez vos repas quotidiens et accédez aux repas courants";
+"Food Database: Browse detailed nutrition information for thousands of foods" = "Base de données alimentaire : Parcourez les informations nutritionnelles détaillées de milliers d'aliments";
+"Nutrition Tips: Get personalized advice based on your health profile" = "Conseils nutritionnels : Obtenez des conseils personnalisés selon votre profil de santé";
+
+"Dashboard Features" = "Fonctionnalités du tableau de bord";
+"The Dashboard provides a visual overview of your daily nutrition with easy-to-read charts and progress indicators." = "Le tableau de bord offre une vue d'ensemble visuelle de votre nutrition quotidienne avec des graphiques faciles à lire et des indicateurs de progression.";
+"Date Selector: Navigate between days to see nutrition history" = "Sélecteur de date : Naviguez entre les jours pour voir l'historique nutritionnel";
+"Daily Summary: Shows your calorie intake versus your daily goal" = "Résumé quotidien : Affiche votre apport calorique par rapport à votre objectif journalier";
+"Macronutrients: Tracks protein, carbohydrates, and fat intake" = "Macronutriments : Suit votre apport en protéines, glucides et lipides";
+"Vitamins & Minerals: Monitors essential micronutrients important for seniors" = "Vitamines et minéraux : Surveille les micronutriments essentiels importants pour les seniors";
+
+"Using the Dashboard" = "Utilisation du tableau de bord";
+"View Daily Summary: The top card shows your current calorie intake compared to your goal" = "Consulter le résumé quotidien : La carte supérieure montre votre apport calorique actuel par rapport à votre objectif";
+"Check Macronutrients: Progress bars show how close you are to your protein, carbs, and fat goals" = "Vérifier les macronutriments : Les barres de progression montrent votre proximité avec vos objectifs de protéines, glucides et lipides";
+"Monitor Micronutrients: Circular indicators show vitamin and mineral intake" = "Surveiller les micronutriments : Des indicateurs circulaires montrent votre apport en vitamines et minéraux";
+"Change Date: Use the arrows in the date selector to view different days" = "Changer de date : Utilisez les flèches du sélecteur de date pour voir différents jours";
+
+"Meals Section" = "Section des repas";
+"The Meals section lets you log and manage your daily meals, access commonly eaten items, and view nutrition tips." = "La section Repas vous permet d'enregistrer et gérer vos repas quotidiens, d'accéder aux aliments fréquemment consommés et de consulter des conseils nutritionnels.";
+"Today's Meals: Lists all meals logged for the current day" = "Repas du jour : Liste tous les repas enregistrés pour la journée en cours";
+"Common Meals: Quick access to your frequently eaten meals" = "Repas courants : Accès rapide à vos repas fréquemment consommés";
+"Nutrition Tips: Provides advice tailored to your health profile" = "Conseils nutritionnels : Fournit des conseils adaptés à votre profil de santé";
+"Food Database: Access to detailed nutritional information" = "Base de données alimentaire : Accès aux informations nutritionnelles détaillées";
+
+"Managing Meals" = "Gestion des repas";
+"Add a Meal: Tap the + button in the header or the Add button in Today's Meals" = "Ajouter un repas : Appuyez sur le bouton + dans l'en-tête ou sur le bouton Ajouter dans Repas du jour";
+"Edit a Meal: Tap on any meal in your Today's Meals list to edit it" = "Modifier un repas : Appuyez sur n'importe quel repas dans votre liste Repas du jour pour le modifier";
+"Use Common Meals: Tap any meal in the Common Meals section to quickly add it to today" = "Utiliser les repas courants : Appuyez sur n'importe quel repas dans la section Repas courants pour l'ajouter rapidement à aujourd'hui";
+"Add to Common Meals: Long-press on a meal and select Add to Common Meals" = "Ajouter aux repas courants : Appuyez longuement sur un repas et sélectionnez Ajouter aux repas courants";
+"Delete a Meal: Long-press on a meal and select Delete" = "Supprimer un repas : Appuyez longuement sur un repas et sélectionnez Supprimer";
+
+"Adding a New Meal" = "Ajout d'un nouveau repas";
+"When adding a meal, follow these steps:" = "Lors de l'ajout d'un repas, suivez ces étapes :";
+"Search for Food: Tap 'Search Food Database' to find foods" = "Rechercher un aliment : Appuyez sur 'Rechercher dans la base de données alimentaire' pour trouver des aliments";
+"Enter Meal Details: Add a name, select meal type (breakfast, lunch, dinner, or snack)" = "Saisir les détails du repas : Ajoutez un nom, sélectionnez le type de repas (petit-déjeuner, déjeuner, dîner ou collation)";
+"Set Portion Size: Choose small, medium, or large to adjust calories accordingly" = "Définir la taille de la portion : Choisissez petite, moyenne ou grande pour ajuster les calories en conséquence";
+"Add Notes: Optionally add notes about the meal" = "Ajouter des notes : Ajoutez éventuellement des notes concernant le repas";
+"Analyze Nutrition: View detailed nutritional breakdown before saving" = "Analyser la nutrition : Consultez la répartition nutritionnelle détaillée avant d'enregistrer";
+"Save Meal: Tap 'Save Meal' to add it to your day" = "Enregistrer le repas : Appuyez sur 'Enregistrer le repas' pour l'ajouter à votre journée";
+
+"Finding Foods" = "Recherche d'aliments";
+"The food search feature helps you quickly find foods and their nutritional information:" = "La fonction de recherche d'aliments vous aide à trouver rapidement des aliments et leurs informations nutritionnelles :";
+"Search Bar: Type food names to filter results" = "Barre de recherche : Tapez des noms d'aliments pour filtrer les résultats";
+"Category Filter: Use category buttons to narrow down options" = "Filtre par catégorie : Utilisez les boutons de catégorie pour affiner les options";
+"Food Selection: Tap any food item to select it" = "Sélection d'aliments : Appuyez sur n'importe quel aliment pour le sélectionner";
+"Food Details: View calories, protein, carbs, and fat for each food" = "Détails des aliments : Consultez les calories, protéines, glucides et lipides pour chaque aliment";
+"Custom Foods: Items marked 'Custom Food' are ones you've added yourself" = "Aliments personnalisés : Les éléments marqués 'Aliment personnalisé' sont ceux que vous avez ajoutés vous-même";
+
+"Food Database" = "Base de données alimentaire";
+"The Food Database section provides detailed nutritional information for thousands of foods:" = "La section Base de données alimentaire fournit des informations nutritionnelles détaillées pour des milliers d'aliments :";
+"Access the Database: Scroll down in the Meals tab and tap the Food Database card" = "Accéder à la base de données : Faites défiler vers le bas dans l'onglet Repas et appuyez sur la carte Base de données alimentaire";
+"Browse Foods: Search or filter by category to find specific items" = "Parcourir les aliments : Recherchez ou filtrez par catégorie pour trouver des éléments spécifiques";
+"View Details: Tap any food to see complete nutritional information" = "Voir les détails : Appuyez sur n'importe quel aliment pour voir les informations nutritionnelles complètes";
+"Detailed Nutrients: See macronutrients, vitamins, minerals, and serving information" = "Nutriments détaillés : Consultez les macronutriments, vitamines, minéraux et informations sur les portions";
+"Return to Meals: Tap the back button to go back to the Meals section" = "Retour aux repas : Appuyez sur le bouton retour pour revenir à la section Repas";
+
+"Nutrition Tips" = "Conseils nutritionnels";
+"Access personalized nutrition recommendations based on your health profile:" = "Accédez à des recommandations nutritionnelles personnalisées basées sur votre profil de santé :";
+"View Tips: See general tips directly in the Meals section" = "Voir les conseils : Consultez les conseils généraux directement dans la section Repas";
+"Personalized Advice: Tap 'View More Tips' for recommendations tailored to your health conditions" = "Conseils personnalisés : Appuyez sur 'Voir plus de conseils' pour des recommandations adaptées à vos conditions de santé";
+"Medical Condition Tips: Get advice specific to conditions you've entered in your profile" = "Conseils sur les conditions médicales : Obtenez des conseils spécifiques aux conditions que vous avez saisies dans votre profil";
+"Dietary Restriction Tips: Receive guidance for your specific dietary needs" = "Conseils sur les restrictions alimentaires : Recevez des conseils pour vos besoins alimentaires spécifiques";
+"Supplement Recommendations: Learn about supplements that may benefit your health" = "Recommandations de suppléments : Renseignez-vous sur les suppléments qui pourraient bénéficier à votre santé";
+
+"Tips for Seniors" = "Conseils pour les seniors";
+"Senior-Friendly Nutrition Tips:" = "Conseils nutritionnels adaptés aux seniors :";
+"Focus on protein-rich foods to maintain muscle mass" = "Concentrez-vous sur les aliments riches en protéines pour maintenir la masse musculaire";
+"Choose nutrient-dense foods over empty calories" = "Choisissez des aliments riches en nutriments plutôt que des calories vides";
+"Stay well-hydrated throughout the day" = "Restez bien hydraté tout au long de la journée";
+"Include calcium and vitamin D for bone health" = "Incluez du calcium et de la vitamine D pour la santé des os";
+"Eat fiber-rich foods for digestive health" = "Mangez des aliments riches en fibres pour la santé digestive";
+"Incorporate omega-3 fatty acids for heart and brain health" = "Incorporez des acides gras oméga-3 pour la santé du cœur et du cerveau";
+
+"Troubleshooting" = "Dépannage";
+"Meals Not Appearing: Pull down to refresh if recently added meals don't show" = "Repas non visibles : Tirez vers le bas pour actualiser si les repas récemment ajoutés n'apparaissent pas";
+"Search Not Working: Try simplifying your search terms or use category filters" = "Recherche non fonctionnelle : Essayez de simplifier vos termes de recherche ou utilisez les filtres par catégorie";
+"Nutrient Goals: Your nutrient goals are based on your profile information" = "Objectifs nutritionnels : Vos objectifs nutritionnels sont basés sur les informations de votre profil";
+"Adding Custom Foods: If you can't find a food, you can add custom entries" = "Ajout d'aliments personnalisés : Si vous ne trouvez pas un aliment, vous pouvez ajouter des entrées personnalisées";
+"Meal History: View past days using the date selector in the Dashboard" = "Historique des repas : Consultez les jours passés en utilisant le sélecteur de date dans le Tableau de bord";
+
+"Need More Help?" = "Besoin de plus d'aide ?";
+"For additional assistance with the Nutrition features, tap the Support button in Settings or use the voice assistant by tapping the microphone icon at the top of the screen." = "Pour une assistance supplémentaire concernant les fonctionnalités de Nutrition, appuyez sur le bouton Support dans les Paramètres ou utilisez l'assistant vocal en appuyant sur l'icône du microphone en haut de l'écran.";
+
+/* More Section Help Guide */
+"Help: More" = "Aide : Plus";
+"The More section provides access to essential app settings, your profile, help resources, and additional tools. This centralized hub lets you customize the app experience and access important information." = "La section Plus donne accès aux paramètres essentiels de l'application, à votre profil, aux ressources d'aide et aux outils supplémentaires. Ce centre centralisé vous permet de personnaliser l'expérience de l'application et d'accéder à des informations importantes.";
+
+"Main Features" = "Fonctionnalités Principales";
+"Settings: Customize app appearance, notifications, and preferences" = "Paramètres : Personnalisez l'apparence de l'application, les notifications et les préférences";
+"Profile: View and update your personal health information" = "Profil : Consultez et mettez à jour vos informations de santé personnelles";
+"Help & Support: Access guides, tutorials, and contact support" = "Aide et Support : Accédez aux guides, tutoriels et contactez le support";
+"About: View app version, privacy policy, and terms of service" = "À propos : Consultez la version de l'application, la politique de confidentialité et les conditions d'utilisation";
+"Print Materials: Generate printable health summaries and reports" = "Documents à Imprimer : Générez des résumés et rapports de santé imprimables";
+
+"Settings Options" = "Options de Paramètres";
+"The Settings section allows you to customize how the app works and looks:" = "La section Paramètres vous permet de personnaliser le fonctionnement et l'apparence de l'application :";
+"Text Size: Adjust text size for better readability" = "Taille du Texte : Ajustez la taille du texte pour une meilleure lisibilité";
+"Voice Settings: Configure voice assistant and reading features" = "Paramètres Vocaux : Configurez l'assistant vocal et les fonctionnalités de lecture";
+"Appearance: Toggle dark mode, high contrast, and other visual options" = "Apparence : Activez le mode sombre, le contraste élevé et d'autres options visuelles";
+"Language: Change the app language (English, Spanish, French, German, Hebrew)" = "Langue : Changez la langue de l'application (anglais, espagnol, français, allemand, hébreu)";
+"Notifications: Customize alert types, sounds, and timing" = "Notifications : Personnalisez les types d'alertes, les sons et le minutage";
+"Data Management: Back up and restore your app data" = "Gestion des Données : Sauvegardez et restaurez les données de votre application";
+
+"Using Settings" = "Utilisation des Paramètres";
+"Access Settings: Tap the Settings option in the More screen" = "Accéder aux Paramètres : Appuyez sur l'option Paramètres dans l'écran Plus";
+"Adjust Text: Use the text size slider to make text larger or smaller" = "Ajuster le Texte : Utilisez le curseur de taille de texte pour agrandir ou réduire le texte";
+"Change Language: Tap Language to select from available options" = "Changer de Langue : Appuyez sur Langue pour sélectionner parmi les options disponibles";
+"Manage Notifications: Customize timing and types of alerts" = "Gérer les Notifications : Personnalisez le minutage et les types d'alertes";
+"Toggle Features: Turn features on/off using the switches" = "Activer/Désactiver les Fonctionnalités : Utilisez les interrupteurs pour activer ou désactiver les fonctionnalités";
+"Save Changes: Most settings are applied immediately when changed" = "Enregistrer les Modifications : La plupart des paramètres sont appliqués immédiatement après modification";
+
+"Profile Management" = "Gestion du Profil";
+"Your profile contains important information that helps personalize the app:" = "Votre profil contient des informations importantes qui aident à personnaliser l'application :";
+"Personal Information: Name, age, gender, and contact details" = "Informations Personnelles : Nom, âge, sexe et coordonnées";
+"Medical Conditions: Health conditions that affect recommendations" = "Conditions Médicales : Conditions de santé qui affectent les recommandations";
+"Dietary Restrictions: Food allergies, intolerances, and preferences" = "Restrictions Alimentaires : Allergies alimentaires, intolérances et préférences";
+"Medications: Current medication list that integrates with reminders" = "Médicaments : Liste actuelle de médicaments qui s'intègre aux rappels";
+"Emergency Contacts: People to contact in case of emergency" = "Contacts d'Urgence : Personnes à contacter en cas d'urgence";
+
+"Updating Profile" = "Mise à jour du Profil";
+"Access Profile: Tap the Profile option in the More screen" = "Accéder au Profil : Appuyez sur l'option Profil dans l'écran Plus";
+"Edit Information: Tap Edit button to modify any section" = "Modifier les Informations : Appuyez sur le bouton Modifier pour modifier une section";
+"Add Items: Use + buttons to add new conditions, medications, etc." = "Ajouter des Éléments : Utilisez les boutons + pour ajouter de nouvelles conditions, médicaments, etc.";
+"Remove Items: Swipe left on any item to delete it" = "Supprimer des Éléments : Glissez vers la gauche sur un élément pour le supprimer";
+"Save Changes: Tap Save button to confirm your updates" = "Enregistrer les Modifications : Appuyez sur le bouton Enregistrer pour confirmer vos mises à jour";
+
+"Help & Support Options" = "Options d'Aide et de Support";
+"Find assistance with using the app through various resources:" = "Trouvez de l'aide pour utiliser l'application grâce à diverses ressources :";
+"Help Guides: Detailed instructions for each app section" = "Guides d'Aide : Instructions détaillées pour chaque section de l'application";
+"Video Tutorials: Step-by-step visual guides for key features" = "Tutoriels Vidéo : Guides visuels étape par étape pour les fonctionnalités clés";
+"Contact Support: Email, phone, or in-app messaging options" = "Contacter le Support : Options de courrier électronique, téléphone ou messagerie dans l'application";
+"Interactive Tour: Guided walkthrough of app features" = "Visite Interactive : Présentation guidée des fonctionnalités de l'application";
+"FAQ: Answers to common questions" = "FAQ : Réponses aux questions fréquentes";
+
+"Getting Help" = "Obtenir de l'Aide";
+"Access Help: Tap Help & Support in the More screen" = "Accéder à l'Aide : Appuyez sur Aide et Support dans l'écran Plus";
+"Browse Topics: Select from available help categories" = "Parcourir les Sujets : Sélectionnez parmi les catégories d'aide disponibles";
+"Watch Videos: Tap any video tutorial to start playback" = "Regarder des Vidéos : Appuyez sur n'importe quel tutoriel vidéo pour démarrer la lecture";
+"Contact Team: Use the Contact Support option to reach our team" = "Contacter l'Équipe : Utilisez l'option Contacter le Support pour joindre notre équipe";
+"Emergency Help: Use the Emergency button on the home screen for urgent issues" = "Aide d'Urgence : Utilisez le bouton Urgence sur l'écran d'accueil pour les problèmes urgents";
+
+"Print Materials" = "Documents à Imprimer";
+"Generate printer-friendly documents for various purposes:" = "Générez des documents adaptés à l'impression pour divers usages :";
+"Health Summary: Comprehensive overview of your health data" = "Résumé de Santé : Aperçu complet de vos données de santé";
+"Medication List: Detailed list of current medications" = "Liste de Médicaments : Liste détaillée des médicaments actuels";
+"Nutrition Report: Summary of your dietary intake and patterns" = "Rapport Nutritionnel : Résumé de votre apport alimentaire et de vos habitudes";
+"Appointment Schedule: List of upcoming medical appointments" = "Calendrier des Rendez-vous : Liste des prochains rendez-vous médicaux";
+"Fasting Protocol: Details of your current fasting schedule" = "Protocole de Jeûne : Détails de votre programme de jeûne actuel";
+
+"Printing Documents" = "Impression de Documents";
+"Access Print: Tap Print Materials in the More screen" = "Accéder à l'Impression : Appuyez sur Documents à Imprimer dans l'écran Plus";
+"Select Document: Choose which report to generate" = "Sélectionner un Document : Choisissez quel rapport générer";
+"Set Date Range: Specify the time period for the report" = "Définir la Plage de Dates : Spécifiez la période pour le rapport";
+"Preview: Review the document before printing" = "Aperçu : Examinez le document avant l'impression";
+"Print or Share: Send to a printer or share digitally" = "Imprimer ou Partager : Envoyez vers une imprimante ou partagez numériquement";
+"Help with Printing: Get assistance with printer setup if needed" = "Aide à l'Impression : Obtenez de l'aide pour la configuration de l'imprimante si nécessaire";
+
+"Accessibility Features" = "Fonctionnalités d'Accessibilité";
+"The More section includes several helpful accessibility options:" = "La section Plus comprend plusieurs options d'accessibilité utiles :";
+"Voice Assistant: Get spoken guidance through app features" = "Assistant Vocal : Recevez des instructions vocales sur les fonctionnalités de l'application";
+"Text to Speech: Have content read aloud to you" = "Synthèse Vocale : Faites lire le contenu à haute voix";
+"High Contrast: Make text and buttons more visible" = "Contraste Élevé : Rendez le texte et les boutons plus visibles";
+"Large Text: Increase text size throughout the app" = "Texte Large : Augmentez la taille du texte dans toute l'application";
+"Button Labels: Add descriptive text to all buttons" = "Étiquettes de Boutons : Ajoutez du texte descriptif à tous les boutons";
+
+"Tips for Seniors" = "Conseils pour les Seniors";
+"Make the most of the More section with these helpful tips:" = "Profitez au maximum de la section Plus avec ces conseils utiles :";
+"Customize First: Take time to adjust text size and contrast for optimal viewing" = "Personnalisez d'Abord : Prenez le temps d'ajuster la taille du texte et le contraste pour une visualisation optimale";
+"Set Up Voice: Configure voice features for hands-free navigation" = "Configurez la Voix : Configurez les fonctionnalités vocales pour une navigation mains libres";
+"Emergency Contacts: Keep your emergency contact list updated" = "Contacts d'Urgence : Maintenez votre liste de contacts d'urgence à jour";
+"Regular Backups: Use the backup feature to protect your data" = "Sauvegardes Régulières : Utilisez la fonction de sauvegarde pour protéger vos données";
+"Print Key Info: Consider printing your medication list to keep in your wallet" = "Imprimez les Informations Clés : Envisagez d'imprimer votre liste de médicaments pour la garder dans votre portefeuille";
+
+"Troubleshooting" = "Dépannage";
+"Settings Not Saving: Restart the app if settings aren't being applied" = "Paramètres Non Enregistrés : Redémarrez l'application si les paramètres ne sont pas appliqués";
+"Profile Updates: Make sure to tap Save after changing profile information" = "Mises à Jour du Profil : Assurez-vous d'appuyer sur Enregistrer après avoir modifié les informations du profil";
+"Printing Problems: Ensure your device is connected to a printer or sharing service" = "Problèmes d'Impression : Assurez-vous que votre appareil est connecté à une imprimante ou à un service de partage";
+"Language Issues: If text appears cut off after changing language, restart the app" = "Problèmes de Langue : Si le texte apparaît coupé après avoir changé de langue, redémarrez l'application";
+"Help Videos: If videos won't play, check your internet connection" = "Vidéos d'Aide : Si les vidéos ne se lisent pas, vérifiez votre connexion Internet";
+
+"Need Additional Help?" = "Besoin d'Aide Supplémentaire ?";
+"If you need further assistance with the More section or any other features, please contact our support team through the Help & Support option or call our senior support line." = "Si vous avez besoin d'aide supplémentaire avec la section Plus ou toute autre fonctionnalité, veuillez contacter notre équipe de support via l'option Aide et Support ou appelez notre ligne d'assistance pour seniors.";

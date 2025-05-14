@@ -308,7 +308,7 @@
 "Emergency contact access with location sharing" = "גישה לאנשי קשר לחירום עם שיתוף מיקום";
 "Instant health data recording and visualization" = "רישום והצגת נתוני בריאות מיידיים";
 "Important Tips" = "טיפים חשובים";
-"Always consult healthcare providers before changing medication routines" = "התייעץ תמיד עם רופא לפני שינוי שגרת תרופות";
+"Always consult healthcare providers before changing medication routines" = "התייעץ תמיד עם הרופא לפני שינוי שגרת תרופות";
 "Stay hydrated with at least 8 glasses of water daily, especially during fasting" = "הקפד לשתות לפחות 8 כוסות מים ביום, במיוחד בצום";
 "Monitor for dizziness, weakness, or discomfort during fasting periods" = "בדוק אם יש סחרחורת, חולשה או אי נוחות בזמן צום";
 "Use the emergency override feature if you experience any concerning symptoms" = "השתמש בביטול חירום אם אתה חווה תסמינים מדאיגים";
@@ -593,11 +593,11 @@
 "Hydration Matters" = "חשיבות ההידרציה";
 "Drink at least 8 glasses of water daily, more if you're active or in hot weather." = "שתה לפחות 8 כוסות מים ביום, יותר אם אתה פעיל או במזג אוויר חם.";
 "Healthy Fats" = "שומנים בריאים";
-"Include sources of omega-3 fatty acids like fatty fish, flaxseeds, and walnuts for heart and brain health." = "כלול מקורות של חומצות שומן אומגה-3 כמו דגים שמנים, זרעי פשתן ואגוזי מלך לבריאות הלב והמוח.";
+"Include sources of omega-3 fatty acids like fatty fish, flaxseeds, and walnuts for heart and brain health." = "כלול מקורות של חומצות שומן אומגה-3 כמו דגים שמנוניים, זרעי פשתן ואגוזי מלך לבריאות הלב והמוח.";
 "Fiber for Digestion" = "סיבים לעיכול";
 "Consume 25-30g of fiber daily from fruits, vegetables, and whole grains to maintain digestive health." = "צרוך 25-30 גרם סיבים יומיים מפירות, ירקות ודגנים מלאים לשמירה על בריאות מערכת העיכול.";
 "Vitamin D" = "ויטמין D";
-"Get adequate vitamin D through sunlight exposure and foods like fatty fish, egg yolks, and fortified foods." = "קבל מספיק ויטמין D דרך חשיפה לשמש ומזונות כמו דגים שמנים, חלמוני ביצים ומזונות מועשרים.";
+"Get adequate vitamin D through sunlight exposure and foods like fatty fish, egg yolks, and fortified foods." = "קבל מספיק ויטמין D דרך חשיפה לשמש ומזונות כמו דגים שמנוניים, חלמוני ביצים ומזונות מועשרים.";
 
 /* Medical Conditions Tips */
 "Tipps für Ihre Erkrankungen" = "טיפים למצבים הרפואיים שלך";
@@ -624,3 +624,354 @@
 "Ensure adequate vitamin D from sunlight, supplements, or fortified foods to help with calcium absorption." = "הבטח קבלת ויטמין D מספקת מאור שמש, תוספים או מזונות מועשרים כדי לסייע בספיגת סידן.";
 "Hidden Dairy" = "מוצרי חלב נסתרים";
 "Check labels for ingredients like whey, casein, and lactose which indicate dairy content." = "בדוק תוויות למרכיבים כמו מי גבינה, קזאין ולקטוז המעידים על תכולת חלב.";
+
+/* Detailed Help Guide */
+"Help: %@" = "עזרה: %@";
+"Close" = "סגור";
+"Dashboard Overview" = "סקירת לוח המחוונים";
+"The Home dashboard provides a complete overview of your daily health information. Here you can see your fasting status, upcoming medications, water intake progress, and recent meals all in one place." = "לוח המחוונים הביתי מספק סקירה מלאה של נתוני הבריאות היומיים שלך. כאן תוכל לראות את מצב הצום שלך, תרופות קרובות, התקדמות צריכת המים וארוחות אחרונות, הכל במקום אחד.";
+"Main Features" = "תכונות עיקריות";
+"Health Status Cards: Quick view of vital health metrics" = "כרטיסי מצב בריאות: תצוגה מהירה של מדדי בריאות חיוניים";
+"Fasting Timer: Current fasting status and progress" = "טיימר צום: מצב צום נוכחי והתקדמות";
+"Medication Reminders: Upcoming medication alerts" = "תזכורות תרופות: התראות תרופות קרובות";
+"Water Tracking: Daily hydration progress" = "מעקב מים: התקדמות שתייה יומית";
+"Recent Meals: Latest nutrition entries" = "ארוחות אחרונות: רישומי תזונה אחרונים";
+"How to Use" = "כיצד להשתמש";
+"Tap any card to access detailed information for that feature" = "הקש על כל כרטיס כדי לגשת למידע מפורט עבור תכונה זו";
+"Pull down to refresh dashboard data" = "משוך למטה כדי לרענן נתוני לוח מחוונים";
+"Use quick action buttons to record meals, medications or water" = "השתמש בכפתורי פעולה מהירה כדי לרשום ארוחות, תרופות או מים";
+"View summary graphs for health trends at a glance" = "צפה בגרפים מסכמים למגמות בריאות במבט מהיר";
+"Senior-Friendly Tips" = "טיפים ידידותיים לגיל השלישי";
+"Increase text size in Settings if needed for better visibility" = "הגדל גודל טקסט בהגדרות אם צריך לראות טוב יותר";
+"Use voice commands by tapping the microphone icon" = "השתמש בפקודות קוליות על ידי הקשה על סמל המיקרופון";
+"Enable high contrast mode for improved readability" = "הפעל מצב ניגודיות גבוהה לקריאות משופרת";
+"Set up medication reminders to never miss a dose" = "הגדר תזכורות תרופות כדי לא לפספס מנה";
+"Check water intake regularly to ensure proper hydration" = "בדוק צריכת מים באופן קבוע כדי להבטיח שתייה נאותה";
+"Customization" = "התאמה אישית";
+"Rearrange dashboard cards by long-pressing and dragging" = "סדר מחדש כרטיסי לוח מחוונים על ידי לחיצה ארוכה וגרירה";
+"Hide specific metrics you don't use from Settings" = "הסתר מדדים מסוימים שאינך משתמש בהם מההגדרות";
+"Adjust goal values for water, nutrition, and activity" = "התאם ערכי יעד למים, תזונה ופעילות";
+"Change color theme and contrast settings" = "שנה ערכת צבעים והגדרות ניגודיות";
+"Visual Guide" = "מדריך חזותי";
+"The Home screen is organized into clearly labeled sections for easy navigation:" = "מסך הבית מאורגן בסעיפים מסומנים בבירור לניווט קל:";
+"(Screenshot representation of the Home screen)" = "(ייצוג צילום מסך של מסך הבית)";
+"For additional assistance with the Home dashboard, tap the Support button in Settings or use the voice assistant by tapping the microphone icon at the top of the screen." = "לעזרה נוספת עם לוח המחוונים הביתי, הקש על כפתור התמיכה בהגדרות או השתמש בעוזר הקולי על ידי הקשה על סמל המיקרופון בחלק העליון של המסך.";
+
+/* Fasting Help Guide */
+"The Fasting Timer provides a complete visualization of your intermittent fasting schedule. It shows your current fasting status, remaining time, and daily schedule in an easy-to-understand format." = "טיימר הצום מספק תצוגה מלאה של לוח הזמנים לצום לסירוגין שלך. הוא מציג את מצב הצום הנוכחי שלך, הזמן הנותר ולוח הזמנים היומי בפורמט קל להבנה.";
+
+"The Fasting Timer provides a complete visualization of your intermittent fasting schedule. It shows your current fasting status, remaining time, and daily schedule in an easy-to-understand format. The circular timer gives you an immediate visual indicator of your progress." = "טיימר הצום מספק תצוגה מלאה של לוח הזמנים לצום לסירוגין שלך. הוא מציג את מצב הצום הנוכחי שלך, הזמן הנותר ולוח הזמנים היומי בפורמט קל להבנה. הטיימר העגול נותן לך אינדיקטור חזותי מיידי של ההתקדמות שלך.";
+
+"Fasting Protocols: Choose from multiple pre-set protocols (12:12, 14:10, 16:8) or create your custom protocol" = "פרוטוקולי צום: בחר מתוך מספר פרוטוקולים מוגדרים מראש (12:12, 14:10, 16:8) או צור פרוטוקול מותאם אישית";
+"Real-time Timer: Circular timer showing percentage and time remaining in current window" = "טיימר בזמן אמת: טיימר עגול המציג אחוזים וזמן שנותר בחלון הנוכחי";
+"Today's Schedule: Overview of fasting and eating windows" = "לוח זמנים יומי: סקירה של חלונות צום ואכילה";
+"Medication Integration: View medications scheduled during fasting/eating periods" = "שילוב תרופות: צפייה בתרופות המתוזמנות במהלך תקופות צום/אכילה";
+"Emergency Override: One-tap option to safely end fasting early if needed" = "ביטול חירום: אפשרות בלחיצה אחת לסיים בבטחה צום מוקדם במידת הצורך";
+"Custom Protocol Setup: Create your own personalized fasting/eating schedule" = "הגדרת פרוטוקול מותאם אישית: צור לוח זמנים אישי לצום/אכילה";
+
+"Change Protocol: Tap the protocol name in the top-right to select a different fasting schedule" = "שינוי פרוטוקול: הקש על שם הפרוטוקול בפינה הימנית העליונה כדי לבחור לוח זמנים שונה לצום";
+"Start/End Fasting: Use the green/red button at the bottom to start or end your fasting period" = "התחלת/סיום צום: השתמש בכפתור הירוק/אדום בתחתית כדי להתחיל או לסיים את תקופת הצום שלך";
+"Adjust Times: Tap on \"Last Meal\" or \"Next Meal\" to adjust your specific timing" = "התאמת זמנים: הקש על \"ארוחה אחרונה\" או \"ארוחה הבאה\" כדי להתאים את התזמון הספציפי שלך";
+"View Schedule: The \"Today's Schedule\" card shows your full day timeline" = "צפייה בלוח זמנים: כרטיס \"לוח זמנים יומי\" מציג את הציר הזמני המלא של היום שלך";
+"Emergency Override: If you need to end a fast early, use the red \"Emergency Override\" button" = "ביטול חירום: אם אתה צריך לסיים צום מוקדם, השתמש בכפתור האדום \"ביטול חירום\"";
+
+"Health Tips for Seniors" = "טיפים בריאותיים לגיל השלישי";
+"Stay Hydrated: Always drink plenty of water during your fasting periods" = "הישאר מיוהדר: שתה תמיד הרבה מים במהלך תקופות הצום שלך";
+"Monitor Your Health: If you feel dizzy, weak, or unwell, end your fast immediately" = "עקוב אחר בריאותך: אם אתה מרגיש סחרחורת, חולשה, או לא טוב, סיים את הצום שלך מיד";
+"Consult Your Doctor: Discuss fasting with your healthcare provider, especially if you have chronic conditions" = "התייעץ עם הרופא שלך: דון בצום עם ספק שירותי הבריאות שלך, במיוחד אם יש לך מצבים כרוניים";
+"Start Gradually: If you're new to fasting, begin with shorter fasting periods (12:12) before advancing" = "התחל בהדרגה: אם אתה חדש בצום, התחל עם תקופות צום קצרות יותר (12:12) לפני שתתקדם";
+"Take Medications As Prescribed: Never skip medications - adjust your eating window if necessary" = "קח תרופות כפי שנרשם: לעולם אל תדלג על תרופות - התאם את חלון האכילה שלך אם צריך";
+
+"Protocol Guide" = "מדריך פרוטוקולים";
+"12:12 Protocol" = "פרוטוקול 12:12";
+"14:10 Protocol" = "פרוטוקול 14:10";
+"16:8 Protocol" = "פרוטוקול 16:8";
+"Custom Protocol" = "פרוטוקול מותאם אישית";
+
+"Best for" = "מתאים במיוחד ל";
+"Benefits" = "יתרונות";
+"How it works" = "איך זה עובד";
+
+"Beginners, those with medication schedules, active social lives" = "מתחילים, אנשים עם לוח זמנים לתרופות, חיים חברתיים פעילים";
+"Gentle introduction to fasting, better sleep, minimal disruption to routines" = "הקדמה עדינה לצום, שינה טובה יותר, הפרעה מינימלית לשגרה";
+"Fast for 12 hours (often overnight), eat during a 12-hour window" = "צום למשך 12 שעות (לרוב בלילה), אכילה במהלך חלון של 12 שעות";
+
+"Those with some fasting experience seeking more benefits" = "אנשים עם ניסיון מסוים בצום המחפשים יותר יתרונות";
+"Enhanced fat burning, improved metabolic flexibility, better appetite control" = "שריפת שומן משופרת, גמישות מטבולית משופרת, שליטה טובה יותר בתיאבון";
+"Fast for 14 hours, eat during a 10-hour window" = "צום למשך 14 שעות, אכילה במהלך חלון של 10 שעות";
+
+"Experienced fasters seeking maximum benefits" = "צמים מנוסים המחפשים יתרונות מקסימליים";
+"Maximum autophagy, significant fat burning, improved insulin sensitivity" = "אוטופגיה מקסימלית, שריפת שומן משמעותית, רגישות משופרת לאינסולין";
+"Fast for 16 hours, eat during an 8-hour window" = "צום למשך 16 שעות, אכילה במהלך חלון של 8 שעות";
+
+"Those with unique scheduling needs or specific health considerations" = "אנשים עם צרכי לוח זמנים ייחודיים או שיקולי בריאות ספציפיים";
+"Tailored to your specific lifestyle and needs" = "מותאם לסגנון החיים והצרכים הספציפיים שלך";
+"Set your own fasting and eating hours (must total 24 hours)" = "קבע את שעות הצום והאכילה שלך (חייב לסכם ל-24 שעות)";
+
+"Troubleshooting" = "פתרון בעיות";
+"Timer Not Updating: Pull down to refresh or restart the app" = "הטיימר לא מתעדכן: משוך למטה לרענון או הפעל מחדש את האפליקציה";
+"Protocol Reset: If your protocol settings are lost, simply reselect your preferred protocol" = "איפוס פרוטוקול: אם הגדרות הפרוטוקול שלך אבדו, פשוט בחר מחדש את הפרוטוקול המועדף עליך";
+"Time Adjustment: If you need to correct your last meal time, tap on \"Last Meal\" to adjust" = "התאמת זמן: אם אתה צריך לתקן את זמן הארוחה האחרונה שלך, הקש על \"ארוחה אחרונה\" כדי להתאים";
+"Medication Conflicts: Review your medication schedule in the Medications section if you notice conflicts" = "התנגשויות תרופות: סקור את לוח הזמנים של התרופות שלך בסעיף התרופות אם אתה מבחין בהתנגשויות";
+
+"Using with Other Features" = "שימוש עם תכונות אחרות";
+"Water Tracking: Remember to maintain hydration during fasting periods" = "מעקב אחר מים: זכור לשמור על הידרציה במהלך תקופות הצום";
+"Medication Management: The app will help you schedule medications appropriately during eating windows when possible" = "ניהול תרופות: האפליקציה תעזור לך לתזמן תרופות בצורה מתאימה במהלך חלונות אכילה כאשר אפשר";
+"Nutrition Tracking: Track meals during your eating window to ensure balanced nutrition" = "מעקב אחר תזונה: עקוב אחר ארוחות במהלך חלון האכילה שלך כדי להבטיח תזונה מאוזנת";
+
+/* Water Help Guide */
+"The Water Tracking feature helps you monitor and maintain proper hydration throughout the day. Staying hydrated is crucial for seniors to support overall health and well-being." = "תכונת מעקב המים עוזרת לך לנטר ולשמור על הידרציה נאותה לאורך היום. שמירה על הידרציה היא קריטית למבוגרים כדי לתמוך בבריאות כללית ורווחה.";
+
+"Feature Overview" = "סקירת תכונות";
+"The Water Tracking feature helps you monitor and maintain proper hydration throughout the day. Staying hydrated is crucial for seniors to support overall health and well-being, aid digestion, regulate body temperature, and prevent urinary tract infections." = "תכונת מעקב המים עוזרת לך לנטר ולשמור על הידרציה נאותה לאורך היום. שמירה על הידרציה היא קריטית למבוגרים כדי לתמוך בבריאות כללית ורווחה, לסייע בעיכול, לווסת את טמפרטורת הגוף ולמנוע זיהומים בדרכי השתן.";
+
+"Daily Water Goal: Customizable daily hydration target based on your needs" = "יעד מים יומי: יעד הידרציה יומי הניתן להתאמה אישית על פי הצרכים שלך";
+"One-Tap Tracking: Quickly record water intake with preset amounts" = "מעקב בלחיצה אחת: רשום במהירות צריכת מים עם כמויות קבועות מראש";
+"Visual Progress: Clear visual indicators of your daily hydration progress" = "התקדמות חזותית: מחוונים חזותיים ברורים של התקדמות ההידרציה היומית שלך";
+"Custom Amounts: Add specific water quantities for precise tracking" = "כמויות מותאמות אישית: הוסף כמויות מים ספציפיות למעקב מדויק";
+"Hydration Reminders: Customizable alerts to help you stay on track" = "תזכורות הידרציה: התראות הניתנות להתאמה אישית כדי לעזור לך להישאר במסלול";
+"History View: See your hydration patterns over time" = "תצוגת היסטוריה: ראה את דפוסי ההידרציה שלך לאורך זמן";
+
+"Add Water: Tap the quick-add buttons (150ml, 250ml, etc.) to log water intake" = "הוסף מים: הקש על כפתורי הוספה מהירה (150 מ״ל, 250 מ״ל וכו') כדי לרשום צריכת מים";
+"Custom Amount: Tap \"Add Custom Amount\" to enter a specific quantity" = "כמות מותאמת אישית: הקש על \"הוסף כמות מותאמת אישית\" כדי להזין כמות ספציפית";
+"Set Daily Goal: Adjust your daily water target in Settings" = "הגדר יעד יומי: התאם את יעד המים היומי שלך בהגדרות";
+"Configure Reminders: Set up hydration reminders with your preferred frequency" = "הגדר תזכורות: הגדר תזכורות הידרציה עם התדירות המועדפת עליך";
+"Track Progress: View your daily progress with the circular indicator" = "עקוב אחר התקדמות: צפה בהתקדמות היומית שלך עם מחוון מעגלי";
+"View History: Swipe to see your hydration history and patterns" = "צפה בהיסטוריה: החלק כדי לראות את היסטוריית ההידרציה והדפוסים שלך";
+
+"Hydration Tips for Seniors" = "טיפים להידרציה לגיל השלישי";
+"Drink Before You're Thirsty: Thirst sensation decreases with age, so drink regularly" = "שתה לפני שאתה צמא: תחושת הצמא פוחתת עם הגיל, לכן שתה באופן קבוע";
+"Morning Routine: Start each day with a glass of water before breakfast" = "שגרת בוקר: התחל כל יום עם כוס מים לפני ארוחת הבוקר";
+"Carry Water: Keep a water bottle with you throughout the day" = "שא מים: שמור על בקבוק מים איתך במהלך היום";
+"Set Reminders: Use the app's reminder feature as your sense of thirst may be diminished" = "הגדר תזכורות: השתמש בתכונת התזכורת של האפליקציה כיוון שתחושת הצמא שלך עלולה להיות מופחתת";
+"Monitor Color: Check your urine - pale yellow indicates good hydration" = "עקוב אחר צבע: בדוק את השתן שלך - צהוב בהיר מצביע על הידרציה טובה";
+"Limit Caffeine & Alcohol: These can contribute to dehydration" = "הגבל קפאין ואלכוהול: אלה עלולים לתרום להתייבשות";
+
+"Understanding Hydration Needs" = "הבנת צרכי הידרציה";
+"Individual Needs Vary: Your water needs depend on weight, activity level, and climate" = "צרכים אישיים משתנים: צרכי המים שלך תלויים במשקל, רמת פעילות ואקלים";
+"Medications Matter: Some medications may increase hydration needs" = "תרופות חשובות: חלק מהתרופות עשויות להגדיל את צרכי ההידרציה";
+"Activity Adjustments: Increase water intake during physical activity" = "התאמות פעילות: הגדל צריכת מים במהלך פעילות גופנית";
+"Seasonal Changes: You need more water in hot weather or heated indoor environments" = "שינויים עונתיים: אתה צריך יותר מים במזג אוויר חם או בסביבות פנים מחוממות";
+"Medical Conditions: Heart failure, kidney disease and other conditions may require specific fluid intake - consult your doctor" = "מצבים רפואיים: אי ספיקת לב, מחלת כליות ומצבים אחרים עשויים לדרוש צריכת נוזלים ספציפית - התייעץ עם הרופא שלך";
+
+"Beyond Plain Water" = "מעבר למים רגילים";
+"Hydrating Foods: Fruits like watermelon, oranges, and vegetables like cucumber contribute to hydration" = "מזונות מרווים: פירות כמו אבטיח, תפוזים וירקות כמו מלפפון תורמים להידרציה";
+"Herbal Teas: Caffeine-free herbal teas count toward daily fluid intake" = "תה צמחים: תה צמחים ללא קפאין נחשב לצריכת נוזלים יומית";
+"Milk & Alternatives: Milk, fortified plant milks provide hydration plus nutrients" = "חלב ותחליפים: חלב, משקאות צמחיים מועשרים מספקים הידרציה בנוסף לחומרים מזינים";
+"Soup & Broth: Clear soups and broths are excellent hydration sources" = "מרק ומרק בשר: מרקים צלולים ומרקי בשר הם מקורות הידרציה מצוינים";
+"Flavor Your Water: Add slices of fruit for taste without added sugar" = "הוסף טעם למים שלך: הוסף פרוסות פרי לטעם ללא תוספת סוכר";
+
+"Signs of Dehydration" = "סימני התייבשות";
+"Increased Thirst: Persistent thirst or dry mouth" = "צמא מוגבר: צמא מתמשך או פה יבש";
+"Dark Urine: Dark yellow or amber-colored urine" = "שתן כהה: שתן בצבע צהוב כהה או ענברי";
+"Fatigue: Unusual tiredness or lethargy" = "עייפות: עייפות חריגה או לתרגיה";
+"Dizziness: Feeling lightheaded, especially when standing" = "סחרחורת: תחושת סחרחורת, במיוחד בעמידה";
+"Confusion: Mental fogginess or unusual confusion" = "בלבול: ערפול מנטלי או בלבול חריג";
+"Dry Skin: Skin that lacks elasticity when pinched" = "עור יבש: עור שחסר אלסטיות כאשר צובטים אותו";
+"Headache: Persistent headache that doesn't respond to pain relievers" = "כאב ראש: כאב ראש מתמשך שאינו מגיב למשככי כאבים";
+
+"Emergency Information" = "מידע חירום";
+"Severe dehydration requires medical attention. Seek immediate help if you experience extreme thirst, no urination, shriveled skin, confusion, irritability, or dizziness. For seniors, dehydration can become dangerous quickly, especially during illness or hot weather." = "התייבשות חמורה דורשת טיפול רפואי. פנה לעזרה מיידית אם אתה חווה צמא קיצוני, אין השתנה, עור מצומק, בלבול, עצבנות או סחרחורת. לקשישים, התייבשות יכולה להיות מסוכנת במהירות, במיוחד במהלך מחלה או מזג אוויר חם.";
+
+"Progress Not Updating: Pull down to refresh the screen" = "התקדמות לא מתעדכנת: משוך למטה כדי לרענן את המסך";
+"Reminders Not Working: Check notification permissions in device settings" = "תזכורות לא עובדות: בדוק הרשאות התראות בהגדרות המכשיר";
+"Goal Adjustments: If you can't reach your goal consistently, try lowering it temporarily" = "התאמות יעד: אם אינך יכול להגיע ליעד שלך באופן עקבי, נסה להוריד אותו זמנית";
+"Data Discrepancies: If history doesn't match your entries, restart the app" = "אי התאמות נתונים: אם ההיסטוריה אינה תואמת את הרישומים שלך, הפעל מחדש את האפליקציה";
+"Custom Amount Problems: If custom amounts aren't saving, try using preset buttons" = "בעיות בכמות מותאמת אישית: אם כמויות מותאמות אישית לא נשמרות, נסה להשתמש בכפתורים קבועים מראש";
+
+"Fasting Integration: The app will remind you to stay hydrated during fasting periods" = "שילוב צום: האפליקציה תזכיר לך לשמור על הידרציה במהלך תקופות צום";
+"Medication Reminders: Water reminders can be synchronized with medication times" = "תזכורות תרופות: תזכורות מים יכולות להיות מסונכרנות עם זמני תרופות";
+"Health Tracking: Your hydration status contributes to your overall health assessment" = "מעקב בריאות: מצב ההידרציה שלך תורם להערכת הבריאות הכללית שלך";
+"Reports: Hydration data is included in health reports you can share with providers" = "דוחות: נתוני הידרציה כלולים בדוחות בריאות שאתה יכול לשתף עם ספקים";
+
+"Troubleshooting" = "פתרון בעיות";
+"Using with Other Features" = "שימוש עם תכונות אחרות";
+
+/* Nutrition Help Guide */
+"Help: Nutrition" = "עזרה: תזונה";
+"The Nutrition section helps you track your meals, monitor nutrient intake, and maintain a balanced diet suited for your health needs. This guide explains how to use all features in the Nutrition tab." = "חלק התזונה עוזר לך לעקוב אחר הארוחות שלך, לנטר צריכת נוטריינטים ולשמור על תזונה מאוזנת המותאמת לצרכי הבריאות שלך. מדריך זה מסביר כיצד להשתמש בכל התכונות בלשונית התזונה.";
+
+"Main Sections" = "מדורים ראשיים";
+"Dashboard: View your daily nutrient intake with visualizations" = "לוח בקרה: צפה בצריכת הנוטריינטים היומית שלך עם ויזואליזציות";
+"Meals: Log and manage your daily meals and access common meals" = "ארוחות: רשום ונהל את הארוחות היומיות שלך וגש לארוחות נפוצות";
+"Food Database: Browse detailed nutrition information for thousands of foods" = "מאגר מזון: עיין במידע תזונתי מפורט עבור אלפי מזונות";
+"Nutrition Tips: Get personalized advice based on your health profile" = "טיפים תזונתיים: קבל ייעוץ מותאם אישית על בסיס פרופיל הבריאות שלך";
+
+"Dashboard Features" = "תכונות לוח הבקרה";
+"The Dashboard provides a visual overview of your daily nutrition with easy-to-read charts and progress indicators." = "לוח הבקרה מספק סקירה חזותית של התזונה היומית שלך עם תרשימים קלים לקריאה ומחווני התקדמות.";
+"Date Selector: Navigate between days to see nutrition history" = "בורר תאריכים: נווט בין ימים כדי לראות היסטוריה תזונתית";
+"Daily Summary: Shows your calorie intake versus your daily goal" = "סיכום יומי: מציג את צריכת הקלוריות שלך לעומת היעד היומי שלך";
+"Macronutrients: Tracks protein, carbohydrates, and fat intake" = "אבות המזון: עוקב אחר צריכת חלבון, פחמימות ושומן";
+"Vitamins & Minerals: Monitors essential micronutrients important for seniors" = "ויטמינים ומינרלים: מנטר מיקרונוטריינטים חיוניים החשובים לקשישים";
+
+"Using the Dashboard" = "שימוש בלוח הבקרה";
+"View Daily Summary: The top card shows your current calorie intake compared to your goal" = "צפה בסיכום היומי: הכרטיס העליון מציג את צריכת הקלוריות הנוכחית שלך בהשוואה ליעד שלך";
+"Check Macronutrients: Progress bars show how close you are to your protein, carbs, and fat goals" = "בדוק אבות מזון: סרגלי התקדמות מראים כמה קרוב אתה ליעדי החלבון, הפחמימות והשומן שלך";
+"Monitor Micronutrients: Circular indicators show vitamin and mineral intake" = "נטר מיקרונוטריינטים: מחוונים מעגליים מציגים צריכת ויטמינים ומינרלים";
+"Change Date: Use the arrows in the date selector to view different days" = "שנה תאריך: השתמש בחיצים בבורר התאריכים כדי לצפות בימים שונים";
+
+"Meals Section" = "מדור הארוחות";
+"The Meals section lets you log and manage your daily meals, access commonly eaten items, and view nutrition tips." = "מדור הארוחות מאפשר לך לרשום ולנהל את הארוחות היומיות שלך, לגשת לפריטים שנאכלים בתדירות גבוהה ולצפות בטיפים תזונתיים.";
+"Today's Meals: Lists all meals logged for the current day" = "ארוחות היום: מציג את כל הארוחות שנרשמו ליום הנוכחי";
+"Common Meals: Quick access to your frequently eaten meals" = "ארוחות נפוצות: גישה מהירה לארוחות שאתה אוכל לעתים קרובות";
+"Nutrition Tips: Provides advice tailored to your health profile" = "טיפים תזונתיים: מספק עצות המותאמות לפרופיל הבריאות שלך";
+"Food Database: Access to detailed nutritional information" = "מאגר מזון: גישה למידע תזונתי מפורט";
+
+"Managing Meals" = "ניהול ארוחות";
+"Add a Meal: Tap the + button in the header or the Add button in Today's Meals" = "הוסף ארוחה: הקש על כפתור + בכותרת או על כפתור ההוספה בארוחות היום";
+"Edit a Meal: Tap on any meal in your Today's Meals list to edit it" = "ערוך ארוחה: הקש על כל ארוחה ברשימת ארוחות היום כדי לערוך אותה";
+"Use Common Meals: Tap any meal in the Common Meals section to quickly add it to today" = "השתמש בארוחות נפוצות: הקש על כל ארוחה במדור ארוחות נפוצות כדי להוסיף אותה במהירות להיום";
+"Add to Common Meals: Long-press on a meal and select Add to Common Meals" = "הוסף לארוחות נפוצות: לחץ לחיצה ארוכה על ארוחה ובחר הוסף לארוחות נפוצות";
+"Delete a Meal: Long-press on a meal and select Delete" = "מחק ארוחה: לחץ לחיצה ארוכה על ארוחה ובחר מחק";
+
+"Adding a New Meal" = "הוספת ארוחה חדשה";
+"When adding a meal, follow these steps:" = "בעת הוספת ארוחה, עקוב אחר השלבים הבאים:";
+"Search for Food: Tap 'Search Food Database' to find foods" = "חפש מזון: הקש על 'חפש במאגר המזון' כדי למצוא מזונות";
+"Enter Meal Details: Add a name, select meal type (breakfast, lunch, dinner, or snack)" = "הזן פרטי ארוחה: הוסף שם, בחר סוג ארוחה (ארוחת בוקר, צהריים, ערב או חטיף)";
+"Set Portion Size: Choose small, medium, or large to adjust calories accordingly" = "קבע גודל מנה: בחר קטן, בינוני או גדול כדי להתאים קלוריות בהתאם";
+"Add Notes: Optionally add notes about the meal" = "הוסף הערות: הוסף הערות לגבי הארוחה (אופציונלי)";
+"Analyze Nutrition: View detailed nutritional breakdown before saving" = "נתח תזונה: צפה בפירוט תזונתי מפורט לפני השמירה";
+"Save Meal: Tap 'Save Meal' to add it to your day" = "שמור ארוחה: הקש על 'שמור ארוחה' כדי להוסיף אותה ליומך";
+
+"Finding Foods" = "מציאת מזונות";
+"The food search feature helps you quickly find foods and their nutritional information:" = "תכונת חיפוש המזון עוזרת לך למצוא במהירות מזונות ואת המידע התזונתי שלהם:";
+"Search Bar: Type food names to filter results" = "שורת חיפוש: הקלד שמות מזון כדי לסנן תוצאות";
+"Category Filter: Use category buttons to narrow down options" = "סינון קטגוריות: השתמש בכפתורי קטגוריה כדי לצמצם אפשרויות";
+"Food Selection: Tap any food item to select it" = "בחירת מזון: הקש על כל פריט מזון כדי לבחור בו";
+"Food Details: View calories, protein, carbs, and fat for each food" = "פרטי מזון: צפה בקלוריות, חלבון, פחמימות ושומן לכל מזון";
+"Custom Foods: Items marked 'Custom Food' are ones you've added yourself" = "מזונות מותאמים אישית: פריטים המסומנים 'מזון מותאם אישית' הם אלה שהוספת בעצמך";
+
+"Food Database" = "מאגר מזון";
+"The Food Database section provides detailed nutritional information for thousands of foods:" = "מדור מאגר המזון מספק מידע תזונתי מפורט עבור אלפי מזונות:";
+"Access the Database: Scroll down in the Meals tab and tap the Food Database card" = "גש למאגר: גלול למטה בלשונית הארוחות והקש על כרטיס מאגר המזון";
+"Browse Foods: Search or filter by category to find specific items" = "עיין במזונות: חפש או סנן לפי קטגוריה כדי למצוא פריטים ספציפיים";
+"View Details: Tap any food to see complete nutritional information" = "צפה בפרטים: הקש על כל מזון כדי לראות מידע תזונתי מלא";
+"Detailed Nutrients: See macronutrients, vitamins, minerals, and serving information" = "נוטריינטים מפורטים: ראה אבות מזון, ויטמינים, מינרלים ומידע על מנות";
+"Return to Meals: Tap the back button to go back to the Meals section" = "חזור לארוחות: הקש על כפתור החזרה כדי לחזור למדור הארוחות";
+
+"Nutrition Tips" = "טיפים תזונתיים";
+"Access personalized nutrition recommendations based on your health profile:" = "גש להמלצות תזונה מותאמות אישית על בסיס פרופיל הבריאות שלך:";
+"View Tips: See general tips directly in the Meals section" = "צפה בטיפים: ראה טיפים כלליים ישירות במדור הארוחות";
+"Personalized Advice: Tap 'View More Tips' for recommendations tailored to your health conditions" = "ייעוץ מותאם אישית: הקש על 'הצג עוד טיפים' להמלצות המותאמות למצבי הבריאות שלך";
+"Medical Condition Tips: Get advice specific to conditions you've entered in your profile" = "טיפים למצבים רפואיים: קבל עצות ספציפיות למצבים שהזנת בפרופיל שלך";
+"Dietary Restriction Tips: Receive guidance for your specific dietary needs" = "טיפים להגבלות תזונתיות: קבל הדרכה לצרכי התזונה הספציפיים שלך";
+"Supplement Recommendations: Learn about supplements that may benefit your health" = "המלצות תוספים: למד על תוספים שעשויים להועיל לבריאותך";
+
+"Tips for Seniors" = "טיפים לאזרחים ותיקים";
+"Senior-Friendly Nutrition Tips:" = "טיפי תזונה ידידותיים לאזרחים ותיקים:";
+"Focus on protein-rich foods to maintain muscle mass" = "התמקד במזונות עשירי חלבון כדי לשמור על מסת שריר";
+"Choose nutrient-dense foods over empty calories" = "בחר מזונות עשירים בנוטריינטים על פני קלוריות ריקות";
+"Stay well-hydrated throughout the day" = "הישאר רווי לאורך כל היום";
+"Include calcium and vitamin D for bone health" = "כלול סידן וויטמין D לבריאות העצם";
+"Eat fiber-rich foods for digestive health" = "אכול מזונות עשירים בסיבים לבריאות מערכת העיכול";
+"Incorporate omega-3 fatty acids for heart and brain health" = "שלב חומצות שומן אומגה-3 לבריאות הלב והמוח";
+
+"Troubleshooting" = "פתרון בעיות";
+"Meals Not Appearing: Pull down to refresh if recently added meals don't show" = "ארוחות לא מופיעות: משוך מטה לרענון אם ארוחות שנוספו לאחרונה לא מוצגות";
+"Search Not Working: Try simplifying your search terms or use category filters" = "החיפוש לא עובד: נסה לפשט את מונחי החיפוש שלך או השתמש בסינון קטגוריות";
+"Nutrient Goals: Your nutrient goals are based on your profile information" = "יעדי נוטריינטים: יעדי הנוטריינטים שלך מבוססים על מידע הפרופיל שלך";
+"Adding Custom Foods: If you can't find a food, you can add custom entries" = "הוספת מזונות מותאמים אישית: אם אינך מוצא מזון, תוכל להוסיף רשומות מותאמות אישית";
+"Meal History: View past days using the date selector in the Dashboard" = "היסטוריית ארוחות: צפה בימים קודמים באמצעות בורר התאריכים בלוח הבקרה";
+
+"Need More Help?" = "צריך עוד עזרה?";
+"For additional assistance with the Nutrition features, tap the Support button in Settings or use the voice assistant by tapping the microphone icon at the top of the screen." = "לסיוע נוסף עם תכונות התזונה, הקש על כפתור התמיכה בהגדרות או השתמש בעוזר הקולי על ידי הקשה על סמל המיקרופון בחלק העליון של המסך.";
+
+/* More Section Help Guide */
+"Help: More" = "עזרה: עוד";
+"The More section provides access to essential app settings, your profile, help resources, and additional tools. This centralized hub lets you customize the app experience and access important information." = "מדור 'עוד' מספק גישה להגדרות חיוניות של האפליקציה, לפרופיל שלך, למשאבי עזרה ולכלים נוספים. מרכז מרוכז זה מאפשר לך להתאים אישית את חוויית האפליקציה ולגשת למידע חשוב.";
+
+"Main Features" = "תכונות עיקריות";
+"Settings: Customize app appearance, notifications, and preferences" = "הגדרות: התאם אישית את מראה האפליקציה, התראות והעדפות";
+"Profile: View and update your personal health information" = "פרופיל: צפה ועדכן את מידע הבריאות האישי שלך";
+"Help & Support: Access guides, tutorials, and contact support" = "עזרה ותמיכה: גש למדריכים, הדרכות וצור קשר עם התמיכה";
+"About: View app version, privacy policy, and terms of service" = "אודות: צפה בגרסת האפליקציה, מדיניות פרטיות ותנאי שימוש";
+"Print Materials: Generate printable health summaries and reports" = "חומרי הדפסה: צור סיכומי בריאות ודוחות להדפסה";
+
+"Settings Options" = "אפשרויות הגדרות";
+"The Settings section allows you to customize how the app works and looks:" = "מדור ההגדרות מאפשר לך להתאים אישית כיצד האפליקציה עובדת ונראית:";
+"Text Size: Adjust text size for better readability" = "גודל טקסט: התאם את גודל הטקסט לקריאות טובה יותר";
+"Voice Settings: Configure voice assistant and reading features" = "הגדרות קול: הגדר את העוזר הקולי ותכונות הקריאה";
+"Appearance: Toggle dark mode, high contrast, and other visual options" = "מראה: הפעל מצב כהה, ניגודיות גבוהה ואפשרויות חזותיות אחרות";
+"Language: Change the app language (English, Spanish, French, German, Hebrew)" = "שפה: שנה את שפת האפליקציה (אנגלית, ספרדית, צרפתית, גרמנית, עברית)";
+"Notifications: Customize alert types, sounds, and timing" = "התראות: התאם אישית סוגי התראות, צלילים ותזמון";
+"Data Management: Back up and restore your app data" = "ניהול נתונים: גבה ושחזר את נתוני האפליקציה שלך";
+
+"Using Settings" = "שימוש בהגדרות";
+"Access Settings: Tap the Settings option in the More screen" = "גישה להגדרות: הקש על אפשרות ההגדרות במסך 'עוד'";
+"Adjust Text: Use the text size slider to make text larger or smaller" = "התאם טקסט: השתמש במחוון גודל הטקסט כדי להגדיל או להקטין את הטקסט";
+"Change Language: Tap Language to select from available options" = "שנה שפה: הקש על שפה כדי לבחור מהאפשרויות הזמינות";
+"Manage Notifications: Customize timing and types of alerts" = "נהל התראות: התאם אישית את התזמון וסוגי ההתראות";
+"Toggle Features: Turn features on/off using the switches" = "הפעל/כבה תכונות: הפעל או כבה תכונות באמצעות המתגים";
+"Save Changes: Most settings are applied immediately when changed" = "שמור שינויים: רוב ההגדרות מיושמות מיד כשהן משתנות";
+
+"Profile Management" = "ניהול פרופיל";
+"Your profile contains important information that helps personalize the app:" = "הפרופיל שלך מכיל מידע חשוב שעוזר להתאים אישית את האפליקציה:";
+"Personal Information: Name, age, gender, and contact details" = "מידע אישי: שם, גיל, מגדר ופרטי קשר";
+"Medical Conditions: Health conditions that affect recommendations" = "מצבים רפואיים: מצבי בריאות המשפיעים על ההמלצות";
+"Dietary Restrictions: Food allergies, intolerances, and preferences" = "הגבלות תזונתיות: אלרגיות מזון, אי-סבילויות והעדפות";
+"Medications: Current medication list that integrates with reminders" = "תרופות: רשימת תרופות נוכחית המשתלבת עם תזכורות";
+"Emergency Contacts: People to contact in case of emergency" = "אנשי קשר לחירום: אנשים ליצירת קשר במקרה חירום";
+
+"Updating Profile" = "עדכון פרופיל";
+"Access Profile: Tap the Profile option in the More screen" = "גישה לפרופיל: הקש על אפשרות הפרופיל במסך 'עוד'";
+"Edit Information: Tap Edit button to modify any section" = "ערוך מידע: הקש על כפתור עריכה כדי לשנות כל מדור";
+"Add Items: Use + buttons to add new conditions, medications, etc." = "הוסף פריטים: השתמש בכפתורי + כדי להוסיף מצבים חדשים, תרופות וכו'";
+"Remove Items: Swipe left on any item to delete it" = "הסר פריטים: החלק שמאלה על כל פריט כדי למחוק אותו";
+"Save Changes: Tap Save button to confirm your updates" = "שמור שינויים: הקש על כפתור שמור כדי לאשר את העדכונים שלך";
+
+"Help & Support Options" = "אפשרויות עזרה ותמיכה";
+"Find assistance with using the app through various resources:" = "מצא סיוע בשימוש באפליקציה דרך משאבים שונים:";
+"Help Guides: Detailed instructions for each app section" = "מדריכי עזרה: הוראות מפורטות לכל מדור באפליקציה";
+"Video Tutorials: Step-by-step visual guides for key features" = "הדרכות וידאו: מדריכים חזותיים שלב אחר שלב לתכונות מרכזיות";
+"Contact Support: Email, phone, or in-app messaging options" = "צור קשר עם תמיכה: אפשרויות דוא\"ל, טלפון או הודעות באפליקציה";
+"Interactive Tour: Guided walkthrough of app features" = "סיור אינטראקטיבי: סיור מודרך בתכונות האפליקציה";
+"FAQ: Answers to common questions" = "שאלות נפוצות: תשובות לשאלות נפוצות";
+
+"Getting Help" = "קבלת עזרה";
+"Access Help: Tap Help & Support in the More screen" = "גישה לעזרה: הקש על עזרה ותמיכה במסך 'עוד'";
+"Browse Topics: Select from available help categories" = "עיין בנושאים: בחר מקטגוריות העזרה הזמינות";
+"Watch Videos: Tap any video tutorial to start playback" = "צפה בסרטונים: הקש על כל הדרכת וידאו כדי להתחיל בהפעלה";
+"Contact Team: Use the Contact Support option to reach our team" = "צור קשר עם הצוות: השתמש באפשרות צור קשר עם תמיכה כדי להגיע לצוות שלנו";
+"Emergency Help: Use the Emergency button on the home screen for urgent issues" = "עזרה חירום: השתמש בכפתור חירום במסך הבית לבעיות דחופות";
+
+"Print Materials" = "חומרי הדפסה";
+"Generate printer-friendly documents for various purposes:" = "צור מסמכים ידידותיים להדפסה למטרות שונות:";
+"Health Summary: Comprehensive overview of your health data" = "סיכום בריאות: סקירה מקיפה של נתוני הבריאות שלך";
+"Medication List: Detailed list of current medications" = "רשימת תרופות: רשימה מפורטת של תרופות נוכחיות";
+"Nutrition Report: Summary of your dietary intake and patterns" = "דוח תזונה: סיכום של צריכת המזון והדפוסים שלך";
+"Appointment Schedule: List of upcoming medical appointments" = "לוח זמנים לפגישות: רשימת פגישות רפואיות קרובות";
+"Fasting Protocol: Details of your current fasting schedule" = "פרוטוקול צום: פרטים על לוח הזמנים הנוכחי לצום שלך";
+
+"Printing Documents" = "הדפסת מסמכים";
+"Access Print: Tap Print Materials in the More screen" = "גישה להדפסה: הקש על חומרי הדפסה במסך 'עוד'";
+"Select Document: Choose which report to generate" = "בחר מסמך: בחר איזה דוח ליצור";
+"Set Date Range: Specify the time period for the report" = "הגדר טווח תאריכים: ציין את תקופת הזמן עבור הדוח";
+"Preview: Review the document before printing" = "תצוגה מקדימה: סקור את המסמך לפני ההדפסה";
+"Print or Share: Send to a printer or share digitally" = "הדפס או שתף: שלח למדפסת או שתף באופן דיגיטלי";
+"Help with Printing: Get assistance with printer setup if needed" = "עזרה בהדפסה: קבל סיוע בהגדרת המדפסת במידת הצורך";
+
+"Accessibility Features" = "תכונות נגישות";
+"The More section includes several helpful accessibility options:" = "מדור 'עוד' כולל מספר אפשרויות נגישות מועילות:";
+"Voice Assistant: Get spoken guidance through app features" = "עוזר קולי: קבל הדרכה קולית דרך תכונות האפליקציה";
+"Text to Speech: Have content read aloud to you" = "טקסט לדיבור: האפליקציה תקריא לך את התוכן בקול רם";
+"High Contrast: Make text and buttons more visible" = "ניגודיות גבוהה: הפוך טקסט וכפתורים לנראים יותר";
+"Large Text: Increase text size throughout the app" = "טקסט גדול: הגדל את גודל הטקסט בכל האפליקציה";
+"Button Labels: Add descriptive text to all buttons" = "תוויות כפתורים: הוסף טקסט תיאורי לכל הכפתורים";
+
+"Tips for Seniors" = "טיפים לגיל השלישי";
+"Make the most of the More section with these helpful tips:" = "הפק את המרב ממדור 'עוד' עם הטיפים המועילים האלה:";
+"Customize First: Take time to adjust text size and contrast for optimal viewing" = "התאם אישית תחילה: הקדש זמן להתאמת גודל טקסט וניגודיות לצפייה אופטימלית";
+"Set Up Voice: Configure voice features for hands-free navigation" = "הגדר קול: הגדר תכונות קול לניווט ללא ידיים";
+"Emergency Contacts: Keep your emergency contact list updated" = "אנשי קשר לחירום: שמור על רשימת אנשי הקשר לחירום מעודכנת";
+"Regular Backups: Use the backup feature to protect your data" = "גיבויים קבועים: השתמש בתכונת הגיבוי כדי להגן על הנתונים שלך";
+"Print Key Info: Consider printing your medication list to keep in your wallet" = "הדפס מידע מפתח: שקול להדפיס את רשימת התרופות שלך לשמירה בארנק";
+
+"Troubleshooting" = "פתרון בעיות";
+"Settings Not Saving: Restart the app if settings aren't being applied" = "הגדרות לא נשמרות: הפעל מחדש את האפליקציה אם ההגדרות לא מיושמות";
+"Profile Updates: Make sure to tap Save after changing profile information" = "עדכוני פרופיל: הקפד להקיש על שמור לאחר שינוי פרטי הפרופיל";
+"Printing Problems: Ensure your device is connected to a printer or sharing service" = "בעיות הדפסה: ודא שהמכשיר שלך מחובר למדפסת או לשירות שיתוף";
+"Language Issues: If text appears cut off after changing language, restart the app" = "בעיות שפה: אם הטקסט נראה חתוך לאחר שינוי שפה, הפעל מחדש את האפליקציה";
+"Help Videos: If videos won't play, check your internet connection" = "סרטוני עזרה: אם הסרטונים לא מופעלים, בדוק את חיבור האינטרנט שלך";
+
+"Need Additional Help?" = "צריך עזרה נוספת?";
+"If you need further assistance with the More section or any other features, please contact our support team through the Help & Support option or call our senior support line." = "אם אתה זקוק לסיוע נוסף עם מדור 'עוד' או כל תכונה אחרת, אנא צור קשר עם צוות התמיכה שלנו דרך אפשרות העזרה והתמיכה או התקשר לקו התמיכה שלנו לגיל השלישי.";

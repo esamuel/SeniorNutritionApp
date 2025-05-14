@@ -14,6 +14,8 @@ struct NutritionView: View {
     @State private var commonMealAddedName = ""
     @State private var showingPersonalizedTips = false
     @State private var showingFoodDatabase = false
+    @State private var showingCommonMealDeleteAlert = false
+    @State private var commonMealToDelete: Meal?
 
     var body: some View {
         NavigationView {
@@ -86,6 +88,16 @@ struct NutritionView: View {
                 Button("Cancel", role: .cancel) {}
             } message: {
                 Text("Are you sure you want to delete this meal?")
+            }
+            .alert(NSLocalizedString("Delete Common Meal", comment: ""), isPresented: $showingCommonMealDeleteAlert) {
+                Button(NSLocalizedString("Delete", comment: ""), role: .destructive) {
+                    if let meal = commonMealToDelete {
+                        userCommonMeals.removeCommonMeal(meal)
+                    }
+                }
+                Button(NSLocalizedString("Cancel", comment: ""), role: .cancel) {}
+            } message: {
+                Text(NSLocalizedString("Are you sure you want to remove this meal from your common meals? This action cannot be undone.", comment: ""))
             }
             .alert("Added to Common Meals", isPresented: $showingCommonMealAdded) {
                 Button("OK", role: .cancel) {}
@@ -278,51 +290,67 @@ struct NutritionView: View {
     }
 
     private func commonMealCard(meal: Meal) -> some View {
-        Button(action: {
-            var newMeal = meal
-            let calendar = Calendar.current
-            let now = Date()
-            var components = calendar.dateComponents([.year, .month, .day], from: now)
-            components.hour = 12
-            components.minute = 0
-            components.second = 0
-            newMeal.time = calendar.date(from: components) ?? now
-            mealManager.addMeal(newMeal)
-        }) {
-            VStack(alignment: .leading, spacing: 10) {
-                Image(systemName: meal.type.icon)
-                    .font(.system(size: 30))
-                    .foregroundColor(meal.type.color)
-                    .frame(width: 50, height: 50)
-                    .background(meal.type.color.opacity(0.2))
-                    .cornerRadius(10)
-                Text(meal.name)
-                    .font(.system(size: userSettings.textSize.size))
-                    .foregroundColor(.primary)
-                    .multilineTextAlignment(.leading)
-                    .lineLimit(2)
-                Text("\(Int(meal.adjustedNutritionalInfo.calories)) calories")
-                    .font(.system(size: userSettings.textSize.size - 4))
-                    .foregroundColor(.secondary)
-                Text("Tap to add")
-                    .font(.system(size: userSettings.textSize.size - 4))
-                    .foregroundColor(.blue)
+        ZStack(alignment: .topTrailing) {
+            Button(action: {
+                var newMeal = meal
+                let calendar = Calendar.current
+                let now = Date()
+                var components = calendar.dateComponents([.year, .month, .day], from: now)
+                components.hour = 12
+                components.minute = 0
+                components.second = 0
+                newMeal.time = calendar.date(from: components) ?? now
+                mealManager.addMeal(newMeal)
+            }) {
+                VStack(alignment: .leading, spacing: 10) {
+                    Image(systemName: meal.type.icon)
+                        .font(.system(size: 30))
+                        .foregroundColor(meal.type.color)
+                        .frame(width: 50, height: 50)
+                        .background(meal.type.color.opacity(0.2))
+                        .cornerRadius(10)
+                    Text(meal.name)
+                        .font(.system(size: userSettings.textSize.size))
+                        .foregroundColor(.primary)
+                        .multilineTextAlignment(.leading)
+                        .lineLimit(2)
+                    Text("\(Int(meal.adjustedNutritionalInfo.calories)) calories")
+                        .font(.system(size: userSettings.textSize.size - 4))
+                        .foregroundColor(.secondary)
+                    Text(NSLocalizedString("Tap to add", comment: ""))
+                        .font(.system(size: userSettings.textSize.size - 4))
+                        .foregroundColor(.blue)
+                }
+                .frame(width: 140, height: 170)
+                .padding()
+                .background(Color(.systemGray6))
+                .cornerRadius(16)
             }
-            .frame(width: 140, height: 170)
-            .padding()
-            .background(Color(.systemGray6))
-            .cornerRadius(16)
+            
+            // Delete button outside the main button to avoid event conflicts
+            Button(action: {
+                commonMealToDelete = meal
+                showingCommonMealDeleteAlert = true
+            }) {
+                Image(systemName: "xmark.circle.fill")
+                    .font(.system(size: 24))
+                    .foregroundColor(.red)
+                    .background(Color.white.clipShape(Circle()))
+            }
+            .padding(10)
+            .accessibilityLabel(NSLocalizedString("Delete common meal", comment: ""))
         }
         .swipeActions(edge: .trailing, allowsFullSwipe: false) {
             Button(role: .destructive) {
-                userCommonMeals.removeCommonMeal(meal)
+                commonMealToDelete = meal
+                showingCommonMealDeleteAlert = true
             } label: {
-                Label("Delete", systemImage: "trash")
+                Label(NSLocalizedString("Delete", comment: ""), systemImage: "trash")
             }
             Button {
                 mealToEdit = meal
             } label: {
-                Label("Edit", systemImage: "pencil")
+                Label(NSLocalizedString("Edit", comment: ""), systemImage: "pencil")
             }
             .tint(.blue)
         }

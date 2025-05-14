@@ -868,7 +868,7 @@ struct HomeView: View {
                             icon: "app.fill",
                             content: NSLocalizedString("Your comprehensive health companion for managing nutrition, fasting, medications, and wellness tracking. This guide will help you navigate the app's features effectively.", comment: ""),
                             onSpeak: {
-                                voiceManager.speak(NSLocalizedString("Welcome to Senior Nutrition App. Your comprehensive health companion for managing nutrition, fasting, medications, and wellness tracking. This guide will help you navigate the app's features effectively.", comment: ""))
+                                voiceManager.speak(NSLocalizedString("Welcome to Senior Nutrition App. Your comprehensive health companion for managing nutrition, fasting, medications, and wellness tracking. This guide will help you navigate the app's features effectively.", comment: ""), userSettings: userSettings)
                             }
                         )
                         
@@ -883,7 +883,7 @@ struct HomeView: View {
                                 NSLocalizedString("Integration with medication and meal schedules", comment: "")
                             ],
                             onSpeak: {
-                                voiceManager.speak(NSLocalizedString("Fasting Timer features: Advanced fasting protocol options for seniors, real-time tracking with health safety indicators, customizable fasting and eating windows, and integration with medication and meal schedules.", comment: ""))
+                                voiceManager.speak(NSLocalizedString("Fasting Timer features: Advanced fasting protocol options for seniors, real-time tracking with health safety indicators, customizable fasting and eating windows, and integration with medication and meal schedules.", comment: ""), userSettings: userSettings)
                             }
                         )
                         
@@ -910,7 +910,7 @@ struct HomeView: View {
                                 NSLocalizedString("Calendar integration and sharing with caregivers", comment: "")
                             ],
                             onSpeak: {
-                                voiceManager.speak(NSLocalizedString("Appointment Management features: Easy scheduling and tracking of medical appointments, automatic reminders with customizable advance notice, location and provider information storage, and calendar integration and sharing with caregivers.", comment: ""))
+                                voiceManager.speak(NSLocalizedString("Appointment Management features: Easy scheduling and tracking of medical appointments, automatic reminders with customizable advance notice, location and provider information storage, and calendar integration and sharing with caregivers.", comment: ""), userSettings: userSettings)
                             }
                         )
                         
@@ -925,7 +925,7 @@ struct HomeView: View {
                                 NSLocalizedString("Health data export for healthcare provider review", comment: "")
                             ],
                             onSpeak: {
-                                voiceManager.speak(NSLocalizedString("Health Monitoring features: Track vital signs including blood pressure, heart rate, and weight, blood sugar monitoring with customizable target ranges, visual data trends with weekly and monthly analysis, and health data export for healthcare provider review.", comment: ""))
+                                voiceManager.speak(NSLocalizedString("Health Monitoring features: Track vital signs including blood pressure, heart rate, and weight, blood sugar monitoring with customizable target ranges, visual data trends with weekly and monthly analysis, and health data export for healthcare provider review.", comment: ""), userSettings: userSettings)
                             }
                         )
                         
@@ -972,7 +972,7 @@ struct HomeView: View {
                             content: NSLocalizedString("If you experience dizziness, weakness, confusion, or any unusual symptoms during fasting, stop immediately and eat something with protein and carbohydrates. Contact your healthcare provider or emergency services if symptoms persist or worsen.", comment: ""),
                             isWarning: true,
                             onSpeak: {
-                                voiceManager.speak(NSLocalizedString("Emergency Information: If you experience dizziness, weakness, confusion, or any unusual symptoms during fasting, stop immediately and eat something with protein and carbohydrates. Contact your healthcare provider or emergency services if symptoms persist or worsen.", comment: ""))
+                                voiceManager.speak(NSLocalizedString("Emergency Information: If you experience dizziness, weakness, confusion, or any unusual symptoms during fasting, stop immediately and eat something with protein and carbohydrates. Contact your healthcare provider or emergency services if symptoms persist or worsen.", comment: ""), userSettings: userSettings)
                             }
                         )
                         
@@ -1113,55 +1113,20 @@ struct HomeView: View {
         if appointmentManager.upcomingAppointments.isEmpty {
             speechText += NSLocalizedString("You have no upcoming appointments.", comment: "")
         } else {
-            // Get only appointments for today and tomorrow for the speech
-            let calendar = Calendar.current
-            let today = calendar.startOfDay(for: Date())
-            let tomorrow = calendar.date(byAdding: .day, value: 1, to: today)!
-            let endOfTomorrow = calendar.date(byAdding: .day, value: 1, to: tomorrow)!
-            
-            let nearTermAppointments = appointmentManager.upcomingAppointments.filter { 
-                let appointmentDate = $0.date
-                return appointmentDate >= today && appointmentDate < endOfTomorrow
-            }
-            
-            if nearTermAppointments.isEmpty {
-                speechText += NSLocalizedString("You have \(appointmentManager.upcomingAppointments.count) upcoming appointments, but none today or tomorrow. ", comment: "")
-                
-                // Add first upcoming appointment if there is one
-                if let nextAppointment = appointmentManager.upcomingAppointments.first {
-                    let daysUntil = formatAppointmentDate(nextAppointment.date)
-                    speechText += NSLocalizedString("Your next appointment is \(nextAppointment.title), \(daysUntil).", comment: "")
-                }
-            } else {
-                speechText += NSLocalizedString("You have \(nearTermAppointments.count) appointment\(nearTermAppointments.count > 1 ? NSLocalizedString("s", comment: "") : "") in the next two days. ", comment: "")
-                
-                for appointment in nearTermAppointments {
-                    let appointmentDate = appointment.date
-                    let isToday = calendar.isDate(appointmentDate, inSameDayAs: today)
-                    
-                    let timeFormatter = DateFormatter()
-                    timeFormatter.timeStyle = .short
-                    timeFormatter.dateStyle = .none
-                    let timeString = timeFormatter.string(from: appointmentDate)
-                    
-                    speechText += NSLocalizedString("\(appointment.title) \(isToday ? NSLocalizedString("today", comment: "") : NSLocalizedString("tomorrow", comment: "")) at \(timeString). ", comment: "")
-                    
-                    if !appointment.location.isEmpty {
-                        speechText += NSLocalizedString("Location: \(appointment.location). ", comment: "")
-                    }
-                }
+            speechText += NSLocalizedString("Upcoming appointments: ", comment: "")
+            for appointment in appointmentManager.upcomingAppointments.prefix(3) {
+                let daysUntil = daysUntilAppointment(appointment.date)
+                speechText += "\(appointment.title), \(daysUntil). "
             }
         }
         
-        // Add medication information to the schedule reading
         if !nextMedicationDoses.isEmpty {
-            speechText += NSLocalizedString(" Medications due: ", comment: "")
-            for (index, pair) in nextMedicationDoses.prefix(3).enumerated() {
-                if index > 0 {
-                    speechText += NSLocalizedString(", ", comment: "")
-                }
-                speechText += NSLocalizedString("\(pair.medication.name) in \(timeUntil(pair.nextDose))", comment: "")
+            speechText += NSLocalizedString("Today's medications: ", comment: "")
+            for dose in nextMedicationDoses.prefix(3) {
+                speechText += "\(dose.medication.name), \(timeUntil(dose.nextDose)). "
             }
+        } else {
+            speechText += NSLocalizedString("No medications scheduled for today.", comment: "")
         }
         
         voiceManager.speak(speechText, userSettings: userSettings)
