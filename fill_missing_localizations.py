@@ -3,7 +3,7 @@ import os, re, sys, pathlib, shutil
 
 ROOT_DIR = pathlib.Path(__file__).resolve().parent
 BASE_KEYS_FILE = ROOT_DIR / 'base_keys.txt'
-LANG_CODES = ['he', 'de', 'fr', 'es']
+LANG_CODES = ['he', 'fr', 'es']
 PROJECT_DIR = ROOT_DIR / 'SeniorNutritionApp'
 BASE_LPROJ_FILE = PROJECT_DIR / 'Base.lproj' / 'Localizable.strings'
 
