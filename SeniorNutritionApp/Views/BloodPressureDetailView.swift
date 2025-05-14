@@ -485,6 +485,7 @@ struct EditBloodPressureView: View {
                     TextField("Diastolic (bottom)", text: $diastolic)
                         .keyboardType(.numberPad)
                     DatePicker("Date & Time", selection: $date)
+                        .datePickerLTR()
                 }
                 
                 if let error = error {

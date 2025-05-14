@@ -51,52 +51,57 @@ class VoiceManager: NSObject, ObservableObject {
                         utterance.voice = voice
                         print("DEBUG: Using voice: \(voice.name) (identifier: \(voice.identifier))")
                     } else {
-                        print("DEBUG: No preferred voice found, trying fallback options")
-                        
-                        // Try to get a default voice for the selected gender
-                        let voices = AVSpeechSynthesisVoice.speechVoices()
-                        print("DEBUG: All available voices: \(voices.map { "\($0.name) (\($0.identifier))" })")
-                        
-                        let englishVoices = voices.filter { $0.language.starts(with: "en") }
-                        print("DEBUG: Available English voices: \(englishVoices.map { "\($0.name) (\($0.identifier))" })")
-                        
-                        if settings.preferredVoiceGender == .male {
-                            // Try to get Daniel voice
-                            if let danielVoice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.Daniel-compact") {
-                                utterance.voice = danielVoice
-                                print("DEBUG: Using Daniel voice")
-                            } else if let siriMaleVoice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_male_en-US_compact") {
-                                utterance.voice = siriMaleVoice
-                                print("DEBUG: Using Siri male voice")
-                            } else {
-                                // Try to find any male voice
-                                if let maleVoice = englishVoices.first(where: { $0.name.lowercased().contains("male") }) {
-                                    utterance.voice = maleVoice
-                                    print("DEBUG: Using fallback male voice: \(maleVoice.name)")
-                                }
-                            }
-                        } else {
-                            // Try to get Samantha voice
-                            if let samanthaVoice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.Samantha-compact") {
-                                utterance.voice = samanthaVoice
-                                print("DEBUG: Using Samantha voice")
-                            } else if let siriFemaleVoice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_female_en-US_compact") {
-                                utterance.voice = siriFemaleVoice
-                                print("DEBUG: Using Siri female voice")
-                            } else {
-                                // Try to find any female voice
-                                if let femaleVoice = englishVoices.first(where: { $0.name.lowercased().contains("female") }) {
-                                    utterance.voice = femaleVoice
-                                    print("DEBUG: Using fallback female voice: \(femaleVoice.name)")
-                                }
-                            }
+                        // ---- Language-aware fallback ----
+                        let appLang = LanguageManager.shared.currentLanguage // "en", "de", "fr", ...
+                        if let langVoice = AVSpeechSynthesisVoice(language: Self.voiceLocale(for: appLang)) {
+                            utterance.voice = langVoice
+                            print("DEBUG: Using language voice for \(appLang): \(langVoice.name)")
                         }
-                        
-                        // If still no voice found, use default
+                        // If still nil, proceed with older English gender fallback
                         if utterance.voice == nil {
-                            if let defaultVoice = AVSpeechSynthesisVoice(language: "en-US") {
-                                utterance.voice = defaultVoice
-                                print("DEBUG: Using default voice: \(defaultVoice.name)")
+                            print("DEBUG: No language voice found, trying gender-specific English fallbacks")
+                            // Try to get a default voice for the selected gender
+                            let voices = AVSpeechSynthesisVoice.speechVoices()
+                            let englishVoices = voices.filter { $0.language.starts(with: "en") }
+                            
+                            if settings.preferredVoiceGender == .male {
+                                // Try to get Daniel voice
+                                if let danielVoice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.Daniel-compact") {
+                                    utterance.voice = danielVoice
+                                    print("DEBUG: Using Daniel voice")
+                                } else if let siriMaleVoice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_male_en-US_compact") {
+                                    utterance.voice = siriMaleVoice
+                                    print("DEBUG: Using Siri male voice")
+                                } else {
+                                    // Try to find any male voice
+                                    if let maleVoice = englishVoices.first(where: { $0.name.lowercased().contains("male") }) {
+                                        utterance.voice = maleVoice
+                                        print("DEBUG: Using fallback male voice: \(maleVoice.name)")
+                                    }
+                                }
+                            } else {
+                                // Try to get Samantha voice
+                                if let samanthaVoice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.Samantha-compact") {
+                                    utterance.voice = samanthaVoice
+                                    print("DEBUG: Using Samantha voice")
+                                } else if let siriFemaleVoice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_female_en-US_compact") {
+                                    utterance.voice = siriFemaleVoice
+                                    print("DEBUG: Using Siri female voice")
+                                } else {
+                                    // Try to find any female voice
+                                    if let femaleVoice = englishVoices.first(where: { $0.name.lowercased().contains("female") }) {
+                                        utterance.voice = femaleVoice
+                                        print("DEBUG: Using fallback female voice: \(femaleVoice.name)")
+                                    }
+                                }
+                            }
+                            
+                            // If still no voice found, use default
+                            if utterance.voice == nil {
+                                if let defaultVoice = AVSpeechSynthesisVoice(language: "en-US") {
+                                    utterance.voice = defaultVoice
+                                    print("DEBUG: Using default fallback voice: \(defaultVoice.name)")
+                                }
                             }
                         }
                     }
@@ -104,9 +109,14 @@ class VoiceManager: NSObject, ObservableObject {
             } else {
                 // Default settings if user settings not available
                 utterance.rate = 0.5
-                if let voice = AVSpeechSynthesisVoice(language: "en-US") {
+                // Choose voice according to current app language
+                let langVoiceCode = Self.voiceLocale(for: LanguageManager.shared.currentLanguage)
+                if let voice = AVSpeechSynthesisVoice(language: langVoiceCode) {
                     utterance.voice = voice
-                    print("DEBUG: Using default settings - rate: 0.5, voice: \(voice.name)")
+                    print("DEBUG: Using default settings - rate: 0.5, language voice: \(voice.name)")
+                } else if let fallback = AVSpeechSynthesisVoice(language: "en-US") {
+                    utterance.voice = fallback
+                    print("DEBUG: Using fallback English voice: \(fallback.name)")
                 }
             }
             
@@ -122,6 +132,28 @@ class VoiceManager: NSObject, ObservableObject {
         Task { @MainActor in
             synthesizer.stopSpeaking(at: .immediate)
             isSpeaking = false
+        }
+    }
+    
+    // MARK: - Language helpers
+    private static func voiceLocale(for shortCode: String) -> String {
+        switch shortCode {
+        case "de": return "de-DE"
+        case "fr": return "fr-FR"
+        case "es": return "es-ES"
+        case "he": return "he-IL"
+        default:    return "en-US"
+        }
+    }
+    
+    // Map app language code to speech synthesis identifier
+    private func getSpeechLocaleIdentifier(for appLanguage: String) -> String {
+        switch appLanguage {
+        case "en": return "en-US"
+        case "es": return "es-ES"
+        case "fr": return "fr-FR"
+        case "he": return "he-IL"
+        default: return "en-US"
         }
     }
 }

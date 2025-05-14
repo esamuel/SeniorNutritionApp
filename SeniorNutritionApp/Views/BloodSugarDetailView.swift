@@ -513,9 +513,10 @@ struct EditBloodSugarView: View {
         NavigationView {
             Form {
                 Section(header: Text("Blood Sugar")) {
-                    TextField("Glucose (mg/dL)", text: $glucose)
-                        .keyboardType(.numberPad)
+                    TextField("Blood Sugar (mg/dL)", text: $glucose)
+                        .keyboardType(.decimalPad)
                     DatePicker("Date & Time", selection: $date)
+                        .datePickerLTR()
                 }
                 
                 if let error = error {

@@ -192,6 +192,7 @@ struct EditMedicationView: View {
                                     )
                                     .labelsHidden()
                                     .font(.system(size: userSettings.textSize.size))
+                                    .datePickerLTR()
                                     
                                     Spacer()
                                     

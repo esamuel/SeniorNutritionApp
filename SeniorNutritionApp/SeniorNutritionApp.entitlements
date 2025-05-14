@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>aps-environment</key>
+	<string>development</string>
+	<key>com.apple.developer.icloud-container-identifiers</key>
+	<array>
+		<string>iCloud.com.samueleskenasy.SeniorNutritionApp</string>
+	</array>
+	<key>com.apple.developer.icloud-services</key>
+	<array>
+		<string>CloudKit</string>
+		<string>&lt;key&gt;com.apple.developer.icloud-services&lt;/key&gt;
+&lt;array&gt;</string>
+		<string>&lt;key&gt;com.apple.developer.icloud-container-identifiers&lt;/key&gt;/string&gt;
+&lt;array&gt;</string>
+		<string>&lt;string&gt;CloudKit&lt;/string&gt;
+&lt;/array&gt;</string>
+		<string> &lt;string&gt;iCloud.com.samueleskenasy.SeniorNutritionApp&lt;/string&gt;
+&lt;/array&gt;</string>
+	</array>
+</dict>
+</plist>

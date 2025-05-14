@@ -16,14 +16,14 @@ struct PersonalizedHealthTipsView: View {
                 VStack(spacing: 25) {
                     // General fasting tips
                     tipSection(
-                        title: "General Fasting Tips",
+                        title: NSLocalizedString("General Fasting Tips", comment: ""),
                         icon: "timer",
                         color: .blue,
                         isReading: $isReadingGeneralTips,
                         readAction: readGeneralTips,
                         content: {
                             ForEach(generalFastingTips, id: \.title) { tip in
-                                tipRow(title: tip.title, description: tip.description)
+                                tipRow(title: NSLocalizedString(tip.title, comment: ""), description: NSLocalizedString(tip.description, comment: ""))
                             }
                         }
                     )
@@ -31,7 +31,7 @@ struct PersonalizedHealthTipsView: View {
                     // Condition-specific tips
                     if let profile = userSettings.userProfile, !profile.medicalConditions.isEmpty {
                         tipSection(
-                            title: "Tips for Your Health Conditions",
+                            title: NSLocalizedString("Tips for Your Health Conditions", comment: ""),
                             icon: "heart.text.square",
                             color: .red,
                             isReading: $isReadingConditionTips,
@@ -44,7 +44,7 @@ struct PersonalizedHealthTipsView: View {
                                             .foregroundColor(.primary)
                                         
                                         ForEach(healthTipsForCondition(condition), id: \.title) { tip in
-                                            tipRow(title: tip.title, description: tip.description)
+                                            tipRow(title: NSLocalizedString(tip.title, comment: ""), description: NSLocalizedString(tip.description, comment: ""))
                                         }
                                     }
                                     .padding(.vertical, 8)

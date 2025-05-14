@@ -74,6 +74,7 @@ struct UserProfileSetupView: View {
                     
                     DatePicker("Date of Birth", selection: $dateOfBirth, displayedComponents: .date)
                         .datePickerStyle(CompactDatePickerStyle())
+                        .datePickerLTR()
                         .padding(8)
                         .background(Color.blue.opacity(0.1))
                         .cornerRadius(8)
@@ -253,11 +254,11 @@ struct UserProfileSetupView: View {
                 }
                 .listRowBackground(Color.clear)
             }
-            .navigationTitle("Profile Setup")
+            .navigationTitle(NSLocalizedString("Profile Setup", comment: ""))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Save") {
+                    Button(NSLocalizedString("Save", comment: "")) {
                         saveProfile()
                     }
                     .disabled(firstName.isEmpty || lastName.isEmpty || height.isEmpty || weight.isEmpty)
@@ -266,7 +267,7 @@ struct UserProfileSetupView: View {
                 }
                 
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") {
+                    Button(NSLocalizedString("Cancel", comment: "")) {
                         dismiss()
                     }
                     .foregroundColor(.red)

@@ -68,6 +68,7 @@ struct EditMealView: View {
                         Spacer()
                         DatePicker("", selection: $mealTime, displayedComponents: .hourAndMinute)
                             .font(.system(size: userSettings.textSize.size))
+                            .datePickerLTR()
                     }
                 }
                 Section(header: Text("Food Selection").font(.system(size: userSettings.textSize.size))) {

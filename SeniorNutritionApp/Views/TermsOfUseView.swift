@@ -83,7 +83,7 @@ Based in Tel Aviv, Israel.
             }
             .padding()
         }
-        .navigationTitle("Terms of Use")
+        .navigationTitle(NSLocalizedString("Terms of Use", comment: ""))
         .navigationBarTitleDisplayMode(.inline)
     }
 }

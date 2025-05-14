@@ -14,6 +14,7 @@ struct TimePickerView: View {
                 )
                 .datePickerStyle(WheelDatePickerStyle())
                 .labelsHidden()
+                .datePickerLTR()
                 .padding()
                 .onChange(of: time) { oldValue, newValue in
                     // Ensure the time is set for today

@@ -112,11 +112,11 @@ struct ProfileView: View {
                         .font(.system(size: userSettings.textSize.size))
                 }
             }
-            .navigationTitle("Profile")
+            .navigationTitle(NSLocalizedString("Profile", comment: ""))
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Edit") {
+                    Button(NSLocalizedString("Edit", comment: "")) {
                         showingProfileSetup = true
                     }
                 }
@@ -426,17 +426,17 @@ struct EditProfileView: View {
                     }
                 }
             }
-            .navigationTitle("Edit Profile")
+            .navigationTitle(NSLocalizedString("Edit Profile", comment: ""))
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") {
+                    Button(NSLocalizedString("Cancel", comment: "")) {
                         isPresented = false
                     }
                     .font(.system(size: userSettings.textSize.size))
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Save") {
+                    Button(NSLocalizedString("Save", comment: "")) {
                         saveChanges()
                         isPresented = false
                     }
@@ -543,17 +543,17 @@ struct EditEmergencyContactView: View {
                         .keyboardType(.phonePad)
                 }
             }
-            .navigationTitle("Emergency Contact")
+            .navigationTitle(NSLocalizedString("Emergency Contact", comment: ""))
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") {
+                    Button(NSLocalizedString("Cancel", comment: "")) {
                         isPresented = false
                     }
                     .font(.system(size: userSettings.textSize.size))
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Save") {
+                    Button(NSLocalizedString("Save", comment: "")) {
                         saveContact()
                         isPresented = false
                     }

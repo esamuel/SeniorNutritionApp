@@ -5,7 +5,7 @@
 "Next" = "Siguiente";
 "Get Started" = "Comenzar";
 "Return to Profile" = "Volver al perfil";
-"Welcome to Senior Nutrition App" = "Bienvenido a la aplicación de nutrición para personas mayores";
+"Welcome to Senior Nutrition App" = "Bienvenido a la aplicación Senior Nutrition";
 "A comprehensive health management app designed specifically for seniors, with enhanced accessibility features and intuitive navigation." = "Una aplicación integral de gestión de la salud diseñada específicamente para personas mayores, con funciones de accesibilidad mejoradas y navegación intuitiva.";
 "Customizable text and voice settings" = "Configuración de texto y voz personalizable";
 "Simple, uncluttered interface" = "Interfaz simple y despejada";
@@ -92,11 +92,11 @@
 "Nutrition" = "Nutrición";
 "Nutrition Tips for Seniors" = "Consejos de nutrición para mayores";
 "View More Tips" = "Ver más consejos";
-"General Nutrition Tips for Seniors" = "Consejos generales de nutrición para mayores";
-"Tips for Your Medical Conditions" = "Consejos para tus condiciones médicas";
-"Tips for Your Dietary Restrictions" = "Consejos para tus restricciones dietéticas";
-"Supplements to Consider" = "Suplementos a considerar";
-"Note: Always consult with your healthcare provider before starting any supplement regimen." = "Nota: Consulta siempre a tu médico antes de comenzar cualquier suplemento.";
+"General Nutrition Tips for Seniors" = "Consejos Nutricionales Generales para Personas Mayores";
+"Tips for Your Medical Conditions" = "Consejos para Sus Condiciones Médicas";
+"Tips for Your Dietary Restrictions" = "Consejos para Sus Restricciones Alimentarias";
+"Supplements to Consider" = "Suplementos a Considerar";
+"Note: Always consult with your healthcare provider before starting any supplement regimen." = "Nota: Consulte siempre con su médico antes de comenzar cualquier régimen de suplementos.";
 "Health Tips" = "Consejos de salud";
 "Stop" = "Detener";
 "Read" = "Leer";
@@ -118,75 +118,38 @@
 "Reminder Lead Time" = "Tiempo previo de recordatorio";
 "Reminder Style" = "Estilo de recordatorio";
 "Connect with Support" = "Contactar con soporte";
+"Call Support" = "Llamar al soporte";
+"Speak with our dedicated senior support team" = "Hable con nuestro equipo de soporte especializado para mayores";
+"Send Message" = "Enviar mensaje";
+"Send a text message for non-urgent help" = "Envíe un mensaje de texto para ayuda no urgente";
+"Video Assistance" = "Asistencia por video";
+"Schedule a live video call for personalized help" = "Agende una videollamada para ayuda personalizada";
 "Self-Help Resources" = "Recursos de autoayuda";
-"Health & Appointments" = "Salud y citas";
+"Interactive App Tour" = "Recorrido interactivo de la app";
+"Get a guided walkthrough of app features" = "Obtenga una guía de las funciones de la app";
+"Help Documentation" = "Documentación de ayuda";
+"Access detailed user guides and FAQs" = "Acceda a guías de usuario detalladas y preguntas frecuentes";
+"Video Tutorials" = "Tutoriales en video";
+"Watch step-by-step instructional videos" = "Vea videos instructivos paso a paso";
+"Health Tracking Guide" = "Guía de seguimiento de salud";
+"Learn how to monitor vitals and analyze data" = "Aprenda a monitorear signos vitales y analizar datos";
+"How to schedule and track medical visits" = "Cómo programar y seguir visitas médicas";
+"Sharing Health Data" = "Compartir datos de salud";
+"Securely share records with healthcare providers" = "Comparta registros de forma segura con profesionales de la salud";
 "Accessibility Support" = "Soporte de accesibilidad";
-"Get Help" = "Obtener ayuda";
-"Food Selection" = "Selección de alimentos";
-"Meal Details" = "Detalles de la comida";
-"Portion Size" = "Tamaño de porción";
-"Portion Size Guide" = "Guía de tamaño de porción";
-"Nutritional Information" = "Información nutricional";
-"Notes" = "Notas";
-"Weight" = "Peso";
-"Heart Rate" = "Frecuencia cardíaca";
-"Medication Details" = "Detalles del medicamento";
-"Schedule" = "Horario";
-"Time(s) to Take Medication" = "Hora(s) para tomar el medicamento";
-"Pill Appearance" = "Apariencia de la pastilla";
-"Pill Color" = "Color de la pastilla";
-"Select Pill Shape" = "Seleccionar forma de pastilla";
-"Enhanced Medication Visuals" = "Visuales mejorados de medicamentos";
-"Classic Medication Visuals" = "Visuales clásicos de medicamentos";
-"3D Pill Shape Options" = "Opciones de forma de pastilla 3D";
-"Medication Color Options" = "Opciones de color de medicamento";
-"Fasting Protocol Guide" = "Guía de protocolo de ayuno";
-"General Fasting Guidelines" = "Guía general de ayuno";
-"Healthy Meal Suggestions" = "Sugerencias de comidas saludables";
-"App Instructions" = "Instrucciones de la app";
-"Add Time" = "Agregar hora";
-"Select Shape" = "Seleccionar forma";
-"Save Medication" = "Guardar medicamento";
-"Edit Reading" = "Editar registro";
-"Save Settings" = "Guardar configuración";
-"Week" = "Semana";
-"Month" = "Mes";
-"3 Months" = "3 meses";
-"Trends" = "Tendencias";
-"History" = "Historial";
-"BMI" = "IMC";
-"Calories" = "Calorías";
-"Protein" = "Proteína";
-"Carbs" = "Carbohidratos";
-"Fat" = "Grasa";
-"Vitamins" = "Vitaminas";
-"Minerals" = "Minerales";
-"Schedule:" = "Horario:";
-"Times:" = "Horas:";
-"Notes: %@" = "Notas: %@";
-"Date: %@" = "Fecha: %@";
-"Your Protocol: %@" = "Tu protocolo: %@";
-"Fasting Hours:" = "Horas de ayuno:";
-"Eating Window:" = "Ventana de comida:";
-"%d hours" = "%d horas";
-"%d min" = "%d min";
-"%d/%d%@" = "%d/%d%@";
-"%d cal" = "%d cal";
-"%d g protein" = "%d g proteína";
-"%d g carbs" = "%d g carbohidratos";
-"%d g fat" = "%d g grasa";
-"Selected" = "Seleccionado";
-"%@ pill shape" = "Forma de pastilla %@";
-
-// HomeView localization
+"Voice Assistance" = "Asistencia por voz";
+"Get help with voice navigation settings" = "Obtenga ayuda con la configuración de navegación por voz";
+"Text Size Help" = "Ayuda con el tamaño de texto";
+"Adjust the app for better readability" = "Ajuste la app para mejor legibilidad";
+"Gesture Controls" = "Controles por gestos";
+"Learn about simplified touch controls" = "Aprenda sobre controles táctiles simplificados";
+"Health & Appointments" = "Salud y citas";
 "Home" = "Inicio";
 "Open Settings" = "Abrir configuración";
 "Get Help" = "Obtener ayuda";
 "Good Morning" = "Buenos días";
 "Good Afternoon" = "Buenas tardes";
 "Good Evening" = "Buenas noches";
-"Stop" = "Detener";
-"Read" = "Leer";
 "Read Welcome Summary" = "Leer resumen de bienvenida";
 "Reads out your greeting and medication reminders" = "Lee tu saludo y recordatorios de medicamentos";
 "Age: %d years, %d months" = "Edad: %d años, %d meses";
@@ -199,7 +162,7 @@
 "Time remaining: %@" = "Tiempo restante: %@";
 "%d percent remain." = "%d por ciento restante.";
 "of fasting" = "de ayuno";
-"of eating window" = "de ventana de comida";
+"of eating window" = "de ventana de alimentación";
 "Quick Actions" = "Acciones rápidas";
 "Add Medication" = "Agregar medicamento";
 "Track Water" = "Registrar agua";
@@ -207,11 +170,295 @@
 "Fasting" = "Ayuno";
 "Emergency" = "Emergencia";
 "Health" = "Salud";
-"Today's Schedule" = "Agenda de hoy";
-"Read Today's Schedule" = "Leer la agenda de hoy";
+"Today's Schedule" = "Horario de hoy";
+"Read Today's Schedule" = "Leer horario de hoy";
 "Reads out your appointments and medications for today" = "Lee tus citas y medicamentos para hoy";
 "Upcoming Appointments" = "Próximas citas";
 "See All" = "Ver todo";
 "No upcoming appointments" = "No hay próximas citas";
-"Add Appointment" = "Agregar cita";
 "Good %@, %@" = "Buen%@, %@";
+"Morning" = "Mañana";
+"Afternoon" = "Tarde";
+"Evening" = "Noche";
+"hour" = "hora";
+"hours" = "horas";
+"min" = "min";
+"Water" = "Agua";
+"More" = "Más";
+"Fasting Timer" = "Temporizador de ayuno";
+"End Fasting Early" = "Terminar ayuno antes";
+"Start Fasting" = "Comenzar ayuno";
+"Emergency Override" = "Anulación de emergencia";
+"Change Fasting Protocol" = "Cambiar protocolo de ayuno";
+"Current Protocol: %@" = "Protocolo actual: %@";
+"Select Protocol" = "Seleccionar protocolo";
+"Currently Selected" = "Seleccionado actualmente";
+"Select This Protocol" = "Seleccionar este protocolo";
+"Benefits" = "Beneficios";
+"Recommended For" = "Recomendado para";
+"Guidelines" = "Pautas";
+"Custom Protocol Setup" = "Configuración de protocolo personalizado";
+"Fasting Hours: %d" = "Horas de ayuno: %d";
+"Eating Hours: %d" = "Horas de alimentación: %d";
+"Total hours must equal 24" = "El total de horas debe ser igual a 24";
+"Save Protocol" = "Guardar protocolo";
+"Custom Protocol" = "Protocolo personalizado";
+"Last Meal Time" = "Hora de la última comida";
+"Next Meal Time" = "Hora de la próxima comida";
+"Last Meal" = "Última comida";
+"Next Meal" = "Próxima comida";
+"Complete" = "Completo";
+"%d%% remain" = "%d%% restante";
+"Fasting Window: %@" = "Ventana de ayuno: %@";
+"Eating Window: %@" = "Ventana de alimentación: %@";
+"Medication Schedule" = "Horario de medicamentos";
+"12 AM" = "12 AM";
+"12 PM" = "12 PM";
+"Remember to drink plenty of water during your fast" = "Recuerda beber mucha agua durante el ayuno";
+"If you feel unwell, end your fast immediately" = "Si te sientes mal, termina el ayuno de inmediato";
+"Quality sleep helps with fasting results" = "Dormir bien ayuda con los resultados del ayuno";
+"View More Health Tips" = "Ver más consejos de salud";
+"Loading" = "Cargando";
+"12:12" = "12:12";
+"14:10" = "14:10";
+"16:8" = "16:8";
+"Custom" = "Personalizado";
+"Gentle introduction to intermittent fasting" = "Introducción suave al ayuno intermitente";
+"Helps regulate blood sugar levels" = "Ayuda a regular los niveles de azúcar en sangre";
+"Supports better sleep patterns" = "Favorece mejores patrones de sueño";
+"Minimal disruption to daily routine" = "Mínima interrupción de la rutina diaria";
+"Enhanced fat burning" = "Quema de grasa mejorada";
+"Improved metabolic flexibility" = "Flexibilidad metabólica mejorada";
+"Better appetite control" = "Mejor control del apetito";
+"Increased mental clarity" = "Mayor claridad mental";
+"Supports cellular repair processes" = "Apoya procesos de reparación celular";
+"Maximum autophagy benefits" = "Máximos beneficios de autofagia";
+"Significant fat burning potential" = "Potencial significativo de quema de grasa";
+"Improved insulin sensitivity" = "Sensibilidad a la insulina mejorada";
+"Enhanced cognitive function" = "Función cognitiva mejorada";
+"Promotes cellular repair and longevity" = "Promueve la reparación celular y la longevidad";
+"Tailored to your specific needs" = "Adaptado a tus necesidades específicas";
+"Flexible scheduling" = "Programación flexible";
+"Adaptable to your lifestyle" = "Adaptable a tu estilo de vida";
+"Can be adjusted as needed" = "Se puede ajustar según sea necesario";
+"Beginners to intermittent fasting" = "Principiantes en ayuno intermitente";
+"Those with regular medication schedules" = "Personas con horarios regulares de medicación";
+"People with active social lives" = "Personas con vidas sociales activas";
+"Those who prefer eating dinner with family" = "Quienes prefieren cenar con la familia";
+"Experienced fasters looking for more benefits" = "Ayunadores experimentados que buscan más beneficios";
+"Those with stable blood sugar control" = "Personas con control estable de azúcar en sangre";
+"People looking for weight management" = "Personas que buscan control de peso";
+"Those with flexible morning schedules" = "Personas con horarios matutinos flexibles";
+"Experienced fasters" = "Ayunadores experimentados";
+"Those seeking maximum health benefits" = "Quienes buscan máximos beneficios para la salud";
+"People with stable health conditions" = "Personas con condiciones de salud estables";
+"Those comfortable with longer fasting periods" = "Quienes se sienten cómodos con períodos más largos de ayuno";
+"Those with unique scheduling needs" = "Personas con necesidades únicas de programación";
+"People with specific health considerations" = "Personas con consideraciones específicas de salud";
+"Those who've tried other protocols" = "Quienes han probado otros protocolos";
+"People with varying daily routines" = "Personas con rutinas diarias variables";
+"Start your fast after dinner" = "Comienza tu ayuno después de la cena";
+"Skip breakfast or have it later" = "Omite el desayuno o tómalo más tarde";
+"Stay hydrated during fasting" = "Mantente hidratado durante el ayuno";
+"Break fast with a light meal" = "Rompe el ayuno con una comida ligera";
+"Take medications as prescribed with food if needed" = "Toma los medicamentos según lo prescrito con comida si es necesario";
+"Consider ending eating by 8 PM" = "Considera terminar de comer a las 8 PM";
+"Break fast around 10 AM" = "Rompe el ayuno alrededor de las 10 AM";
+"Plan meals within the 10-hour window" = "Planifica comidas dentro de la ventana de 10 horas";
+"Stay active but avoid intense exercise while fasting" = "Mantente activo pero evita ejercicio intenso durante el ayuno";
+"Monitor how you feel and adjust if needed" = "Monitorea cómo te sientes y ajusta si es necesario";
+"End eating by 7 PM" = "Termina de comer a las 7 PM";
+"Break fast at 11 AM" = "Rompe el ayuno a las 11 AM";
+"Plan 2-3 nutritious meals in eating window" = "Planifica 2-3 comidas nutritivas en la ventana de alimentación";
+"Stay well hydrated" = "Mantente bien hidratado";
+"Consider electrolyte supplementation" = "Considera suplementación con electrolitos";
+"Break fast with protein-rich foods" = "Rompe el ayuno con alimentos ricos en proteínas";
+"Choose times that fit your schedule" = "Elige horarios que se adapten a tu agenda";
+"Maintain consistent fasting periods" = "Mantén períodos de ayuno consistentes";
+"Listen to your body's signals" = "Escucha las señales de tu cuerpo";
+"Adjust the protocol as needed" = "Ajusta el protocolo según sea necesario";
+"Keep track of your progress" = "Lleva un registro de tu progreso";
+"General Fasting Tips" = "Consejos generales para el ayuno";
+"Tips for Your Health Conditions" = "Consejos para tus condiciones de salud";
+"Fasting Safety Guidelines" = "Pautas de seguridad para el ayuno";
+"Benefits of Intermittent Fasting" = "Beneficios del ayuno intermitente";
+"Stay Hydrated" = "Mantente hidratado";
+"Drink plenty of water during your fasting periods. Aim for at least 8-10 glasses daily to prevent dehydration." = "Bebe mucha agua durante tus períodos de ayuno. Intenta tomar al menos 8-10 vasos diarios para prevenir la deshidratación.";
+"Ease Into Fasting" = "Inicia el ayuno gradualmente";
+"If you're new to fasting, start with shorter fasting periods and gradually increase the duration as your body adapts." = "Si eres nuevo en el ayuno, comienza con períodos más cortos y aumenta gradualmente la duración a medida que tu cuerpo se adapta.";
+"Break Fast Gently" = "Rompe el ayuno suavemente";
+"Break your fast with easily digestible foods like soups, fruits, or small portions of protein to avoid digestive discomfort." = "Rompe tu ayuno con alimentos fácilmente digeribles como sopas, frutas o pequeñas porciones de proteína para evitar molestias digestivas.";
+"Monitor Your Body" = "Monitorea tu cuerpo";
+"Pay attention to how you feel during fasting. Mild hunger is normal, but dizziness, extreme fatigue, or confusion are not." = "Presta atención a cómo te sientes durante el ayuno. Un hambre leve es normal, pero mareos, fatiga extrema o confusión no lo son.";
+"Help Guide" = "Guía de ayuda";
+"Your comprehensive health companion for managing nutrition, fasting, medications, and wellness tracking. This guide will help you navigate the app's features effectively." = "Tu compañero integral de salud para gestionar nutrición, ayuno, medicamentos y seguimiento del bienestar. Esta guía te ayudará a navegar por las funciones de la app de manera efectiva.";
+"Advanced fasting protocol options for seniors" = "Opciones avanzadas de protocolos de ayuno para mayores";
+"Real-time tracking with health safety indicators" = "Seguimiento en tiempo real con indicadores de seguridad";
+"Customizable fasting and eating windows" = "Ventanas de ayuno y alimentación personalizables";
+"Integration with medication and meal schedules" = "Integración con horarios de medicamentos y comidas";
+"Nutrition Tracking" = "Seguimiento nutricional";
+"Simplified meal logging with photos or voice input" = "Registro simplificado de comidas con fotos o entrada de voz";
+"Nutritional analysis with senior-specific recommendations" = "Análisis nutricional con recomendaciones específicas para mayores";
+"Customizable meal reminders and hydration tracking" = "Recordatorios de comidas personalizables y seguimiento de hidratación";
+"Food database with barcode scanning capability" = "Base de datos de alimentos con capacidad de escaneo de códigos de barras";
+"Easy scheduling and tracking of medical appointments" = "Programación y seguimiento fácil de citas médicas";
+"Automatic reminders with customizable advance notice" = "Recordatorios automáticos con aviso anticipado personalizable";
+"Location and provider information storage" = "Almacenamiento de información de ubicación y proveedor";
+"Calendar integration and sharing with caregivers" = "Integración con calendario y compartir con cuidadores";
+"Health Monitoring" = "Monitoreo de salud";
+"Track vital signs including blood pressure, heart rate, and weight" = "Seguimiento de signos vitales como presión arterial, frecuencia cardíaca y peso";
+"Blood sugar monitoring with customizable target ranges" = "Monitoreo de azúcar en sangre con rangos objetivo personalizables";
+"Visual data trends with weekly and monthly analysis" = "Tendencias visuales de datos con análisis semanal y mensual";
+"Health data export for healthcare provider review" = "Exportación de datos de salud para revisión por profesionales médicos";
+"Medication Management" = "Gestión de medicamentos";
+"Visual medication identification system" = "Sistema de identificación visual de medicamentos";
+"Smart scheduling with fasting compatibility alerts" = "Programación inteligente con alertas de compatibilidad de ayuno";
+"Refill reminders and medication history tracking" = "Recordatorios de reabastecimiento y seguimiento del historial de medicamentos";
+"Food and timing requirement notifications" = "Notificaciones de requisitos de alimentos y tiempo";
+"One-tap meal and medication logging" = "Registro de comidas y medicamentos con un toque";
+"Voice-activated commands for hands-free operation" = "Comandos activados por voz para operación manos libres";
+"Emergency contact access with location sharing" = "Acceso a contactos de emergencia con compartir ubicación";
+"Instant health data recording and visualization" = "Registro y visualización instantánea de datos de salud";
+"Important Tips" = "Consejos importantes";
+"Always consult healthcare providers before changing medication routines" = "Siempre consulta a profesionales de la salud antes de cambiar rutinas de medicación";
+"Stay hydrated with at least 8 glasses of water daily, especially during fasting" = "Mantente hidratado con al menos 8 vasos de agua diarios, especialmente durante el ayuno";
+"Monitor for dizziness, weakness, or discomfort during fasting periods" = "Monitorea mareos, debilidad o malestar durante los períodos de ayuno";
+"Use the emergency override feature if you experience any concerning symptoms" = "Usa la función de anulación de emergencia si experimentas síntomas preocupantes";
+"Emergency Information" = "Información de emergencia";
+"If you experience dizziness, weakness, confusion, or any unusual symptoms during fasting, stop immediately and eat something with protein and carbohydrates. Contact your healthcare provider or emergency services if symptoms persist or worsen." = "Si experimentas mareos, debilidad, confusión o cualquier síntoma inusual durante el ayuno, detente inmediatamente y come algo con proteínas y carbohidratos. Contacta a tu proveedor de atención médica o servicios de emergencia si los síntomas persisten o empeoran.";
+"Need More Help?" = "¿Necesitas más ayuda?";
+"Contact our support team via the Help & Support section in the More tab, or use the voice assistance feature for immediate guidance." = "Contacta a nuestro equipo de soporte a través de la sección Ayuda y Soporte en la pestaña Más, o usa la función de asistencia por voz para orientación inmediata.";
+
+// Water tracking
+"Water Reminder" = "Recordatorio de agua";
+"Add Custom Amount" = "Agregar cantidad personalizada";
+"Amount in ml" = "Cantidad en ml";
+"Enter the amount of water in milliliters" = "Ingresa la cantidad de agua en mililitros";
+"Daily Goal" = "Meta diaria";
+"Daily Goal (ml)" = "Meta diaria (ml)";
+"Reminder Settings" = "Configuración de recordatorios";
+"Enable Reminders" = "Activar recordatorios";
+"Frequency" = "Frecuencia";
+"Custom Minutes" = "Minutos personalizados";
+"Start Time" = "Hora de inicio";
+"End Time" = "Hora de finalización";
+
+// Safety guidelines
+"Know When to Stop" = "Saber cuándo detenerse";
+"If you experience severe headaches, dizziness, confusion, or weakness, break your fast immediately and consult your doctor." = "Si experimenta dolores de cabeza severos, mareos, confusión o debilidad, rompa el ayuno de inmediato y consulte a su médico.";
+"Medication Timing" = "Horario de la medicación";
+"Take medications as prescribed by your doctor. Some medications need to be taken with food, which may require adjusting your fasting schedule." = "Tome los medicamentos según lo prescrito por su médico. Algunos medicamentos deben tomarse con alimentos, lo que puede requerir ajustar su horario de ayuno.";
+"Consult Healthcare Providers" = "Consulte a los profesionales de la salud";
+"Always consult with your healthcare provider before starting a fasting regimen, especially if you have chronic health conditions." = "Consulte siempre con su proveedor de atención médica antes de comenzar un régimen de ayuno, especialmente si tiene condiciones de salud crónicas.";
+
+// Reduced Inflammation description
+"Reduced Inflammation" = "Inflamación reducida";
+"Studies suggest that fasting may reduce inflammatory markers in the body, which are linked to many chronic diseases." = "Los estudios sugieren que el ayuno puede reducir los marcadores inflamatorios en el cuerpo, que están vinculados a muchas enfermedades crónicas.";
+
+// Insulin Sensitivity
+"Insulin Sensitivity" = "Sensibilidad a la insulina";
+"Regular fasting can improve insulin sensitivity, potentially reducing the risk of type 2 diabetes." = "El ayuno regular puede mejorar la sensibilidad a la insulina, reduciendo potencialmente el riesgo de diabetes tipo 2.";
+
+// Cellular Repair
+"Cellular Repair" = "Reparación celular";
+"Fasting triggers cellular repair processes, including autophagy, where cells remove damaged components." = "El ayuno desencadena procesos de reparación celular, incluida la autofagia, donde las células eliminan componentes dañados.";
+
+// Brain Health
+"Brain Health" = "Salud cerebral";
+"Fasting may increase the production of brain-derived neurotrophic factor (BDNF), which supports brain health and may protect against neurodegenerative diseases." = "El ayuno puede aumentar la producción del factor neurotrófico derivado del cerebro (BDNF), que apoya la salud cerebral y puede proteger contra enfermedades neurodegenerativas.";
+
+/* Localized strings for Fasting Timer */
+"FASTING_TIMER_TITLE" = "Temporizador de ayuno";
+"FASTING_PROTOCOL_STANDARD" = "Estándar";
+"FASTING_PROTOCOL_MODERATE" = "Moderado";
+"FASTING_PROTOCOL_GENTLE" = "Suave";
+"SELECT_BUTTON" = "Seleccionar";
+
+/* Fasting Protocol Descriptions */
+"PROTOCOL_12_12_DESCRIPTION" = "Ayuno de 12 horas, come dentro de una ventana de 12 horas. Ideal para principiantes.";
+"PROTOCOL_14_10_DESCRIPTION" = "Ayuno de 14 horas, come dentro de una ventana de 10 horas. Intensidad moderada.";
+"PROTOCOL_16_8_DESCRIPTION" = "Ayuno de 16 horas, come dentro de una ventana de 8 horas. Protocolo estándar.";
+
+/* Custom Protocol Subtexts */
+"CUSTOM_PROTOCOL_SUBTITLE" = "Protocolo de ayuno personalizado con tus horas preferidas";
+"CUSTOM_PROTOCOL_BENEFITS_TITLE" = "Beneficios";
+"CUSTOM_PROTOCOL_BENEFITS_DESCRIPTION" = "Adaptado a tus necesidades específicas, programación flexible, adaptable a tu estilo de vida";
+"CUSTOM_PROTOCOL_RECOMMENDED_TITLE" = "Recomendado para";
+"CUSTOM_PROTOCOL_RECOMMENDED_DESCRIPTION" = "Personas con necesidades únicas de programación, personas con consideraciones específicas de salud, aquellos que han probado otros protocolos";
+"CUSTOM_PROTOCOL_GUIDELINES_TITLE" = "Pautas";
+"CUSTOM_PROTOCOL_GUIDELINES_DESCRIPTION" = "Elige horarios que se adapten a tu agenda, mantén períodos de ayuno consistentes, escucha las señales de tu cuerpo";
+
+/* Protocol titles with descriptors */
+"PROTOCOL_12_12_TITLE" = "12:12 (Suave)";
+"PROTOCOL_14_10_TITLE" = "14:10 (Moderado)";
+"PROTOCOL_16_8_TITLE" = "16:8 (Estándar)";
+
+/* Protocol Selection Navigation */
+"SELECT_PROTOCOL_TITLE" = "Seleccionar protocolo";
+"DONE_BUTTON" = "Listo";
+
+/* Protocol selection keys used in code */
+"Select Protocol" = "Seleccionar protocolo";
+"Done" = "Listo";
+"Custom Protocol" = "Protocolo personalizado";
+
+/* Protocol titles */
+"12:12 (Gentle)" = "12:12 (Suave)";
+"14:10 (Moderate)" = "14:10 (Moderado)";
+"16:8 (Standard)" = "16:8 (Estándar)";
+
+/* Protocol descriptions */
+"Fast for 12 hours, eat within a 12-hour window. Ideal for beginners." = "Ayuno de 12 horas, come dentro de una ventana de 12 horas. Ideal para principiantes.";
+"Fast for 14 hours, eat within a 10-hour window. Moderate intensity." = "Ayuno de 14 horas, come dentro de una ventana de 10 horas. Intensidad moderada.";
+"Fast for 16 hours, eat within an 8-hour window. Standard protocol." = "Ayuno de 16 horas, come dentro de una ventana de 8 horas. Protocolo estándar.";
+"Custom fasting protocol with your preferred hours." = "Protocolo de ayuno personalizado con tus horas preferidas.";
+
+/* Personalized Nutrition Tips */
+"Personalized Nutrition Tips" = "Consejos Nutricionales Personalizados";
+"General Nutrition Tips for Seniors" = "Consejos Nutricionales Generales para Personas Mayores";
+"Tips for Your Medical Conditions" = "Consejos para Sus Condiciones Médicas";
+"Tips for Your Dietary Restrictions" = "Consejos para Sus Restricciones Alimentarias";
+"Supplements to Consider" = "Suplementos a Considerar";
+"Note: Always consult with your healthcare provider before starting any supplement regimen." = "Nota: Consulte siempre con su médico antes de comenzar cualquier régimen de suplementos.";
+
+/* General Nutrition Tips */
+"Protein is Essential" = "La Proteína es Esencial";
+"Aim for 1-1.2g of protein per kg of body weight daily to maintain muscle mass and strength." = "Trate de consumir 1-1,2g de proteína por kg de peso corporal diariamente para mantener la masa muscular y la fuerza.";
+"Hydration Matters" = "La Hidratación es Importante";
+"Drink at least 8 glasses of water daily, more if you're active or in hot weather." = "Beba al menos 8 vasos de agua diariamente, más si está activo o en clima caluroso.";
+"Healthy Fats" = "Grasas Saludables";
+"Include sources of omega-3 fatty acids like fatty fish, flaxseeds, and walnuts for heart and brain health." = "Incluya fuentes de ácidos grasos omega-3 como pescados grasos, semillas de lino y nueces para la salud del corazón y el cerebro.";
+"Fiber for Digestion" = "Fibra para la Digestión";
+"Consume 25-30g of fiber daily from fruits, vegetables, and whole grains to maintain digestive health." = "Consuma 25-30g de fibra diariamente de frutas, verduras y granos integrales para mantener la salud digestiva.";
+"Vitamin D" = "Vitamina D";
+"Get adequate vitamin D through sunlight exposure and foods like fatty fish, egg yolks, and fortified foods." = "Obtenga vitamina D adecuada a través de la exposición al sol y alimentos como pescados grasos, yemas de huevo y alimentos fortificados.";
+
+/* BMI Based Tips */
+"Weight Management Focus" = "Enfoque en el Control de Peso";
+"Focus on nutrient-dense, lower-calorie foods. Include plenty of vegetables, lean proteins, and high-fiber foods to feel satisfied while managing portions." = "Concéntrese en alimentos ricos en nutrientes y bajos en calorías. Incluya muchas verduras, proteínas magras y alimentos ricos en fibra para sentirse satisfecho mientras controla las porciones.";
+"Balanced Nutrition" = "Nutrición Equilibrada";
+"Maintain a balanced diet with portion control. Choose whole grains, lean proteins, and plenty of vegetables to support healthy weight management." = "Mantenga una dieta equilibrada con control de porciones. Elija granos integrales, proteínas magras y muchas verduras para apoyar un manejo saludable del peso.";
+"Nutrient-Rich Foods" = "Alimentos Ricos en Nutrientes";
+"Include nutrient-dense foods with healthy fats like nuts, avocados, and olive oil. Focus on protein-rich foods to support healthy weight gain." = "Incluya alimentos ricos en nutrientes con grasas saludables como nueces, aguacates y aceite de oliva. Concéntrese en alimentos ricos en proteínas para apoyar el aumento de peso saludable.";
+"Maintain Healthy Balance" = "Mantener un Equilibrio Saludable";
+"Continue with a balanced diet rich in whole foods. Include a variety of nutrients to maintain your healthy weight." = "Continúe con una dieta equilibrada rica en alimentos integrales. Incluya una variedad de nutrientes para mantener su peso saludable.";
+
+/* Supplement Tips */
+"Calcium" = "Calcio";
+"Essential for bone health. Consider a supplement if you don't consume enough dairy or fortified foods." = "Esencial para la salud ósea. Considere un suplemento si no consume suficientes lácteos o alimentos fortificados.";
+"Vitamin B12" = "Vitamina B12";
+"Absorption decreases with age. Consider a supplement or consume fortified foods." = "La absorción disminuye con la edad. Considere un suplemento o consuma alimentos fortificados.";
+"Vitamin D3" = "Vitamina D3";
+"Important for calcium absorption and immune function. Consider a supplement if you have limited sun exposure." = "Importante para la absorción de calcio y la función inmune. Considere un suplemento si tiene exposición limitada al sol.";
+
+/* German text keys that need Spanish translations */
+"Empfohlene Nahrungsergänzungsmittel" = "Suplementos a Considerar";
+"Allgemeine Ernährungstipps für Senioren" = "Consejos Nutricionales Generales para Personas Mayores";
+"Tipps für Ihre Erkrankungen" = "Consejos para Sus Condiciones Médicas";
+"Tipps für Ihre Ernährungseinschränkungen" = "Consejos para Sus Restricciones Alimentarias";
+"Lesen" = "Leer";
+"Hidden Dairy" = "Lácteos Ocultos";
+"Check labels for ingredients like whey, casein, and lactose which indicate dairy content." = "Verifique las etiquetas para ingredientes como suero, caseína y lactosa que indican contenido lácteo.";
+"Calcium Alternatives" = "Alternativas de Calcio";
+"Include non-dairy calcium sources like fortified plant milks, tofu, leafy greens, and canned fish with bones." = "Incluya fuentes de calcio no lácteas como leches vegetales fortificadas, tofu, verduras de hoja verde y pescado enlatado con huesos.";
+"Hinweis: Konsultieren Sie immer Ihren Arzt, bevor Sie mit der Einnahme von Nahrungsergänzungsmitteln beginnen." = "Nota: Consulte siempre con su médico antes de comenzar cualquier régimen de suplementos."; 

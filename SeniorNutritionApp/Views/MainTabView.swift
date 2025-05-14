@@ -102,7 +102,7 @@ struct MoreTabView: View {
                     }
                 }
             }
-            .navigationTitle("More")
+            .navigationTitle(NSLocalizedString("More", comment: ""))
             .sheet(item: $showingModalView) { option in
                 switch option {
                 case .help:
@@ -150,20 +150,20 @@ struct HelpGuideView: View {
         NavigationView {
             ScrollView {
                 VStack(spacing: 20) {
-                    Text("How can we help you?")
+                    Text(NSLocalizedString("How can we help you?", comment: ""))
                         .font(.title2)
                         .fontWeight(.semibold)
                         .padding(.top)
                     
                     // App Navigation Help
                     HelpSectionView(
-                        title: "Navigating the App",
+                        title: NSLocalizedString("Navigating the App", comment: ""),
                         items: [
-                            HelpItem(icon: "house.fill", title: "Home", description: "Dashboard with fasting status and daily overview"),
-                            HelpItem(icon: "timer", title: "Fasting", description: "Track and manage your fasting schedule"),
-                            HelpItem(icon: "drop.fill", title: "Water", description: "Track your daily hydration"),
-                            HelpItem(icon: "fork.knife", title: "Nutrition", description: "Log and analyze your meals"),
-                            HelpItem(icon: "ellipsis", title: "More", description: "Access additional features and settings")
+                            HelpItem(icon: "house.fill", title: NSLocalizedString("Home", comment: ""), description: NSLocalizedString("Dashboard with fasting status and daily overview", comment: "")),
+                            HelpItem(icon: "timer", title: NSLocalizedString("Fasting", comment: ""), description: NSLocalizedString("Track and manage your fasting schedule", comment: "")),
+                            HelpItem(icon: "drop.fill", title: NSLocalizedString("Water", comment: ""), description: NSLocalizedString("Track your daily hydration", comment: "")),
+                            HelpItem(icon: "fork.knife", title: NSLocalizedString("Nutrition", comment: ""), description: NSLocalizedString("Log and analyze your meals", comment: "")),
+                            HelpItem(icon: "ellipsis", title: NSLocalizedString("More", comment: ""), description: NSLocalizedString("Access additional features and settings", comment: ""))
                         ]
                     )
                     

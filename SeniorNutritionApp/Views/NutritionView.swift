@@ -18,9 +18,9 @@ struct NutritionView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Picker("View", selection: $selectedTab) {
-                    Text("Dashboard").tag(0)
-                    Text("Meals").tag(1)
+                Picker(NSLocalizedString("View", comment: ""), selection: $selectedTab) {
+                    Text(NSLocalizedString("Dashboard", comment: "")).tag(0)
+                    Text(NSLocalizedString("Meals", comment: "")).tag(1)
                 }
                 .pickerStyle(SegmentedPickerStyle())
                 .padding()
@@ -31,7 +31,7 @@ struct NutritionView: View {
                     mealsView
                 }
             }
-            .navigationTitle("Nutrition")
+            .navigationTitle(NSLocalizedString("Nutrition", comment: ""))
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {

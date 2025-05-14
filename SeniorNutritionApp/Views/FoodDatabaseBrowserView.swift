@@ -290,11 +290,11 @@ struct FoodDetailView: View {
                 }
                 .padding()
             }
-            .navigationTitle("Food Details")
+            .navigationTitle(NSLocalizedString("Food Details", comment: ""))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Done") {
+                    Button(NSLocalizedString("Done", comment: "")) {
                         dismiss()
                     }
                 }

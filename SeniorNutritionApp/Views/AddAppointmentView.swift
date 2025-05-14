@@ -31,6 +31,7 @@ struct AddAppointmentView: View {
                         Spacer()
                         DatePicker("", selection: $appointmentDate)
                             .labelsHidden()
+                            .datePickerLTR()
                             .accessibilityIdentifier("appointmentDatePicker")
                     }
                     

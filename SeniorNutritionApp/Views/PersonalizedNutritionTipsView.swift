@@ -25,11 +25,11 @@ struct PersonalizedNutritionTipsView: View {
                 }
                 .padding()
             }
-            .navigationTitle("Personalized Nutrition Tips")
+            .navigationTitle(NSLocalizedString("Personalized Nutrition Tips", comment: ""))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Done") {
+                    Button(NSLocalizedString("Done", comment: "")) {
                         presentationMode.wrappedValue.dismiss()
                     }
                 }

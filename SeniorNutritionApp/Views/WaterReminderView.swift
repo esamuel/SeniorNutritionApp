@@ -55,7 +55,7 @@ struct WaterReminderView: View {
                 Button(action: {
                     showingCustomAmount = true
                 }) {
-                    Text("Custom Amount")
+                    Text(NSLocalizedString("Add Custom Amount", comment: ""))
                         .padding()
                         .frame(maxWidth: .infinity)
                         .background(Color.blue)
@@ -86,7 +86,7 @@ struct WaterReminderView: View {
                     }
                 }
             }
-            .navigationTitle("Water Reminder")
+            .navigationTitle(NSLocalizedString("Water Reminder", comment: ""))
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
@@ -99,18 +99,18 @@ struct WaterReminderView: View {
             .sheet(isPresented: $showingSettings) {
                 WaterReminderSettingsView(manager: manager)
             }
-            .alert("Add Custom Amount", isPresented: $showingCustomAmount) {
-                TextField("Amount in ml", text: $customAmount)
+            .alert(NSLocalizedString("Add Custom Amount", comment: ""), isPresented: $showingCustomAmount) {
+                TextField(NSLocalizedString("Amount in ml", comment: ""), text: $customAmount)
                     .keyboardType(.numberPad)
-                Button("Cancel", role: .cancel) { }
-                Button("Add") {
+                Button(NSLocalizedString("Cancel", comment: ""), role: .cancel) { }
+                Button(NSLocalizedString("Add", comment: "")) {
                     if let amount = Int(customAmount) {
                         manager.addWaterIntake(amount)
                     }
                     customAmount = ""
                 }
             } message: {
-                Text("Enter the amount of water in milliliters")
+                Text(NSLocalizedString("Enter the amount of water in milliliters", comment: ""))
             }
         }
     }
@@ -139,35 +139,37 @@ struct WaterReminderSettingsView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Daily Goal")) {
-                    TextField("Daily Goal (ml)", text: $dailyGoal)
+                Section(header: Text(NSLocalizedString("Daily Goal", comment: ""))) {
+                    TextField(NSLocalizedString("Daily Goal (ml)", comment: ""), text: $dailyGoal)
                         .keyboardType(.numberPad)
                 }
                 
-                Section(header: Text("Reminder Settings")) {
-                    Toggle("Enable Reminders", isOn: $isEnabled)
+                Section(header: Text(NSLocalizedString("Reminder Settings", comment: ""))) {
+                    Toggle(NSLocalizedString("Enable Reminders", comment: ""), isOn: $isEnabled)
                     
-                    Picker("Frequency", selection: $selectedFrequency) {
+                    Picker(NSLocalizedString("Frequency", comment: ""), selection: $selectedFrequency) {
                         ForEach(ReminderFrequency.allCases) { frequency in
-                            Text(frequency.rawValue).tag(frequency)
+                            Text(NSLocalizedString(frequency.rawValue, comment: "")).tag(frequency)
                         }
                     }
                     
                     if selectedFrequency == .custom {
-                        TextField("Custom Minutes", text: $customMinutes)
+                        TextField(NSLocalizedString("Custom Minutes", comment: ""), text: $customMinutes)
                             .keyboardType(.numberPad)
                     }
                     
-                    DatePicker("Start Time", selection: $startTime, displayedComponents: .hourAndMinute)
-                    DatePicker("End Time", selection: $endTime, displayedComponents: .hourAndMinute)
+                    DatePicker(NSLocalizedString("Start Time", comment: ""), selection: $startTime, displayedComponents: .hourAndMinute)
+                        .datePickerLTR()
+                    DatePicker(NSLocalizedString("End Time", comment: ""), selection: $endTime, displayedComponents: .hourAndMinute)
+                        .datePickerLTR()
                 }
             }
-            .navigationTitle("Settings")
+            .navigationTitle(NSLocalizedString("Settings", comment: ""))
             .navigationBarItems(
-                leading: Button("Cancel") {
+                leading: Button(NSLocalizedString("Cancel", comment: "")) {
                     dismiss()
                 },
-                trailing: Button("Save") {
+                trailing: Button(NSLocalizedString("Save", comment: "")) {
                     saveSettings()
                     dismiss()
                 }

@@ -487,8 +487,8 @@ struct EditWeightView: View {
                 Section(header: Text("Weight")) {
                     TextField("Weight (kg)", text: $weight)
                         .keyboardType(.decimalPad)
-                        .focused($weightFieldIsFocused)
                     DatePicker("Date & Time", selection: $date)
+                        .datePickerLTR()
                 }
                 
                 if let error = error {

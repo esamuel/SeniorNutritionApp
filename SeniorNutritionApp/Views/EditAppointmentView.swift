@@ -46,6 +46,7 @@ struct EditAppointmentView: View {
                         Spacer()
                         DatePicker("", selection: $appointmentDate)
                             .labelsHidden()
+                            .datePickerLTR()
                             .accessibilityIdentifier("appointmentDatePicker")
                     }
                     
@@ -73,18 +74,16 @@ struct EditAppointmentView: View {
                     }
                 }
             }
-            .navigationTitle("Edit Appointment")
+            .navigationTitle(NSLocalizedString("Edit Appointment", comment: ""))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(NSLocalizedString("Cancel", comment: "")) {
                         dismiss()
                     }
-                    .accessibilityIdentifier("cancelEditAppointmentButton")
                 }
-                
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(NSLocalizedString("Save", comment: "")) {
                         let updatedAppointment = Appointment(
                             id: appointment.id,
                             title: title,
@@ -99,7 +98,6 @@ struct EditAppointmentView: View {
                         dismiss()
                     }
                     .disabled(title.isEmpty)
-                    .accessibilityIdentifier("saveEditedAppointmentButton")
                 }
             }
         }

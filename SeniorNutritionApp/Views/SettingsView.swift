@@ -1,27 +1,43 @@
 import SwiftUI
+import CoreData
 // Add import for our print preview views
 
 // Main Settings View
 struct SettingsView: View {
     @EnvironmentObject private var userSettings: UserSettings
+    @ObservedObject private var languageManager = LanguageManager.shared
     @State private var showingHelpOptions = false
     @State private var showingPrintOptions = false
     @State private var showingResetAlert = false
     @State private var showingBackupInfoAlert = false // For backup/restore info
     @State private var showingOnboarding = false // NEW: controls onboarding sheet
+    enum BackupAlert: Identifiable {
+        var id: String {
+            switch self {
+            case .backup: return "backup"
+            case .restore: return "restore"
+            }
+        }
+        case backup(message: String)
+        case restore(message: String)
+    }
+
+    @State private var backupAlert: BackupAlert?
+    @Environment(\.managedObjectContext) private var viewContext
+    @EnvironmentObject private var appointmentManager: AppointmentManager
 
     var body: some View {
         NavigationView {
             List {
                 // Accessibility section
-                Section(header: sectionHeader("Accessibility")) {
+                Section(header: sectionHeader(NSLocalizedString("Accessibility", comment: ""))) {
                     // Text size picker
                     HStack {
                         Image(systemName: "textformat.size")
                             .foregroundColor(.blue)
                             .frame(width: 30)
                         
-                        Text("Text Size")
+                        Text(NSLocalizedString("Text Size", comment: ""))
                             .font(.system(size: userSettings.textSize.size))
                         
                         Spacer()
@@ -43,7 +59,7 @@ struct SettingsView: View {
                                 .foregroundColor(.blue)
                                 .frame(width: 30)
                             
-                            Text("High Contrast Mode")
+                            Text(NSLocalizedString("High Contrast Mode", comment: ""))
                                 .font(.system(size: userSettings.textSize.size))
                         }
                     }
@@ -54,7 +70,7 @@ struct SettingsView: View {
                     NavigationLink(destination: VoiceSettingsView()) {
                         settingsRowContent(
                             icon: "waveform.circle.fill", // Icon for voice settings
-                            title: "Voice Settings",
+                            title: NSLocalizedString("Voice Settings", comment: ""),
                             color: .blue
                         )
                     }
@@ -66,7 +82,7 @@ struct SettingsView: View {
                                 .foregroundColor(.blue)
                                 .frame(width: 30)
                             
-                            Text("Dark Mode")
+                            Text(NSLocalizedString("Dark Mode", comment: ""))
                                 .font(.system(size: userSettings.textSize.size))
                         }
                     }
@@ -75,7 +91,7 @@ struct SettingsView: View {
                 }
                 
                 // Language section
-                Section(header: Text("Language").font(.system(size: userSettings.textSize.size, weight: .bold))) {
+                Section(header: Text(NSLocalizedString("Language", comment: "")).font(.system(size: userSettings.textSize.size, weight: .bold))) {
                     Picker("App Language", selection: $userSettings.selectedLanguage) {
                         ForEach(userSettings.supportedLanguages, id: \.self) { code in
                             Text(languageDisplayName(for: code)).tag(code)
@@ -84,12 +100,42 @@ struct SettingsView: View {
                     .pickerStyle(MenuPickerStyle())
                     .font(.system(size: userSettings.textSize.size))
                     .onChange(of: userSettings.selectedLanguage) { newLang in
-                        Bundle.setLanguage(newLang)
+                        LanguageManager.shared.setLanguage(newLang)
                     }
+                    Button(action: {
+                        // Explicitly force a refresh of the language system
+                        Bundle.setLanguage(userSettings.selectedLanguage)
+                        LanguageManager.shared.forceRefreshLocalization()
+                        
+                        // This will add a tiny delay to allow the refresh to propagate
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                            // Create a small UI indication that something happened
+                            let generator = UINotificationFeedbackGenerator()
+                            generator.notificationOccurred(.success)
+                        }
+                    }) {
+                        Label("Fix Language Issues", systemImage: "arrow.triangle.2.circlepath")
+                            .padding(.vertical, 8)
+                    }
+                    Button("Reset to System Language") {
+                        print("SettingsView: Reset to System Language pressed")
+                        // First, reset in LanguageManager (which will handle removing from UserDefaults)
+                        LanguageManager.shared.resetToSystemLanguage()
+                        // Then ensure our view's state is updated
+                        DispatchQueue.main.async {
+                            // This ensures the UI reflects the change
+                            userSettings.selectedLanguage = LanguageManager.shared.currentLanguage
+                            print("SettingsView: selectedLanguage updated to: \(userSettings.selectedLanguage)")
+                        }
+                    }
+                    .foregroundColor(.blue)
+                    Text("Current app language: \(languageManager.currentLanguage)")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
                 }
                 
                 // Help & support section
-                Section(header: sectionHeader("Help & Support")) {
+                Section(header: sectionHeader(NSLocalizedString("Help & Support", comment: ""))) {
                     settingsRow(
                         icon: "video.fill",
                         title: "Video Tutorials",
@@ -113,11 +159,11 @@ struct SettingsView: View {
                 }
                 
                 // Additional options section
-                Section(header: sectionHeader("Additional Options")) {
+                Section(header: sectionHeader(NSLocalizedString("Additional Options", comment: ""))) {
                     NavigationLink(destination: NotificationsSettingsView()) {
                         settingsRowContent(
                             icon: "bell.fill",
-                            title: "Notifications",
+                            title: NSLocalizedString("Notifications", comment: ""),
                             color: .orange
                         )
                     }
@@ -135,38 +181,43 @@ struct SettingsView: View {
                             .environmentObject(userSettings)
                     }
                     
-                    // Backup Data Button
-                    Button(action: { showingBackupInfoAlert = true }) {
-                        settingsRowContent(
-                            icon: "arrow.clockwise", // Changed icon for consistency
-                            title: "Backup Data",
-                            color: .orange
-                        )
-                    }
-                    
-                    // Restore Data Button
-                    Button(action: { showingBackupInfoAlert = true }) {
-                        settingsRowContent(
-                            icon: "arrow.clockwise", // Changed icon for consistency
-                            title: "Restore Data",
-                            color: .orange
-                        )
+                    // Backup Data Section updated for local backup
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text("Local Backup")
+                            .font(.headline)
+                        Button(action: { exportLocalBackup() }) {
+                            Text("Export Backup")
+                                .foregroundColor(.blue)
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(Color(UIColor.secondarySystemBackground))
+                                .cornerRadius(8)
+                        }
+                        Divider().padding(.vertical, 8)
+                        Button(action: { importLocalBackup() }) {
+                            Text("Import Backup")
+                                .foregroundColor(.blue)
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(Color(UIColor.secondarySystemBackground))
+                                .cornerRadius(8)
+                        }
                     }
                     
                     // Reset app Button
                     Button(action: { showingResetAlert = true }) {
                         settingsRowContent(
                             icon: "arrow.counterclockwise",
-                            title: "Reset App",
+                            title: NSLocalizedString("Reset App", comment: ""),
                             color: .red
                         )
                     }
                 }
                 
                 // About section
-                Section(header: sectionHeader("About")) {
+                Section(header: sectionHeader(NSLocalizedString("About", comment: ""))) {
                     HStack {
-                        Text("Version")
+                        Text(NSLocalizedString("Version", comment: ""))
                             .font(.system(size: userSettings.textSize.size))
                         Spacer()
                         Text("1.0.0") // Example version
@@ -176,22 +227,22 @@ struct SettingsView: View {
                     .padding(.vertical, 8)
                     
                     NavigationLink(destination: PrivacyPolicyView()) {
-                        Text("Privacy Policy")
+                        Text(NSLocalizedString("Privacy Policy", comment: ""))
                             .font(.system(size: userSettings.textSize.size))
                             .padding(.vertical, 8)
                     }
                     
                     NavigationLink(destination: TermsOfUseView()) {
-                        Text("Terms of Service")
+                        Text(NSLocalizedString("Terms of Service", comment: ""))
                             .font(.system(size: userSettings.textSize.size))
                             .padding(.vertical, 8)
                     }
                 }
             }
-            .navigationTitle("Settings")
+            .navigationTitle(NSLocalizedString("Settings", comment: ""))
             .navigationBarTitleDisplayMode(.large)
             .listStyle(InsetGroupedListStyle())
-            .alert("ARE YOU ABSOLUTELY SURE?", isPresented: $showingResetAlert) { // Strengthened Reset Alert
+            .alert("ARE YOU ABSOLUTELY SURE?", isPresented: $showingResetAlert) {
                 Button("Cancel", role: .cancel) { }
                 Button("Reset App", role: .destructive) {
                     userSettings.resetAllSettings()
@@ -200,10 +251,19 @@ struct SettingsView: View {
             } message: {
                 Text("Resetting the app will permanently delete ALL your data, including profile, medications, fasting history, and settings. This action cannot be undone.")
             }
-            .alert("Backup & Restore Info", isPresented: $showingBackupInfoAlert) { // Backup Info Alert
+            .alert("Backup & Restore Info", isPresented: $showingBackupInfoAlert) {
                 Button("OK") { }
             } message: {
                 Text("Your app data (settings, medications, etc.) is typically included in your device's standard backups (iCloud or computer backups) if you have enabled them in your device settings. Restore data by restoring your device from a backup.")
+            }
+            // New unified alert for backup and restore results
+            .alert(item: $backupAlert) { alert in
+                switch alert {
+                case .backup(let message):
+                    return Alert(title: Text("Backup Complete"), message: Text(message), dismissButton: .default(Text("OK")))
+                case .restore(let message):
+                    return Alert(title: Text("Restore Complete"), message: Text(message), dismissButton: .default(Text("OK")))
+                }
             }
             .sheet(isPresented: $showingHelpOptions) {
                 HelpOptionsView()
@@ -257,9 +317,28 @@ struct SettingsView: View {
         case "en": return "English"
         case "es": return "Español"
         case "fr": return "Français"
-        case "de": return "Deutsch"
         case "he": return "עברית"
         default: return code
+        }
+    }
+    
+    private func exportLocalBackup() {
+        // For demonstration, using a stub for appData. Replace with actual app data retrieval as needed.
+        let appData = AppData(userProfile: [], medications: [], appointments: [], emergencyContacts: [], bloodPressures: [], bloodSugars: [], heartRates: [], weights: [])
+        do {
+            try LocalDataManager.shared.backup(appData: appData)
+            backupAlert = .backup(message: "Local backup exported successfully.")
+        } catch {
+            backupAlert = .backup(message: "Export backup failed: \(error)")
+        }
+    }
+    
+    private func importLocalBackup() {
+        do {
+            let restoredData = try LocalDataManager.shared.restore()
+            backupAlert = .restore(message: "Local backup restored successfully. Restored data: \(restoredData)")
+        } catch {
+            backupAlert = .restore(message: "Import backup failed: \(error)")
         }
     }
 }
@@ -352,104 +431,104 @@ struct HelpOptionsView: View {
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("Connect with Support")) {
+                Section(header: Text(NSLocalizedString("Connect with Support", comment: ""))) {
                     helpOptionButton(
                         icon: "phone.fill",
-                        title: "Call Support",
-                        description: "Speak with our dedicated senior support team",
+                        title: NSLocalizedString("Call Support", comment: ""),
+                        description: NSLocalizedString("Speak with our dedicated senior support team", comment: ""),
                         action: { /* Call support action */ }
                     )
                     
                     helpOptionButton(
                         icon: "message.fill",
-                        title: "Send Message",
-                        description: "Send a text message for non-urgent help",
+                        title: NSLocalizedString("Send Message", comment: ""),
+                        description: NSLocalizedString("Send a text message for non-urgent help", comment: ""),
                         action: { /* Send message action */ }
                     )
                     
                     helpOptionButton(
                         icon: "video.fill",
-                        title: "Video Assistance",
-                        description: "Schedule a live video call for personalized help",
+                        title: NSLocalizedString("Video Assistance", comment: ""),
+                        description: NSLocalizedString("Schedule a live video call for personalized help", comment: ""),
                         action: { /* Video chat action */ }
                     )
                 }
                 
-                Section(header: Text("Self-Help Resources")) {
+                Section(header: Text(NSLocalizedString("Self-Help Resources", comment: ""))) {
                     helpOptionButton(
                         icon: "questionmark.circle.fill",
-                        title: "Interactive App Tour",
-                        description: "Get a guided walkthrough of app features",
+                        title: NSLocalizedString("Interactive App Tour", comment: ""),
+                        description: NSLocalizedString("Get a guided walkthrough of app features", comment: ""),
                         action: { /* Restart tour action */ }
                     )
                     
                     helpOptionButton(
                         icon: "doc.text.fill",
-                        title: "Help Documentation",
-                        description: "Access detailed user guides and FAQs",
+                        title: NSLocalizedString("Help Documentation", comment: ""),
+                        description: NSLocalizedString("Access detailed user guides and FAQs", comment: ""),
                         action: { /* Open documentation action */ }
                     )
                     
                     helpOptionButton(
                         icon: "play.rectangle.fill",
-                        title: "Video Tutorials",
-                        description: "Watch step-by-step instructional videos",
+                        title: NSLocalizedString("Video Tutorials", comment: ""),
+                        description: NSLocalizedString("Watch step-by-step instructional videos", comment: ""),
                         action: { /* Open video tutorials action */ }
                     )
                 }
                 
-                Section(header: Text("Health & Appointments")) {
+                Section(header: Text(NSLocalizedString("Health & Appointments", comment: ""))) {
                     helpOptionButton(
                         icon: "heart.text.square.fill",
-                        title: "Health Tracking Guide",
-                        description: "Learn how to monitor vitals and analyze data",
+                        title: NSLocalizedString("Health Tracking Guide", comment: ""),
+                        description: NSLocalizedString("Learn how to monitor vitals and analyze data", comment: ""),
                         action: { /* Open health guide action */ }
                     )
                     
                     helpOptionButton(
                         icon: "calendar.badge.plus",
-                        title: "Appointment Management",
-                        description: "How to schedule and track medical visits",
+                        title: NSLocalizedString("Appointment Management", comment: ""),
+                        description: NSLocalizedString("How to schedule and track medical visits", comment: ""),
                         action: { /* Open appointment guide action */ }
                     )
                     
                     helpOptionButton(
                         icon: "square.and.arrow.up",
-                        title: "Sharing Health Data",
-                        description: "Securely share records with healthcare providers",
+                        title: NSLocalizedString("Sharing Health Data", comment: ""),
+                        description: NSLocalizedString("Securely share records with healthcare providers", comment: ""),
                         action: { /* Open sharing guide action */ }
                     )
                 }
                 
-                Section(header: Text("Accessibility Support")) {
+                Section(header: Text(NSLocalizedString("Accessibility Support", comment: ""))) {
                     helpOptionButton(
                         icon: "ear.fill",
-                        title: "Voice Assistance",
-                        description: "Get help with voice navigation settings",
+                        title: NSLocalizedString("Voice Assistance", comment: ""),
+                        description: NSLocalizedString("Get help with voice navigation settings", comment: ""),
                         action: { /* Voice assistance action */ }
                     )
                     
                     helpOptionButton(
                         icon: "textformat.size",
-                        title: "Text Size Help",
-                        description: "Adjust the app for better readability",
+                        title: NSLocalizedString("Text Size Help", comment: ""),
+                        description: NSLocalizedString("Adjust the app for better readability", comment: ""),
                         action: { /* Text size help action */ }
                     )
                     
                     helpOptionButton(
                         icon: "hand.raised.fill",
-                        title: "Gesture Controls",
-                        description: "Learn about simplified touch controls",
+                        title: NSLocalizedString("Gesture Controls", comment: ""),
+                        description: NSLocalizedString("Learn about simplified touch controls", comment: ""),
                         action: { /* Gesture controls help action */ }
                     )
                 }
             }
-            .navigationTitle("Get Help")
+            .navigationTitle(NSLocalizedString("Get Help", comment: ""))
             .navigationBarTitleDisplayMode(.large)
             .listStyle(InsetGroupedListStyle())
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Done") {
+                    Button(NSLocalizedString("Done", comment: "")) {
                         presentationMode.wrappedValue.dismiss()
                     }
                     .font(.system(size: userSettings.textSize.size))

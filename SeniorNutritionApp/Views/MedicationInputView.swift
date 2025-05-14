@@ -155,6 +155,7 @@ struct MedicationInputView: View {
                                     )
                                     .labelsHidden() // Hide the default label
                                     .font(.system(size: userSettings.textSize.size))
+                                    .datePickerLTR() // Fix RTL layout issues
                                     
                                     Spacer()
                                 }

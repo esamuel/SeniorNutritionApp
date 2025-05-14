@@ -335,11 +335,11 @@ struct AddMealView: View {
                             .padding(.horizontal)
                             .padding(.bottom)
                         }
-                        .navigationTitle("Nutrition Analysis")
+                        .navigationTitle(NSLocalizedString("Nutrition Analysis", comment: ""))
                         .navigationBarTitleDisplayMode(.inline)
                         .toolbar {
                             ToolbarItem(placement: .navigationBarLeading) {
-                                Button("Close") {
+                                Button(NSLocalizedString("Close", comment: "")) {
                                     showingAnalysisResults = false
                                 }
                             }

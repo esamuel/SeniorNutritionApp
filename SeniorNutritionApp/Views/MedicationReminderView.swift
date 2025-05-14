@@ -86,8 +86,8 @@ struct MedicationReminderView: View {
                 }
             }
             .listStyle(InsetGroupedListStyle())
-            .navigationBarTitle("Medication Reminders", displayMode: .inline)
-            .navigationBarItems(trailing: Button("Done") { dismiss() })
+            .navigationBarTitle(NSLocalizedString("Medication Reminders", comment: ""), displayMode: .inline)
+            .navigationBarItems(trailing: Button(NSLocalizedString("Done", comment: "")) { dismiss() })
             .onAppear(perform: checkNotificationStatus)
             .alert(isPresented: $showingPermissionAlert) {
                 Alert(

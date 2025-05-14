@@ -19,7 +19,7 @@ struct FoodDatabaseView: View {
                 // Food list
                 foodList
             }
-            .navigationTitle("Food Database")
+            .navigationTitle(NSLocalizedString("Food Database", comment: ""))
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -35,7 +35,7 @@ struct FoodDatabaseView: View {
                     Button(action: {
                         foodDatabase.resetToDefaultFoods()
                     }) {
-                        Label("Reset", systemImage: "arrow.clockwise")
+                        Label(NSLocalizedString("Reset", comment: ""), systemImage: "arrow.clockwise")
                             .font(.system(size: userSettings.textSize.size - 2))
                     }
                 }
@@ -274,11 +274,11 @@ struct AddFoodView: View {
                 }
                 .listRowBackground(Color.clear)
             }
-            .navigationTitle("Add Food")
+            .navigationTitle(NSLocalizedString("Add Food", comment: ""))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") {
+                    Button(NSLocalizedString("Cancel", comment: "")) {
                         presentationMode.wrappedValue.dismiss()
                     }
                     .font(.system(size: userSettings.textSize.size))

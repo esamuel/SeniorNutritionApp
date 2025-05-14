@@ -8,8 +8,7 @@ struct LanguageSelectorView: View {
         ("English", "en"),
         ("עברית", "he"),
         ("Español", "es"),
-        ("Français", "fr"),
-        ("Deutsch", "de")
+        ("Français", "fr")
     ]
     
     var body: some View {

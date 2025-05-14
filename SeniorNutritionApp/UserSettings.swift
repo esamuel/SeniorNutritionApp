@@ -146,9 +146,16 @@ class UserSettings: ObservableObject {
     
     @Published var isLoaded: Bool = false
     
-    @Published var selectedLanguage: String = Locale.current.languageCode ?? "en" // Default to system or English
+    @Published var selectedLanguage: String = UserDefaults.standard.string(forKey: "AppLanguage") ?? LanguageManager.shared.currentLanguage {
+        didSet {
+            if selectedLanguage != LanguageManager.shared.currentLanguage {
+                print("UserSettings: selectedLanguage changed to \(selectedLanguage), updating LanguageManager")
+                LanguageManager.shared.setLanguage(selectedLanguage)
+            }
+        }
+    }
     
-    let supportedLanguages: [String] = ["en", "es", "fr", "de", "he"]
+    let supportedLanguages: [String] = ["en", "es", "fr", "he"]
     
     private let localDataKey = "userData"
     
@@ -157,6 +164,33 @@ class UserSettings: ObservableObject {
     init() {
         setupMedicationObservers()
         self.medications = []
+        // Synchronize selectedLanguage with LanguageManager
+        if let saved = UserDefaults.standard.string(forKey: "AppLanguage") {
+            print("UserSettings: Found saved language: \(saved)")
+            selectedLanguage = saved
+            LanguageManager.shared.setLanguage(saved)
+        } else {
+            print("UserSettings: No saved language, using system language")
+            selectedLanguage = LanguageManager.shared.currentLanguage
+        }
+        // Observe changes to selectedLanguage and keep LanguageManager in sync
+        $selectedLanguage
+            .sink { newLang in
+                if LanguageManager.shared.currentLanguage != newLang {
+                    print("UserSettings: selectedLanguage changed to \(newLang), updating LanguageManager")
+                    LanguageManager.shared.setLanguage(newLang)
+                }
+            }
+            .store(in: &cancellables)
+        // Observe LanguageManager and update selectedLanguage if it changes externally
+        LanguageManager.shared.objectWillChange.sink { [weak self] in
+            let lang = LanguageManager.shared.currentLanguage
+            print("UserSettings: LanguageManager changed to \(lang)")
+            if self?.selectedLanguage != lang {
+                print("UserSettings: Updating selectedLanguage to match LanguageManager: \(lang)")
+                self?.selectedLanguage = lang
+            }
+        }.store(in: &cancellables)
     }
     
     // Force save user data synchronously
@@ -242,56 +276,53 @@ class UserSettings: ObservableObject {
     // Load user data from persistent storage
     private func loadUserData(startTime: Date? = nil) {
         let loadStart = startTime ?? Date()
-        Task {
-            do {
-                if let data: PersistentData = try await PersistentStorage.shared.loadData(forKey: localDataKey) {
-                    print("DEBUG: Loading medications count: \(data.medications.count)")
-                    for medication in data.medications {
-                        print("DEBUG: Loading medication: \(medication.name) with frequency: \(medication.frequency)")
-                    }
-                    
-                    textSize = data.textSize
-                    highContrastMode = data.highContrastMode
-                    useVoiceInput = data.useVoiceInput
-                    activeFastingProtocol = data.activeFastingProtocol
-                    medications = data.medications
-                    isOnboardingComplete = data.isOnboardingComplete
-                    userName = data.userName
-                    userAge = data.userAge
-                    userGender = data.userGender
-                    userHeight = data.userHeight
-                    userWeight = data.userWeight
-                    userHealthGoals = data.userHealthGoals
-                    userDietaryRestrictions = data.userDietaryRestrictions
-                    userEmergencyContacts = data.userEmergencyContacts
-                    preferredVoiceGender = data.preferredVoiceGender
-                    speechRate = data.speechRate
-                    isLoaded = true
-                    let elapsed = Date().timeIntervalSince(loadStart)
-                    print("DEBUG: User data loaded in \(elapsed) seconds")
-                } else {
-                    print("DEBUG: No saved user data found")
-                    isLoaded = true
-                    let elapsed = Date().timeIntervalSince(loadStart)
-                    print("DEBUG: User data load (empty) in \(elapsed) seconds")
-                }
-            } catch {
-                print("Error loading user data: \(error)")
-                isLoaded = true
-                let elapsed = Date().timeIntervalSince(loadStart)
-                print("DEBUG: User data load failed after \(elapsed) seconds")
-            }
-        }
-        
-        // Load user profile
+        // Load lightweight settings synchronously
         if let savedProfile = UserDefaults.standard.data(forKey: "userProfile"),
            let decodedProfile = try? JSONDecoder().decode(UserProfile.self, from: savedProfile) {
             self.userProfile = decodedProfile
         }
-        
-        // Load other settings
         self.isDarkMode = UserDefaults.standard.bool(forKey: "isDarkMode")
         self.notificationsEnabled = UserDefaults.standard.bool(forKey: "notificationsEnabled")
+        // Mark as loaded so UI can appear
+        self.isLoaded = true
+
+        // Load heavy data in background
+        DispatchQueue.global(qos: .userInitiated).async {
+            Task {
+                do {
+                    if let data: PersistentData = try await PersistentStorage.shared.loadData(forKey: self.localDataKey) {
+                        DispatchQueue.main.async {
+                            self.textSize = data.textSize
+                            self.highContrastMode = data.highContrastMode
+                            self.useVoiceInput = data.useVoiceInput
+                            self.activeFastingProtocol = data.activeFastingProtocol
+                            self.medications = data.medications
+                            self.isOnboardingComplete = data.isOnboardingComplete
+                            self.userName = data.userName
+                            self.userAge = data.userAge
+                            self.userGender = data.userGender
+                            self.userHeight = data.userHeight
+                            self.userWeight = data.userWeight
+                            self.userHealthGoals = data.userHealthGoals
+                            self.userDietaryRestrictions = data.userDietaryRestrictions
+                            self.userEmergencyContacts = data.userEmergencyContacts
+                            self.preferredVoiceGender = data.preferredVoiceGender
+                            self.speechRate = data.speechRate
+                        }
+                        let elapsed = Date().timeIntervalSince(loadStart)
+                        print("DEBUG: User data loaded in \(elapsed) seconds")
+                    } else {
+                        print("DEBUG: No saved user data found")
+                        let elapsed = Date().timeIntervalSince(loadStart)
+                        print("DEBUG: User data load (empty) in \(elapsed) seconds")
+                    }
+                } catch {
+                    print("Error loading user data: \(error)")
+                    let elapsed = Date().timeIntervalSince(loadStart)
+                    print("DEBUG: User data load failed after \(elapsed) seconds")
+                }
+            }
+        }
     }
     
     func updateProfile(_ profile: UserProfile) {
@@ -351,8 +382,8 @@ class UserSettings: ObservableObject {
         // Clear persistent storage (Important!)
         Task {
             do {
-                try await PersistentStorage.shared.deleteData(forKey: localDataKey)
-                print("DEBUG: Successfully cleared persistent storage for key: \(localDataKey)")
+                try await PersistentStorage.shared.deleteData(forKey: self.localDataKey)
+                print("DEBUG: Successfully cleared persistent storage for key: \(self.localDataKey)")
             } catch {
                 print("Error clearing persistent storage: \(error)")
             }

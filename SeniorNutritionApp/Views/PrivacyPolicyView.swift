@@ -4,7 +4,7 @@ struct PrivacyPolicyView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                Text("Privacy Policy")
+                Text(NSLocalizedString("Privacy Policy", comment: ""))
                     .font(.largeTitle)
                     .padding(.bottom)
 
@@ -83,7 +83,7 @@ This Privacy Policy shall be governed by and construed in accordance with the la
             }
             .padding()
         }
-        .navigationTitle("Privacy Policy")
+        .navigationTitle(NSLocalizedString("Privacy Policy", comment: ""))
         .navigationBarTitleDisplayMode(.inline)
     }
 }

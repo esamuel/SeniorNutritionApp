@@ -67,11 +67,11 @@ struct Enhanced3DPillPreview: View {
                 }
                 .padding(.vertical)
             }
-            .navigationTitle("Enhanced Medication Visuals")
+            .navigationTitle(NSLocalizedString("Enhanced Medication Visuals", comment: ""))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Done") {
+                    Button(NSLocalizedString("Done", comment: "")) {
                         dismiss()
                     }
                 }

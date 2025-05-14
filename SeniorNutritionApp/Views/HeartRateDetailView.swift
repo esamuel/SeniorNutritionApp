@@ -497,9 +497,10 @@ struct EditHeartRateView: View {
         NavigationView {
             Form {
                 Section(header: Text("Heart Rate")) {
-                    TextField("BPM (Beats Per Minute)", text: $bpm)
+                    TextField("Heart Rate (BPM)", text: $bpm)
                         .keyboardType(.numberPad)
                     DatePicker("Date & Time", selection: $date)
+                        .datePickerLTR()
                 }
                 
                 if let error = error {

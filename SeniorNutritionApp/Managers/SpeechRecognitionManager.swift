@@ -11,7 +11,6 @@ class SpeechRecognitionManager: NSObject, ObservableObject {
         (Locale(identifier: "en-US"), "English (US)"),
         (Locale(identifier: "es-ES"), "Español (Spain)"),
         (Locale(identifier: "fr-FR"), "Français (France)"),
-        (Locale(identifier: "de-DE"), "Deutsch (Germany)"),
         (Locale(identifier: "it-IT"), "Italiano (Italy)"),
         (Locale(identifier: "pt-BR"), "Português (Brazil)"),
         (Locale(identifier: "ru-RU"), "Русский (Russia)"),
