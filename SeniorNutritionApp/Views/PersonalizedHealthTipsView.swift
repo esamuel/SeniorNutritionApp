@@ -1,3 +1,7 @@
+#if canImport(UIKit)
+import UIKit
+#endif
+
 import SwiftUI
 
 struct PersonalizedHealthTipsView: View {

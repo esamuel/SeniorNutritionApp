@@ -1,6 +1,9 @@
 #if os(iOS)
 import SwiftUI
 import UserNotifications
+#if canImport(UIKit)
+import UIKit
+#endif
 
 struct HomeView: View {
     @EnvironmentObject private var userSettings: UserSettings

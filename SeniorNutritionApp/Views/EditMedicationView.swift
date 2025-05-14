@@ -1,6 +1,9 @@
 import SwiftUI
 import Foundation
 import UserNotifications
+#if canImport(UIKit)
+import UIKit
+#endif
 
 struct EditMedicationView: View {
     @Environment(\.dismiss) private var dismiss

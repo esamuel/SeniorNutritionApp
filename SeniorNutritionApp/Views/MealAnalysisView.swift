@@ -1,4 +1,7 @@
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#endif
 
 struct MealAnalysisView: View {
     @EnvironmentObject private var userSettings: UserSettings

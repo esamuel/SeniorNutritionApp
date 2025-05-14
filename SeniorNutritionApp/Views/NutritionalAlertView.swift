@@ -1,4 +1,7 @@
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#endif
 
 /// A reusable alert view to display nutritional warnings or positive feedback
 struct NutritionalAlertView: View {

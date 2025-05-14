@@ -1,4 +1,7 @@
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#endif
 
 struct NutritionalDashboardView: View {
     @EnvironmentObject private var userSettings: UserSettings

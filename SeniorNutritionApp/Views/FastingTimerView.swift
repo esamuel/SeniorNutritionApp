@@ -1,4 +1,7 @@
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#endif
 // Import models and views needed for this file
 
 // MARK: - TimerSectionView
