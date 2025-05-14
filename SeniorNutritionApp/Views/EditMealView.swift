@@ -17,6 +17,10 @@ struct EditMealView: View {
     @State private var showingFoodSearch = false
     @State private var showingVoiceInput = false
     
+    // Store original nutritional info for scaling
+    @State private var originalNutritionalInfo: NutritionalInfo
+    @State private var originalPortion: MealPortion
+    
     var onSave: (Meal) -> Void
     
     init(meal: Meal, onSave: @escaping (Meal) -> Void) {
@@ -27,6 +31,8 @@ struct EditMealView: View {
         _mealPortion = State(initialValue: meal.portion)
         _nutritionalInfo = State(initialValue: meal.nutritionalInfo)
         _notes = State(initialValue: meal.notes ?? "")
+        _originalNutritionalInfo = State(initialValue: meal.nutritionalInfo)
+        _originalPortion = State(initialValue: meal.portion)
         self.onSave = onSave
     }
     
@@ -123,11 +129,20 @@ struct EditMealView: View {
                                     },
                                     set: { newValue in
                                         let rounded = Int(round(newValue))
+                                        let newPortion: MealPortion
                                         switch rounded {
-                                        case 0: mealPortion = .small
-                                        case 1: mealPortion = .medium
-                                        case 2: mealPortion = .large
-                                        default: mealPortion = .medium
+                                        case 0: newPortion = .small
+                                        case 1: newPortion = .medium
+                                        case 2: newPortion = .large
+                                        default: newPortion = .medium
+                                        }
+                                        
+                                        // Only update if the portion actually changed
+                                        if newPortion != mealPortion {
+                                            mealPortion = newPortion
+                                            
+                                            // Scale nutritional information based on portion change
+                                            updateNutritionalInfo()
                                         }
                                     }
                                 ),
@@ -147,10 +162,38 @@ struct EditMealView: View {
                             .padding(.horizontal, 4)
                         }
                         .padding(.vertical, 5)
+                        
+                        // Add explanatory text about auto-scaling of nutritional values
+                        Text("Nutritional information automatically scales with portion size")
+                            .font(.system(size: userSettings.textSize.size - 3))
+                            .foregroundColor(.secondary)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .padding(.top, 5)
+                        
+                        // Show the original portion size for the nutritional information when food is selected
+                        if selectedFood != nil {
+                            Text("Original nutritional values are for a \(originalPortion.rawValue) portion")
+                                .font(.system(size: userSettings.textSize.size - 3))
+                                .foregroundColor(.secondary)
+                                .frame(maxWidth: .infinity, alignment: .center)
+                        }
                     }
                 }
                 if selectedFood == nil {
                     Section(header: Text("Nutritional Information").font(.system(size: userSettings.textSize.size))) {
+                        // Add note about scaling if portion size changed
+                        if mealPortion != originalPortion {
+                            HStack {
+                                Image(systemName: "arrow.triangle.2.circlepath")
+                                    .foregroundColor(.blue)
+                                let scalingFactor = mealPortion.multiplier / originalPortion.multiplier
+                                Text("Values scaled by \(String(format: "%.2f", scalingFactor))× from \(originalPortion.rawValue) size")
+                                    .font(.system(size: userSettings.textSize.size - 2))
+                                    .foregroundColor(.secondary)
+                                    .padding(.vertical, 4)
+                            }
+                        }
+                        
                         Group {
                             HStack {
                                 Text("Calories")
@@ -219,13 +262,62 @@ struct EditMealView: View {
             .onChange(of: selectedFood) { oldValue, newValue in
                 if let food = newValue {
                     mealName = food.name
+                    originalNutritionalInfo = food.nutritionalInfo
                     nutritionalInfo = food.nutritionalInfo
+                    originalPortion = .medium
+                    mealPortion = .medium
+                }
+            }
+            .onChange(of: nutritionalInfo) { oldValue, newValue in
+                // Only update original values when no food is selected and user edits them manually
+                if selectedFood == nil && mealPortion == originalPortion {
+                    originalNutritionalInfo = newValue
                 }
             }
             .onAppear {
                 foodDatabase.loadFoodDatabase()
             }
         }
+    }
+    
+    // Function to update nutritional information based on portion size
+    private func updateNutritionalInfo() {
+        // Calculate scaling factor based on portion sizes
+        let targetMultiplier = mealPortion.multiplier
+        let originalMultiplier = originalPortion.multiplier
+        let scalingFactor = targetMultiplier / originalMultiplier
+        
+        // Scale the nutritional info
+        nutritionalInfo = NutritionalInfo(
+            calories: originalNutritionalInfo.calories * scalingFactor,
+            protein: originalNutritionalInfo.protein * scalingFactor,
+            carbohydrates: originalNutritionalInfo.carbohydrates * scalingFactor,
+            fat: originalNutritionalInfo.fat * scalingFactor,
+            fiber: originalNutritionalInfo.fiber * scalingFactor,
+            sugar: originalNutritionalInfo.sugar * scalingFactor,
+            vitaminA: originalNutritionalInfo.vitaminA * scalingFactor,
+            vitaminC: originalNutritionalInfo.vitaminC * scalingFactor,
+            vitaminD: originalNutritionalInfo.vitaminD * scalingFactor,
+            vitaminE: originalNutritionalInfo.vitaminE * scalingFactor,
+            vitaminK: originalNutritionalInfo.vitaminK * scalingFactor,
+            thiamin: originalNutritionalInfo.thiamin * scalingFactor,
+            riboflavin: originalNutritionalInfo.riboflavin * scalingFactor,
+            niacin: originalNutritionalInfo.niacin * scalingFactor,
+            vitaminB6: originalNutritionalInfo.vitaminB6 * scalingFactor,
+            vitaminB12: originalNutritionalInfo.vitaminB12 * scalingFactor,
+            folate: originalNutritionalInfo.folate * scalingFactor,
+            calcium: originalNutritionalInfo.calcium * scalingFactor,
+            iron: originalNutritionalInfo.iron * scalingFactor,
+            magnesium: originalNutritionalInfo.magnesium * scalingFactor,
+            phosphorus: originalNutritionalInfo.phosphorus * scalingFactor,
+            potassium: originalNutritionalInfo.potassium * scalingFactor,
+            sodium: originalNutritionalInfo.sodium * scalingFactor,
+            zinc: originalNutritionalInfo.zinc * scalingFactor,
+            selenium: originalNutritionalInfo.selenium * scalingFactor,
+            omega3: originalNutritionalInfo.omega3 * scalingFactor,
+            omega6: originalNutritionalInfo.omega6 * scalingFactor,
+            cholesterol: originalNutritionalInfo.cholesterol * scalingFactor
+        )
     }
     
     private func saveMeal() {
