@@ -10,6 +10,9 @@ struct FoodItem: Identifiable, Codable, Equatable {
     var servingUnit: String // e.g., "g", "oz", "cup"
     var isCustom: Bool
     var notes: String?
+    var nameFr: String? = nil
+    var nameEs: String? = nil
+    var nameHe: String? = nil
     
     // Computed property for nutritional info per 100g
     var nutritionalInfoPer100g: NutritionalInfo {
@@ -57,6 +60,21 @@ struct FoodItem: Identifiable, Codable, Equatable {
         lhs.isCustom == rhs.isCustom &&
         lhs.notes == rhs.notes
     }
+    
+    // Return localized name based on current language.
+    func localizedName() -> String {
+        let lang = Locale.current.languageCode ?? "en"
+        switch lang {
+        case "fr":
+            return nameFr ?? name
+        case "es":
+            return nameEs ?? name
+        case "he", "iw":
+            return nameHe ?? name
+        default:
+            return name
+        }
+    }
 }
 
 // MARK: - Food Category
@@ -80,6 +98,48 @@ class FoodDatabaseService: ObservableObject {
     init() {
         // Force reset the database to include new foods
         resetToDefaultFoods()
+        Task {
+            await populateTranslationsIfNeeded()
+        }
+    }
+    
+    // Populate translations for default foods if missing
+    @MainActor
+    private func populateTranslationsIfNeeded() async {
+        let langCodes = ["fr", "es", "he"]
+        var updated = false
+        for idx in foodItems.indices {
+            for lang in langCodes {
+                switch lang {
+                case "fr":
+                    if foodItems[idx].nameFr == nil {
+                        let t = await TranslationManager.shared.translated(foodItems[idx].name, target: lang)
+                        foodItems[idx].nameFr = t
+                        updated = true
+                    }
+                case "es":
+                    if foodItems[idx].nameEs == nil {
+                        let t = await TranslationManager.shared.translated(foodItems[idx].name, target: lang)
+                        foodItems[idx].nameEs = t
+                        updated = true
+                    }
+                case "he":
+                    if foodItems[idx].nameHe == nil {
+                        let t = await TranslationManager.shared.translated(foodItems[idx].name, target: lang)
+                        foodItems[idx].nameHe = t
+                        updated = true
+                    }
+                default:
+                    break
+                }
+            }
+        }
+        if updated {
+            // persist
+            if let encoded = try? JSONEncoder().encode(foodItems) {
+                UserDefaults.standard.set(encoded, forKey: "savedFoods")
+            }
+        }
     }
     
     // Add this new method to reset the database

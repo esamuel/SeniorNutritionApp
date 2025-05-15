@@ -111,8 +111,9 @@ struct FoodDatabaseBrowserView: View {
     private func foodRow(_ food: FoodItem) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Text(food.name)
+                Text(food.localizedName())
                     .font(.system(size: userSettings.textSize.size, weight: .medium))
+                    .fixedSize(horizontal: false, vertical: true)
                 
                 Spacer()
                 
@@ -182,7 +183,7 @@ struct FoodDetailView: View {
                 VStack(alignment: .leading, spacing: 20) {
                     // Header
                     VStack(alignment: .leading, spacing: 8) {
-                        Text(food.name)
+                        Text(food.localizedName())
                             .font(.system(size: userSettings.textSize.size + 4, weight: .bold))
                         
                         Text("Category: \(food.category.rawValue)")
