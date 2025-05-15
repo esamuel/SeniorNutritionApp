@@ -192,7 +192,7 @@ struct NutritionView: View {
                             
                             Button {
                                 userCommonMeals.addCommonMeal(meal)
-                                commonMealAddedName = meal.name
+                                commonMealAddedName = meal.localizedName()
                                 showingCommonMealAdded = true
                             } label: {
                                 Label("Add to Common Meals", systemImage: "star")
@@ -243,7 +243,7 @@ struct NutritionView: View {
                 .background(meal.type.color)
                 .cornerRadius(12)
             VStack(alignment: .leading, spacing: 5) {
-                Text(meal.name)
+                Text(meal.localizedName())
                     .font(.system(size: userSettings.textSize.size))
                     .foregroundColor(.primary)
                 HStack {
@@ -313,7 +313,7 @@ struct NutritionView: View {
                         .frame(width: 50, height: 50)
                         .background(meal.type.color.opacity(0.2))
                         .cornerRadius(10)
-                    Text(meal.name)
+                    Text(meal.localizedName())
                         .font(.system(size: userSettings.textSize.size))
                         .foregroundColor(.primary)
                         .multilineTextAlignment(.leading)
