@@ -1,9 +1,10 @@
 import Foundation
 import SwiftUI
 
+@MainActor
 extension Meal {
     func localizedName() -> String {
-        let lang = Locale.current.languageCode ?? "en"
+        let lang = Locale.current.language.languageCode?.identifier ?? "en"
         let key = "\(name)_\(lang)"
         if let cached = TranslationManager.shared.cache[key] {
             return cached

@@ -7,7 +7,7 @@ import Translate
 @MainActor
 final class TranslationManager: ObservableObject {
     static let shared = TranslationManager()
-    @Published private(set) var cache: [String: String] = [:] // key: "enText_langCode"
+    @Published var cache: [String: String] = [:] // key: "enText_langCode"
     private init() {}
     
     func translated(_ text: String, target language: String) async -> String {
