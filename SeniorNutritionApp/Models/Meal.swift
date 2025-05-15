@@ -4,6 +4,9 @@ import SwiftUI
 struct Meal: Identifiable, Codable {
     var id: UUID
     var name: String
+    var nameFr: String?
+    var nameEs: String?
+    var nameHe: String?
     var type: MealType
     var time: Date
     var portion: MealPortion
@@ -48,13 +51,16 @@ struct Meal: Identifiable, Codable {
     
     // Coding keys for encoding/decoding
     enum CodingKeys: String, CodingKey {
-        case id, name, type, time, portion, nutritionalInfo, notes, imageURL
+        case id, name, nameFr, nameEs, nameHe, type, time, portion, nutritionalInfo, notes, imageURL
     }
     
     // Initializer with default values
     init(
         id: UUID = UUID(),
         name: String,
+        nameFr: String? = nil,
+        nameEs: String? = nil,
+        nameHe: String? = nil,
         type: MealType,
         time: Date = Date(),
         portion: MealPortion = .medium,
@@ -64,6 +70,9 @@ struct Meal: Identifiable, Codable {
     ) {
         self.id = id
         self.name = name
+        self.nameFr = nameFr
+        self.nameEs = nameEs
+        self.nameHe = nameHe
         self.type = type
         self.time = time
         self.portion = portion
@@ -77,6 +86,9 @@ struct Meal: Identifiable, Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(name, forKey: .name)
+        try container.encode(nameFr, forKey: .nameFr)
+        try container.encode(nameEs, forKey: .nameEs)
+        try container.encode(nameHe, forKey: .nameHe)
         try container.encode(type, forKey: .type)
         try container.encode(time, forKey: .time)
         try container.encode(portion, forKey: .portion)
@@ -90,6 +102,9 @@ struct Meal: Identifiable, Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(UUID.self, forKey: .id)
         name = try container.decode(String.self, forKey: .name)
+        nameFr = try container.decodeIfPresent(String.self, forKey: .nameFr)
+        nameEs = try container.decodeIfPresent(String.self, forKey: .nameEs)
+        nameHe = try container.decodeIfPresent(String.self, forKey: .nameHe)
         type = try container.decode(MealType.self, forKey: .type)
         time = try container.decode(Date.self, forKey: .time)
         portion = try container.decode(MealPortion.self, forKey: .portion)
