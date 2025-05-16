@@ -901,7 +901,9 @@ class FoodDatabaseService: ObservableObject {
         var updateCount = 0
         
         // Add translations for common foods that might not be properly translated
-        let commonFoods = [
+        // IMPORTANT: Use full, specific translations for food items with descriptors
+        let commonFoods: [String: [String: String]] = [
+            // Base foods
             "Barley": ["fr": "Orge", "es": "Cebada", "he": "שעורה"],
             "Bean Burrito": ["fr": "Burrito aux haricots", "es": "Burrito de frijoles", "he": "בוריטו שעועית"],
             "Beef Stew": ["fr": "Ragoût de bœuf", "es": "Estofado de carne", "he": "נזיד בקר"],
@@ -911,7 +913,22 @@ class FoodDatabaseService: ObservableObject {
             "Brown Rice": ["fr": "Riz brun", "es": "Arroz integral", "he": "אורז חום"],
             "Butter": ["fr": "Beurre", "es": "Mantequilla", "he": "חמאה"],
             "Carrot": ["fr": "Carotte", "es": "Zanahoria", "he": "גזר"],
+            
+            // Specific cheese varieties - COMPLETE translations
             "Cheese": ["fr": "Fromage", "es": "Queso", "he": "גבינה"],
+            "Cheddar Cheese": ["fr": "Fromage Cheddar", "es": "Queso Cheddar", "he": "גבינת צ'דר"],
+            "Cottage Cheese": ["fr": "Fromage Cottage", "es": "Queso Cottage", "he": "גבינת קוטג'"],
+            "Cream Cheese": ["fr": "Fromage à la Crème", "es": "Queso Crema", "he": "גבינת שמנת"],
+            "Mozzarella Cheese": ["fr": "Fromage Mozzarella", "es": "Queso Mozzarella", "he": "גבינת מוצרלה"],
+            "Swiss Cheese": ["fr": "Fromage Suisse", "es": "Queso Suizo", "he": "גבינה שוויצרית"],
+            "Feta Cheese": ["fr": "Fromage Feta", "es": "Queso Feta", "he": "גבינת פטה"],
+            "Blue Cheese": ["fr": "Fromage Bleu", "es": "Queso Azul", "he": "גבינה כחולה"],
+            "Gouda Cheese": ["fr": "Fromage Gouda", "es": "Queso Gouda", "he": "גבינת גאודה"],
+            "Brie Cheese": ["fr": "Fromage Brie", "es": "Queso Brie", "he": "גבינת ברי"],
+            "Ricotta Cheese": ["fr": "Fromage Ricotta", "es": "Queso Ricotta", "he": "גבינת ריקוטה"],
+            "Parmesan Cheese": ["fr": "Fromage Parmesan", "es": "Queso Parmesano", "he": "גבינת פרמזן"],
+            
+            // Other common foods
             "Chicken": ["fr": "Poulet", "es": "Pollo", "he": "עוף"],
             "Eggs": ["fr": "Œufs", "es": "Huevos", "he": "ביצים"],
             "Fish": ["fr": "Poisson", "es": "Pescado", "he": "דג"],
@@ -957,9 +974,25 @@ class FoodDatabaseService: ObservableObject {
                 foodItems[idx].nameHe = knownTrans["he"]
                 foodUpdated = true
                 print("Applied direct translation for: \(foodItems[idx].name)")
+            } 
+            // 2. Handle compound names like "Something Cheese" if not found in direct matches
+            else if foodItems[idx].name.contains("Cheese") && !commonFoods.keys.contains(foodItems[idx].name) {
+                // Get the first part of the name (e.g., "Cheddar" from "Cheddar Cheese")
+                let parts = foodItems[idx].name.components(separatedBy: " Cheese")
+                if parts.count > 0 {
+                    let prefix = parts[0] // e.g., "Cheddar"
+                    
+                    // Create custom translations for this cheese type
+                    foodItems[idx].nameFr = "\(prefix) Fromage" 
+                    foodItems[idx].nameEs = "Queso \(prefix)"
+                    foodItems[idx].nameHe = "גבינת \(prefix)"
+                    
+                    foodUpdated = true
+                    print("Created compound translation for: \(foodItems[idx].name)")
+                }
             }
             
-            // 2. Process notes if present
+            // 3. Process notes if present
             if let notes = foodItems[idx].notes, !notes.isEmpty {
                 var notesUpdated = false
                 
@@ -994,7 +1027,7 @@ class FoodDatabaseService: ObservableObject {
                 }
             }
             
-            // 3. If food hasn't been updated via direct translation yet, use API
+            // 4. If food hasn't been updated via direct translation yet, use API
             if !foodUpdated {
                 if foodItems[idx].nameFr == nil || foodItems[idx].nameFr?.isEmpty == true {
                     foodItems[idx].nameFr = await TranslationManager.shared.translated(foodItems[idx].name, target: "fr")
