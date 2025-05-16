@@ -53,14 +53,18 @@ struct PersonalizedNutritionTipsView: View {
                 )
             }
             HStack {
-                Text("General Nutrition Tips for Seniors")
+                Text(NSLocalizedString("General Nutrition Tips for Seniors", comment: ""))
                     .font(.system(size: userSettings.textSize.size, weight: .bold))
                     .foregroundColor(.primary)
                 
                 Spacer()
                 
                 Button(action: {
+                    if voiceManager.isSpeaking {
+                        voiceManager.stopSpeaking()
+                    } else {
                     readGeneralTips()
+                    }
                 }) {
                     HStack(spacing: 4) {
                         Image(systemName: voiceManager.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
@@ -82,38 +86,38 @@ struct PersonalizedNutritionTipsView: View {
                     .background(Color.blue)
                     .cornerRadius(20)
                 }
-                .accessibilityLabel("Read General Tips")
-                .accessibilityHint("Reads out general nutrition tips for seniors")
+                .accessibilityLabel(NSLocalizedString("Read General Tips", comment: ""))
+                .accessibilityHint(NSLocalizedString("Reads out general nutrition tips for seniors", comment: ""))
             }
             
             nutritionTip(
                 icon: "leaf.fill",
-                title: "Protein is Essential",
-                description: "Aim for 1-1.2g of protein per kg of body weight daily to maintain muscle mass and strength."
+                title: NSLocalizedString("Protein is Essential", comment: ""),
+                description: NSLocalizedString("Aim for 1-1.2g of protein per kg of body weight daily to maintain muscle mass and strength.", comment: "")
             )
             
             nutritionTip(
                 icon: "drop.fill",
-                title: "Hydration Matters",
-                description: "Drink at least 8 glasses of water daily, more if you're active or in hot weather."
+                title: NSLocalizedString("Hydration Matters", comment: ""),
+                description: NSLocalizedString("Drink at least 8 glasses of water daily, more if you're active or in hot weather.", comment: "")
             )
             
             nutritionTip(
                 icon: "heart.fill",
-                title: "Healthy Fats",
-                description: "Include sources of omega-3 fatty acids like fatty fish, flaxseeds, and walnuts for heart and brain health."
+                title: NSLocalizedString("Healthy Fats", comment: ""),
+                description: NSLocalizedString("Include sources of omega-3 fatty acids like fatty fish, flaxseeds, and walnuts for heart and brain health.", comment: "")
             )
             
             nutritionTip(
                 icon: "flame.fill",
-                title: "Fiber for Digestion",
-                description: "Consume 25-30g of fiber daily from fruits, vegetables, and whole grains to maintain digestive health."
+                title: NSLocalizedString("Fiber for Digestion", comment: ""),
+                description: NSLocalizedString("Consume 25-30g of fiber daily from fruits, vegetables, and whole grains to maintain digestive health.", comment: "")
             )
             
             nutritionTip(
                 icon: "sun.max.fill",
-                title: "Vitamin D",
-                description: "Get adequate vitamin D through sunlight exposure and foods like fatty fish, egg yolks, and fortified foods."
+                title: NSLocalizedString("Vitamin D", comment: ""),
+                description: NSLocalizedString("Get adequate vitamin D through sunlight exposure and foods like fatty fish, egg yolks, and fortified foods.", comment: "")
             )
         }
         .padding()
@@ -132,7 +136,11 @@ struct PersonalizedNutritionTipsView: View {
                 Spacer()
                 
                 Button(action: {
+                    if voiceManager.isSpeaking {
+                        voiceManager.stopSpeaking()
+                    } else {
                     readMedicalConditionTips(conditions)
+                    }
                 }) {
                     HStack(spacing: 4) {
                         Image(systemName: voiceManager.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
@@ -186,7 +194,11 @@ struct PersonalizedNutritionTipsView: View {
                 Spacer()
                 
                 Button(action: {
+                    if voiceManager.isSpeaking {
+                        voiceManager.stopSpeaking()
+                    } else {
                     readDietaryRestrictionTips(restrictions)
+                    }
                 }) {
                     HStack(spacing: 4) {
                         Image(systemName: voiceManager.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
@@ -268,23 +280,23 @@ struct PersonalizedNutritionTipsView: View {
             
             nutritionTip(
                 icon: "pills.fill",
-                title: "Calcium",
-                description: "Essential for bone health. Consider a supplement if you don't consume enough dairy or fortified foods."
+                title: NSLocalizedString("Calcium", comment: ""),
+                description: NSLocalizedString("Essential for bone health. Consider a supplement if you don't consume enough dairy or fortified foods.", comment: "")
             )
             
             nutritionTip(
                 icon: "pills.fill",
-                title: "Vitamin B12",
-                description: "Absorption decreases with age. Consider a supplement or consume fortified foods."
+                title: NSLocalizedString("Vitamin B12", comment: ""),
+                description: NSLocalizedString("Absorption decreases with age. Consider a supplement or consume fortified foods.", comment: "")
             )
             
             nutritionTip(
                 icon: "pills.fill",
-                title: "Vitamin D3",
-                description: "Important for calcium absorption and immune function. Consider a supplement if you have limited sun exposure."
+                title: NSLocalizedString("Vitamin D3", comment: ""),
+                description: NSLocalizedString("Important for calcium absorption and immune function. Consider a supplement if you have limited sun exposure.", comment: "")
             )
             
-            Text("Note: Always consult with your healthcare provider before starting any supplement regimen.")
+            Text(NSLocalizedString("Note: Always consult with your healthcare provider before starting any supplement regimen.", comment: ""))
                 .font(.system(size: userSettings.textSize.size - 2))
                 .foregroundColor(.secondary)
                 .padding(.top, 5)
@@ -472,7 +484,7 @@ struct PersonalizedNutritionTipsView: View {
     }
     
     private func readGeneralTips() {
-        var speech = "General Nutrition Tips for Seniors. "
+        var speech = NSLocalizedString("General Nutrition Tips for Seniors", comment: "") + ". "
         
         if let profile = userSettings.userProfile,
            let bmi = profile.bmi {
@@ -481,21 +493,26 @@ struct PersonalizedNutritionTipsView: View {
         }
         
         speech += 
-                   "Protein is Essential: Aim for 1-1.2g of protein per kg of body weight daily to maintain muscle mass and strength. " +
-                   "Hydration Matters: Drink at least 8 glasses of water daily, more if you're active or in hot weather. " +
-                   "Healthy Fats: Include sources of omega-3 fatty acids like fatty fish, flaxseeds, and walnuts for heart and brain health. " +
-                   "Fiber for Digestion: Consume 25-30g of fiber daily from fruits, vegetables, and whole grains to maintain digestive health. " +
-                   "Vitamin D: Get adequate vitamin D through sunlight exposure and foods like fatty fish, egg yolks, and fortified foods."
+                   NSLocalizedString("Protein is Essential", comment: "") + ": " + 
+                   NSLocalizedString("Aim for 1-1.2g of protein per kg of body weight daily to maintain muscle mass and strength.", comment: "") + " " +
+                   NSLocalizedString("Hydration Matters", comment: "") + ": " + 
+                   NSLocalizedString("Drink at least 8 glasses of water daily, more if you're active or in hot weather.", comment: "") + " " +
+                   NSLocalizedString("Healthy Fats", comment: "") + ": " + 
+                   NSLocalizedString("Include sources of omega-3 fatty acids like fatty fish, flaxseeds, and walnuts for heart and brain health.", comment: "") + " " +
+                   NSLocalizedString("Fiber for Digestion", comment: "") + ": " + 
+                   NSLocalizedString("Consume 25-30g of fiber daily from fruits, vegetables, and whole grains to maintain digestive health.", comment: "") + " " +
+                   NSLocalizedString("Vitamin D", comment: "") + ": " + 
+                   NSLocalizedString("Get adequate vitamin D through sunlight exposure and foods like fatty fish, egg yolks, and fortified foods.", comment: "")
         
         voiceManager.speak(speech, userSettings: userSettings)
     }
     
     private func readMedicalConditionTips(_ conditions: [String]) {
-        var speech = "Tips for Your Medical Conditions. "
+        var speech = NSLocalizedString("Tips for Your Medical Conditions", comment: "") + ". "
         
         for condition in conditions {
             let tips = nutritionTipsForCondition(condition)
-            speech += "For \(condition): "
+            speech += NSLocalizedString("For", comment: "") + " \(condition): "
             
             for tip in tips {
                 speech += "\(tip.title): \(tip.description) "
@@ -506,11 +523,11 @@ struct PersonalizedNutritionTipsView: View {
     }
     
     private func readDietaryRestrictionTips(_ restrictions: [String]) {
-        var speech = "Tips for Your Dietary Restrictions. "
+        var speech = NSLocalizedString("Tips for Your Dietary Restrictions", comment: "") + ". "
         
         for restriction in restrictions {
             let tips = nutritionTipsForRestriction(restriction)
-            speech += "For \(restriction): "
+            speech += NSLocalizedString("For", comment: "") + " \(restriction): "
             
             for tip in tips {
                 speech += "\(tip.title): \(tip.description) "
@@ -521,11 +538,11 @@ struct PersonalizedNutritionTipsView: View {
     }
     
     private func readSupplementTips() {
-        let speech = "Supplements to Consider. " +
-                   "Calcium: Essential for bone health. Consider a supplement if you don't consume enough dairy or fortified foods. " +
-                   "Vitamin B12: Absorption decreases with age. Consider a supplement or consume fortified foods. " +
-                   "Vitamin D3: Important for calcium absorption and immune function. Consider a supplement if you have limited sun exposure. " +
-                   "Note: Always consult with your healthcare provider before starting any supplement regimen."
+        let speech = NSLocalizedString("Supplements to Consider", comment: "") + ". " +
+                   NSLocalizedString("Calcium", comment: "") + ": " + NSLocalizedString("Essential for bone health. Consider a supplement if you don't consume enough dairy or fortified foods.", comment: "") + " " +
+                   NSLocalizedString("Vitamin B12", comment: "") + ": " + NSLocalizedString("Absorption decreases with age. Consider a supplement or consume fortified foods.", comment: "") + " " +
+                   NSLocalizedString("Vitamin D3", comment: "") + ": " + NSLocalizedString("Important for calcium absorption and immune function. Consider a supplement if you have limited sun exposure.", comment: "") + " " +
+                   NSLocalizedString("Note: Always consult with your healthcare provider before starting any supplement regimen.", comment: "")
         
         voiceManager.speak(speech, userSettings: userSettings)
     }

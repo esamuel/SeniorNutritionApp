@@ -87,12 +87,12 @@
 "Common Meals" = "Repas courants";
 "Tap to add" = "Appuyez pour ajouter";
 "Food Database" = "Base de données alimentaire";
-"Browse All Food Items" = "Voir tous les aliments";
-"View detailed nutrition information for all foods, including pasta dishes and more" = "Voir les informations nutritionnelles détaillées de tous les aliments, y compris les plats de pâtes et plus";
+"Browse All Food Items" = "Parcourir Tous les Aliments";
+"View detailed nutrition information for all foods, including pasta dishes and desserts" = "Voir les informations nutritionnelles détaillées pour tous les aliments, y compris les plats de pâtes et les desserts";
 "Nutrition" = "Nutrition";
-"Nutrition Tips for Seniors" = "Conseils nutritionnels pour les seniors";
+"Nutrition Tips for Seniors" = "Conseils Nutritionnels pour les Seniors";
 "View More Tips" = "Voir plus de conseils";
-"General Nutrition Tips for Seniors" = "Conseils généraux de nutrition pour les seniors";
+"General Nutrition Tips for Seniors" = "Conseils Nutritionnels Généraux pour les Seniors";
 "Tips for Your Medical Conditions" = "Conseils pour vos conditions médicales";
 "Tips for Your Dietary Restrictions" = "Conseils pour vos restrictions alimentaires";
 "Supplements to Consider" = "Suppléments à considérer";
@@ -934,3 +934,87 @@
 
 "Need Additional Help?" = "Besoin d'Aide Supplémentaire ?";
 "If you need further assistance with the More section or any other features, please contact our support team through the Help & Support option or call our senior support line." = "Si vous avez besoin d'aide supplémentaire avec la section Plus ou toute autre fonctionnalité, veuillez contacter notre équipe de support via l'option Aide et Support ou appelez notre ligne d'assistance pour seniors.";
+
+"Protein is Important" = "Les Protéines sont Importantes";
+"Try to include protein with every meal to maintain muscle mass." = "Essayez d'inclure des protéines à chaque repas pour maintenir la masse musculaire.";
+"Stay Hydrated" = "Restez Hydraté";
+"Drink water regularly, even when not fasting." = "Buvez de l'eau régulièrement, même en dehors des périodes de jeûne.";
+"Healthy Fats" = "Graisses Saines";
+"Include sources of healthy fats like olive oil, avocados, and nuts." = "Incluez des sources de graisses saines comme l'huile d'olive, les avocats et les noix.";
+
+"Read General Tips" = "Lire les Conseils Généraux";
+"Reads out general nutrition tips for seniors" = "Lit à haute voix les conseils nutritionnels généraux pour les seniors";
+
+/* Food Database Categories */
+"Grains" = "Céréales";
+"Vegetables" = "Légumes";
+"Fruits" = "Fruits";
+"Protein" = "Protéines";
+"Dairy" = "Produits Laitiers";
+"Fats" = "Graisses";
+"Beverages" = "Boissons";
+"Snacks" = "Collations";
+"Other" = "Autre";
+
+/* Food Database UI */
+"All" = "Tous";
+"items" = "éléments";
+"Refresh" = "Actualiser";
+"Search foods" = "Rechercher des aliments";
+"Food Details" = "Détails de l'aliment";
+"Category" = "Catégorie";
+"Serving Size" = "Portion";
+"Macronutrients" = "Macronutriments";
+"Calories" = "Calories";
+"Protein" = "Protéines";
+"Carbs" = "Glucides";
+"Fat" = "Graisses";
+"Additional Nutrients" = "Nutriments Additionnels";
+"Fiber" = "Fibres";
+"Sugar" = "Sucre";
+"Sodium" = "Sodium";
+"Vitamin A" = "Vitamine A";
+"Vitamin C" = "Vitamine C";
+"Calcium" = "Calcium";
+"Iron" = "Fer";
+"Notes" = "Notes";
+"cal" = "cal";
+"g protein" = "g protéines";
+"g carbs" = "g glucides";
+"g fat" = "g graisses";
+"Pasta Dish" = "Plat de Pâtes";
+
+/* Food Database Translation Utility */
+"Development & Testing" = "Développement et Tests";
+"Translate Food Database" = "Traduire la Base de Données Alimentaire";
+"Food Translation Utility" = "Utilitaire de Traduction Alimentaire";
+"Press button to translate all foods" = "Appuyez sur le bouton pour traduire tous les aliments";
+"Translate All Foods" = "Traduire Tous les Aliments";
+"Resetting food database and translating all foods..." = "Réinitialisation de la base de données alimentaire et traduction de tous les aliments...";
+"This may take a minute" = "Cela peut prendre une minute";
+"Translation process initiated!" = "Processus de traduction lancé !";
+"All food items will be translated to French, Spanish, and Hebrew." = "Tous les aliments seront traduits en français, espagnol et hébreu.";
+"Please wait for a few minutes while the system processes the translations." = "Veuillez patienter quelques minutes pendant que le système traite les traductions.";
+
+/* Food Database UI Additional Terms */
+"Browse All Food Items" = "Parcourir Tous les Aliments";
+"View detailed nutrition information for all foods, including pasta dishes and desserts" = "Voir les informations nutritionnelles détaillées pour tous les aliments, y compris les plats de pâtes et les desserts";
+"Food Database" = "Base de Données Alimentaire";
+"calories" = "calories";
+"cal" = "cal";
+"items" = "articles";
+"All" = "Tous";
+"Category" = "Catégorie";
+"Serving Size" = "Portion";
+"Macronutrients" = "Macronutriments";
+"Calories" = "Calories";
+"Additional Nutrients" = "Nutriments Additionnels";
+"Fiber" = "Fibre";
+"Sugar" = "Sucre";
+"Protein" = "Protéines";
+"Carbs" = "Glucides";
+"Fat" = "Graisses";
+"Vitamins" = "Vitamines";
+"Minerals" = "Minéraux";
+
+"Translate" = "Traduire";

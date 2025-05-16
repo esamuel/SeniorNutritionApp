@@ -55,12 +55,12 @@
 "Common Meals" = "ארוחות נפוצות";
 "Tap to add" = "הקש להוספה";
 "Food Database" = "מאגר מזון";
-"Browse All Food Items" = "עיין בכל פריטי המזון";
-"View detailed nutrition information for all foods, including pasta dishes and more" = "הצג מידע תזונתי מפורט לכל המזונות, כולל מנות פסטה ועוד";
+"Browse All Food Items" = "עיון בכל פריטי המזון";
+"View detailed nutrition information for all foods, including pasta dishes and desserts" = "צפה במידע תזונתי מפורט לכל המזונות, כולל מנות פסטה וקינוחים";
 "Nutrition" = "תזונה";
 "Nutrition Tips for Seniors" = "טיפים תזונתיים לגיל השלישי";
 "View More Tips" = "הצג עוד טיפים";
-"General Nutrition Tips for Seniors" = "טיפים תזונתיים כלליים לקשישים";
+"General Nutrition Tips for Seniors" = "טיפים תזונתיים כלליים לגיל השלישי";
 "Tips for Your Medical Conditions" = "טיפים למצבים הרפואיים שלך";
 "Tips for Your Dietary Restrictions" = "טיפים להגבלות התזונה שלך";
 "Supplements to Consider" = "תוספי תזונה לשקול";
@@ -359,9 +359,9 @@
 "Break your fast with easily digestible foods and avoid known trigger foods that aggravate your condition." = "Break your fast with easily digestible foods and avoid known trigger foods that aggravate your condition.";
 "Built-in barcode scanner" = "Built-in barcode scanner";
 "Calcium Timing" = "Calcium Timing";
-"Calories" = "Calories";
+"Calories" = "קלוריות";
 "Cancel" = "ביטול";
-"Carbs" = "Carbs";
+"Carbs" = "פחמימות";
 "Cellular Repair" = "Cellular Repair";
 "Check your blood glucose levels more frequently during fasting periods to ensure they remain within a safe range." = "Check your blood glucose levels more frequently during fasting periods to ensure they remain within a safe range.";
 "Check your blood pressure regularly during fasting periods, as fasting can sometimes cause fluctuations." = "Check your blood pressure regularly during fasting periods, as fasting can sometimes cause fluctuations.";
@@ -393,7 +393,7 @@
 "Fasting may increase the production of brain-derived neurotrophic factor (BDNF), which supports brain health and may protect against neurodegenerative diseases." = "Fasting may increase the production of brain-derived neurotrophic factor (BDNF), which supports brain health and may protect against neurodegenerative diseases.";
 "Fasting Protocol Guide" = "Fasting Protocol Guide";
 "Fasting triggers cellular repair processes, including autophagy, where cells remove damaged components." = "Fasting triggers cellular repair processes, including autophagy, where cells remove damaged components.";
-"Fat" = "Fat";
+"Fat" = "שומן";
 "Follow gentle, senior-friendly intermittent fasting schedules with built-in safety features and health monitoring." = "Follow gentle, senior-friendly intermittent fasting schedules with built-in safety features and health monitoring.";
 "Follow your doctor's recommendations for fluid intake during fasting, as both over-hydration and dehydration can be problematic." = "Follow your doctor's recommendations for fluid intake during fasting, as both over-hydration and dehydration can be problematic.";
 "Food Selection" = "Food Selection";
@@ -427,7 +427,7 @@
 "Medication Color Options" = "Medication Color Options";
 "Medication Details" = "Medication Details";
 "Medication Timing" = "Medication Timing";
-"Minerals" = "Minerals";
+"Minerals" = "מינרלים";
 "Monitor Blood Pressure" = "Monitor Blood Pressure";
 "Monitor Blood Sugar Closely" = "Monitor Blood Sugar Closely";
 "Monitor Electrolytes" = "Monitor Electrolytes";
@@ -439,7 +439,7 @@
 "Never miss a medical appointment with our comprehensive calendar system, reminders, and location tracking." = "Never miss a medical appointment with our comprehensive calendar system, reminders, and location tracking.";
 "Next" = "Next";
 "Notes: %@" = "Notes: %@";
-"Notes" = "Notes";
+"Notes" = "הערות";
 "Nutritional Information" = "Nutritional Information";
 "Onboarding Loaded" = "Onboarding Loaded";
 "Pay attention to energy levels during fasting. Excessive fatigue may indicate a need to adjust your fasting schedule." = "Pay attention to energy levels during fasting. Excessive fatigue may indicate a need to adjust your fasting schedule.";
@@ -453,7 +453,7 @@
 "Previous" = "Previous";
 "Probiotic Support" = "Probiotic Support";
 "Protein Intake" = "Protein Intake";
-"Protein" = "Protein";
+"Protein" = "חלבון";
 "Real-time progress tracking" = "Real-time progress tracking";
 "Reduced Inflammation" = "Reduced Inflammation";
 "Regular fasting can improve insulin sensitivity, potentially reducing the risk of type 2 diabetes." = "Regular fasting can improve insulin sensitivity, potentially reducing the risk of type 2 diabetes.";
@@ -485,7 +485,7 @@
 "Visual pill identification" = "Visual pill identification";
 "Visual trends and patterns" = "Visual trends and patterns";
 "Vitamin D" = "ויטמין D";
-"Vitamins" = "ויטמין";
+"Vitamins" = "ויטמינים";
 "Voice input for hands-free recording" = "Voice input for hands-free recording";
 "Voice-guided assistance available" = "Voice-guided assistance available";
 "Week" = "שבוע";
@@ -532,7 +532,7 @@
 
 /* Personalized Nutrition Tips */
 "Personalized Nutrition Tips" = "טיפים תזונתיים מותאמים אישית";
-"General Nutrition Tips for Seniors" = "טיפים תזונתיים כלליים לקשישים";
+"General Nutrition Tips for Seniors" = "טיפים תזונתיים כלליים לגיל השלישי";
 "Tips for Your Medical Conditions" = "טיפים למצבים הרפואיים שלך";
 "Tips for Your Dietary Restrictions" = "טיפים להגבלות התזונה שלך";
 "Supplements to Consider" = "תוספי תזונה לשקול";
@@ -975,3 +975,65 @@
 
 "Need Additional Help?" = "צריך עזרה נוספת?";
 "If you need further assistance with the More section or any other features, please contact our support team through the Help & Support option or call our senior support line." = "אם אתה זקוק לסיוע נוסף עם מדור 'עוד' או כל תכונה אחרת, אנא צור קשר עם צוות התמיכה שלנו דרך אפשרות העזרה והתמיכה או התקשר לקו התמיכה שלנו לגיל השלישי.";
+
+/* Additional Nutrition Tips */
+"Protein is Important" = "חלבון הוא חשוב";
+"Try to include protein with every meal to maintain muscle mass." = "נסה לכלול חלבון בכל ארוחה כדי לשמור על מסת שריר.";
+"Stay Hydrated" = "שמור על שתייה מספקת";
+"Drink water regularly, even when not fasting." = "שתה מים באופן קבוע, גם כשאינך בצום.";
+"Include sources of healthy fats like olive oil, avocados, and nuts." = "כלול מקורות של שומנים בריאים כמו שמן זית, אבוקדו ואגוזים.";
+
+"Read General Tips" = "קרא טיפים כלליים";
+"Reads out general nutrition tips for seniors" = "מקריא טיפים תזונתיים כלליים לגיל השלישי";
+
+/* Food Database Categories */
+"Grains" = "דגנים";
+"Vegetables" = "ירקות";
+"Fruits" = "פירות";
+"Protein" = "חלבונים";
+"Dairy" = "מוצרי חלב";
+"Fats" = "שומנים";
+"Beverages" = "משקאות";
+"Snacks" = "חטיפים";
+"Other" = "אחר";
+
+/* Food Database UI */
+"All" = "הכל";
+"items" = "פריטים";
+"Refresh" = "רענון";
+"Search foods" = "חפש מזונות";
+"Food Details" = "פרטי מזון";
+"Category" = "קטגוריה";
+"Serving Size" = "גודל מנה";
+"Macronutrients" = "אבות מזון";
+"Calories" = "קלוריות";
+"Protein" = "חלבון";
+"Carbs" = "פחמימות";
+"Fat" = "שומן";
+"Additional Nutrients" = "רכיבי תזונה נוספים";
+"Fiber" = "סיבים";
+"Sugar" = "סוכר";
+"Sodium" = "נתרן";
+"Vitamin A" = "ויטמין A";
+"Vitamin C" = "ויטמין C";
+"Calcium" = "סידן";
+"Iron" = "ברזל";
+"Notes" = "הערות";
+"cal" = "קל";
+"g protein" = "גר חלבון";
+"g carbs" = "גר פחמימות";
+"g fat" = "גר שומן";
+"Pasta Dish" = "מנת פסטה";
+
+/* Food Database Translation Utility */
+"Development & Testing" = "פיתוח ובדיקות";
+"Translate Food Database" = "תרגם מאגר מזון";
+"Food Translation Utility" = "כלי תרגום מזון";
+"Press button to translate all foods" = "לחץ על הכפתור כדי לתרגם את כל המזונות";
+"Translate All Foods" = "תרגם את כל המזונות";
+"Resetting food database and translating all foods..." = "איפוס מסד נתוני המזון ותרגום כל המזונות...";
+"This may take a minute" = "זה עשוי לקחת דקה";
+"Translation process initiated!" = "תהליך התרגום החל!";
+"All food items will be translated to French, Spanish, and Hebrew." = "כל פריטי המזון יתורגמו לצרפתית, ספרדית ועברית.";
+"Please wait for a few minutes while the system processes the translations." = "אנא המתן מספר דקות בזמן שהמערכת מעבדת את התרגומים.";
+"Translate" = "תרגם";

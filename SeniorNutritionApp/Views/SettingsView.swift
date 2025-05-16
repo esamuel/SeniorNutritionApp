@@ -11,6 +11,7 @@ struct SettingsView: View {
     @State private var showingResetAlert = false
     @State private var showingBackupInfoAlert = false // For backup/restore info
     @State private var showingOnboarding = false // NEW: controls onboarding sheet
+    @State private var showingTranslationUtility = false
     enum BackupAlert: Identifiable {
         var id: String {
             switch self {
@@ -238,6 +239,20 @@ struct SettingsView: View {
                             .padding(.vertical, 8)
                     }
                 }
+                
+                // Add a button to trigger food translations in the settings
+                Section(header: Text(NSLocalizedString("Development & Testing", comment: ""))) {
+                    Button(action: {
+                        // Present the translation utility
+                        showingTranslationUtility = true
+                    }) {
+                        HStack {
+                            Image(systemName: "globe")
+                                .foregroundColor(.blue)
+                            Text(NSLocalizedString("Translate Food Database", comment: ""))
+                        }
+                    }
+                }
             }
             .navigationTitle(NSLocalizedString("Settings", comment: ""))
             .navigationBarTitleDisplayMode(.large)
@@ -270,6 +285,9 @@ struct SettingsView: View {
             }
             .sheet(isPresented: $showingPrintOptions) {
                 PrintOptionsView()
+            }
+            .sheet(isPresented: $showingTranslationUtility) {
+                TranslateAllFoodsView()
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())

@@ -86,11 +86,11 @@
 "Add First Meal" = "Agregar primera comida";
 "Common Meals" = "Comidas comunes";
 "Tap to add" = "Toca para agregar";
-"Food Database" = "Base de datos de alimentos";
-"Browse All Food Items" = "Ver todos los alimentos";
-"View detailed nutrition information for all foods, including pasta dishes and more" = "Ver información nutricional detallada de todos los alimentos, incluidos platos de pasta y más";
+"Food Database" = "Base de Datos de Alimentos";
+"Browse All Food Items" = "Explorar Todos los Alimentos";
+"View detailed nutrition information for all foods, including pasta dishes and desserts" = "Ver información nutricional detallada de todos los alimentos, incluyendo platos de pasta y postres";
 "Nutrition" = "Nutrición";
-"Nutrition Tips for Seniors" = "Consejos de nutrición para mayores";
+"Nutrition Tips for Seniors" = "Consejos de Nutrición para Personas Mayores";
 "View More Tips" = "Ver más consejos";
 "General Nutrition Tips for Seniors" = "Consejos Nutricionales Generales para Personas Mayores";
 "Tips for Your Medical Conditions" = "Consejos para Sus Condiciones Médicas";
@@ -912,3 +912,64 @@
 "When breaking your fast, include iodine-rich foods like seaweed, fish, or eggs to support thyroid function." = "When breaking your fast, include iodine-rich foods like seaweed, fish, or eggs to support thyroid function.";
 "Work with your healthcare provider to adjust medication timing if needed to accommodate your fasting schedule." = "Work with your healthcare provider to adjust medication timing if needed to accommodate your fasting schedule.";
 "Your Protocol: %@" = "Your Protocol: %@";
+"Protein is Important" = "Las Proteínas son Importantes";
+"Try to include protein with every meal to maintain muscle mass." = "Trate de incluir proteínas en cada comida para mantener la masa muscular.";
+"Stay Hydrated" = "Manténgase Hidratado";
+"Drink water regularly, even when not fasting." = "Beba agua regularmente, incluso cuando no esté en ayuno.";
+"Healthy Fats" = "Grasas Saludables";
+"Include sources of healthy fats like olive oil, avocados, and nuts." = "Incluya fuentes de grasas saludables como aceite de oliva, aguacates y frutos secos.";
+"Read General Tips" = "Leer Consejos Generales";
+"Reads out general nutrition tips for seniors" = "Lee en voz alta consejos nutricionales generales para personas mayores";
+
+/* Food Database Categories */
+"Grains" = "Granos";
+"Vegetables" = "Vegetales";
+"Fruits" = "Frutas";
+"Protein" = "Proteínas";
+"Dairy" = "Lácteos";
+"Fats" = "Grasas";
+"Beverages" = "Bebidas";
+"Snacks" = "Aperitivos";
+"Other" = "Otros";
+
+/* Food Database UI */
+"All" = "Todos";
+"items" = "elementos";
+"Refresh" = "Actualizar";
+"Search foods" = "Buscar alimentos";
+"Food Details" = "Detalles del alimento";
+"Category" = "Categoría";
+"Serving Size" = "Tamaño de porción";
+"Macronutrients" = "Macronutrientes";
+"Calories" = "Calorías";
+"Protein" = "Proteínas";
+"Carbs" = "Carbohidratos";
+"Fat" = "Grasas";
+"Additional Nutrients" = "Nutrientes adicionales";
+"Fiber" = "Fibra";
+"Sugar" = "Azúcar";
+"Sodium" = "Sodio";
+"Vitamin A" = "Vitamina A";
+"Vitamin C" = "Vitamina C";
+"Calcium" = "Calcio";
+"Iron" = "Hierro";
+"Notes" = "Notas";
+"cal" = "cal";
+"g protein" = "g proteínas";
+"g carbs" = "g carbohidratos";
+"g fat" = "g grasas";
+"Pasta Dish" = "Plato de Pasta";
+
+/* Food Database Translation Utility */
+"Development & Testing" = "Desarrollo y Pruebas";
+"Translate Food Database" = "Traducir Base de Datos de Alimentos";
+"Food Translation Utility" = "Utilidad de Traducción de Alimentos";
+"Press button to translate all foods" = "Presione el botón para traducir todos los alimentos";
+"Translate All Foods" = "Traducir Todos los Alimentos";
+"Resetting food database and translating all foods..." = "Reiniciando la base de datos de alimentos y traduciendo todos los alimentos...";
+"This may take a minute" = "Esto puede tomar un minuto";
+"Translation process initiated!" = "¡Proceso de traducción iniciado!";
+"All food items will be translated to French, Spanish, and Hebrew." = "Todos los alimentos serán traducidos al francés, español y hebreo.";
+"Please wait for a few minutes while the system processes the translations." = "Por favor espere unos minutos mientras el sistema procesa las traducciones.";
+
+"Translate" = "Traducir";

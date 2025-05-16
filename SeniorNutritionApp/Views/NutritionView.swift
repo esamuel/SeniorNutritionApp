@@ -362,27 +362,27 @@ struct NutritionView: View {
 
     private var nutritionTipsSection: some View {
         VStack(alignment: .leading, spacing: 15) {
-            Text("Nutrition Tips for Seniors")
+            Text(NSLocalizedString("Nutrition Tips for Seniors", comment: ""))
                 .font(.system(size: userSettings.textSize.size, weight: .bold))
             nutritionTip(
                 icon: "leaf.fill",
-                title: "Protein is Important",
-                description: "Try to include protein with every meal to maintain muscle mass."
+                title: NSLocalizedString("Protein is Important", comment: ""),
+                description: NSLocalizedString("Try to include protein with every meal to maintain muscle mass.", comment: "")
             )
             nutritionTip(
                 icon: "drop.fill",
-                title: "Stay Hydrated",
-                description: "Drink water regularly, even when not fasting."
+                title: NSLocalizedString("Stay Hydrated", comment: ""),
+                description: NSLocalizedString("Drink water regularly, even when not fasting.", comment: "")
             )
             nutritionTip(
                 icon: "heart.fill",
-                title: "Healthy Fats",
-                description: "Include sources of healthy fats like olive oil, avocados, and nuts."
+                title: NSLocalizedString("Healthy Fats", comment: ""),
+                description: NSLocalizedString("Include sources of healthy fats like olive oil, avocados, and nuts.", comment: "")
             )
             Button(action: {
                 showingPersonalizedTips = true
             }) {
-                Text("View More Tips")
+                Text(NSLocalizedString("View More Tips", comment: ""))
                     .font(.system(size: userSettings.textSize.size - 2))
                     .foregroundColor(.blue)
                     .padding(.top, 5)
@@ -400,7 +400,7 @@ struct NutritionView: View {
 
     private var foodDatabaseSection: some View {
         VStack(alignment: .leading, spacing: 15) {
-            Text("Food Database")
+            Text(NSLocalizedString("Food Database", comment: ""))
                 .font(.system(size: userSettings.textSize.size, weight: .bold))
             
             HStack(spacing: 15) {
@@ -409,10 +409,10 @@ struct NutritionView: View {
                     .foregroundColor(.orange)
                 
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("Browse All Food Items")
+                    Text(NSLocalizedString("Browse All Food Items", comment: ""))
                         .font(.system(size: userSettings.textSize.size))
                     
-                    Text("View detailed nutrition information for all foods, including pasta dishes and more")
+                    Text(NSLocalizedString("View detailed nutrition information for all foods, including pasta dishes and more", comment: ""))
                         .font(.system(size: userSettings.textSize.size - 2))
                         .foregroundColor(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
