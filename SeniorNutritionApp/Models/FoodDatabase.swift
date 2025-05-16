@@ -139,12 +139,13 @@ enum FoodCategory: String, Codable, CaseIterable {
 class FoodDatabaseService: ObservableObject {
     @Published var foodItems: [FoodItem] = []
     @Published var customFoodItems: [FoodItem] = []
+    @Published var lastTranslatedLanguage: String? = nil
     
     init() {
         // Force reset the database to include new foods
         resetToDefaultFoods()
         Task {
-            await populateTranslationsIfNeeded()
+            await self.checkAndTranslateIfNeeded()
         }
     }
     
@@ -163,7 +164,7 @@ class FoodDatabaseService: ObservableObject {
                     foodItems[idx].nameFr = t
                     
                     // Also translate notes if present
-                    if let notes = foodItems[idx].notes {
+                    if let notes = foodItems[idx].notes, notes.isEmpty == false {
                         let translatedNotes = await TranslationManager.shared.translated(notes, target: lang)
                         foodItems[idx].notesFr = translatedNotes
                         print("Translated notes for '\(foodItems[idx].name)' to French")
@@ -177,7 +178,7 @@ class FoodDatabaseService: ObservableObject {
                     foodItems[idx].nameEs = t
                     
                     // Also translate notes if present
-                    if let notes = foodItems[idx].notes {
+                    if let notes = foodItems[idx].notes, notes.isEmpty == false {
                         let translatedNotes = await TranslationManager.shared.translated(notes, target: lang)
                         foodItems[idx].notesEs = translatedNotes
                         print("Translated notes for '\(foodItems[idx].name)' to Spanish")
@@ -191,7 +192,7 @@ class FoodDatabaseService: ObservableObject {
                     foodItems[idx].nameHe = t
                     
                     // Also translate notes if present
-                    if let notes = foodItems[idx].notes {
+                    if let notes = foodItems[idx].notes, notes.isEmpty == false {
                         let translatedNotes = await TranslationManager.shared.translated(notes, target: lang)
                         foodItems[idx].notesHe = translatedNotes
                         print("Translated notes for '\(foodItems[idx].name)' to Hebrew")
@@ -293,6 +294,11 @@ class FoodDatabaseService: ObservableObject {
             print("- \(food.name) (Category: \(food.category.rawValue))")
         }
         print("\n=== Food database loading complete ===")
+        
+        // After loading, check if translation is needed
+        Task {
+            await self.checkAndTranslateIfNeeded()
+        }
     }
     
     // Comprehensive method to translate all foods in the database
@@ -304,42 +310,13 @@ class FoodDatabaseService: ObservableObject {
         
         print("Total foods to process: \(foodItems.count)")
         
-        // Create a dictionary of known translations for common foods
-        // This helps avoid API calls and ensures consistent translations
+        // Dictionary of known translations for exact matches only
         let knownTranslations: [String: [String: String]] = [
-            // Format: "English Name": ["fr": "French", "es": "Spanish", "he": "Hebrew"]
-            "Almond Flour Torte": ["fr": "Tarte à la farine d'amande", "es": "Torta de harina de almendra", "he": "עוגת קמח שקדים"],
-            "Almond Milk (Unsweetened)": ["fr": "Lait d'amande (non sucré)", "es": "Leche de almendra (sin azúcar)", "he": "חלב שקדים (ללא סוכר)"],
-            "Almonds": ["fr": "Amandes", "es": "Almendras", "he": "שקדים"],
-            "Angel Food Cake": ["fr": "Gâteau des anges", "es": "Pastel de ángel", "he": "עוגת מלאכים"],
-            "Apple": ["fr": "Pomme", "es": "Manzana", "he": "תפוח"],
-            "Apple Cake (Apfelkuchen)": ["fr": "Gâteau aux pommes", "es": "Pastel de manzana", "he": "עוגת תפוחים (אפּפלקוכן)"],
-            "Apple Juice": ["fr": "Jus de pomme", "es": "Jugo de manzana", "he": "מיץ תפוחים"],
-            "Salmon": ["fr": "Saumon", "es": "Salmón", "he": "סלמון"],
-            "BLT Sandwich": ["fr": "Sandwich BLT", "es": "Sándwich BLT", "he": "סנדוויץ' בי.אל.טי"],
-            "Brown Rice": ["fr": "Riz brun", "es": "Arroz integral", "he": "אורז חום"],
-            "Chicken Breast": ["fr": "Poitrine de poulet", "es": "Pechuga de pollo", "he": "חזה עוף"],
-            "Yogurt": ["fr": "Yaourt", "es": "Yogur", "he": "יוגורט"],
-            "Olive Oil": ["fr": "Huile d'olive", "es": "Aceite de oliva", "he": "שמן זית"],
-            "Water": ["fr": "Eau", "es": "Agua", "he": "מים"],
-            "Avocado": ["fr": "Avocat", "es": "Aguacate", "he": "אבוקדו"],
-            "Banana": ["fr": "Banane", "es": "Plátano", "he": "בננה"],
-            "Bread": ["fr": "Pain", "es": "Pan", "he": "לחם"],
-            "Eggs": ["fr": "Œufs", "es": "Huevos", "he": "ביצים"],
             "Milk": ["fr": "Lait", "es": "Leche", "he": "חלב"],
-            "Orange": ["fr": "Orange", "es": "Naranja", "he": "תפוז"],
-            "Pasta": ["fr": "Pâtes", "es": "Pasta", "he": "פסטה"],
-            "Rice": ["fr": "Riz", "es": "Arroz", "he": "אורז"],
-            "Tomato": ["fr": "Tomate", "es": "Tomate", "he": "עגבנייה"],
             "Cheese": ["fr": "Fromage", "es": "Queso", "he": "גבינה"],
-            "Chocolate": ["fr": "Chocolat", "es": "Chocolate", "he": "שוקולד"],
-            "Coffee": ["fr": "Café", "es": "Café", "he": "קפה"],
-            "Tea": ["fr": "Thé", "es": "Té", "he": "תה"]
-        ]
-        
-        // Additional notes translations
-        let knownNotesTranslations: [String: [String: String]] = [
-            "Bacon-lettuce-tomato on toast": ["fr": "Bacon-laitue-tomate sur pain grillé", "es": "Tocino-lechuga-tomate en pan tostado", "he": "בייקון-חסה-עגבניה על טוסט"]
+            "Yogurt": ["fr": "Yaourt", "es": "Yogur", "he": "יוגורט"],
+            "Salmon": ["fr": "Saumon", "es": "Salmón", "he": "סלמון"],
+            // ... add more as needed ...
         ]
         
         for idx in foodItems.indices {
@@ -347,55 +324,31 @@ class FoodDatabaseService: ObservableObject {
             print("\nProcessing [\(idx+1)/\(foodItems.count)]: \(foodName)")
             var wasTranslated = false
             
-            // Check if we have known translations for this food
+            // Use dictionary only for exact matches
             if let knownTrans = knownTranslations[foodName] {
-                print("Found known translations for: \(foodName)")
                 foodItems[idx].nameFr = knownTrans["fr"]
                 foodItems[idx].nameEs = knownTrans["es"]
                 foodItems[idx].nameHe = knownTrans["he"]
                 wasTranslated = true
-            } else {
-                // Check for partial matches in known translations
-                for (key, trans) in knownTranslations {
-                    if foodName.lowercased().contains(key.lowercased()) {
-                        print("Found partial match: \(foodName) contains \(key)")
-                        if foodItems[idx].nameFr == nil {
-                            foodItems[idx].nameFr = trans["fr"]
-                        }
-                        if foodItems[idx].nameEs == nil {
-                            foodItems[idx].nameEs = trans["es"]
-                        }
-                        if foodItems[idx].nameHe == nil {
-                            foodItems[idx].nameHe = trans["he"]
-                        }
-                        wasTranslated = true
-                        break
-                    }
-                }
+                print("Applied direct translation for: \(foodItems[idx].name)")
             }
             
-            // If we haven't found a translation yet, use the API
+            // If not an exact match, always translate the full name
             if !wasTranslated {
                 for lang in langCodes {
                     switch lang {
                     case "fr":
-                        if foodItems[idx].nameFr == nil || foodItems[idx].nameFr?.isEmpty == true {
-                            let t = await TranslationManager.shared.translated(foodName, target: lang)
-                            foodItems[idx].nameFr = t
-                            print("Translated to French: \(t)")
-                        }
+                        let t = await TranslationManager.shared.translated(foodName, target: lang)
+                        foodItems[idx].nameFr = t
+                        print("Translated to French: \(t)")
                     case "es":
-                        if foodItems[idx].nameEs == nil || foodItems[idx].nameEs?.isEmpty == true {
-                            let t = await TranslationManager.shared.translated(foodName, target: lang)
-                            foodItems[idx].nameEs = t
-                            print("Translated to Spanish: \(t)")
-                        }
+                        let t = await TranslationManager.shared.translated(foodName, target: lang)
+                        foodItems[idx].nameEs = t
+                        print("Translated to Spanish: \(t)")
                     case "he":
-                        if foodItems[idx].nameHe == nil || foodItems[idx].nameHe?.isEmpty == true {
-                            let t = await TranslationManager.shared.translated(foodName, target: lang)
-                            foodItems[idx].nameHe = t
-                            print("Translated to Hebrew: \(t)")
-                        }
+                        let t = await TranslationManager.shared.translated(foodName, target: lang)
+                        foodItems[idx].nameHe = t
+                        print("Translated to Hebrew: \(t)")
                     default:
                         break
                     }
@@ -403,12 +356,12 @@ class FoodDatabaseService: ObservableObject {
             }
             
             // Now handle notes translations
-            if let notes = foodItems[idx].notes, !notes.isEmpty {
+            if let notes = foodItems[idx].notes, notes.isEmpty == false {
                 print("Processing notes for: \(foodName)")
                 
                 // Check if we have known translations for these notes
                 var notesTranslated = false
-                for (key, trans) in knownNotesTranslations {
+                for (key, trans) in knownTranslations {
                     if notes.contains(key) {
                         print("Found known notes translation: \(key)")
                         foodItems[idx].notesFr = trans["fr"]
@@ -474,7 +427,7 @@ class FoodDatabaseService: ObservableObject {
         }
         
         // Translate notes if present
-        if let notes = food.notes, !notes.isEmpty {
+        if let notes = food.notes, notes.isEmpty == false {
             if newFood.notesFr == nil || newFood.notesFr?.isEmpty == true {
                 newFood.notesFr = await TranslationManager.shared.translated(notes, target: "fr")
             }
@@ -515,7 +468,7 @@ class FoodDatabaseService: ObservableObject {
             customFoodItems[index].nameHe = await TranslationManager.shared.translated(food.name, target: "he")
             
             // Translate notes if present
-            if let notes = food.notes, !notes.isEmpty {
+            if let notes = food.notes, notes.isEmpty == false {
                 customFoodItems[index].notesFr = await TranslationManager.shared.translated(notes, target: "fr")
                 customFoodItems[index].notesEs = await TranslationManager.shared.translated(notes, target: "es")
                 customFoodItems[index].notesHe = await TranslationManager.shared.translated(notes, target: "he")
@@ -600,8 +553,15 @@ class FoodDatabaseService: ObservableObject {
         let langCodes = ["fr", "es", "he"]
         var updated = false
         
+        // Use modern API for language code
+        let lang: String
+        if #available(iOS 16, *) {
+            lang = Locale.current.language.languageCode?.identifier ?? "en"
+        } else {
+            lang = Locale.current.languageCode ?? "en"
+        }
         // For debugging - print current language
-        print("Current app language: \(LanguageManager.shared.currentLanguage)")
+        print("Current app language: \(lang)")
         print("Current locale language: \(Locale.current.languageCode ?? "unknown")")
         
         // First, process BLT Sandwich explicitly
@@ -619,7 +579,7 @@ class FoodDatabaseService: ObservableObject {
                 foodItems[foodIdx].nameHe = "סנדוויץ' בי.אל.טי"
                 
                 // Also translate the notes if present
-                if let notes = foodItems[foodIdx].notes {
+                if let notes = foodItems[foodIdx].notes, notes.isEmpty == false {
                     foodItems[foodIdx].notesFr = "Bacon-laitue-tomate sur pain grillé"
                     foodItems[foodIdx].notesEs = "Tocino-lechuga-tomate en pan tostado"
                     foodItems[foodIdx].notesHe = "בייקון-חסה-עגבניה על טוסט"
@@ -643,7 +603,7 @@ class FoodDatabaseService: ObservableObject {
                     foodItems[foodIdx].nameHe = "סנדוויץ' בי.אל.טי"
                     
                     // Also translate the notes if present
-                    if let notes = foodItems[foodIdx].notes {
+                    if let notes = foodItems[foodIdx].notes, notes.isEmpty == false {
                         foodItems[foodIdx].notesFr = "Bacon-laitue-tomate sur pain grillé"
                         foodItems[foodIdx].notesEs = "Tocino-lechuga-tomate en pan tostado"
                         foodItems[foodIdx].notesHe = "בייקון-חסה-עגבניה על טוסט"
@@ -673,7 +633,7 @@ class FoodDatabaseService: ObservableObject {
                     foodItems[foodIdx].nameHe = "סלמון"
                     
                     // Also translate the notes if present
-                    if let notes = foodItems[foodIdx].notes {
+                    if let notes = foodItems[foodIdx].notes, notes.isEmpty == false {
                         // Attempt to translate notes for salmon
                         foodItems[foodIdx].notesFr = await TranslationManager.shared.translated(notes, target: "fr")
                         foodItems[foodIdx].notesEs = await TranslationManager.shared.translated(notes, target: "es")
@@ -708,7 +668,7 @@ class FoodDatabaseService: ObservableObject {
                         foodItems[foodIdx].nameHe = "סלמון"
                         
                         // Also translate the notes if present
-                        if let notes = foodItems[foodIdx].notes {
+                        if let notes = foodItems[foodIdx].notes, notes.isEmpty == false {
                             // Attempt to translate notes for salmon
                             foodItems[foodIdx].notesFr = await TranslationManager.shared.translated(notes, target: "fr")
                             foodItems[foodIdx].notesEs = await TranslationManager.shared.translated(notes, target: "es")
@@ -754,19 +714,19 @@ class FoodDatabaseService: ObservableObject {
                         case "fr":
                             foodItems[idx].nameFr = translatedName
                             // Also translate notes if present
-                            if let notes = foodItems[idx].notes {
+                            if let notes = foodItems[idx].notes, notes.isEmpty == false {
                                 foodItems[idx].notesFr = await TranslationManager.shared.translated(notes, target: lang)
                             }
                         case "es":
                             foodItems[idx].nameEs = translatedName
                             // Also translate notes if present
-                            if let notes = foodItems[idx].notes {
+                            if let notes = foodItems[idx].notes, notes.isEmpty == false {
                                 foodItems[idx].notesEs = await TranslationManager.shared.translated(notes, target: lang)
                             }
                         case "he":
                             foodItems[idx].nameHe = translatedName
                             // Also translate notes if present
-                            if let notes = foodItems[idx].notes {
+                            if let notes = foodItems[idx].notes, notes.isEmpty == false {
                                 foodItems[idx].notesHe = await TranslationManager.shared.translated(notes, target: lang)
                             }
                         default:
@@ -865,7 +825,7 @@ class FoodDatabaseService: ObservableObject {
                 foodItems[idx].nameEs = await TranslationManager.shared.translated(foodItems[idx].name, target: "es")
                 
                 // Also translate notes if present
-                if let notes = foodItems[idx].notes {
+                if let notes = foodItems[idx].notes, notes.isEmpty == false {
                     foodItems[idx].notesHe = await TranslationManager.shared.translated(notes, target: "he")
                     foodItems[idx].notesFr = await TranslationManager.shared.translated(notes, target: "fr") 
                     foodItems[idx].notesEs = await TranslationManager.shared.translated(notes, target: "es")
@@ -993,7 +953,7 @@ class FoodDatabaseService: ObservableObject {
             }
             
             // 3. Process notes if present
-            if let notes = foodItems[idx].notes, !notes.isEmpty {
+            if let notes = foodItems[idx].notes, notes.isEmpty == false {
                 var notesUpdated = false
                 
                 // Try direct matches for notes
@@ -1057,5 +1017,18 @@ class FoodDatabaseService: ObservableObject {
         }
         
         print("=== NOTES TRANSLATION FIX COMPLETED ===\n")
+    }
+    
+    @MainActor
+    func checkAndTranslateIfNeeded() async {
+        let lang = LanguageManager.shared.currentLanguage
+        if lang != "en" && lastTranslatedLanguage != lang {
+            print("[FoodDatabaseService] Translating all foods for language: \(lang)")
+            await translateAllFoodItems()
+            lastTranslatedLanguage = lang
+            DispatchQueue.main.async {
+                self.objectWillChange.send()
+            }
+        }
     }
 } 

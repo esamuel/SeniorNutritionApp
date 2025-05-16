@@ -106,7 +106,7 @@ class LanguageManager: ObservableObject {
     
     // Helper to get localized language name
     func localizedLanguageName(for code: String) -> String {
-        let locale = Locale(identifier: code)
+        // let locale = Locale(identifier: code) // Unused
         return NSLocalizedString(code.capitalized, comment: "")
     }
     

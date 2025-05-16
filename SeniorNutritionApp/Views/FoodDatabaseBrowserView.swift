@@ -153,10 +153,6 @@ struct FoodDatabaseBrowserView: View {
                                 }
                             }
                             .id(food.id) // Ensure each row has a unique identifier
-                            .onAppear {
-                                // When this row appears in view (due to scrolling), check its translations
-                                checkAndTranslateFood(food)
-                            }
                     }
                 }
                 .listStyle(PlainListStyle())
@@ -249,39 +245,23 @@ struct FoodDatabaseBrowserView: View {
     private func foodRow(_ food: FoodItem) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                // Get the correct translated name based on current language
-                let displayName = food.localizedName()
-                Text(displayName)
+                Text(food.localizedName())
                     .font(.system(size: userSettings.textSize.size, weight: .medium))
                     .fixedSize(horizontal: false, vertical: true)
-                
                 Spacer()
-                
                 Text("\(Int(food.nutritionalInfo.calories)) \(NSLocalizedString("cal", comment: ""))")
                     .font(.system(size: userSettings.textSize.size - 2))
                     .foregroundColor(.secondary)
             }
-            .onAppear {
-                print("Food row displaying: \(food.name)")
-                print("Current language: \(LanguageManager.shared.currentLanguage)")
-                print("Hebrew translation: \(food.nameHe ?? "none")")
-            }
-            
             HStack {
                 Text("\(Int(food.nutritionalInfo.protein))\(NSLocalizedString("g protein", comment: ""))")
                     .font(.system(size: userSettings.textSize.size - 2))
                     .foregroundColor(.secondary)
-                
-                Text("•")
-                    .foregroundColor(.secondary)
-                
+                Text("•").foregroundColor(.secondary)
                 Text("\(Int(food.nutritionalInfo.carbohydrates))\(NSLocalizedString("g carbs", comment: ""))")
                     .font(.system(size: userSettings.textSize.size - 2))
                     .foregroundColor(.secondary)
-                
-                Text("•")
-                    .foregroundColor(.secondary)
-                
+                Text("•").foregroundColor(.secondary)
                 Text("\(Int(food.nutritionalInfo.fat))\(NSLocalizedString("g fat", comment: ""))")
                     .font(.system(size: userSettings.textSize.size - 2))
                     .foregroundColor(.secondary)
@@ -396,118 +376,6 @@ struct FoodDatabaseBrowserView: View {
                     // Force another UI refresh after all translations are done
                     DispatchQueue.main.async {
                         self.foodDatabase.objectWillChange.send()
-                    }
-                }
-            }
-        }
-    }
-    
-    private func checkAndTranslateFood(_ food: FoodItem) {
-        // Only check foods that might not be translated
-        let needsTranslation = food.nameHe == nil || food.nameHe?.isEmpty == true ||
-                               food.nameFr == nil || food.nameFr?.isEmpty == true || 
-                               food.nameEs == nil || food.nameEs?.isEmpty == true
-        
-        if needsTranslation {
-            print("Food needs translation: \(food.name)")
-            
-            // Translate this specific food
-            Task {
-                // Find the food in the database to update it
-                if let index = foodDatabase.foodItems.firstIndex(where: { $0.id == food.id }) {
-                    // Special handling for cheese varieties
-                    if food.name.contains("Cheese") {
-                        // Cheese-specific translations
-                        let parts = food.name.components(separatedBy: " Cheese")
-                        if parts.count > 0 && !parts[0].isEmpty {
-                            let prefix = parts[0] // e.g., "Cheddar"
-                            
-                            // Create specific translations for this cheese type
-                            await MainActor.run {
-                                foodDatabase.foodItems[index].nameFr = "\(prefix) Fromage" 
-                                foodDatabase.foodItems[index].nameEs = "Queso \(prefix)"
-                                foodDatabase.foodItems[index].nameHe = "גבינת \(prefix)"
-                                
-                                // Save and update UI
-                                if let encoded = try? JSONEncoder().encode(foodDatabase.foodItems) {
-                                    UserDefaults.standard.set(encoded, forKey: "savedFoods")
-                                }
-                                
-                                // Trigger UI update
-                                foodDatabase.objectWillChange.send()
-                            }
-                            
-                            print("Added translations for cheese variety: \(food.name)")
-                            return
-                        }
-                    }
-                    
-                    // For other foods, use API translation if needed
-                    var updated = false
-                    
-                    if foodDatabase.foodItems[index].nameHe == nil || foodDatabase.foodItems[index].nameHe?.isEmpty == true {
-                        let translation = await TranslationManager.shared.translated(food.name, target: "he")
-                        await MainActor.run {
-                            foodDatabase.foodItems[index].nameHe = translation
-                        }
-                        updated = true
-                    }
-                    
-                    if foodDatabase.foodItems[index].nameFr == nil || foodDatabase.foodItems[index].nameFr?.isEmpty == true {
-                        let translation = await TranslationManager.shared.translated(food.name, target: "fr")
-                        await MainActor.run {
-                            foodDatabase.foodItems[index].nameFr = translation
-                        }
-                        updated = true
-                    }
-                    
-                    if foodDatabase.foodItems[index].nameEs == nil || foodDatabase.foodItems[index].nameEs?.isEmpty == true {
-                        let translation = await TranslationManager.shared.translated(food.name, target: "es")
-                        await MainActor.run {
-                            foodDatabase.foodItems[index].nameEs = translation
-                        }
-                        updated = true
-                    }
-                    
-                    // Also translate notes if present
-                    if let notes = food.notes, !notes.isEmpty {
-                        if foodDatabase.foodItems[index].notesFr == nil || foodDatabase.foodItems[index].notesFr?.isEmpty == true {
-                            let translatedNotes = await TranslationManager.shared.translated(notes, target: "fr")
-                            await MainActor.run {
-                                foodDatabase.foodItems[index].notesFr = translatedNotes
-                            }
-                            updated = true
-                        }
-                        
-                        if foodDatabase.foodItems[index].notesEs == nil || foodDatabase.foodItems[index].notesEs?.isEmpty == true {
-                            let translatedNotes = await TranslationManager.shared.translated(notes, target: "es")
-                            await MainActor.run {
-                                foodDatabase.foodItems[index].notesEs = translatedNotes
-                            }
-                            updated = true
-                        }
-                        
-                        if foodDatabase.foodItems[index].notesHe == nil || foodDatabase.foodItems[index].notesHe?.isEmpty == true {
-                            let translatedNotes = await TranslationManager.shared.translated(notes, target: "he")
-                            await MainActor.run {
-                                foodDatabase.foodItems[index].notesHe = translatedNotes
-                            }
-                            updated = true
-                        }
-                    }
-                    
-                    if updated {
-                        // Save the translations to UserDefaults
-                        await MainActor.run {
-                            if let encoded = try? JSONEncoder().encode(foodDatabase.foodItems) {
-                                UserDefaults.standard.set(encoded, forKey: "savedFoods")
-                            }
-                            
-                            // Trigger UI update
-                            foodDatabase.objectWillChange.send()
-                        }
-                        
-                        print("Added translations for: \(food.name)")
                     }
                 }
             }
@@ -628,8 +496,6 @@ struct FoodDetailView: View {
                                 VStack(alignment: .leading, spacing: 8) {
                                     Text(NSLocalizedString("Notes", comment: "Food item notes"))
                                         .font(.system(size: userSettings.textSize.size + 2, weight: .bold))
-                                    
-                                    // Use the localized notes
                                     Text(notes)
                                         .font(.system(size: userSettings.textSize.size))
                                         .foregroundColor(.primary)
