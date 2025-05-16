@@ -1,12 +1,8 @@
 import SwiftUI
-import UIKit // For UINotificationFeedbackGenerator
+import Foundation
+import UIKit
 
-// Make sure all necessary models are imported
-@_exported import struct SeniorNutritionApp.UserSettings
-@_exported import class SeniorNutritionApp.FoodDatabaseService
-@_exported import enum SeniorNutritionApp.FoodCategory
-@_exported import struct SeniorNutritionApp.FoodItem
-@_exported import class SeniorNutritionApp.LanguageManager
+// No need to import from SeniorNutritionApp as we're already inside the app target
 
 struct FoodDatabaseBrowserView: View {
     @EnvironmentObject private var userSettings: UserSettings
