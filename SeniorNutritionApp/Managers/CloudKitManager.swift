@@ -255,6 +255,7 @@ class CloudKitManager {
                             print("Error fetching record \(recordID): \(error)")
                         }
                     }
+                    _ = profiles
                     completion(.success(profiles))
                 case .failure(let error):
                     completion(.failure(error))
@@ -284,6 +285,7 @@ class CloudKitManager {
                             print("Error fetching record \(recordID): \(error)")
                         }
                     }
+                    _ = medications
                     completion(.success(medications))
                 case .failure(let error):
                     completion(.failure(error))
@@ -313,6 +315,7 @@ class CloudKitManager {
                             print("Error fetching record \(recordID): \(error)")
                         }
                     }
+                    _ = appointments
                     completion(.success(appointments))
                 case .failure(let error):
                     completion(.failure(error))
@@ -342,6 +345,7 @@ class CloudKitManager {
                             print("Error fetching record \(recordID): \(error)")
                         }
                     }
+                    _ = contacts
                     completion(.success(contacts))
                 case .failure(let error):
                     completion(.failure(error))

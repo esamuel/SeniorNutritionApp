@@ -4,8 +4,13 @@ import SwiftUI
 @MainActor
 extension Meal {
     func localizedName() -> String {
-        let langCode = Locale.current.languageCode ?? "en"
-        switch langCode {
+        let lang: String
+        if #available(iOS 16, *) {
+            lang = Locale.current.language.languageCode?.identifier ?? "en"
+        } else {
+            lang = Locale.current.languageCode ?? "en"
+        }
+        switch lang {
         case "fr":
             return nameFr ?? name
         case "es":

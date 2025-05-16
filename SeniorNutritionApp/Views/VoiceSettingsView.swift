@@ -77,6 +77,9 @@ struct VoiceSettingsView: View {
                         Text(rate.rawValue).tag(rate)
                     }
                 }
+                .onChange(of: userSettings.speechRate) { _, newRate in
+                    // handle change
+                }
                 
                 Button(action: {
                     voiceManager.speak("This is a test of the voice settings. I am speaking at \(userSettings.speechRate.rawValue) rate.", userSettings: userSettings)

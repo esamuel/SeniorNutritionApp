@@ -553,7 +553,7 @@ class FoodDatabaseService: ObservableObject {
         let langCodes = ["fr", "es", "he"]
         var updated = false
         
-        // Use modern API for language code
+        // Replace deprecated languageCode
         let lang: String
         if #available(iOS 16, *) {
             lang = Locale.current.language.languageCode?.identifier ?? "en"
@@ -1024,7 +1024,7 @@ class FoodDatabaseService: ObservableObject {
         let lang = LanguageManager.shared.currentLanguage
         if lang != "en" && lastTranslatedLanguage != lang {
             print("[FoodDatabaseService] Translating all foods for language: \(lang)")
-            await translateAllFoodItems()
+            let _ = await translateAllFoodItems()
             lastTranslatedLanguage = lang
             DispatchQueue.main.async {
                 self.objectWillChange.send()

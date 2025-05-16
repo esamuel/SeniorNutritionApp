@@ -83,8 +83,7 @@ class MedicationPrintService {
         
         // Find the key window to present from
         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-           let rootViewController = windowScene.windows.first?.rootViewController {
-            
+           let _ = windowScene.windows.first?.rootViewController {
             // Present from the root view controller to ensure it appears
             printController.present(animated: true, completionHandler: { (controller, success, error) in
                 if let error = error {

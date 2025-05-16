@@ -438,8 +438,8 @@ struct DetailedHelpView: View {
         
         // Force using the current language from LanguageManager
         // This ensures the speech uses the correct language voice
-        let languageCode = LanguageManager.shared.currentLanguage
-        print("Speaking in language: \(languageCode)")
+        _ = LanguageManager.shared.currentLanguage
+        print("Speaking in language: \(LanguageManager.shared.currentLanguage)")
         
         voiceManager.speak(contentToRead, userSettings: userSettings)
     }
@@ -1070,7 +1070,7 @@ struct DetailedHelpView: View {
                         let textToRead = "\(title). \(NSLocalizedString("Best for", comment: "")): \(bestFor). \(NSLocalizedString("Benefits", comment: "")): \(benefits). \(NSLocalizedString("How it works", comment: "")): \(howItWorks)."
                         
                         // Force using the correct language - this is what makes it work in other parts of the app
-                        let languageCode = LanguageManager.shared.currentLanguage
+                        _ = LanguageManager.shared.currentLanguage
                         voiceManager.speak(textToRead, userSettings: userSettings)
                     }
                 }) {
@@ -1146,7 +1146,7 @@ struct DetailedHelpView: View {
                             }
                             
                             // Force using the correct language - this is what makes it work in other parts of the app
-                            let languageCode = LanguageManager.shared.currentLanguage
+                            _ = LanguageManager.shared.currentLanguage
                             voiceManager.speak(textToRead, userSettings: userSettings)
                         }
                     }) {

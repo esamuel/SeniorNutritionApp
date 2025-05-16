@@ -106,7 +106,7 @@ struct MedicationView: View {
     
     private func deleteMedication(_ medication: Medication) {
         if let index = userSettings.medications.firstIndex(where: { $0.id == medication.id }) {
-            withAnimation {
+            _ = withAnimation {
                 userSettings.medications.remove(at: index)
             }
         }

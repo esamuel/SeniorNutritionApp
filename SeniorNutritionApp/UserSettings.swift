@@ -289,37 +289,31 @@ class UserSettings: ObservableObject {
         // Load heavy data in background
         DispatchQueue.global(qos: .userInitiated).async {
             Task {
-                do {
-                    if let data: PersistentData = try await PersistentStorage.shared.loadData(forKey: self.localDataKey) {
-                        DispatchQueue.main.async {
-                            self.textSize = data.textSize
-                            self.highContrastMode = data.highContrastMode
-                            self.useVoiceInput = data.useVoiceInput
-                            self.activeFastingProtocol = data.activeFastingProtocol
-                            self.medications = data.medications
-                            self.isOnboardingComplete = data.isOnboardingComplete
-                            self.userName = data.userName
-                            self.userAge = data.userAge
-                            self.userGender = data.userGender
-                            self.userHeight = data.userHeight
-                            self.userWeight = data.userWeight
-                            self.userHealthGoals = data.userHealthGoals
-                            self.userDietaryRestrictions = data.userDietaryRestrictions
-                            self.userEmergencyContacts = data.userEmergencyContacts
-                            self.preferredVoiceGender = data.preferredVoiceGender
-                            self.speechRate = data.speechRate
-                        }
-                        let elapsed = Date().timeIntervalSince(loadStart)
-                        print("DEBUG: User data loaded in \(elapsed) seconds")
-                    } else {
-                        print("DEBUG: No saved user data found")
-                        let elapsed = Date().timeIntervalSince(loadStart)
-                        print("DEBUG: User data load (empty) in \(elapsed) seconds")
+                if let data: PersistentData = try await PersistentStorage.shared.loadData(forKey: self.localDataKey) {
+                    DispatchQueue.main.async {
+                        self.textSize = data.textSize
+                        self.highContrastMode = data.highContrastMode
+                        self.useVoiceInput = data.useVoiceInput
+                        self.activeFastingProtocol = data.activeFastingProtocol
+                        self.medications = data.medications
+                        self.isOnboardingComplete = data.isOnboardingComplete
+                        self.userName = data.userName
+                        self.userAge = data.userAge
+                        self.userGender = data.userGender
+                        self.userHeight = data.userHeight
+                        self.userWeight = data.userWeight
+                        self.userHealthGoals = data.userHealthGoals
+                        self.userDietaryRestrictions = data.userDietaryRestrictions
+                        self.userEmergencyContacts = data.userEmergencyContacts
+                        self.preferredVoiceGender = data.preferredVoiceGender
+                        self.speechRate = data.speechRate
                     }
-                } catch {
-                    print("Error loading user data: \(error)")
                     let elapsed = Date().timeIntervalSince(loadStart)
-                    print("DEBUG: User data load failed after \(elapsed) seconds")
+                    print("DEBUG: User data loaded in \(elapsed) seconds")
+                } else {
+                    print("DEBUG: No saved user data found")
+                    let elapsed = Date().timeIntervalSince(loadStart)
+                    print("DEBUG: User data load (empty) in \(elapsed) seconds")
                 }
             }
         }

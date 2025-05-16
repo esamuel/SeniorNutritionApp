@@ -154,8 +154,8 @@ struct WeightDetailView: View {
     
     private var weightChart: some View {
         let sortedEntries = filteredEntries.sorted { ($0.date ?? Date()) < ($1.date ?? Date()) }
-        let startDate = sortedEntries.first?.date ?? Date().addingTimeInterval(-7*24*60*60) // 1 week ago if empty
-        let endDate = sortedEntries.last?.date ?? Date() // Today if empty
+        _ = sortedEntries.first?.date ?? Date().addingTimeInterval(-7*24*60*60) // 1 week ago if empty
+        _ = sortedEntries.last?.date ?? Date() // Today if empty
         
         return Chart {
             ForEach(sortedEntries) { entry in
