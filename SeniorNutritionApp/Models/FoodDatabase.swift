@@ -900,137 +900,113 @@ class FoodDatabaseService: ObservableObject {
         print("\n=== FIXING NOTES TRANSLATIONS ===")
         var updateCount = 0
         
-        // Directly handle the notes of foods with specific names first
-        let foodsToFocus = ["Almond Flour Torte", "Almond Milk (Unsweetened)", "Almonds", 
-                        "Angel Food Cake", "Apple", "Apple Cake (Apfelkuchen)", "Apple Juice",
-                        "Salmon", "BLT Sandwich", "Brown Rice", "Chicken Breast", "Yogurt", 
-                        "Olive Oil", "Water", "Banana", "Orange"]
-                        
-        // Special translations for common notes
-        let notesTranslations: [String: [String: String]] = [
-            "Fresh apple with skin": [
-                "fr": "Pomme fraîche avec peau",
-                "es": "Manzana fresca con piel",
-                "he": "תפוח טרי עם קליפה"
-            ],
-            "Raw banana": [
-                "fr": "Banane crue",
-                "es": "Plátano crudo",
-                "he": "בננה טרייה"
-            ],
-            "Fresh orange": [
-                "fr": "Orange fraîche",
-                "es": "Naranja fresca",
-                "he": "תפוז טרי"
-            ],
-            "Regular potato chips": [
-                "fr": "Chips de pomme de terre ordinaires",
-                "es": "Papas fritas regulares",
-                "he": "צ'יפס תפוחי אדמה רגיל"
-            ],
-            "Cooked brown rice": [
-                "fr": "Riz brun cuit",
-                "es": "Arroz integral cocido",
-                "he": "אורז חום מבושל"
-            ],
-            "Chocolate sandwich cookies with cream filling": [
-                "fr": "Biscuits sandwich au chocolat avec garniture à la crème",
-                "es": "Galletas sándwich de chocolate con relleno de crema",
-                "he": "עוגיות שוקולד עם מילוי קרם"
-            ],
-            "Bacon-lettuce-tomato on toast": [
-                "fr": "Bacon-laitue-tomate sur pain grillé",
-                "es": "Tocino-lechuga-tomate en pan tostado",
-                "he": "בייקון-חסה-עגבניה על טוסט"
-            ]
+        // Add translations for common foods that might not be properly translated
+        let commonFoods = [
+            "Barley": ["fr": "Orge", "es": "Cebada", "he": "שעורה"],
+            "Bean Burrito": ["fr": "Burrito aux haricots", "es": "Burrito de frijoles", "he": "בוריטו שעועית"],
+            "Beef Stew": ["fr": "Ragoût de bœuf", "es": "Estofado de carne", "he": "נזיד בקר"],
+            "Black Beans": ["fr": "Haricots noirs", "es": "Frijoles negros", "he": "שעועית שחורה"],
+            "Blueberries": ["fr": "Myrtilles", "es": "Arándanos", "he": "אוכמניות"],
+            "Bread": ["fr": "Pain", "es": "Pan", "he": "לחם"],
+            "Brown Rice": ["fr": "Riz brun", "es": "Arroz integral", "he": "אורז חום"],
+            "Butter": ["fr": "Beurre", "es": "Mantequilla", "he": "חמאה"],
+            "Carrot": ["fr": "Carotte", "es": "Zanahoria", "he": "גזר"],
+            "Cheese": ["fr": "Fromage", "es": "Queso", "he": "גבינה"],
+            "Chicken": ["fr": "Poulet", "es": "Pollo", "he": "עוף"],
+            "Eggs": ["fr": "Œufs", "es": "Huevos", "he": "ביצים"],
+            "Fish": ["fr": "Poisson", "es": "Pescado", "he": "דג"],
+            "Green Beans": ["fr": "Haricots verts", "es": "Judías verdes", "he": "שעועית ירוקה"],
+            "Milk": ["fr": "Lait", "es": "Leche", "he": "חלב"],
+            "Oatmeal": ["fr": "Flocons d'avoine", "es": "Avena", "he": "דייסת שיבולת שועל"],
+            "Olive Oil": ["fr": "Huile d'olive", "es": "Aceite de oliva", "he": "שמן זית"],
+            "Pasta": ["fr": "Pâtes", "es": "Pasta", "he": "פסטה"],
+            "Peanut Butter": ["fr": "Beurre de cacahuète", "es": "Mantequilla de maní", "he": "חמאת בוטנים"],
+            "Rice": ["fr": "Riz", "es": "Arroz", "he": "אורז"],
+            "Salmon": ["fr": "Saumon", "es": "Salmón", "he": "סלמון"],
+            "Spinach": ["fr": "Épinards", "es": "Espinacas", "he": "תרד"],
+            "Steak": ["fr": "Steak", "es": "Bistec", "he": "סטייק"],
+            "Tomato": ["fr": "Tomate", "es": "Tomate", "he": "עגבנייה"],
+            "Walnuts": ["fr": "Noix", "es": "Nueces", "he": "אגוזי מלך"],
+            "Wheat": ["fr": "Blé", "es": "Trigo", "he": "חיטה"],
+            "Yogurt": ["fr": "Yaourt", "es": "Yogur", "he": "יוגורט"]
         ]
         
-        // Process all foods
+        // Common notes translations
+        let notesTranslations: [String: [String: String]] = [
+            "Whole grain": ["fr": "Grain entier", "es": "Grano entero", "he": "דגנים מלאים"],
+            "Fresh vegetables": ["fr": "Légumes frais", "es": "Verduras frescas", "he": "ירקות טריים"],
+            "Raw": ["fr": "Cru", "es": "Crudo", "he": "גולמי"],
+            "Cooked": ["fr": "Cuit", "es": "Cocinado", "he": "מבושל"],
+            "Baked": ["fr": "Cuit au four", "es": "Horneado", "he": "אפוי"],
+            "Grilled": ["fr": "Grillé", "es": "A la parrilla", "he": "צלוי"],
+            "Fresh": ["fr": "Frais", "es": "Fresco", "he": "טרי"],
+            "Dried": ["fr": "Séché", "es": "Seco", "he": "מיובש"],
+            "Frozen": ["fr": "Surgelé", "es": "Congelado", "he": "קפוא"],
+            "Canned": ["fr": "En conserve", "es": "Enlatado", "he": "משומר"]
+        ]
+        
+        // Force translate ALL foods, not just the ones visible
         for idx in foodItems.indices {
-            // Track if we updated this food
+            // Track if food was updated
             var foodUpdated = false
             
-            // Special handling for notes in important foods
-            if let foodName = foodsToFocus.first(where: { foodItems[idx].name.contains($0) }),
-               let notes = foodItems[idx].notes, !notes.isEmpty {
+            // 1. First, check if this is a common food with known translations
+            if let knownTrans = commonFoods[foodItems[idx].name] {
+                foodItems[idx].nameFr = knownTrans["fr"]
+                foodItems[idx].nameEs = knownTrans["es"]
+                foodItems[idx].nameHe = knownTrans["he"]
+                foodUpdated = true
+                print("Applied direct translation for: \(foodItems[idx].name)")
+            }
+            
+            // 2. Process notes if present
+            if let notes = foodItems[idx].notes, !notes.isEmpty {
+                var notesUpdated = false
                 
-                print("Processing notes for important food: \(foodItems[idx].name)")
-                
-                // Check if we have a direct translation for this specific note
-                if let directTranslation = notesTranslations[notes] {
-                    print("Found direct notes translation match for: \"\(notes)\"")
-                    foodItems[idx].notesFr = directTranslation["fr"]
-                    foodItems[idx].notesEs = directTranslation["es"]
-                    foodItems[idx].notesHe = directTranslation["he"]
-                    foodUpdated = true
-                }
-                // If no direct match, check for partial matches
-                else {
-                    for (noteText, translations) in notesTranslations {
-                        if notes.contains(noteText) {
-                            print("Found partial notes match: \"\(notes)\" contains \"\(noteText)\"")
+                // Try direct matches for notes
+                for (key, translations) in notesTranslations {
+                    if notes.lowercased().contains(key.lowercased()) {
+                        if foodItems[idx].notesFr == nil || foodItems[idx].notesFr?.isEmpty == true {
                             foodItems[idx].notesFr = translations["fr"]
+                            notesUpdated = true
+                        }
+                        if foodItems[idx].notesEs == nil || foodItems[idx].notesEs?.isEmpty == true {
                             foodItems[idx].notesEs = translations["es"]
+                            notesUpdated = true
+                        }
+                        if foodItems[idx].notesHe == nil || foodItems[idx].notesHe?.isEmpty == true {
                             foodItems[idx].notesHe = translations["he"]
-                            foodUpdated = true
-                            break
+                            notesUpdated = true
                         }
                     }
                 }
                 
-                // If still no match, force translation
-                if !foodUpdated {
-                    print("No translation match for notes: \"\(notes)\", using API translation")
+                // If no matches found, use API translation
+                if !notesUpdated {
                     foodItems[idx].notesFr = await TranslationManager.shared.translated(notes, target: "fr")
                     foodItems[idx].notesEs = await TranslationManager.shared.translated(notes, target: "es")
                     foodItems[idx].notesHe = await TranslationManager.shared.translated(notes, target: "he")
+                    notesUpdated = true
+                }
+                
+                if notesUpdated {
                     foodUpdated = true
                 }
             }
-            // For other foods with notes
-            else if let notes = foodItems[idx].notes, !notes.isEmpty {
-                // Only translate if we're missing translations
-                if foodItems[idx].notesFr == nil || foodItems[idx].notesFr?.isEmpty == true ||
-                   foodItems[idx].notesEs == nil || foodItems[idx].notesEs?.isEmpty == true ||
-                   foodItems[idx].notesHe == nil || foodItems[idx].notesHe?.isEmpty == true {
-                    
-                    print("Translating missing notes for: \(foodItems[idx].name)")
-                    
-                    // Check for direct or partial matches first
-                    var foundMatch = false
-                    for (noteText, translations) in notesTranslations {
-                        if notes == noteText || notes.contains(noteText) {
-                            print("Found translation match for notes: \"\(notes)\"")
-                            if foodItems[idx].notesFr == nil || foodItems[idx].notesFr?.isEmpty == true {
-                                foodItems[idx].notesFr = translations["fr"]
-                            }
-                            if foodItems[idx].notesEs == nil || foodItems[idx].notesEs?.isEmpty == true {
-                                foodItems[idx].notesEs = translations["es"]
-                            }
-                            if foodItems[idx].notesHe == nil || foodItems[idx].notesHe?.isEmpty == true {
-                                foodItems[idx].notesHe = translations["he"]
-                            }
-                            foundMatch = true
-                            foodUpdated = true
-                            break
-                        }
-                    }
-                    
-                    // If no match, use API translation
-                    if !foundMatch {
-                        if foodItems[idx].notesFr == nil || foodItems[idx].notesFr?.isEmpty == true {
-                            foodItems[idx].notesFr = await TranslationManager.shared.translated(notes, target: "fr")
-                            foodUpdated = true
-                        }
-                        if foodItems[idx].notesEs == nil || foodItems[idx].notesEs?.isEmpty == true {
-                            foodItems[idx].notesEs = await TranslationManager.shared.translated(notes, target: "es")
-                            foodUpdated = true
-                        }
-                        if foodItems[idx].notesHe == nil || foodItems[idx].notesHe?.isEmpty == true {
-                            foodItems[idx].notesHe = await TranslationManager.shared.translated(notes, target: "he")
-                            foodUpdated = true
-                        }
-                    }
+            
+            // 3. If food hasn't been updated via direct translation yet, use API
+            if !foodUpdated {
+                if foodItems[idx].nameFr == nil || foodItems[idx].nameFr?.isEmpty == true {
+                    foodItems[idx].nameFr = await TranslationManager.shared.translated(foodItems[idx].name, target: "fr")
+                    foodUpdated = true
+                }
+                if foodItems[idx].nameEs == nil || foodItems[idx].nameEs?.isEmpty == true {
+                    foodItems[idx].nameEs = await TranslationManager.shared.translated(foodItems[idx].name, target: "es")
+                    foodUpdated = true
+                }
+                if foodItems[idx].nameHe == nil || foodItems[idx].nameHe?.isEmpty == true {
+                    foodItems[idx].nameHe = await TranslationManager.shared.translated(foodItems[idx].name, target: "he")
+                    foodUpdated = true
                 }
             }
             
@@ -1043,12 +1019,10 @@ class FoodDatabaseService: ObservableObject {
         if updateCount > 0 {
             if let encoded = try? JSONEncoder().encode(foodItems) {
                 UserDefaults.standard.set(encoded, forKey: "savedFoods")
-                print("Saved \(updateCount) foods with updated notes translations")
+                print("Saved \(updateCount) foods with updated translations")
             }
         }
         
         print("=== NOTES TRANSLATION FIX COMPLETED ===\n")
-        
-        return
     }
 } 

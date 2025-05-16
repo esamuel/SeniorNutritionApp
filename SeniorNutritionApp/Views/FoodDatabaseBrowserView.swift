@@ -1,6 +1,9 @@
 import SwiftUI
 import Foundation
+#if canImport(UIKit)
 import UIKit
+#endif
+// UIKit is not needed if we're only using a notification feedback generator and Color system
 
 // No need to import from SeniorNutritionApp as we're already inside the app target
 
@@ -57,9 +60,11 @@ struct FoodDatabaseBrowserView: View {
                         Button(action: {
                             // Trigger comprehensive translations when user taps the button
                             Task {
-                                // Show a quick alert
-                                let generator = UINotificationFeedbackGenerator()
-                                generator.notificationOccurred(.success)
+                                // Simple feedback without UIKit
+                                #if os(iOS)
+                                let generator = UIImpactFeedbackGenerator(style: .medium)
+                                generator.impactOccurred()
+                                #endif
                                 
                                 // Translate all foods
                                 await foodDatabase.translateAllFoodItems()
@@ -95,7 +100,7 @@ struct FoodDatabaseBrowserView: View {
                         }
                     }
                     .padding()
-                    .background(Color(.systemGray6))
+                    .background(Color.gray.opacity(0.2))
                     .cornerRadius(10)
                     .padding(.horizontal)
                     .padding(.top)
@@ -121,18 +126,6 @@ struct FoodDatabaseBrowserView: View {
                         .foregroundColor(.secondary)
                     Spacer()
                     
-                    // Language selector for quick testing
-                    Menu {
-                        Button("English") { changeLanguage("en") }
-                        Button("Hebrew") { changeLanguage("he") }
-                        Button("Spanish") { changeLanguage("es") }
-                        Button("French") { changeLanguage("fr") }
-                    } label: {
-                        Label(LanguageManager.shared.currentLanguage.uppercased(), systemImage: "globe")
-                            .font(.system(size: userSettings.textSize.size - 2))
-                    }
-                    .padding(.trailing, 10)
-                    
                     Button(action: {
                         // Force refresh the database
                         foodDatabase.resetToDefaultFoods()
@@ -140,17 +133,6 @@ struct FoodDatabaseBrowserView: View {
                         Label(NSLocalizedString("Refresh", comment: ""), systemImage: "arrow.clockwise")
                             .font(.system(size: userSettings.textSize.size - 2))
                     }
-                    
-                    Button(action: {
-                        // Translate specific foods
-                        Task {
-                            await foodDatabase.translateSpecificFoodItems()
-                        }
-                    }) {
-                        Label(NSLocalizedString("Translate", comment: ""), systemImage: "globe")
-                            .font(.system(size: userSettings.textSize.size - 2))
-                    }
-                    .padding(.leading, 10)
                 }
                 .padding(.horizontal)
                 
@@ -195,10 +177,7 @@ struct FoodDatabaseBrowserView: View {
                     try? await Task.sleep(nanoseconds: 500_000_000) // 0.5 seconds
                     print("Running food translations for language: \(currentLanguage)")
                     
-                    // Use visible foods for quick display
-                    await foodDatabase.forceTranslateVisibleFoods()
-                    
-                    // Also fix notes translations
+                    // First fix notes translations specifically
                     await foodDatabase.fixNotesTranslations()
                     
                     // Force update to ensure UI reflects changes
@@ -207,9 +186,14 @@ struct FoodDatabaseBrowserView: View {
                         foodDatabase.objectWillChange.send()
                     }
                     
-                    // In the background, translate all foods
+                    // In the background, translate all foods (comprehensive)
                     Task.detached {
                         await foodDatabase.translateAllFoodItems()
+                        
+                        // Update UI again after comprehensive translation
+                        DispatchQueue.main.async {
+                            self.foodDatabase.objectWillChange.send()
+                        }
                     }
                 }
             }
@@ -250,7 +234,7 @@ struct FoodDatabaseBrowserView: View {
                 .font(.system(size: userSettings.textSize.size - 2))
                 .padding(.horizontal, 15)
                 .padding(.vertical, 8)
-                .background((showingAllCategories && category == nil) || selectedCategory == category ? Color.blue : Color(.systemGray6))
+                .background((showingAllCategories && category == nil) || selectedCategory == category ? Color.blue : Color.gray.opacity(0.2))
                 .foregroundColor((showingAllCategories && category == nil) || selectedCategory == category ? .white : .primary)
                 .cornerRadius(20)
         }
@@ -435,7 +419,7 @@ struct FoodDetailView: View {
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding()
-                            .background(Color(.systemGray6))
+                            .background(Color.gray.opacity(0.2))
                             .cornerRadius(12)
                             
                             // Macronutrients
@@ -480,7 +464,7 @@ struct FoodDetailView: View {
                                 }
                             }
                             .padding()
-                            .background(Color(.systemGray6))
+                            .background(Color.gray.opacity(0.2))
                             .cornerRadius(12)
                             
                             // Additional nutrients
@@ -509,7 +493,7 @@ struct FoodDetailView: View {
                                 }
                             }
                             .padding()
-                            .background(Color(.systemGray6))
+                            .background(Color.gray.opacity(0.2))
                             .cornerRadius(12)
                             
                             // Notes
@@ -518,13 +502,14 @@ struct FoodDetailView: View {
                                     Text(NSLocalizedString("Notes", comment: "Food item notes"))
                                         .font(.system(size: userSettings.textSize.size + 2, weight: .bold))
                                     
+                                    // Use the localized notes
                                     Text(notes)
                                         .font(.system(size: userSettings.textSize.size))
                                         .foregroundColor(.primary)
                                 }
                                 .padding()
                                 .frame(maxWidth: .infinity, alignment: .leading)
-                                .background(Color(.systemGray6))
+                                .background(Color.gray.opacity(0.2))
                                 .cornerRadius(12)
                             }
                         }
