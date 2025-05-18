@@ -18,7 +18,13 @@ struct AdditionalFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Fresh avocado"
+            notes: "Fresh avocado",
+            nameFr: "Avocat",
+            nameEs: "Aguacate",
+            nameHe: "אבוקדו",
+            notesFr: "Avocat frais",
+            notesEs: "Aguacate fresco",
+            notesHe: "אבוקדו טרי"
         ),
         
         // Quinoa
@@ -37,7 +43,13 @@ struct AdditionalFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Cooked quinoa"
+            notes: "Cooked quinoa",
+            nameFr: "Quinoa",
+            nameEs: "Quinoa",
+            nameHe: "קינואה",
+            notesFr: "Quinoa cuit",
+            notesEs: "Quinoa cocida",
+            notesHe: "קינואה מבושלת"
         ),
         
         // Chia Seeds
@@ -56,7 +68,13 @@ struct AdditionalFoodItems {
             servingSize: 28,
             servingUnit: "g",
             isCustom: true,
-            notes: "Dried chia seeds"
+            notes: "Dried chia seeds",
+            nameFr: "Graines de Chia",
+            nameEs: "Semillas de Chía",
+            nameHe: "זרעי צ'יה",
+            notesFr: "Graines de chia séchées",
+            notesEs: "Semillas de chía secas",
+            notesHe: "זרעי צ'יה מיובשים"
         ),
         
         // Lentils
@@ -75,7 +93,13 @@ struct AdditionalFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Cooked lentils"
+            notes: "Cooked lentils",
+            nameFr: "Lentilles",
+            nameEs: "Lentejas",
+            nameHe: "עדשים",
+            notesFr: "Lentilles cuites",
+            notesEs: "Lentejas cocidas",
+            notesHe: "עדשים מבושלות"
         ),
         
         // Carrots
@@ -94,7 +118,13 @@ struct AdditionalFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Raw carrots"
+            notes: "Raw carrots",
+            nameFr: "Carottes",
+            nameEs: "Zanahorias",
+            nameHe: "גזרים",
+            notesFr: "Carottes crues",
+            notesEs: "Zanahorias crudas",
+            notesHe: "גזרים טריים"
         ),
         
         // Apples
@@ -113,7 +143,13 @@ struct AdditionalFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Fresh apple with skin"
+            notes: "Fresh apple with skin",
+            nameFr: "Pommes",
+            nameEs: "Manzanas",
+            nameHe: "תפוחים",
+            notesFr: "Pomme fraîche avec la peau",
+            notesEs: "Manzana fresca con piel",
+            notesHe: "תפוח טרי עם הקליפה"
         ),
         
         // Tomatoes
@@ -132,7 +168,13 @@ struct AdditionalFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Raw tomatoes"
+            notes: "Raw tomatoes",
+            nameFr: "Tomates",
+            nameEs: "Tomates",
+            nameHe: "עגבניות",
+            notesFr: "Tomates crues",
+            notesEs: "Tomates crudos",
+            notesHe: "עגבניות טריות"
         ),
         
         // Peanuts
@@ -151,7 +193,13 @@ struct AdditionalFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Raw peanuts"
+            notes: "Raw peanuts",
+            nameFr: "Cacahuètes",
+            nameEs: "Cacahuetes",
+            nameHe: "בוטנים",
+            notesFr: "Cacahuètes crues",
+            notesEs: "Cacahuetes crudos",
+            notesHe: "בוטנים טריים"
         ),
         
         // Barley
@@ -170,7 +218,13 @@ struct AdditionalFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Uncooked hulled barley"
+            notes: "Uncooked hulled barley",
+            nameFr: "Orge",
+            nameEs: "Cebada",
+            nameHe: "שעורה",
+            notesFr: "Orge mondé non cuit",
+            notesEs: "Cebada pelada sin cocer",
+            notesHe: "שעורה קלופה לא מבושלת"
         ),
         
         // Pumpkin
@@ -189,7 +243,13 @@ struct AdditionalFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Cooked pumpkin"
+            notes: "Cooked pumpkin",
+            nameFr: "Citrouille",
+            nameEs: "Calabaza",
+            nameHe: "דלעת",
+            notesFr: "Citrouille cuite",
+            notesEs: "Calabaza cocida",
+            notesHe: "דלעת מבושלת"
         ),
         
         // Whole Wheat Pasta
@@ -208,7 +268,13 @@ struct AdditionalFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Cooked whole wheat pasta"
+            notes: "Cooked whole wheat pasta",
+            nameFr: "Pâtes Complètes",
+            nameEs: "Pasta Integral",
+            nameHe: "פסטה מחיטה מלאה",
+            notesFr: "Pâtes complètes cuites",
+            notesEs: "Pasta integral cocida",
+            notesHe: "פסטה מחיטה מלאה מבושלת"
         ),
         
         // Hummus
@@ -227,7 +293,13 @@ struct AdditionalFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Prepared hummus"
+            notes: "Prepared hummus",
+            nameFr: "Houmous",
+            nameEs: "Hummus",
+            nameHe: "חומוס",
+            notesFr: "Houmous préparé",
+            notesEs: "Hummus preparado",
+            notesHe: "חומוס מוכן"
         ),
         
         // Granola
@@ -246,7 +318,13 @@ struct AdditionalFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Plain granola"
+            notes: "Plain granola",
+            nameFr: "Granola",
+            nameEs: "Granola",
+            nameHe: "גרנולה",
+            notesFr: "Granola nature",
+            notesEs: "Granola simple",
+            notesHe: "גרנולה רגילה"
         ),
         
         // Black Beans
@@ -265,7 +343,13 @@ struct AdditionalFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Cooked black beans"
+            notes: "Cooked black beans",
+            nameFr: "Haricots Noirs",
+            nameEs: "Frijoles Negros",
+            nameHe: "שעועית שחורה",
+            notesFr: "Haricots noirs cuits",
+            notesEs: "Frijoles negros cocidos",
+            notesHe: "שעועית שחורה מבושלת"
         ),
         
         // Cottage Cheese
@@ -303,7 +387,13 @@ struct AdditionalFoodItems {
             servingSize: 50,
             servingUnit: "g",
             isCustom: true,
-            notes: "Large hard-boiled egg"
+            notes: "Large hard-boiled egg",
+            nameFr: "Œuf Dur",
+            nameEs: "Huevo Duro",
+            nameHe: "ביצה קשה",
+            notesFr: "Gros œuf dur",
+            notesEs: "Huevo duro grande",
+            notesHe: "ביצה קשה גדולה"
         ),
         
         // Greek Yogurt
@@ -341,7 +431,13 @@ struct AdditionalFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Unsweetened peanut butter"
+            notes: "Unsweetened peanut butter",
+            nameFr: "Beurre de Cacahuète",
+            nameEs: "Mantequilla de Cacahuete",
+            nameHe: "חמאת בוטנים",
+            notesFr: "Beurre de cacahuète non sucré",
+            notesEs: "Mantequilla de cacahuete sin azúcar",
+            notesHe: "חמאת בוטנים ללא סוכר"
         ),
         
         // Canned Tuna
@@ -360,7 +456,13 @@ struct AdditionalFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Canned tuna in water"
+            notes: "Canned tuna in water",
+            nameFr: "Thon en Conserve",
+            nameEs: "Atún en Lata",
+            nameHe: "טונה בקופסה",
+            notesFr: "Thon en conserve au naturel",
+            notesEs: "Atún en lata en agua",
+            notesHe: "טונה בקופסה במים"
         ),
         
         // Mixed Vegetables
@@ -379,7 +481,271 @@ struct AdditionalFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Frozen mixed vegetables"
+            notes: "Frozen mixed vegetables",
+            nameFr: "Légumes Mixtes",
+            nameEs: "Verduras Mixtas",
+            nameHe: "ירקות מעורבים",
+            notesFr: "Légumes mixtes surgelés",
+            notesEs: "Verduras mixtas congeladas",
+            notesHe: "ירקות מעורבים קפואים"
+        ),
+        
+        // MARK: - Cake Food Items
+        
+        // Pound Cake
+        FoodItem(
+            id: UUID(),
+            name: "Pound Cake",
+            category: .snacks,
+            nutritionalInfo: NutritionalInfo(
+                calories: 420,
+                protein: 5,
+                carbohydrates: 50,
+                fat: 22,
+                fiber: 0.6,
+                sugar: 30
+            ),
+            servingSize: 100,
+            servingUnit: "g",
+            isCustom: true,
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Cake aux Quatre-Quarts",
+            nameEs: "Bizcocho Libra",
+            nameHe: "עוגת חמאה",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
+        ),
+        
+        // Carrot Cake
+        FoodItem(
+            id: UUID(),
+            name: "Carrot Cake",
+            category: .snacks,
+            nutritionalInfo: NutritionalInfo(
+                calories: 410,
+                protein: 5,
+                carbohydrates: 50,
+                fat: 22,
+                fiber: 1.5,
+                sugar: 34
+            ),
+            servingSize: 100,
+            servingUnit: "g",
+            isCustom: true,
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Gâteau aux Carottes",
+            nameEs: "Pastel de Zanahoria",
+            nameHe: "עוגת גזר",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
+        ),
+        
+        // Coffee Cake (Streusel)
+        FoodItem(
+            id: UUID(),
+            name: "Coffee Cake (Streusel)",
+            category: .snacks,
+            nutritionalInfo: NutritionalInfo(
+                calories: 390,
+                protein: 4,
+                carbohydrates: 55,
+                fat: 17,
+                fiber: 0.8,
+                sugar: 32
+            ),
+            servingSize: 100,
+            servingUnit: "g",
+            isCustom: true,
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Gâteau au Café (Streusel)",
+            nameEs: "Pastel de Café (Streusel)",
+            nameHe: "עוגת קפה (שטרויזל)",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
+        ),
+        
+        // MARK: - Dairy Food Items
+        
+        // Whole Milk
+        FoodItem(
+            id: UUID(),
+            name: "Whole Milk",
+            category: .dairy,
+            nutritionalInfo: NutritionalInfo(
+                calories: 61,
+                protein: 3.2,
+                carbohydrates: 4.8,
+                fat: 3.3,
+                fiber: 0.0,
+                sugar: 5.0
+            ),
+            servingSize: 100,
+            servingUnit: "g",
+            isCustom: true,
+            notes: "Standard whole cow's milk",
+            nameFr: "Lait Entier",
+            nameEs: "Leche Entera",
+            nameHe: "חלב מלא",
+            notesFr: "Lait de vache entier standard",
+            notesEs: "Leche entera estándar de vaca",
+            notesHe: "חלב פרה מלא רגיל"
+        ),
+        
+        // Greek Yogurt
+        FoodItem(
+            id: UUID(),
+            name: "Greek Yogurt (Nonfat)",
+            category: .dairy,
+            nutritionalInfo: NutritionalInfo(
+                calories: 59,
+                protein: 10.0,
+                carbohydrates: 3.6,
+                fat: 0.4,
+                fiber: 0.0,
+                sugar: 3.2
+            ),
+            servingSize: 100,
+            servingUnit: "g",
+            isCustom: true,
+            notes: "Plain nonfat Greek yogurt",
+            nameFr: "Yaourt Grec (Sans Matière Grasse)",
+            nameEs: "Yogur Griego (Sin Grasa)",
+            nameHe: "יוגורט יווני (ללא שומן)",
+            notesFr: "Yaourt grec nature sans matière grasse",
+            notesEs: "Yogur griego natural sin grasa",
+            notesHe: "יוגורט יווני טבעי ללא שומן"
+        ),
+        
+        // Cottage Cheese
+        FoodItem(
+            id: UUID(),
+            name: "Cottage Cheese (Low-fat)",
+            category: .dairy,
+            nutritionalInfo: NutritionalInfo(
+                calories: 98,
+                protein: 11.1,
+                carbohydrates: 3.4,
+                fat: 4.3,
+                fiber: 0.0,
+                sugar: 2.7
+            ),
+            servingSize: 100,
+            servingUnit: "g",
+            isCustom: true,
+            notes: "Low-fat cottage cheese",
+            nameFr: "Fromage Cottage (Allégé)",
+            nameEs: "Queso Cottage (Bajo en Grasa)",
+            nameHe: "גבינת קוטג' (דלת שומן)",
+            notesFr: "Fromage cottage allégé",
+            notesEs: "Queso cottage bajo en grasa",
+            notesHe: "גבינת קוטג' דלת שומן"
+        ),
+        
+        // MARK: - Beverage Food Items
+        
+        // Water
+        FoodItem(
+            id: UUID(),
+            name: "Water",
+            category: .beverages,
+            nutritionalInfo: NutritionalInfo(
+                calories: 0,
+                protein: 0,
+                carbohydrates: 0,
+                fat: 0,
+                fiber: 0,
+                sugar: 0
+            ),
+            servingSize: 240,
+            servingUnit: "ml",
+            isCustom: true,
+            notes: "Plain drinking water",
+            nameFr: "Eau",
+            nameEs: "Agua",
+            nameHe: "מים",
+            notesFr: "Eau potable ordinaire",
+            notesEs: "Agua potable simple",
+            notesHe: "מי שתייה רגילים"
+        ),
+        
+        // Green Tea
+        FoodItem(
+            id: UUID(),
+            name: "Green Tea",
+            category: .beverages,
+            nutritionalInfo: NutritionalInfo(
+                calories: 2,
+                protein: 0,
+                carbohydrates: 0.5,
+                fat: 0,
+                fiber: 0,
+                sugar: 0
+            ),
+            servingSize: 240,
+            servingUnit: "ml",
+            isCustom: true,
+            notes: "Unsweetened green tea",
+            nameFr: "Thé Vert",
+            nameEs: "Té Verde",
+            nameHe: "תה ירוק",
+            notesFr: "Thé vert non sucré",
+            notesEs: "Té verde sin azúcar",
+            notesHe: "תה ירוק ללא סוכר"
+        ),
+        
+        // MARK: - Bread and Sandwich Food Items
+        
+        // Whole Wheat Bread
+        FoodItem(
+            id: UUID(),
+            name: "Whole Wheat Bread",
+            category: .grains,
+            nutritionalInfo: NutritionalInfo(
+                calories: 247,
+                protein: 13,
+                carbohydrates: 41,
+                fat: 4,
+                fiber: 7,
+                sugar: 5
+            ),
+            servingSize: 100,
+            servingUnit: "g",
+            isCustom: true,
+            notes: "Average nutrition per 100 g loaf slice",
+            nameFr: "Pain de Blé Complet",
+            nameEs: "Pan Integral de Trigo",
+            nameHe: "לחם חיטה מלאה",
+            notesFr: "Valeur nutritionnelle moyenne pour 100 g de tranche",
+            notesEs: "Nutrición promedio por 100 g de rebanada",
+            notesHe: "ערך תזונתי ממוצע ל-100 גרם פרוסה"
+        ),
+        
+        // Sourdough Bread
+        FoodItem(
+            id: UUID(),
+            name: "Sourdough Bread",
+            category: .grains,
+            nutritionalInfo: NutritionalInfo(
+                calories: 240,
+                protein: 8,
+                carbohydrates: 47,
+                fat: 1.5,
+                fiber: 2.9,
+                sugar: 2
+            ),
+            servingSize: 100,
+            servingUnit: "g",
+            isCustom: true,
+            notes: "Naturally leavened wheat loaf",
+            nameFr: "Pain au Levain",
+            nameEs: "Pan de Masa Madre",
+            nameHe: "לחם מחמצת",
+            notesFr: "Pain de blé à levain naturel",
+            notesEs: "Pan de trigo con levadura natural",
+            notesHe: "כיכר חיטה מותססת בטבעיות"
         )
     ]
 } 

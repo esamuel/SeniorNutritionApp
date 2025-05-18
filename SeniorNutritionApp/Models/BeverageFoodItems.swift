@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 
 struct BeverageFoodItems {
     static let foods: [FoodItem] = [
@@ -18,7 +19,13 @@ struct BeverageFoodItems {
             servingSize: 240,
             servingUnit: "ml",
             isCustom: true,
-            notes: "Plain drinking water"
+            notes: "Plain drinking water",
+            nameFr: "Eau",
+            nameEs: "Agua",
+            nameHe: "מים",
+            notesFr: "Eau potable ordinaire",
+            notesEs: "Agua potable simple",
+            notesHe: "מי שתייה רגילים"
         ),
         
         // Coffee
@@ -37,7 +44,13 @@ struct BeverageFoodItems {
             servingSize: 240,
             servingUnit: "ml",
             isCustom: true,
-            notes: "Black coffee without sugar"
+            notes: "Black coffee without sugar",
+            nameFr: "Café",
+            nameEs: "Café",
+            nameHe: "קפה",
+            notesFr: "Café noir sans sucre",
+            notesEs: "Café negro sin azúcar",
+            notesHe: "קפה שחור ללא סוכר"
         ),
         
         // Green Tea
@@ -56,7 +69,13 @@ struct BeverageFoodItems {
             servingSize: 240,
             servingUnit: "ml",
             isCustom: true,
-            notes: "Unsweetened green tea"
+            notes: "Unsweetened green tea",
+            nameFr: "Thé Vert",
+            nameEs: "Té Verde",
+            nameHe: "תה ירוק",
+            notesFr: "Thé vert non sucré",
+            notesEs: "Té verde sin azúcar",
+            notesHe: "תה ירוק ללא סוכר"
         ),
         
         // Black Tea
@@ -75,7 +94,13 @@ struct BeverageFoodItems {
             servingSize: 240,
             servingUnit: "ml",
             isCustom: true,
-            notes: "Unsweetened black tea"
+            notes: "Unsweetened black tea",
+            nameFr: "Thé Noir",
+            nameEs: "Té Negro",
+            nameHe: "תה שחור",
+            notesFr: "Thé noir non sucré",
+            notesEs: "Té negro sin azúcar",
+            notesHe: "תה שחור ללא סוכר"
         ),
         
         // Orange Juice
@@ -94,7 +119,13 @@ struct BeverageFoodItems {
             servingSize: 240,
             servingUnit: "ml",
             isCustom: true,
-            notes: "Fresh squeezed orange juice"
+            notes: "Fresh squeezed orange juice",
+            nameFr: "Jus d'Orange",
+            nameEs: "Zumo de Naranja",
+            nameHe: "מיץ תפוזים",
+            notesFr: "Jus d'orange fraîchement pressé",
+            notesEs: "Zumo de naranja recién exprimido",
+            notesHe: "מיץ תפוזים סחוט טרי"
         ),
         
         // Apple Juice
@@ -113,7 +144,13 @@ struct BeverageFoodItems {
             servingSize: 240,
             servingUnit: "ml",
             isCustom: true,
-            notes: "Unsweetened apple juice"
+            notes: "Unsweetened apple juice",
+            nameFr: "Jus de Pomme",
+            nameEs: "Zumo de Manzana",
+            nameHe: "מיץ תפוחים",
+            notesFr: "Jus de pomme non sucré",
+            notesEs: "Zumo de manzana sin azúcar",
+            notesHe: "מיץ תפוחים ללא סוכר"
         ),
         
         // Cranberry Juice
@@ -382,4 +419,25 @@ struct BeverageFoodItems {
             notes: "Flavored sparkling water without sweeteners"
         )
     ]
+    
+    // Helper method to add translations to food items
+    static func addTranslations(to foodItem: FoodItem, nameFr: String, nameEs: String, nameHe: String, 
+                               notesFr: String? = nil, notesEs: String? = nil, notesHe: String? = nil) -> FoodItem {
+        return FoodItem(
+            id: foodItem.id,
+            name: foodItem.name,
+            category: foodItem.category,
+            nutritionalInfo: foodItem.nutritionalInfo,
+            servingSize: foodItem.servingSize,
+            servingUnit: foodItem.servingUnit,
+            isCustom: foodItem.isCustom,
+            notes: foodItem.notes,
+            nameFr: nameFr,
+            nameEs: nameEs,
+            nameHe: nameHe,
+            notesFr: notesFr,
+            notesEs: notesEs,
+            notesHe: notesHe
+        )
+    }
 } 

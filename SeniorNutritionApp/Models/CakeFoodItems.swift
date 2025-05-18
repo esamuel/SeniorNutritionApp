@@ -18,7 +18,13 @@ struct CakeFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Approx. values per 100 g slice"
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Cake aux Quatre-Quarts",
+            nameEs: "Bizcocho Libra",
+            nameHe: "עוגת חמאה",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
         ),
         
         // Lemon Drizzle Cake
@@ -37,7 +43,13 @@ struct CakeFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Approx. values per 100 g slice"
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Gâteau au Citron Glacé",
+            nameEs: "Bizcocho de Limón",
+            nameHe: "עוגת לימון מזוגגת",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
         ),
         
         // Carrot Cake
@@ -56,7 +68,13 @@ struct CakeFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Approx. values per 100 g slice"
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Gâteau aux Carottes",
+            nameEs: "Pastel de Zanahoria",
+            nameHe: "עוגת גזר",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
         ),
         
         // Coffee Cake (Streusel)
@@ -75,7 +93,13 @@ struct CakeFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Approx. values per 100 g slice"
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Gâteau au Café (Streusel)",
+            nameEs: "Pastel de Café (Streusel)",
+            nameHe: "עוגת קפה (שטרויזל)",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
         ),
         
         // Apple Cake (Apfelkuchen)
@@ -94,7 +118,13 @@ struct CakeFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Approx. values per 100 g slice"
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Gâteau aux Pommes (Apfelkuchen)",
+            nameEs: "Pastel de Manzana (Apfelkuchen)",
+            nameHe: "עוגת תפוחים (אפלקוכן)",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
         ),
         
         // Marble Cake
@@ -113,7 +143,13 @@ struct CakeFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Approx. values per 100 g slice"
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Gâteau Marbré",
+            nameEs: "Bizcocho Marmoleado",
+            nameHe: "עוגת שיש",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
         ),
         
         // Angel Food Cake
@@ -132,7 +168,13 @@ struct CakeFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Approx. values per 100 g slice"
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Gâteau des Anges",
+            nameEs: "Bizcocho Ángel",
+            nameHe: "עוגת מלאך",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
         ),
         
         // Victoria Sponge
@@ -151,7 +193,13 @@ struct CakeFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Approx. values per 100 g slice"
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Gâteau Victoria",
+            nameEs: "Bizcocho Victoria",
+            nameHe: "עוגת ספוג ויקטוריה",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
         ),
         
         // Fruitcake / Dundee Cake
@@ -170,7 +218,13 @@ struct CakeFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Approx. values per 100 g slice"
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Cake aux Fruits / Gâteau de Dundee",
+            nameEs: "Pastel de Frutas / Pastel Dundee",
+            nameHe: "עוגת פירות / עוגת דנדי",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
         ),
         
         // Bundt Cake (Lemon)
@@ -189,7 +243,13 @@ struct CakeFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Approx. values per 100 g slice"
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Gâteau Bundt (Citron)",
+            nameEs: "Bizcocho Bundt (Limón)",
+            nameHe: "עוגת בונדט (לימון)",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
         ),
         
         // Sachertorte
@@ -208,7 +268,13 @@ struct CakeFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Approx. values per 100 g slice"
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Sachertorte",
+            nameEs: "Sachertorte",
+            nameHe: "זאכר טורטה",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
         ),
         
         // Genoise with Berries
@@ -477,4 +543,25 @@ struct CakeFoodItems {
             notes: "Approx. values per 100 g slice"
         )
     ]
+    
+    // Helper method to add translations to food items
+    static func addTranslations(to foodItem: FoodItem, nameFr: String, nameEs: String, nameHe: String, 
+                               notesFr: String? = nil, notesEs: String? = nil, notesHe: String? = nil) -> FoodItem {
+        return FoodItem(
+            id: foodItem.id,
+            name: foodItem.name,
+            category: foodItem.category,
+            nutritionalInfo: foodItem.nutritionalInfo,
+            servingSize: foodItem.servingSize,
+            servingUnit: foodItem.servingUnit,
+            isCustom: foodItem.isCustom,
+            notes: foodItem.notes,
+            nameFr: nameFr,
+            nameEs: nameEs,
+            nameHe: nameHe,
+            notesFr: notesFr,
+            notesEs: notesEs,
+            notesHe: notesHe
+        )
+    }
 } 

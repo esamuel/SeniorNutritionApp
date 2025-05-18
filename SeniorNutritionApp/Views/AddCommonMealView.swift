@@ -82,7 +82,7 @@ struct AddCommonMealView: View {
             }
             .onChange(of: selectedFood) { oldValue, newValue in
                 if let food = newValue {
-                    mealName = food.name
+                    mealName = food.localizedName()
                     nutritionalInfo = food.nutritionalInfo
                 }
             }
@@ -119,7 +119,7 @@ struct AddCommonMealView: View {
     
     private func selectedFoodView(_ food: FoodItem) -> some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(food.name)
+            Text(food.localizedName())
                 .font(.system(size: userSettings.textSize.size, weight: .medium))
             
             HStack {
@@ -138,14 +138,32 @@ struct AddCommonMealView: View {
     }
     
     private func saveCommonMeal() {
-        let newMeal = Meal(
-            name: mealName,
-            type: selectedMealType,
-            time: Date(), // Default time, will be updated when added to daily meals
-            portion: mealPortion,
-            nutritionalInfo: nutritionalInfo,
-            notes: notes.isEmpty ? nil : notes
-        )
+        let newMeal: Meal
+        
+        if let food = selectedFood {
+            // If a food was selected, preserve all language translations
+            newMeal = Meal(
+                name: food.name,
+                nameFr: food.nameFr,
+                nameEs: food.nameEs,
+                nameHe: food.nameHe,
+                type: selectedMealType,
+                time: Date(), // Default time, will be updated when added to daily meals
+                portion: mealPortion,
+                nutritionalInfo: nutritionalInfo,
+                notes: notes.isEmpty ? nil : notes
+            )
+        } else {
+            // Manual entry without a selected food
+            newMeal = Meal(
+                name: mealName,
+                type: selectedMealType,
+                time: Date(), // Default time, will be updated when added to daily meals
+                portion: mealPortion,
+                nutritionalInfo: nutritionalInfo,
+                notes: notes.isEmpty ? nil : notes
+            )
+        }
         
         userCommonMeals.addCommonMeal(newMeal)
         presentationMode.wrappedValue.dismiss()

@@ -93,7 +93,7 @@ struct EditMealView: View {
                     }
                     if let food = selectedFood {
                         VStack(alignment: .leading, spacing: 8) {
-                            Text(food.name)
+                            Text(food.localizedName())
                                 .font(.system(size: userSettings.textSize.size, weight: .medium))
                             HStack {
                                 Text("\(Int(food.nutritionalInfo.calories)) cal")
@@ -261,7 +261,7 @@ struct EditMealView: View {
             }
             .onChange(of: selectedFood) { oldValue, newValue in
                 if let food = newValue {
-                    mealName = food.name
+                    mealName = food.localizedName()
                     originalNutritionalInfo = food.nutritionalInfo
                     nutritionalInfo = food.nutritionalInfo
                     originalPortion = .medium
@@ -321,16 +321,40 @@ struct EditMealView: View {
     }
     
     private func saveMeal() {
-        let updatedMeal = Meal(
-            id: meal.id,
-            name: mealName,
-            type: selectedMealType,
-            time: mealTime,
-            portion: mealPortion,
-            nutritionalInfo: nutritionalInfo,
-            notes: notes.isEmpty ? nil : notes,
-            imageURL: meal.imageURL
-        )
+        let updatedMeal: Meal
+        
+        if let food = selectedFood {
+            // If a food was selected, preserve all language translations
+            updatedMeal = Meal(
+                id: meal.id,
+                name: food.name,
+                nameFr: food.nameFr,
+                nameEs: food.nameEs,
+                nameHe: food.nameHe,
+                type: selectedMealType,
+                time: mealTime,
+                portion: mealPortion,
+                nutritionalInfo: nutritionalInfo,
+                notes: notes.isEmpty ? nil : notes,
+                imageURL: meal.imageURL
+            )
+        } else {
+            // Using custom name or editing existing meal
+            updatedMeal = Meal(
+                id: meal.id,
+                name: mealName,
+                nameFr: meal.nameFr,
+                nameEs: meal.nameEs,
+                nameHe: meal.nameHe,
+                type: selectedMealType,
+                time: mealTime,
+                portion: mealPortion,
+                nutritionalInfo: nutritionalInfo,
+                notes: notes.isEmpty ? nil : notes,
+                imageURL: meal.imageURL
+            )
+        }
+        
         onSave(updatedMeal)
         presentationMode.wrappedValue.dismiss()
     }

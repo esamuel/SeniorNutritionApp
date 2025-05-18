@@ -40,7 +40,13 @@ struct NewFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: false,
-            notes: "Cooked oatmeal, plain. Low GI (55). Contains avenanthramides and beta-glucan."
+            notes: "Cooked oatmeal, plain. Low GI (55). Contains avenanthramides and beta-glucan.",
+            nameFr: "Flocons d'Avoine",
+            nameEs: "Avena",
+            nameHe: "שיבולת שועל",
+            notesFr: "Flocons d'avoine cuits, nature. IG bas (55). Contient des avénanthramides et du bêta-glucane.",
+            notesEs: "Avena cocida, natural. IG bajo (55). Contiene avenantramidas y beta-glucano.",
+            notesHe: "שיבולת שועל מבושלת, טבעית. GI נמוך (55). מכיל אבננטרמידים וביתא-גלוקאן."
         ),
         
         // Cheerios
@@ -81,7 +87,13 @@ struct NewFoodItems {
             servingSize: 30,
             servingUnit: "g",
             isCustom: false,
-            notes: "Cereal with medium GI (65). Contains avenanthramides and beta-glucan. 0.3g saturated fat, 1g unsaturated fat."
+            notes: "Cereal with medium GI (65). Contains avenanthramides and beta-glucan. 0.3g saturated fat, 1g unsaturated fat.",
+            nameFr: "Cheerios",
+            nameEs: "Cheerios",
+            nameHe: "צ'יריוס",
+            notesFr: "Céréale avec IG moyen (65). Contient des avénanthramides et du bêta-glucane. 0,3g de matières grasses saturées, 1g de matières grasses insaturées.",
+            notesEs: "Cereal con IG medio (65). Contiene avenantramidas y beta-glucano. 0,3g de grasa saturada, 1g de grasa insaturada.",
+            notesHe: "דגני בוקר עם GI בינוני (65). מכיל אבננטרמידים וביתא-גלוקאן. 0.3 גרם שומן רווי, 1 גרם שומן בלתי רווי."
         ),
         
         // Whole Wheat Bread
@@ -122,7 +134,13 @@ struct NewFoodItems {
             servingSize: 30,
             servingUnit: "g",
             isCustom: false,
-            notes: "One slice of whole wheat bread. Medium-high GI (70). Contains ferulic acid and lignans. 0.2g saturated fat, 0.4g unsaturated fat."
+            notes: "One slice of whole wheat bread. Medium-high GI (70). Contains ferulic acid and lignans. 0.2g saturated fat, 0.4g unsaturated fat.",
+            nameFr: "Pain de Blé Complet",
+            nameEs: "Pan Integral de Trigo",
+            nameHe: "לחם חיטה מלאה",
+            notesFr: "Une tranche de pain de blé complet. IG moyen-élevé (70). Contient de l'acide férulique et des lignanes. 0,2g de matières grasses saturées, 0,4g de matières grasses insaturées.",
+            notesEs: "Una rebanada de pan integral de trigo. IG medio-alto (70). Contiene ácido ferúlico y lignanos. 0,2g de grasa saturada, 0,4g de grasa insaturada.",
+            notesHe: "פרוסת לחם חיטה מלאה. GI בינוני-גבוה (70). מכיל חומצה פרולית וליגנאנים. 0.2 גרם שומן רווי, 0.4 גרם שומן בלתי רווי."
         ),
         
         // Brown Rice
@@ -163,7 +181,13 @@ struct NewFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: false,
-            notes: "Cooked brown rice. Medium GI (50). Contains gamma-oryzanol and phenolic acids. 0.3g saturated fat, 1.3g unsaturated fat."
+            notes: "Cooked brown rice. Medium GI (50). Contains gamma-oryzanol and phenolic acids. 0.3g saturated fat, 1.3g unsaturated fat.",
+            nameFr: "Riz Complet",
+            nameEs: "Arroz Integral",
+            nameHe: "אורז מלא",
+            notesFr: "Riz complet cuit. IG moyen (50). Contient du gamma-oryzanol et des acides phénoliques. 0,3g de matières grasses saturées, 1,3g de matières grasses insaturées.",
+            notesEs: "Arroz integral cocido. IG medio (50). Contiene gamma-orizanol y ácidos fenólicos. 0,3g de grasa saturada, 1,3g de grasa insaturada.",
+            notesHe: "אורז מלא מבושל. GI בינוני (50). מכיל גמא-אוריזנול וחומצות פנוליות. 0.3 גרם שומן רווי, 1.3 גרם שומן בלתי רווי."
         ),
         
         // Sweet Potato
@@ -204,7 +228,13 @@ struct NewFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: false,
-            notes: "Baked sweet potato. Low-medium GI (44). Rich in beta-carotene and carotenoids."
+            notes: "Baked sweet potato. Low-medium GI (44). Rich in beta-carotene and carotenoids.",
+            nameFr: "Patate Douce",
+            nameEs: "Batata",
+            nameHe: "בטטה",
+            notesFr: "Patate douce cuite au four. IG bas-moyen (44). Riche en bêta-carotène et caroténoïdes.",
+            notesEs: "Batata horneada. IG bajo-medio (44). Rica en betacaroteno y carotenoides.",
+            notesHe: "בטטה אפויה. GI נמוך-בינוני (44). עשירה בבטא-קרוטן וקרוטנואידים."
         ),
         
         // Broccoli - updated entry
@@ -245,7 +275,13 @@ struct NewFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: false,
-            notes: "Cooked broccoli. Very low GI (10). Contains sulforaphane and glucosinolates."
+            notes: "Cooked broccoli. Very low GI (10). Contains sulforaphane and glucosinolates.",
+            nameFr: "Brocoli",
+            nameEs: "Brócoli",
+            nameHe: "ברוקולי",
+            notesFr: "Brocoli cuit. IG très bas (10). Contient du sulforaphane et des glucosinolates.",
+            notesEs: "Brócoli cocido. IG muy bajo (10). Contiene sulforafano y glucosinolatos.",
+            notesHe: "ברוקולי מבושל. GI נמוך מאוד (10). מכיל סולפורפאן וגלוקוזינולאטים."
         ),
         
         // Spinach
@@ -286,7 +322,13 @@ struct NewFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: false,
-            notes: "Cooked spinach. Very low GI (10). Rich in lutein, zeaxanthin, and carotenoids."
+            notes: "Cooked spinach. Very low GI (10). Rich in lutein, zeaxanthin, and carotenoids.",
+            nameFr: "Épinards",
+            nameEs: "Espinacas",
+            nameHe: "תרד",
+            notesFr: "Épinards cuits. IG très bas (10). Riche en lutéine, zéaxanthine et caroténoïdes.",
+            notesEs: "Espinacas cocidas. IG muy bajo (10). Ricas en luteína, zeaxantina y carotenoides.",
+            notesHe: "תרד מבושל. GI נמוך מאוד (10). עשיר בלוטאין, זיאקסנטין וקרוטנואידים."
         ),
         
         // Blueberries
@@ -327,7 +369,13 @@ struct NewFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: false,
-            notes: "Fresh blueberries. Medium GI (53). Rich in anthocyanins."
+            notes: "Fresh blueberries. Medium GI (53). Rich in anthocyanins.",
+            nameFr: "Myrtilles",
+            nameEs: "Arándanos",
+            nameHe: "אוכמניות",
+            notesFr: "Myrtilles fraîches. IG moyen (53). Riches en anthocyanes.",
+            notesEs: "Arándanos frescos. IG medio (53). Ricos en antocianinas.",
+            notesHe: "אוכמניות טריות. GI בינוני (53). עשירות באנתוציאנינים."
         ),
         
         // Almonds
@@ -368,7 +416,13 @@ struct NewFoodItems {
             servingSize: 30,
             servingUnit: "g",
             isCustom: false,
-            notes: "Raw almonds (about 23 nuts). Zero GI. Fat breakdown: 9g monounsaturated, 4g polyunsaturated, 1g saturated. Rich in vitamin E and polyphenols."
+            notes: "Raw almonds (about 23 nuts). Zero GI. Fat breakdown: 9g monounsaturated, 4g polyunsaturated, 1g saturated. Rich in vitamin E and polyphenols.",
+            nameFr: "Amandes",
+            nameEs: "Almendras",
+            nameHe: "שקדים",
+            notesFr: "Amandes crues (environ 23 noix). IG zéro. Répartition des matières grasses: 9g mono-insaturées, 4g polyinsaturées, 1g saturées. Riche en vitamine E et polyphénols.",
+            notesEs: "Almendras crudas (aproximadamente 23 unidades). IG cero. Distribución de grasas: 9g monoinsaturadas, 4g poliinsaturadas, 1g saturadas. Rica en vitamina E y polifenoles.",
+            notesHe: "שקדים טבעיים (כ-23 יחידות). GI אפס. הרכב שומנים: 9 גרם חד בלתי רווי, 4 גרם רב בלתי רווי, 1 גרם רווי. עשיר בויטמין E ופוליפנולים."
         ),
         
         // Olive Oil
@@ -409,7 +463,13 @@ struct NewFoodItems {
             servingSize: 15,
             servingUnit: "ml",
             isCustom: false,
-            notes: "Extra virgin olive oil (1 tbsp). Zero GI. Fat breakdown: 10g monounsaturated, 2g saturated, 2g polyunsaturated. Contains oleocanthal and polyphenols."
+            notes: "Extra virgin olive oil (1 tbsp). Zero GI. Fat breakdown: 10g monounsaturated, 2g saturated, 2g polyunsaturated. Contains oleocanthal and polyphenols.",
+            nameFr: "Huile d'Olive",
+            nameEs: "Aceite de Oliva",
+            nameHe: "שמן זית",
+            notesFr: "Huile d'olive extra vierge (1 cuillère à soupe). IG zéro. Répartition des matières grasses: 10g mono-insaturées, 2g saturées, 2g polyinsaturées. Contient de l'oléocanthal et des polyphénols.",
+            notesEs: "Aceite de oliva virgen extra (1 cucharada). IG cero. Distribución de grasas: 10g monoinsaturadas, 2g saturadas, 2g poliinsaturadas. Contiene oleocantal y polifenoles.",
+            notesHe: "שמן זית כתית מעולה (כף אחת). GI אפס. הרכב שומנים: 10 גרם חד בלתי רווי, 2 גרם רווי, 2 גרם רב בלתי רווי. מכיל אולאוקנטל ופוליפנולים."
         ),
         
         // Greek Yogurt
@@ -450,7 +510,13 @@ struct NewFoodItems {
             servingSize: 170,
             servingUnit: "g",
             isCustom: false,
-            notes: "Plain Greek yogurt (container). Low GI (30). Fat breakdown: 2.5g saturated, 1.5g unsaturated. Contains vitamins C, E and probiotics."
+            notes: "Plain Greek yogurt (container). Low GI (30). Fat breakdown: 2.5g saturated, 1.5g unsaturated. Contains vitamins C, E and probiotics.",
+            nameFr: "Yaourt Grec",
+            nameEs: "Yogur Griego",
+            nameHe: "יוגורט יווני",
+            notesFr: "Yaourt grec nature (pot). IG bas (30). Répartition des matières grasses: 2,5g saturées, 1,5g insaturées. Contient des vitamines C, E et des probiotiques.",
+            notesEs: "Yogur griego natural (envase). IG bajo (30). Distribución de grasas: 2,5g saturadas, 1,5g insaturadas. Contiene vitaminas C, E y probióticos.",
+            notesHe: "יוגורט יווני טבעי (מיכל). GI נמוך (30). הרכב שומנים: 2.5 גרם רווי, 1.5 גרם בלתי רווי. מכיל ויטמינים C, E ופרוביוטיקה."
         ),
         
         // Egg
@@ -491,7 +557,13 @@ struct NewFoodItems {
             servingSize: 50,
             servingUnit: "g",
             isCustom: false,
-            notes: "One large egg. Zero GI. Fat breakdown: 1.6g saturated, 2.7g unsaturated. Contains lutein, zeaxanthin, and choline."
+            notes: "One large egg. Zero GI. Fat breakdown: 1.6g saturated, 2.7g unsaturated. Contains lutein, zeaxanthin, and choline.",
+            nameFr: "Œuf",
+            nameEs: "Huevo",
+            nameHe: "ביצה",
+            notesFr: "Un gros œuf. IG zéro. Répartition des matières grasses: 1,6g saturées, 2,7g insaturées. Contient de la lutéine, de la zéaxanthine et de la choline.",
+            notesEs: "Un huevo grande. IG cero. Distribución de grasas: 1,6g saturadas, 2,7g insaturadas. Contiene luteína, zeaxantina y colina.",
+            notesHe: "ביצה גדולה אחת. GI אפס. הרכב שומנים: 1.6 גרם רווי, 2.7 גרם בלתי רווי. מכיל לוטאין, זיאקסנטין וכולין."
         ),
         
         // Chicken Breast
@@ -532,7 +604,13 @@ struct NewFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: false,
-            notes: "Skinless, boneless chicken breast. Zero GI. Fat breakdown: 0.9g saturated, 1.7g unsaturated. Contains selenium and carnosine."
+            notes: "Skinless, boneless chicken breast. Zero GI. Fat breakdown: 0.9g saturated, 1.7g unsaturated. Contains selenium and carnosine.",
+            nameFr: "Blanc de Poulet",
+            nameEs: "Pechuga de Pollo",
+            nameHe: "חזה עוף",
+            notesFr: "Blanc de poulet sans peau ni os. IG zéro. Répartition des matières grasses: 0,9g saturées, 1,7g insaturées. Contient du sélénium et de la carnosine.",
+            notesEs: "Pechuga de pollo sin piel ni hueso. IG cero. Distribución de grasas: 0,9g saturadas, 1,7g insaturadas. Contiene selenio y carnosina.",
+            notesHe: "חזה עוף ללא עור ועצמות. GI אפס. הרכב שומנים: 0.9 גרם רווי, 1.7 גרם בלתי רווי. מכיל סלניום וקרנוזין."
         ),
         
         // Salmon
@@ -573,7 +651,13 @@ struct NewFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: false,
-            notes: "Wild-caught salmon fillet. Zero GI. Fat breakdown: 2g saturated, 7g unsaturated. Contains astaxanthin and omega-3 fatty acids."
+            notes: "Wild-caught salmon fillet. Zero GI. Fat breakdown: 2g saturated, 7g unsaturated. Contains astaxanthin and omega-3 fatty acids.",
+            nameFr: "Saumon",
+            nameEs: "Salmón",
+            nameHe: "סלמון",
+            notesFr: "Filet de saumon sauvage. IG zéro. Répartition des matières grasses: 2g saturées, 7g insaturées. Contient de l'astaxanthine et des acides gras oméga-3.",
+            notesEs: "Filete de salmón salvaje. IG cero. Distribución de grasas: 2g saturadas, 7g insaturadas. Contiene astaxantina y ácidos grasos omega-3.",
+            notesHe: "פילה סלמון מדגה טבעי. GI אפס. הרכב שומנים: 2 גרם רווי, 7 גרם בלתי רווי. מכיל אסטקסנטין וחומצות שומן אומגה-3."
         ),
         
         // Black Beans
@@ -614,7 +698,13 @@ struct NewFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: false,
-            notes: "Cooked black beans. Low GI (30). Contains anthocyanins and flavonoids."
+            notes: "Cooked black beans. Low GI (30). Contains anthocyanins and flavonoids.",
+            nameFr: "Haricots Noirs",
+            nameEs: "Frijoles Negros",
+            nameHe: "שעועית שחורה",
+            notesFr: "Haricots noirs cuits. IG bas (30). Contient des anthocyanes et des flavonoïdes.",
+            notesEs: "Frijoles negros cocidos. IG bajo (30). Contiene antocianinas y flavonoides.",
+            notesHe: "שעועית שחורה מבושלת. GI נמוך (30). מכיל אנתוציאנינים ופלבונואידים."
         ),
         
         // Ensure Original
@@ -655,7 +745,13 @@ struct NewFoodItems {
             servingSize: 237,
             servingUnit: "ml",
             isCustom: false,
-            notes: "Nutritional shake (1 bottle). Medium-high GI (65). Fat breakdown: 1g saturated, 5g unsaturated. Contains vitamins C, E."
+            notes: "Nutritional shake (1 bottle). Medium-high GI (65). Fat breakdown: 1g saturated, 5g unsaturated. Contains vitamins C, E.",
+            nameFr: "Ensure Original",
+            nameEs: "Ensure Original",
+            nameHe: "אנשור אוריג'ינל",
+            notesFr: "Boisson nutritionnelle (1 bouteille). IG moyen-élevé (65). Répartition des matières grasses: 1g saturées, 5g insaturées. Contient des vitamines C, E.",
+            notesEs: "Batido nutricional (1 botella). IG medio-alto (65). Distribución de grasas: 1g saturadas, 5g insaturadas. Contiene vitaminas C, E.",
+            notesHe: "משקה תזונתי (בקבוק אחד). GI בינוני-גבוה (65). הרכב שומנים: 1 גרם רווי, 5 גרם בלתי רווי. מכיל ויטמינים C, E."
         ),
         
         // Canned Tuna
@@ -696,7 +792,13 @@ struct NewFoodItems {
             servingSize: 85,
             servingUnit: "g",
             isCustom: false,
-            notes: "Light tuna in water (1 can). Zero GI. Fat breakdown: 0.2g saturated, 0.8g unsaturated. Contains selenium."
+            notes: "Light tuna in water (1 can). Zero GI. Fat breakdown: 0.2g saturated, 0.8g unsaturated. Contains selenium.",
+            nameFr: "Thon en Conserve",
+            nameEs: "Atún en Lata",
+            nameHe: "טונה בקופסה",
+            notesFr: "Thon pâle au naturel (1 boîte). IG zéro. Répartition des matières grasses: 0,2g saturées, 0,8g insaturées. Contient du sélénium.",
+            notesEs: "Atún claro en agua (1 lata). IG cero. Distribución de grasas: 0,2g saturadas, 0,8g insaturadas. Contiene selenio.",
+            notesHe: "טונה לייט במים (קופסה אחת). GI אפס. הרכב שומנים: 0.2 גרם רווי, 0.8 גרם בלתי רווי. מכיל סלניום."
         ),
         
         // Cottage Cheese
@@ -737,7 +839,13 @@ struct NewFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: false,
-            notes: "Low-fat cottage cheese. Low GI (30). Fat breakdown: 1.3g saturated, 0.7g unsaturated. Contains vitamin A and selenium."
+            notes: "Low-fat cottage cheese. Low GI (30). Fat breakdown: 1.3g saturated, 0.7g unsaturated. Contains vitamin A and selenium.",
+            nameFr: "Fromage Cottage",
+            nameEs: "Queso Cottage",
+            nameHe: "גבינת קוטג'",
+            notesFr: "Fromage cottage allégé. IG bas (30). Répartition des matières grasses: 1,3g saturées, 0,7g insaturées. Contient de la vitamine A et du sélénium.",
+            notesEs: "Queso cottage bajo en grasa. IG bajo (30). Distribución de grasas: 1,3g saturadas, 0,7g insaturadas. Contiene vitamina A y selenio.",
+            notesHe: "גבינת קוטג' דלת שומן. GI נמוך (30). הרכב שומנים: 1.3 גרם רווי, 0.7 גרם בלתי רווי. מכיל ויטמין A וסלניום."
         ),
         
         // Chicken Noodle Soup
@@ -778,7 +886,13 @@ struct NewFoodItems {
             servingSize: 240,
             servingUnit: "ml",
             isCustom: false,
-            notes: "Canned soup (1 cup). Medium GI (60). Fat breakdown: 0.5g saturated, 1.5g unsaturated. Contains small amounts of vitamin A."
+            notes: "Canned soup (1 cup). Medium GI (60). Fat breakdown: 0.5g saturated, 1.5g unsaturated. Contains small amounts of vitamin A.",
+            nameFr: "Soupe au Poulet et Nouilles",
+            nameEs: "Sopa de Pollo con Fideos",
+            nameHe: "מרק עוף עם אטריות",
+            notesFr: "Soupe en conserve (1 tasse). IG moyen (60). Répartition des matières grasses: 0,5g saturées, 1,5g insaturées. Contient de petites quantités de vitamine A.",
+            notesEs: "Sopa enlatada (1 taza). IG medio (60). Distribución de grasas: 0,5g saturadas, 1,5g insaturadas. Contiene pequeñas cantidades de vitamina A.",
+            notesHe: "מרק מקופסה (כוס אחת). GI בינוני (60). הרכב שומנים: 0.5 גרם רווי, 1.5 גרם בלתי רווי. מכיל כמויות קטנות של ויטמין A."
         ),
         
         // Banana
@@ -819,7 +933,587 @@ struct NewFoodItems {
             servingSize: 120,
             servingUnit: "g",
             isCustom: false,
-            notes: "Medium banana. Medium GI (51). Contains dopamine, catechins, and polyphenols."
+            notes: "Medium banana. Medium GI (51). Contains dopamine, catechins, and polyphenols.",
+            nameFr: "Banane",
+            nameEs: "Plátano",
+            nameHe: "בננה",
+            notesFr: "Banane moyenne. IG moyen (51). Contient de la dopamine, des catéchines et des polyphénols.",
+            notesEs: "Plátano mediano. IG medio (51). Contiene dopamina, catequinas y polifenoles.",
+            notesHe: "בננה בינונית. GI בינוני (51). מכיל דופמין, קטכינים ופוליפנולים."
+        ),
+        
+        // MARK: - Cake Food Items
+        
+        // Pound Cake
+        FoodItem(
+            id: UUID(),
+            name: "Pound Cake",
+            category: .snacks,
+            nutritionalInfo: NutritionalInfo(
+                calories: 420,
+                protein: 5,
+                carbohydrates: 50,
+                fat: 22,
+                fiber: 0.6,
+                sugar: 30
+            ),
+            servingSize: 100,
+            servingUnit: "g",
+            isCustom: true,
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Cake aux Quatre-Quarts",
+            nameEs: "Bizcocho Libra",
+            nameHe: "עוגת חמאה",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
+        ),
+        
+        // Lemon Drizzle Cake
+        FoodItem(
+            id: UUID(),
+            name: "Lemon Drizzle Cake",
+            category: .snacks,
+            nutritionalInfo: NutritionalInfo(
+                calories: 380,
+                protein: 4,
+                carbohydrates: 57,
+                fat: 15,
+                fiber: 0.7,
+                sugar: 35
+            ),
+            servingSize: 100,
+            servingUnit: "g",
+            isCustom: true,
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Gâteau au Citron Glacé",
+            nameEs: "Bizcocho de Limón",
+            nameHe: "עוגת לימון מזוגגת",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
+        ),
+        
+        // Carrot Cake
+        FoodItem(
+            id: UUID(),
+            name: "Carrot Cake",
+            category: .snacks,
+            nutritionalInfo: NutritionalInfo(
+                calories: 410,
+                protein: 5,
+                carbohydrates: 50,
+                fat: 22,
+                fiber: 1.5,
+                sugar: 34
+            ),
+            servingSize: 100,
+            servingUnit: "g",
+            isCustom: true,
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Gâteau aux Carottes",
+            nameEs: "Pastel de Zanahoria",
+            nameHe: "עוגת גזר",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
+        ),
+        
+        // Coffee Cake (Streusel)
+        FoodItem(
+            id: UUID(),
+            name: "Coffee Cake (Streusel)",
+            category: .snacks,
+            nutritionalInfo: NutritionalInfo(
+                calories: 390,
+                protein: 4,
+                carbohydrates: 55,
+                fat: 17,
+                fiber: 0.8,
+                sugar: 32
+            ),
+            servingSize: 100,
+            servingUnit: "g",
+            isCustom: true,
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Gâteau au Café (Streusel)",
+            nameEs: "Pastel de Café (Streusel)",
+            nameHe: "עוגת קפה (שטרויזל)",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
+        ),
+        
+        // Apple Cake (Apfelkuchen)
+        FoodItem(
+            id: UUID(),
+            name: "Apple Cake (Apfelkuchen)",
+            category: .snacks,
+            nutritionalInfo: NutritionalInfo(
+                calories: 300,
+                protein: 3,
+                carbohydrates: 45,
+                fat: 11,
+                fiber: 1.5,
+                sugar: 28
+            ),
+            servingSize: 100,
+            servingUnit: "g",
+            isCustom: true,
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Gâteau aux Pommes (Apfelkuchen)",
+            nameEs: "Pastel de Manzana (Apfelkuchen)",
+            nameHe: "עוגת תפוחים (אפלקוכן)",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
+        ),
+        
+        // MARK: - Dairy Food Items
+        
+        // Whole Milk
+        FoodItem(
+            id: UUID(),
+            name: "Whole Milk",
+            category: .dairy,
+            nutritionalInfo: NutritionalInfo(
+                calories: 61,
+                protein: 3.2,
+                carbohydrates: 4.8,
+                fat: 3.3,
+                fiber: 0.0,
+                sugar: 5.0
+            ),
+            servingSize: 100,
+            servingUnit: "g",
+            isCustom: true,
+            notes: "Standard whole cow's milk",
+            nameFr: "Lait Entier",
+            nameEs: "Leche Entera",
+            nameHe: "חלב מלא",
+            notesFr: "Lait de vache entier standard",
+            notesEs: "Leche entera estándar de vaca",
+            notesHe: "חלב פרה מלא רגיל"
+        ),
+        
+        // Skim Milk
+        FoodItem(
+            id: UUID(),
+            name: "Skim Milk",
+            category: .dairy,
+            nutritionalInfo: NutritionalInfo(
+                calories: 34,
+                protein: 3.4,
+                carbohydrates: 5.0,
+                fat: 0.1,
+                fiber: 0.0,
+                sugar: 5.0
+            ),
+            servingSize: 100,
+            servingUnit: "g",
+            isCustom: true,
+            notes: "Fat-free cow's milk",
+            nameFr: "Lait Écrémé",
+            nameEs: "Leche Desnatada",
+            nameHe: "חלב דל שומן",
+            notesFr: "Lait de vache sans matière grasse",
+            notesEs: "Leche de vaca sin grasa",
+            notesHe: "חלב פרה נטול שומן"
+        ),
+        
+        // Lactose-Free Milk
+        FoodItem(
+            id: UUID(),
+            name: "Lactose-Free Milk",
+            category: .dairy,
+            nutritionalInfo: NutritionalInfo(
+                calories: 42,
+                protein: 3.3,
+                carbohydrates: 5.0,
+                fat: 1.0,
+                fiber: 0.0,
+                sugar: 5.0
+            ),
+            servingSize: 100,
+            servingUnit: "g",
+            isCustom: true,
+            notes: "Milk with lactose removed",
+            nameFr: "Lait Sans Lactose",
+            nameEs: "Leche Sin Lactosa",
+            nameHe: "חלב ללא לקטוז",
+            notesFr: "Lait dont le lactose a été retiré",
+            notesEs: "Leche con lactosa eliminada",
+            notesHe: "חלב שהוסר ממנו לקטוז"
+        ),
+        
+        // Greek Yogurt
+        FoodItem(
+            id: UUID(),
+            name: "Greek Yogurt (Nonfat)",
+            category: .dairy,
+            nutritionalInfo: NutritionalInfo(
+                calories: 59,
+                protein: 10.0,
+                carbohydrates: 3.6,
+                fat: 0.4,
+                fiber: 0.0,
+                sugar: 3.2
+            ),
+            servingSize: 100,
+            servingUnit: "g",
+            isCustom: true,
+            notes: "Plain nonfat Greek yogurt",
+            nameFr: "Yaourt Grec (Sans Matière Grasse)",
+            nameEs: "Yogur Griego (Sin Grasa)",
+            nameHe: "יוגורט יווני (ללא שומן)",
+            notesFr: "Yaourt grec nature sans matière grasse",
+            notesEs: "Yogur griego natural sin grasa",
+            notesHe: "יוגורט יווני טבעי ללא שומן"
+        ),
+        
+        // Regular Yogurt
+        FoodItem(
+            id: UUID(),
+            name: "Regular Yogurt",
+            category: .dairy,
+            nutritionalInfo: NutritionalInfo(
+                calories: 61,
+                protein: 3.5,
+                carbohydrates: 4.7,
+                fat: 3.3,
+                fiber: 0.0,
+                sugar: 4.7
+            ),
+            servingSize: 100,
+            servingUnit: "g",
+            isCustom: true,
+            notes: "Plain whole milk yogurt",
+            nameFr: "Yaourt Ordinaire",
+            nameEs: "Yogur Regular",
+            nameHe: "יוגורט רגיל",
+            notesFr: "Yaourt nature au lait entier",
+            notesEs: "Yogur natural de leche entera",
+            notesHe: "יוגורט טבעי מחלב מלא"
+        ),
+        
+        // Cottage Cheese
+        FoodItem(
+            id: UUID(),
+            name: "Cottage Cheese (Low-fat)",
+            category: .dairy,
+            nutritionalInfo: NutritionalInfo(
+                calories: 98,
+                protein: 11.1,
+                carbohydrates: 3.4,
+                fat: 4.3,
+                fiber: 0.0,
+                sugar: 2.7
+            ),
+            servingSize: 100,
+            servingUnit: "g",
+            isCustom: true,
+            notes: "Low-fat cottage cheese",
+            nameFr: "Fromage Cottage (Allégé)",
+            nameEs: "Queso Cottage (Bajo en Grasa)",
+            nameHe: "גבינת קוטג' (דלת שומן)",
+            notesFr: "Fromage cottage allégé",
+            notesEs: "Queso cottage bajo en grasa",
+            notesHe: "גבינת קוטג' דלת שומן"
+        ),
+        
+        // MARK: - Beverage Food Items
+        
+        // Water
+        FoodItem(
+            id: UUID(),
+            name: "Water",
+            category: .beverages,
+            nutritionalInfo: NutritionalInfo(
+                calories: 0,
+                protein: 0,
+                carbohydrates: 0,
+                fat: 0,
+                fiber: 0,
+                sugar: 0
+            ),
+            servingSize: 240,
+            servingUnit: "ml",
+            isCustom: true,
+            notes: "Plain drinking water",
+            nameFr: "Eau",
+            nameEs: "Agua",
+            nameHe: "מים",
+            notesFr: "Eau potable ordinaire",
+            notesEs: "Agua potable simple",
+            notesHe: "מי שתייה רגילים"
+        ),
+        
+        // Coffee
+        FoodItem(
+            id: UUID(),
+            name: "Coffee",
+            category: .beverages,
+            nutritionalInfo: NutritionalInfo(
+                calories: 2,
+                protein: 0.3,
+                carbohydrates: 0,
+                fat: 0,
+                fiber: 0,
+                sugar: 0
+            ),
+            servingSize: 240,
+            servingUnit: "ml",
+            isCustom: true,
+            notes: "Black coffee without sugar",
+            nameFr: "Café",
+            nameEs: "Café",
+            nameHe: "קפה",
+            notesFr: "Café noir sans sucre",
+            notesEs: "Café negro sin azúcar",
+            notesHe: "קפה שחור ללא סוכר"
+        ),
+        
+        // Green Tea
+        FoodItem(
+            id: UUID(),
+            name: "Green Tea",
+            category: .beverages,
+            nutritionalInfo: NutritionalInfo(
+                calories: 2,
+                protein: 0,
+                carbohydrates: 0.5,
+                fat: 0,
+                fiber: 0,
+                sugar: 0
+            ),
+            servingSize: 240,
+            servingUnit: "ml",
+            isCustom: true,
+            notes: "Unsweetened green tea",
+            nameFr: "Thé Vert",
+            nameEs: "Té Verde",
+            nameHe: "תה ירוק",
+            notesFr: "Thé vert non sucré",
+            notesEs: "Té verde sin azúcar",
+            notesHe: "תה ירוק ללא סוכר"
+        ),
+        
+        // Black Tea
+        FoodItem(
+            id: UUID(),
+            name: "Black Tea",
+            category: .beverages,
+            nutritionalInfo: NutritionalInfo(
+                calories: 2,
+                protein: 0,
+                carbohydrates: 0.5,
+                fat: 0,
+                fiber: 0,
+                sugar: 0
+            ),
+            servingSize: 240,
+            servingUnit: "ml",
+            isCustom: true,
+            notes: "Unsweetened black tea",
+            nameFr: "Thé Noir",
+            nameEs: "Té Negro",
+            nameHe: "תה שחור",
+            notesFr: "Thé noir non sucré",
+            notesEs: "Té negro sin azúcar",
+            notesHe: "תה שחור ללא סוכר"
+        ),
+        
+        // Orange Juice
+        FoodItem(
+            id: UUID(),
+            name: "Orange Juice",
+            category: .beverages,
+            nutritionalInfo: NutritionalInfo(
+                calories: 112,
+                protein: 1.7,
+                carbohydrates: 25.8,
+                fat: 0.5,
+                fiber: 0.5,
+                sugar: 20.8
+            ),
+            servingSize: 240,
+            servingUnit: "ml",
+            isCustom: true,
+            notes: "Fresh squeezed orange juice",
+            nameFr: "Jus d'Orange",
+            nameEs: "Zumo de Naranja",
+            nameHe: "מיץ תפוזים",
+            notesFr: "Jus d'orange fraîchement pressé",
+            notesEs: "Zumo de naranja recién exprimido",
+            notesHe: "מיץ תפוזים סחוט טרי"
+        ),
+        
+        // MARK: - Bread and Sandwich Food Items
+        
+        // Whole Wheat Bread
+        FoodItem(
+            id: UUID(),
+            name: "Whole Wheat Bread",
+            category: .grains,
+            nutritionalInfo: NutritionalInfo(
+                calories: 247,
+                protein: 13,
+                carbohydrates: 41,
+                fat: 4,
+                fiber: 7,
+                sugar: 5
+            ),
+            servingSize: 100,
+            servingUnit: "g",
+            isCustom: true,
+            notes: "Average nutrition per 100 g loaf slice",
+            nameFr: "Pain de Blé Complet",
+            nameEs: "Pan Integral de Trigo",
+            nameHe: "לחם חיטה מלאה",
+            notesFr: "Valeur nutritionnelle moyenne pour 100 g de tranche",
+            notesEs: "Nutrición promedio por 100 g de rebanada",
+            notesHe: "ערך תזונתי ממוצע ל-100 גרם פרוסה"
+        ),
+        
+        // White Bread
+        FoodItem(
+            id: UUID(),
+            name: "White Bread",
+            category: .grains,
+            nutritionalInfo: NutritionalInfo(
+                calories: 265,
+                protein: 9,
+                carbohydrates: 49,
+                fat: 3.2,
+                fiber: 2.7,
+                sugar: 5
+            ),
+            servingSize: 100,
+            servingUnit: "g",
+            isCustom: true,
+            notes: "Standard enriched white loaf",
+            nameFr: "Pain Blanc",
+            nameEs: "Pan Blanco",
+            nameHe: "לחם לבן",
+            notesFr: "Pain blanc enrichi standard",
+            notesEs: "Pan blanco enriquecido estándar",
+            notesHe: "כיכר לחם לבן מועשר סטנדרטי"
+        ),
+        
+        // Sourdough Bread
+        FoodItem(
+            id: UUID(),
+            name: "Sourdough Bread",
+            category: .grains,
+            nutritionalInfo: NutritionalInfo(
+                calories: 240,
+                protein: 8,
+                carbohydrates: 47,
+                fat: 1.5,
+                fiber: 2.9,
+                sugar: 2
+            ),
+            servingSize: 100,
+            servingUnit: "g",
+            isCustom: true,
+            notes: "Naturally leavened wheat loaf",
+            nameFr: "Pain au Levain",
+            nameEs: "Pan de Masa Madre",
+            nameHe: "לחם מחמצת",
+            notesFr: "Pain de blé à levain naturel",
+            notesEs: "Pan de trigo con levadura natural",
+            notesHe: "כיכר חיטה מותססת בטבעיות"
+        ),
+        
+        // Rye Bread
+        FoodItem(
+            id: UUID(),
+            name: "Rye Bread",
+            category: .grains,
+            nutritionalInfo: NutritionalInfo(
+                calories: 259,
+                protein: 9,
+                carbohydrates: 48,
+                fat: 3.3,
+                fiber: 5.8,
+                sugar: 4
+            ),
+            servingSize: 100,
+            servingUnit: "g",
+            isCustom: true,
+            notes: "Medium‐dark rye",
+            nameFr: "Pain de Seigle",
+            nameEs: "Pan de Centeno",
+            nameHe: "לחם שיפון",
+            notesFr: "Seigle moyen-foncé",
+            notesEs: "Centeno medio-oscuro",
+            notesHe: "שיפון בינוני-כהה"
+        ),
+        
+        // Multigrain Bread
+        FoodItem(
+            id: UUID(),
+            name: "Multigrain Bread",
+            category: .grains,
+            nutritionalInfo: NutritionalInfo(
+                calories: 250,
+                protein: 12,
+                carbohydrates: 42,
+                fat: 4.5,
+                fiber: 6,
+                sugar: 4
+            ),
+            servingSize: 100,
+            servingUnit: "g",
+            isCustom: true,
+            notes: "Blend of several whole grains",
+            nameFr: "Pain Multicéréales",
+            nameEs: "Pan Multigrano",
+            nameHe: "לחם רב-דגנים",
+            notesFr: "Mélange de plusieurs céréales complètes",
+            notesEs: "Mezcla de varios granos enteros",
+            notesHe: "תערובת של מספר דגנים מלאים"
         )
     ]
+    
+    // Helper method to add new food items
+    static func addFood(name: String, category: FoodCategory, nutritionalInfo: NutritionalInfo, servingSize: Double, servingUnit: String, notes: String? = nil) -> FoodItem {
+        return FoodItem(
+            id: UUID(),
+            name: name,
+            category: category,
+            nutritionalInfo: nutritionalInfo,
+            servingSize: servingSize,
+            servingUnit: servingUnit,
+            isCustom: true,
+            notes: notes,
+            nameFr: nil,
+            nameEs: nil,
+            nameHe: nil,
+            notesFr: nil,
+            notesEs: nil,
+            notesHe: nil
+        )
+    }
+    
+    // Helper method to add translations to food items
+    static func addTranslations(to foodItem: FoodItem, nameFr: String, nameEs: String, nameHe: String, 
+                               notesFr: String? = nil, notesEs: String? = nil, notesHe: String? = nil) -> FoodItem {
+        return FoodItem(
+            id: foodItem.id,
+            name: foodItem.name,
+            category: foodItem.category,
+            nutritionalInfo: foodItem.nutritionalInfo,
+            servingSize: foodItem.servingSize,
+            servingUnit: foodItem.servingUnit,
+            isCustom: foodItem.isCustom,
+            notes: foodItem.notes,
+            nameFr: nameFr,
+            nameEs: nameEs,
+            nameHe: nameHe,
+            notesFr: notesFr,
+            notesEs: notesEs,
+            notesHe: notesHe
+        )
+    }
 } 

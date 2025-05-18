@@ -18,7 +18,13 @@ struct DairyFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Standard whole cow's milk"
+            notes: "Standard whole cow's milk",
+            nameFr: "Lait Entier",
+            nameEs: "Leche Entera",
+            nameHe: "חלב מלא",
+            notesFr: "Lait de vache entier standard",
+            notesEs: "Leche entera estándar de vaca",
+            notesHe: "חלב פרה מלא רגיל"
         ),
         
         // Skim Milk
@@ -37,7 +43,13 @@ struct DairyFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Fat-free cow's milk"
+            notes: "Fat-free cow's milk",
+            nameFr: "Lait Écrémé",
+            nameEs: "Leche Desnatada",
+            nameHe: "חלב דל שומן",
+            notesFr: "Lait de vache sans matière grasse",
+            notesEs: "Leche de vaca sin grasa",
+            notesHe: "חלב פרה נטול שומן"
         ),
         
         // Lactose-Free Milk
@@ -56,7 +68,13 @@ struct DairyFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Milk with lactose removed"
+            notes: "Milk with lactose removed",
+            nameFr: "Lait Sans Lactose",
+            nameEs: "Leche Sin Lactosa",
+            nameHe: "חלב ללא לקטוז",
+            notesFr: "Lait dont le lactose a été retiré",
+            notesEs: "Leche con lactosa eliminada",
+            notesHe: "חלב שהוסר ממנו לקטוז"
         ),
         
         // Greek Yogurt
@@ -75,7 +93,13 @@ struct DairyFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Plain nonfat Greek yogurt"
+            notes: "Plain nonfat Greek yogurt",
+            nameFr: "Yaourt Grec (Sans Matière Grasse)",
+            nameEs: "Yogur Griego (Sin Grasa)",
+            nameHe: "יוגורט יווני (ללא שומן)",
+            notesFr: "Yaourt grec nature sans matière grasse",
+            notesEs: "Yogur griego natural sin grasa",
+            notesHe: "יוגורט יווני טבעי ללא שומן"
         ),
         
         // Regular Yogurt
@@ -94,7 +118,13 @@ struct DairyFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Plain whole milk yogurt"
+            notes: "Plain whole milk yogurt",
+            nameFr: "Yaourt Ordinaire",
+            nameEs: "Yogur Regular",
+            nameHe: "יוגורט רגיל",
+            notesFr: "Yaourt nature au lait entier",
+            notesEs: "Yogur natural de leche entera",
+            notesHe: "יוגורט טבעי מחלב מלא"
         ),
         
         // Cottage Cheese
@@ -113,7 +143,13 @@ struct DairyFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Low-fat cottage cheese"
+            notes: "Low-fat cottage cheese",
+            nameFr: "Fromage Cottage (Allégé)",
+            nameEs: "Queso Cottage (Bajo en Grasa)",
+            nameHe: "גבינת קוטג' (דלת שומן)",
+            notesFr: "Fromage cottage allégé",
+            notesEs: "Queso cottage bajo en grasa",
+            notesHe: "גבינת קוטג' דלת שומן"
         ),
         
         // Cheddar Cheese
@@ -132,7 +168,13 @@ struct DairyFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Hard aged cheese"
+            notes: "Hard aged cheese",
+            nameFr: "Fromage Cheddar",
+            nameEs: "Queso Cheddar",
+            nameHe: "גבינת צ'דר",
+            notesFr: "Fromage dur affiné",
+            notesEs: "Queso duro añejado",
+            notesHe: "גבינה קשה מיושנת"
         ),
         
         // Mozzarella Cheese
@@ -151,7 +193,13 @@ struct DairyFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Part-skim mozzarella"
+            notes: "Part-skim mozzarella",
+            nameFr: "Fromage Mozzarella",
+            nameEs: "Queso Mozzarella",
+            nameHe: "גבינת מוצרלה",
+            notesFr: "Mozzarella partiellement écrémée",
+            notesEs: "Mozzarella parcialmente descremada",
+            notesHe: "מוצרלה דלת שומן"
         ),
         
         // Parmesan Cheese
@@ -170,7 +218,13 @@ struct DairyFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Grated hard cheese"
+            notes: "Grated hard cheese",
+            nameFr: "Fromage Parmesan",
+            nameEs: "Queso Parmesano",
+            nameHe: "גבינת פרמזן",
+            notesFr: "Fromage dur râpé",
+            notesEs: "Queso duro rallado",
+            notesHe: "גבינה קשה מגורדת"
         ),
         
         // Cream Cheese
@@ -189,7 +243,13 @@ struct DairyFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Soft spreadable cheese"
+            notes: "Soft spreadable cheese",
+            nameFr: "Fromage à la Crème",
+            nameEs: "Queso Crema",
+            nameHe: "גבינת שמנת",
+            notesFr: "Fromage à tartiner mou",
+            notesEs: "Queso blando para untar",
+            notesHe: "גבינה רכה למריחה"
         ),
         
         // Butter
@@ -208,7 +268,13 @@ struct DairyFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Unsalted butter"
+            notes: "Unsalted butter",
+            nameFr: "Beurre",
+            nameEs: "Mantequilla",
+            nameHe: "חמאה",
+            notesFr: "Beurre non salé",
+            notesEs: "Mantequilla sin sal",
+            notesHe: "חמאה ללא מלח"
         ),
         
         // Ghee
@@ -246,7 +312,13 @@ struct DairyFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Regular sour cream"
+            notes: "Regular sour cream",
+            nameFr: "Crème Aigre",
+            nameEs: "Crema Agria",
+            nameHe: "שמנת חמוצה",
+            notesFr: "Crème aigre ordinaire",
+            notesEs: "Crema agria regular",
+            notesHe: "שמנת חמוצה רגילה"
         ),
         
         // Whipped Cream
@@ -382,4 +454,25 @@ struct DairyFoodItems {
             notes: "Sweetened condensed milk"
         )
     ]
+    
+    // Helper method to add translations to food items
+    static func addTranslations(to foodItem: FoodItem, nameFr: String, nameEs: String, nameHe: String, 
+                               notesFr: String? = nil, notesEs: String? = nil, notesHe: String? = nil) -> FoodItem {
+        return FoodItem(
+            id: foodItem.id,
+            name: foodItem.name,
+            category: foodItem.category,
+            nutritionalInfo: foodItem.nutritionalInfo,
+            servingSize: foodItem.servingSize,
+            servingUnit: foodItem.servingUnit,
+            isCustom: foodItem.isCustom,
+            notes: foodItem.notes,
+            nameFr: nameFr,
+            nameEs: nameEs,
+            nameHe: nameHe,
+            notesFr: notesFr,
+            notesEs: notesEs,
+            notesHe: notesHe
+        )
+    }
 } 

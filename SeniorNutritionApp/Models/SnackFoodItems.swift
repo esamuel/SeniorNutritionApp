@@ -18,7 +18,13 @@ struct SnackFoodItems {
             servingSize: 28,
             servingUnit: "g",
             isCustom: true,
-            notes: "Regular potato chips"
+            notes: "Regular potato chips",
+            nameFr: "Chips de Pomme de Terre Lay's Classic",
+            nameEs: "Papas Fritas Lay's Clásicas",
+            nameHe: "צ'יפס תפוחי אדמה קלאסי של ליי'ס",
+            notesFr: "Chips de pomme de terre ordinaires",
+            notesEs: "Papas fritas regulares",
+            notesHe: "צ'יפס תפוחי אדמה רגיל"
         ),
         
         // Doritos Nacho Cheese
@@ -37,7 +43,13 @@ struct SnackFoodItems {
             servingSize: 28,
             servingUnit: "g",
             isCustom: true,
-            notes: "Flavored tortilla chips"
+            notes: "Flavored tortilla chips",
+            nameFr: "Doritos Goût Fromage Nacho",
+            nameEs: "Doritos Sabor a Queso Nacho",
+            nameHe: "דוריטוס טעם גבינת נאצ'ו",
+            notesFr: "Chips de tortilla aromatisées",
+            notesEs: "Chips de tortilla con sabor",
+            notesHe: "צ'יפס טורטייה בטעמים"
         ),
         
         // Cheetos Crunchy
@@ -56,7 +68,13 @@ struct SnackFoodItems {
             servingSize: 28,
             servingUnit: "g",
             isCustom: true,
-            notes: "Cheese-flavored cornmeal snack"
+            notes: "Cheese-flavored cornmeal snack",
+            nameFr: "Cheetos Croustillants",
+            nameEs: "Cheetos Crujientes",
+            nameHe: "צ'יטוס פריך",
+            notesFr: "Snack de semoule de maïs au fromage",
+            notesEs: "Snack de harina de maíz con sabor a queso",
+            notesHe: "חטיף תירס בטעם גבינה"
         ),
         
         // Ritz Crackers
@@ -75,7 +93,13 @@ struct SnackFoodItems {
             servingSize: 15,
             servingUnit: "g",
             isCustom: true,
-            notes: "Buttery round crackers"
+            notes: "Buttery round crackers",
+            nameFr: "Crackers Ritz",
+            nameEs: "Galletas Ritz",
+            nameHe: "קרקרים ריץ",
+            notesFr: "Crackers ronds au beurre",
+            notesEs: "Galletas redondas con sabor a mantequilla",
+            notesHe: "קרקרים עגולים בטעם חמאה"
         ),
         
         // Goldfish Cheddar Crackers
@@ -94,7 +118,13 @@ struct SnackFoodItems {
             servingSize: 30,
             servingUnit: "g",
             isCustom: true,
-            notes: "Cheddar-flavored fish-shaped crackers"
+            notes: "Cheddar-flavored fish-shaped crackers",
+            nameFr: "Crackers Goldfish au Cheddar",
+            nameEs: "Galletas Goldfish de Queso Cheddar",
+            nameHe: "קרקרים גולדפיש בטעם צ'דר",
+            notesFr: "Crackers en forme de poisson au goût de cheddar",
+            notesEs: "Galletas con forma de pez sabor a queso cheddar",
+            notesHe: "קרקרים בצורת דג בטעם גבינת צ'דר"
         ),
         
         // Nature Valley Crunchy Granola Bars
@@ -113,7 +143,13 @@ struct SnackFoodItems {
             servingSize: 42,
             servingUnit: "g",
             isCustom: true,
-            notes: "Oats and honey flavor"
+            notes: "Oats and honey flavor",
+            nameFr: "Barres de Granola Croustillantes Nature Valley",
+            nameEs: "Barras de Granola Crujientes Nature Valley",
+            nameHe: "חטיפי גרנולה פריכים של נייצ'ר ואלי",
+            notesFr: "Saveur avoine et miel",
+            notesEs: "Sabor a avena y miel",
+            notesHe: "בטעם שיבולת שועל ודבש"
         ),
         
         // Kind Bars
@@ -132,7 +168,13 @@ struct SnackFoodItems {
             servingSize: 40,
             servingUnit: "g",
             isCustom: true,
-            notes: "Nut and fruit bar"
+            notes: "Nut and fruit bar",
+            nameFr: "Barres Kind",
+            nameEs: "Barras Kind",
+            nameHe: "חטיפי קינד",
+            notesFr: "Barre aux noix et fruits",
+            notesEs: "Barra de frutos secos y frutas",
+            notesHe: "חטיף אגוזים ופירות"
         ),
         
         // Clif Bars
@@ -151,7 +193,13 @@ struct SnackFoodItems {
             servingSize: 68,
             servingUnit: "g",
             isCustom: true,
-            notes: "Energy bar with oats and chocolate chips"
+            notes: "Energy bar with oats and chocolate chips",
+            nameFr: "Barres Clif",
+            nameEs: "Barras Clif",
+            nameHe: "חטיפי קליף",
+            notesFr: "Barre énergétique avec avoine et pépites de chocolat",
+            notesEs: "Barra energética con avena y trozos de chocolate",
+            notesHe: "חטיף אנרגיה עם שיבולת שועל ושבבי שוקולד"
         ),
         
         // Snickers Bar
@@ -170,7 +218,13 @@ struct SnackFoodItems {
             servingSize: 52,
             servingUnit: "g",
             isCustom: true,
-            notes: "Chocolate bar with nougat, caramel, and peanuts"
+            notes: "Chocolate bar with nougat, caramel, and peanuts",
+            nameFr: "Barre Snickers",
+            nameEs: "Barra Snickers",
+            nameHe: "חטיף סניקרס",
+            notesFr: "Barre chocolatée avec nougat, caramel et cacahuètes",
+            notesEs: "Barra de chocolate con turrón, caramelo y cacahuetes",
+            notesHe: "חטיף שוקולד עם נוגט, קרמל ובוטנים"
         ),
         
         // Reese's Peanut Butter Cups
@@ -189,7 +243,13 @@ struct SnackFoodItems {
             servingSize: 42,
             servingUnit: "g",
             isCustom: true,
-            notes: "Chocolate cups filled with peanut butter"
+            notes: "Chocolate cups filled with peanut butter",
+            nameFr: "Coupes au Beurre de Cacahuète Reese's",
+            nameEs: "Copas de Mantequilla de Cacahuete Reese's",
+            nameHe: "כוסיות חמאת בוטנים של ריסס",
+            notesFr: "Coupes en chocolat fourrées à la crème de cacahuète",
+            notesEs: "Copas de chocolate rellenas de mantequilla de cacahuete",
+            notesHe: "כוסיות שוקולד ממולאות בחמאת בוטנים"
         ),
         
         // M&M's Milk Chocolate
@@ -208,7 +268,13 @@ struct SnackFoodItems {
             servingSize: 47,
             servingUnit: "g",
             isCustom: true,
-            notes: "Colorful candy-coated chocolate pieces"
+            notes: "Colorful candy-coated chocolate pieces",
+            nameFr: "M&M's au Chocolat au Lait",
+            nameEs: "M&M's de Chocolate con Leche",
+            nameHe: "אם אנד אמס שוקולד חלב",
+            notesFr: "Morceaux de chocolat colorés enrobés de sucre",
+            notesEs: "Piezas de chocolate cubiertas de caramelo de colores",
+            notesHe: "חתיכות שוקולד מצופות בסוכריות צבעוניות"
         ),
         
         // Twix Bar
@@ -227,7 +293,13 @@ struct SnackFoodItems {
             servingSize: 50,
             servingUnit: "g",
             isCustom: true,
-            notes: "Chocolate-covered caramel and cookie bar"
+            notes: "Chocolate-covered caramel and cookie bar",
+            nameFr: "Barre Twix",
+            nameEs: "Barra Twix",
+            nameHe: "חטיף טוויקס",
+            notesFr: "Barre de biscuit et caramel enrobée de chocolat",
+            notesEs: "Barra de galleta y caramelo cubierta de chocolate",
+            notesHe: "חטיף ביסקוויט וקרמל מצופה שוקולד"
         ),
         
         // Oreo Cookies
@@ -246,7 +318,13 @@ struct SnackFoodItems {
             servingSize: 34,
             servingUnit: "g",
             isCustom: true,
-            notes: "Chocolate sandwich cookies with cream filling"
+            notes: "Chocolate sandwich cookies with cream filling",
+            nameFr: "Biscuits Oreo",
+            nameEs: "Galletas Oreo",
+            nameHe: "עוגיות אוראו",
+            notesFr: "Biscuits sandwich au chocolat avec garniture à la crème",
+            notesEs: "Galletas sándwich de chocolate con relleno de crema",
+            notesHe: "עוגיות שוקולד במילוי קרם"
         ),
         
         // Cheez-It Crackers
@@ -265,7 +343,13 @@ struct SnackFoodItems {
             servingSize: 30,
             servingUnit: "g",
             isCustom: true,
-            notes: "Cheddar cheese-flavored square crackers"
+            notes: "Cheddar cheese-flavored square crackers",
+            nameFr: "Crackers Cheez-It",
+            nameEs: "Galletas Cheez-It",
+            nameHe: "קרקרים צ'יז-איט",
+            notesFr: "Crackers carrés au goût de fromage cheddar",
+            notesEs: "Galletas cuadradas con sabor a queso cheddar",
+            notesHe: "קרקרים מרובעים בטעם גבינת צ'דר"
         ),
         
         // Pringles Original
@@ -284,7 +368,13 @@ struct SnackFoodItems {
             servingSize: 28,
             servingUnit: "g",
             isCustom: true,
-            notes: "Stackable potato crisps"
+            notes: "Stackable potato crisps",
+            nameFr: "Pringles Original",
+            nameEs: "Pringles Original",
+            nameHe: "פרינגלס מקורי",
+            notesFr: "Chips de pomme de terre empilables",
+            notesEs: "Patatas fritas apilables",
+            notesHe: "חטיף תפוחי אדמה הניתן לערימה"
         ),
         
         // Pop-Tarts Frosted Strawberry
@@ -303,7 +393,13 @@ struct SnackFoodItems {
             servingSize: 52,
             servingUnit: "g",
             isCustom: true,
-            notes: "Frosted toaster pastry with strawberry filling"
+            notes: "Frosted toaster pastry with strawberry filling",
+            nameFr: "Pop-Tarts Glacés à la Fraise",
+            nameEs: "Pop-Tarts Glaseados de Fresa",
+            nameHe: "פופ-טארטס בציפוי תות",
+            notesFr: "Pâtisserie glacée pour grille-pain avec garniture à la fraise",
+            notesEs: "Pastelito para tostadora glaseado con relleno de fresa",
+            notesHe: "מאפה טוסטר מצופה במילוי תות"
         ),
         
         // Planters Salted Peanuts
@@ -322,7 +418,13 @@ struct SnackFoodItems {
             servingSize: 28,
             servingUnit: "g",
             isCustom: true,
-            notes: "Roasted and salted peanuts"
+            notes: "Roasted and salted peanuts",
+            nameFr: "Cacahuètes Salées Planters",
+            nameEs: "Cacahuetes Salados Planters",
+            nameHe: "בוטנים מלוחים של פלנטרס",
+            notesFr: "Cacahuètes grillées et salées",
+            notesEs: "Cacahuetes tostados y salados",
+            notesHe: "בוטנים קלויים ומלוחים"
         ),
         
         // Slim Jim Original
@@ -341,7 +443,13 @@ struct SnackFoodItems {
             servingSize: 28,
             servingUnit: "g",
             isCustom: true,
-            notes: "Smoked meat stick"
+            notes: "Smoked meat stick",
+            nameFr: "Slim Jim Original",
+            nameEs: "Slim Jim Original",
+            nameHe: "סלים ג'ים מקורי",
+            notesFr: "Bâtonnet de viande fumée",
+            notesEs: "Palito de carne ahumada",
+            notesHe: "מקל בשר מעושן"
         ),
         
         // Jack Link's Beef Jerky
@@ -360,7 +468,13 @@ struct SnackFoodItems {
             servingSize: 28,
             servingUnit: "g",
             isCustom: true,
-            notes: "Dried and seasoned beef strips"
+            notes: "Dried and seasoned beef strips",
+            nameFr: "Viande Séchée Jack Link's",
+            nameEs: "Carne Seca Jack Link's",
+            nameHe: "בשר מיובש של ג'ק לינק",
+            notesFr: "Lanières de bœuf séchées et assaisonnées",
+            notesEs: "Tiras de carne de res secas y sazonadas",
+            notesHe: "רצועות בקר מיובשות ומתובלות"
         ),
         
         // Quaker Chewy Granola Bars
@@ -379,7 +493,13 @@ struct SnackFoodItems {
             servingSize: 24,
             servingUnit: "g",
             isCustom: true,
-            notes: "Granola bar with chocolate chips"
+            notes: "Granola bar with chocolate chips",
+            nameFr: "Barres de Granola Tendres Quaker",
+            nameEs: "Barras de Granola Masticables Quaker",
+            nameHe: "חטיפי גרנולה רכים של קווייקר",
+            notesFr: "Barre de granola avec pépites de chocolat",
+            notesEs: "Barra de granola con trozos de chocolate",
+            notesHe: "חטיף גרנולה עם שבבי שוקולד"
         )
     ]
-} 
+}

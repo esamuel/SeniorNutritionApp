@@ -10,12 +10,12 @@ struct FoodItem: Identifiable, Codable, Equatable {
     var servingUnit: String // e.g., "g", "oz", "cup"
     var isCustom: Bool
     var notes: String?
-    var nameFr: String? = nil
-    var nameEs: String? = nil
-    var nameHe: String? = nil
-    var notesFr: String? = nil
-    var notesEs: String? = nil
-    var notesHe: String? = nil
+    var nameFr: String?
+    var nameEs: String?
+    var nameHe: String?
+    var notesFr: String?
+    var notesEs: String?
+    var notesHe: String?
     
     // Computed property for nutritional info per 100g
     var nutritionalInfoPer100g: NutritionalInfo {
@@ -66,53 +66,21 @@ struct FoodItem: Identifiable, Codable, Equatable {
     
     // Return localized name based on current language.
     func localizedName() -> String {
-        // Use LanguageManager to get the current language setting
-        let lang = LanguageManager.shared.currentLanguage
-        print("localizedName called for food: \(name), using language: \(lang)")
-        
-        var result = name
-        switch lang {
-        case "fr":
-            if let translated = nameFr, !translated.isEmpty {
-                result = translated
-                print("Using French name: \(result)")
-            } else {
-                print("No French translation available for: \(name)")
-            }
-        case "es":
-            if let translated = nameEs, !translated.isEmpty {
-                result = translated
-                print("Using Spanish name: \(result)")
-            } else {
-                print("No Spanish translation available for: \(name)")
-            }
-        case "he", "iw":
-            if let translated = nameHe, !translated.isEmpty {
-                result = translated
-                print("Using Hebrew name: \(result)")
-            } else {
-                print("No Hebrew translation available for: \(name)")
-            }
-        default:
-            print("Using English name: \(name)")
+        switch LanguageManager.shared.currentLanguage {
+        case "he": return nameHe ?? name
+        case "fr": return nameFr ?? name
+        case "es": return nameEs ?? name
+        default:   return name
         }
-        
-        return result
     }
     
     // Return localized notes based on current language
     func localizedNotes() -> String? {
-        let lang = LanguageManager.shared.currentLanguage
-        
-        switch lang {
-        case "fr":
-            return notesFr ?? notes
-        case "es":
-            return notesEs ?? notes
-        case "he", "iw":
-            return notesHe ?? notes
-        default:
-            return notes
+        switch LanguageManager.shared.currentLanguage {
+        case "he": return notesHe ?? notes
+        case "fr": return notesFr ?? notes
+        case "es": return notesEs ?? notes
+        default:   return notes
         }
     }
 }

@@ -16,10 +16,10 @@ struct OnboardingView: View {
     // Define pages for onboarding
     private let pages: [OnboardingPage] = [
         OnboardingPage(
-            title: "Welcome to Senior Nutrition App",
-            description: "A comprehensive health management app designed specifically for seniors, with enhanced accessibility features and intuitive navigation.",
-            imageName: "person.fill.checkmark",
-            tips: ["Customizable text and voice settings", "Simple, uncluttered interface", "Voice-guided assistance available"]
+            title: "Welcome to Senior Nutrition",
+            description: "Your personal nutrition companion designed specifically for seniors, with enhanced accessibility and intuitive navigation.",
+            imageName: "heart.fill",
+            tips: ["Customizable text size for easier reading", "Language support for English, French, Spanish, and Hebrew", "Simple, uncluttered interface with voice assistance"]
         ),
         OnboardingPage(
             title: "Track Your Meals & Nutrition",
@@ -66,10 +66,6 @@ struct OnboardingView: View {
                 .edgesIgnoringSafeArea(.all)
             
             VStack(spacing: 20) {
-                Text(NSLocalizedString("Onboarding Loaded", comment: "Debug message for onboarding view loaded"))
-                    .font(.largeTitle)
-                    .foregroundColor(.red)
-                    .padding()
                 // Header
                 HStack {
                     Spacer()
@@ -143,20 +139,70 @@ struct OnboardingView: View {
     }
 }
 
+// Custom view for app logo
+struct AppLogoView: View {
+    var size: CGFloat = 140
+    
+    var body: some View {
+        // Try different image names that might match the app icon
+        if let uiImage = UIImage(named: "AppIcons 2/appstore") {
+            Image(uiImage: uiImage)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: size, height: size)
+                .cornerRadius(size/7)
+                .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 3)
+        } else if let uiImage = UIImage(named: "appstore") {
+            Image(uiImage: uiImage)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: size, height: size)
+                .cornerRadius(size/7)
+                .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 3)
+        } else {
+            // Fallback icon with app-like styling
+            ZStack {
+                RoundedRectangle(cornerRadius: size/7)
+                    .fill(LinearGradient(
+                        gradient: Gradient(colors: [Color.orange, Color.yellow.opacity(0.7)]),
+                        startPoint: .top,
+                        endPoint: .bottom
+                    ))
+                    .frame(width: size, height: size)
+                
+                Image(systemName: "heart.fill")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: size * 0.6, height: size * 0.6)
+                    .foregroundColor(.red)
+            }
+            .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 3)
+        }
+    }
+}
+
 struct OnboardingPageView: View {
     let page: OnboardingPage
     
     var body: some View {
         VStack(spacing: 20) {
-            Image(systemName: page.imageName)
-                .font(.system(size: 60))
-                .foregroundColor(.blue)
-                .padding()
+            // App logo at the top
+            VStack(spacing: 15) {
+                AppLogoView(size: 140)
+                    .padding(.top, 20)
+                
+                // Small feature icon below
+                Image(systemName: page.imageName)
+                    .font(.system(size: 30))
+                    .foregroundColor(.blue)
+            }
+            .padding(.bottom, 5)
             
             Text(NSLocalizedString(page.title, comment: "Onboarding page title"))
                 .font(.title)
                 .fontWeight(.bold)
                 .multilineTextAlignment(.center)
+                .padding(.horizontal)
             
             Text(NSLocalizedString(page.description, comment: "Onboarding page description"))
                 .font(.body)

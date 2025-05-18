@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 
 struct BreadAndSandwichFoodItems {
     static let foods: [FoodItem] = [
@@ -18,7 +19,13 @@ struct BreadAndSandwichFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Average nutrition per 100 g loaf slice"
+            notes: "Average nutrition per 100 g loaf slice",
+            nameFr: "Pain de Blé Complet",
+            nameEs: "Pan Integral de Trigo",
+            nameHe: "לחם חיטה מלאה",
+            notesFr: "Valeur nutritionnelle moyenne pour 100 g de tranche",
+            notesEs: "Nutrición promedio por 100 g de rebanada",
+            notesHe: "ערך תזונתי ממוצע ל-100 גרם פרוסה"
         ),
         
         // White Bread
@@ -37,7 +44,13 @@ struct BreadAndSandwichFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Standard enriched white loaf"
+            notes: "Standard enriched white loaf",
+            nameFr: "Pain Blanc",
+            nameEs: "Pan Blanco",
+            nameHe: "לחם לבן",
+            notesFr: "Pain blanc enrichi standard",
+            notesEs: "Pan blanco enriquecido estándar",
+            notesHe: "כיכר לחם לבן מועשר סטנדרטי"
         ),
         
         // Sourdough Bread
@@ -56,7 +69,13 @@ struct BreadAndSandwichFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Naturally leavened wheat loaf"
+            notes: "Naturally leavened wheat loaf",
+            nameFr: "Pain au Levain",
+            nameEs: "Pan de Masa Madre",
+            nameHe: "לחם מחמצת",
+            notesFr: "Pain de blé à levain naturel",
+            notesEs: "Pan de trigo con levadura natural",
+            notesHe: "כיכר חיטה מותססת בטבעיות"
         ),
         
         // Rye Bread
@@ -75,7 +94,13 @@ struct BreadAndSandwichFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Medium‐dark rye"
+            notes: "Medium‐dark rye",
+            nameFr: "Pain de Seigle",
+            nameEs: "Pan de Centeno",
+            nameHe: "לחם שיפון",
+            notesFr: "Seigle moyen-foncé",
+            notesEs: "Centeno medio-oscuro",
+            notesHe: "שיפון בינוני-כהה"
         ),
         
         // Multigrain Bread
@@ -94,7 +119,13 @@ struct BreadAndSandwichFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Blend of several whole grains"
+            notes: "Blend of several whole grains",
+            nameFr: "Pain Multicéréales",
+            nameEs: "Pan Multigrano",
+            nameHe: "לחם רב-דגנים",
+            notesFr: "Mélange de plusieurs céréales complètes",
+            notesEs: "Mezcla de varios granos enteros",
+            notesHe: "תערובת של מספר דגנים מלאים"
         ),
         
         // Baguette
@@ -113,7 +144,13 @@ struct BreadAndSandwichFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Classic French white baguette"
+            notes: "Classic French white baguette",
+            nameFr: "Baguette",
+            nameEs: "Baguette",
+            nameHe: "באגט",
+            notesFr: "Baguette blanche française classique",
+            notesEs: "Baguette blanca francesa clásica",
+            notesHe: "באגט צרפתי לבן קלאסי"
         ),
         
         // Ciabatta
@@ -477,4 +514,25 @@ struct BreadAndSandwichFoodItems {
             notes: "Mozzarella, tomato & basil"
         )
     ]
+    
+    // Helper method to add translations to food items
+    static func addTranslations(to foodItem: FoodItem, nameFr: String, nameEs: String, nameHe: String, 
+                               notesFr: String? = nil, notesEs: String? = nil, notesHe: String? = nil) -> FoodItem {
+        return FoodItem(
+            id: foodItem.id,
+            name: foodItem.name,
+            category: foodItem.category,
+            nutritionalInfo: foodItem.nutritionalInfo,
+            servingSize: foodItem.servingSize,
+            servingUnit: foodItem.servingUnit,
+            isCustom: foodItem.isCustom,
+            notes: foodItem.notes,
+            nameFr: nameFr,
+            nameEs: nameEs,
+            nameHe: nameHe,
+            notesFr: notesFr,
+            notesEs: notesEs,
+            notesHe: notesHe
+        )
+    }
 } 

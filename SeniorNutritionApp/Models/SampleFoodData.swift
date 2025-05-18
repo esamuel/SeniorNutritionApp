@@ -1,5 +1,7 @@
+import SwiftUI
 import Foundation
 
+// MARK: - Sample Food Data (with translations)
 struct SampleFoodData {
     static let foods: [FoodItem] = [
         // MARK: - Vegetables
@@ -40,9 +42,15 @@ struct SampleFoodData {
             servingSize: 100,
             servingUnit: "g",
             isCustom: false,
-            notes: "Cooked green peas (medium portion). Small = 75g, Large = 150g"
+            notes: "Cooked green peas (medium portion). Small = 75g, Large = 150g",
+            nameFr: "Pois verts cuits",
+            nameEs: "Guisantes verdes cocidos",
+            nameHe: "אפונה ירוקה מבושלת",
+            notesFr: "Pois verts cuits (portion moyenne). Petite = 75 g, Grande = 150 g",
+            notesEs: "Guisantes verdes cocidos (porción mediana). Pequeña = 75 g, Grande = 150 g",
+            notesHe: "אפונה ירוקה מבושלת (מנה בינונית). קטנה =‏ 75 גרם, גדולה =‏ 150 גרם"
         ),
-        
+
         FoodItem(
             id: UUID(),
             name: "Broccoli",
@@ -80,10 +88,14 @@ struct SampleFoodData {
             servingSize: 100,
             servingUnit: "g",
             isCustom: false,
-            notes: "Raw broccoli florets"
+            notes: "Raw broccoli florets",
+            nameFr: "Brocoli",
+            nameEs: "Brócoli",
+            nameHe: "ברוקולי",
+            notesFr: "Fleurettes de brocoli cru",
+            notesEs: "Ramilletes de brócoli crudo",
+            notesHe: "פרחי ברוקולי טריים"
         ),
-
-        // Add other vegetables here...
 
         // MARK: - Protein
         FoodItem(
@@ -123,10 +135,14 @@ struct SampleFoodData {
             servingSize: 240,
             servingUnit: "g",
             isCustom: false,
-            notes: "Traditional beef stew with vegetables in broth (1 cup serving)"
+            notes: "Traditional beef stew with vegetables in broth (1 cup serving)",
+            nameFr: "Ragoût de bœuf",
+            nameEs: "Estofado de carne",
+            nameHe: "תבשיל בקר",
+            notesFr: "Ragoût de bœuf traditionnel avec légumes dans un bouillon (portion de 1 tasse)",
+            notesEs: "Estofado de carne tradicional con verduras en caldo (porción de 1 taza)",
+            notesHe: "תבשיל בקר מסורתי עם ירקות במרק (מנת כוס אחת)"
         ),
-
-        // Add other protein items here...
 
         // MARK: - Grains
         FoodItem(
@@ -166,9 +182,15 @@ struct SampleFoodData {
             servingSize: 100,
             servingUnit: "g",
             isCustom: false,
-            notes: "Cooked oatmeal, plain"
+            notes: "Cooked oatmeal, plain",
+            nameFr: "Flocons d'avoine cuits",
+            nameEs: "Avena cocida",
+            nameHe: "דייסת שיבולת שועל",
+            notesFr: "Gruau d'avoine cuit, nature",
+            notesEs: "Avena cocida, simple",
+            notesHe: "דייסת שיבולת שועל מבושלת, ללא תוספות"
         ),
-        
+
         // Mediterranean Foods
         FoodItem(
             id: UUID(),
@@ -207,9 +229,15 @@ struct SampleFoodData {
             servingSize: 200,
             servingUnit: "g",
             isCustom: false,
-            notes: "Traditional Greek salad with feta cheese, olives, and olive oil"
+            notes: "Traditional Greek salad with feta cheese, olives, and olive oil",
+            nameFr: "Salade grecque",
+            nameEs: "Ensalada griega",
+            nameHe: "סלט יווני",
+            notesFr: "Salade grecque traditionnelle avec feta, olives et huile d'olive",
+            notesEs: "Ensalada griega tradicional con queso feta, aceitunas y aceite de oliva",
+            notesHe: "סלט יווני מסורתי עם גבינת פטה, זיתים ושמן זית"
         ),
-        
+
         // Asian Foods
         FoodItem(
             id: UUID(),
@@ -248,9 +276,15 @@ struct SampleFoodData {
             servingSize: 150,
             servingUnit: "g",
             isCustom: false,
-            notes: "California roll with crab, avocado, and cucumber"
+            notes: "California roll with crab, avocado, and cucumber",
+            nameFr: "Rouleau de sushi (California)",
+            nameEs: "Rollo de sushi (California)",
+            nameHe: "רול סושי (קליפורניה)",
+            notesFr: "California roll avec crabe, avocat et concombre",
+            notesEs: "Rollo California con cangrejo, aguacate y pepino",
+            notesHe: "רול קליפורניה עם בשר סרטן, אבוקדו ומלפפון"
         ),
-        
+
         // Indian Foods
         FoodItem(
             id: UUID(),
@@ -289,9 +323,15 @@ struct SampleFoodData {
             servingSize: 250,
             servingUnit: "g",
             isCustom: false,
-            notes: "Traditional Indian curry with chicken and spices"
+            notes: "Traditional Indian curry with chicken and spices",
+            nameFr: "Curry de poulet",
+            nameEs: "Curry de pollo",
+            nameHe: "קארי עוף",
+            notesFr: "Curry indien traditionnel au poulet et aux épices",
+            notesEs: "Curry indio tradicional con pollo y especias",
+            notesHe: "קארי הודי מסורתי עם עוף ותבלינים"
         ),
-        
+
         // Mexican Foods
         FoodItem(
             id: UUID(),
@@ -330,9 +370,15 @@ struct SampleFoodData {
             servingSize: 200,
             servingUnit: "g",
             isCustom: false,
-            notes: "Bean burrito with rice, beans, and vegetables"
+            notes: "Bean burrito with rice, beans, and vegetables",
+            nameFr: "Burrito aux haricots",
+            nameEs: "Burrito de frijoles",
+            nameHe: "בוריטו שעועית",
+            notesFr: "Burrito aux haricots avec riz, haricots et légumes",
+            notesEs: "Burrito de frijoles con arroz, frijoles y verduras",
+            notesHe: "בוריטו שעועית עם אורז, שעועיות וירקות"
         ),
-        
+
         // Middle Eastern Foods
         FoodItem(
             id: UUID(),
@@ -371,9 +417,15 @@ struct SampleFoodData {
             servingSize: 100,
             servingUnit: "g",
             isCustom: false,
-            notes: "Traditional chickpea dip with tahini and olive oil"
+            notes: "Traditional chickpea dip with tahini and olive oil",
+            nameFr: "Houmous",
+            nameEs: "Hummus",
+            nameHe: "חומוס",
+            notesFr: "Trempette traditionnelle de pois chiches avec tahini et huile d'olive",
+            notesEs: "Dip tradicional de garbanzos con tahini y aceite de oliva",
+            notesHe: "ממרח חומוס מסורתי עם טחינה ושמן זית"
         ),
-        
+
         // Traditional American Foods
         FoodItem(
             id: UUID(),
@@ -412,9 +464,15 @@ struct SampleFoodData {
             servingSize: 100,
             servingUnit: "g",
             isCustom: false,
-            notes: "Skinless, boneless chicken breast"
+            notes: "Skinless, boneless chicken breast",
+            nameFr: "Poitrine de poulet grillée",
+            nameEs: "Pechuga de pollo a la parrilla",
+            nameHe: "חזה עוף בגריל",
+            notesFr: "Poitrine de poulet sans peau ni os",
+            notesEs: "Pechuga de pollo sin piel ni hueso",
+            notesHe: "חזה עוף בלי עור ועצמות"
         ),
-        
+
         // Japanese Foods
         FoodItem(
             id: UUID(),
@@ -453,9 +511,15 @@ struct SampleFoodData {
             servingSize: 250,
             servingUnit: "ml",
             isCustom: false,
-            notes: "Traditional Japanese soup with miso paste and tofu"
+            notes: "Traditional Japanese soup with miso paste and tofu",
+            nameFr: "Soupe miso",
+            nameEs: "Sopa de miso",
+            nameHe: "מרק מיסו",
+            notesFr: "Soupe japonaise traditionnelle à base de pâte miso et tofu",
+            notesEs: "Sopa japonesa tradicional con pasta de miso y tofu",
+            notesHe: "מרק יפני מסורתי עם משחת מיסו וטופו"
         ),
-        
+
         // Italian Foods
         FoodItem(
             id: UUID(),
@@ -494,9 +558,15 @@ struct SampleFoodData {
             servingSize: 100,
             servingUnit: "g",
             isCustom: false,
-            notes: "Cooked whole wheat pasta"
+            notes: "Cooked whole wheat pasta",
+            nameFr: "Pâtes de blé complet",
+            nameEs: "Pasta de trigo integral",
+            nameHe: "פסטה מחיטה מלאה",
+            notesFr: "Pâtes de blé complet cuites",
+            notesEs: "Pasta de trigo integral cocida",
+            notesHe: "פסטה מחיטה מלאה מבושלת"
         ),
-        
+
         // Chinese Foods
         FoodItem(
             id: UUID(),
@@ -535,9 +605,15 @@ struct SampleFoodData {
             servingSize: 100,
             servingUnit: "g",
             isCustom: false,
-            notes: "Cooked white rice"
+            notes: "Cooked white rice",
+            nameFr: "Riz vapeur",
+            nameEs: "Arroz al vapor",
+            nameHe: "אורז מאודה",
+            notesFr: "Riz blanc cuit",
+            notesEs: "Arroz blanco cocido",
+            notesHe: "אורז לבן מבושל"
         ),
-        
+
         // Korean Foods
         FoodItem(
             id: UUID(),
@@ -576,9 +652,15 @@ struct SampleFoodData {
             servingSize: 100,
             servingUnit: "g",
             isCustom: false,
-            notes: "Traditional Korean fermented vegetables"
+            notes: "Traditional Korean fermented vegetables",
+            nameFr: "Kimchi",
+            nameEs: "Kimchi",
+            nameHe: "קימצ'י",
+            notesFr: "Légumes fermentés coréens traditionnels",
+            notesEs: "Verduras fermentadas coreanas tradicionales",
+            notesHe: "ירקות מותססים קוריאניים מסורתיים"
         ),
-        
+
         // Fruits
         FoodItem(
             id: UUID(),
@@ -617,9 +699,15 @@ struct SampleFoodData {
             servingSize: 100,
             servingUnit: "g",
             isCustom: false,
-            notes: "Medium-sized apple with skin"
+            notes: "Medium-sized apple with skin",
+            nameFr: "Pomme",
+            nameEs: "Manzana",
+            nameHe: "תפוח",
+            notesFr: "Pomme de taille moyenne avec la peau",
+            notesEs: "Manzana de tamaño mediano con piel",
+            notesHe: "תפוח בינוני עם הקליפה"
         ),
-        
+
         FoodItem(
             id: UUID(),
             name: "Banana",
@@ -657,9 +745,15 @@ struct SampleFoodData {
             servingSize: 100,
             servingUnit: "g",
             isCustom: false,
-            notes: "Medium-sized banana"
+            notes: "Medium-sized banana",
+            nameFr: "Banane",
+            nameEs: "Plátano",
+            nameHe: "בננה",
+            notesFr: "Banane de taille moyenne",
+            notesEs: "Plátano de tamaño mediano",
+            notesHe: "בננה בגודל בינוני"
         ),
-        
+
         FoodItem(
             id: UUID(),
             name: "Orange",
@@ -697,9 +791,15 @@ struct SampleFoodData {
             servingSize: 100,
             servingUnit: "g",
             isCustom: false,
-            notes: "Medium-sized orange"
+            notes: "Medium-sized orange",
+            nameFr: "Orange",
+            nameEs: "Naranja",
+            nameHe: "תפוז",
+            notesFr: "Orange de taille moyenne",
+            notesEs: "Naranja de tamaño mediano",
+            notesHe: "תפוז בגודל בינוני"
         ),
-        
+
         FoodItem(
             id: UUID(),
             name: "Strawberries",
@@ -737,9 +837,15 @@ struct SampleFoodData {
             servingSize: 100,
             servingUnit: "g",
             isCustom: false,
-            notes: "Fresh strawberries"
+            notes: "Fresh strawberries",
+            nameFr: "Fraises",
+            nameEs: "Fresas",
+            nameHe: "תותים",
+            notesFr: "Fraises fraîches",
+            notesEs: "Fresas frescas",
+            notesHe: "תותים טריים"
         ),
-        
+
         FoodItem(
             id: UUID(),
             name: "Blueberries",
@@ -777,9 +883,15 @@ struct SampleFoodData {
             servingSize: 100,
             servingUnit: "g",
             isCustom: false,
-            notes: "Fresh blueberries"
+            notes: "Fresh blueberries",
+            nameFr: "Myrtilles",
+            nameEs: "Arándanos",
+            nameHe: "אוכמניות",
+            notesFr: "Myrtilles fraîches",
+            notesEs: "Arándanos frescos",
+            notesHe: "אוכמניות טריות"
         ),
-        
+
         // Dairy
         FoodItem(
             id: UUID(),
@@ -818,9 +930,15 @@ struct SampleFoodData {
             servingSize: 100,
             servingUnit: "ml",
             isCustom: false,
-            notes: "1% low-fat milk"
+            notes: "1% low-fat milk",
+            nameFr: "Lait écrémé",
+            nameEs: "Leche baja en grasa",
+            nameHe: "חלב דל שומן",
+            notesFr: "Lait écrémé 1 %",
+            notesEs: "Leche baja en grasa 1 %",
+            notesHe: "חלב דל שומן 1%"
         ),
-        
+
         FoodItem(
             id: UUID(),
             name: "Greek Yogurt",
@@ -858,9 +976,15 @@ struct SampleFoodData {
             servingSize: 100,
             servingUnit: "g",
             isCustom: false,
-            notes: "Plain, non-fat Greek yogurt"
+            notes: "Plain, non-fat Greek yogurt",
+            nameFr: "Yaourt grec",
+            nameEs: "Yogur griego",
+            nameHe: "יוגורט יווני",
+            notesFr: "Yaourt grec nature sans matière grasse",
+            notesEs: "Yogur griego natural sin grasa",
+            notesHe: "יוגורט יווני טבעי ללא שומן"
         ),
-        
+
         // Fats
         FoodItem(
             id: UUID(),
@@ -899,9 +1023,15 @@ struct SampleFoodData {
             servingSize: 100,
             servingUnit: "ml",
             isCustom: false,
-            notes: "Extra virgin olive oil"
+            notes: "Extra virgin olive oil",
+            nameFr: "Huile d'olive",
+            nameEs: "Aceite de oliva",
+            nameHe: "שמן זית",
+            notesFr: "Huile d'olive extra vierge",
+            notesEs: "Aceite de oliva virgen extra",
+            notesHe: "שמן זית כתית מעולה"
         ),
-        
+
         FoodItem(
             id: UUID(),
             name: "Almonds",
@@ -939,9 +1069,15 @@ struct SampleFoodData {
             servingSize: 100,
             servingUnit: "g",
             isCustom: false,
-            notes: "Raw almonds"
+            notes: "Raw almonds",
+            nameFr: "Amandes",
+            nameEs: "Almendras",
+            nameHe: "שקדים",
+            notesFr: "Amandes crues",
+            notesEs: "Almendras crudas",
+            notesHe: "שקדים טבעיים"
         ),
-        
+
         // Beverages
         FoodItem(
             id: UUID(),
@@ -980,9 +1116,15 @@ struct SampleFoodData {
             servingSize: 100,
             servingUnit: "ml",
             isCustom: false,
-            notes: "Filtered water"
+            notes: "Filtered water",
+            nameFr: "Eau",
+            nameEs: "Agua",
+            nameHe: "מים",
+            notesFr: "Eau filtrée",
+            notesEs: "Agua filtrada",
+            notesHe: "מים מסוננים"
         ),
-        
+
         FoodItem(
             id: UUID(),
             name: "Green Tea",
@@ -1020,9 +1162,15 @@ struct SampleFoodData {
             servingSize: 100,
             servingUnit: "ml",
             isCustom: false,
-            notes: "Brewed green tea"
+            notes: "Brewed green tea",
+            nameFr: "Thé vert",
+            nameEs: "Té verde",
+            nameHe: "תה ירוק",
+            notesFr: "Thé vert infusé",
+            notesEs: "Té verde infusionado",
+            notesHe: "תה ירוק חלוט"
         ),
-        
+
         // Snacks
         FoodItem(
             id: UUID(),
@@ -1061,9 +1209,15 @@ struct SampleFoodData {
             servingSize: 100,
             servingUnit: "g",
             isCustom: false,
-            notes: "Whole-grain crackers with hummus spread"
+            notes: "Whole-grain crackers with hummus spread",
+            nameFr: "Craquelins de grains entiers avec houmous",
+            nameEs: "Galletas integrales con hummus",
+            nameHe: "קרקרים מדגנים מלאים עם חומוס",
+            notesFr: "Craquelins de grains entiers avec tartinade de houmous",
+            notesEs: "Galletas integrales con crema de hummus",
+            notesHe: "קרקרים מדגנים מלאים עם ממרח חומוס"
         ),
-        
+
         // Other
         FoodItem(
             id: UUID(),
@@ -1102,10 +1256,16 @@ struct SampleFoodData {
             servingSize: 100,
             servingUnit: "g",
             isCustom: false,
-            notes: "Fortified multigrain breakfast cereal"
+            notes: "Fortified multigrain breakfast cereal",
+            nameFr: "Céréales multigrains enrichies",
+            nameEs: "Cereal multigrano fortificado",
+            nameHe: "דגני בוקר מרובי גרעינים מועשרים",
+            notesFr: "Céréales de petit-déjeuner multigrains enrichies",
+            notesEs: "Cereal de desayuno multigrano fortificado",
+            notesHe: "דגני בוקר מרובי גרעינים מועשרים"
         )
     ]
-    
+
     // Helper method to add new food items
     static func addFood(name: String, category: FoodCategory, nutritionalInfo: NutritionalInfo, servingSize: Double, servingUnit: String, notes: String? = nil) -> FoodItem {
         return FoodItem(
@@ -1116,7 +1276,15 @@ struct SampleFoodData {
             servingSize: servingSize,
             servingUnit: servingUnit,
             isCustom: true,
-            notes: notes
+            notes: notes,
+            nameFr: nil,
+            nameEs: nil,
+            nameHe: nil,
+            notesFr: nil,
+            notesEs: nil,
+            notesHe: nil
         )
     }
-} 
+}
+
+  

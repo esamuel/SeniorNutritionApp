@@ -18,7 +18,13 @@ struct FruitFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Fresh apple with skin"
+            notes: "Fresh apple with skin",
+            nameFr: "Pomme",
+            nameEs: "Manzana",
+            nameHe: "תפוח",
+            notesFr: "Pomme fraîche avec la peau",
+            notesEs: "Manzana fresca con piel",
+            notesHe: "תפוח טרי עם הקליפה"
         ),
         
         // Banana
@@ -37,7 +43,13 @@ struct FruitFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Raw banana"
+            notes: "Raw banana",
+            nameFr: "Banane",
+            nameEs: "Plátano",
+            nameHe: "בננה",
+            notesFr: "Banane crue",
+            notesEs: "Plátano crudo",
+            notesHe: "בננה טרייה"
         ),
         
         // Orange
@@ -56,7 +68,13 @@ struct FruitFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Fresh orange"
+            notes: "Fresh orange",
+            nameFr: "Orange",
+            nameEs: "Naranja",
+            nameHe: "תפוז",
+            notesFr: "Orange fraîche",
+            notesEs: "Naranja fresca",
+            notesHe: "תפוז טרי"
         ),
         
         // Strawberry
@@ -75,7 +93,13 @@ struct FruitFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Fresh strawberries"
+            notes: "Fresh strawberries",
+            nameFr: "Fraise",
+            nameEs: "Fresa",
+            nameHe: "תות שדה",
+            notesFr: "Fraises fraîches",
+            notesEs: "Fresas frescas",
+            notesHe: "תותי שדה טריים"
         ),
         
         // Blueberry
@@ -94,7 +118,13 @@ struct FruitFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Fresh blueberries"
+            notes: "Fresh blueberries",
+            nameFr: "Myrtille",
+            nameEs: "Arándano",
+            nameHe: "אוכמנית",
+            notesFr: "Myrtilles fraîches",
+            notesEs: "Arándanos frescos",
+            notesHe: "אוכמניות טריות"
         ),
         
         // Grapes
@@ -113,7 +143,13 @@ struct FruitFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Fresh grapes"
+            notes: "Fresh grapes",
+            nameFr: "Raisins",
+            nameEs: "Uvas",
+            nameHe: "ענבים",
+            notesFr: "Raisins frais",
+            notesEs: "Uvas frescas",
+            notesHe: "ענבים טריים"
         ),
         
         // Pineapple
@@ -132,7 +168,13 @@ struct FruitFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Fresh pineapple"
+            notes: "Fresh pineapple",
+            nameFr: "Ananas",
+            nameEs: "Piña",
+            nameHe: "אננס",
+            notesFr: "Ananas frais",
+            notesEs: "Piña fresca",
+            notesHe: "אננס טרי"
         ),
         
         // Mango
@@ -151,7 +193,13 @@ struct FruitFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Fresh mango"
+            notes: "Fresh mango",
+            nameFr: "Mangue",
+            nameEs: "Mango",
+            nameHe: "מנגו",
+            notesFr: "Mangue fraîche",
+            notesEs: "Mango fresco",
+            notesHe: "מנגו טרי"
         ),
         
         // Watermelon
@@ -170,7 +218,13 @@ struct FruitFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Fresh watermelon"
+            notes: "Fresh watermelon",
+            nameFr: "Pastèque",
+            nameEs: "Sandía",
+            nameHe: "אבטיח",
+            notesFr: "Pastèque fraîche",
+            notesEs: "Sandía fresca",
+            notesHe: "אבטיח טרי"
         ),
         
         // Peach
@@ -189,7 +243,13 @@ struct FruitFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Fresh peach"
+            notes: "Fresh peach",
+            nameFr: "Pêche",
+            nameEs: "Melocotón",
+            nameHe: "אפרסק",
+            notesFr: "Pêche fraîche",
+            notesEs: "Melocotón fresco",
+            notesHe: "אפרסק טרי"
         ),
         
         // Pear
@@ -208,7 +268,13 @@ struct FruitFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Fresh pear"
+            notes: "Fresh pear",
+            nameFr: "Poire",
+            nameEs: "Pera",
+            nameHe: "אגס",
+            notesFr: "Poire fraîche",
+            notesEs: "Pera fresca",
+            notesHe: "אגס טרי"
         ),
         
         // Cherry
@@ -227,7 +293,13 @@ struct FruitFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Fresh cherries"
+            notes: "Fresh cherries",
+            nameFr: "Cerise",
+            nameEs: "Cereza",
+            nameHe: "דובדבן",
+            notesFr: "Cerises fraîches",
+            notesEs: "Cerezas frescas",
+            notesHe: "דובדבנים טריים"
         ),
         
         // Kiwi
@@ -246,7 +318,215 @@ struct FruitFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Fresh kiwi"
+            notes: "Fresh kiwi",
+            nameFr: "Kiwi",
+            nameEs: "Kiwi",
+            nameHe: "קיווי",
+            notesFr: "Kiwi frais",
+            notesEs: "Kiwi fresco",
+            notesHe: "קיווי טרי"
+        ),
+        
+        // MARK: - Additional Food Items
+        
+        // Lemon Drizzle Cake
+        FoodItem(
+            id: UUID(),
+            name: "Lemon Drizzle Cake",
+            category: .snacks,
+            nutritionalInfo: NutritionalInfo(
+                calories: 380,
+                protein: 4,
+                carbohydrates: 57,
+                fat: 15,
+                fiber: 0.7,
+                sugar: 35
+            ),
+            servingSize: 100,
+            servingUnit: "g",
+            isCustom: true,
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Gâteau au Citron Glacé",
+            nameEs: "Bizcocho de Limón",
+            nameHe: "עוגת לימון מזוגגת",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
+        ),
+        
+        // Apple Cake (Apfelkuchen)
+        FoodItem(
+            id: UUID(),
+            name: "Apple Cake (Apfelkuchen)",
+            category: .snacks,
+            nutritionalInfo: NutritionalInfo(
+                calories: 300,
+                protein: 3,
+                carbohydrates: 45,
+                fat: 11,
+                fiber: 1.5,
+                sugar: 28
+            ),
+            servingSize: 100,
+            servingUnit: "g",
+            isCustom: true,
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Gâteau aux Pommes (Apfelkuchen)",
+            nameEs: "Pastel de Manzana (Apfelkuchen)",
+            nameHe: "עוגת תפוחים (אפלקוכן)",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
+        ),
+        
+        // Skim Milk
+        FoodItem(
+            id: UUID(),
+            name: "Skim Milk",
+            category: .dairy,
+            nutritionalInfo: NutritionalInfo(
+                calories: 34,
+                protein: 3.4,
+                carbohydrates: 5.0,
+                fat: 0.1,
+                fiber: 0.0,
+                sugar: 5.0
+            ),
+            servingSize: 100,
+            servingUnit: "g",
+            isCustom: true,
+            notes: "Fat-free cow's milk",
+            nameFr: "Lait Écrémé",
+            nameEs: "Leche Desnatada",
+            nameHe: "חלב דל שומן",
+            notesFr: "Lait de vache sans matière grasse",
+            notesEs: "Leche de vaca sin grasa",
+            notesHe: "חלב פרה נטול שומן"
+        ),
+        
+        // Lactose-Free Milk
+        FoodItem(
+            id: UUID(),
+            name: "Lactose-Free Milk",
+            category: .dairy,
+            nutritionalInfo: NutritionalInfo(
+                calories: 42,
+                protein: 3.3,
+                carbohydrates: 5.0,
+                fat: 1.0,
+                fiber: 0.0,
+                sugar: 5.0
+            ),
+            servingSize: 100,
+            servingUnit: "g",
+            isCustom: true,
+            notes: "Milk with lactose removed",
+            nameFr: "Lait Sans Lactose",
+            nameEs: "Leche Sin Lactosa",
+            nameHe: "חלב ללא לקטוז",
+            notesFr: "Lait dont le lactose a été retiré",
+            notesEs: "Leche con lactosa eliminada",
+            notesHe: "חלב שהוסר ממנו לקטוז"
+        ),
+        
+        // Regular Yogurt
+        FoodItem(
+            id: UUID(),
+            name: "Regular Yogurt",
+            category: .dairy,
+            nutritionalInfo: NutritionalInfo(
+                calories: 61,
+                protein: 3.5,
+                carbohydrates: 4.7,
+                fat: 3.3,
+                fiber: 0.0,
+                sugar: 4.7
+            ),
+            servingSize: 100,
+            servingUnit: "g",
+            isCustom: true,
+            notes: "Plain whole milk yogurt",
+            nameFr: "Yaourt Ordinaire",
+            nameEs: "Yogur Regular",
+            nameHe: "יוגורט רגיל",
+            notesFr: "Yaourt nature au lait entier",
+            notesEs: "Yogur natural de leche entera",
+            notesHe: "יוגורט טבעי מחלב מלא"
+        ),
+        
+        // Coffee
+        FoodItem(
+            id: UUID(),
+            name: "Coffee",
+            category: .beverages,
+            nutritionalInfo: NutritionalInfo(
+                calories: 2,
+                protein: 0.3,
+                carbohydrates: 0,
+                fat: 0,
+                fiber: 0,
+                sugar: 0
+            ),
+            servingSize: 240,
+            servingUnit: "ml",
+            isCustom: true,
+            notes: "Black coffee without sugar",
+            nameFr: "Café",
+            nameEs: "Café",
+            nameHe: "קפה",
+            notesFr: "Café noir sans sucre",
+            notesEs: "Café negro sin azúcar",
+            notesHe: "קפה שחור ללא סוכר"
+        ),
+        
+        // Black Tea
+        FoodItem(
+            id: UUID(),
+            name: "Black Tea",
+            category: .beverages,
+            nutritionalInfo: NutritionalInfo(
+                calories: 2,
+                protein: 0,
+                carbohydrates: 0.5,
+                fat: 0,
+                fiber: 0,
+                sugar: 0
+            ),
+            servingSize: 240,
+            servingUnit: "ml",
+            isCustom: true,
+            notes: "Unsweetened black tea",
+            nameFr: "Thé Noir",
+            nameEs: "Té Negro",
+            nameHe: "תה שחור",
+            notesFr: "Thé noir non sucré",
+            notesEs: "Té negro sin azúcar",
+            notesHe: "תה שחור ללא סוכר"
+        ),
+        
+        // Orange Juice
+        FoodItem(
+            id: UUID(),
+            name: "Orange Juice",
+            category: .beverages,
+            nutritionalInfo: NutritionalInfo(
+                calories: 112,
+                protein: 1.7,
+                carbohydrates: 25.8,
+                fat: 0.5,
+                fiber: 0.5,
+                sugar: 20.8
+            ),
+            servingSize: 240,
+            servingUnit: "ml",
+            isCustom: true,
+            notes: "Fresh squeezed orange juice",
+            nameFr: "Jus d'Orange",
+            nameEs: "Zumo de Naranja",
+            nameHe: "מיץ תפוזים",
+            notesFr: "Jus d'orange fraîchement pressé",
+            notesEs: "Zumo de naranja recién exprimido",
+            notesHe: "מיץ תפוזים סחוט טרי"
         ),
         
         // Plum
@@ -265,7 +545,13 @@ struct FruitFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Fresh plum"
+            notes: "Fresh plum",
+            nameFr: "Prune",
+            nameEs: "Ciruela",
+            nameHe: "שזיף",
+            notesFr: "Prune fraîche",
+            notesEs: "Ciruela fresca",
+            notesHe: "שזיף טרי"
         ),
         
         // Raspberry
@@ -284,7 +570,13 @@ struct FruitFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Fresh raspberries"
+            notes: "Fresh raspberries",
+            nameFr: "Framboise",
+            nameEs: "Frambuesa",
+            nameHe: "פטל",
+            notesFr: "Framboises fraîches",
+            notesEs: "Frambuesas frescas",
+            notesHe: "פטל טרי"
         ),
         
         // Blackberry
@@ -303,7 +595,13 @@ struct FruitFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Fresh blackberries"
+            notes: "Fresh blackberries",
+            nameFr: "Mûre",
+            nameEs: "Mora",
+            nameHe: "פטל שחור",
+            notesFr: "Mûres fraîches",
+            notesEs: "Moras frescas",
+            notesHe: "פטל שחור טרי"
         ),
         
         // Papaya
@@ -322,7 +620,13 @@ struct FruitFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Fresh papaya"
+            notes: "Fresh papaya",
+            nameFr: "Papaye",
+            nameEs: "Papaya",
+            nameHe: "פפאיה",
+            notesFr: "Papaye fraîche",
+            notesEs: "Papaya fresca",
+            notesHe: "פפאיה טרייה"
         ),
         
         // Cantaloupe
@@ -341,7 +645,13 @@ struct FruitFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Fresh cantaloupe"
+            notes: "Fresh cantaloupe",
+            nameFr: "Cantaloup",
+            nameEs: "Melón Cantalupo",
+            nameHe: "מלון כתום",
+            notesFr: "Cantaloup frais",
+            notesEs: "Melón cantalupo fresco",
+            notesHe: "מלון כתום טרי"
         ),
         
         // Apricot
@@ -360,7 +670,13 @@ struct FruitFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Fresh apricot"
+            notes: "Fresh apricot",
+            nameFr: "Abricot",
+            nameEs: "Albaricoque",
+            nameHe: "משמש",
+            notesFr: "Abricot frais",
+            notesEs: "Albaricoque fresco",
+            notesHe: "משמש טרי"
         ),
         
         // Pomegranate
@@ -379,7 +695,13 @@ struct FruitFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Fresh pomegranate"
+            notes: "Fresh pomegranate",
+            nameFr: "Grenade",
+            nameEs: "Granada",
+            nameHe: "רימון",
+            notesFr: "Grenade fraîche",
+            notesEs: "Granada fresca",
+            notesHe: "רימון טרי"
         ),
         
         // Lemon
@@ -398,7 +720,13 @@ struct FruitFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Fresh lemon"
+            notes: "Fresh lemon",
+            nameFr: "Citron",
+            nameEs: "Limón",
+            nameHe: "לימון",
+            notesFr: "Citron frais",
+            notesEs: "Limón fresco",
+            notesHe: "לימון טרי"
         ),
         
         // Lime
@@ -417,7 +745,13 @@ struct FruitFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Fresh lime"
+            notes: "Fresh lime",
+            nameFr: "Citron Vert",
+            nameEs: "Lima",
+            nameHe: "ליים",
+            notesFr: "Citron vert frais",
+            notesEs: "Lima fresca",
+            notesHe: "ליים טרי"
         ),
         
         // Coconut
@@ -436,7 +770,13 @@ struct FruitFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Fresh coconut meat"
+            notes: "Fresh coconut meat",
+            nameFr: "Noix de Coco",
+            nameEs: "Coco",
+            nameHe: "קוקוס",
+            notesFr: "Chair de noix de coco fraîche",
+            notesEs: "Pulpa de coco fresco",
+            notesHe: "בשר קוקוס טרי"
         ),
         
         // Fig
@@ -455,7 +795,13 @@ struct FruitFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Fresh fig"
+            notes: "Fresh fig",
+            nameFr: "Figue",
+            nameEs: "Higo",
+            nameHe: "תאנה",
+            notesFr: "Figue fraîche",
+            notesEs: "Higo fresco",
+            notesHe: "תאנה טרייה"
         ),
         
         // Guava
@@ -474,7 +820,13 @@ struct FruitFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Fresh guava"
+            notes: "Fresh guava",
+            nameFr: "Goyave",
+            nameEs: "Guayaba",
+            nameHe: "גויאבה",
+            notesFr: "Goyave fraîche",
+            notesEs: "Guayaba fresca",
+            notesHe: "גויאבה טרייה"
         )
     ]
 } 
