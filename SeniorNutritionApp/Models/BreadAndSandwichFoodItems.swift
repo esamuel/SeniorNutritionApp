@@ -169,7 +169,13 @@ struct BreadAndSandwichFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Italian crusty loaf"
+            notes: "Italian crusty loaf",
+            nameFr: "Ciabatta",
+            nameEs: "Ciabatta",
+            nameHe: "צ'אבטה",
+            notesFr: "Pain croustillant italien",
+            notesEs: "Pan crujiente italiano",
+            notesHe: "לחם איטלקי פריך"
         ),
         
         // Pita Bread
@@ -188,7 +194,13 @@ struct BreadAndSandwichFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Standard white pita"
+            notes: "Standard white pita",
+            nameFr: "Pain Pita",
+            nameEs: "Pan de Pita",
+            nameHe: "פיתה",
+            notesFr: "Pita blanche standard",
+            notesEs: "Pita blanca estándar",
+            notesHe: "פיתה לבנה רגילה"
         ),
         
         // Bagel (Plain)
@@ -207,7 +219,13 @@ struct BreadAndSandwichFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Boiled-then-baked bagel"
+            notes: "Boiled-then-baked bagel",
+            nameFr: "Bagel (Nature)",
+            nameEs: "Bagel (Natural)",
+            nameHe: "בייגל (רגיל)",
+            notesFr: "Bagel bouilli puis cuit au four",
+            notesEs: "Bagel hervido y luego horneado",
+            notesHe: "בייגל מבושל ואפוי"
         ),
         
         // English Muffin
@@ -226,7 +244,13 @@ struct BreadAndSandwichFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Toasted breakfast muffin"
+            notes: "Toasted breakfast muffin",
+            nameFr: "Muffin Anglais",
+            nameEs: "Muffin Inglés",
+            nameHe: "מאפין אנגלי",
+            notesFr: "Muffin de petit-déjeuner grillé",
+            notesEs: "Muffin tostado para desayuno",
+            notesHe: "מאפין קלוי לארוחת בוקר"
         ),
         
         // Cornbread
@@ -245,7 +269,13 @@ struct BreadAndSandwichFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Traditional Southern cornbread"
+            notes: "Traditional Southern cornbread",
+            nameFr: "Pain de Maïs",
+            nameEs: "Pan de Maíz",
+            nameHe: "לחם תירס",
+            notesFr: "Pain de maïs traditionnel du Sud américain",
+            notesEs: "Pan de maíz tradicional del Sur",
+            notesHe: "לחם תירס דרומי מסורתי"
         ),
         
         // Brioche
@@ -264,7 +294,13 @@ struct BreadAndSandwichFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Rich egg-and-butter loaf"
+            notes: "Rich egg-and-butter loaf",
+            nameFr: "Brioche",
+            nameEs: "Brioche",
+            nameHe: "בריוש",
+            notesFr: "Pain riche aux œufs et au beurre",
+            notesEs: "Pan rico en huevo y mantequilla",
+            notesHe: "לחם עשיר בביצים וחמאה"
         ),
         
         // BLT Sandwich
@@ -283,7 +319,13 @@ struct BreadAndSandwichFoodItems {
             servingSize: 180,
             servingUnit: "g",
             isCustom: true,
-            notes: "Bacon-lettuce-tomato on toast"
+            notes: "Bacon-lettuce-tomato on toast",
+            nameFr: "Sandwich BLT",
+            nameEs: "Sándwich BLT",
+            nameHe: "סנדוויץ' בייקון-חסה-עגבנייה",
+            notesFr: "Bacon-laitue-tomate sur pain grillé",
+            notesEs: "Tocino-lechuga-tomate en pan tostado",
+            notesHe: "בייקון-חסה-עגבנייה על טוסט"
         ),
         
         // Turkey Sandwich
@@ -302,7 +344,13 @@ struct BreadAndSandwichFoodItems {
             servingSize: 180,
             servingUnit: "g",
             isCustom: true,
-            notes: "Roast turkey, lettuce & mustard"
+            notes: "Roast turkey, lettuce & mustard",
+            nameFr: "Sandwich à la Dinde",
+            nameEs: "Sándwich de Pavo",
+            nameHe: "סנדוויץ' הודו",
+            notesFr: "Dinde rôtie, laitue et moutarde",
+            notesEs: "Pavo asado, lechuga y mostaza",
+            notesHe: "הודו צלוי, חסה וחרדל"
         ),
         
         // Grilled Cheese Sandwich
@@ -321,7 +369,13 @@ struct BreadAndSandwichFoodItems {
             servingSize: 180,
             servingUnit: "g",
             isCustom: true,
-            notes: "Pan-grilled with cheddar"
+            notes: "Pan-grilled with cheddar",
+            nameFr: "Sandwich au Fromage Grillé",
+            nameEs: "Sándwich de Queso a la Plancha",
+            nameHe: "סנדוויץ' גבינה מטוגן",
+            notesFr: "Grillé à la poêle avec du cheddar",
+            notesEs: "A la plancha con queso cheddar",
+            notesHe: "מטוגן במחבת עם גבינת צ'דר"
         ),
         
         // PB&J Sandwich
@@ -340,7 +394,13 @@ struct BreadAndSandwichFoodItems {
             servingSize: 180,
             servingUnit: "g",
             isCustom: true,
-            notes: "Peanut butter & jam classic"
+            notes: "Peanut butter & jam classic",
+            nameFr: "Sandwich au Beurre de Cacahuète et Confiture",
+            nameEs: "Sándwich de Mantequilla de Cacahuete y Mermelada",
+            nameHe: "סנדוויץ' חמאת בוטנים וריבה",
+            notesFr: "Classique au beurre de cacahuète et confiture",
+            notesEs: "Clásico de mantequilla de cacahuete y mermelada",
+            notesHe: "קלאסיקת חמאת בוטנים וריבה"
         ),
         
         // Ham & Cheese Sandwich
@@ -359,7 +419,13 @@ struct BreadAndSandwichFoodItems {
             servingSize: 180,
             servingUnit: "g",
             isCustom: true,
-            notes: "Smoked ham and Swiss"
+            notes: "Smoked ham and Swiss",
+            nameFr: "Sandwich Jambon-Fromage",
+            nameEs: "Sándwich de Jamón y Queso",
+            nameHe: "סנדוויץ' נקניק וגבינה",
+            notesFr: "Jambon fumé et fromage suisse",
+            notesEs: "Jamón ahumado y queso suizo",
+            notesHe: "נקניק מעושן וגבינה שוויצרית"
         ),
         
         // Egg Salad Sandwich
@@ -378,7 +444,13 @@ struct BreadAndSandwichFoodItems {
             servingSize: 180,
             servingUnit: "g",
             isCustom: true,
-            notes: "Chopped eggs with mayo"
+            notes: "Chopped eggs with mayo",
+            nameFr: "Sandwich à la Salade d'Œufs",
+            nameEs: "Sándwich de Ensalada de Huevo",
+            nameHe: "סנדוויץ' סלט ביצים",
+            notesFr: "Œufs hachés avec mayonnaise",
+            notesEs: "Huevos picados con mayonesa",
+            notesHe: "ביצים קצוצות עם מיונז"
         ),
         
         // Tuna Salad Sandwich
@@ -397,7 +469,13 @@ struct BreadAndSandwichFoodItems {
             servingSize: 180,
             servingUnit: "g",
             isCustom: true,
-            notes: "Albacore tuna with light mayo"
+            notes: "Albacore tuna with light mayo",
+            nameFr: "Sandwich à la Salade de Thon",
+            nameEs: "Sándwich de Ensalada de Atún",
+            nameHe: "סנדוויץ' סלט טונה",
+            notesFr: "Thon blanc avec mayonnaise légère",
+            notesEs: "Atún blanco con mayonesa ligera",
+            notesHe: "טונה לבנה עם מיונז קל"
         ),
         
         // Club Sandwich
@@ -416,7 +494,13 @@ struct BreadAndSandwichFoodItems {
             servingSize: 180,
             servingUnit: "g",
             isCustom: true,
-            notes: "Triple-layer turkey-ham-bacon"
+            notes: "Triple-layer turkey-ham-bacon",
+            nameFr: "Sandwich Club",
+            nameEs: "Sándwich Club",
+            nameHe: "סנדוויץ' קלאב",
+            notesFr: "Triple étage dinde-jambon-bacon",
+            notesEs: "Triple capa de pavo-jamón-tocino",
+            notesHe: "שלוש שכבות של הודו-נקניק-בייקון"
         ),
         
         // Reuben Sandwich
@@ -435,7 +519,13 @@ struct BreadAndSandwichFoodItems {
             servingSize: 180,
             servingUnit: "g",
             isCustom: true,
-            notes: "Corned beef, sauerkraut, rye"
+            notes: "Corned beef, sauerkraut, rye",
+            nameFr: "Sandwich Reuben",
+            nameEs: "Sándwich Reuben",
+            nameHe: "סנדוויץ' ראובן",
+            notesFr: "Bœuf salé, choucroute, pain de seigle",
+            notesEs: "Carne en conserva, chucrut, pan de centeno",
+            notesHe: "בשר מקורנד, כרוב כבוש, לחם שיפון"
         ),
         
         // Chicken Salad Sandwich
@@ -454,7 +544,13 @@ struct BreadAndSandwichFoodItems {
             servingSize: 180,
             servingUnit: "g",
             isCustom: true,
-            notes: "Diced chicken & light mayo"
+            notes: "Diced chicken & light mayo",
+            nameFr: "Sandwich à la Salade de Poulet",
+            nameEs: "Sándwich de Ensalada de Pollo",
+            nameHe: "סנדוויץ' סלט עוף",
+            notesFr: "Poulet en dés et mayonnaise légère",
+            notesEs: "Pollo en cubitos y mayonesa ligera",
+            notesHe: "עוף קצוץ ומיונז קל"
         ),
         
         // Veggie Sandwich
@@ -473,7 +569,13 @@ struct BreadAndSandwichFoodItems {
             servingSize: 180,
             servingUnit: "g",
             isCustom: true,
-            notes: "Whole-grain bread, mixed veg"
+            notes: "Whole-grain bread, mixed veg",
+            nameFr: "Sandwich aux Légumes",
+            nameEs: "Sándwich Vegetariano",
+            nameHe: "סנדוויץ' ירקות",
+            notesFr: "Pain complet, légumes variés",
+            notesEs: "Pan integral, vegetales mixtos",
+            notesHe: "לחם מחיטה מלאה, ירקות מעורבים"
         ),
         
         // Roast Beef Sandwich
@@ -492,7 +594,13 @@ struct BreadAndSandwichFoodItems {
             servingSize: 180,
             servingUnit: "g",
             isCustom: true,
-            notes: "Lean roast beef on roll"
+            notes: "Lean roast beef on roll",
+            nameFr: "Sandwich au Rôti de Bœuf",
+            nameEs: "Sándwich de Carne Asada",
+            nameHe: "סנדוויץ' בשר בקר צלוי",
+            notesFr: "Rôti de bœuf maigre sur petit pain",
+            notesEs: "Carne asada magra en panecillo",
+            notesHe: "בשר בקר רזה צלוי בלחמנייה"
         ),
         
         // Caprese Sandwich
@@ -511,7 +619,13 @@ struct BreadAndSandwichFoodItems {
             servingSize: 180,
             servingUnit: "g",
             isCustom: true,
-            notes: "Mozzarella, tomato & basil"
+            notes: "Mozzarella, tomato & basil",
+            nameFr: "Sandwich Caprese",
+            nameEs: "Sándwich Caprese",
+            nameHe: "סנדוויץ' קפרזה",
+            notesFr: "Mozzarella, tomate et basilic",
+            notesEs: "Mozzarella, tomate y albahaca",
+            notesHe: "מוצרלה, עגבניות וריחן"
         )
     ]
     

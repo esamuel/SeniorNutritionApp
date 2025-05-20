@@ -293,7 +293,13 @@ struct DairyFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Clarified butter"
+            notes: "Clarified butter",
+            nameFr: "Ghee",
+            nameEs: "Ghee",
+            nameHe: "גהי",
+            notesFr: "Beurre clarifié",
+            notesEs: "Mantequilla clarificada",
+            notesHe: "חמאה מזוקקת"
         ),
         
         // Sour Cream
@@ -337,7 +343,13 @@ struct DairyFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Lightly whipped cream"
+            notes: "Lightly whipped cream",
+            nameFr: "Crème Fouettée",
+            nameEs: "Nata Montada",
+            nameHe: "קצפת",
+            notesFr: "Crème légèrement fouettée",
+            notesEs: "Nata ligeramente montada",
+            notesHe: "קצפת קלה"
         ),
         
         // Heavy Cream
@@ -356,7 +368,13 @@ struct DairyFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Also known as heavy whipping cream"
+            notes: "Also known as heavy whipping cream",
+            nameFr: "Crème Épaisse",
+            nameEs: "Crema Espesa",
+            nameHe: "שמנת מתוקה",
+            notesFr: "Aussi connue sous le nom de crème à fouetter",
+            notesEs: "También conocida como crema para batir",
+            notesHe: "ידועה גם כשמנת להקצפה"
         ),
         
         // Ice Cream
@@ -375,7 +393,13 @@ struct DairyFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Vanilla ice cream"
+            notes: "Vanilla ice cream",
+            nameFr: "Crème Glacée",
+            nameEs: "Helado",
+            nameHe: "גלידה",
+            notesFr: "Crème glacée à la vanille",
+            notesEs: "Helado de vainilla",
+            notesHe: "גלידת וניל"
         ),
         
         // Kefir
@@ -394,7 +418,13 @@ struct DairyFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Fermented milk drink"
+            notes: "Fermented milk drink",
+            nameFr: "Kéfir",
+            nameEs: "Kéfir",
+            nameHe: "קפיר",
+            notesFr: "Boisson de lait fermenté",
+            notesEs: "Bebida de leche fermentada",
+            notesHe: "משקה חלב מותסס"
         ),
         
         // Buttermilk
@@ -413,7 +443,13 @@ struct DairyFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Cultured low-fat buttermilk"
+            notes: "Cultured low-fat buttermilk",
+            nameFr: "Babeurre",
+            nameEs: "Suero de Mantequilla",
+            nameHe: "חובצה",
+            notesFr: "Babeurre fermenté à faible teneur en matières grasses",
+            notesEs: "Suero de mantequilla cultivado bajo en grasa",
+            notesHe: "חובצה דלת שומן"
         ),
         
         // Evaporated Milk
@@ -432,7 +468,13 @@ struct DairyFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Unsweetened condensed milk"
+            notes: "Unsweetened condensed milk",
+            nameFr: "Lait Évaporé",
+            nameEs: "Leche Evaporada",
+            nameHe: "חלב מאודה",
+            notesFr: "Lait condensé non sucré",
+            notesEs: "Leche condensada sin azúcar",
+            notesHe: "חלב מרוכז ללא סוכר"
         ),
         
         // Condensed Milk
@@ -451,7 +493,13 @@ struct DairyFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Sweetened condensed milk"
+            notes: "Sweetened condensed milk",
+            nameFr: "Lait Condensé",
+            nameEs: "Leche Condensada",
+            nameHe: "חלב מרוכז",
+            notesFr: "Lait condensé sucré",
+            notesEs: "Leche condensada azucarada",
+            notesHe: "חלב מרוכז ממותק"
         )
     ]
     

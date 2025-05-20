@@ -293,7 +293,13 @@ struct CakeFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Approx. values per 100 g slice"
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Génoise aux Baies",
+            nameEs: "Bizcocho Genovés con Bayas",
+            nameHe: "ג'נואז עם פירות יער",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
         ),
         
         // Ricotta Cheesecake
@@ -312,7 +318,13 @@ struct CakeFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Approx. values per 100 g slice"
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Cheesecake à la Ricotta",
+            nameEs: "Tarta de Queso Ricotta",
+            nameHe: "עוגת גבינת ריקוטה",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
         ),
         
         // Tres Leches Cake
@@ -331,7 +343,13 @@ struct CakeFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Approx. values per 100 g slice"
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Gâteau Tres Leches",
+            nameEs: "Pastel Tres Leches",
+            nameHe: "עוגת שלושת החלבים",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
         ),
         
         // Coconut Cake
@@ -350,7 +368,13 @@ struct CakeFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Approx. values per 100 g slice"
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Gâteau à la Noix de Coco",
+            nameEs: "Pastel de Coco",
+            nameHe: "עוגת קוקוס",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
         ),
         
         // Honey Cake (Medovik)
@@ -369,7 +393,13 @@ struct CakeFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Approx. values per 100 g slice"
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Gâteau au Miel (Medovik)",
+            nameEs: "Pastel de Miel (Medovik)",
+            nameHe: "עוגת דבש (מדוביק)",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
         ),
         
         // Black Forest Cake
@@ -388,7 +418,13 @@ struct CakeFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Approx. values per 100 g slice"
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Forêt-Noire",
+            nameEs: "Pastel Selva Negra",
+            nameHe: "עוגת יער שחור",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
         ),
         
         // French Yogurt Cake
@@ -407,7 +443,13 @@ struct CakeFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Approx. values per 100 g slice"
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Gâteau au Yaourt Français",
+            nameEs: "Bizcocho de Yogur Francés",
+            nameHe: "עוגת יוגורט צרפתית",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
         ),
         
         // Swedish Toscakaka
@@ -426,7 +468,13 @@ struct CakeFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Approx. values per 100 g slice"
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Gâteau Suédois Toscakaka",
+            nameEs: "Pastel Sueco Toscakaka",
+            nameHe: "עוגת טוסקאקאקה שוודית",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
         ),
         
         // Banana Bread (Loaf Cake)
@@ -445,7 +493,13 @@ struct CakeFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Approx. values per 100 g slice"
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Pain aux Bananes (Cake)",
+            nameEs: "Pan de Plátano (Bizcocho)",
+            nameHe: "לחם בננות (עוגה)",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
         ),
         
         // Spice Cake
@@ -464,7 +518,13 @@ struct CakeFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Approx. values per 100 g slice"
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Gâteau aux Épices",
+            nameEs: "Pastel de Especias",
+            nameHe: "עוגת תבלינים",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
         ),
         
         // Semolina-Orange Cake
@@ -483,7 +543,13 @@ struct CakeFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Approx. values per 100 g slice"
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Gâteau Semoule-Orange",
+            nameEs: "Pastel de Sémola y Naranja",
+            nameHe: "עוגת סולת ותפוזים",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
         ),
         
         // Almond Flour Torte
@@ -502,7 +568,13 @@ struct CakeFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Approx. values per 100 g slice"
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Tarte à la Farine d'Amande",
+            nameEs: "Torta de Harina de Almendra",
+            nameHe: "טורט קמח שקדים",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
         ),
         
         // Boston Cream Pie (Cake)
@@ -521,7 +593,13 @@ struct CakeFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Approx. values per 100 g slice"
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Gâteau Boston Cream Pie",
+            nameEs: "Pastel Boston Cream Pie",
+            nameHe: "עוגת בוסטון קרם פאי",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
         ),
         
         // Kugelhopf (Gugelhupf)
@@ -540,7 +618,13 @@ struct CakeFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Approx. values per 100 g slice"
+            notes: "Approx. values per 100 g slice",
+            nameFr: "Kougelhopf (Kouglof)",
+            nameEs: "Kugelhopf (Gugelhupf)",
+            nameHe: "קוגלהופף (גוגלהופף)",
+            notesFr: "Valeurs approx. pour une tranche de 100 g",
+            notesEs: "Valores aprox. por porción de 100 g",
+            notesHe: "ערכים משוערים ל-100 גרם פרוסה"
         )
     ]
     

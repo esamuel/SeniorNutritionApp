@@ -169,7 +169,13 @@ struct BeverageFoodItems {
             servingSize: 240,
             servingUnit: "ml",
             isCustom: true,
-            notes: "Unsweetened cranberry juice"
+            notes: "Unsweetened cranberry juice",
+            nameFr: "Jus de Canneberge",
+            nameEs: "Zumo de Arándano",
+            nameHe: "מיץ חמוציות",
+            notesFr: "Jus de canneberge non sucré",
+            notesEs: "Zumo de arándano sin azúcar",
+            notesHe: "מיץ חמוציות ללא סוכר"
         ),
         
         // Milk (Whole)
@@ -188,7 +194,13 @@ struct BeverageFoodItems {
             servingSize: 240,
             servingUnit: "ml",
             isCustom: true,
-            notes: "Whole cow's milk"
+            notes: "Whole cow's milk",
+            nameFr: "Lait (Entier, 240ml)",
+            nameEs: "Leche (Entera, 240ml)",
+            nameHe: "חלב (מלא, 240 מ״ל)",
+            notesFr: "Lait de vache entier",
+            notesEs: "Leche entera de vaca",
+            notesHe: "חלב פרה מלא"
         ),
         
         // Milk (Skim)
@@ -207,7 +219,13 @@ struct BeverageFoodItems {
             servingSize: 240,
             servingUnit: "ml",
             isCustom: true,
-            notes: "Skim cow's milk"
+            notes: "Skim cow's milk",
+            nameFr: "Lait (Écrémé, 240ml)",
+            nameEs: "Leche (Desnatada, 240ml)",
+            nameHe: "חלב (דל שומן, 240 מ״ל)",
+            notesFr: "Lait de vache écrémé",
+            notesEs: "Leche desnatada de vaca",
+            notesHe: "חלב פרה דל שומן"
         ),
         
         // Almond Milk (Unsweetened)
@@ -226,7 +244,13 @@ struct BeverageFoodItems {
             servingSize: 240,
             servingUnit: "ml",
             isCustom: true,
-            notes: "Unsweetened almond milk"
+            notes: "Unsweetened almond milk",
+            nameFr: "Lait d'Amande (Non Sucré)",
+            nameEs: "Leche de Almendra (Sin Azúcar)",
+            nameHe: "חלב שקדים (ללא סוכר)",
+            notesFr: "Lait d'amande non sucré",
+            notesEs: "Leche de almendra sin azúcar",
+            notesHe: "חלב שקדים ללא סוכר"
         ),
         
         // Soy Milk (Unsweetened)
@@ -245,7 +269,13 @@ struct BeverageFoodItems {
             servingSize: 240,
             servingUnit: "ml",
             isCustom: true,
-            notes: "Unsweetened soy milk"
+            notes: "Unsweetened soy milk",
+            nameFr: "Lait de Soja (Non Sucré)",
+            nameEs: "Leche de Soja (Sin Azúcar)",
+            nameHe: "חלב סויה (ללא סוכר)",
+            notesFr: "Lait de soja non sucré",
+            notesEs: "Leche de soja sin azúcar",
+            notesHe: "חלב סויה ללא סוכר"
         ),
         
         // Coca-Cola
@@ -264,7 +294,13 @@ struct BeverageFoodItems {
             servingSize: 355,
             servingUnit: "ml",
             isCustom: true,
-            notes: "Regular Coca-Cola"
+            notes: "Regular Coca-Cola",
+            nameFr: "Coca-Cola",
+            nameEs: "Coca-Cola",
+            nameHe: "קוקה-קולה",
+            notesFr: "Coca-Cola classique",
+            notesEs: "Coca-Cola regular",
+            notesHe: "קוקה-קולה רגיל"
         ),
         
         // Pepsi
@@ -283,7 +319,13 @@ struct BeverageFoodItems {
             servingSize: 355,
             servingUnit: "ml",
             isCustom: true,
-            notes: "Regular Pepsi"
+            notes: "Regular Pepsi",
+            nameFr: "Pepsi",
+            nameEs: "Pepsi",
+            nameHe: "פפסי",
+            notesFr: "Pepsi classique",
+            notesEs: "Pepsi regular",
+            notesHe: "פפסי רגיל"
         ),
         
         // Sprite
@@ -302,7 +344,13 @@ struct BeverageFoodItems {
             servingSize: 355,
             servingUnit: "ml",
             isCustom: true,
-            notes: "Lemon-lime flavored soda"
+            notes: "Lemon-lime flavored soda",
+            nameFr: "Sprite",
+            nameEs: "Sprite",
+            nameHe: "ספרייט",
+            notesFr: "Soda parfumé au citron et lime",
+            notesEs: "Refresco con sabor a limón y lima",
+            notesHe: "משקה מוגז בטעם לימון ליים"
         ),
         
         // Dr Pepper
@@ -321,7 +369,13 @@ struct BeverageFoodItems {
             servingSize: 355,
             servingUnit: "ml",
             isCustom: true,
-            notes: "Unique blend of 23 flavors"
+            notes: "Unique blend of 23 flavors",
+            nameFr: "Dr Pepper",
+            nameEs: "Dr Pepper",
+            nameHe: "דר פפר",
+            notesFr: "Mélange unique de 23 saveurs",
+            notesEs: "Mezcla única de 23 sabores",
+            notesHe: "תערובת ייחודית של 23 טעמים"
         ),
         
         // Mountain Dew
@@ -340,7 +394,13 @@ struct BeverageFoodItems {
             servingSize: 355,
             servingUnit: "ml",
             isCustom: true,
-            notes: "Citrus-flavored soda"
+            notes: "Citrus-flavored soda",
+            nameFr: "Mountain Dew",
+            nameEs: "Mountain Dew",
+            nameHe: "מאונטיין דיו",
+            notesFr: "Soda aux agrumes",
+            notesEs: "Refresco con sabor a cítricos",
+            notesHe: "משקה מוגז בטעם הדרים"
         ),
         
         // Gatorade (Orange)
@@ -359,7 +419,13 @@ struct BeverageFoodItems {
             servingSize: 355,
             servingUnit: "ml",
             isCustom: true,
-            notes: "Electrolyte sports drink"
+            notes: "Electrolyte sports drink",
+            nameFr: "Gatorade (Orange)",
+            nameEs: "Gatorade (Naranja)",
+            nameHe: "גטורייד (תפוז)",
+            notesFr: "Boisson sportive aux électrolytes",
+            notesEs: "Bebida deportiva con electrolitos",
+            notesHe: "משקה ספורט עם אלקטרוליטים"
         ),
         
         // Red Bull
@@ -378,7 +444,13 @@ struct BeverageFoodItems {
             servingSize: 250,
             servingUnit: "ml",
             isCustom: true,
-            notes: "Energy drink with caffeine"
+            notes: "Energy drink with caffeine",
+            nameFr: "Red Bull",
+            nameEs: "Red Bull",
+            nameHe: "רד בול",
+            notesFr: "Boisson énergisante avec caféine",
+            notesEs: "Bebida energética con cafeína",
+            notesHe: "משקה אנרגיה עם קפאין"
         ),
         
         // Monster Energy
@@ -397,7 +469,13 @@ struct BeverageFoodItems {
             servingSize: 473,
             servingUnit: "ml",
             isCustom: true,
-            notes: "High-caffeine energy drink"
+            notes: "High-caffeine energy drink",
+            nameFr: "Monster Energy",
+            nameEs: "Monster Energy",
+            nameHe: "מונסטר אנרג'י",
+            notesFr: "Boisson énergisante à haute teneur en caféine",
+            notesEs: "Bebida energética con alto contenido de cafeína",
+            notesHe: "משקה אנרגיה עם תכולת קפאין גבוהה"
         ),
         
         // LaCroix (Lime)
@@ -416,7 +494,13 @@ struct BeverageFoodItems {
             servingSize: 355,
             servingUnit: "ml",
             isCustom: true,
-            notes: "Flavored sparkling water without sweeteners"
+            notes: "Flavored sparkling water without sweeteners",
+            nameFr: "LaCroix (Citron Vert)",
+            nameEs: "LaCroix (Lima)",
+            nameHe: "לה קרואה (ליים)",
+            notesFr: "Eau pétillante aromatisée sans édulcorants",
+            notesEs: "Agua con gas saborizada sin edulcorantes",
+            notesHe: "מים מוגזים בטעם ללא ממתיקים"
         )
     ]
     

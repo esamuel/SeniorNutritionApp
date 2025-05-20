@@ -368,7 +368,13 @@ struct AdditionalFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Low-fat cottage cheese"
+            notes: "Low-fat cottage cheese",
+            nameFr: "Fromage Cottage",
+            nameEs: "Queso Cottage",
+            nameHe: "גבינת קוטג'",
+            notesFr: "Fromage cottage allégé",
+            notesEs: "Queso cottage bajo en grasa",
+            notesHe: "גבינת קוטג' דלת שומן"
         ),
         
         // Hard-Boiled Egg
@@ -412,7 +418,13 @@ struct AdditionalFoodItems {
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Plain Greek yogurt"
+            notes: "Plain Greek yogurt",
+            nameFr: "Yaourt Grec",
+            nameEs: "Yogur Griego",
+            nameHe: "יוגורט יווני",
+            notesFr: "Yaourt grec nature",
+            notesEs: "Yogur griego natural",
+            notesHe: "יוגורט יווני טבעי"
         ),
         
         // Peanut Butter
@@ -636,9 +648,9 @@ struct AdditionalFoodItems {
             servingUnit: "g",
             isCustom: true,
             notes: "Low-fat cottage cheese",
-            nameFr: "Fromage Cottage (Allégé)",
-            nameEs: "Queso Cottage (Bajo en Grasa)",
-            nameHe: "גבינת קוטג' (דלת שומן)",
+            nameFr: "Fromage Cottage",
+            nameEs: "Queso Cottage",
+            nameHe: "גבינת קוטג'",
             notesFr: "Fromage cottage allégé",
             notesEs: "Queso cottage bajo en grasa",
             notesHe: "גבינת קוטג' דלת שומן"
