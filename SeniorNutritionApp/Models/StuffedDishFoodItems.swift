@@ -7,14 +7,15 @@ struct StuffedDishFoodItems {
         FoodItem(
             id: UUID(),
             name: "Stuffed Bell Pepper",
-            category: .stuffedDish,
+            category: .stuffedDishes,
             nutritionalInfo: NutritionalInfo(
                 calories: 140,
                 protein: 7,
                 carbohydrates: 15,
                 fat: 6,
                 fiber: 3,
-                sugar: 5
+                sugar: 5,
+                calcium: 46 // Low-moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -32,14 +33,15 @@ struct StuffedDishFoodItems {
         FoodItem(
             id: UUID(),
             name: "Stuffed Cabbage Roll",
-            category: .stuffedDish,
+            category: .stuffedDishes,
             nutritionalInfo: NutritionalInfo(
                 calories: 120,
                 protein: 6,
                 carbohydrates: 14,
                 fat: 5,
                 fiber: 2,
-                sugar: 4
+                sugar: 4,
+                calcium: 40 // Low-moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -57,14 +59,15 @@ struct StuffedDishFoodItems {
         FoodItem(
             id: UUID(),
             name: "Stuffed Zucchini",
-            category: .stuffedDish,
+            category: .stuffedDishes,
             nutritionalInfo: NutritionalInfo(
                 calories: 110,
                 protein: 5,
                 carbohydrates: 10,
                 fat: 6,
                 fiber: 2,
-                sugar: 4
+                sugar: 4,
+                calcium: 35 // Low calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -82,14 +85,15 @@ struct StuffedDishFoodItems {
         FoodItem(
             id: UUID(),
             name: "Stuffed Eggplant",
-            category: .stuffedDish,
+            category: .stuffedDishes,
             nutritionalInfo: NutritionalInfo(
                 calories: 130,
                 protein: 4,
                 carbohydrates: 14,
                 fat: 7,
                 fiber: 4,
-                sugar: 6
+                sugar: 6,
+                calcium: 30 // Low calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -107,14 +111,15 @@ struct StuffedDishFoodItems {
         FoodItem(
             id: UUID(),
             name: "Stuffed Grape Leaves (Dolmas)",
-            category: .stuffedDish,
+            category: .stuffedDishes,
             nutritionalInfo: NutritionalInfo(
                 calories: 150,
                 protein: 4,
                 carbohydrates: 20,
                 fat: 6,
                 fiber: 3,
-                sugar: 2
+                sugar: 2,
+                calcium: 52 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -132,14 +137,15 @@ struct StuffedDishFoodItems {
         FoodItem(
             id: UUID(),
             name: "Stuffed Portobello Mushroom",
-            category: .stuffedDish,
+            category: .stuffedDishes,
             nutritionalInfo: NutritionalInfo(
                 calories: 120,
                 protein: 7,
                 carbohydrates: 8,
                 fat: 7,
                 fiber: 2,
-                sugar: 2
+                sugar: 2,
+                calcium: 135 // Good calcium content from cheese
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -157,14 +163,15 @@ struct StuffedDishFoodItems {
         FoodItem(
             id: UUID(),
             name: "Stuffed Chicken Breast",
-            category: .stuffedPoultry,
+            category: .stuffedDishes,
             nutritionalInfo: NutritionalInfo(
                 calories: 160,
                 protein: 18,
                 carbohydrates: 3,
                 fat: 9,
                 fiber: 1,
-                sugar: 1
+                sugar: 1,
+                calcium: 145 // Good calcium content from feta cheese
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -182,7 +189,7 @@ struct StuffedDishFoodItems {
         FoodItem(
             id: UUID(),
             name: "Stuffed Turkey Breast",
-            category: .stuffedPoultry,
+            category: .stuffedDishes,
             nutritionalInfo: NutritionalInfo(
                 calories: 150,
                 protein: 17,
@@ -207,7 +214,7 @@ struct StuffedDishFoodItems {
         FoodItem(
             id: UUID(),
             name: "Stuffed Pork Loin",
-            category: .stuffedMeat,
+            category: .stuffedDishes,
             nutritionalInfo: NutritionalInfo(
                 calories: 180,
                 protein: 17,
@@ -232,7 +239,7 @@ struct StuffedDishFoodItems {
         FoodItem(
             id: UUID(),
             name: "Stuffed Acorn Squash",
-            category: .stuffedVegetable,
+            category: .stuffedDishes,
             nutritionalInfo: NutritionalInfo(
                 calories: 130,
                 protein: 4,
@@ -257,7 +264,7 @@ struct StuffedDishFoodItems {
         FoodItem(
             id: UUID(),
             name: "Stuffed Tomato (Tuna)",
-            category: .stuffedVegetable,
+            category: .stuffedDishes,
             nutritionalInfo: NutritionalInfo(
                 calories: 110,
                 protein: 8,
@@ -282,7 +289,7 @@ struct StuffedDishFoodItems {
         FoodItem(
             id: UUID(),
             name: "Stuffed Potato Skins",
-            category: .stuffedVegetable,
+            category: .stuffedDishes,
             nutritionalInfo: NutritionalInfo(
                 calories: 200,
                 protein: 6,
@@ -307,7 +314,7 @@ struct StuffedDishFoodItems {
         FoodItem(
             id: UUID(),
             name: "Stuffed Jalapeños",
-            category: .stuffedVegetable,
+            category: .stuffedDishes,
             nutritionalInfo: NutritionalInfo(
                 calories: 180,
                 protein: 5,
@@ -332,7 +339,7 @@ struct StuffedDishFoodItems {
         FoodItem(
             id: UUID(),
             name: "Stuffed Shells (Ricotta)",
-            category: .stuffedPasta,
+            category: .stuffedDishes,
             nutritionalInfo: NutritionalInfo(
                 calories: 170,
                 protein: 8,
@@ -357,7 +364,7 @@ struct StuffedDishFoodItems {
         FoodItem(
             id: UUID(),
             name: "Stuffed Manicotti",
-            category: .stuffedPasta,
+            category: .stuffedDishes,
             nutritionalInfo: NutritionalInfo(
                 calories: 160,
                 protein: 7,
@@ -382,7 +389,7 @@ struct StuffedDishFoodItems {
         FoodItem(
             id: UUID(),
             name: "Stuffed Cornish Hen",
-            category: .stuffedPoultry,
+            category: .stuffedDishes,
             nutritionalInfo: NutritionalInfo(
                 calories: 190,
                 protein: 15,
@@ -407,7 +414,7 @@ struct StuffedDishFoodItems {
         FoodItem(
             id: UUID(),
             name: "Stuffed Meatballs (Mozzarella)",
-            category: .stuffedMeat,
+            category: .stuffedDishes,
             nutritionalInfo: NutritionalInfo(
                 calories: 220,
                 protein: 18,
@@ -432,7 +439,7 @@ struct StuffedDishFoodItems {
         FoodItem(
             id: UUID(),
             name: "Stuffed French Toast",
-            category: .stuffedDessert,
+            category: .stuffedDishes,
             nutritionalInfo: NutritionalInfo(
                 calories: 260,
                 protein: 7,
@@ -457,7 +464,7 @@ struct StuffedDishFoodItems {
         FoodItem(
             id: UUID(),
             name: "Stuffed Paratha (Aloo)",
-            category: .stuffedBread,
+            category: .stuffedDishes,
             nutritionalInfo: NutritionalInfo(
                 calories: 240,
                 protein: 5,
@@ -482,7 +489,7 @@ struct StuffedDishFoodItems {
         FoodItem(
             id: UUID(),
             name: "Stuffed Artichoke",
-            category: .stuffedVegetable,
+            category: .stuffedDishes,
             nutritionalInfo: NutritionalInfo(
                 calories: 140,
                 protein: 5,

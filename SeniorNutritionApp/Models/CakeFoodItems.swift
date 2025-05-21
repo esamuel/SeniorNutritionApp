@@ -13,7 +13,8 @@ struct CakeFoodItems {
                 carbohydrates: 50,
                 fat: 22,
                 fiber: 0.6,
-                sugar: 30
+                sugar: 30,
+                calcium: 70 // Moderate calcium from eggs and milk
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -38,7 +39,8 @@ struct CakeFoodItems {
                 carbohydrates: 57,
                 fat: 15,
                 fiber: 0.7,
-                sugar: 35
+                sugar: 35,
+                calcium: 60 // Low-moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -63,7 +65,8 @@ struct CakeFoodItems {
                 carbohydrates: 50,
                 fat: 22,
                 fiber: 1.5,
-                sugar: 34
+                sugar: 34,
+                calcium: 95 // Good calcium from cream cheese frosting
             ),
             servingSize: 100,
             servingUnit: "g",

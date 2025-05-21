@@ -348,4 +348,9 @@
 
 // Food categories
 "Seeds" = "Seeds";
-"Condiments / Spreads" = "Condiments / Spreads"; 
+"Condiments / Spreads" = "Condiments / Spreads";
+"Stuffed Dishes" = "Stuffed Dishes";
+
+// Food Database Promotion
+"food_database_promo_title" = "Food Database";
+"food_database_promo_text" = "View detailed nutrition information for all foods, including pasta dishes and more"; 

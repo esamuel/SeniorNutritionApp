@@ -13,7 +13,8 @@ struct AdditionalFoodItems {
                 carbohydrates: 8.5,
                 fat: 14.7,
                 fiber: 6.7,
-                sugar: 0.7
+                sugar: 0.7,
+                calcium: 12 // Low calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -38,7 +39,8 @@ struct AdditionalFoodItems {
                 carbohydrates: 21.3,
                 fat: 1.9,
                 fiber: 2.8,
-                sugar: 0.9
+                sugar: 0.9,
+                calcium: 17 // Low-moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -63,7 +65,8 @@ struct AdditionalFoodItems {
                 carbohydrates: 11.9,
                 fat: 8.7,
                 fiber: 9.8,
-                sugar: 0.0
+                sugar: 0.0,
+                calcium: 177 // Excellent source of calcium
             ),
             servingSize: 28,
             servingUnit: "g",
@@ -88,7 +91,8 @@ struct AdditionalFoodItems {
                 carbohydrates: 20.1,
                 fat: 0.4,
                 fiber: 7.9,
-                sugar: 1.8
+                sugar: 1.8,
+                calcium: 19 // Low-moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",

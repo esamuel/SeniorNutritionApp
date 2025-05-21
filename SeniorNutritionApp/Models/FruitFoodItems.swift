@@ -13,7 +13,8 @@ struct FruitFoodItems {
                 carbohydrates: 14,
                 fat: 0.2,
                 fiber: 2.4,
-                sugar: 10.4
+                sugar: 10.4,
+                calcium: 6
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -38,7 +39,8 @@ struct FruitFoodItems {
                 carbohydrates: 23,
                 fat: 0.3,
                 fiber: 2.6,
-                sugar: 12.2
+                sugar: 12.2,
+                calcium: 5
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -63,7 +65,8 @@ struct FruitFoodItems {
                 carbohydrates: 12,
                 fat: 0.1,
                 fiber: 2.4,
-                sugar: 9.4
+                sugar: 9.4,
+                calcium: 40
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -88,7 +91,8 @@ struct FruitFoodItems {
                 carbohydrates: 7.7,
                 fat: 0.3,
                 fiber: 2.0,
-                sugar: 4.9
+                sugar: 4.9,
+                calcium: 16
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -113,7 +117,8 @@ struct FruitFoodItems {
                 carbohydrates: 14.5,
                 fat: 0.3,
                 fiber: 2.4,
-                sugar: 9.7
+                sugar: 9.7,
+                calcium: 10 // Low calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -138,7 +143,8 @@ struct FruitFoodItems {
                 carbohydrates: 18,
                 fat: 0.2,
                 fiber: 0.9,
-                sugar: 15.5
+                sugar: 15.5,
+                calcium: 15 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -163,7 +169,8 @@ struct FruitFoodItems {
                 carbohydrates: 13,
                 fat: 0.1,
                 fiber: 1.4,
-                sugar: 9.9
+                sugar: 9.9,
+                calcium: 20 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -188,7 +195,8 @@ struct FruitFoodItems {
                 carbohydrates: 15,
                 fat: 0.4,
                 fiber: 1.6,
-                sugar: 13.7
+                sugar: 13.7,
+                calcium: 20 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -213,7 +221,8 @@ struct FruitFoodItems {
                 carbohydrates: 8,
                 fat: 0.2,
                 fiber: 0.4,
-                sugar: 6.2
+                sugar: 6.2,
+                calcium: 10 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -238,7 +247,8 @@ struct FruitFoodItems {
                 carbohydrates: 10,
                 fat: 0.3,
                 fiber: 1.5,
-                sugar: 8.4
+                sugar: 8.4,
+                calcium: 10 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -263,7 +273,8 @@ struct FruitFoodItems {
                 carbohydrates: 15,
                 fat: 0.1,
                 fiber: 3.1,
-                sugar: 9.8
+                sugar: 9.8,
+                calcium: 15 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -288,7 +299,8 @@ struct FruitFoodItems {
                 carbohydrates: 12,
                 fat: 0.3,
                 fiber: 1.6,
-                sugar: 8.5
+                sugar: 8.5,
+                calcium: 10 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -313,7 +325,8 @@ struct FruitFoodItems {
                 carbohydrates: 15,
                 fat: 0.5,
                 fiber: 3.0,
-                sugar: 9.0
+                sugar: 9.0,
+                calcium: 15 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -340,7 +353,8 @@ struct FruitFoodItems {
                 carbohydrates: 57,
                 fat: 15,
                 fiber: 0.7,
-                sugar: 35
+                sugar: 35,
+                calcium: 10 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -365,7 +379,8 @@ struct FruitFoodItems {
                 carbohydrates: 45,
                 fat: 11,
                 fiber: 1.5,
-                sugar: 28
+                sugar: 28,
+                calcium: 10 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -390,7 +405,8 @@ struct FruitFoodItems {
                 carbohydrates: 5.0,
                 fat: 0.1,
                 fiber: 0.0,
-                sugar: 5.0
+                sugar: 5.0,
+                calcium: 10 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -415,7 +431,8 @@ struct FruitFoodItems {
                 carbohydrates: 5.0,
                 fat: 1.0,
                 fiber: 0.0,
-                sugar: 5.0
+                sugar: 5.0,
+                calcium: 10 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -440,7 +457,8 @@ struct FruitFoodItems {
                 carbohydrates: 4.7,
                 fat: 3.3,
                 fiber: 0.0,
-                sugar: 4.7
+                sugar: 4.7,
+                calcium: 10 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -465,7 +483,8 @@ struct FruitFoodItems {
                 carbohydrates: 0,
                 fat: 0,
                 fiber: 0,
-                sugar: 0
+                sugar: 0,
+                calcium: 0
             ),
             servingSize: 240,
             servingUnit: "ml",
@@ -490,7 +509,8 @@ struct FruitFoodItems {
                 carbohydrates: 0.5,
                 fat: 0,
                 fiber: 0,
-                sugar: 0
+                sugar: 0,
+                calcium: 0
             ),
             servingSize: 240,
             servingUnit: "ml",
@@ -515,7 +535,8 @@ struct FruitFoodItems {
                 carbohydrates: 25.8,
                 fat: 0.5,
                 fiber: 0.5,
-                sugar: 20.8
+                sugar: 20.8,
+                calcium: 20 // Moderate calcium content
             ),
             servingSize: 240,
             servingUnit: "ml",
@@ -540,7 +561,8 @@ struct FruitFoodItems {
                 carbohydrates: 11,
                 fat: 0.3,
                 fiber: 1.4,
-                sugar: 9.9
+                sugar: 9.9,
+                calcium: 10 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -565,7 +587,8 @@ struct FruitFoodItems {
                 carbohydrates: 12,
                 fat: 0.7,
                 fiber: 6.5,
-                sugar: 4.4
+                sugar: 4.4,
+                calcium: 10 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -590,7 +613,8 @@ struct FruitFoodItems {
                 carbohydrates: 10,
                 fat: 0.5,
                 fiber: 5.3,
-                sugar: 4.9
+                sugar: 4.9,
+                calcium: 10 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -615,7 +639,8 @@ struct FruitFoodItems {
                 carbohydrates: 11,
                 fat: 0.3,
                 fiber: 1.7,
-                sugar: 7.8
+                sugar: 7.8,
+                calcium: 10 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -640,7 +665,8 @@ struct FruitFoodItems {
                 carbohydrates: 8.2,
                 fat: 0.2,
                 fiber: 0.9,
-                sugar: 7.9
+                sugar: 7.9,
+                calcium: 10 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -665,7 +691,8 @@ struct FruitFoodItems {
                 carbohydrates: 11,
                 fat: 0.4,
                 fiber: 2.0,
-                sugar: 3.9
+                sugar: 3.9,
+                calcium: 10 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -690,7 +717,8 @@ struct FruitFoodItems {
                 carbohydrates: 19,
                 fat: 1.2,
                 fiber: 4.0,
-                sugar: 13.7
+                sugar: 13.7,
+                calcium: 20 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -715,7 +743,8 @@ struct FruitFoodItems {
                 carbohydrates: 9.3,
                 fat: 0.3,
                 fiber: 2.8,
-                sugar: 2.5
+                sugar: 2.5,
+                calcium: 10 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -740,7 +769,8 @@ struct FruitFoodItems {
                 carbohydrates: 11,
                 fat: 0.2,
                 fiber: 2.8,
-                sugar: 1.7
+                sugar: 1.7,
+                calcium: 10 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -765,7 +795,8 @@ struct FruitFoodItems {
                 carbohydrates: 15,
                 fat: 33.5,
                 fiber: 9.0,
-                sugar: 6.2
+                sugar: 6.2,
+                calcium: 20 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -790,7 +821,8 @@ struct FruitFoodItems {
                 carbohydrates: 19,
                 fat: 0.3,
                 fiber: 2.9,
-                sugar: 16.3
+                sugar: 16.3,
+                calcium: 10 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -815,7 +847,8 @@ struct FruitFoodItems {
                 carbohydrates: 14,
                 fat: 0.9,
                 fiber: 5.4,
-                sugar: 8.9
+                sugar: 8.9,
+                calcium: 10 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",

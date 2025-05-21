@@ -14,7 +14,8 @@ struct SeedFoodItems {
                 carbohydrates: 42.1,
                 fat: 30.7,
                 fiber: 34.4,
-                sugar: 0.7
+                sugar: 0.7,
+                calcium: 631 // High in calcium
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -39,7 +40,8 @@ struct SeedFoodItems {
                 carbohydrates: 28.9,
                 fat: 42.2,
                 fiber: 27.3,
-                sugar: 1.6
+                sugar: 1.6,
+                calcium: 255 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -64,7 +66,8 @@ struct SeedFoodItems {
                 carbohydrates: 10.7,
                 fat: 49.0,
                 fiber: 6.0,
-                sugar: 1.4
+                sugar: 1.4,
+                calcium: 46 // Lower calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -89,7 +92,8 @@ struct SeedFoodItems {
                 carbohydrates: 20.0,
                 fat: 51.5,
                 fiber: 8.6,
-                sugar: 2.6
+                sugar: 2.6,
+                calcium: 78 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -114,7 +118,8 @@ struct SeedFoodItems {
                 carbohydrates: 23.4,
                 fat: 49.7,
                 fiber: 11.8,
-                sugar: 0.3
+                sugar: 0.3,
+                calcium: 975 // Very high in calcium
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -139,7 +144,8 @@ struct SeedFoodItems {
                 carbohydrates: 25.0,
                 fat: 50.0,
                 fiber: 12.0,
-                sugar: 0.3
+                sugar: 0.3,
+                calcium: 1160 // Extremely high calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -164,7 +170,8 @@ struct SeedFoodItems {
                 carbohydrates: 8.7,
                 fat: 48.8,
                 fiber: 4.0,
-                sugar: 1.5
+                sugar: 1.5,
+                calcium: 70 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -189,7 +196,8 @@ struct SeedFoodItems {
                 carbohydrates: 28.1,
                 fat: 41.6,
                 fiber: 19.5,
-                sugar: 2.8
+                sugar: 2.8,
+                calcium: 1438 // Extremely high calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -214,7 +222,8 @@ struct SeedFoodItems {
                 carbohydrates: 28.1,
                 fat: 36.2,
                 fiber: 12.2,
-                sugar: 6.1
+                sugar: 6.1,
+                calcium: 266 // Good calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -239,7 +248,8 @@ struct SeedFoodItems {
                 carbohydrates: 44.2,
                 fat: 22.3,
                 fiber: 10.5,
-                sugar: 2.3
+                sugar: 2.3,
+                calcium: 931 // High calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -264,7 +274,8 @@ struct SeedFoodItems {
                 carbohydrates: 54.0,
                 fat: 17.8,
                 fiber: 41.9,
-                sugar: 0.0
+                sugar: 0.0,
+                calcium: 709 // High calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -289,7 +300,8 @@ struct SeedFoodItems {
                 carbohydrates: 52.3,
                 fat: 14.9,
                 fiber: 39.8,
-                sugar: 0.0
+                sugar: 0.0,
+                calcium: 1196 // Very high calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -314,7 +326,8 @@ struct SeedFoodItems {
                 carbohydrates: 58.4,
                 fat: 6.4,
                 fiber: 24.6,
-                sugar: 0.0
+                sugar: 0.0,
+                calcium: 176 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -339,7 +352,8 @@ struct SeedFoodItems {
                 carbohydrates: 44.2,
                 fat: 22.3,
                 fiber: 10.5,
-                sugar: 0.0
+                sugar: 0.0,
+                calcium: 570 // Good calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -364,7 +378,8 @@ struct SeedFoodItems {
                 carbohydrates: 64.2,
                 fat: 6.1,
                 fiber: 7.0,
-                sugar: 0.0
+                sugar: 0.0,
+                calcium: 47 // Lower calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -389,7 +404,8 @@ struct SeedFoodItems {
                 carbohydrates: 65.3,
                 fat: 7.0,
                 fiber: 6.7,
-                sugar: 1.7
+                sugar: 1.7,
+                calcium: 159 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -414,7 +430,8 @@ struct SeedFoodItems {
                 carbohydrates: 71.5,
                 fat: 3.4,
                 fiber: 10.0,
-                sugar: 0.9
+                sugar: 0.9,
+                calcium: 18 // Low calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -439,7 +456,8 @@ struct SeedFoodItems {
                 carbohydrates: 72.9,
                 fat: 4.2,
                 fiber: 8.5,
-                sugar: 0.0
+                sugar: 0.0,
+                calcium: 8 // Low calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -464,7 +482,8 @@ struct SeedFoodItems {
                 carbohydrates: 12.3,
                 fat: 43.8,
                 fiber: 11.2,
-                sugar: 0.6
+                sugar: 0.6,
+                calcium: 1071 // Very high calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -489,7 +508,8 @@ struct SeedFoodItems {
                 carbohydrates: 42.6,
                 fat: 33.0,
                 fiber: 22.6,
-                sugar: 0.0
+                sugar: 0.0,
+                calcium: 2130 // Extremely high calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -514,7 +534,8 @@ struct SeedFoodItems {
                 carbohydrates: 15.3,
                 fat: 47.4,
                 fiber: 4.0,
-                sugar: 0.2
+                sugar: 0.2,
+                calcium: 108 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -539,7 +560,8 @@ struct SeedFoodItems {
                 carbohydrates: 13.1,
                 fat: 68.4,
                 fiber: 3.7,
-                sugar: 3.6
+                sugar: 3.6,
+                calcium: 16 // Low calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -564,7 +586,8 @@ struct SeedFoodItems {
                 carbohydrates: 13.0,
                 fat: 49.0,
                 fiber: 6.0,
-                sugar: 3.0
+                sugar: 3.0,
+                calcium: 120 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -589,7 +612,8 @@ struct SeedFoodItems {
                 carbohydrates: 73.1,
                 fat: 2.4,
                 fiber: 8.0,
-                sugar: 1.5
+                sugar: 1.5,
+                calcium: 180 // Good calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -614,7 +638,8 @@ struct SeedFoodItems {
                 carbohydrates: 65.0,
                 fat: 3.0,
                 fiber: 7.0,
-                sugar: 0.0
+                sugar: 0.0,
+                calcium: 38 // Lower calcium content
             ),
             servingSize: 100,
             servingUnit: "g",

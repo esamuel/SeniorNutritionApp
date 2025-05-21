@@ -14,7 +14,8 @@ struct BreadAndSandwichFoodItems {
                 carbohydrates: 41,
                 fat: 4,
                 fiber: 7,
-                sugar: 5
+                sugar: 5,
+                calcium: 107
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -39,7 +40,8 @@ struct BreadAndSandwichFoodItems {
                 carbohydrates: 49,
                 fat: 3.2,
                 fiber: 2.7,
-                sugar: 5
+                sugar: 5,
+                calcium: 151
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -64,7 +66,8 @@ struct BreadAndSandwichFoodItems {
                 carbohydrates: 47,
                 fat: 1.5,
                 fiber: 2.9,
-                sugar: 2
+                sugar: 2,
+                calcium: 77
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -89,7 +92,8 @@ struct BreadAndSandwichFoodItems {
                 carbohydrates: 48,
                 fat: 3.3,
                 fiber: 5.8,
-                sugar: 4
+                sugar: 4,
+                calcium: 102
             ),
             servingSize: 100,
             servingUnit: "g",

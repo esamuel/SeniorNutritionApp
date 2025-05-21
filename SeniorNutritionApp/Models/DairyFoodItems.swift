@@ -13,7 +13,8 @@ struct DairyFoodItems {
                 carbohydrates: 4.8,
                 fat: 3.3,
                 fiber: 0.0,
-                sugar: 5.0
+                sugar: 5.0,
+                calcium: 120 // Good source of calcium
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -38,7 +39,8 @@ struct DairyFoodItems {
                 carbohydrates: 5.0,
                 fat: 0.1,
                 fiber: 0.0,
-                sugar: 5.0
+                sugar: 5.0,
+                calcium: 125 // Good source of calcium
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -63,7 +65,8 @@ struct DairyFoodItems {
                 carbohydrates: 5.0,
                 fat: 1.0,
                 fiber: 0.0,
-                sugar: 5.0
+                sugar: 5.0,
+                calcium: 122 // Good source of calcium
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -88,7 +91,8 @@ struct DairyFoodItems {
                 carbohydrates: 3.6,
                 fat: 0.4,
                 fiber: 0.0,
-                sugar: 3.2
+                sugar: 3.2,
+                calcium: 115 // Good source of calcium
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -113,7 +117,8 @@ struct DairyFoodItems {
                 carbohydrates: 4.7,
                 fat: 3.3,
                 fiber: 0.0,
-                sugar: 4.7
+                sugar: 4.7,
+                calcium: 110 // Good source of calcium
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -138,7 +143,8 @@ struct DairyFoodItems {
                 carbohydrates: 3.4,
                 fat: 4.3,
                 fiber: 0.0,
-                sugar: 2.7
+                sugar: 2.7,
+                calcium: 83 // Good source of calcium
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -163,7 +169,8 @@ struct DairyFoodItems {
                 carbohydrates: 1.3,
                 fat: 33.0,
                 fiber: 0.0,
-                sugar: 0.5
+                sugar: 0.5,
+                calcium: 721 // Excellent source of calcium
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -188,7 +195,8 @@ struct DairyFoodItems {
                 carbohydrates: 3.1,
                 fat: 17.0,
                 fiber: 0.0,
-                sugar: 1.0
+                sugar: 1.0,
+                calcium: 505 // Excellent source of calcium
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -213,7 +221,8 @@ struct DairyFoodItems {
                 carbohydrates: 4.1,
                 fat: 29.0,
                 fiber: 0.0,
-                sugar: 0.9
+                sugar: 0.9,
+                calcium: 1184 // Extremely high calcium content
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -238,7 +247,8 @@ struct DairyFoodItems {
                 carbohydrates: 4.1,
                 fat: 34.0,
                 fiber: 0.0,
-                sugar: 2.0
+                sugar: 2.0,
+                calcium: 98 // Moderate calcium content
             ),
             servingSize: 100,
             servingUnit: "g",

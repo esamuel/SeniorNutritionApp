@@ -13,7 +13,8 @@ struct SnackFoodItems {
                 carbohydrates: 15,
                 fat: 10,
                 fiber: 1,
-                sugar: 0
+                sugar: 0,
+                calcium: 10
             ),
             servingSize: 28,
             servingUnit: "g",

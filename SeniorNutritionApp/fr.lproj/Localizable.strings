@@ -1024,3 +1024,10 @@
 // Food categories
 "Seeds" = "Graines";
 "Condiments / Spreads" = "Condiments / Tartinades";
+"Stuffed Dishes" = "Plats Farcis";
+
+// Food Database Promotion
+"food_database_promo_title" = "Base de Données Alimentaire";
+"food_database_promo_text" = "Consultez les informations nutritionnelles détaillées pour tous les aliments, y compris les plats de pâtes et plus encore";
+
+

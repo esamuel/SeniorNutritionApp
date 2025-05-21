@@ -14,7 +14,8 @@ struct BeverageFoodItems {
                 carbohydrates: 0,
                 fat: 0,
                 fiber: 0,
-                sugar: 0
+                sugar: 0,
+                calcium: 0
             ),
             servingSize: 240,
             servingUnit: "ml",
@@ -39,7 +40,8 @@ struct BeverageFoodItems {
                 carbohydrates: 0,
                 fat: 0,
                 fiber: 0,
-                sugar: 0
+                sugar: 0,
+                calcium: 5
             ),
             servingSize: 240,
             servingUnit: "ml",
@@ -64,7 +66,8 @@ struct BeverageFoodItems {
                 carbohydrates: 0.5,
                 fat: 0,
                 fiber: 0,
-                sugar: 0
+                sugar: 0,
+                calcium: 2
             ),
             servingSize: 240,
             servingUnit: "ml",
@@ -89,7 +92,8 @@ struct BeverageFoodItems {
                 carbohydrates: 0.5,
                 fat: 0,
                 fiber: 0,
-                sugar: 0
+                sugar: 0,
+                calcium: 3
             ),
             servingSize: 240,
             servingUnit: "ml",
@@ -114,7 +118,8 @@ struct BeverageFoodItems {
                 carbohydrates: 25.8,
                 fat: 0.5,
                 fiber: 0.5,
-                sugar: 20.8
+                sugar: 20.8,
+                calcium: 27
             ),
             servingSize: 240,
             servingUnit: "ml",
@@ -139,7 +144,8 @@ struct BeverageFoodItems {
                 carbohydrates: 28.0,
                 fat: 0.3,
                 fiber: 0.2,
-                sugar: 24.0
+                sugar: 24.0,
+                calcium: 15
             ),
             servingSize: 240,
             servingUnit: "ml",
@@ -164,7 +170,8 @@ struct BeverageFoodItems {
                 carbohydrates: 31.0,
                 fat: 0.1,
                 fiber: 0.2,
-                sugar: 30.0
+                sugar: 30.0,
+                calcium: 10
             ),
             servingSize: 240,
             servingUnit: "ml",
@@ -189,7 +196,8 @@ struct BeverageFoodItems {
                 carbohydrates: 12.0,
                 fat: 8.0,
                 fiber: 0.0,
-                sugar: 12.0
+                sugar: 12.0,
+                calcium: 290
             ),
             servingSize: 240,
             servingUnit: "ml",

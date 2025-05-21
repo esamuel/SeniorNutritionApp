@@ -979,3 +979,10 @@
 // Food categories
 "Seeds" = "Semillas";
 "Condiments / Spreads" = "Condimentos / Untables";
+"Stuffed Dishes" = "Platos Rellenos";
+
+// Food Database Promotion
+"food_database_promo_title" = "Base de Datos de Alimentos";
+"food_database_promo_text" = "Vea información nutricional detallada para todos los alimentos, incluyendo platos de pasta y más";
+
+

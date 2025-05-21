@@ -96,14 +96,8 @@ enum FoodCategory: String, Codable, CaseIterable {
     case beverages = "Beverages"
     case snacks = "Snacks"
     case other = "Other"
-    // Adding new categories for stuffed dishes
-    case stuffedDish = "Stuffed Dish"
-    case stuffedVegetable = "Stuffed Vegetable"
-    case stuffedMeat = "Stuffed Meat"
-    case stuffedPoultry = "Stuffed Poultry"
-    case stuffedPasta = "Stuffed Pasta"
-    case stuffedBread = "Stuffed Bread"
-    case stuffedDessert = "Stuffed Dessert"
+    // Single category for all stuffed dishes
+    case stuffedDishes = "Stuffed Dishes"
     // Adding seeds category
     case seeds = "Seeds"
     // Adding condiments category
@@ -122,6 +116,11 @@ class FoodDatabaseService: ObservableObject {
     @Published var lastTranslatedLanguage: String? = nil
     
     init() {
+        // IMPORTANT: Force a complete database reset to apply category changes
+        print("\n=== CATEGORY CONSOLIDATION: Forcing complete database reset ===")
+        UserDefaults.standard.removeObject(forKey: "savedFoods")
+        UserDefaults.standard.removeObject(forKey: "savedCustomFoods")
+        
         // Force reset the database to include new foods
         resetToDefaultFoods()
         Task {

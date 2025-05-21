@@ -14,7 +14,8 @@ struct CondimentFoodItems {
                 carbohydrates: 20,
                 fat: 50,
                 fiber: 6,
-                sugar: 9
+                sugar: 9,
+                calcium: 49
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -39,7 +40,8 @@ struct CondimentFoodItems {
                 carbohydrates: 20,
                 fat: 55,
                 fiber: 12,
-                sugar: 5
+                sugar: 5,
+                calcium: 347
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -64,7 +66,8 @@ struct CondimentFoodItems {
                 carbohydrates: 30,
                 fat: 49,
                 fiber: 3,
-                sugar: 5
+                sugar: 5,
+                calcium: 45
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -89,7 +92,8 @@ struct CondimentFoodItems {
                 carbohydrates: 22,
                 fat: 55,
                 fiber: 9,
-                sugar: 3
+                sugar: 3,
+                calcium: 78
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -114,7 +118,8 @@ struct CondimentFoodItems {
                 carbohydrates: 17,
                 fat: 61,
                 fiber: 10,
-                sugar: 4
+                sugar: 4,
+                calcium: 114
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -139,7 +144,8 @@ struct CondimentFoodItems {
                 carbohydrates: 58,
                 fat: 31,
                 fiber: 3,
-                sugar: 56
+                sugar: 56,
+                calcium: 95
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -164,7 +170,8 @@ struct CondimentFoodItems {
                 carbohydrates: 8,
                 fat: 47,
                 fiber: 2,
-                sugar: 2
+                sugar: 2,
+                calcium: 213
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -189,7 +196,8 @@ struct CondimentFoodItems {
                 carbohydrates: 20,
                 fat: 9,
                 fiber: 6,
-                sugar: 0.3
+                sugar: 0.3,
+                calcium: 49
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -214,7 +222,8 @@ struct CondimentFoodItems {
                 carbohydrates: 9,
                 fat: 15,
                 fiber: 6,
-                sugar: 0.7
+                sugar: 0.7,
+                calcium: 18
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -239,7 +248,8 @@ struct CondimentFoodItems {
                 carbohydrates: 4,
                 fat: 24,
                 fiber: 3,
-                sugar: 1
+                sugar: 1,
+                calcium: 85
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -264,7 +274,8 @@ struct CondimentFoodItems {
                 carbohydrates: 0,
                 fat: 75,
                 fiber: 0,
-                sugar: 0
+                sugar: 0,
+                calcium: 12
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -289,7 +300,8 @@ struct CondimentFoodItems {
                 carbohydrates: 5,
                 fat: 4,
                 fiber: 3,
-                sugar: 0
+                sugar: 0,
+                calcium: 120
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -314,7 +326,8 @@ struct CondimentFoodItems {
                 carbohydrates: 27,
                 fat: 0.3,
                 fiber: 0.3,
-                sugar: 23
+                sugar: 23,
+                calcium: 20
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -339,7 +352,8 @@ struct CondimentFoodItems {
                 carbohydrates: 40,
                 fat: 0.3,
                 fiber: 0.7,
-                sugar: 37
+                sugar: 37,
+                calcium: 34
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -364,7 +378,8 @@ struct CondimentFoodItems {
                 carbohydrates: 7,
                 fat: 0.3,
                 fiber: 1.5,
-                sugar: 4
+                sugar: 4,
+                calcium: 24
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -389,7 +404,8 @@ struct CondimentFoodItems {
                 carbohydrates: 7,
                 fat: 45,
                 fiber: 0.5,
-                sugar: 4
+                sugar: 4,
+                calcium: 84
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -414,7 +430,8 @@ struct CondimentFoodItems {
                 carbohydrates: 82,
                 fat: 0,
                 fiber: 0,
-                sugar: 82
+                sugar: 82,
+                calcium: 6
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -439,7 +456,8 @@ struct CondimentFoodItems {
                 carbohydrates: 67,
                 fat: 0,
                 fiber: 0,
-                sugar: 60
+                sugar: 60,
+                calcium: 102
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -464,7 +482,8 @@ struct CondimentFoodItems {
                 carbohydrates: 0,
                 fat: 100,
                 fiber: 0,
-                sugar: 0
+                sugar: 0,
+                calcium: 4
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -488,19 +507,20 @@ struct CondimentFoodItems {
                 protein: 6,
                 carbohydrates: 24,
                 fat: 60,
-                fiber: 16,
-                sugar: 6
+                fiber: 15,
+                sugar: 10,
+                calcium: 14
             ),
             servingSize: 100,
             servingUnit: "g",
             isCustom: true,
-            notes: "Whole‑meat coconut purée",
+            notes: "Pureed coconut flesh",
             nameFr: "Beurre de Coco",
             nameEs: "Mantequilla de Coco",
             nameHe: "חמאת קוקוס",
-            notesFr: "Purée de chair de noix de coco entière",
-            notesEs: "Puré de pulpa entera de coco",
-            notesHe: "מחית בשר קוקוס שלם"
+            notesFr: "Chair de coco en purée",
+            notesEs: "Pulpa de coco en puré",
+            notesHe: "בשר קוקוס טחון"
         ),
         
         // Orange Marmalade
@@ -514,7 +534,8 @@ struct CondimentFoodItems {
                 carbohydrates: 65,
                 fat: 0,
                 fiber: 1,
-                sugar: 52
+                sugar: 52,
+                calcium: 40
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -539,7 +560,8 @@ struct CondimentFoodItems {
                 carbohydrates: 65,
                 fat: 0,
                 fiber: 1,
-                sugar: 52
+                sugar: 52,
+                calcium: 15
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -564,7 +586,8 @@ struct CondimentFoodItems {
                 carbohydrates: 55,
                 fat: 0.5,
                 fiber: 3,
-                sugar: 49
+                sugar: 49,
+                calcium: 15
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -589,7 +612,8 @@ struct CondimentFoodItems {
                 carbohydrates: 22,
                 fat: 53,
                 fiber: 9,
-                sugar: 0.5
+                sugar: 0.5,
+                calcium: 950
             ),
             servingSize: 100,
             servingUnit: "g",
@@ -614,7 +638,8 @@ struct CondimentFoodItems {
                 carbohydrates: 3,
                 fat: 4,
                 fiber: 0.3,
-                sugar: 2
+                sugar: 2,
+                calcium: 80
             ),
             servingSize: 100,
             servingUnit: "g",
