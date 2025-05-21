@@ -353,4 +353,73 @@
 
 // Food Database Promotion
 "food_database_promo_title" = "Food Database";
-"food_database_promo_text" = "View detailed nutrition information for all foods, including pasta dishes and more"; 
+"food_database_promo_text" = "View detailed nutrition information for all foods, including pasta dishes and more";
+
+// Health Tips View
+"Health Tips" = "Health Tips";
+"All" = "All";
+"View More" = "View More";
+"Search health tips" = "Search health tips";
+
+// Health Tip Categories
+"General" = "General";
+"Nutrition" = "Nutrition";
+"Fasting" = "Fasting";
+"Hydration" = "Hydration";
+"Activity" = "Activity";
+"Medication" = "Medication";
+"SeniorSpecific" = "Senior-Specific";
+
+// Health Tip Titles
+"health_tip_sleep_title" = "Prioritize Quality Sleep";
+"health_tip_stress_title" = "Manage Stress Levels";
+"health_tip_checkups_title" = "Schedule Regular Check-ups";
+
+"health_tip_protein_title" = "Prioritize Protein";
+"health_tip_fiber_title" = "Increase Fiber Intake";
+"health_tip_calcium_title" = "Get Enough Calcium";
+"health_tip_vitaminD_title" = "Don't Forget Vitamin D";
+
+"health_tip_fasting_hydration_title" = "Stay Hydrated While Fasting";
+"health_tip_fasting_listen_body_title" = "Listen to Your Body";
+"health_tip_fasting_break_title" = "Break Fast Gently";
+"health_tip_fasting_sleep_title" = "Quality Sleep Helps Fasting";
+
+"health_tip_hydration_reminder_title" = "Set Hydration Reminders";
+"health_tip_hydration_foods_title" = "Eat Hydrating Foods";
+
+"health_tip_activity_walking_title" = "Daily Walking Benefits";
+"health_tip_activity_strength_title" = "Strength Training Matters";
+
+"health_tip_medication_schedule_title" = "Medication Schedule";
+"health_tip_medication_food_title" = "Take With Food When Needed";
+
+"health_tip_senior_balance_title" = "Balance Exercises";
+"health_tip_senior_vision_title" = "Protect Your Vision";
+
+// Health Tip Descriptions
+"health_tip_sleep_description" = "Aim for 7-8 hours of quality sleep each night. Consistent sleep schedule helps regulate metabolism and promotes overall health.";
+"health_tip_stress_description" = "Practice relaxation techniques like deep breathing, meditation, or gentle yoga to manage stress, which can impact heart health and digestion.";
+"health_tip_checkups_description" = "Regular health screenings are essential. Schedule check-ups with your doctor at least once a year, more if you have chronic conditions.";
+
+"health_tip_protein_description" = "Seniors need more protein to maintain muscle mass. Aim for 1-1.2g per kg of body weight daily from sources like lean meats, fish, eggs, dairy, and plant proteins.";
+"health_tip_fiber_description" = "Eat fiber-rich foods like whole grains, fruits, vegetables, and legumes to support digestive health and manage cholesterol levels.";
+"health_tip_calcium_description" = "Adults over 50 need 1200mg of calcium daily. Include dairy products, fortified plant milks, canned fish with bones, and leafy greens in your diet.";
+"health_tip_vitaminD_description" = "Vitamin D helps with calcium absorption. Get some sunlight exposure and consider a supplement, especially during winter months.";
+
+"health_tip_fasting_hydration_description" = "Drink plenty of water during your fasting periods. Stay hydrated with at least 8-10 glasses daily to prevent dehydration.";
+"health_tip_fasting_listen_body_description" = "If you feel unwell during fasting - experiencing dizziness, extreme fatigue, or confusion - break your fast immediately.";
+"health_tip_fasting_break_description" = "Break your fast with easily digestible foods like soups, fruits, or small portions of protein to avoid digestive discomfort.";
+"health_tip_fasting_sleep_description" = "Quality sleep helps with fasting results. Maintain a consistent sleep schedule to support your intermittent fasting routine.";
+
+"health_tip_hydration_reminder_description" = "Set reminders to drink water throughout the day. Your sense of thirst may decrease with age, making scheduled reminders helpful.";
+"health_tip_hydration_foods_description" = "Fruits like watermelon, oranges, and vegetables like cucumber and lettuce are excellent sources of hydration beyond plain water.";
+
+"health_tip_activity_walking_description" = "A daily 30-minute walk improves circulation, heart health, and mood. It's one of the simplest and most effective exercises for seniors.";
+"health_tip_activity_strength_description" = "Even light strength training 2-3 times weekly helps maintain muscle mass, bone density, and independence as you age.";
+
+"health_tip_medication_schedule_description" = "Take medications at the same time each day to maintain consistent levels in your bloodstream and maximize effectiveness.";
+"health_tip_medication_food_description" = "Some medications need to be taken with food. Follow your doctor's instructions about timing medication with meals.";
+
+"health_tip_senior_balance_description" = "Practice balance exercises like standing on one foot or heel-to-toe walks to prevent falls, which are a major risk for seniors.";
+"health_tip_senior_vision_description" = "Have your eyes checked annually. Good vision is crucial for preventing falls and maintaining quality of life."; 

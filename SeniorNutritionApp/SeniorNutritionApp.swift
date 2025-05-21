@@ -9,6 +9,7 @@ struct SeniorNutritionApp: App {
     @StateObject private var userCommonMeals = UserCommonMeals()
     @StateObject private var appointmentManager = AppointmentManager()
     @StateObject private var languageManager = LanguageManager.shared
+    private let healthTipsService = HealthTipsService.shared
     let persistenceController = PersistenceController.shared
     
     var body: some Scene {

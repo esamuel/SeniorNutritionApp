@@ -22,6 +22,8 @@ struct HomeView: View {
     @State private var showingFastingTimer = false
     @State private var showingAddAppointment = false
     @State private var appointmentToEdit: Appointment?
+    @State private var healthTips: [HealthTip] = []
+    private let healthTipsService = HealthTipsService.shared
     
     var body: some View {
         NavigationView {
@@ -31,6 +33,13 @@ struct HomeView: View {
                     fastingStatusSection
                     quickActionsSection
                     todayScheduleSection
+                    HealthTipsCarousel(
+                        tips: healthTips,
+                        onViewMoreTapped: {
+                            // Navigate to full health tips view
+                            // This would typically use NavigationLink or a custom navigation solution
+                        }
+                    )
                 }
                 .padding()
             }
@@ -73,6 +82,11 @@ struct HomeView: View {
         .onAppear {
             fastingManager.setUserSettings(userSettings)
             scheduleMedicationNotifications()
+            // Get random health tips from multiple relevant categories for the home screen
+            healthTips = healthTipsService.getRandomTips(
+                count: 3,
+                categories: [.general, .nutrition, .fasting]
+            )
         }
     }
     

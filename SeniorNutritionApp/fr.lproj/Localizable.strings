@@ -1030,4 +1030,73 @@
 "food_database_promo_title" = "Base de Données Alimentaire";
 "food_database_promo_text" = "Consultez les informations nutritionnelles détaillées pour tous les aliments, y compris les plats de pâtes et plus encore";
 
+// Health Tips View
+"Health Tips" = "Conseils Santé";
+"All" = "Tous";
+"View More" = "Voir Plus";
+"Search health tips" = "Rechercher des conseils santé";
+
+// Health Tip Categories
+"General" = "Général";
+"Nutrition" = "Nutrition";
+"Fasting" = "Jeûne";
+"Hydration" = "Hydratation";
+"Activity" = "Activité";
+"Medication" = "Médicaments";
+"SeniorSpecific" = "Spécifique aux Seniors";
+
+// Health Tip Titles
+"health_tip_sleep_title" = "Priorisez un Sommeil de Qualité";
+"health_tip_stress_title" = "Gérez les Niveaux de Stress";
+"health_tip_checkups_title" = "Planifiez des Examens Réguliers";
+
+"health_tip_protein_title" = "Privilégiez les Protéines";
+"health_tip_fiber_title" = "Augmentez l'Apport en Fibres";
+"health_tip_calcium_title" = "Obtenez Suffisamment de Calcium";
+"health_tip_vitaminD_title" = "N'Oubliez Pas la Vitamine D";
+
+"health_tip_fasting_hydration_title" = "Restez Hydraté Pendant le Jeûne";
+"health_tip_fasting_listen_body_title" = "Écoutez Votre Corps";
+"health_tip_fasting_break_title" = "Rompez le Jeûne en Douceur";
+"health_tip_fasting_sleep_title" = "Un Sommeil de Qualité Aide au Jeûne";
+
+"health_tip_hydration_reminder_title" = "Définissez des Rappels d'Hydratation";
+"health_tip_hydration_foods_title" = "Mangez des Aliments Hydratants";
+
+"health_tip_activity_walking_title" = "Bienfaits de la Marche Quotidienne";
+"health_tip_activity_strength_title" = "L'Entraînement de Force est Important";
+
+"health_tip_medication_schedule_title" = "Calendrier des Médicaments";
+"health_tip_medication_food_title" = "Prenez avec de la Nourriture si Nécessaire";
+
+"health_tip_senior_balance_title" = "Exercices d'Équilibre";
+"health_tip_senior_vision_title" = "Protégez Votre Vision";
+
+// Health Tip Descriptions
+"health_tip_sleep_description" = "Visez 7 à 8 heures de sommeil de qualité chaque nuit. Un horaire de sommeil régulier aide à réguler le métabolisme et favorise la santé générale.";
+"health_tip_stress_description" = "Pratiquez des techniques de relaxation comme la respiration profonde, la méditation ou le yoga doux pour gérer le stress, qui peut affecter la santé cardiaque et la digestion.";
+"health_tip_checkups_description" = "Les examens de santé réguliers sont essentiels. Planifiez des visites chez votre médecin au moins une fois par an, davantage si vous avez des maladies chroniques.";
+
+"health_tip_protein_description" = "Les seniors ont besoin de plus de protéines pour maintenir leur masse musculaire. Visez 1 à 1,2 g par kg de poids corporel quotidiennement, provenant de viandes maigres, poisson, œufs, produits laitiers et protéines végétales.";
+"health_tip_fiber_description" = "Mangez des aliments riches en fibres comme les céréales complètes, les fruits, les légumes et les légumineuses pour soutenir la santé digestive et gérer les niveaux de cholestérol.";
+"health_tip_calcium_description" = "Les adultes de plus de 50 ans ont besoin de 1200 mg de calcium par jour. Incluez des produits laitiers, des laits végétaux enrichis, du poisson en conserve avec arêtes et des légumes verts dans votre alimentation.";
+"health_tip_vitaminD_description" = "La vitamine D aide à l'absorption du calcium. Profitez de l'exposition au soleil et envisagez un supplément, surtout pendant les mois d'hiver.";
+
+"health_tip_fasting_hydration_description" = "Buvez beaucoup d'eau pendant vos périodes de jeûne. Restez hydraté avec au moins 8 à 10 verres par jour pour prévenir la déshydratation.";
+"health_tip_fasting_listen_body_description" = "Si vous ne vous sentez pas bien pendant le jeûne - éprouvant des vertiges, une fatigue extrême ou de la confusion - arrêtez immédiatement votre jeûne.";
+"health_tip_fasting_break_description" = "Rompez votre jeûne avec des aliments facilement digestibles comme des soupes, des fruits ou de petites portions de protéines pour éviter l'inconfort digestif.";
+"health_tip_fasting_sleep_description" = "Un sommeil de qualité aide aux résultats du jeûne. Maintenez un horaire de sommeil régulier pour soutenir votre routine de jeûne intermittent.";
+
+"health_tip_hydration_reminder_description" = "Définissez des rappels pour boire de l'eau tout au long de la journée. Votre sensation de soif peut diminuer avec l'âge, rendant les rappels programmés utiles.";
+"health_tip_hydration_foods_description" = "Les fruits comme la pastèque, les oranges, et les légumes comme le concombre et la laitue sont d'excellentes sources d'hydratation au-delà de l'eau plate.";
+
+"health_tip_activity_walking_description" = "Une marche quotidienne de 30 minutes améliore la circulation, la santé cardiaque et l'humeur. C'est l'un des exercices les plus simples et efficaces pour les seniors.";
+"health_tip_activity_strength_description" = "Même un entraînement de force léger 2-3 fois par semaine aide à maintenir la masse musculaire, la densité osseuse et l'indépendance en vieillissant.";
+
+"health_tip_medication_schedule_description" = "Prenez les médicaments à la même heure chaque jour pour maintenir des niveaux constants dans votre sang et maximiser l'efficacité.";
+"health_tip_medication_food_description" = "Certains médicaments doivent être pris avec de la nourriture. Suivez les instructions de votre médecin concernant la synchronisation des médicaments avec les repas.";
+
+"health_tip_senior_balance_description" = "Pratiquez des exercices d'équilibre comme se tenir sur un pied ou marcher talon-pointe pour prévenir les chutes, qui représentent un risque majeur pour les seniors.";
+"health_tip_senior_vision_description" = "Faites vérifier vos yeux chaque année. Une bonne vision est cruciale pour prévenir les chutes et maintenir la qualité de vie.";
+
 

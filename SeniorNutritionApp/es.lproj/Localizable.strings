@@ -985,4 +985,73 @@
 "food_database_promo_title" = "Base de Datos de Alimentos";
 "food_database_promo_text" = "Vea información nutricional detallada para todos los alimentos, incluyendo platos de pasta y más";
 
+// Health Tips View
+"Health Tips" = "Consejos de Salud";
+"All" = "Todos";
+"View More" = "Ver Más";
+"Search health tips" = "Buscar consejos de salud";
+
+// Health Tip Categories
+"General" = "General";
+"Nutrition" = "Nutrición";
+"Fasting" = "Ayuno";
+"Hydration" = "Hidratación";
+"Activity" = "Actividad";
+"Medication" = "Medicación";
+"SeniorSpecific" = "Específico para Mayores";
+
+// Health Tip Titles
+"health_tip_sleep_title" = "Priorice el Sueño de Calidad";
+"health_tip_stress_title" = "Gestione los Niveles de Estrés";
+"health_tip_checkups_title" = "Programe Chequeos Regulares";
+
+"health_tip_protein_title" = "Priorice las Proteínas";
+"health_tip_fiber_title" = "Aumente la Ingesta de Fibra";
+"health_tip_calcium_title" = "Obtenga Suficiente Calcio";
+"health_tip_vitaminD_title" = "No Olvide la Vitamina D";
+
+"health_tip_fasting_hydration_title" = "Manténgase Hidratado Durante el Ayuno";
+"health_tip_fasting_listen_body_title" = "Escuche a Su Cuerpo";
+"health_tip_fasting_break_title" = "Rompa el Ayuno Suavemente";
+"health_tip_fasting_sleep_title" = "El Sueño de Calidad Ayuda al Ayuno";
+
+"health_tip_hydration_reminder_title" = "Configure Recordatorios de Hidratación";
+"health_tip_hydration_foods_title" = "Consuma Alimentos Hidratantes";
+
+"health_tip_activity_walking_title" = "Beneficios de Caminar Diariamente";
+"health_tip_activity_strength_title" = "El Entrenamiento de Fuerza es Importante";
+
+"health_tip_medication_schedule_title" = "Programa de Medicamentos";
+"health_tip_medication_food_title" = "Tome con Alimentos Cuando Sea Necesario";
+
+"health_tip_senior_balance_title" = "Ejercicios de Equilibrio";
+"health_tip_senior_vision_title" = "Proteja Su Visión";
+
+// Health Tip Descriptions
+"health_tip_sleep_description" = "Procure dormir entre 7 y 8 horas de sueño de calidad cada noche. Un horario de sueño constante ayuda a regular el metabolismo y promueve la salud general.";
+"health_tip_stress_description" = "Practique técnicas de relajación como la respiración profunda, la meditación o el yoga suave para controlar el estrés, que puede afectar la salud cardíaca y la digestión.";
+"health_tip_checkups_description" = "Los exámenes de salud regulares son esenciales. Programe chequeos con su médico al menos una vez al año, más si tiene condiciones crónicas.";
+
+"health_tip_protein_description" = "Los adultos mayores necesitan más proteínas para mantener la masa muscular. Procure consumir entre 1 y 1,2 g por kg de peso corporal diariamente de fuentes como carnes magras, pescado, huevos, lácteos y proteínas vegetales.";
+"health_tip_fiber_description" = "Consuma alimentos ricos en fibra como granos integrales, frutas, verduras y legumbres para apoyar la salud digestiva y controlar los niveles de colesterol.";
+"health_tip_calcium_description" = "Los adultos mayores de 50 años necesitan 1200 mg de calcio diariamente. Incluya productos lácteos, leches vegetales fortificadas, pescado enlatado con huesos y verduras de hoja verde en su dieta.";
+"health_tip_vitaminD_description" = "La vitamina D ayuda con la absorción de calcio. Obtenga algo de exposición al sol y considere un suplemento, especialmente durante los meses de invierno.";
+
+"health_tip_fasting_hydration_description" = "Beba mucha agua durante sus períodos de ayuno. Manténgase hidratado con al menos 8-10 vasos diarios para prevenir la deshidratación.";
+"health_tip_fasting_listen_body_description" = "Si se siente mal durante el ayuno - experimentando mareos, fatiga extrema o confusión - rompa su ayuno inmediatamente.";
+"health_tip_fasting_break_description" = "Rompa su ayuno con alimentos fácilmente digeribles como sopas, frutas o pequeñas porciones de proteínas para evitar molestias digestivas.";
+"health_tip_fasting_sleep_description" = "El sueño de calidad ayuda con los resultados del ayuno. Mantenga un horario de sueño constante para apoyar su rutina de ayuno intermitente.";
+
+"health_tip_hydration_reminder_description" = "Configure recordatorios para beber agua durante todo el día. Su sensación de sed puede disminuir con la edad, haciendo útiles los recordatorios programados.";
+"health_tip_hydration_foods_description" = "Frutas como la sandía, las naranjas, y vegetales como el pepino y la lechuga son excelentes fuentes de hidratación más allá del agua simple.";
+
+"health_tip_activity_walking_description" = "Una caminata diaria de 30 minutos mejora la circulación, la salud cardíaca y el estado de ánimo. Es uno de los ejercicios más simples y efectivos para los adultos mayores.";
+"health_tip_activity_strength_description" = "Incluso un entrenamiento de fuerza ligero 2-3 veces por semana ayuda a mantener la masa muscular, la densidad ósea y la independencia a medida que envejece.";
+
+"health_tip_medication_schedule_description" = "Tome los medicamentos a la misma hora cada día para mantener niveles constantes en su torrente sanguíneo y maximizar la efectividad.";
+"health_tip_medication_food_description" = "Algunos medicamentos deben tomarse con alimentos. Siga las instrucciones de su médico sobre cuándo tomar medicamentos con las comidas.";
+
+"health_tip_senior_balance_description" = "Practique ejercicios de equilibrio como pararse en un pie o caminar talón-punta para prevenir caídas, que son un riesgo importante para los adultos mayores.";
+"health_tip_senior_vision_description" = "Hágase revisar los ojos anualmente. Una buena visión es crucial para prevenir caídas y mantener la calidad de vida.";
+
 

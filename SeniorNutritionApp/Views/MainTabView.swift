@@ -76,6 +76,10 @@ struct MoreTabView: View {
                     NavigationLink(destination: HealthDataTabView()) {
                         MoreOptionRow(icon: "heart.fill", title: "Health", color: .red)
                     }
+                    
+                    NavigationLink(destination: HealthTipsView()) {
+                        MoreOptionRow(icon: "lightbulb.fill", title: "Health Tips", color: .orange)
+                    }
                 }
                 
                 Section(header: Text("Account & Settings")) {
