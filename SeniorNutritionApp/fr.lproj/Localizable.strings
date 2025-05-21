@@ -1018,3 +1018,9 @@
 "Minerals" = "Minéraux";
 
 "Translate" = "Traduire";
+
+// Add these lines at the end of the file
+
+// Food categories
+"Seeds" = "Graines";
+"Condiments / Spreads" = "Condiments / Tartinades";

@@ -973,3 +973,9 @@
 "Please wait for a few minutes while the system processes the translations." = "Por favor espere unos minutos mientras el sistema procesa las traducciones.";
 
 "Translate" = "Traducir";
+
+// Add these lines at the end of the file
+
+// Food categories
+"Seeds" = "Semillas";
+"Condiments / Spreads" = "Condimentos / Untables";
