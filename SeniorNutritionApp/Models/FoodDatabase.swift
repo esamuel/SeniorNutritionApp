@@ -96,6 +96,14 @@ enum FoodCategory: String, Codable, CaseIterable {
     case beverages = "Beverages"
     case snacks = "Snacks"
     case other = "Other"
+    // Adding new categories for stuffed dishes
+    case stuffedDish = "Stuffed Dish"
+    case stuffedVegetable = "Stuffed Vegetable"
+    case stuffedMeat = "Stuffed Meat"
+    case stuffedPoultry = "Stuffed Poultry"
+    case stuffedPasta = "Stuffed Pasta"
+    case stuffedBread = "Stuffed Bread"
+    case stuffedDessert = "Stuffed Dessert"
     
     // Get localized category name
     var localizedString: String {
@@ -199,7 +207,7 @@ class FoodDatabaseService: ObservableObject {
         print("\n=== Starting to load food database ===")
         
         // Load all foods from all food item files
-        var allFoods = SampleFoodData.foods + NewFoodItems.foods + AdditionalFoodItems.foods + DairyFoodItems.foods + BeverageFoodItems.foods + SnackFoodItems.foods + FruitFoodItems.foods + PastaFoodItems.foods + CakeFoodItems.foods + BreadAndSandwichFoodItems.foods
+        var allFoods = SampleFoodData.foods + NewFoodItems.foods + AdditionalFoodItems.foods + DairyFoodItems.foods + BeverageFoodItems.foods + SnackFoodItems.foods + FruitFoodItems.foods + PastaFoodItems.foods + CakeFoodItems.foods + BreadAndSandwichFoodItems.foods + StuffedDishFoodItems.foods
         
         print("\nInitial food count: \(allFoods.count)")
         print("\nAvailable foods:")
