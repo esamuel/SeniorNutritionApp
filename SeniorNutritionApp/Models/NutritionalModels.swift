@@ -243,6 +243,10 @@ enum MealPortion: String, CaseIterable, Identifiable, Codable {
     
     var id: String { self.rawValue }
     
+    var localizedName: String {
+        return NSLocalizedString(self.rawValue, comment: "")
+    }
+    
     var multiplier: Double {
         switch self {
         case .small: return 0.75
@@ -260,6 +264,10 @@ enum MealType: String, CaseIterable, Identifiable, Codable {
     case snack = "Snack"
     
     var id: String { self.rawValue }
+    
+    var localizedName: String {
+        return NSLocalizedString(self.rawValue, comment: "")
+    }
     
     var icon: String {
         switch self {

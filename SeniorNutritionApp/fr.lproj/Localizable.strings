@@ -88,7 +88,7 @@
 "Tap to add" = "Appuyez pour ajouter";
 "Food Database" = "Base de données alimentaire";
 "Browse All Food Items" = "Parcourir Tous les Aliments";
-"View detailed nutrition information for all foods, including pasta dishes and desserts" = "Voir les informations nutritionnelles détaillées pour tous les aliments, y compris les plats de pâtes et les desserts";
+"View detailed nutrition information for all foods, including pasta dishes and more" = "Voir les informations nutritionnelles détaillées pour tous les aliments, y compris les plats de pâtes et plus";
 "Nutrition" = "Nutrition";
 "Nutrition Tips for Seniors" = "Conseils Nutritionnels pour les Seniors";
 "View More Tips" = "Voir plus de conseils";
@@ -470,7 +470,13 @@
 "Pill Appearance" = "Pill Appearance";
 "Pill Color" = "Pill Color";
 "Portion Size Guide" = "Portion Size Guide";
-"Portion Size" = "Portion Size";
+"Portion Size" = "Taille de la Portion";
+"Select Portion Size" = "Sélectionner la Taille de la Portion";
+"Portion Size Guide" = "Guide des Tailles de Portion";
+"Portion" = "Portion";
+"Small" = "Petite";
+"Medium" = "Moyenne";
+"Large" = "Grande";
 "Probiotic Support" = "Probiotic Support";
 "Protein Intake" = "Protein Intake";
 "Protein" = "Protein";
@@ -1098,5 +1104,133 @@
 
 "health_tip_senior_balance_description" = "Pratiquez des exercices d'équilibre comme se tenir sur un pied ou marcher talon-pointe pour prévenir les chutes, qui représentent un risque majeur pour les seniors.";
 "health_tip_senior_vision_description" = "Faites vérifier vos yeux chaque année. Une bonne vision est cruciale pour prévenir les chutes et maintenir la qualité de vie.";
+
+"Show Onboarding Again" = "Afficher l'Introduction à Nouveau";
+"Local Backup" = "Sauvegarde Locale";
+"Export Backup" = "Exporter la Sauvegarde";
+"Import Backup" = "Importer la Sauvegarde";
+"App Language" = "Langue de l'Application";
+"Fix Language Issues" = "Résoudre les Problèmes de Langue";
+"Reset to System Language" = "Réinitialiser à la Langue du Système";
+"Current app language: %@" = "Langue actuelle de l'application: %@";
+"Get Live Support" = "Obtenir de l'Aide en Direct";
+"Print Instructions" = "Imprimer les Instructions";
+"Settings" = "Paramètres";
+
+// Nutrition Dashboard translations
+"Daily Summary" = "Résumé Quotidien";
+"Calories" = "Calories";
+"Macronutrients" = "Macronutriments";
+"Protein" = "Protéines";
+"Carbs" = "Glucides";
+"Fat" = "Lipides";
+"Vitamins" = "Vitamines";
+"Vitamin D" = "Vitamine D";
+"Vitamin C" = "Vitamine C";
+"Vitamin B12" = "Vitamine B12";
+"Folate" = "Folate";
+"Minerals" = "Minéraux";
+"Calcium" = "Calcium";
+"Iron" = "Fer";
+"Magnesium" = "Magnésium";
+"Zinc" = "Zinc";
+
+// Meals View translations
+"Today's Meals" = "Repas d'Aujourd'hui";
+"Add" = "Ajouter";
+"No meals logged today" = "Aucun repas enregistré aujourd'hui";
+"Add First Meal" = "Ajouter Premier Repas";
+"Edit Meal" = "Modifier le Repas";
+"Add to Common Meals" = "Ajouter aux Repas Courants";
+"Delete Meal" = "Supprimer le Repas";
+"calories" = "calories";
+"Common Meals" = "Repas Courants";
+
+// Add Meal View translations
+"Food Selection" = "Sélection d'Aliments";
+"Search Food Database" = "Rechercher dans la Base de Données Alimentaire";
+"Change Food" = "Changer d'Aliment";
+"Meal Details" = "Détails du Repas";
+"Meal Type" = "Type de Repas";
+"Name" = "Nom";
+"Meal name" = "Nom du repas";
+"Portion Size" = "Taille de la Portion";
+"Select Portion Size" = "Sélectionner la Taille de la Portion";
+"Portion Size Guide" = "Guide des Tailles de Portion";
+"Portion" = "Portion";
+"Small" = "Petite";
+"Medium" = "Moyenne";
+"Large" = "Grande";
+"Notes" = "Notes";
+"Analyze Nutrition" = "Analyser la Nutrition";
+"Save Meal" = "Enregistrer le Repas";
+"Add Meal" = "Ajouter un Repas";
+"Cancel" = "Annuler";
+
+// Additional nutrition-related translations
+"Nutritional Information" = "Information Nutritionnelle";
+"Protein (g)" = "Protéines (g)";
+"Carbs (g)" = "Glucides (g)";
+"Fat (g)" = "Lipides (g)";
+"Edit Meal" = "Modifier le Repas";
+"Save Anyway" = "Enregistrer Quand Même";
+"Close" = "Fermer";
+"Nutrition Analysis" = "Analyse Nutritionnelle";
+"Personalized Nutrition Tips" = "Conseils Nutritionnels Personnalisés";
+"Done" = "Terminé";
+
+// Meal Analysis View translations
+"Beneficial Nutrients" = "Nutriments Bénéfiques";
+"Recommendations" = "Recommandations";
+"Nutritional Balance" = "Équilibre Nutritionnel";
+"Good for" = "Bon pour";
+"Healthy Choice" = "Choix Sain";
+
+// Analysis Result Messages
+"This meal requires some attention based on your health profile." = "Ce repas nécessite une attention particulière selon votre profil de santé.";
+"This meal has some benefits, but also some concerns for your health profile." = "Ce repas présente certains avantages, mais aussi certaines préoccupations pour votre profil de santé.";
+"This meal is a great choice for your health profile!" = "Ce repas est un excellent choix pour votre profil de santé !";
+"This meal appears to be neutral for your health profile." = "Ce repas semble être neutre pour votre profil de santé.";
+
+// Analysis Recommendations
+"Consider alternatives for nutrients marked with high concerns." = "Envisagez des alternatives pour les nutriments signalés comme préoccupants.";
+"This meal has both benefits and concerns. Consider reducing portion size to get the benefits while minimizing potential issues." = "Ce repas présente à la fois des avantages et des inconvénients. Envisagez de réduire la taille de la portion pour obtenir les avantages tout en minimisant les problèmes potentiels.";
+"Try rinsing canned foods or using fresh ingredients to reduce sodium content." = "Essayez de rincer les aliments en conserve ou d'utiliser des ingrédients frais pour réduire la teneur en sodium.";
+"Pair sweet foods with protein or healthy fats to slow sugar absorption." = "Associez les aliments sucrés à des protéines ou des graisses saines pour ralentir l'absorption du sucre.";
+"Breakfast is a great time for fiber and protein to keep you feeling full longer." = "Le petit-déjeuner est un moment idéal pour les fibres et les protéines afin de vous garder rassasié plus longtemps.";
+"For lunch, aim for a balance of protein and complex carbs to maintain energy throughout the afternoon." = "Pour le déjeuner, visez un équilibre entre protéines et glucides complexes pour maintenir votre énergie tout au long de l'après-midi.";
+
+// Portion Size Guide
+"(3/4 of standard serving)" = "(3/4 de portion standard)";
+"(Standard serving)" = "(Portion standard)";
+"(1.5x standard serving)" = "(1,5 fois la portion standard)";
+"Protein: 2-3 oz (60-85g)" = "Protéines: 60-85g";
+"Vegetables: 1/2 cup (75g)" = "Légumes: 1/2 tasse (75g)";
+"Grains: 1/3 cup (60g)" = "Céréales: 1/3 tasse (60g)";
+"Fruit: 1 small piece or 1/2 cup" = "Fruit: 1 petit morceau ou 1/2 tasse";
+"Protein: 3-4 oz (85-115g)" = "Protéines: 85-115g";
+"Vegetables: 3/4 cup (100g)" = "Légumes: 3/4 tasse (100g)";
+"Grains: 1/2 cup (80g)" = "Céréales: 1/2 tasse (80g)";
+"Fruit: 1 medium piece or 3/4 cup" = "Fruit: 1 morceau moyen ou 3/4 tasse";
+"Protein: 5-6 oz (140-170g)" = "Protéines: 140-170g";
+"Vegetables: 1 cup (150g)" = "Légumes: 1 tasse (150g)";
+"Grains: 3/4 cup (120g)" = "Céréales: 3/4 tasse (120g)";
+"Fruit: 1 large piece or 1 cup" = "Fruit: 1 gros morceau ou 1 tasse";
+
+"Health Considerations" = "Considérations de Santé";
+"For dinner, consider lighter options if you have digestion concerns or sleep issues." = "Pour le dîner, envisagez des options plus légères si vous avez des problèmes de digestion ou de sommeil.";
+"Snacks are best kept small and nutritious - focus on quality over quantity." = "Les collations sont préférables petites et nutritives - privilégiez la qualité plutôt que la quantité.";
+"Continue maintaining a balanced diet with a variety of nutrient-rich foods." = "Continuez à maintenir une alimentation équilibrée avec une variété d'aliments riches en nutriments.";
+
+// Meal types
+"Breakfast" = "Petit-déjeuner";
+"Lunch" = "Déjeuner";
+"Dinner" = "Dîner";
+"Snack" = "Collation";
+
+// Portion size explanations
+"Nutritional information automatically scales with portion size" = "Les informations nutritionnelles s'adaptent automatiquement à la taille de la portion";
+"Original nutritional values are for a %@ portion" = "Les valeurs nutritionnelles d'origine sont pour une portion %@";
+"Values scaled by %@× from %@ size" = "Valeurs multipliées par %@× à partir de la taille %@";
 
 

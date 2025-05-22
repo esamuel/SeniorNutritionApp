@@ -58,12 +58,12 @@ struct NutritionalDashboardView: View {
         let goals = mealManager.nutritionalGoals
         
         return VStack(alignment: .leading, spacing: 15) {
-            Text("Daily Summary")
+            Text(NSLocalizedString("Daily Summary", comment: ""))
                 .font(.system(size: userSettings.textSize.size, weight: .bold))
             
             HStack {
                 VStack(alignment: .leading) {
-                    Text("Calories")
+                    Text(NSLocalizedString("Calories", comment: ""))
                         .font(.system(size: userSettings.textSize.size - 2))
                     Text("\(Int(totalNutrition.calories))/\(Int(goals.dailyCalories))")
                         .font(.system(size: userSettings.textSize.size, weight: .bold))
@@ -90,12 +90,12 @@ struct NutritionalDashboardView: View {
         let goals = mealManager.nutritionalGoals
         
         return VStack(alignment: .leading, spacing: 15) {
-            Text("Macronutrients")
+            Text(NSLocalizedString("Macronutrients", comment: ""))
                 .font(.system(size: userSettings.textSize.size, weight: .bold))
             
             VStack(spacing: 10) {
                 nutrientProgressBar(
-                    name: "Protein",
+                    name: NSLocalizedString("Protein", comment: ""),
                     current: totalNutrition.protein,
                     goal: goals.dailyProtein,
                     unit: "g",
@@ -103,7 +103,7 @@ struct NutritionalDashboardView: View {
                 )
                 
                 nutrientProgressBar(
-                    name: "Carbs",
+                    name: NSLocalizedString("Carbs", comment: ""),
                     current: totalNutrition.carbohydrates,
                     goal: goals.dailyCarbohydrates,
                     unit: "g",
@@ -111,7 +111,7 @@ struct NutritionalDashboardView: View {
                 )
                 
                 nutrientProgressBar(
-                    name: "Fat",
+                    name: NSLocalizedString("Fat", comment: ""),
                     current: totalNutrition.fat,
                     goal: goals.dailyFat,
                     unit: "g",
@@ -131,12 +131,12 @@ struct NutritionalDashboardView: View {
         let goals = mealManager.nutritionalGoals
         
         return VStack(alignment: .leading, spacing: 15) {
-            Text("Vitamins")
+            Text(NSLocalizedString("Vitamins", comment: ""))
                 .font(.system(size: userSettings.textSize.size, weight: .bold))
             
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                 vitaminProgressItem(
-                    name: "Vitamin D",
+                    name: NSLocalizedString("Vitamin D", comment: ""),
                     current: totalNutrition.vitaminD,
                     goal: goals.dailyVitaminD,
                     unit: "IU",
@@ -144,7 +144,7 @@ struct NutritionalDashboardView: View {
                 )
                 
                 vitaminProgressItem(
-                    name: "Vitamin C",
+                    name: NSLocalizedString("Vitamin C", comment: ""),
                     current: totalNutrition.vitaminC,
                     goal: goals.dailyVitaminC,
                     unit: "mg",
@@ -152,7 +152,7 @@ struct NutritionalDashboardView: View {
                 )
                 
                 vitaminProgressItem(
-                    name: "Vitamin B12",
+                    name: NSLocalizedString("Vitamin B12", comment: ""),
                     current: totalNutrition.vitaminB12,
                     goal: goals.dailyVitaminB12,
                     unit: "mcg",
@@ -160,7 +160,7 @@ struct NutritionalDashboardView: View {
                 )
                 
                 vitaminProgressItem(
-                    name: "Folate",
+                    name: NSLocalizedString("Folate", comment: ""),
                     current: totalNutrition.folate,
                     goal: goals.dailyFolate,
                     unit: "mcg",
@@ -180,12 +180,12 @@ struct NutritionalDashboardView: View {
         let goals = mealManager.nutritionalGoals
         
         return VStack(alignment: .leading, spacing: 15) {
-            Text("Minerals")
+            Text(NSLocalizedString("Minerals", comment: ""))
                 .font(.system(size: userSettings.textSize.size, weight: .bold))
             
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                 mineralProgressItem(
-                    name: "Calcium",
+                    name: NSLocalizedString("Calcium", comment: ""),
                     current: totalNutrition.calcium,
                     goal: goals.dailyCalcium,
                     unit: "mg",
@@ -193,7 +193,7 @@ struct NutritionalDashboardView: View {
                 )
                 
                 mineralProgressItem(
-                    name: "Iron",
+                    name: NSLocalizedString("Iron", comment: ""),
                     current: totalNutrition.iron,
                     goal: goals.dailyIron,
                     unit: "mg",
@@ -201,7 +201,7 @@ struct NutritionalDashboardView: View {
                 )
                 
                 mineralProgressItem(
-                    name: "Magnesium",
+                    name: NSLocalizedString("Magnesium", comment: ""),
                     current: totalNutrition.magnesium,
                     goal: goals.dailyMagnesium,
                     unit: "mg",
@@ -209,7 +209,7 @@ struct NutritionalDashboardView: View {
                 )
                 
                 mineralProgressItem(
-                    name: "Zinc",
+                    name: NSLocalizedString("Zinc", comment: ""),
                     current: totalNutrition.zinc,
                     goal: goals.dailyZinc,
                     unit: "mg",

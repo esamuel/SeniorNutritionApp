@@ -679,3 +679,124 @@
 "Medication Reminders: Water reminders can be synchronized with medication times" = "Medication Reminders: Water reminders can be synchronized with medication times";
 "Health Tracking: Your hydration status contributes to your overall health assessment" = "Health Tracking: Your hydration status contributes to your overall health assessment";
 "Reports: Hydration data is included in health reports you can share with providers" = "Reports: Hydration data is included in health reports you can share with providers";
+
+"Show Onboarding Again" = "Show Onboarding Again";
+"Local Backup" = "Local Backup";
+"Export Backup" = "Export Backup";
+"Import Backup" = "Import Backup";
+"App Language" = "App Language";
+"Fix Language Issues" = "Fix Language Issues";
+"Reset to System Language" = "Reset to System Language";
+"Current app language: %@" = "Current app language: %@";
+"Get Live Support" = "Get Live Support";
+"Print Instructions" = "Print Instructions";
+"Settings" = "Settings";
+
+/* Nutrition Dashboard translations */
+"Daily Summary" = "Daily Summary";
+"Macronutrients" = "Macronutrients";
+"Vitamin D" = "Vitamin D";
+"Vitamin C" = "Vitamin C";
+"Folate" = "Folate";
+"Calcium" = "Calcium";
+"Iron" = "Iron";
+"Magnesium" = "Magnesium";
+"Zinc" = "Zinc";
+
+/* Meals View translations */
+"Today's Meals" = "Today's Meals";
+"Add" = "Add";
+"No meals logged today" = "No meals logged today";
+"Add First Meal" = "Add First Meal";
+"Edit Meal" = "Edit Meal";
+"Add to Common Meals" = "Add to Common Meals";
+"Delete Meal" = "Delete Meal";
+"calories" = "calories";
+"Common Meals" = "Common Meals";
+
+/* Add Meal View translations */
+"Food Selection" = "Food Selection";
+"Search Food Database" = "Search Food Database";
+"Change Food" = "Change Food";
+"Meal Details" = "Meal Details";
+"Meal Type" = "Meal Type";
+"Name" = "Name";
+"Meal name" = "Meal name";
+"Portion Size" = "Portion Size";
+"Select Portion Size" = "Select Portion Size";
+"Portion Size Guide" = "Portion Size Guide";
+"Portion" = "Portion";
+"Small" = "Small";
+"Medium" = "Medium";
+"Large" = "Large";
+"Notes" = "Notes";
+"Analyze Nutrition" = "Analyze Nutrition";
+"Save Meal" = "Save Meal";
+"Add Meal" = "Add Meal";
+"Cancel" = "Cancel";
+
+/* Additional nutrition-related translations */
+"Nutritional Information" = "Nutritional Information";
+"Protein (g)" = "Protein (g)";
+"Carbs (g)" = "Carbs (g)";
+"Fat (g)" = "Fat (g)";
+"Edit Meal" = "Edit Meal";
+"Save Anyway" = "Save Anyway";
+"Nutrition Analysis" = "Nutrition Analysis";
+"Personalized Nutrition Tips" = "Personalized Nutrition Tips";
+"Done" = "Done";
+
+/* Meal Analysis View translations */
+"Beneficial Nutrients" = "Beneficial Nutrients";
+"Recommendations" = "Recommendations";
+"Nutritional Balance" = "Nutritional Balance";
+"Good for" = "Good for";
+"Healthy Choice" = "Healthy Choice";
+
+/* Analysis Result Messages */
+"This meal requires some attention based on your health profile." = "This meal requires some attention based on your health profile.";
+"This meal has some benefits, but also some concerns for your health profile." = "This meal has some benefits, but also some concerns for your health profile.";
+"This meal is a great choice for your health profile!" = "This meal is a great choice for your health profile!";
+"This meal appears to be neutral for your health profile." = "This meal appears to be neutral for your health profile.";
+
+/* Analysis Recommendations */
+"Consider alternatives for nutrients marked with high concerns." = "Consider alternatives for nutrients marked with high concerns.";
+"This meal has both benefits and concerns. Consider reducing portion size to get the benefits while minimizing potential issues." = "This meal has both benefits and concerns. Consider reducing portion size to get the benefits while minimizing potential issues.";
+"Try rinsing canned foods or using fresh ingredients to reduce sodium content." = "Try rinsing canned foods or using fresh ingredients to reduce sodium content.";
+"Pair sweet foods with protein or healthy fats to slow sugar absorption." = "Pair sweet foods with protein or healthy fats to slow sugar absorption.";
+"Breakfast is a great time for fiber and protein to keep you feeling full longer." = "Breakfast is a great time for fiber and protein to keep you feeling full longer.";
+"For lunch, aim for a balance of protein and complex carbs to maintain energy throughout the afternoon." = "For lunch, aim for a balance of protein and complex carbs to maintain energy throughout the afternoon.";
+
+/* Portion Size Guide */
+"(3/4 of standard serving)" = "(3/4 of standard serving)";
+"(Standard serving)" = "(Standard serving)";
+"(1.5x standard serving)" = "(1.5x standard serving)";
+"Protein: 2-3 oz (60-85g)" = "Protein: 2-3 oz (60-85g)";
+"Vegetables: 1/2 cup (75g)" = "Vegetables: 1/2 cup (75g)";
+"Grains: 1/3 cup (60g)" = "Grains: 1/3 cup (60g)";
+"Fruit: 1 small piece or 1/2 cup" = "Fruit: 1 small piece or 1/2 cup";
+"Protein: 3-4 oz (85-115g)" = "Protein: 3-4 oz (85-115g)";
+"Vegetables: 3/4 cup (100g)" = "Vegetables: 3/4 cup (100g)";
+"Grains: 1/2 cup (80g)" = "Grains: 1/2 cup (80g)";
+"Fruit: 1 medium piece or 3/4 cup" = "Fruit: 1 medium piece or 3/4 cup";
+"Protein: 5-6 oz (140-170g)" = "Protein: 5-6 oz (140-170g)";
+"Vegetables: 1 cup (150g)" = "Vegetables: 1 cup (150g)";
+"Grains: 3/4 cup (120g)" = "Grains: 3/4 cup (120g)";
+"Fruit: 1 large piece or 1 cup" = "Fruit: 1 large piece or 1 cup";
+
+/* Health Analysis */
+"Health Considerations" = "Health Considerations";
+"For dinner, consider lighter options if you have digestion concerns or sleep issues." = "For dinner, consider lighter options if you have digestion concerns or sleep issues.";
+"Snacks are best kept small and nutritious - focus on quality over quantity." = "Snacks are best kept small and nutritious - focus on quality over quantity.";
+"Continue maintaining a balanced diet with a variety of nutrient-rich foods." = "Continue maintaining a balanced diet with a variety of nutrient-rich foods.";
+
+/* Meal types */
+"Breakfast" = "Breakfast";
+"Lunch" = "Lunch";
+"Dinner" = "Dinner";
+"Snack" = "Snack";
+
+/* Portion size explanations */
+"Nutritional information automatically scales with portion size" = "Nutritional information automatically scales with portion size";
+"Original nutritional values are for a %@ portion" = "Original nutritional values are for a %@ portion";
+"Values scaled by %@× from %@ size" = "Values scaled by %@× from %@ size";

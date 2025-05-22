@@ -15,6 +15,7 @@ struct FoodDatabaseBrowserView: View {
     @State private var showingFoodDetail = false
     @State private var selectedFood: FoodItem?
     @State private var showingAllCategories = true
+    @State private var isSelectingFood = false  // Flag to prevent double tap issues
     
     var body: some View {
         NavigationView {
@@ -139,20 +140,26 @@ struct FoodDatabaseBrowserView: View {
                 // Food list
                 List {
                     ForEach(filteredFoods) { food in
-                        foodRow(food)
-                            .contentShape(Rectangle())
-                            .onTapGesture {
-                                // Set food first, then show detail view
-                                print("Selected food: \(food.name)")
+                        Button(action: {
+                            if !isSelectingFood {
+                                isSelectingFood = true
                                 selectedFood = food
-                                
-                                // Small delay to ensure the food is set
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                    print("Showing detail view for food: \(food.name)")
+                                print("Selected food: \(food.name)")
+                                // Use a short timer to avoid state update race conditions
+                                DispatchQueue.main.async {
                                     showingFoodDetail = true
+                                    // Reset the flag after a short delay to prevent rapid tapping issues
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                        isSelectingFood = false
+                                    }
                                 }
                             }
-                            .id(food.id) // Ensure each row has a unique identifier
+                        }) {
+                            foodRow(food)
+                                .contentShape(Rectangle())
+                        }
+                        .buttonStyle(PlainButtonStyle()) // Prevent button styling
+                        .id(food.id) // Ensure each row has a unique identifier
                     }
                 }
                 .listStyle(PlainListStyle())
@@ -198,28 +205,58 @@ struct FoodDatabaseBrowserView: View {
                     }
                 }
             }
-            .fullScreenCover(isPresented: $showingFoodDetail) {
-                // Clear the selection when dismissed
-                selectedFood = nil
-            } content: {
-                if let food = selectedFood {
-                    // Wrap in NavigationView to ensure proper presentation
-                    FoodDetailView(food: food)
-                        .environmentObject(userSettings)
-                        .onAppear {
-                            // Log when the detail view appears to help with debugging
-                            print("FoodDetailView appeared with food: \(food.name)")
+            .fullScreenCover(isPresented: $showingFoodDetail, onDismiss: {
+                // Clear the selection when dismissed and reset the selecting flag
+                DispatchQueue.main.async {
+                    selectedFood = nil
+                    isSelectingFood = false
+                }
+            }) {
+                Group {
+                    if let food = selectedFood {
+                        FoodDetailView(food: food)
+                            .environmentObject(userSettings)
+                            .onAppear {
+                                print("FoodDetailView appeared with food: \(food.name)")
+                            }
+                    } else {
+                        // Improved error handling view
+                        NavigationView {
+                            VStack {
+                                Text("No food details available")
+                                    .font(.headline)
+                                
+                                Button("Return to Food List") {
+                                    showingFoodDetail = false
+                                }
+                                .padding()
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                                .padding(.top, 20)
+                            }
+                            .padding()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .background(Color(.systemBackground))
+                            .navigationTitle(NSLocalizedString("Error", comment: ""))
+                            .navigationBarTitleDisplayMode(.inline)
+                            .toolbar {
+                                ToolbarItem(placement: .navigationBarTrailing) {
+                                    Button(NSLocalizedString("Close", comment: "")) {
+                                        showingFoodDetail = false
+                                    }
+                                }
+                            }
                         }
-                } else {
-                    // Fallback in case food is nil
-                    Text("Loading food details...")
+                        .navigationViewStyle(StackNavigationViewStyle())
                         .onAppear {
                             print("ERROR: Food detail view appeared with nil food")
-                            // Auto-dismiss if there's no food to display
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            // Auto-dismiss with a longer delay to prevent rapid state changes
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                                 showingFoodDetail = false
                             }
                         }
+                    }
                 }
             }
         }
@@ -388,14 +425,20 @@ struct FoodDetailView: View {
     @EnvironmentObject private var userSettings: UserSettings
     let food: FoodItem
     @State private var isLoading = true
+    @State private var canDismiss = false
     
     var body: some View {
         NavigationView {
             ZStack {
                 if isLoading {
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle())
-                        .scaleEffect(1.5)
+                    VStack {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle())
+                            .scaleEffect(1.5)
+                        Text("Loading food details...")
+                            .padding(.top, 20)
+                            .foregroundColor(.secondary)
+                    }
                 } else {
                     ScrollView {
                         VStack(alignment: .leading, spacing: 20) {
@@ -453,7 +496,7 @@ struct FoodDetailView: View {
                                     macroNutrientView(
                                         title: NSLocalizedString("Fat", comment: ""),
                                         value: "\(Int(food.nutritionalInfo.fat))",
-                                        unit: "g",
+                                        unit: "g", 
                                         color: .yellow
                                     )
                                 }
@@ -515,17 +558,28 @@ struct FoodDetailView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(NSLocalizedString("Done", comment: "")) {
-                        dismiss()
+                        if canDismiss {
+                            dismiss()
+                        }
                     }
+                    .disabled(!canDismiss)
                 }
             }
-            .onAppear {
-                // Small delay to ensure view is ready to display content
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                    // Force language refresh for this view
-                    LanguageManager.shared.forceRefreshLocalization()
-                    isLoading = false
-                }
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
+        .onAppear {
+            print("FoodDetailView onAppear: Loading food \(food.name)")
+            // Prevent immediate dismissal by adding a delay before allowing dismissal
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                canDismiss = true
+            }
+            
+            // Small delay to ensure view is ready to display content
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                // Force language refresh for this view
+                LanguageManager.shared.forceRefreshLocalization()
+                isLoading = false
+                print("FoodDetailView finished loading: \(food.name)")
             }
         }
     }

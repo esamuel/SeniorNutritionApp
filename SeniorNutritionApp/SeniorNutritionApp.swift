@@ -18,6 +18,14 @@ struct SeniorNutritionApp: App {
                 if !userSettings.isLoaded {
                     VStack {
                         Spacer()
+                        
+                        // Add old man with walking stick image
+                        Image("Oldman-wolking")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 200)
+                            .padding(.bottom, 20)
+                        
                         ProgressView(NSLocalizedString("Loading", comment: ""))
                             .progressViewStyle(CircularProgressViewStyle())
                             .padding()

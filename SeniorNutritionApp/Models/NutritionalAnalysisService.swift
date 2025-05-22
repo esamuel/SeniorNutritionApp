@@ -649,6 +649,43 @@ class NutritionalAnalysisService: ObservableObject {
             ))
         }
     }
+    
+    private func getRecommendations() -> [String] {
+        var recommendations: [String] = []
+        
+        // Add recommendations based on health warnings
+        let highPriorityWarnings = analysisResults?.healthWarnings.filter { $0.severity == .high } ?? []
+        
+        if !highPriorityWarnings.isEmpty {
+            recommendations.append(NSLocalizedString("Consider alternatives for nutrients marked with high concerns.", comment: ""))
+        }
+        
+        // Add balanced meal recommendation if there are both warnings and positives
+        if (analysisResults?.healthWarnings.count ?? 0) > 0 && (analysisResults?.positiveEffects.count ?? 0) > 0 {
+            recommendations.append(NSLocalizedString("This meal has both benefits and concerns. Consider reducing portion size to get the benefits while minimizing potential issues.", comment: ""))
+        }
+        
+        // Add specific recommendations based on nutrients
+        let hasHighSodium = analysisResults?.healthWarnings.contains { $0.nutrient == "Sodium" } ?? false
+        if hasHighSodium {
+            recommendations.append(NSLocalizedString("Try rinsing canned foods or using fresh ingredients to reduce sodium content.", comment: ""))
+        }
+        
+        let hasHighSugar = analysisResults?.healthWarnings.contains { $0.nutrient == "Sugar" } ?? false
+        if hasHighSugar {
+            recommendations.append(NSLocalizedString("Pair sweet foods with protein or healthy fats to slow sugar absorption.", comment: ""))
+        }
+        
+        // Add general meal recommendations based on name
+        let mealName = analysisResults?.mealName.lowercased() ?? ""
+        if mealName.contains("breakfast") || mealName.contains("morning") {
+            recommendations.append(NSLocalizedString("Breakfast is a great time for fiber and protein to keep you feeling full longer.", comment: ""))
+        } else if mealName.contains("lunch") || mealName.contains("noon") {
+            recommendations.append(NSLocalizedString("For lunch, aim for a balance of protein and complex carbs to maintain energy throughout the afternoon.", comment: ""))
+        }
+        
+        return recommendations
+    }
 }
 
 // MARK: - Supporting Types
@@ -732,13 +769,13 @@ struct MealAnalysisResult {
     
     var overallMessage: String {
         if hasConcerns && !hasPositiveEffects {
-            return "This meal requires some attention based on your health profile."
+            return NSLocalizedString("This meal requires some attention based on your health profile.", comment: "")
         } else if hasConcerns && hasPositiveEffects {
-            return "This meal has some benefits, but also some concerns for your health profile."
+            return NSLocalizedString("This meal has some benefits, but also some concerns for your health profile.", comment: "")
         } else if !hasConcerns && hasPositiveEffects {
-            return "This meal is a great choice for your health profile!"
+            return NSLocalizedString("This meal is a great choice for your health profile!", comment: "")
         } else {
-            return "This meal appears to be neutral for your health profile."
+            return NSLocalizedString("This meal appears to be neutral for your health profile.", comment: "")
         }
     }
     

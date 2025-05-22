@@ -31,13 +31,13 @@ struct AddMealView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Food Selection").font(.system(size: userSettings.textSize.size))) {
+                Section(header: Text(NSLocalizedString("Food Selection", comment: "")).font(.system(size: userSettings.textSize.size))) {
                     Button(action: {
                         showingFoodSearch = true
                     }) {
                         HStack {
                             Image(systemName: "magnifyingglass")
-                            Text(selectedFood == nil ? "Search Food Database" : "Change Food")
+                            Text(selectedFood == nil ? NSLocalizedString("Search Food Database", comment: "") : NSLocalizedString("Change Food", comment: ""))
                             Spacer()
                             if selectedFood != nil {
                                 Image(systemName: "chevron.right")
@@ -67,9 +67,9 @@ struct AddMealView: View {
                     }
                 }
                 
-                Section(header: Text("Meal Details").font(.system(size: userSettings.textSize.size))) {
+                Section(header: Text(NSLocalizedString("Meal Details", comment: "")).font(.system(size: userSettings.textSize.size))) {
                     HStack {
-                        Text("Meal Type")
+                        Text(NSLocalizedString("Meal Type", comment: ""))
                             .font(.system(size: userSettings.textSize.size))
                         
                         Spacer()
@@ -78,7 +78,7 @@ struct AddMealView: View {
                             ForEach(MealType.allCases) { type in
                                 HStack {
                                     Image(systemName: type.icon)
-                                    Text(type.rawValue)
+                                    Text(type.localizedName)
                                 }
                                 .tag(type)
                             }
@@ -88,10 +88,10 @@ struct AddMealView: View {
                     }
                     
                     HStack {
-                        Text("Name")
+                        Text(NSLocalizedString("Name", comment: ""))
                             .font(.system(size: userSettings.textSize.size))
                         
-                        TextField("Meal name", text: $mealName)
+                        TextField(NSLocalizedString("Meal name", comment: ""), text: $mealName)
                             .font(.system(size: userSettings.textSize.size))
                         
                         Button(action: {
@@ -103,10 +103,10 @@ struct AddMealView: View {
                     }
                 }
                 
-                Section(header: Text("Portion Size").font(.system(size: userSettings.textSize.size))) {
+                Section(header: Text(NSLocalizedString("Portion Size", comment: "")).font(.system(size: userSettings.textSize.size))) {
                     VStack(alignment: .leading, spacing: 8) {
                         HStack {
-                            Text("Select Portion Size")
+                            Text(NSLocalizedString("Select Portion Size", comment: ""))
                                 .font(.system(size: userSettings.textSize.size))
                             Button(action: {
                                 showingPortionInfo.toggle()
@@ -116,14 +116,14 @@ struct AddMealView: View {
                             }
                             .popover(isPresented: $showingPortionInfo) {
                                 VStack(alignment: .leading, spacing: 0) {
-                                    Text("Portion Size Guide")
+                                    Text(NSLocalizedString("Portion Size Guide", comment: ""))
                                         .font(.system(size: 22, weight: .bold))
                                         .padding(.bottom, 10)
                                         .frame(maxWidth: .infinity, alignment: .center)
                                     ScrollView {
                                         VStack(spacing: 20) {
                                             portionInfoCard(
-                                                title: "Small",
+                                                title: NSLocalizedString("Small", comment: ""),
                                                 subtitle: "(3/4 of standard serving)",
                                                 examples: [
                                                     "Protein: 2-3 oz (60-85g)",
@@ -135,7 +135,7 @@ struct AddMealView: View {
                                                 borderColor: .blue
                                             )
                                             portionInfoCard(
-                                                title: "Medium",
+                                                title: NSLocalizedString("Medium", comment: ""),
                                                 subtitle: "(Standard serving)",
                                                 examples: [
                                                     "Protein: 3-4 oz (85-115g)",
@@ -147,7 +147,7 @@ struct AddMealView: View {
                                                 borderColor: .green
                                             )
                                             portionInfoCard(
-                                                title: "Large",
+                                                title: NSLocalizedString("Large", comment: ""),
                                                 subtitle: "(1.5x standard serving)",
                                                 examples: [
                                                     "Protein: 5-6 oz (140-170g)",
@@ -169,7 +169,7 @@ struct AddMealView: View {
                         // Slider for portion size
                         VStack(alignment: .center, spacing: 8) {
                             // Show selected label
-                            Text(mealPortion.rawValue)
+                            Text(mealPortion.localizedName)
                                 .font(.system(size: userSettings.textSize.size + 2, weight: .bold))
                                 .frame(maxWidth: .infinity, alignment: .center)
                             // 3-point slider
@@ -195,16 +195,16 @@ struct AddMealView: View {
                                 in: 0...2,
                                 step: 1
                             ) {
-                                Text("Portion Size")
+                                Text(NSLocalizedString("Portion Size", comment: ""))
                             }
                             .accentColor(.blue)
                             // Custom tick labels
                             HStack {
-                                Text("Small").font(.system(size: userSettings.textSize.size - 2))
+                                Text(NSLocalizedString("Small", comment: "")).font(.system(size: userSettings.textSize.size - 2))
                                 Spacer()
-                                Text("Medium").font(.system(size: userSettings.textSize.size - 2))
+                                Text(NSLocalizedString("Medium", comment: "")).font(.system(size: userSettings.textSize.size - 2))
                                 Spacer()
-                                Text("Large").font(.system(size: userSettings.textSize.size - 2))
+                                Text(NSLocalizedString("Large", comment: "")).font(.system(size: userSettings.textSize.size - 2))
                             }
                             .padding(.horizontal, 4)
                         }
@@ -213,36 +213,36 @@ struct AddMealView: View {
                 }
                 
                 if selectedFood == nil {
-                    Section(header: Text("Nutritional Information").font(.system(size: userSettings.textSize.size))) {
+                    Section(header: Text(NSLocalizedString("Nutritional Information", comment: "")).font(.system(size: userSettings.textSize.size))) {
                         Group {
                             HStack {
-                                Text("Calories")
+                                Text(NSLocalizedString("Calories", comment: ""))
                                 Spacer()
-                                TextField("Calories", value: $nutritionalInfo.calories, format: .number)
+                                TextField(NSLocalizedString("Calories", comment: ""), value: $nutritionalInfo.calories, format: .number)
                                     .keyboardType(.decimalPad)
                                     .multilineTextAlignment(.trailing)
                             }
                             
                             HStack {
-                                Text("Protein (g)")
+                                Text(NSLocalizedString("Protein (g)", comment: ""))
                                 Spacer()
-                                TextField("Protein", value: $nutritionalInfo.protein, format: .number)
+                                TextField(NSLocalizedString("Protein", comment: ""), value: $nutritionalInfo.protein, format: .number)
                                     .keyboardType(.decimalPad)
                                     .multilineTextAlignment(.trailing)
                             }
                             
                             HStack {
-                                Text("Carbs (g)")
+                                Text(NSLocalizedString("Carbs (g)", comment: ""))
                                 Spacer()
-                                TextField("Carbs", value: $nutritionalInfo.carbohydrates, format: .number)
+                                TextField(NSLocalizedString("Carbs", comment: ""), value: $nutritionalInfo.carbohydrates, format: .number)
                                     .keyboardType(.decimalPad)
                                     .multilineTextAlignment(.trailing)
                             }
                             
                             HStack {
-                                Text("Fat (g)")
+                                Text(NSLocalizedString("Fat (g)", comment: ""))
                                 Spacer()
-                                TextField("Fat", value: $nutritionalInfo.fat, format: .number)
+                                TextField(NSLocalizedString("Fat", comment: ""), value: $nutritionalInfo.fat, format: .number)
                                     .keyboardType(.decimalPad)
                                     .multilineTextAlignment(.trailing)
                             }
@@ -251,7 +251,7 @@ struct AddMealView: View {
                     }
                 }
                 
-                Section(header: Text("Notes").font(.system(size: userSettings.textSize.size))) {
+                Section(header: Text(NSLocalizedString("Notes", comment: "")).font(.system(size: userSettings.textSize.size))) {
                     TextEditor(text: $notes)
                         .frame(height: 100)
                         .font(.system(size: userSettings.textSize.size))
@@ -259,7 +259,7 @@ struct AddMealView: View {
                 
                 Section {
                     Button(action: analyzeAndShowResults) {
-                        Text("Analyze Nutrition")
+                        Text(NSLocalizedString("Analyze Nutrition", comment: ""))
                             .font(.system(size: userSettings.textSize.size))
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
@@ -270,7 +270,7 @@ struct AddMealView: View {
                     .disabled(mealName.isEmpty)
                     
                     Button(action: saveMeal) {
-                        Text("Save Meal")
+                        Text(NSLocalizedString("Save Meal", comment: ""))
                             .font(.system(size: userSettings.textSize.size))
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
@@ -282,11 +282,11 @@ struct AddMealView: View {
                 }
                 .listRowBackground(Color.clear)
             }
-            .navigationTitle("Add Meal")
+            .navigationTitle(NSLocalizedString("Add Meal", comment: ""))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") {
+                    Button(NSLocalizedString("Cancel", comment: "")) {
                         presentationMode.wrappedValue.dismiss()
                     }
                     .font(.system(size: userSettings.textSize.size))
@@ -310,7 +310,7 @@ struct AddMealView: View {
                                 Button(action: {
                                     showingAnalysisResults = false
                                 }) {
-                                    Text("Edit Meal")
+                                    Text(NSLocalizedString("Edit Meal", comment: ""))
                                         .font(.headline)
                                         .foregroundColor(.white)
                                         .frame(maxWidth: .infinity)
@@ -323,7 +323,7 @@ struct AddMealView: View {
                                     showingAnalysisResults = false
                                     saveMeal()
                                 }) {
-                                    Text("Save Anyway")
+                                    Text(NSLocalizedString("Save Anyway", comment: ""))
                                         .font(.headline)
                                         .foregroundColor(.white)
                                         .frame(maxWidth: .infinity)
@@ -366,7 +366,7 @@ struct AddMealView: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text(title)
                     .font(.system(size: userSettings.textSize.size + 2, weight: .bold))
-                Text(subtitle)
+                Text(NSLocalizedString(subtitle, comment: ""))
                     .font(.system(size: userSettings.textSize.size - 1))
                     .foregroundColor(.secondary)
             }
@@ -380,7 +380,7 @@ struct AddMealView: View {
                             .font(.system(size: 6))
                             .padding(.top, 6)
                         
-                        Text(example)
+                        Text(NSLocalizedString(example, comment: ""))
                             .font(.system(size: userSettings.textSize.size))
                     }
                 }

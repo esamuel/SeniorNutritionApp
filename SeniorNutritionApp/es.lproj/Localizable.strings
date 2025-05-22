@@ -88,7 +88,7 @@
 "Tap to add" = "Toca para agregar";
 "Food Database" = "Base de Datos de Alimentos";
 "Browse All Food Items" = "Explorar Todos los Alimentos";
-"View detailed nutrition information for all foods, including pasta dishes and desserts" = "Ver información nutricional detallada de todos los alimentos, incluyendo platos de pasta y postres";
+"View detailed nutrition information for all foods, including pasta dishes and more" = "Ver información nutricional detallada de todos los alimentos, incluyendo platos de pasta y más";
 "Nutrition" = "Nutrición";
 "Nutrition Tips for Seniors" = "Consejos de Nutrición para Personas Mayores";
 "View More Tips" = "Ver más consejos";
@@ -886,7 +886,13 @@
 "Pill Appearance" = "Pill Appearance";
 "Pill Color" = "Pill Color";
 "Portion Size Guide" = "Portion Size Guide";
-"Portion Size" = "Portion Size";
+"Portion Size" = "Tamaño de Porción";
+"Select Portion Size" = "Seleccionar Tamaño de Porción";
+"Portion Size Guide" = "Guía de Tamaño de Porción";
+"Portion" = "Porción";
+"Small" = "Pequeño";
+"Medium" = "Mediano";
+"Large" = "Grande";
 "Probiotic Support" = "Probiotic Support";
 "Protein Intake" = "Protein Intake";
 "Protein" = "Protein";
@@ -1053,5 +1059,131 @@
 
 "health_tip_senior_balance_description" = "Practique ejercicios de equilibrio como pararse en un pie o caminar talón-punta para prevenir caídas, que son un riesgo importante para los adultos mayores.";
 "health_tip_senior_vision_description" = "Hágase revisar los ojos anualmente. Una buena visión es crucial para prevenir caídas y mantener la calidad de vida.";
+
+"Show Onboarding Again" = "Mostrar Introducción Nuevamente";
+"Local Backup" = "Copia de Seguridad Local";
+"Export Backup" = "Exportar Copia de Seguridad";
+"Import Backup" = "Importar Copia de Seguridad";
+"App Language" = "Idioma de la Aplicación";
+"Fix Language Issues" = "Solucionar Problemas de Idioma";
+"Reset to System Language" = "Restablecer al Idioma del Sistema";
+"Current app language: %@" = "Idioma actual de la aplicación: %@";
+"Get Live Support" = "Obtener Asistencia en Vivo";
+"Print Instructions" = "Imprimir Instrucciones";
+
+// Nutrition Dashboard translations
+"Daily Summary" = "Resumen Diario";
+"Calories" = "Calorías";
+"Macronutrients" = "Macronutrientes";
+"Protein" = "Proteína";
+"Carbs" = "Carbohidratos";
+"Fat" = "Grasa";
+"Vitamins" = "Vitaminas";
+"Vitamin D" = "Vitamina D";
+"Vitamin C" = "Vitamina C";
+"Vitamin B12" = "Vitamina B12";
+"Folate" = "Ácido Fólico";
+"Minerals" = "Minerales";
+"Calcium" = "Calcio";
+"Iron" = "Hierro";
+"Magnesium" = "Magnesio";
+"Zinc" = "Zinc";
+
+// Meals View translations
+"Today's Meals" = "Comidas de Hoy";
+"Add" = "Añadir";
+"No meals logged today" = "No hay comidas registradas hoy";
+"Add First Meal" = "Añadir Primera Comida";
+"Edit Meal" = "Editar Comida";
+"Add to Common Meals" = "Añadir a Comidas Comunes";
+"Delete Meal" = "Eliminar Comida";
+"calories" = "calorías";
+"Common Meals" = "Comidas Comunes";
+
+// Add Meal View translations
+"Food Selection" = "Selección de Alimentos";
+"Search Food Database" = "Buscar en Base de Datos de Alimentos";
+"Change Food" = "Cambiar Alimento";
+"Meal Details" = "Detalles de la Comida";
+"Meal Type" = "Tipo de Comida";
+"Name" = "Nombre";
+"Meal name" = "Nombre de la comida";
+"Portion Size" = "Tamaño de Porción";
+"Select Portion Size" = "Seleccionar Tamaño de Porción";
+"Portion Size Guide" = "Guía de Tamaño de Porción";
+"Small" = "Pequeño";
+"Medium" = "Mediano";
+"Large" = "Grande";
+"Notes" = "Notas";
+"Analyze Nutrition" = "Analizar Nutrición";
+"Save Meal" = "Guardar Comida";
+"Add Meal" = "Añadir Comida";
+"Cancel" = "Cancelar";
+
+// Additional nutrition-related translations
+"Nutritional Information" = "Información Nutricional";
+"Protein (g)" = "Proteína (g)";
+"Carbs (g)" = "Carbohidratos (g)";
+"Fat (g)" = "Grasa (g)";
+"Edit Meal" = "Editar Comida";
+"Save Anyway" = "Guardar de Todos Modos";
+"Close" = "Cerrar";
+"Nutrition Analysis" = "Análisis Nutricional";
+"Personalized Nutrition Tips" = "Consejos Nutricionales Personalizados";
+"Done" = "Hecho";
+
+// Meal Analysis View translations
+"Beneficial Nutrients" = "Nutrientes Beneficiosos";
+"Recommendations" = "Recomendaciones";
+"Nutritional Balance" = "Equilibrio Nutricional";
+"Good for" = "Bueno para";
+"Healthy Choice" = "Elección Saludable";
+
+// Analysis Result Messages
+"This meal requires some attention based on your health profile." = "Esta comida requiere algo de atención según su perfil de salud.";
+"This meal has some benefits, but also some concerns for your health profile." = "Esta comida tiene algunos beneficios, pero también algunas preocupaciones para su perfil de salud.";
+"This meal is a great choice for your health profile!" = "¡Esta comida es una excelente elección para su perfil de salud!";
+"This meal appears to be neutral for your health profile." = "Esta comida parece ser neutral para su perfil de salud.";
+
+// Analysis Recommendations
+"Consider alternatives for nutrients marked with high concerns." = "Considere alternativas para los nutrientes marcados con altas preocupaciones.";
+"This meal has both benefits and concerns. Consider reducing portion size to get the benefits while minimizing potential issues." = "Esta comida tiene tanto beneficios como preocupaciones. Considere reducir el tamaño de la porción para obtener los beneficios mientras minimiza problemas potenciales.";
+"Try rinsing canned foods or using fresh ingredients to reduce sodium content." = "Intente enjuagar los alimentos enlatados o usar ingredientes frescos para reducir el contenido de sodio.";
+"Pair sweet foods with protein or healthy fats to slow sugar absorption." = "Combine alimentos dulces con proteínas o grasas saludables para ralentizar la absorción de azúcar.";
+"Breakfast is a great time for fiber and protein to keep you feeling full longer." = "El desayuno es un buen momento para la fibra y la proteína para mantenerlo saciado por más tiempo.";
+"For lunch, aim for a balance of protein and complex carbs to maintain energy throughout the afternoon." = "Para el almuerzo, busque un equilibrio de proteínas y carbohidratos complejos para mantener la energía durante toda la tarde.";
+
+// Portion Size Guide
+"(3/4 of standard serving)" = "(3/4 de porción estándar)";
+"(Standard serving)" = "(Porción estándar)";
+"(1.5x standard serving)" = "(1.5 veces la porción estándar)";
+"Protein: 2-3 oz (60-85g)" = "Proteína: 60-85g";
+"Vegetables: 1/2 cup (75g)" = "Vegetales: 1/2 taza (75g)";
+"Grains: 1/3 cup (60g)" = "Granos: 1/3 taza (60g)";
+"Fruit: 1 small piece or 1/2 cup" = "Fruta: 1 pieza pequeña o 1/2 taza";
+"Protein: 3-4 oz (85-115g)" = "Proteína: 85-115g";
+"Vegetables: 3/4 cup (100g)" = "Vegetales: 3/4 taza (100g)";
+"Grains: 1/2 cup (80g)" = "Granos: 1/2 taza (80g)";
+"Fruit: 1 medium piece or 3/4 cup" = "Fruta: 1 pieza mediana o 3/4 taza";
+"Protein: 5-6 oz (140-170g)" = "Proteína: 140-170g";
+"Vegetables: 1 cup (150g)" = "Vegetales: 1 taza (150g)";
+"Grains: 3/4 cup (120g)" = "Granos: 3/4 taza (120g)";
+"Fruit: 1 large piece or 1 cup" = "Fruta: 1 pieza grande o 1 taza";
+
+"Health Considerations" = "Consideraciones de Salud";
+"For dinner, consider lighter options if you have digestion concerns or sleep issues." = "Para la cena, considere opciones más ligeras si tiene problemas de digestión o de sueño.";
+"Snacks are best kept small and nutritious - focus on quality over quantity." = "Es mejor mantener los refrigerios pequeños y nutritivos - enfóquese en la calidad sobre la cantidad.";
+"Continue maintaining a balanced diet with a variety of nutrient-rich foods." = "Continúe manteniendo una dieta equilibrada con una variedad de alimentos ricos en nutrientes.";
+
+// Meal types
+"Breakfast" = "Desayuno";
+"Lunch" = "Almuerzo";
+"Dinner" = "Cena";
+"Snack" = "Merienda";
+
+// Portion size explanations
+"Nutritional information automatically scales with portion size" = "La información nutricional se ajusta automáticamente según el tamaño de la porción";
+"Original nutritional values are for a %@ portion" = "Los valores nutricionales originales son para una porción %@";
+"Values scaled by %@× from %@ size" = "Valores escalados por %@× desde el tamaño %@";
 
 

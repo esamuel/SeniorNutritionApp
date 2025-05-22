@@ -93,7 +93,7 @@ struct SettingsView: View {
                 
                 // Language section
                 Section(header: Text(NSLocalizedString("Language", comment: "")).font(.system(size: userSettings.textSize.size, weight: .bold))) {
-                    Picker("App Language", selection: $userSettings.selectedLanguage) {
+                    Picker(NSLocalizedString("App Language", comment: ""), selection: $userSettings.selectedLanguage) {
                         ForEach(userSettings.supportedLanguages, id: \.self) { code in
                             Text(languageDisplayName(for: code)).tag(code)
                         }
@@ -115,10 +115,10 @@ struct SettingsView: View {
                             generator.notificationOccurred(.success)
                         }
                     }) {
-                        Label("Fix Language Issues", systemImage: "arrow.triangle.2.circlepath")
+                        Label(NSLocalizedString("Fix Language Issues", comment: ""), systemImage: "arrow.triangle.2.circlepath")
                             .padding(.vertical, 8)
                     }
-                    Button("Reset to System Language") {
+                    Button(NSLocalizedString("Reset to System Language", comment: "")) {
                         print("SettingsView: Reset to System Language pressed")
                         // First, reset in LanguageManager (which will handle removing from UserDefaults)
                         LanguageManager.shared.resetToSystemLanguage()
@@ -130,7 +130,7 @@ struct SettingsView: View {
                         }
                     }
                     .foregroundColor(.blue)
-                    Text("Current app language: \(languageManager.currentLanguage)")
+                    Text(String(format: NSLocalizedString("Current app language: %@", comment: ""), languageManager.currentLanguage))
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
@@ -139,21 +139,21 @@ struct SettingsView: View {
                 Section(header: sectionHeader(NSLocalizedString("Help & Support", comment: ""))) {
                     settingsRow(
                         icon: "video.fill",
-                        title: "Video Tutorials",
+                        title: NSLocalizedString("Video Tutorials", comment: ""),
                         color: .red,
                         action: { /* Show video tutorials */ }
                     )
                     
                     settingsRow(
                         icon: "person.fill.questionmark",
-                        title: "Get Live Support",
+                        title: NSLocalizedString("Get Live Support", comment: ""),
                         color: .green,
                         action: { showingHelpOptions = true }
                     )
                     
                     settingsRow(
                         icon: "printer.fill",
-                        title: "Print Instructions",
+                        title: NSLocalizedString("Print Instructions", comment: ""),
                         color: .purple,
                         action: { showingPrintOptions = true }
                     )
@@ -173,7 +173,7 @@ struct SettingsView: View {
                     Button(action: { showingOnboarding = true }) {
                         settingsRowContent(
                             icon: "questionmark.circle.fill",
-                            title: "Show Onboarding Again",
+                            title: NSLocalizedString("Show Onboarding Again", comment: ""),
                             color: .blue
                         )
                     }
@@ -184,10 +184,10 @@ struct SettingsView: View {
                     
                     // Backup Data Section updated for local backup
                     VStack(alignment: .leading, spacing: 16) {
-                        Text("Local Backup")
+                        Text(NSLocalizedString("Local Backup", comment: ""))
                             .font(.headline)
                         Button(action: { exportLocalBackup() }) {
-                            Text("Export Backup")
+                            Text(NSLocalizedString("Export Backup", comment: ""))
                                 .foregroundColor(.blue)
                                 .padding()
                                 .frame(maxWidth: .infinity)
@@ -196,7 +196,7 @@ struct SettingsView: View {
                         }
                         Divider().padding(.vertical, 8)
                         Button(action: { importLocalBackup() }) {
-                            Text("Import Backup")
+                            Text(NSLocalizedString("Import Backup", comment: ""))
                                 .foregroundColor(.blue)
                                 .padding()
                                 .frame(maxWidth: .infinity)

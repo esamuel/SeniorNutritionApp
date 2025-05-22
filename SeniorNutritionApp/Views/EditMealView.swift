@@ -48,7 +48,7 @@ struct EditMealView: View {
                             ForEach(MealType.allCases) { type in
                                 HStack {
                                     Image(systemName: type.icon)
-                                    Text(type.rawValue)
+                                    Text(type.localizedName)
                                 }
                                 .tag(type)
                             }
@@ -110,12 +110,12 @@ struct EditMealView: View {
                         .padding(.vertical, 4)
                     }
                 }
-                Section(header: Text("Portion Size").font(.system(size: userSettings.textSize.size))) {
+                Section(header: Text(NSLocalizedString("Portion Size", comment: "")).font(.system(size: userSettings.textSize.size))) {
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("Select Portion Size")
+                        Text(NSLocalizedString("Select Portion Size", comment: ""))
                             .font(.system(size: userSettings.textSize.size))
                         VStack(alignment: .center, spacing: 8) {
-                            Text(mealPortion.rawValue)
+                            Text(mealPortion.localizedName)
                                 .font(.system(size: userSettings.textSize.size + 2, weight: .bold))
                                 .frame(maxWidth: .infinity, alignment: .center)
                             Slider(
@@ -149,22 +149,22 @@ struct EditMealView: View {
                                 in: 0...2,
                                 step: 1
                             ) {
-                                Text("Portion Size")
+                                Text(NSLocalizedString("Portion Size", comment: ""))
                             }
                             .accentColor(.blue)
                             HStack {
-                                Text("Small").font(.system(size: userSettings.textSize.size - 2))
+                                Text(NSLocalizedString("Small", comment: "")).font(.system(size: userSettings.textSize.size - 2))
                                 Spacer()
-                                Text("Medium").font(.system(size: userSettings.textSize.size - 2))
+                                Text(NSLocalizedString("Medium", comment: "")).font(.system(size: userSettings.textSize.size - 2))
                                 Spacer()
-                                Text("Large").font(.system(size: userSettings.textSize.size - 2))
+                                Text(NSLocalizedString("Large", comment: "")).font(.system(size: userSettings.textSize.size - 2))
                             }
                             .padding(.horizontal, 4)
                         }
                         .padding(.vertical, 5)
                         
                         // Add explanatory text about auto-scaling of nutritional values
-                        Text("Nutritional information automatically scales with portion size")
+                        Text(NSLocalizedString("Nutritional information automatically scales with portion size", comment: ""))
                             .font(.system(size: userSettings.textSize.size - 3))
                             .foregroundColor(.secondary)
                             .frame(maxWidth: .infinity, alignment: .center)
@@ -172,7 +172,7 @@ struct EditMealView: View {
                         
                         // Show the original portion size for the nutritional information when food is selected
                         if selectedFood != nil {
-                            Text("Original nutritional values are for a \(originalPortion.rawValue) portion")
+                            Text(String(format: NSLocalizedString("Original nutritional values are for a %@ portion", comment: ""), originalPortion.localizedName))
                                 .font(.system(size: userSettings.textSize.size - 3))
                                 .foregroundColor(.secondary)
                                 .frame(maxWidth: .infinity, alignment: .center)
@@ -187,7 +187,7 @@ struct EditMealView: View {
                                 Image(systemName: "arrow.triangle.2.circlepath")
                                     .foregroundColor(.blue)
                                 let scalingFactor = mealPortion.multiplier / originalPortion.multiplier
-                                Text("Values scaled by \(String(format: "%.2f", scalingFactor))× from \(originalPortion.rawValue) size")
+                                Text(String(format: NSLocalizedString("Values scaled by %@× from %@ size", comment: ""), String(format: "%.2f", scalingFactor), originalPortion.localizedName))
                                     .font(.system(size: userSettings.textSize.size - 2))
                                     .foregroundColor(.secondary)
                                     .padding(.vertical, 4)

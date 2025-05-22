@@ -36,8 +36,18 @@ struct HomeView: View {
                     HealthTipsCarousel(
                         tips: healthTips,
                         onViewMoreTapped: {
-                            // Navigate to full health tips view
-                            // This would typically use NavigationLink or a custom navigation solution
+                            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                               let window = windowScene.windows.first {
+                                let healthTipsView = HealthTipsView()
+                                let hostingController = UIHostingController(rootView: 
+                                    NavigationView {
+                                        healthTipsView
+                                    }
+                                    .environmentObject(userSettings)
+                                    .environmentObject(languageManager)
+                                )
+                                window.rootViewController?.present(hostingController, animated: true)
+                            }
                         }
                     )
                 }

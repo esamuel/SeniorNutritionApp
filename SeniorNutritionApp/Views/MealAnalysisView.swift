@@ -51,7 +51,7 @@ struct MealAnalysisView: View {
     
     private var warningsSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("Health Considerations")
+            Text(NSLocalizedString("Health Considerations", comment: ""))
                 .font(.title3)
                 .fontWeight(.bold)
                 .foregroundColor(.primary)
@@ -95,7 +95,7 @@ struct MealAnalysisView: View {
     
     private var positiveEffectsSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("Beneficial Nutrients")
+            Text(NSLocalizedString("Beneficial Nutrients", comment: ""))
                 .font(.title3)
                 .fontWeight(.bold)
                 .foregroundColor(.primary)
@@ -137,7 +137,7 @@ struct MealAnalysisView: View {
     
     private var recommendationsSection: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Recommendations")
+            Text(NSLocalizedString("Recommendations", comment: ""))
                 .font(.title3)
                 .fontWeight(.bold)
                 .foregroundColor(.primary)
@@ -171,16 +171,16 @@ struct MealAnalysisView: View {
         case .dietaryRestriction(let restriction):
             return restriction
         case .generalNutrition:
-            return "Nutritional Balance"
+            return NSLocalizedString("Nutritional Balance", comment: "")
         }
     }
     
     private func getEffectTitle(_ effect: PositiveEffect) -> String {
         switch effect.type {
         case .medicalCondition(let condition):
-            return "Good for \(condition)"
+            return NSLocalizedString("Good for", comment: "") + " \(condition)"
         case .generalNutrition:
-            return "Healthy Choice"
+            return NSLocalizedString("Healthy Choice", comment: "")
         }
     }
     
@@ -191,40 +191,40 @@ struct MealAnalysisView: View {
         let highPriorityWarnings = analysisResult.healthWarnings.filter { $0.severity == .high }
         
         if !highPriorityWarnings.isEmpty {
-            recommendations.append("Consider alternatives for nutrients marked with high concerns.")
+            recommendations.append(NSLocalizedString("Consider alternatives for nutrients marked with high concerns.", comment: ""))
         }
         
         // Add balanced meal recommendation if there are both warnings and positives
         if analysisResult.healthWarnings.count > 0 && analysisResult.positiveEffects.count > 0 {
-            recommendations.append("This meal has both benefits and concerns. Consider reducing portion size to get the benefits while minimizing potential issues.")
+            recommendations.append(NSLocalizedString("This meal has both benefits and concerns. Consider reducing portion size to get the benefits while minimizing potential issues.", comment: ""))
         }
         
         // Add specific recommendations based on nutrients
         let hasHighSodium = analysisResult.healthWarnings.contains { $0.nutrient == "Sodium" }
         if hasHighSodium {
-            recommendations.append("Try rinsing canned foods or using fresh ingredients to reduce sodium content.")
+            recommendations.append(NSLocalizedString("Try rinsing canned foods or using fresh ingredients to reduce sodium content.", comment: ""))
         }
         
         let hasHighSugar = analysisResult.healthWarnings.contains { $0.nutrient == "Sugar" }
         if hasHighSugar {
-            recommendations.append("Pair sweet foods with protein or healthy fats to slow sugar absorption.")
+            recommendations.append(NSLocalizedString("Pair sweet foods with protein or healthy fats to slow sugar absorption.", comment: ""))
         }
         
         // Add general meal recommendations based on name
         let mealName = analysisResult.mealName.lowercased()
         if mealName.contains("breakfast") || mealName.contains("morning") {
-            recommendations.append("Breakfast is a great time for fiber and protein to keep you feeling full longer.")
+            recommendations.append(NSLocalizedString("Breakfast is a great time for fiber and protein to keep you feeling full longer.", comment: ""))
         } else if mealName.contains("lunch") || mealName.contains("noon") {
-            recommendations.append("For lunch, aim for a balance of protein and complex carbs to maintain energy throughout the afternoon.")
+            recommendations.append(NSLocalizedString("For lunch, aim for a balance of protein and complex carbs to maintain energy throughout the afternoon.", comment: ""))
         } else if mealName.contains("dinner") || mealName.contains("evening") {
-            recommendations.append("For dinner, consider lighter options if you have digestion concerns or sleep issues.")
+            recommendations.append(NSLocalizedString("For dinner, consider lighter options if you have digestion concerns or sleep issues.", comment: ""))
         } else if mealName.contains("snack") {
-            recommendations.append("Snacks are best kept small and nutritious - focus on quality over quantity.")
+            recommendations.append(NSLocalizedString("Snacks are best kept small and nutritious - focus on quality over quantity.", comment: ""))
         }
         
         // Ensure we have at least some recommendations
         if recommendations.isEmpty {
-            recommendations.append("Continue maintaining a balanced diet with a variety of nutrient-rich foods.")
+            recommendations.append(NSLocalizedString("Continue maintaining a balanced diet with a variety of nutrient-rich foods.", comment: ""))
         }
         
         return recommendations

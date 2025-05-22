@@ -152,13 +152,13 @@ struct NutritionView: View {
     private var todayMealsSection: some View {
         VStack(alignment: .leading, spacing: 15) {
             HStack {
-                Text("Today's Meals")
+                Text(NSLocalizedString("Today's Meals", comment: ""))
                     .font(.system(size: userSettings.textSize.size, weight: .bold))
                 Spacer()
                 Button(action: { showingAddMeal = true }) {
                     HStack {
                         Image(systemName: "plus.circle.fill")
-                        Text("Add")
+                        Text(NSLocalizedString("Add", comment: ""))
                             .font(.system(size: userSettings.textSize.size - 2))
                     }
                     .foregroundColor(.blue)
@@ -187,7 +187,7 @@ struct NutritionView: View {
                             Button {
                                 mealToEdit = meal
                             } label: {
-                                Label("Edit Meal", systemImage: "pencil")
+                                Label(NSLocalizedString("Edit Meal", comment: ""), systemImage: "pencil")
                             }
                             
                             Button {
@@ -195,14 +195,14 @@ struct NutritionView: View {
                                 commonMealAddedName = meal.localizedName()
                                 showingCommonMealAdded = true
                             } label: {
-                                Label("Add to Common Meals", systemImage: "star")
+                                Label(NSLocalizedString("Add to Common Meals", comment: ""), systemImage: "star")
                             }
                             
                             Button(role: .destructive) {
                                 mealToDelete = meal
                                 showingDeleteAlert = true
                             } label: {
-                                Label("Delete Meal", systemImage: "trash")
+                                Label(NSLocalizedString("Delete Meal", comment: ""), systemImage: "trash")
                             }
                         }
                 }
@@ -216,12 +216,12 @@ struct NutritionView: View {
             Image(systemName: "fork.knife")
                 .font(.system(size: 50))
                 .foregroundColor(.gray.opacity(0.5))
-            Text("No meals logged today")
+            Text(NSLocalizedString("No meals logged today", comment: ""))
                 .font(.system(size: userSettings.textSize.size))
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
             Button(action: { showingAddMeal = true }) {
-                Text("Add First Meal")
+                Text(NSLocalizedString("Add First Meal", comment: ""))
                     .font(.system(size: userSettings.textSize.size))
                     .foregroundColor(.white)
                     .padding()
@@ -262,7 +262,7 @@ struct NutritionView: View {
                 Text("\(Int(meal.adjustedNutritionalInfo.calories))")
                     .font(.system(size: userSettings.textSize.size))
                     .foregroundColor(.primary)
-                Text("calories")
+                Text(NSLocalizedString("calories", comment: ""))
                     .font(.system(size: userSettings.textSize.size - 4))
                     .foregroundColor(.secondary)
             }
@@ -277,7 +277,7 @@ struct NutritionView: View {
 
     private var commonMealsSection: some View {
         VStack(alignment: .leading, spacing: 15) {
-            Text("Common Meals")
+            Text(NSLocalizedString("Common Meals", comment: ""))
                 .font(.system(size: userSettings.textSize.size, weight: .bold))
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 15) {

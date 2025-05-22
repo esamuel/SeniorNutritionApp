@@ -23,13 +23,13 @@ struct AddCommonMealView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Meal Details").font(.system(size: userSettings.textSize.size))) {
-                    TextField("Meal name", text: $mealName)
+                Section(header: Text(NSLocalizedString("Meal Details", comment: "")).font(.system(size: userSettings.textSize.size))) {
+                    TextField(NSLocalizedString("Meal name", comment: ""), text: $mealName)
                         .font(.system(size: userSettings.textSize.size))
                     
-                    Picker("Meal Type", selection: $selectedMealType) {
+                    Picker(NSLocalizedString("Meal Type", comment: ""), selection: $selectedMealType) {
                         ForEach(MealType.allCases) { type in
-                            Text(type.rawValue).tag(type)
+                            Text(type.localizedName).tag(type)
                         }
                     }
                     .font(.system(size: userSettings.textSize.size))
@@ -37,8 +37,8 @@ struct AddCommonMealView: View {
                 
                 foodSelectionSection
                 
-                Section(header: Text("Portion Size").font(.system(size: userSettings.textSize.size))) {
-                    Picker("Portion", selection: $mealPortion) {
+                Section(header: Text(NSLocalizedString("Portion Size", comment: "")).font(.system(size: userSettings.textSize.size))) {
+                    Picker(NSLocalizedString("Portion", comment: ""), selection: $mealPortion) {
                         ForEach(MealPortion.allCases) { size in
                             Text(size.rawValue).tag(size)
                         }
@@ -47,7 +47,7 @@ struct AddCommonMealView: View {
                     .font(.system(size: userSettings.textSize.size))
                 }
                 
-                Section(header: Text("Notes").font(.system(size: userSettings.textSize.size))) {
+                Section(header: Text(NSLocalizedString("Notes", comment: "")).font(.system(size: userSettings.textSize.size))) {
                     TextEditor(text: $notes)
                         .frame(height: 100)
                         .font(.system(size: userSettings.textSize.size))
