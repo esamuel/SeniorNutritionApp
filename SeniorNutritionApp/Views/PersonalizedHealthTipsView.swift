@@ -7,9 +7,6 @@ import SwiftUI
 // Add imports to ensure we can access the HealthTip model
 import Foundation
 
-// Add explicit import for the HealthTipsService that contains the HealthTip model
-import "../Models/HealthTips.swift"
-
 struct PersonalizedHealthTipsView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var userSettings: UserSettings
@@ -190,19 +187,27 @@ struct PersonalizedHealthTipsView: View {
         [
             HealthTip(
                 title: "Stay Hydrated",
-                description: "Drink plenty of water during your fasting periods. Aim for at least 8-10 glasses daily to prevent dehydration."
+                description: "Drink plenty of water during your fasting periods. Aim for at least 8-10 glasses daily to prevent dehydration.",
+                category: .hydration,
+                icon: "drop.fill"
             ),
             HealthTip(
                 title: "Ease Into Fasting",
-                description: "If you're new to fasting, start with shorter fasting periods and gradually increase the duration as your body adapts."
+                description: "If you're new to fasting, start with shorter fasting periods and gradually increase the duration as your body adapts.",
+                category: .fasting,
+                icon: "clock"
             ),
             HealthTip(
                 title: "Break Fast Gently",
-                description: "Break your fast with easily digestible foods like soups, fruits, or small portions of protein to avoid digestive discomfort."
+                description: "Break your fast with easily digestible foods like soups, fruits, or small portions of protein to avoid digestive discomfort.",
+                category: .nutrition,
+                icon: "fork.knife"
             ),
             HealthTip(
                 title: "Monitor Your Body",
-                description: "Pay attention to how you feel during fasting. Mild hunger is normal, but dizziness, extreme fatigue, or confusion are not."
+                description: "Pay attention to how you feel during fasting. Mild hunger is normal, but dizziness, extreme fatigue, or confusion are not.",
+                category: .general,
+                icon: "heart.text.square"
             )
         ]
     }
@@ -211,19 +216,27 @@ struct PersonalizedHealthTipsView: View {
         [
             HealthTip(
                 title: "Know When to Stop",
-                description: "If you experience severe headaches, dizziness, confusion, or weakness, break your fast immediately and consult your doctor."
+                description: "If you experience severe headaches, dizziness, confusion, or weakness, break your fast immediately and consult your doctor.",
+                category: .seniorSpecific,
+                icon: "exclamationmark.triangle"
             ),
             HealthTip(
                 title: "Medication Timing",
-                description: "Take medications as prescribed by your doctor. Some medications need to be taken with food, which may require adjusting your fasting schedule."
+                description: "Take medications as prescribed by your doctor. Some medications need to be taken with food, which may require adjusting your fasting schedule.",
+                category: .medication,
+                icon: "pills"
             ),
             HealthTip(
                 title: "Consult Healthcare Providers",
-                description: "Always consult with your healthcare provider before starting a fasting regimen, especially if you have chronic health conditions."
+                description: "Always consult with your healthcare provider before starting a fasting regimen, especially if you have chronic health conditions.",
+                category: .general,
+                icon: "person.text.rectangle"
             ),
             HealthTip(
                 title: "Avoid Overexertion",
-                description: "During extended fasts, avoid strenuous exercise. Light activities like walking or gentle stretching are better options."
+                description: "During extended fasts, avoid strenuous exercise. Light activities like walking or gentle stretching are better options.",
+                category: .activity,
+                icon: "figure.walk"
             )
         ]
     }
@@ -232,19 +245,27 @@ struct PersonalizedHealthTipsView: View {
         [
             HealthTip(
                 title: "Cellular Repair",
-                description: "Fasting triggers cellular repair processes, including autophagy, where cells remove damaged components."
+                description: "Fasting triggers cellular repair processes, including autophagy, where cells remove damaged components.",
+                category: .general,
+                icon: "checkmark.seal"
             ),
             HealthTip(
                 title: "Insulin Sensitivity",
-                description: "Regular fasting can improve insulin sensitivity, potentially reducing the risk of type 2 diabetes."
+                description: "Regular fasting can improve insulin sensitivity, potentially reducing the risk of type 2 diabetes.",
+                category: .general,
+                icon: "chart.line.downtrend.xyaxis"
             ),
             HealthTip(
                 title: "Reduced Inflammation",
-                description: "Studies suggest that fasting may reduce inflammatory markers in the body, which are linked to many chronic diseases."
+                description: "Studies suggest that fasting may reduce inflammatory markers in the body, which are linked to many chronic diseases.",
+                category: .general,
+                icon: "flame.slash"
             ),
             HealthTip(
                 title: "Brain Health",
-                description: "Fasting may increase the production of brain-derived neurotrophic factor (BDNF), which supports brain health and may protect against neurodegenerative diseases."
+                description: "Fasting may increase the production of brain-derived neurotrophic factor (BDNF), which supports brain health and may protect against neurodegenerative diseases.",
+                category: .general,
+                icon: "brain"
             )
         ]
     }
@@ -312,95 +333,135 @@ struct PersonalizedHealthTipsView: View {
             return [
                 HealthTip(
                     title: "Consult Your Nephrologist",
-                    description: "Kidney disease requires specialized fasting protocols. Always consult with your kidney specialist before fasting."
+                    description: "Kidney disease requires specialized fasting protocols. Always consult with your kidney specialist before fasting.",
+                    category: .seniorSpecific,
+                    icon: "person.text.rectangle"
                 ),
                 HealthTip(
                     title: "Shorter Fasting Periods",
-                    description: "Consider time-restricted eating (10-12 hours) rather than extended fasting periods to minimize stress on the kidneys."
+                    description: "Consider time-restricted eating (10-12 hours) rather than extended fasting periods to minimize stress on the kidneys.",
+                    category: .fasting,
+                    icon: "clock"
                 ),
                 HealthTip(
                     title: "Hydration Balance",
-                    description: "Follow your doctor's recommendations for fluid intake during fasting, as both over-hydration and dehydration can be problematic."
+                    description: "Follow your doctor's recommendations for fluid intake during fasting, as both over-hydration and dehydration can be problematic.",
+                    category: .hydration,
+                    icon: "drop.fill"
                 ),
                 HealthTip(
                     title: "Monitor Electrolytes",
-                    description: "Kidney disease affects electrolyte balance. Regular monitoring during fasting periods is essential."
+                    description: "Kidney disease affects electrolyte balance. Regular monitoring during fasting periods is essential.",
+                    category: .seniorSpecific,
+                    icon: "bolt.fill"
                 )
             ]
         } else if normalizedCondition.contains("thyroid") {
             return [
                 HealthTip(
                     title: "Medication Timing",
-                    description: "Take thyroid medication on an empty stomach as directed, typically 30-60 minutes before eating."
+                    description: "Take thyroid medication on an empty stomach as directed, typically 30-60 minutes before eating.",
+                    category: .medication,
+                    icon: "pills"
                 ),
                 HealthTip(
                     title: "Monitor Energy Levels",
-                    description: "Pay attention to energy levels during fasting. Excessive fatigue may indicate a need to adjust your fasting schedule."
+                    description: "Pay attention to energy levels during fasting. Excessive fatigue may indicate a need to adjust your fasting schedule.",
+                    category: .seniorSpecific,
+                    icon: "battery.75"
                 ),
                 HealthTip(
                     title: "Iodine-Rich Foods",
-                    description: "When breaking your fast, include iodine-rich foods like seaweed, fish, or eggs to support thyroid function."
+                    description: "When breaking your fast, include iodine-rich foods like seaweed, fish, or eggs to support thyroid function.",
+                    category: .nutrition,
+                    icon: "fork.knife"
                 ),
                 HealthTip(
                     title: "Regular Testing",
-                    description: "Continue regular thyroid function tests to ensure your condition remains stable while practicing intermittent fasting."
+                    description: "Continue regular thyroid function tests to ensure your condition remains stable while practicing intermittent fasting.",
+                    category: .seniorSpecific,
+                    icon: "waveform.path.ecg"
                 )
             ]
         } else if normalizedCondition.contains("arthritis") || normalizedCondition.contains("joint") || normalizedCondition.contains("inflammation") {
             return [
                 HealthTip(
                     title: "Anti-Inflammatory Benefits",
-                    description: "Fasting may help reduce inflammation, potentially providing relief from arthritis symptoms."
+                    description: "Fasting may help reduce inflammation, potentially providing relief from arthritis symptoms.",
+                    category: .seniorSpecific,
+                    icon: "flame.slash"
                 ),
                 HealthTip(
                     title: "Gentle Movement",
-                    description: "Incorporate gentle stretching or yoga during fasting periods to maintain joint mobility."
+                    description: "Incorporate gentle stretching or yoga during fasting periods to maintain joint mobility.",
+                    category: .activity,
+                    icon: "figure.walk"
                 ),
                 HealthTip(
                     title: "Anti-Inflammatory Foods",
-                    description: "Break your fast with anti-inflammatory foods like fatty fish, berries, turmeric, and leafy greens."
+                    description: "Break your fast with anti-inflammatory foods like fatty fish, berries, turmeric, and leafy greens.",
+                    category: .nutrition,
+                    icon: "leaf.fill"
                 ),
                 HealthTip(
                     title: "Medication Timing",
-                    description: "If you take anti-inflammatory medications, consult your doctor about optimal timing during your eating window."
+                    description: "If you take anti-inflammatory medications, consult your doctor about optimal timing during your eating window.",
+                    category: .medication,
+                    icon: "pills"
                 )
             ]
         } else if normalizedCondition.contains("gastro") || normalizedCondition.contains("digestive") || normalizedCondition.contains("ibs") || normalizedCondition.contains("bowel") {
             return [
                 HealthTip(
                     title: "Digestive Rest",
-                    description: "Fasting gives your digestive system time to rest and repair, which may help reduce symptoms."
+                    description: "Fasting gives your digestive system time to rest and repair, which may help reduce symptoms.",
+                    category: .fasting,
+                    icon: "zzz"
                 ),
                 HealthTip(
                     title: "Gentle Refeeding",
-                    description: "Break your fast with easily digestible foods and avoid known trigger foods that aggravate your condition."
+                    description: "Break your fast with easily digestible foods and avoid known trigger foods that aggravate your condition.",
+                    category: .nutrition,
+                    icon: "fork.knife"
                 ),
                 HealthTip(
                     title: "Hydration with Care",
-                    description: "Stay hydrated but avoid carbonated or caffeinated beverages that might irritate your digestive tract."
+                    description: "Stay hydrated but avoid carbonated or caffeinated beverages that might irritate your digestive tract.",
+                    category: .hydration,
+                    icon: "drop.fill"
                 ),
                 HealthTip(
                     title: "Probiotic Support",
-                    description: "Consider including probiotic-rich foods when breaking your fast to support gut health."
+                    description: "Consider including probiotic-rich foods when breaking your fast to support gut health.",
+                    category: .nutrition,
+                    icon: "pills.fill"
                 )
             ]
         } else if normalizedCondition.contains("osteoporosis") || normalizedCondition.contains("bone") {
             return [
                 HealthTip(
                     title: "Calcium Timing",
-                    description: "Ensure adequate calcium intake during your eating window. Consider calcium-rich foods like dairy, fortified plant milks, or leafy greens."
+                    description: "Ensure adequate calcium intake during your eating window. Consider calcium-rich foods like dairy, fortified plant milks, or leafy greens.",
+                    category: .nutrition,
+                    icon: "cup.and.saucer.fill"
                 ),
                 HealthTip(
                     title: "Vitamin D",
-                    description: "Maintain vitamin D supplementation as recommended by your doctor, as it's crucial for calcium absorption."
+                    description: "Maintain vitamin D supplementation as recommended by your doctor, as it's crucial for calcium absorption.",
+                    category: .medication,
+                    icon: "sun.max.fill"
                 ),
                 HealthTip(
                     title: "Weight-Bearing Exercise",
-                    description: "Include weight-bearing exercises during your eating window to help maintain bone density."
+                    description: "Include weight-bearing exercises during your eating window to help maintain bone density.",
+                    category: .activity,
+                    icon: "figure.walk"
                 ),
                 HealthTip(
                     title: "Protein Intake",
-                    description: "Ensure adequate protein intake during your eating window, as protein is essential for bone health."
+                    description: "Ensure adequate protein intake during your eating window, as protein is essential for bone health.",
+                    category: .nutrition,
+                    icon: "fork.knife"
                 )
             ]
         } else {
@@ -408,19 +469,27 @@ struct PersonalizedHealthTipsView: View {
             return [
                 HealthTip(
                     title: "Consult Your Doctor",
-                    description: "Always discuss your fasting regimen with your healthcare provider to ensure it's safe for your specific health condition."
+                    description: "Always discuss your fasting regimen with your healthcare provider to ensure it's safe for your specific health condition.",
+                    category: .general,
+                    icon: "person.text.rectangle"
                 ),
                 HealthTip(
                     title: "Start Gradually",
-                    description: "Begin with shorter fasting periods and gradually extend them as your body adapts."
+                    description: "Begin with shorter fasting periods and gradually extend them as your body adapts.",
+                    category: .fasting,
+                    icon: "clock"
                 ),
                 HealthTip(
                     title: "Listen to Your Body",
-                    description: "Pay close attention to how your body responds to fasting and adjust your approach accordingly."
+                    description: "Pay close attention to how your body responds to fasting and adjust your approach accordingly.",
+                    category: .seniorSpecific,
+                    icon: "ear.fill"
                 ),
                 HealthTip(
                     title: "Medication Management",
-                    description: "Work with your healthcare provider to adjust medication timing if needed to accommodate your fasting schedule."
+                    description: "Work with your healthcare provider to adjust medication timing if needed to accommodate your fasting schedule.",
+                    category: .medication,
+                    icon: "pills"
                 )
             ]
         }
@@ -475,185 +544,6 @@ struct PersonalizedHealthTipsView: View {
         }
         
         voiceManager.speak(speech, userSettings: userSettings)
-    }
-}
-
-// MARK: - Helper Methods
-extension PersonalizedHealthTipsView {
-    // Update all the HealthTip instantiations to use the full model
-    private func healthTipsForCondition(_ condition: String) -> [HealthTip] {
-        let normalizedCondition = condition.lowercased()
-        
-        if normalizedCondition.contains("diabetes") || normalizedCondition.contains("blood sugar") {
-            return [
-                HealthTip(
-                    title: "Monitor Blood Sugar Closely",
-                    description: "Check your blood glucose levels more frequently during fasting periods to ensure they remain within a safe range.",
-                    category: .seniorSpecific,
-                    icon: "drop.fill"
-                ),
-                HealthTip(
-                    title: "Shorter Fasting Windows",
-                    description: "Consider shorter fasting periods (12-14 hours) rather than extended fasts to avoid blood sugar fluctuations.",
-                    category: .fasting,
-                    icon: "clock"
-                ),
-                HealthTip(
-                    title: "Medication Timing",
-                    description: "Work with your healthcare provider to adjust the timing of diabetes medications during fasting periods.",
-                    category: .medication,
-                    icon: "pills"
-                ),
-                HealthTip(
-                    title: "Break Fast Appropriately",
-                    description: "Break your fast with a balanced meal containing protein, healthy fats, and complex carbohydrates to prevent blood sugar spikes.",
-                    category: .nutrition,
-                    icon: "fork.knife"
-                )
-            ]
-        } else if normalizedCondition.contains("heart") || normalizedCondition.contains("cardiovascular") || normalizedCondition.contains("hypertension") || normalizedCondition.contains("blood pressure") {
-            return [
-                HealthTip(
-                    title: "Monitor Blood Pressure",
-                    description: "Check your blood pressure regularly during fasting periods, as fasting can sometimes cause fluctuations.",
-                    category: .seniorSpecific,
-                    icon: "heart.text.square"
-                ),
-                HealthTip(
-                    title: "Stay Hydrated",
-                    description: "Dehydration during fasting can affect blood pressure. Drink plenty of water throughout your fasting window.",
-                    category: .hydration,
-                    icon: "drop.fill"
-                ),
-                HealthTip(
-                    title: "Maintain Electrolyte Balance",
-                    description: "Consider adding a pinch of salt to your water or drinking sugar-free electrolyte beverages during longer fasts.",
-                    category: .nutrition,
-                    icon: "bolt.fill"
-                ),
-                HealthTip(
-                    title: "Gradual Transition",
-                    description: "If you take blood pressure medications, work with your doctor to monitor how fasting affects your blood pressure and adjust medications if necessary.",
-                    category: .medication,
-                    icon: "arrow.up.right.circle"
-                )
-            ]
-        } else if normalizedCondition.contains("kidney") || normalizedCondition.contains("renal") {
-            return [
-                HealthTip(
-                    title: "Consult Your Nephrologist",
-                    description: "Kidney disease requires specialized fasting protocols. Always consult with your kidney specialist before fasting."
-                ),
-                HealthTip(
-                    title: "Shorter Fasting Periods",
-                    description: "Consider time-restricted eating (10-12 hours) rather than extended fasting periods to minimize stress on the kidneys."
-                ),
-                HealthTip(
-                    title: "Hydration Balance",
-                    description: "Follow your doctor's recommendations for fluid intake during fasting, as both over-hydration and dehydration can be problematic."
-                ),
-                HealthTip(
-                    title: "Monitor Electrolytes",
-                    description: "Kidney disease affects electrolyte balance. Regular monitoring during fasting periods is essential."
-                )
-            ]
-        } else if normalizedCondition.contains("thyroid") {
-            return [
-                HealthTip(
-                    title: "Medication Timing",
-                    description: "Take thyroid medication on an empty stomach as directed, typically 30-60 minutes before eating."
-                ),
-                HealthTip(
-                    title: "Monitor Energy Levels",
-                    description: "Pay attention to energy levels during fasting. Excessive fatigue may indicate a need to adjust your fasting schedule."
-                ),
-                HealthTip(
-                    title: "Iodine-Rich Foods",
-                    description: "When breaking your fast, include iodine-rich foods like seaweed, fish, or eggs to support thyroid function."
-                ),
-                HealthTip(
-                    title: "Regular Testing",
-                    description: "Continue regular thyroid function tests to ensure your condition remains stable while practicing intermittent fasting."
-                )
-            ]
-        } else if normalizedCondition.contains("arthritis") || normalizedCondition.contains("joint") || normalizedCondition.contains("inflammation") {
-            return [
-                HealthTip(
-                    title: "Anti-Inflammatory Benefits",
-                    description: "Fasting may help reduce inflammation, potentially providing relief from arthritis symptoms."
-                ),
-                HealthTip(
-                    title: "Gentle Movement",
-                    description: "Incorporate gentle stretching or yoga during fasting periods to maintain joint mobility."
-                ),
-                HealthTip(
-                    title: "Anti-Inflammatory Foods",
-                    description: "Break your fast with anti-inflammatory foods like fatty fish, berries, turmeric, and leafy greens."
-                ),
-                HealthTip(
-                    title: "Medication Timing",
-                    description: "If you take anti-inflammatory medications, consult your doctor about optimal timing during your eating window."
-                )
-            ]
-        } else if normalizedCondition.contains("gastro") || normalizedCondition.contains("digestive") || normalizedCondition.contains("ibs") || normalizedCondition.contains("bowel") {
-            return [
-                HealthTip(
-                    title: "Digestive Rest",
-                    description: "Fasting gives your digestive system time to rest and repair, which may help reduce symptoms."
-                ),
-                HealthTip(
-                    title: "Gentle Refeeding",
-                    description: "Break your fast with easily digestible foods and avoid known trigger foods that aggravate your condition."
-                ),
-                HealthTip(
-                    title: "Hydration with Care",
-                    description: "Stay hydrated but avoid carbonated or caffeinated beverages that might irritate your digestive tract."
-                ),
-                HealthTip(
-                    title: "Probiotic Support",
-                    description: "Consider including probiotic-rich foods when breaking your fast to support gut health."
-                )
-            ]
-        } else if normalizedCondition.contains("osteoporosis") || normalizedCondition.contains("bone") {
-            return [
-                HealthTip(
-                    title: "Calcium Timing",
-                    description: "Ensure adequate calcium intake during your eating window. Consider calcium-rich foods like dairy, fortified plant milks, or leafy greens."
-                ),
-                HealthTip(
-                    title: "Vitamin D",
-                    description: "Maintain vitamin D supplementation as recommended by your doctor, as it's crucial for calcium absorption."
-                ),
-                HealthTip(
-                    title: "Weight-Bearing Exercise",
-                    description: "Include weight-bearing exercises during your eating window to help maintain bone density."
-                ),
-                HealthTip(
-                    title: "Protein Intake",
-                    description: "Ensure adequate protein intake during your eating window, as protein is essential for bone health."
-                )
-            ]
-        } else {
-            // Generic tips for other conditions
-            return [
-                HealthTip(
-                    title: "Consult Your Doctor",
-                    description: "Always discuss your fasting regimen with your healthcare provider to ensure it's safe for your specific health condition."
-                ),
-                HealthTip(
-                    title: "Start Gradually",
-                    description: "Begin with shorter fasting periods and gradually extend them as your body adapts."
-                ),
-                HealthTip(
-                    title: "Listen to Your Body",
-                    description: "Pay close attention to how your body responds to fasting and adjust your approach accordingly."
-                ),
-                HealthTip(
-                    title: "Medication Management",
-                    description: "Work with your healthcare provider to adjust medication timing if needed to accommodate your fasting schedule."
-                )
-            ]
-        }
     }
 }
 
