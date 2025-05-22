@@ -4,6 +4,12 @@ import UIKit
 
 import SwiftUI
 
+// Add imports to ensure we can access the HealthTip model
+import Foundation
+
+// Add explicit import for the HealthTipsService that contains the HealthTip model
+import "../Models/HealthTips.swift"
+
 struct PersonalizedHealthTipsView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var userSettings: UserSettings
@@ -252,38 +258,54 @@ struct PersonalizedHealthTipsView: View {
             return [
                 HealthTip(
                     title: "Monitor Blood Sugar Closely",
-                    description: "Check your blood glucose levels more frequently during fasting periods to ensure they remain within a safe range."
+                    description: "Check your blood glucose levels more frequently during fasting periods to ensure they remain within a safe range.",
+                    category: .seniorSpecific,
+                    icon: "drop.fill"
                 ),
                 HealthTip(
                     title: "Shorter Fasting Windows",
-                    description: "Consider shorter fasting periods (12-14 hours) rather than extended fasts to avoid blood sugar fluctuations."
+                    description: "Consider shorter fasting periods (12-14 hours) rather than extended fasts to avoid blood sugar fluctuations.",
+                    category: .fasting,
+                    icon: "clock"
                 ),
                 HealthTip(
                     title: "Medication Timing",
-                    description: "Work with your healthcare provider to adjust the timing of diabetes medications during fasting periods."
+                    description: "Work with your healthcare provider to adjust the timing of diabetes medications during fasting periods.",
+                    category: .medication,
+                    icon: "pills"
                 ),
                 HealthTip(
                     title: "Break Fast Appropriately",
-                    description: "Break your fast with a balanced meal containing protein, healthy fats, and complex carbohydrates to prevent blood sugar spikes."
+                    description: "Break your fast with a balanced meal containing protein, healthy fats, and complex carbohydrates to prevent blood sugar spikes.",
+                    category: .nutrition,
+                    icon: "fork.knife"
                 )
             ]
         } else if normalizedCondition.contains("heart") || normalizedCondition.contains("cardiovascular") || normalizedCondition.contains("hypertension") || normalizedCondition.contains("blood pressure") {
             return [
                 HealthTip(
                     title: "Monitor Blood Pressure",
-                    description: "Check your blood pressure regularly during fasting periods, as fasting can sometimes cause fluctuations."
+                    description: "Check your blood pressure regularly during fasting periods, as fasting can sometimes cause fluctuations.",
+                    category: .seniorSpecific,
+                    icon: "heart.text.square"
                 ),
                 HealthTip(
                     title: "Stay Hydrated",
-                    description: "Dehydration during fasting can affect blood pressure. Drink plenty of water throughout your fasting window."
+                    description: "Dehydration during fasting can affect blood pressure. Drink plenty of water throughout your fasting window.",
+                    category: .hydration,
+                    icon: "drop.fill"
                 ),
                 HealthTip(
                     title: "Maintain Electrolyte Balance",
-                    description: "Consider adding a pinch of salt to your water or drinking sugar-free electrolyte beverages during longer fasts."
+                    description: "Consider adding a pinch of salt to your water or drinking sugar-free electrolyte beverages during longer fasts.",
+                    category: .nutrition,
+                    icon: "bolt.fill"
                 ),
                 HealthTip(
                     title: "Gradual Transition",
-                    description: "If you take blood pressure medications, work with your doctor to monitor how fasting affects your blood pressure and adjust medications if necessary."
+                    description: "If you take blood pressure medications, work with your doctor to monitor how fasting affects your blood pressure and adjust medications if necessary.",
+                    category: .medication,
+                    icon: "arrow.up.right.circle"
                 )
             ]
         } else if normalizedCondition.contains("kidney") || normalizedCondition.contains("renal") {
@@ -456,8 +478,183 @@ struct PersonalizedHealthTipsView: View {
     }
 }
 
-// MARK: - Health Tip Model
-struct HealthTip {
-    let title: String
-    let description: String
+// MARK: - Helper Methods
+extension PersonalizedHealthTipsView {
+    // Update all the HealthTip instantiations to use the full model
+    private func healthTipsForCondition(_ condition: String) -> [HealthTip] {
+        let normalizedCondition = condition.lowercased()
+        
+        if normalizedCondition.contains("diabetes") || normalizedCondition.contains("blood sugar") {
+            return [
+                HealthTip(
+                    title: "Monitor Blood Sugar Closely",
+                    description: "Check your blood glucose levels more frequently during fasting periods to ensure they remain within a safe range.",
+                    category: .seniorSpecific,
+                    icon: "drop.fill"
+                ),
+                HealthTip(
+                    title: "Shorter Fasting Windows",
+                    description: "Consider shorter fasting periods (12-14 hours) rather than extended fasts to avoid blood sugar fluctuations.",
+                    category: .fasting,
+                    icon: "clock"
+                ),
+                HealthTip(
+                    title: "Medication Timing",
+                    description: "Work with your healthcare provider to adjust the timing of diabetes medications during fasting periods.",
+                    category: .medication,
+                    icon: "pills"
+                ),
+                HealthTip(
+                    title: "Break Fast Appropriately",
+                    description: "Break your fast with a balanced meal containing protein, healthy fats, and complex carbohydrates to prevent blood sugar spikes.",
+                    category: .nutrition,
+                    icon: "fork.knife"
+                )
+            ]
+        } else if normalizedCondition.contains("heart") || normalizedCondition.contains("cardiovascular") || normalizedCondition.contains("hypertension") || normalizedCondition.contains("blood pressure") {
+            return [
+                HealthTip(
+                    title: "Monitor Blood Pressure",
+                    description: "Check your blood pressure regularly during fasting periods, as fasting can sometimes cause fluctuations.",
+                    category: .seniorSpecific,
+                    icon: "heart.text.square"
+                ),
+                HealthTip(
+                    title: "Stay Hydrated",
+                    description: "Dehydration during fasting can affect blood pressure. Drink plenty of water throughout your fasting window.",
+                    category: .hydration,
+                    icon: "drop.fill"
+                ),
+                HealthTip(
+                    title: "Maintain Electrolyte Balance",
+                    description: "Consider adding a pinch of salt to your water or drinking sugar-free electrolyte beverages during longer fasts.",
+                    category: .nutrition,
+                    icon: "bolt.fill"
+                ),
+                HealthTip(
+                    title: "Gradual Transition",
+                    description: "If you take blood pressure medications, work with your doctor to monitor how fasting affects your blood pressure and adjust medications if necessary.",
+                    category: .medication,
+                    icon: "arrow.up.right.circle"
+                )
+            ]
+        } else if normalizedCondition.contains("kidney") || normalizedCondition.contains("renal") {
+            return [
+                HealthTip(
+                    title: "Consult Your Nephrologist",
+                    description: "Kidney disease requires specialized fasting protocols. Always consult with your kidney specialist before fasting."
+                ),
+                HealthTip(
+                    title: "Shorter Fasting Periods",
+                    description: "Consider time-restricted eating (10-12 hours) rather than extended fasting periods to minimize stress on the kidneys."
+                ),
+                HealthTip(
+                    title: "Hydration Balance",
+                    description: "Follow your doctor's recommendations for fluid intake during fasting, as both over-hydration and dehydration can be problematic."
+                ),
+                HealthTip(
+                    title: "Monitor Electrolytes",
+                    description: "Kidney disease affects electrolyte balance. Regular monitoring during fasting periods is essential."
+                )
+            ]
+        } else if normalizedCondition.contains("thyroid") {
+            return [
+                HealthTip(
+                    title: "Medication Timing",
+                    description: "Take thyroid medication on an empty stomach as directed, typically 30-60 minutes before eating."
+                ),
+                HealthTip(
+                    title: "Monitor Energy Levels",
+                    description: "Pay attention to energy levels during fasting. Excessive fatigue may indicate a need to adjust your fasting schedule."
+                ),
+                HealthTip(
+                    title: "Iodine-Rich Foods",
+                    description: "When breaking your fast, include iodine-rich foods like seaweed, fish, or eggs to support thyroid function."
+                ),
+                HealthTip(
+                    title: "Regular Testing",
+                    description: "Continue regular thyroid function tests to ensure your condition remains stable while practicing intermittent fasting."
+                )
+            ]
+        } else if normalizedCondition.contains("arthritis") || normalizedCondition.contains("joint") || normalizedCondition.contains("inflammation") {
+            return [
+                HealthTip(
+                    title: "Anti-Inflammatory Benefits",
+                    description: "Fasting may help reduce inflammation, potentially providing relief from arthritis symptoms."
+                ),
+                HealthTip(
+                    title: "Gentle Movement",
+                    description: "Incorporate gentle stretching or yoga during fasting periods to maintain joint mobility."
+                ),
+                HealthTip(
+                    title: "Anti-Inflammatory Foods",
+                    description: "Break your fast with anti-inflammatory foods like fatty fish, berries, turmeric, and leafy greens."
+                ),
+                HealthTip(
+                    title: "Medication Timing",
+                    description: "If you take anti-inflammatory medications, consult your doctor about optimal timing during your eating window."
+                )
+            ]
+        } else if normalizedCondition.contains("gastro") || normalizedCondition.contains("digestive") || normalizedCondition.contains("ibs") || normalizedCondition.contains("bowel") {
+            return [
+                HealthTip(
+                    title: "Digestive Rest",
+                    description: "Fasting gives your digestive system time to rest and repair, which may help reduce symptoms."
+                ),
+                HealthTip(
+                    title: "Gentle Refeeding",
+                    description: "Break your fast with easily digestible foods and avoid known trigger foods that aggravate your condition."
+                ),
+                HealthTip(
+                    title: "Hydration with Care",
+                    description: "Stay hydrated but avoid carbonated or caffeinated beverages that might irritate your digestive tract."
+                ),
+                HealthTip(
+                    title: "Probiotic Support",
+                    description: "Consider including probiotic-rich foods when breaking your fast to support gut health."
+                )
+            ]
+        } else if normalizedCondition.contains("osteoporosis") || normalizedCondition.contains("bone") {
+            return [
+                HealthTip(
+                    title: "Calcium Timing",
+                    description: "Ensure adequate calcium intake during your eating window. Consider calcium-rich foods like dairy, fortified plant milks, or leafy greens."
+                ),
+                HealthTip(
+                    title: "Vitamin D",
+                    description: "Maintain vitamin D supplementation as recommended by your doctor, as it's crucial for calcium absorption."
+                ),
+                HealthTip(
+                    title: "Weight-Bearing Exercise",
+                    description: "Include weight-bearing exercises during your eating window to help maintain bone density."
+                ),
+                HealthTip(
+                    title: "Protein Intake",
+                    description: "Ensure adequate protein intake during your eating window, as protein is essential for bone health."
+                )
+            ]
+        } else {
+            // Generic tips for other conditions
+            return [
+                HealthTip(
+                    title: "Consult Your Doctor",
+                    description: "Always discuss your fasting regimen with your healthcare provider to ensure it's safe for your specific health condition."
+                ),
+                HealthTip(
+                    title: "Start Gradually",
+                    description: "Begin with shorter fasting periods and gradually extend them as your body adapts."
+                ),
+                HealthTip(
+                    title: "Listen to Your Body",
+                    description: "Pay close attention to how your body responds to fasting and adjust your approach accordingly."
+                ),
+                HealthTip(
+                    title: "Medication Management",
+                    description: "Work with your healthcare provider to adjust medication timing if needed to accommodate your fasting schedule."
+                )
+            ]
+        }
+    }
 }
+
+// MARK: - Health Tip Model is defined in SeniorNutritionApp/Models/HealthTips.swift
