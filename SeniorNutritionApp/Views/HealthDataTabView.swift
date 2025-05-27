@@ -368,68 +368,7 @@ private let dateFormatter: DateFormatter = {
     return formatter
 }()
 
-struct AddBloodPressureView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-    @Environment(\.dismiss) private var dismiss
-    @State private var systolic = ""
-    @State private var diastolic = ""
-    @State private var error: String?
-    @FocusState private var systolicFieldIsFocused: Bool
-    
-    var body: some View {
-        NavigationView {
-            Form {
-                Section(header: Text("Enter Blood Pressure")) {
-                    TextField("Systolic (top)", text: $systolic)
-                        .keyboardType(.numberPad)
-                        .focused($systolicFieldIsFocused)
-                    TextField("Diastolic (bottom)", text: $diastolic)
-                        .keyboardType(.numberPad)
-                }
-                if let error = error {
-                    Text(error)
-                        .foregroundColor(.red)
-                }
-            }
-            .navigationTitle("Add Blood Pressure")
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") {
-                        saveEntry()
-                    }
-                }
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") {
-                        dismiss()
-                    }
-                }
-            }
-        }
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.systolicFieldIsFocused = true
-            }
-        }
-    }
-    
-    private func saveEntry() {
-        guard let sys = Int32(systolic), let dia = Int32(diastolic), sys > 0, dia > 0 else {
-            error = "Please enter valid numbers."
-            return
-        }
-        let entry = BloodPressureEntry(context: viewContext)
-        entry.id = UUID()
-        entry.systolic = sys
-        entry.diastolic = dia
-        entry.date = Date()
-        do {
-            try viewContext.save()
-            dismiss()
-        } catch {
-            self.error = "Failed to save. Try again."
-        }
-    }
-}
+
 
 #Preview {
     HealthDataTabView()

@@ -427,71 +427,7 @@ private let dateFormatter: DateFormatter = {
     return formatter
 }()
 
-struct AddBloodSugarView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-    @Environment(\.dismiss) private var dismiss
-    
-    @State private var glucose = ""
-    @FocusState private var glucoseFieldIsFocused: Bool
-    @State private var date = Date()
-    @State private var error: String?
-    
-    var body: some View {
-        NavigationView {
-            Form {
-                Section(header: Text("Blood Sugar")) {
-                    TextField("Glucose (mg/dL)", text: $glucose)
-                        .keyboardType(.numberPad)
-                        .focused($glucoseFieldIsFocused)
-                    DatePicker("Date & Time", selection: $date)
-                }
-                
-                if let error = error {
-                    Text(error)
-                        .foregroundColor(.red)
-                }
-            }
-            .navigationTitle("Add Blood Sugar")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") {
-                        saveEntry()
-                    }
-                }
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") {
-                        dismiss()
-                    }
-                }
-            }
-        }
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.glucoseFieldIsFocused = true
-            }
-        }
-    }
-    
-    private func saveEntry() {
-        guard let glucoseValue = Double(glucose), glucoseValue > 0 else {
-            error = "Please enter a valid number"
-            return
-        }
-        
-        let entry = BloodSugarEntry(context: viewContext)
-        entry.id = UUID()
-        entry.glucose = glucoseValue
-        entry.date = date
-        
-        do {
-            try viewContext.save()
-            dismiss()
-        } catch {
-            self.error = "Failed to save: \(error.localizedDescription)"
-        }
-    }
-}
+
 
 struct EditBloodSugarView: View {
     @Environment(\.managedObjectContext) private var viewContext

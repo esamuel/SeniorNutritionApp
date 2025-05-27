@@ -432,7 +432,6 @@
 "Start Time" = "Start Time";
 "End Time" = "End Time";
 "Settings" = "Settings";
-"Save" = "Save";
 
 /* Localized strings for Fasting Timer */
 "FASTING_TIMER_TITLE" = "Fasting Timer";
@@ -800,3 +799,185 @@
 "Nutritional information automatically scales with portion size" = "Nutritional information automatically scales with portion size";
 "Original nutritional values are for a %@ portion" = "Original nutritional values are for a %@ portion";
 "Values scaled by %@× from %@ size" = "Values scaled by %@× from %@ size";
+
+/* Fish Meals */
+"meal_grilled_salmon_name" = "Grilled Salmon";
+"meal_grilled_salmon_note" = "Simple fillet grilled with herbs";
+
+"meal_baked_cod_name" = "Baked Cod";
+"meal_baked_cod_note" = "Lean, mild-flavored white fish";
+
+"meal_tuna_steak_name" = "Tuna Steak";
+"meal_tuna_steak_note" = "Seared, fresh tuna";
+
+"meal_baked_trout_name" = "Baked Trout";
+"meal_baked_trout_note" = "Whole trout, oven-baked";
+
+"meal_mackerel_fillet_name" = "Mackerel Fillet";
+"meal_mackerel_fillet_note" = "Rich in omega-3, grilled";
+
+"meal_sardines_name" = "Sardines in Olive Oil";
+"meal_sardines_note" = "Canned in oil, ready to eat";
+
+"meal_fish_tacos_name" = "Fish Tacos";
+"meal_fish_tacos_note" = "Grilled fish, lettuce & salsa";
+
+"meal_salmon_patties_name" = "Salmon Patties";
+"meal_salmon_patties_note" = "Pan-fried salmon cakes";
+
+"meal_haddock_bake_name" = "Haddock Bake";
+"meal_haddock_bake_note" = "White flaky fish, baked";
+
+"meal_mediterranean_bream_name" = "Mediterranean Sea Bream";
+"meal_mediterranean_bream_note" = "Baked with herbs & olive oil";
+
+"meal_miso_glazed_cod_name" = "Miso-Glazed Cod";
+"meal_miso_glazed_cod_note" = "Japanese-style sweet miso glaze";
+
+/* Fish Meal Category */
+"category_fish_meal" = "Fish Meal";
+
+/* Food Categories */
+"Fish Meal" = "Fish Meal";
+"Grains" = "Grains";
+"Vegetables" = "Vegetables";
+"Fruits" = "Fruits";
+"Protein" = "Protein";
+"Dairy" = "Dairy";
+"Fats" = "Fats";
+"Beverages" = "Beverages";
+"Snacks" = "Snacks";
+"Other" = "Other";
+"Stuffed Dishes" = "Stuffed Dishes";
+"Seeds" = "Seeds";
+"Condiments / Spreads" = "Condiments / Spreads";
+
+/* Onboarding - First Screen */
+"Welcome to Senior Nutrition" = "Welcome to Senior Nutrition";
+"Your personal nutrition companion designed specifically for seniors, with enhanced accessibility and intuitive navigation." = "Your personal nutrition companion designed specifically for seniors, with enhanced accessibility and intuitive navigation.";
+"Customizable text size for easier reading" = "Customizable text size for easier reading";
+"Language support for English, French, Spanish, and Hebrew" = "Language support for English, French, Spanish, and Hebrew";
+"Simple, uncluttered interface with voice assistance" = "Simple, uncluttered interface with voice assistance";
+"Next" = "Next";
+"Skip" = "Skip";
+
+/* About Section */
+"About" = "About";
+"About Senior Nutrition" = "About Senior Nutrition";
+"Version" = "Version";
+"Current Version" = "Current Version";
+"App Information" = "App Information";
+"Legal Documents" = "Legal Documents";
+"Privacy Policy" = "Privacy Policy";
+"Terms of Service" = "Terms of Service";
+"Last Updated" = "Last Updated";
+"Contact Information" = "Contact Information";
+"Support Email" = "Support Email";
+"Company Location" = "Company Location";
+"Company Address" = "Company Address";
+
+/* Privacy Policy Content */
+"Privacy Policy Introduction" = "This Privacy Policy describes how SeniorNutritionApp ('we,' 'us,' or 'our') collects, uses, and discloses your information when you use our mobile application (the 'App').";
+
+"1. Information We Collect" = "1. Information We Collect";
+"Information We Collect Content" = "We may collect the following types of information:\n\n• Personal Information: Information you provide directly, such as your name, date of birth, gender, health data, and preferences.\n\n• Usage Information: Information about how you interact with the App.\n\n• Device Information: Information about your device and system.\n\n• Voice Input Data: Voice commands when you use voice features.\n\n• Health Data: Health-related data with your permission.\n\n• Location Data: Location information for emergency features.";
+
+"2. How We Use Your Information" = "2. How We Use Your Information";
+"How We Use Information Content" = "We use your information to:\n\n• Provide and improve App features\n• Personalize your experience\n• Send important notifications\n• Analyze usage patterns\n• Ensure App security\n• Comply with legal requirements\n• Enable emergency contact features";
+
+"3. Information Sharing" = "3. Information Sharing";
+"Information Sharing Content" = "We do not sell your personal information. We share information only:\n\n• With your explicit consent\n• With service providers who help operate the App\n• With emergency contacts when you activate emergency features\n• When required by law\n• In case of business transfers";
+
+/* Terms of Service Content */
+"Terms Introduction" = "Please read these Terms of Service ('Terms') carefully before using the SeniorNutritionApp mobile application (the 'App'). By accessing or using the App, you agree to be bound by these Terms.";
+
+"1. Use of the App" = "1. Use of the App";
+"Use of App Content" = "SeniorNutritionApp provides tools for nutrition tracking, meal planning, medication reminders, and fasting management for seniors. You agree to use the App only for its intended purposes and in compliance with applicable laws.\n\nIMPORTANT: The App is for informational purposes only and does not provide medical advice. Always consult your healthcare provider for medical decisions.";
+
+"2. Medical Disclaimer" = "2. Medical Disclaimer";
+"Medical Disclaimer Content" = "The App is intended for informational and organizational purposes only. It does not provide medical advice, diagnosis, or treatment. Always seek the advice of your physician or qualified health provider before making health-related decisions. Never disregard professional medical advice because of something you have read in the App.";
+
+"3. Your Account" = "3. Your Account";
+"Account Content" = "When creating an account, you must provide accurate and complete information. You are responsible for maintaining the security of your account and any activities that occur under your account. Notify us immediately of any unauthorized use.";
+
+"4. Privacy and Data" = "4. Privacy and Data";
+"Privacy Content" = "Your privacy is important to us. Our Privacy Policy explains how we collect, use, and protect your information. By using the App, you agree to our data practices as described in the Privacy Policy.";
+
+/* Menu Sections */
+"HEALTH & WELLNESS" = "HEALTH & WELLNESS";
+"ACCOUNT & SETTINGS" = "ACCOUNT & SETTINGS";
+"HELP & SUPPORT" = "HELP & SUPPORT";
+
+/* Menu Items */
+"Medications" = "Medications";
+"Appointments" = "Appointments";
+"Health" = "Health";
+"Health Tips" = "Health Tips";
+"Profile" = "Profile";
+"Settings" = "Settings";
+"Help" = "Help";
+"Emergency Contacts" = "Emergency Contacts";
+
+/* Bottom Navigation */
+"More" = "More";
+"Nutrition" = "Nutrition";
+"Water" = "Water";
+"Fast" = "Fast";
+"Home" = "Home";
+
+"Health Summary" = "Health Summary";
+"Blood Pressure" = "Blood Pressure";
+"Heart Rate" = "Heart Rate";
+"Weight" = "Weight";
+"Blood Sugar" = "Blood Sugar";
+"Recent Activity" = "Recent Activity";
+"Health Goals" = "Health Goals";
+"Add New Goal" = "Add New Goal";
+"Set your health goals to track progress" = "Set your health goals to track progress";
+
+"Blood Pressure Reading" = "Blood Pressure Reading";
+"Systolic" = "Systolic";
+"Diastolic" = "Diastolic";
+"Date and Time" = "Date and Time";
+"Add Blood Pressure" = "Add Blood Pressure";
+"Cancel" = "Cancel";
+"Save" = "Save";
+"Please enter a valid systolic pressure" = "Please enter a valid systolic pressure";
+"Please enter a valid diastolic pressure" = "Please enter a valid diastolic pressure";
+"Systolic pressure must be higher than diastolic pressure" = "Systolic pressure must be higher than diastolic pressure";
+"Failed to save. Please try again." = "Failed to save. Please try again.";
+
+"Heart Rate Reading" = "Heart Rate Reading";
+"Add Heart Rate" = "Add Heart Rate";
+"Please enter a valid heart rate" = "Please enter a valid heart rate";
+"Heart rate should be between 30 and 220 BPM" = "Heart rate should be between 30 and 220 BPM";
+
+"Weight Reading" = "Weight Reading";
+"Add Weight" = "Add Weight";
+"Please enter a valid weight" = "Please enter a valid weight";
+"Weight should be between 20 and 300 kg" = "Weight should be between 20 and 300 kg";
+
+"Blood Sugar Reading" = "Blood Sugar Reading";
+"Add Blood Sugar" = "Add Blood Sugar";
+"Please enter a valid blood sugar reading" = "Please enter a valid blood sugar reading";
+"Blood sugar should be between 20 and 600 mg/dL" = "Blood sugar should be between 20 and 600 mg/dL";
+"Timing" = "Timing";
+"Meal Time" = "Meal Time";
+"Before Meal" = "Before Meal";
+"After Meal" = "After Meal";
+"Bedtime" = "Bedtime";
+"Fasting" = "Fasting";
+"Target Ranges:" = "Target Ranges:";
+"Before meals: 80-130 mg/dL" = "Before meals: 80-130 mg/dL";
+"After meals: Less than 180 mg/dL" = "After meals: Less than 180 mg/dL";
+"Bedtime: 100-140 mg/dL" = "Bedtime: 100-140 mg/dL";
+
+"Overview" = "Overview";
+"Vitals" = "Vitals";
+"Reports" = "Reports";
+"Generate Health Report" = "Generate Health Report";
+"Previous Reports" = "Previous Reports";
+"No previous reports available" = "No previous reports available";
+"Health Report" = "Health Report";
+"Add Measurement" = "Add Measurement";
+"No data available" = "No data available";
