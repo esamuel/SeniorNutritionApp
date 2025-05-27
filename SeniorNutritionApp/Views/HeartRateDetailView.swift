@@ -411,71 +411,7 @@ private let dateFormatter: DateFormatter = {
     return formatter
 }()
 
-struct AddHeartRateView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-    @Environment(\.dismiss) private var dismiss
-    
-    @State private var bpm = ""
-    @FocusState private var bpmFieldIsFocused: Bool
-    @State private var date = Date()
-    @State private var error: String?
-    
-    var body: some View {
-        NavigationView {
-            Form {
-                Section(header: Text("Heart Rate")) {
-                    TextField("BPM (Beats Per Minute)", text: $bpm)
-                        .keyboardType(.numberPad)
-                        .focused($bpmFieldIsFocused)
-                    DatePicker("Date & Time", selection: $date)
-                }
-                
-                if let error = error {
-                    Text(error)
-                        .foregroundColor(.red)
-                }
-            }
-            .navigationTitle("Add Heart Rate")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") {
-                        saveEntry()
-                    }
-                }
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") {
-                        dismiss()
-                    }
-                }
-            }
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    self.bpmFieldIsFocused = true
-                }
-            }
-        }
-    }
-    
-    private func saveEntry() {
-        guard let bpmValue = Int32(bpm), bpmValue > 0 else {
-            error = "Please enter a valid number"
-            return
-        }
-        
-        let entry = HeartRateEntry(context: viewContext)
-        entry.id = UUID()
-        entry.bpm = bpmValue
-        entry.date = date
-        
-        do {
-            try viewContext.save()
-            dismiss()
-        } catch {
-            self.error = "Failed to save: \(error.localizedDescription)"
-        }
-    }
-}
+// AddHeartRateView has been moved to its own file
 
 struct EditHeartRateView: View {
     @Environment(\.managedObjectContext) private var viewContext

@@ -1,0 +1,681 @@
+{
+    "vegetables": [
+        {
+            "name": "Carrot",
+            "category": "Vegetables",
+            "nutritionPer100g": {
+                "calories": 41,
+                "protein": 0.9,
+                "carbs": 9.6,
+                "fat": 0.2,
+                "fiber": 2.8,
+                "sugar": 4.7,
+                "calcium": 33
+            },
+            "serving": {
+                "size": 100,
+                "unit": "g"
+            },
+            "isCustom": true,
+            "notes": "Raw, peeled or whole",
+            "nameFr": "Carotte",
+            "nameEs": "Zanahoria",
+            "nameHe": "גזר",
+            "notesFr": "Cru, pelé ou entier",
+            "notesEs": "Crudo, pelado o entero",
+            "notesHe": "חי, קלוף או שלם"
+        },
+        {
+            "name": "Broccoli",
+            "category": "Vegetables",
+            "nutritionPer100g": {
+                "calories": 34,
+                "protein": 2.8,
+                "carbs": 6.6,
+                "fat": 0.4,
+                "fiber": 2.6,
+                "sugar": 1.7,
+                "calcium": 47
+            },
+            "serving": {
+                "size": 100,
+                "unit": "g"
+            },
+            "isCustom": true,
+            "notes": "Steamed or raw florets",
+            "nameFr": "Brocoli",
+            "nameEs": "Brócoli",
+            "nameHe": "ברוקולי",
+            "notesFr": "Fleurettes cuites à la vapeur ou crues",
+            "notesEs": "Floretes al vapor o crudos",
+            "notesHe": "פרחים מאודים או טריים"
+        },
+        {
+            "name": "Spinach",
+            "category": "Vegetables",
+            "nutritionPer100g": {
+                "calories": 23,
+                "protein": 2.9,
+                "carbs": 3.6,
+                "fat": 0.4,
+                "fiber": 2.2,
+                "sugar": 0.4,
+                "calcium": 99
+            },
+            "serving": {
+                "size": 100,
+                "unit": "g"
+            },
+            "isCustom": true,
+            "notes": "Raw baby spinach leaves",
+            "nameFr": "Épinards",
+            "nameEs": "Espinacas",
+            "nameHe": "תרד",
+            "notesFr": "Feuilles d'épinards jeunes crues",
+            "notesEs": "Hojas de espinaca baby crudas",
+            "notesHe": "עלי תרד צעירים טריים"
+        },
+        {
+            "name": "Kale",
+            "category": "Vegetables",
+            "nutritionPer100g": {
+                "calories": 49,
+                "protein": 4.3,
+                "carbs": 9.0,
+                "fat": 0.9,
+                "fiber": 3.6,
+                "sugar": 2.3,
+                "calcium": 150
+            },
+            "serving": {
+                "size": 100,
+                "unit": "g"
+            },
+            "isCustom": true,
+            "notes": "Raw curly kale",
+            "nameFr": "Chou frisé",
+            "nameEs": "Col rizada",
+            "nameHe": "כרוב קייל",
+            "notesFr": "Chou frisé cru",
+            "notesEs": "Col rizada cruda",
+            "notesHe": "קייל מסולסל טרי"
+        },
+        {
+            "name": "Zucchini",
+            "category": "Vegetables",
+            "nutritionPer100g": {
+                "calories": 17,
+                "protein": 1.2,
+                "carbs": 3.1,
+                "fat": 0.3,
+                "fiber": 1.0,
+                "sugar": 2.5,
+                "calcium": 16
+            },
+            "serving": {
+                "size": 100,
+                "unit": "g"
+            },
+            "isCustom": true,
+            "notes": "Grilled or raw",
+            "nameFr": "Courgette",
+            "nameEs": "Calabacín",
+            "nameHe": "קישוא",
+            "notesFr": "Grillé ou cru",
+            "notesEs": "A la parrilla o crudo",
+            "notesHe": "צלוי או טרי"
+        },
+        {
+            "name": "Cauliflower",
+            "category": "Vegetables",
+            "nutritionPer100g": {
+                "calories": 25,
+                "protein": 2.0,
+                "carbs": 5.0,
+                "fat": 0.3,
+                "fiber": 2.0,
+                "sugar": 2.0,
+                "calcium": 22
+            },
+            "serving": {
+                "size": 100,
+                "unit": "g"
+            },
+            "isCustom": true,
+            "notes": "Steamed or riced",
+            "nameFr": "Chou-fleur",
+            "nameEs": "Coliflor",
+            "nameHe": "כרובית",
+            "notesFr": "Cuit à la vapeur ou en riz",
+            "notesEs": "Al vapor o rallada",
+            "notesHe": "מאודה או מגורד"
+        },
+        {
+            "name": "Tomato",
+            "category": "Vegetables",
+            "nutritionPer100g": {
+                "calories": 18,
+                "protein": 0.9,
+                "carbs": 3.9,
+                "fat": 0.2,
+                "fiber": 1.2,
+                "sugar": 2.6,
+                "calcium": 10
+            },
+            "serving": {
+                "size": 100,
+                "unit": "g"
+            },
+            "isCustom": true,
+            "notes": "Raw red tomato",
+            "nameFr": "Tomate",
+            "nameEs": "Tomate",
+            "nameHe": "עגבנייה",
+            "notesFr": "Tomate rouge crue",
+            "notesEs": "Tomate rojo crudo",
+            "notesHe": "עגבנייה אדומה טרייה"
+        },
+        {
+            "name": "Red Bell Pepper",
+            "category": "Vegetables",
+            "nutritionPer100g": {
+                "calories": 31,
+                "protein": 1.0,
+                "carbs": 6.0,
+                "fat": 0.3,
+                "fiber": 2.1,
+                "sugar": 4.2,
+                "calcium": 7
+            },
+            "serving": {
+                "size": 100,
+                "unit": "g"
+            },
+            "isCustom": true,
+            "notes": "Raw or roasted",
+            "nameFr": "Poivron rouge",
+            "nameEs": "Pimiento rojo",
+            "nameHe": "פלפל אדום",
+            "notesFr": "Cru ou rôti",
+            "notesEs": "Crudo o asado",
+            "notesHe": "טרי או קלוי"
+        },
+        {
+            "name": "Cucumber",
+            "category": "Vegetables",
+            "nutritionPer100g": {
+                "calories": 16,
+                "protein": 0.7,
+                "carbs": 3.6,
+                "fat": 0.1,
+                "fiber": 0.5,
+                "sugar": 1.7,
+                "calcium": 16
+            },
+            "serving": {
+                "size": 100,
+                "unit": "g"
+            },
+            "isCustom": true,
+            "notes": "Raw with peel",
+            "nameFr": "Concombre",
+            "nameEs": "Pepino",
+            "nameHe": "מלפפון",
+            "notesFr": "Cru avec la peau",
+            "notesEs": "Crudo con piel",
+            "notesHe": "טרי עם קליפה"
+        },
+        {
+            "name": "Lettuce (Romaine)",
+            "category": "Vegetables",
+            "nutritionPer100g": {
+                "calories": 17,
+                "protein": 1.2,
+                "carbs": 3.3,
+                "fat": 0.3,
+                "fiber": 2.1,
+                "sugar": 1.2,
+                "calcium": 33
+            },
+            "serving": {
+                "size": 100,
+                "unit": "g"
+            },
+            "isCustom": true,
+            "notes": "Crisp leaves, raw",
+            "nameFr": "Laitue romaine",
+            "nameEs": "Lechuga romana",
+            "nameHe": "חסה רומית",
+            "notesFr": "Feuilles croquantes, crues",
+            "notesEs": "Hojas crujientes, crudas",
+            "notesHe": "עלים פריכים, טריים"
+        },
+        {
+            "name": "Beetroot",
+            "category": "Vegetables",
+            "nutritionPer100g": {
+                "calories": 43,
+                "protein": 1.6,
+                "carbs": 9.6,
+                "fat": 0.2,
+                "fiber": 2.8,
+                "sugar": 6.8,
+                "calcium": 16
+            },
+            "serving": {
+                "size": 100,
+                "unit": "g"
+            },
+            "isCustom": true,
+            "notes": "Boiled or roasted",
+            "nameFr": "Betterave",
+            "nameEs": "Remolacha",
+            "nameHe": "סלק",
+            "notesFr": "Bouillie ou rôtie",
+            "notesEs": "Hervida o asada",
+            "notesHe": "מבושל או צלוי"
+        },
+        {
+            "name": "Sweet Potato",
+            "category": "Vegetables",
+            "nutritionPer100g": {
+                "calories": 86,
+                "protein": 1.6,
+                "carbs": 20.1,
+                "fat": 0.1,
+                "fiber": 3.0,
+                "sugar": 4.2,
+                "calcium": 30
+            },
+            "serving": {
+                "size": 100,
+                "unit": "g"
+            },
+            "isCustom": true,
+            "notes": "Baked or steamed",
+            "nameFr": "Patate douce",
+            "nameEs": "Batata",
+            "nameHe": "בטטה",
+            "notesFr": "Cuite au four ou à la vapeur",
+            "notesEs": "Al horno o al vapor",
+            "notesHe": "אפויה או מאודה"
+        },
+        {
+            "name": "White Potato",
+            "category": "Vegetables",
+            "nutritionPer100g": {
+                "calories": 77,
+                "protein": 2.0,
+                "carbs": 17.5,
+                "fat": 0.1,
+                "fiber": 2.2,
+                "sugar": 0.8,
+                "calcium": 10
+            },
+            "serving": {
+                "size": 100,
+                "unit": "g"
+            },
+            "isCustom": true,
+            "notes": "Boiled or mashed",
+            "nameFr": "Pomme de terre",
+            "nameEs": "Papa blanca",
+            "nameHe": "תפוח אדמה",
+            "notesFr": "Bouillie ou en purée",
+            "notesEs": "Hervida o puré",
+            "notesHe": "מבושל או מחית"
+        },
+        {
+            "name": "Green Beans",
+            "category": "Vegetables",
+            "nutritionPer100g": {
+                "calories": 31,
+                "protein": 1.8,
+                "carbs": 7.1,
+                "fat": 0.2,
+                "fiber": 3.4,
+                "sugar": 1.4,
+                "calcium": 37
+            },
+            "serving": {
+                "size": 100,
+                "unit": "g"
+            },
+            "isCustom": true,
+            "notes": "Steamed or sautéed",
+            "nameFr": "Haricots verts",
+            "nameEs": "Judías verdes",
+            "nameHe": "שעועית ירוקה",
+            "notesFr": "Cuits à la vapeur ou sautés",
+            "notesEs": "Al vapor o salteadas",
+            "notesHe": "מאודה או מוקפץ"
+        },
+        {
+            "name": "Eggplant",
+            "category": "Vegetables",
+            "nutritionPer100g": {
+                "calories": 25,
+                "protein": 1.0,
+                "carbs": 6.0,
+                "fat": 0.2,
+                "fiber": 3.0,
+                "sugar": 3.5,
+                "calcium": 9
+            },
+            "serving": {
+                "size": 100,
+                "unit": "g"
+            },
+            "isCustom": true,
+            "notes": "Grilled or baked",
+            "nameFr": "Aubergine",
+            "nameEs": "Berenjena",
+            "nameHe": "חציל",
+            "notesFr": "Grillée ou cuite au four",
+            "notesEs": "A la parrilla o al horno",
+            "notesHe": "צלוי או אפוי"
+        },
+        {
+            "name": "Brussels Sprouts",
+            "category": "Vegetables",
+            "nutritionPer100g": {
+                "calories": 43,
+                "protein": 3.4,
+                "carbs": 9.0,
+                "fat": 0.3,
+                "fiber": 3.8,
+                "sugar": 2.2,
+                "calcium": 42
+            },
+            "serving": {
+                "size": 100,
+                "unit": "g"
+            },
+            "isCustom": true,
+            "notes": "Steamed or roasted",
+            "nameFr": "Choux de Bruxelles",
+            "nameEs": "Coles de Bruselas",
+            "nameHe": "כרוב ניצנים",
+            "notesFr": "Cuits à la vapeur ou rôtis",
+            "notesEs": "Al vapor o asadas",
+            "notesHe": "מאודה או צלוי"
+        },
+        {
+            "name": "Asparagus",
+            "category": "Vegetables",
+            "nutritionPer100g": {
+                "calories": 20,
+                "protein": 2.2,
+                "carbs": 3.9,
+                "fat": 0.1,
+                "fiber": 2.1,
+                "sugar": 1.9,
+                "calcium": 24
+            },
+            "serving": {
+                "size": 100,
+                "unit": "g"
+            },
+            "isCustom": true,
+            "notes": "Lightly steamed or grilled",
+            "nameFr": "Asperges",
+            "nameEs": "Espárragos",
+            "nameHe": "אספרגוס",
+            "notesFr": "Légèrement cuits à la vapeur ou grillés",
+            "notesEs": "Ligeramente al vapor o a la parrilla",
+            "notesHe": "מאודה קלות או צלוי"
+        },
+        {
+            "name": "Celery",
+            "category": "Vegetables",
+            "nutritionPer100g": {
+                "calories": 16,
+                "protein": 0.7,
+                "carbs": 3.0,
+                "fat": 0.2,
+                "fiber": 1.6,
+                "sugar": 1.3,
+                "calcium": 40
+            },
+            "serving": {
+                "size": 100,
+                "unit": "g"
+            },
+            "isCustom": true,
+            "notes": "Raw stalks with leaves",
+            "nameFr": "Céleri",
+            "nameEs": "Apio",
+            "nameHe": "סלרי",
+            "notesFr": "Tiges crues avec feuilles",
+            "notesEs": "Tallos crudos con hojas",
+            "notesHe": "גבעולים טריים עם עלים"
+        },
+        {
+            "name": "Radish",
+            "category": "Vegetables",
+            "nutritionPer100g": {
+                "calories": 16,
+                "protein": 0.7,
+                "carbs": 3.4,
+                "fat": 0.1,
+                "fiber": 1.6,
+                "sugar": 1.9,
+                "calcium": 25
+            },
+            "serving": {
+                "size": 100,
+                "unit": "g"
+            },
+            "isCustom": true,
+            "notes": "Raw slices",
+            "nameFr": "Radis",
+            "nameEs": "Rábano",
+            "nameHe": "צנון",
+            "notesFr": "Tranches crues",
+            "notesEs": "Rodajas crudas",
+            "notesHe": "פרוסות טריות"
+        },
+        {
+            "name": "Cabbage (Green)",
+            "category": "Vegetables",
+            "nutritionPer100g": {
+                "calories": 25,
+                "protein": 1.3,
+                "carbs": 5.8,
+                "fat": 0.1,
+                "fiber": 2.5,
+                "sugar": 3.2,
+                "calcium": 40
+            },
+            "serving": {
+                "size": 100,
+                "unit": "g"
+            },
+            "isCustom": true,
+            "notes": "Raw or cooked",
+            "nameFr": "Chou vert",
+            "nameEs": "Repollo verde",
+            "nameHe": "כרוב ירוק",
+            "notesFr": "Cru ou cuit",
+            "notesEs": "Crudo o cocido",
+            "notesHe": "טרי או מבושל"
+        },
+        {
+            "name": "Green Peas",
+            "category": "Vegetables",
+            "nutritionPer100g": {
+                "calories": 81,
+                "protein": 5.4,
+                "carbs": 14.5,
+                "fat": 0.4,
+                "fiber": 5.1,
+                "sugar": 5.7,
+                "calcium": 25
+            },
+            "serving": {
+                "size": 100,
+                "unit": "g"
+            },
+            "isCustom": true,
+            "notes": "Boiled or steamed",
+            "nameFr": "Petits pois",
+            "nameEs": "Guisantes",
+            "nameHe": "אפונה ירוקה",
+            "notesFr": "Bouillis ou cuits à la vapeur",
+            "notesEs": "Hervidos o al vapor",
+            "notesHe": "מבושלת או מאודה"
+        },
+        {
+            "name": "Onion (White)",
+            "category": "Vegetables",
+            "nutritionPer100g": {
+                "calories": 40,
+                "protein": 1.1,
+                "carbs": 9.3,
+                "fat": 0.1,
+                "fiber": 1.7,
+                "sugar": 4.2,
+                "calcium": 23
+            },
+            "serving": {
+                "size": 100,
+                "unit": "g"
+            },
+            "isCustom": true,
+            "notes": "Raw or sautéed",
+            "nameFr": "Oignon blanc",
+            "nameEs": "Cebolla blanca",
+            "nameHe": "בצל לבן",
+            "notesFr": "Cru ou sauté",
+            "notesEs": "Crudo o salteado",
+            "notesHe": "טרי או מוקפץ"
+        },
+        {
+            "name": "Garlic",
+            "category": "Vegetables",
+            "nutritionPer100g": {
+                "calories": 149,
+                "protein": 6.4,
+                "carbs": 33.1,
+                "fat": 0.5,
+                "fiber": 2.1,
+                "sugar": 1.0,
+                "calcium": 181
+            },
+            "serving": {
+                "size": 100,
+                "unit": "g"
+            },
+            "isCustom": true,
+            "notes": "Fresh minced or roasted",
+            "nameFr": "Ail",
+            "nameEs": "Ajo",
+            "nameHe": "שום",
+            "notesFr": "Frais haché ou rôti",
+            "notesEs": "Fresco picado o asado",
+            "notesHe": "טרי קצוץ או צלוי"
+        },
+        {
+            "name": "Artichoke",
+            "category": "Vegetables",
+            "nutritionPer100g": {
+                "calories": 47,
+                "protein": 3.3,
+                "carbs": 10.5,
+                "fat": 0.2,
+                "fiber": 5.4,
+                "sugar": 1.0,
+                "calcium": 44
+            },
+            "serving": {
+                "size": 100,
+                "unit": "g"
+            },
+            "isCustom": true,
+            "notes": "Steamed hearts",
+            "nameFr": "Artichaut",
+            "nameEs": "Alcachofa",
+            "nameHe": "ארטישוק",
+            "notesFr": "Cœurs cuits à la vapeur",
+            "notesEs": "Corazones al vapor",
+            "notesHe": "לבבות מאודים"
+        },
+        {
+            "name": "Leek",
+            "category": "Vegetables",
+            "nutritionPer100g": {
+                "calories": 61,
+                "protein": 1.5,
+                "carbs": 14.2,
+                "fat": 0.3,
+                "fiber": 1.8,
+                "sugar": 3.9,
+                "calcium": 59
+            },
+            "serving": {
+                "size": 100,
+                "unit": "g"
+            },
+            "isCustom": true,
+            "notes": "Chopped, boiled or sautéed",
+            "nameFr": "Poireau",
+            "nameEs": "Puerro",
+            "nameHe": "כרישה",
+            "notesFr": "Haché, bouilli ou sauté",
+            "notesEs": "Picado, hervido o salteado",
+            "notesHe": "קצוץ, מבושל או מוקפץ"
+        }
+    ],
+    "fish_meals": [
+        {
+            "name": "Grilled Salmon",
+            "category": "Fish Meal",
+            "nutritionPer100g": {
+                "calories": 206,
+                "protein": 22,
+                "carbs": 0,
+                "fat": 13,
+                "fiber": 0,
+                "sugar": 0,
+                "calcium": 15
+            },
+            "serving": {
+                "size": 100,
+                "unit": "g"
+            },
+            "isCustom": true,
+            "notes": "Simple fillet grilled with herbs",
+            "nameFr": "Saumon Grillé",
+            "nameEs": "Salmón a la Parrilla",
+            "nameHe": "סלמון צלוי",
+            "notesFr": "Filet simple grillé aux herbes",
+            "notesEs": "Filete simple a la parrilla con hierbas",
+            "notesHe": "פילה פשוט צלוי עם עשבי תיבול"
+        },
+        {
+            "name": "Baked Cod",
+            "category": "Fish Meal",
+            "nutritionPer100g": {
+                "calories": 105,
+                "protein": 23,
+                "carbs": 0,
+                "fat": 1,
+                "fiber": 0,
+                "sugar": 0,
+                "calcium": 16
+            },
+            "serving": {
+                "size": 100,
+                "unit": "g"
+            },
+            "isCustom": true,
+            "notes": "Lean, mild-flavored white fish",
+            "nameFr": "Cabillaud au Four",
+            "nameEs": "Bacalao al Horno",
+            "nameHe": "בקלה אפויה",
+            "notesFr": "Poisson blanc maigre à saveur douce",
+            "notesEs": "Pescado blanco magro de sabor suave",
+            "notesHe": "דג לבן רזה בטעם עדין"
+        }
+    ]
+} 

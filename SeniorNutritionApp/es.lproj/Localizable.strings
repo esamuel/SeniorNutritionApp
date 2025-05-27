@@ -21,25 +21,25 @@
 "Real-time progress tracking" = "Seguimiento del progreso en tiempo real";
 "Emergency override with one tap" = "Anulación de emergencia con un toque";
 "Health Data Tracking" = "Seguimiento de datos de salud";
-"Monitor vital health metrics like blood pressure, weight, blood sugar, and heart rate with detailed visualizations and trend analysis." = "Controla métricas vitales como presión arterial, peso, glucosa y frecuencia cardíaca con visualizaciones detalladas y análisis de tendencias.";
+"Monitor vital health metrics like blood pressure, weight, blood sugar, and heart rate with detailed visualizations and trend analysis." = "Monitorea indicadores vitales de salud como presión arterial, peso, azúcar en sangre y ritmo cardíaco con visualizaciones detalladas y análisis de tendencias.";
 "Easy data entry with voice option" = "Entrada de datos fácil con opción de voz";
 "Visual trends and patterns" = "Tendencias y patrones visuales";
 "Exportable reports for doctor visits" = "Informes exportables para visitas médicas";
 "Appointment Management" = "Gestión de citas";
-"Never miss a medical appointment with our comprehensive calendar system, reminders, and location tracking." = "Nunca pierdas una cita médica con nuestro sistema de calendario, recordatorios y seguimiento de ubicación.";
-"Schedule doctor visits and check-ups" = "Programa visitas y chequeos médicos";
-"Get timely reminders" = "Recibe recordatorios a tiempo";
-"Store location and provider details" = "Guarda la ubicación y los datos del proveedor";
+"Never miss a medical appointment with our comprehensive calendar system, reminders, and location tracking." = "Nunca pierdas una cita médica con nuestro sistema integral de calendario, recordatorios y seguimiento de ubicación.";
+"Schedule doctor visits and check-ups" = "Programa visitas médicas y chequeos";
+"Get timely reminders" = "Recibe recordatorios oportunos";
+"Store location and provider details" = "Almacena detalles de ubicación y proveedor";
 "Comprehensive Medication Management" = "Gestión integral de medicamentos";
-"Keep track of all your medications with automatic reminders and integration with your fasting schedule." = "Lleva el control de todos tus medicamentos con recordatorios automáticos e integración con tu horario de ayuno.";
+"Keep track of all your medications with automatic reminders and integration with your fasting schedule." = "Mantén un registro de todos tus medicamentos con recordatorios automáticos e integración con tu horario de ayuno.";
 "Visual pill identification" = "Identificación visual de pastillas";
 "Meal requirements tracking" = "Seguimiento de requisitos de comidas";
 "Smart notifications synchronized with your routine" = "Notificaciones inteligentes sincronizadas con tu rutina";
 "Health Monitoring & Support" = "Monitoreo y soporte de salud";
-"Track key health metrics and get personalized guidance with continuous support whenever you need it." = "Controla métricas clave de salud y recibe orientación personalizada con soporte continuo cuando lo necesites.";
+"Track key health metrics and get personalized guidance with continuous support whenever you need it." = "Realiza un seguimiento de indicadores clave de salud y obtén orientación personalizada con apoyo continuo cuando lo necesites.";
 "Video tutorials and live support" = "Tutoriales en video y soporte en vivo";
 "Health data visualization" = "Visualización de datos de salud";
-"Emergency contact system" = "Sistema de contacto de emergencia";
+"Emergency contact system" = "Sistema de contactos de emergencia";
 "Settings" = "Configuración";
 "Text Size" = "Tamaño de texto";
 "High Contrast Mode" = "Modo de alto contraste";
@@ -287,7 +287,7 @@
 "Ease Into Fasting" = "Inicia el ayuno gradualmente";
 "If you're new to fasting, start with shorter fasting periods and gradually increase the duration as your body adapts." = "Si eres nuevo en el ayuno, comienza con períodos más cortos y aumenta gradualmente la duración a medida que tu cuerpo se adapta.";
 "Break Fast Gently" = "Rompe el ayuno suavemente";
-"Break your fast with easily digestible foods like soups, fruits, or small portions of protein to avoid digestive discomfort." = "Rompe tu ayuno con alimentos fácilmente digeribles como sopas, frutas o pequeñas porciones de proteína para evitar molestias digestivas.";
+"Break your fast with easily digestible foods like soups, fruits, or small portions of protein to avoid digestive discomfort." = "Rompe tu ayuno con alimentos fácilmente digeribles como sopas, frutas o pequeñas porciones de proteínas para evitar molestias digestivas.";
 "Monitor Your Body" = "Monitorea tu cuerpo";
 "Pay attention to how you feel during fasting. Mild hunger is normal, but dizziness, extreme fatigue, or confusion are not." = "Presta atención a cómo te sientes durante el ayuno. Un hambre leve es normal, pero mareos, fatiga extrema o confusión no lo son.";
 "Help Guide" = "Guía de ayuda";
@@ -937,6 +937,9 @@
 "Beverages" = "Bebidas";
 "Snacks" = "Aperitivos";
 "Other" = "Otros";
+"Stuffed Dishes" = "Platos Rellenos";
+"Seeds" = "Semillas";
+"Condiments / Spreads" = "Condimentos / Untables";
 
 /* Food Database UI */
 "All" = "Todos";
@@ -1185,5 +1188,188 @@
 "Nutritional information automatically scales with portion size" = "La información nutricional se ajusta automáticamente según el tamaño de la porción";
 "Original nutritional values are for a %@ portion" = "Los valores nutricionales originales son para una porción %@";
 "Values scaled by %@× from %@ size" = "Valores escalados por %@× desde el tamaño %@";
+
+/* Fish Meals */
+"meal_grilled_salmon_name" = "Salmón a la Parrilla";
+"meal_grilled_salmon_note" = "Filete simple a la parrilla con hierbas";
+
+"meal_baked_cod_name" = "Bacalao al Horno";
+"meal_baked_cod_note" = "Pescado blanco magro de sabor suave";
+
+"meal_tuna_steak_name" = "Filete de Atún";
+"meal_tuna_steak_note" = "Atún fresco sellado";
+
+"meal_baked_trout_name" = "Trucha al Horno";
+"meal_baked_trout_note" = "Trucha entera horneada";
+
+"meal_mackerel_fillet_name" = "Filete de Caballa";
+"meal_mackerel_fillet_note" = "Rico en omega-3, a la parrilla";
+
+"meal_sardines_name" = "Sardinas en Aceite de Oliva";
+"meal_sardines_note" = "En conserva en aceite, listo para comer";
+
+"meal_anchovy_fillets_name" = "Filetes de Anchoa";
+"meal_anchovy_fillets_note" = "Filetes curados en sal";
+
+"meal_fish_tacos_name" = "Tacos de Pescado";
+"meal_fish_tacos_note" = "Pescado a la parrilla, lechuga y salsa";
+
+"meal_salmon_patties_name" = "Hamburguesas de Salmón";
+"meal_salmon_patties_note" = "Tortitas de salmón fritas";
+
+"meal_haddock_bake_name" = "Eglefino al Horno";
+"meal_haddock_bake_note" = "Pescado blanco en hojuelas, horneado";
+
+"meal_tilapia_fillet_name" = "Filete de Tilapia";
+"meal_tilapia_fillet_note" = "Pescado blanco sellado";
+
+"meal_sea_bass_fillet_name" = "Filete de Lubina";
+"meal_sea_bass_fillet_note" = "Ligeramente asado con limón";
+
+"meal_halibut_steak_name" = "Filete de Halibut";
+"meal_halibut_steak_note" = "Pescado blanco carnoso";
+
+"meal_swordfish_steak_name" = "Filete de Pez Espada";
+"meal_swordfish_steak_note" = "A la parrilla con limón y pimienta";
+
+"meal_poached_sole_name" = "Lenguado Pochado";
+"meal_poached_sole_note" = "Filete blanco delicado";
+
+"meal_pan_fried_whitefish_name" = "Pescado Blanco Frito";
+"meal_pan_fried_whitefish_note" = "Enharinado y ligeramente frito";
+
+"meal_smoked_salmon_name" = "Salmón Ahumado";
+"meal_smoked_salmon_note" = "Ahumado en frío para un sabor rico";
+
+"meal_fish_chowder_name" = "Sopa Espesa de Pescado";
+"meal_fish_chowder_note" = "Sopa cremosa con pescado y verduras";
+
+"meal_curried_fish_stew_name" = "Guiso de Pescado al Curry";
+"meal_curried_fish_stew_note" = "Guiso picante a base de tomate";
+
+"meal_thai_fish_curry_name" = "Curry de Pescado Tailandés";
+"meal_thai_fish_curry_note" = "Rica base de leche de coco";
+
+"meal_fish_pie_name" = "Pastel de Pescado (Estilo Inglés)";
+"meal_fish_pie_note" = "Cremoso, horneado con puré de patatas";
+
+"meal_salmon_sushi_name" = "Sushi de Salmón";
+"meal_salmon_sushi_note" = "Salmón crudo sobre arroz";
+
+"meal_miso_glazed_cod_name" = "Bacalao Glaseado con Miso";
+"meal_miso_glazed_cod_note" = "Glaseado dulce de miso estilo japonés";
+
+"meal_steamed_barramundi_name" = "Barramundi al Vapor";
+"meal_steamed_barramundi_note" = "Pescado blanco ligero con jengibre";
+
+"meal_baked_grouper_name" = "Mero al Horno";
+"meal_baked_grouper_note" = "Horneado con limón";
+
+"meal_spicy_tuna_roll_name" = "Rollo de Atún Picante";
+"meal_spicy_tuna_roll_note" = "Rollo de sushi de atún con mayo picante";
+
+"meal_panko_haddock_name" = "Eglefino Empanado con Panko";
+"meal_panko_haddock_note" = "Pescado blanco crujiente empanado";
+
+"meal_mediterranean_bream_name" = "Dorada Mediterránea";
+"meal_mediterranean_bream_note" = "Horneada con hierbas y aceite de oliva";
+
+"meal_salmon_teriyaki_name" = "Salmón Teriyaki";
+"meal_salmon_teriyaki_note" = "Salmón a la parrilla con salsa teriyaki";
+
+"meal_spanish_fish_stew_name" = "Guiso de Pescado Español";
+"meal_spanish_fish_stew_note" = "Guiso de mariscos a base de tomate";
+
+"meal_cajun_catfish_name" = "Bagre Cajún";
+"meal_cajun_catfish_note" = "Pescado gato especiado y ennegrecido";
+
+"meal_basa_fillet_name" = "Filete de Basa";
+"meal_basa_fillet_note" = "Pescado blanco suave en hojuelas";
+
+"meal_szechuan_fish_name" = "Filete de Pescado Szechuan";
+"meal_szechuan_fish_note" = "Pescado picante estilo chino";
+
+"meal_salmon_poke_name" = "Bowl de Poke de Salmón";
+"meal_salmon_poke_note" = "Ensalada hawaiana de pescado crudo";
+
+"meal_pickled_herring_name" = "Filete de Arenque en Escabeche";
+"meal_pickled_herring_note" = "En escabeche con salmuera o vinagre";
+
+/* Fish Meal Category */
+"category_fish_meal" = "Plato de Pescado";
+"Fish Meal" = "Plato de Pescado";
+
+/* Onboarding - First Screen */
+"Welcome to Senior Nutrition" = "Bienvenido a Senior Nutrition";
+"Your personal nutrition companion designed specifically for seniors, with enhanced accessibility and intuitive navigation." = "Tu compañero nutricional personal diseñado específicamente para adultos mayores, con accesibilidad mejorada y navegación intuitiva.";
+"Customizable text size for easier reading" = "Tamaño de texto personalizable para una lectura más fácil";
+"Language support for English, French, Spanish, and Hebrew" = "Soporte de idiomas para inglés, francés, español y hebreo";
+"Simple, uncluttered interface with voice assistance" = "Interfaz simple y ordenada con asistencia de voz";
+"Next" = "Siguiente";
+"Skip" = "Saltar";
+
+/* About Section */
+"About" = "Acerca de";
+"About Senior Nutrition" = "Acerca de Senior Nutrition";
+"Version" = "Versión";
+"Current Version" = "Versión actual";
+"App Information" = "Información de la aplicación";
+"Legal Documents" = "Documentos legales";
+"Privacy Policy" = "Política de privacidad";
+"Terms of Service" = "Términos de servicio";
+"Last Updated" = "Última actualización";
+"Contact Information" = "Información de contacto";
+"Support Email" = "Correo de soporte";
+"Company Location" = "Ubicación de la empresa";
+"Company Address" = "Dirección de la empresa";
+
+/* Privacy Policy Content */
+"Privacy Policy Introduction" = "Esta Política de Privacidad describe cómo SeniorNutritionApp ('nosotros') recopila, utiliza y divulga su información cuando usa nuestra aplicación móvil (la 'Aplicación').";
+
+"1. Information We Collect" = "1. Información que recopilamos";
+"Information We Collect Content" = "Podemos recopilar los siguientes tipos de información:\n\n• Información personal: Información que proporciona directamente, como su nombre, fecha de nacimiento, género, datos de salud y preferencias.\n\n• Información de uso: Información sobre cómo interactúa con la Aplicación.\n\n• Información del dispositivo: Información sobre su dispositivo y sistema.\n\n• Datos de voz: Comandos de voz cuando utiliza las funciones de voz.\n\n• Datos de salud: Datos relacionados con la salud con su permiso.\n\n• Datos de ubicación: Información de ubicación para funciones de emergencia.";
+
+"2. How We Use Your Information" = "2. Cómo utilizamos su información";
+"How We Use Information Content" = "Utilizamos su información para:\n\n• Proporcionar y mejorar las funciones de la Aplicación\n• Personalizar su experiencia\n• Enviar notificaciones importantes\n• Analizar patrones de uso\n• Garantizar la seguridad de la Aplicación\n• Cumplir con requisitos legales\n• Habilitar funciones de contacto de emergencia";
+
+"3. Information Sharing" = "3. Compartir información";
+"Information Sharing Content" = "No vendemos su información personal. Compartimos información solo:\n\n• Con su consentimiento explícito\n• Con proveedores de servicios que ayudan a operar la Aplicación\n• Con contactos de emergencia cuando activa las funciones de emergencia\n• Cuando lo requiere la ley\n• En caso de transferencias comerciales";
+
+/* Terms of Service Content */
+"Terms Introduction" = "Por favor, lea atentamente estos Términos de Servicio ('Términos') antes de usar la aplicación móvil SeniorNutritionApp (la 'Aplicación'). Al acceder o usar la Aplicación, acepta estar sujeto a estos Términos.";
+
+"1. Use of the App" = "1. Uso de la Aplicación";
+"Use of App Content" = "SeniorNutritionApp proporciona herramientas para el seguimiento nutricional, planificación de comidas, recordatorios de medicamentos y gestión del ayuno para personas mayores. Usted acepta usar la Aplicación solo para sus fines previstos y en cumplimiento con las leyes aplicables.\n\nIMPORTANTE: La Aplicación es solo para fines informativos y no proporciona consejos médicos. Consulte siempre a su proveedor de atención médica para decisiones médicas.";
+
+"2. Medical Disclaimer" = "2. Descargo de Responsabilidad Médica";
+"Medical Disclaimer Content" = "La Aplicación está destinada únicamente a fines informativos y organizativos. No proporciona consejos médicos, diagnósticos o tratamientos. Consulte siempre a su médico o proveedor de salud calificado antes de tomar decisiones relacionadas con la salud. Nunca ignore el consejo médico profesional debido a algo que haya leído en la Aplicación.";
+
+"3. Your Account" = "3. Su Cuenta";
+"Account Content" = "Al crear una cuenta, debe proporcionar información precisa y completa. Usted es responsable de mantener la seguridad de su cuenta y de cualquier actividad que ocurra bajo su cuenta. Notifíquenos inmediatamente sobre cualquier uso no autorizado.";
+
+"4. Privacy and Data" = "4. Privacidad y Datos";
+"Privacy Content" = "Su privacidad es importante para nosotros. Nuestra Política de Privacidad explica cómo recopilamos, usamos y protegemos su información. Al usar la Aplicación, acepta nuestras prácticas de datos como se describe en la Política de Privacidad.";
+
+/* Menu Sections */
+"HEALTH & WELLNESS" = "SALUD Y BIENESTAR";
+"ACCOUNT & SETTINGS" = "CUENTA Y CONFIGURACIÓN";
+"HELP & SUPPORT" = "AYUDA Y SOPORTE";
+
+/* Menu Items */
+"Medications" = "Medicamentos";
+"Appointments" = "Citas";
+"Health" = "Salud";
+"Health Tips" = "Consejos de Salud";
+"Profile" = "Perfil";
+"Settings" = "Configuración";
+"Help" = "Ayuda";
+"Emergency Contacts" = "Contactos de Emergencia";
+
+/* Bottom Navigation */
+"More" = "Más";
+"Nutrition" = "Nutrición";
+"Water" = "Agua";
+"Fast" = "Ayuno";
+"Home" = "Inicio";
 
 
