@@ -24,9 +24,10 @@ A comprehensive iOS app designed to support seniors (ages 50–120) in managing 
   - Nutritional analysis with personalized recommendations
 
 - **Health Monitoring**
-  - Track vital signs (blood pressure, heart rate, weight)
-  - Blood sugar monitoring with customizable target ranges
-  - Visual trends and analytics for health metrics
+  - Unified health dashboard with Overview, Vitals, and Reports tabs
+  - Track vital signs (blood pressure, heart rate, weight, blood sugar)
+  - Visual trends and analytics with detailed charts
+  - One-tap data entry with navigation to detailed views
 
 - **Reminders & Notifications**
   - Medication, meal, fasting, and daily tip notifications

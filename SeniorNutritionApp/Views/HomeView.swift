@@ -430,7 +430,10 @@ struct HomeView: View {
                 .environmentObject(userSettings)
         }
         .sheet(isPresented: $showingHealthDashboard) {
-            HealthDataTabView()
+            NavigationView {
+                HealthView()
+                    .environmentObject(userSettings)
+            }
         }
         .sheet(isPresented: $showingFastingTimer) {
             FastingTimerView()

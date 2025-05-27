@@ -114,42 +114,58 @@ struct HealthView: View {
     
     private var vitalsTab: some View {
         ScrollView {
-            VStack(spacing: 20) {
+            VStack(spacing: 24) {
                 // Blood Pressure Card
-                vitalsCard(
-                    title: NSLocalizedString("Blood Pressure", comment: ""),
-                    icon: "heart.fill",
-                    color: .red,
-                    latestReading: formatBPReading(bpEntries.first),
-                    type: .bloodPressure
-                )
+                NavigationLink(destination: BloodPressureDetailView()) {
+                    enhancedVitalsCard(
+                        title: NSLocalizedString("Blood Pressure", comment: ""),
+                        icon: "heart.circle.fill",
+                        color: .red,
+                        latestReading: formatBPReading(bpEntries.first),
+                        type: .bloodPressure,
+                        entries: bpEntries
+                    )
+                }
+                .buttonStyle(PlainButtonStyle())
                 
                 // Heart Rate Card
-                vitalsCard(
-                    title: NSLocalizedString("Heart Rate", comment: ""),
-                    icon: "waveform.path.ecg",
-                    color: .orange,
-                    latestReading: formatHRReading(hrEntries.first),
-                    type: .heartRate
-                )
+                NavigationLink(destination: HeartRateDetailView()) {
+                    enhancedVitalsCard(
+                        title: NSLocalizedString("Heart Rate", comment: ""),
+                        icon: "waveform.path.ecg.rectangle.fill",
+                        color: .blue,
+                        latestReading: formatHRReading(hrEntries.first),
+                        type: .heartRate,
+                        entries: hrEntries
+                    )
+                }
+                .buttonStyle(PlainButtonStyle())
                 
                 // Weight Card
-                vitalsCard(
-                    title: NSLocalizedString("Weight", comment: ""),
-                    icon: "scalemass",
-                    color: .blue,
-                    latestReading: formatWeightReading(weightEntries.first),
-                    type: .weight
-                )
+                NavigationLink(destination: WeightDetailView()) {
+                    enhancedVitalsCard(
+                        title: NSLocalizedString("Weight", comment: ""),
+                        icon: "scalemass.fill",
+                        color: .green,
+                        latestReading: formatWeightReading(weightEntries.first),
+                        type: .weight,
+                        entries: weightEntries
+                    )
+                }
+                .buttonStyle(PlainButtonStyle())
                 
                 // Blood Sugar Card
-                vitalsCard(
-                    title: NSLocalizedString("Blood Sugar", comment: ""),
-                    icon: "drop.fill",
-                    color: .purple,
-                    latestReading: formatBSReading(bsEntries.first),
-                    type: .bloodSugar
-                )
+                NavigationLink(destination: BloodSugarDetailView()) {
+                    enhancedVitalsCard(
+                        title: NSLocalizedString("Blood Sugar", comment: ""),
+                        icon: "drop.circle.fill",
+                        color: .orange,
+                        latestReading: formatBSReading(bsEntries.first),
+                        type: .bloodSugar,
+                        entries: bsEntries
+                    )
+                }
+                .buttonStyle(PlainButtonStyle())
             }
             .padding()
         }
@@ -319,31 +335,48 @@ struct HealthView: View {
         case bloodPressure, heartRate, weight, bloodSugar
     }
     
-    private func vitalsCard(title: String, icon: String, color: Color, latestReading: String, type: VitalType) -> some View {
-        VStack(alignment: .leading, spacing: 10) {
+    private func enhancedVitalsCard<T>(title: String, icon: String, color: Color, latestReading: String, type: VitalType, entries: FetchedResults<T>) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Image(systemName: icon)
-                    .foregroundColor(color)
+                    .font(.system(size: 40))
+                    .foregroundColor(.white)
+                    .background(Circle().fill(color).frame(width: 56, height: 56))
                 Text(title)
                     .font(.system(size: userSettings.textSize.size, weight: .bold))
+                    .foregroundColor(color)
+                Spacer()
+                Button(action: {
+                    addMeasurement(type: type)
+                }) {
+                    Label(NSLocalizedString("Add", comment: ""), systemImage: "plus.circle.fill")
+                        .font(.system(size: userSettings.textSize.size))
+                        .foregroundColor(color)
+                }
+                .background(Color.white)
+                .cornerRadius(20)
             }
             
-            Text(latestReading)
-                .font(.system(size: userSettings.textSize.size))
-                .foregroundColor(.primary)
-            
-            Button(action: {
-                addMeasurement(type: type)
-            }) {
-                Text(NSLocalizedString("Add Measurement", comment: ""))
-                    .font(.system(size: userSettings.textSize.size - 2))
-                    .foregroundColor(.blue)
+            if !entries.isEmpty {
+                Text(latestReading)
+                    .font(.system(size: userSettings.textSize.size + 2, weight: .semibold))
+                    .foregroundColor(.primary)
+            } else {
+                Text(NSLocalizedString("No data available", comment: ""))
+                    .font(.system(size: userSettings.textSize.size))
+                    .foregroundColor(.secondary)
             }
+            
+            Text(NSLocalizedString("Tap to view history and charts", comment: ""))
+                .font(.system(size: userSettings.textSize.size - 2))
+                .foregroundColor(.secondary)
+                .frame(maxWidth: .infinity, alignment: .center)
+                .padding(.top, 5)
         }
         .padding()
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color(.systemGray6))
-        .cornerRadius(10)
+        .background(color.opacity(0.15))
+        .cornerRadius(18)
+        .shadow(radius: 2)
     }
     
     private func formatBPReading(_ entry: BloodPressureEntry?) -> String {
