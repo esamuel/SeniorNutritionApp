@@ -15,19 +15,19 @@ struct AddAppointmentView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("APPOINTMENT INFORMATION")) {
-                    TextField("Title", text: $title)
+                Section(header: Text(NSLocalizedString("APPOINTMENT INFORMATION", comment: ""))) {
+                    TextField(NSLocalizedString("Title", comment: ""), text: $title)
                         .accessibilityIdentifier("appointmentTitleField")
                     
-                    Picker("Type", selection: $appointmentType) {
+                    Picker(NSLocalizedString("Type", comment: ""), selection: $appointmentType) {
                         ForEach(AppointmentType.allCases) { type in
-                            Text(type.rawValue).tag(type)
+                            Text(type.localizedName).tag(type)
                         }
                     }
                     .accessibilityIdentifier("appointmentTypePicker")
                     
                     HStack {
-                        Text("Date & Time")
+                        Text(NSLocalizedString("Date & Time", comment: ""))
                         Spacer()
                         DatePicker("", selection: $appointmentDate)
                             .labelsHidden()
@@ -35,42 +35,42 @@ struct AddAppointmentView: View {
                             .accessibilityIdentifier("appointmentDatePicker")
                     }
                     
-                    TextField("Location", text: $location)
+                    TextField(NSLocalizedString("Location", comment: ""), text: $location)
                         .accessibilityIdentifier("appointmentLocationField")
                 }
                 
-                Section(header: Text("NOTES")) {
+                Section(header: Text(NSLocalizedString("NOTES", comment: ""))) {
                     TextEditor(text: $notes)
                         .frame(minHeight: 100)
                         .accessibilityIdentifier("appointmentNotesField")
                 }
                 
-                Section(header: Text("REMINDER")) {
-                    Toggle("Set Reminder", isOn: $reminderEnabled)
+                Section(header: Text(NSLocalizedString("REMINDER", comment: ""))) {
+                    Toggle(NSLocalizedString("Set Reminder", comment: ""), isOn: $reminderEnabled)
                         .accessibilityIdentifier("reminderToggle")
                     
                     if reminderEnabled {
-                        Picker("Remind me", selection: $reminderTime) {
+                        Picker(NSLocalizedString("Remind me", comment: ""), selection: $reminderTime) {
                             ForEach(ReminderTime.allCases) { reminderTime in
-                                Text(reminderTime.rawValue).tag(reminderTime)
+                                Text(reminderTime.localizedName).tag(reminderTime)
                             }
                         }
                         .accessibilityIdentifier("reminderTimePicker")
                     }
                 }
             }
-            .navigationTitle("Add Appointment")
+            .navigationTitle(NSLocalizedString("Add Appointment", comment: ""))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") {
+                    Button(NSLocalizedString("Cancel", comment: "")) {
                         dismiss()
                     }
                     .accessibilityIdentifier("cancelAppointmentButton")
                 }
                 
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") {
+                    Button(NSLocalizedString("Save", comment: "")) {
                         let appointment = Appointment(
                             title: title,
                             type: appointmentType,

@@ -104,7 +104,7 @@ struct HomeView: View {
     private var welcomeSection: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
-                Text(String(format: NSLocalizedString("Good %@, %@", comment: ""), timeOfDay, userSettings.userProfile?.firstName ?? userSettings.userName))
+                Text(String(format: NSLocalizedString("%@, %@", comment: ""), timeOfDay, userSettings.userProfile?.firstName ?? userSettings.userName))
                     .font(.system(size: userSettings.textSize.size + 4, weight: .bold))
                 
                 Spacer()
@@ -113,7 +113,7 @@ struct HomeView: View {
                     if voiceManager.isSpeaking {
                         voiceManager.stopSpeaking()
                     } else {
-                        var speech = String(format: NSLocalizedString("Good %@, %@. ", comment: ""), timeOfDay, userSettings.userProfile?.firstName ?? userSettings.userName)
+                        var speech = String(format: NSLocalizedString("%@, %@. ", comment: ""), timeOfDay, userSettings.userProfile?.firstName ?? userSettings.userName)
                         speech += NSLocalizedString("Medication Reminders.", comment: "")
                         if nextMedicationDoses.isEmpty {
                             speech += NSLocalizedString("No medications scheduled for today.", comment: "")
@@ -631,11 +631,11 @@ struct HomeView: View {
     private var timeOfDay: String {
         let hour = Calendar.current.component(.hour, from: Date())
         if hour < 12 {
-            return NSLocalizedString("Morning", comment: "")
+            return NSLocalizedString("Good morning", comment: "")
         } else if hour < 17 {
-            return NSLocalizedString("Afternoon", comment: "")
+            return NSLocalizedString("Good afternoon", comment: "")
         } else {
-            return NSLocalizedString("Evening", comment: "")
+            return NSLocalizedString("Good evening", comment: "")
         }
     }
     

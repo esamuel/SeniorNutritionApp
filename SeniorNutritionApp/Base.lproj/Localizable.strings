@@ -981,3 +981,37 @@
 "Health Report" = "Health Report";
 "Add Measurement" = "Add Measurement";
 "No data available" = "No data available";
+
+/* Hebrew Voice Debug */
+"Debug Hebrew Voices" = "Debug Hebrew Voices";
+"Hebrew Voice Debug" = "Hebrew Voice Debug";
+"Found %d Hebrew voices. Check console for details." = "Found %d Hebrew voices. Check console for details.";
+"Test Hebrew Voice" = "Test Hebrew Voice";
+"Hebrew voice test: This is a sample text in Hebrew to test voice synthesis." = "Hebrew voice test: This is a sample text in Hebrew to test voice synthesis.";
+"No Hebrew voices available on this device. Please download Hebrew voices from Settings > Accessibility > Spoken Content > Voices." = "No Hebrew voices available on this device. Please download Hebrew voices from Settings > Accessibility > Spoken Content > Voices.";
+
+/* Voice Synthesis Common Phrases */
+"Good morning" = "Good morning";
+"Good afternoon" = "Good afternoon";
+"Good evening" = "Good evening";
+"Good night" = "Good night";
+"And your fasting status" = "And your fasting status";
+"Time remaining" = "Time remaining";
+"percent remain" = "percent remain";
+"This is a test of the voice settings" = "This is a test of the voice settings";
+"I am speaking at" = "I am speaking at";
+"Hello, this is a voice sample" = "Hello, this is a voice sample";
+"I can read your medication reminders and health tips clearly" = "I can read your medication reminders and health tips clearly";
+"Today's schedule" = "Today's schedule";
+"Upcoming appointments" = "Upcoming appointments";
+"You have no upcoming appointments" = "You have no upcoming appointments";
+"Today's medications" = "Today's medications";
+"Fasting Timer features" = "Fasting Timer features";
+"Nutrition Tracking features" = "Nutrition Tracking features";
+"Appointment Management features" = "Appointment Management features";
+"rate" = "rate";
+
+"Keep a Food Journal" = "Keep a Food Journal";
+"Track how different foods affect your symptoms to identify patterns and triggers." = "Track how different foods affect your symptoms to identify patterns and triggers.";
+"Balanced Approach" = "Balanced Approach";
+"Focus on a balanced diet rich in whole foods while limiting processed foods and added sugars." = "Focus on a balanced diet rich in whole foods while limiting processed foods and added sugars.";

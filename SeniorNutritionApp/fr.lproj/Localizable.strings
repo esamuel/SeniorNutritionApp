@@ -205,7 +205,7 @@
 "See All" = "Voir tout";
 "No upcoming appointments" = "Aucun rendez-vous à venir";
 "Add Appointment" = "Ajouter un rendez-vous";
-"Good %@, %@" = "Bon%@, %@";
+"%@, %@" = "%@, %@";
 
 "Fasting Timer" = "Minuteur de jeûne";
 "End Fasting Early" = "Arrêter le jeûne plus tôt";
@@ -1403,5 +1403,26 @@
 "Water" = "Eau";
 "Fast" = "Jeûne";
 "Home" = "Accueil";
+
+/* Voice Synthesis Common Phrases */
+"Good morning" = "Bonjour";
+"Good afternoon" = "Bon après-midi";
+"Good evening" = "Bonsoir";
+"Good night" = "Bonne nuit";
+"And your fasting status" = "Et votre statut de jeûne";
+"Time remaining" = "Temps restant";
+"percent remain" = "pour cent restant";
+"This is a test of the voice settings" = "Ceci est un test des paramètres vocaux";
+"I am speaking at" = "Je parle à un rythme";
+"Hello, this is a voice sample" = "Bonjour, ceci est un échantillon vocal";
+"I can read your medication reminders and health tips clearly" = "Je peux lire clairement vos rappels de médicaments et conseils de santé";
+"Today's schedule" = "Programme d'aujourd'hui";
+"Upcoming appointments" = "Rendez-vous à venir";
+"You have no upcoming appointments" = "Vous n'avez aucun rendez-vous à venir";
+"Today's medications" = "Médicaments d'aujourd'hui";
+"Fasting Timer features" = "Fonctionnalités du minuteur de jeûne";
+"Nutrition Tracking features" = "Fonctionnalités de suivi nutritionnel";
+"Appointment Management features" = "Fonctionnalités de gestion des rendez-vous";
+"rate" = "rythme";
 
 

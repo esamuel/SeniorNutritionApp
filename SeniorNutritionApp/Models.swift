@@ -539,6 +539,10 @@ enum AppointmentType: String, CaseIterable, Identifiable, Codable {
     case other = "Other"
     
     var id: String { self.rawValue }
+    
+    var localizedName: String {
+        NSLocalizedString(self.rawValue, comment: "")
+    }
 }
 
 /// Represents a reminder time before an appointment
@@ -551,6 +555,10 @@ enum ReminderTime: String, CaseIterable, Identifiable, Codable {
     case oneDay = "1 day before"
     
     var id: String { self.rawValue }
+    
+    var localizedName: String {
+        NSLocalizedString(self.rawValue, comment: "")
+    }
     
     var timeInterval: TimeInterval {
         switch self {

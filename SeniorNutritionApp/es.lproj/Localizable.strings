@@ -176,7 +176,7 @@
 "Upcoming Appointments" = "Próximas citas";
 "See All" = "Ver todo";
 "No upcoming appointments" = "No hay próximas citas";
-"Good %@, %@" = "Buen%@, %@";
+"%@, %@" = "%@, %@";
 "Morning" = "Mañana";
 "Afternoon" = "Tarde";
 "Evening" = "Noche";
@@ -1371,5 +1371,26 @@
 "Water" = "Agua";
 "Fast" = "Ayuno";
 "Home" = "Inicio";
+
+/* Voice Synthesis Common Phrases */
+"Good morning" = "Buenos días";
+"Good afternoon" = "Buenas tardes";
+"Good evening" = "Buenas noches";
+"Good night" = "Buenas noches";
+"And your fasting status" = "Y su estado de ayuno";
+"Time remaining" = "Tiempo restante";
+"percent remain" = "por ciento restante";
+"This is a test of the voice settings" = "Esta es una prueba de la configuración de voz";
+"I am speaking at" = "Estoy hablando a ritmo";
+"Hello, this is a voice sample" = "Hola, esta es una muestra de voz";
+"I can read your medication reminders and health tips clearly" = "Puedo leer claramente sus recordatorios de medicamentos y consejos de salud";
+"Today's schedule" = "Horario de hoy";
+"Upcoming appointments" = "Citas próximas";
+"You have no upcoming appointments" = "No tiene citas próximas";
+"Today's medications" = "Medicamentos de hoy";
+"Fasting Timer features" = "Características del temporizador de ayuno";
+"Nutrition Tracking features" = "Características de seguimiento nutricional";
+"Appointment Management features" = "Características de gestión de citas";
+"rate" = "ritmo";
 
 

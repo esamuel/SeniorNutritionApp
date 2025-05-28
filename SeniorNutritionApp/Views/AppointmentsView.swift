@@ -129,8 +129,8 @@ class AppointmentManager: ObservableObject {
         
         // Create notification content
         let content = UNMutableNotificationContent()
-        content.title = "Appointment Reminder"
-        content.body = "\(appointment.title) - \(appointment.type.rawValue) in \(appointment.reminder.rawValue)"
+        content.title = NSLocalizedString("Appointment Reminder", comment: "")
+        content.body = String(format: NSLocalizedString("%@ - %@ in %@", comment: ""), appointment.title, appointment.type.localizedName, appointment.reminder.localizedName)
         content.sound = .default
         
         // Create trigger using date components
@@ -406,7 +406,7 @@ struct AppointmentRow: View {
                 }
             }
             
-            Text(appointment.type.rawValue)
+            Text(appointment.type.localizedName)
                 .font(.caption)
                 .foregroundColor(.white)
                 .padding(.horizontal, 8)
