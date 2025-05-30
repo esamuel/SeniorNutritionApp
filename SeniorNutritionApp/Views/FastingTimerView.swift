@@ -19,14 +19,16 @@ private struct TimerSectionView: View {
             // Timer display
             ZStack {
                 Circle()
-                    .stroke(lineWidth: 20)
+                    .stroke(lineWidth: 15)
                     .opacity(0.3)
                     .foregroundColor(fastingState == .fasting ? .green : .orange)
+                    .frame(width: 250, height: 250) // Set a specific size for the circle
                 
                 Circle()
                     .trim(from: 0, to: CGFloat(calculatePercentageRemaining()) / 100)
-                    .stroke(style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
+                    .stroke(style: StrokeStyle(lineWidth: 15, lineCap: .round, lineJoin: .round))
                     .foregroundColor(fastingState == .fasting ? .green : .orange)
+                    .frame(width: 250, height: 250) // Match the size of the background circle
                     .rotationEffect(Angle(degrees: -90))
                 
                 VStack(spacing: 5) {

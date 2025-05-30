@@ -24,36 +24,22 @@ struct UserProfileSetupView: View {
     private let sectionColors: [Color] = [.blue.opacity(0.1), .green.opacity(0.1), .orange.opacity(0.1), .purple.opacity(0.1), .pink.opacity(0.1)]
     
     private let genderOptions = ["Male", "Female", "Other"]
-    private let medicalConditionOptions = [
-        "High Blood Pressure",
-        "Diabetes",
-        "Heart Disease",
-        "Arthritis",
-        "Osteoporosis",
-        "Asthma",
-        "COPD",
-        "Cancer",
-        "Stroke",
-        "Alzheimer's",
-        "Parkinson's",
-        "Other"
+    // Empty arrays for medical conditions and dietary restrictions
+    // Users can add their own real information
+    @State private var newMedicalCondition: String = ""
+    @State private var newDietaryRestriction: String = ""
+    
+    // Common medical conditions and dietary restrictions as suggestions
+    private let commonMedicalConditions = [
+        NSLocalizedString("High Blood Pressure", comment: ""),
+        NSLocalizedString("Diabetes", comment: ""),
+        NSLocalizedString("Heart Disease", comment: "")
     ]
     
-    private let dietaryRestrictionOptions = [
-        "Vegetarian",
-        "Vegan",
-        "Gluten-Free",
-        "Dairy-Free",
-        "Nut-Free",
-        "Low Sodium",
-        "Low Sugar",
-        "Low Fat",
-        "Kosher",
-        "Halal",
-        "Pescatarian",
-        "Keto",
-        "Paleo",
-        "Other"
+    private let commonDietaryRestrictions = [
+        NSLocalizedString("Vegetarian", comment: ""),
+        NSLocalizedString("Gluten-Free", comment: ""),
+        NSLocalizedString("Low Sodium", comment: "")
     ]
     
     var body: some View {
@@ -130,20 +116,63 @@ struct UserProfileSetupView: View {
                 Section(header: Text("Medical Conditions")
                         .font(.headline)
                         .foregroundColor(.orange)) {
-                    ForEach(medicalConditionOptions, id: \.self) { condition in
-                        Toggle(condition, isOn: Binding(
-                            get: { medicalConditions.contains(condition) },
-                            set: { isOn in
-                                if isOn {
-                                    medicalConditions.append(condition)
-                                } else {
-                                    medicalConditions.removeAll { $0 == condition }
-                                }
+                    
+                    // Display existing medical conditions with delete option
+                    ForEach(medicalConditions, id: \.self) { condition in
+                        HStack {
+                            Text(condition)
+                            Spacer()
+                            Button(action: {
+                                medicalConditions.removeAll { $0 == condition }
+                            }) {
+                                Image(systemName: "xmark.circle.fill")
+                                    .foregroundColor(.red)
                             }
-                        ))
+                        }
                         .padding(8)
                         .background(Color.orange.opacity(0.1))
                         .cornerRadius(8)
+                    }
+                    
+                    // Add new medical condition
+                    HStack {
+                        TextField(NSLocalizedString("Add medical condition", comment: ""), text: $newMedicalCondition)
+                        Button(action: {
+                            if !newMedicalCondition.isEmpty && !medicalConditions.contains(newMedicalCondition) {
+                                medicalConditions.append(newMedicalCondition)
+                                newMedicalCondition = ""
+                            }
+                        }) {
+                            Image(systemName: "plus.circle.fill")
+                                .foregroundColor(.green)
+                        }
+                        .disabled(newMedicalCondition.isEmpty)
+                    }
+                    .padding(8)
+                    .background(Color.orange.opacity(0.1))
+                    .cornerRadius(8)
+                    
+                    // Common suggestions
+                    Text(NSLocalizedString("Suggestions:", comment: ""))
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                        .padding(.top, 8)
+                    
+                    ForEach(commonMedicalConditions, id: \.self) { condition in
+                        if !medicalConditions.contains(condition) {
+                            Button(action: {
+                                medicalConditions.append(condition)
+                            }) {
+                                HStack {
+                                    Text(condition)
+                                    Spacer()
+                                    Image(systemName: "plus")
+                                }
+                            }
+                            .padding(8)
+                            .background(Color.orange.opacity(0.05))
+                            .cornerRadius(8)
+                        }
                     }
                 }
                 .listRowBackground(Color.clear)
@@ -151,21 +180,65 @@ struct UserProfileSetupView: View {
                 Section(header: Text("Dietary Restrictions")
                         .font(.headline)
                         .foregroundColor(.purple)) {
-                    ForEach(dietaryRestrictionOptions, id: \.self) { restriction in
-                        Toggle(restriction, isOn: Binding(
-                            get: { dietaryRestrictions.contains(restriction) },
-                            set: { isOn in
-                                if isOn {
-                                    dietaryRestrictions.append(restriction)
-                                } else {
-                                    dietaryRestrictions.removeAll { $0 == restriction }
-                                }
+                    
+                    // Display existing dietary restrictions with delete option
+                    ForEach(dietaryRestrictions, id: \.self) { restriction in
+                        HStack {
+                            Text(restriction)
+                            Spacer()
+                            Button(action: {
+                                dietaryRestrictions.removeAll { $0 == restriction }
+                            }) {
+                                Image(systemName: "xmark.circle.fill")
+                                    .foregroundColor(.red)
                             }
-                        ))
+                        }
                         .padding(8)
                         .background(Color.purple.opacity(0.1))
                         .cornerRadius(8)
                     }
+                    
+                    // Add new dietary restriction
+                    HStack {
+                        TextField(NSLocalizedString("Add dietary restriction", comment: ""), text: $newDietaryRestriction)
+                        Button(action: {
+                            if !newDietaryRestriction.isEmpty && !dietaryRestrictions.contains(newDietaryRestriction) {
+                                dietaryRestrictions.append(newDietaryRestriction)
+                                newDietaryRestriction = ""
+                            }
+                        }) {
+                            Image(systemName: "plus.circle.fill")
+                                .foregroundColor(.green)
+                        }
+                        .disabled(newDietaryRestriction.isEmpty)
+                    }
+                    .padding(8)
+                    .background(Color.purple.opacity(0.1))
+                    .cornerRadius(8)
+                    
+                    // Common suggestions
+                    Text(NSLocalizedString("Suggestions:", comment: ""))
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                        .padding(.top, 8)
+                    
+                    ForEach(commonDietaryRestrictions, id: \.self) { restriction in
+                        if !dietaryRestrictions.contains(restriction) {
+                            Button(action: {
+                                dietaryRestrictions.append(restriction)
+                            }) {
+                                HStack {
+                                    Text(restriction)
+                                    Spacer()
+                                    Image(systemName: "plus")
+                                }
+                            }
+                            .padding(8)
+                            .background(Color.purple.opacity(0.05))
+                            .cornerRadius(8)
+                        }
+                    }
+
                 }
                 .listRowBackground(Color.clear)
                 
