@@ -11,7 +11,6 @@ private struct TimerSectionView: View {
     let lastMealTime: Date
     let nextMealTime: Date
     let textSize: CGFloat
-    let timeFormatter: DateFormatter
     let onShowLastMealPicker: () -> Void
     let onShowNextMealPicker: () -> Void
     
@@ -52,7 +51,7 @@ private struct TimerSectionView: View {
                         .font(.system(size: textSize - 2))
                         .foregroundColor(.secondary)
                     Button(action: onShowLastMealPicker) {
-                        Text(timeFormatter.string(from: lastMealTime))
+                        Text(lastMealTime.localizedTimeString())
                             .font(.system(size: textSize))
                     }
                 }
@@ -62,7 +61,7 @@ private struct TimerSectionView: View {
                         .font(.system(size: textSize - 2))
                         .foregroundColor(.secondary)
                     Button(action: onShowNextMealPicker) {
-                        Text(timeFormatter.string(from: nextMealTime))
+                        Text(nextMealTime.localizedTimeString())
                             .font(.system(size: textSize))
                     }
                 }
@@ -216,7 +215,7 @@ private struct TimelineSectionView: View {
         components.minute = firstTime.minute
         
         if let date = calendar.date(from: components) {
-            return timeFormatter.string(from: date)
+            return DateFormattingUtility.shared.formatTime(date)
         }
         return String(format: "%02d:%02d", firstTime.hour, firstTime.minute)
     }
@@ -236,14 +235,13 @@ struct FastingTimerView: View {
     @State private var customEatingHours = 8
     @State private var showingCustomProtocol = false
     
+    // Use our localized time formatter
     private var timeFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.timeStyle = .short
-        return formatter
+        return FastingManager.getLocalizedTimeFormatter()
     }
     
     private func formatTimeRange(start: Date, end: Date) -> String {
-        return "\(timeFormatter.string(from: start)) - \(timeFormatter.string(from: end))"
+        return Date.localizedTimeRange(start: start, end: end)
     }
     
     private func endFasting() {
@@ -373,7 +371,7 @@ struct FastingTimerView: View {
                         }
                     }) {
                         HStack {
-                            Text(userSettings.activeFastingProtocol.rawValue)
+                            Text(userSettings.activeFastingProtocol.localizedTitle)
                                 .font(.system(size: userSettings.textSize.size))
                             Spacer()
                             Image(systemName: "chevron.right")
@@ -429,7 +427,7 @@ struct FastingTimerView: View {
     // Current protocol section
     private var currentProtocolSection: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text(String(format: NSLocalizedString("Current Protocol: %@", comment: ""), userSettings.activeFastingProtocol.rawValue))
+            Text(String(format: NSLocalizedString("Current Protocol: %@", comment: ""), userSettings.activeFastingProtocol.localizedTitle))
                 .font(.system(size: userSettings.textSize.size, weight: .bold))
             
             Text(userSettings.activeFastingProtocol.description.localized)
@@ -451,7 +449,6 @@ struct FastingTimerView: View {
             lastMealTime: fastingManager.lastMealTime,
             nextMealTime: fastingManager.nextMealTime,
             textSize: userSettings.textSize.size,
-            timeFormatter: timeFormatter,
             onShowLastMealPicker: { showingLastMealPicker = true },
             onShowNextMealPicker: { showingNextMealPicker = true }
         )
@@ -691,7 +688,7 @@ struct FastingTimerView: View {
                 }) {
                     HStack {
                         VStack(alignment: .leading, spacing: 8) {
-                            Text(`protocol`.rawValue)
+                            Text(`protocol`.localizedTitle)
                                 .font(.system(size: userSettings.textSize.size, weight: .bold))
                             
                             Text(`protocol`.description)

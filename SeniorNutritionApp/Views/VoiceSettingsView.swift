@@ -82,7 +82,10 @@ struct VoiceSettingsView: View {
                 }
                 
                 Button(action: {
-                    voiceManager.speak("This is a test of the voice settings. I am speaking at \(userSettings.speechRate.rawValue) rate.", userSettings: userSettings)
+                    // Use NSLocalizedString to ensure proper localization
+                    let testText = String(format: NSLocalizedString("This is a test of the voice settings", comment: "") + ". " + NSLocalizedString("I am speaking at", comment: "") + " %@ " + NSLocalizedString("rate", comment: "") + ".", userSettings.speechRate.rawValue)
+                    
+                    voiceManager.speak(testText, userSettings: userSettings)
                 }) {
                     HStack(spacing: 4) {
                         Image(systemName: voiceManager.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
@@ -115,6 +118,56 @@ struct VoiceSettingsView: View {
                         Text("Show Available Voices")
                     }
                 }
+                
+                // Debug button to test Hebrew voice detection
+                Button(action: {
+                    let voices = AVSpeechSynthesisVoice.speechVoices()
+                    let hebrewVoices = voices.filter { voice in
+                        voice.language.starts(with: "he") || voice.language.contains("IL")
+                    }
+                    
+                    print("=== HEBREW VOICE DEBUG ===")
+                    print("Total voices available: \(voices.count)")
+                    print("Hebrew voices found: \(hebrewVoices.count)")
+                    
+                    for voice in hebrewVoices {
+                        print("Hebrew Voice: \(voice.name) - Language: \(voice.language) - Quality: \(voice.quality.rawValue)")
+                    }
+                    
+                    if hebrewVoices.isEmpty {
+                        print("No Hebrew voices found. User needs to download Hebrew voices from Settings > Accessibility > Spoken Content > Voices")
+                    }
+                    
+                    // Test Hebrew voice creation
+                    if let hebrewVoice = AVSpeechSynthesisVoice(language: "he-IL") {
+                        print("Successfully created he-IL voice: \(hebrewVoice.name)")
+                    } else if let hebrewVoice = AVSpeechSynthesisVoice(language: "he") {
+                        print("Successfully created he voice: \(hebrewVoice.name)")
+                    } else {
+                        print("Failed to create any Hebrew voice")
+                    }
+                    
+                    print("=== END DEBUG ===")
+                    
+                    // Show alert with results
+                    let alert = UIAlertController(
+                        title: "Hebrew Voice Debug",
+                        message: "Found \(hebrewVoices.count) Hebrew voices. Check console for details.",
+                        preferredStyle: .alert
+                    )
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    
+                    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                       let rootViewController = windowScene.windows.first?.rootViewController {
+                        rootViewController.present(alert, animated: true)
+                    }
+                }) {
+                    HStack {
+                        Image(systemName: "magnifyingglass")
+                        Text("Debug Hebrew Voices")
+                    }
+                }
+                .foregroundColor(.orange)
             }
         }
         .navigationTitle("Voice Settings")
@@ -188,29 +241,104 @@ struct VoiceListView: View {
                 Section(header: Text("Available Voices")) {
                     let voices = AVSpeechSynthesisVoice.speechVoices()
                     
-                    // Group voices by language
-                    let englishVoices = voices.filter { $0.language.hasPrefix("en") }
-                    let otherVoices = voices.filter { !$0.language.hasPrefix("en") }
+                    // Group voices by language - prioritize current app language
+                    let currentLang = LanguageManager.shared.currentLanguage
+                    let currentLanguageVoices = voices.filter { voice in
+                        switch currentLang {
+                        case "he":
+                            return voice.language.hasPrefix("he") || voice.language.contains("IL")
+                        case "fr":
+                            return voice.language.hasPrefix("fr")
+                        case "es":
+                            return voice.language.hasPrefix("es")
+                        default:
+                            return voice.language.hasPrefix("en")
+                        }
+                    }
                     
-                    // Display message if no enhanced voices are available
-                    if !englishVoices.contains(where: { $0.quality == .enhanced }) {
+                    let englishVoices = voices.filter { $0.language.hasPrefix("en") }
+                    let hebrewVoices = voices.filter { $0.language.hasPrefix("he") || $0.language.contains("IL") }
+                    let frenchVoices = voices.filter { $0.language.hasPrefix("fr") }
+                    let spanishVoices = voices.filter { $0.language.hasPrefix("es") }
+                    let otherVoices = voices.filter { voice in
+                        !voice.language.hasPrefix("en") && 
+                        !voice.language.hasPrefix("he") && 
+                        !voice.language.contains("IL") &&
+                        !voice.language.hasPrefix("fr") &&
+                        !voice.language.hasPrefix("es")
+                    }
+                    
+                    // Display message if no enhanced voices are available for current language
+                    if !currentLanguageVoices.contains(where: { $0.quality == .enhanced }) {
                         HStack {
                             Image(systemName: "info.circle")
                                 .foregroundColor(.orange)
-                            Text("No enhanced voices found. Use 'How to Download Enhanced Voices' above to add better quality voices.")
+                            Text("No enhanced voices found for \(currentLang.uppercased()). Use 'How to Download Enhanced Voices' above to add better quality voices.")
                                 .font(.caption)
                                 .foregroundColor(.orange)
                         }
                         .padding(.vertical, 4)
                     }
                     
+                    // Current Language Voices Section (prioritized)
+                    if !currentLanguageVoices.isEmpty && currentLang != "en" {
+                        Text("\(currentLang.uppercased()) Voices (Current Language)")
+                            .font(.headline)
+                            .padding(.top, 8)
+                        
+                        ForEach(currentLanguageVoices, id: \.identifier) { voice in
+                            voiceRow(voice: voice)
+                        }
+                    }
+                    
+                    // Hebrew Voices Section
+                    if !hebrewVoices.isEmpty && currentLang != "he" {
+                        Text("Hebrew Voices")
+                            .font(.headline)
+                            .padding(.top, 8)
+                        
+                        ForEach(hebrewVoices, id: \.identifier) { voice in
+                            voiceRow(voice: voice)
+                        }
+                    }
+                    
                     // English Voices Section
-                    if !englishVoices.isEmpty {
+                    if !englishVoices.isEmpty && currentLang != "en" {
                         Text("English Voices")
                             .font(.headline)
                             .padding(.top, 8)
                         
                         ForEach(englishVoices, id: \.identifier) { voice in
+                            voiceRow(voice: voice)
+                        }
+                    } else if currentLang == "en" && !englishVoices.isEmpty {
+                        Text("English Voices (Current Language)")
+                            .font(.headline)
+                            .padding(.top, 8)
+                        
+                        ForEach(englishVoices, id: \.identifier) { voice in
+                            voiceRow(voice: voice)
+                        }
+                    }
+                    
+                    // French Voices Section
+                    if !frenchVoices.isEmpty && currentLang != "fr" {
+                        Text("French Voices")
+                            .font(.headline)
+                            .padding(.top, 8)
+                        
+                        ForEach(frenchVoices, id: \.identifier) { voice in
+                            voiceRow(voice: voice)
+                        }
+                    }
+                    
+                    // Spanish Voices Section
+                    if !spanishVoices.isEmpty && currentLang != "es" {
+                        Text("Spanish Voices")
+                            .font(.headline)
+                            .padding(.top, 8)
+                        
+                        ForEach(spanishVoices, id: \.identifier) { voice in
                             voiceRow(voice: voice)
                         }
                     }
@@ -248,7 +376,7 @@ struct VoiceListView: View {
             .alert("Download Enhanced Voices", isPresented: $showingDownloadInstructions) {
                 Button("OK", role: .cancel) { }
             } message: {
-                Text("To get more natural-sounding voices:\n\n1. Open iPhone Settings\n2. Go to Accessibility\n3. Tap Spoken Content\n4. Tap Voices\n5. Select English (or your preferred language)\n6. Look for voices marked as 'Enhanced' or 'Premium'\n7. Tap Download next to the voices you want\n\nAfter downloading, restart this app to see the new voices.")
+                Text("To get more natural-sounding voices:\n\n1. Open iPhone Settings\n2. Go to Accessibility\n3. Tap Spoken Content\n4. Tap Voices\n5. Select your preferred language (English, Hebrew, French, Spanish)\n6. Look for voices marked as 'Enhanced' or 'Premium'\n7. Tap Download next to the voices you want\n\nFor Hebrew: Look for voices like 'Carmit' or other Hebrew voices\nFor best results with Hebrew text, download at least one Hebrew voice.\n\nAfter downloading, restart this app to see the new voices.")
             }
         }
     }
@@ -265,7 +393,7 @@ struct VoiceListView: View {
         selectedVoice = voice
         
         // Create a sample utterance that demonstrates the voice characteristics
-        let sampleText = "Hello, this is a voice sample. I can read your medication reminders and health tips clearly."
+        let sampleText = NSLocalizedString("Hello, this is a voice sample", comment: "") + ". " + NSLocalizedString("I can read your medication reminders and health tips clearly", comment: "") + "."
         
         // Create a temporary settings object with the selected voice
         let tempSettings = UserSettings()
@@ -390,7 +518,11 @@ struct VoiceListView: View {
             "ko-KR": "Korean",
             "zh-CN": "Chinese (Mainland)",
             "zh-HK": "Chinese (Hong Kong)",
-            "zh-TW": "Chinese (Taiwan)"
+            "zh-TW": "Chinese (Taiwan)",
+            "he-IL": "Hebrew (Israel)",
+            "he": "Hebrew",
+            "ar-SA": "Arabic (Saudi Arabia)",
+            "ar": "Arabic"
         ]
         
         return languages[code] ?? code

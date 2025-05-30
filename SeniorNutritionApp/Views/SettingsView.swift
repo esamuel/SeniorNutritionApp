@@ -93,6 +93,7 @@ struct SettingsView: View {
                 
                 // Language section
                 Section(header: Text(NSLocalizedString("Language", comment: "")).font(.system(size: userSettings.textSize.size, weight: .bold))) {
+                    // Always show language picker
                     Picker(NSLocalizedString("App Language", comment: ""), selection: $userSettings.selectedLanguage) {
                         ForEach(userSettings.supportedLanguages, id: \.self) { code in
                             Text(languageDisplayName(for: code)).tag(code)
@@ -101,6 +102,8 @@ struct SettingsView: View {
                     .pickerStyle(MenuPickerStyle())
                     .font(.system(size: userSettings.textSize.size))
                     .onChange(of: userSettings.selectedLanguage) { newLang in
+                        // Disable follow system when manually selecting a language
+                        languageManager.followSystemLanguage = false
                         LanguageManager.shared.setLanguage(newLang)
                     }
                     Button(action: {
@@ -118,7 +121,7 @@ struct SettingsView: View {
                         Label(NSLocalizedString("Fix Language Issues", comment: ""), systemImage: "arrow.triangle.2.circlepath")
                             .padding(.vertical, 8)
                     }
-                    Button(NSLocalizedString("Reset to System Language", comment: "")) {
+                    Button(action: {
                         print("SettingsView: Reset to System Language pressed")
                         // First, reset in LanguageManager (which will handle removing from UserDefaults)
                         LanguageManager.shared.resetToSystemLanguage()
@@ -128,11 +131,27 @@ struct SettingsView: View {
                             userSettings.selectedLanguage = LanguageManager.shared.currentLanguage
                             print("SettingsView: selectedLanguage updated to: \(userSettings.selectedLanguage)")
                         }
+                    }) {
+                        HStack {
+                            Image(systemName: "globe")
+                                .foregroundColor(.blue)
+                            Text(NSLocalizedString(languageManager.followSystemLanguage ? "Using System Language" : "Use System Language", comment: ""))
+                                .foregroundColor(.blue)
+                            if languageManager.followSystemLanguage {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .foregroundColor(.green)
+                            }
+                        }
                     }
-                    .foregroundColor(.blue)
-                    Text(String(format: NSLocalizedString("Current app language: %@", comment: ""), languageManager.currentLanguage))
-                        .font(.caption)
-                        .foregroundColor(.secondary)
+                    if languageManager.followSystemLanguage {
+                        Text(NSLocalizedString("App language will automatically follow system language", comment: ""))
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    } else {
+                        Text(String(format: NSLocalizedString("Current app language: %@", comment: ""), languageManager.currentLanguage))
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
                 }
                 
                 // Help & support section
@@ -217,6 +236,14 @@ struct SettingsView: View {
                 
                 // About section
                 Section(header: sectionHeader(NSLocalizedString("About", comment: ""))) {
+                    NavigationLink(destination: AboutView()) {
+                        settingsRowContent(
+                            icon: "info.circle.fill",
+                            title: NSLocalizedString("About the App", comment: ""),
+                            color: .blue
+                        )
+                    }
+                    
                     HStack {
                         Text(NSLocalizedString("Version", comment: ""))
                             .font(.system(size: userSettings.textSize.size))

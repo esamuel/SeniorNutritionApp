@@ -205,7 +205,7 @@
 "See All" = "Voir tout";
 "No upcoming appointments" = "Aucun rendez-vous à venir";
 "Add Appointment" = "Ajouter un rendez-vous";
-"Good %@, %@" = "Bon%@, %@";
+"%@, %@" = "%@, %@";
 
 "Fasting Timer" = "Minuteur de jeûne";
 "End Fasting Early" = "Arrêter le jeûne plus tôt";
@@ -243,7 +243,7 @@
 "If you feel unwell, end your fast immediately" = "Si vous ne vous sentez pas bien, arrêtez immédiatement votre jeûne";
 "Quality sleep helps with fasting results" = "Un sommeil de qualité aide les résultats du jeûne";
 "View More Health Tips" = "Voir plus de conseils de santé";
-"Loading" = "Patientez, j'arrive";
+"Loading" = "Chargement...";
 
 // Protocol names and descriptions
 "12:12" = "12:12";
@@ -374,102 +374,100 @@
 "End Time" = "Heure de fin";
 "Settings" = "Paramètres";
 "Save" = "Enregistrer";
-"%@ pill shape" = "%@ pill shape";
+"%@ pill shape" = "%@ forme de pilule";
 "%d cal" = "%d cal";
-"%d g carbs" = "%d g carbs";
-"%d g fat" = "%d g fat";
-"%d g protein" = "%d g protein";
-"%d hours" = "%d hours";
-"%d min" = "%d min";
-"%d/%d%@" = "%d/%d%@";
-"3 Months" = "3 Months";
-"3D Pill Shape Options" = "3D Pill Shape Options";
-"Add Time" = "Add Time";
-"Always consult with your healthcare provider before starting a fasting regimen, especially if you have chronic health conditions." = "Always consult with your healthcare provider before starting a fasting regimen, especially if you have chronic health conditions.";
-"Always discuss your fasting regimen with your healthcare provider to ensure it's safe for your specific health condition." = "Always discuss your fasting regimen with your healthcare provider to ensure it's safe for your specific health condition.";
-"Anti-Inflammatory Benefits" = "Anti-Inflammatory Benefits";
-"Anti-Inflammatory Foods" = "Anti-Inflammatory Foods";
-"App Instructions" = "App Instructions";
+"%d g carbs" = "%d g glucides";
+"%d g fat" = "%d g lipides";
+"%d g protein" = "%d g protéines";
+"%d/%d%@" = "%1$d/%2$d %3$@";
+"3 Months" = "3 mois";
+"3D Pill Shape Options" = "Options de forme de pilule 3D";
+"Add Time" = "Ajouter l'heure";
+"Always consult with your healthcare provider before starting a fasting regimen, especially if you have chronic health conditions." = "Consultez toujours votre professionnel de la santé avant de commencer un régime de jeûne, surtout si vous souffrez de problèmes de santé chroniques.";
+"Always discuss your fasting regimen with your healthcare provider to ensure it's safe for your specific health condition." = "Discutez toujours de votre régime de jeûne avec votre professionnel de la santé pour vous assurer qu'il est sans danger pour votre état de santé spécifique.";
+"Anti-Inflammatory Benefits" = "Avantages anti-inflammatoires";
+"Anti-Inflammatory Foods" = "Aliments anti-inflammatoires";
+"App Instructions" = "Instructions de l'application";
 "Avoid Overexertion" = "Évitez le surmenage";
-"Begin with shorter fasting periods and gradually extend them as your body adapts." = "Begin with shorter fasting periods and gradually extend them as your body adapts.";
-"BMI" = "BMI";
+"Begin with shorter fasting periods and gradually extend them as your body adapts." = "Commencez par des périodes de jeûne plus courtes et prolongez-les progressivement à mesure que votre corps s'adapte.";
+"BMI" = "IMC";
 "Brain Health" = "Santé cérébrale";
-"Break Fast Appropriately" = "Break Fast Appropriately";
-"Break your fast with a balanced meal containing protein, healthy fats, and complex carbohydrates to prevent blood sugar spikes." = "Break your fast with a balanced meal containing protein, healthy fats, and complex carbohydrates to prevent blood sugar spikes.";
-"Break your fast with anti-inflammatory foods like fatty fish, berries, turmeric, and leafy greens." = "Break your fast with anti-inflammatory foods like fatty fish, berries, turmeric, and leafy greens.";
-"Break your fast with easily digestible foods and avoid known trigger foods that aggravate your condition." = "Break your fast with easily digestible foods and avoid known trigger foods that aggravate your condition.";
-"Calcium Timing" = "Calcium Timing";
+"Break Fast Appropriately" = "Rompre le jeûne correctement";
+"Break your fast with a balanced meal containing protein, healthy fats, and complex carbohydrates to prevent blood sugar spikes." = "Rompez votre jeûne avec un repas équilibré contenant des protéines, des graisses saines et des glucides complexes pour éviter les pics de glycémie.";
+"Break your fast with anti-inflammatory foods like fatty fish, berries, turmeric, and leafy greens." = "Rompez votre jeûne avec des aliments anti-inflammatoires comme le poisson gras, les baies, le curcuma et les légumes-feuilles.";
+"Break your fast with easily digestible foods and avoid known trigger foods that aggravate your condition." = "Rompez votre jeûne avec des aliments faciles à digérer et évitez les aliments déclencheurs connus qui aggravent votre état.";
+"Calcium Timing" = "Moment de la prise de calcium";
 "Calories" = "Calories";
-"Carbs" = "Carbs";
+"Carbs" = "Glucides";
 "Cellular Repair" = "Réparation cellulaire";
-"Check your blood glucose levels more frequently during fasting periods to ensure they remain within a safe range." = "Check your blood glucose levels more frequently during fasting periods to ensure they remain within a safe range.";
-"Check your blood pressure regularly during fasting periods, as fasting can sometimes cause fluctuations." = "Check your blood pressure regularly during fasting periods, as fasting can sometimes cause fluctuations.";
-"Classic Medication Visuals" = "Classic Medication Visuals";
-"Consider adding a pinch of salt to your water or drinking sugar-free electrolyte beverages during longer fasts." = "Consider adding a pinch of salt to your water or drinking sugar-free electrolyte beverages during longer fasts.";
-"Consider including probiotic-rich foods when breaking your fast to support gut health." = "Consider including probiotic-rich foods when breaking your fast to support gut health.";
-"Consider shorter fasting periods (12-14 hours) rather than extended fasts to avoid blood sugar fluctuations." = "Consider shorter fasting periods (12-14 hours) rather than extended fasts to avoid blood sugar fluctuations.";
-"Consider time-restricted eating (10-12 hours) rather than extended fasting periods to minimize stress on the kidneys." = "Consider time-restricted eating (10-12 hours) rather than extended fasting periods to minimize stress on the kidneys.";
+"Check your blood glucose levels more frequently during fasting periods to ensure they remain within a safe range." = "Vérifiez votre glycémie plus fréquemment pendant les périodes de jeûne pour vous assurer qu'elle reste dans une plage de sécurité.";
+"Check your blood pressure regularly during fasting periods, as fasting can sometimes cause fluctuations." = "Vérifiez régulièrement votre tension artérielle pendant les périodes de jeûne, car le jeûne peut parfois provoquer des fluctuations.";
+"Classic Medication Visuals" = "Visuels classiques des médicaments";
+"Consider adding a pinch of salt to your water or drinking sugar-free electrolyte beverages during longer fasts." = "Envisagez d'ajouter une pincée de sel à votre eau ou de boire des boissons électrolytiques sans sucre pendant les jeûnes plus longs.";
+"Consider including probiotic-rich foods when breaking your fast to support gut health." = "Envisagez d'inclure des aliments riches en probiotiques lors de la rupture de votre jeûne pour soutenir la santé intestinale.";
+"Consider shorter fasting periods (12-14 hours) rather than extended fasts to avoid blood sugar fluctuations." = "Envisagez des périodes de jeûne plus courtes (12-14 heures) plutôt que des jeûnes prolongés pour éviter les fluctuations de la glycémie.";
+"Consider time-restricted eating (10-12 hours) rather than extended fasting periods to minimize stress on the kidneys." = "Envisagez une alimentation limitée dans le temps (10-12 heures) plutôt que des périodes de jeûne prolongées pour minimiser le stress sur les reins.";
 "Consult Healthcare Providers" = "Consultez les professionnels de santé";
-"Consult Your Doctor" = "Consult Your Doctor";
-"Consult Your Nephrologist" = "Consult Your Nephrologist";
-"Continue regular thyroid function tests to ensure your condition remains stable while practicing intermittent fasting." = "Continue regular thyroid function tests to ensure your condition remains stable while practicing intermittent fasting.";
-"Date: %@" = "Date: %@";
-"Digestive Rest" = "Digestive Rest";
-"During extended fasts, avoid strenuous exercise. Light activities like walking or gentle stretching are better options." = "During extended fasts, avoid strenuous exercise. Light activities like walking or gentle stretching are better options.";
-"Eating Window:" = "Eating Window:";
-"Edit Reading" = "Edit Reading";
-"Enhanced Medication Visuals" = "Enhanced Medication Visuals";
-"Ensure adequate calcium intake during your eating window. Consider calcium-rich foods like dairy, fortified plant milks, or leafy greens." = "Ensure adequate calcium intake during your eating window. Consider calcium-rich foods like dairy, fortified plant milks, or leafy greens.";
-"Ensure adequate protein intake during your eating window, as protein is essential for bone health." = "Ensure adequate protein intake during your eating window, as protein is essential for bone health.";
-"Fasting gives your digestive system time to rest and repair, which may help reduce symptoms." = "Fasting gives your digestive system time to rest and repair, which may help reduce symptoms.";
-"Fasting Hours:" = "Fasting Hours:";
-"Fasting may help reduce inflammation, potentially providing relief from arthritis symptoms." = "Fasting may help reduce inflammation, potentially providing relief from arthritis symptoms.";
-"Fasting may increase the production of brain-derived neurotrophic factor (BDNF), which supports brain health and may protect against neurodegenerative diseases." = "Fasting may increase the production of brain-derived neurotrophic factor (BDNF), which supports brain health and may protect against neurodegenerative diseases.";
-"Fasting Protocol Guide" = "Fasting Protocol Guide";
-"Fasting triggers cellular repair processes, including autophagy, where cells remove damaged components." = "Fasting triggers cellular repair processes, including autophagy, where cells remove damaged components.";
-"Fat" = "Fat";
-"Follow your doctor's recommendations for fluid intake during fasting, as both over-hydration and dehydration can be problematic." = "Follow your doctor's recommendations for fluid intake during fasting, as both over-hydration and dehydration can be problematic.";
-"Food Selection" = "Food Selection";
-"General Fasting Guidelines" = "General Fasting Guidelines";
-"Gentle Movement" = "Gentle Movement";
-"Gentle Refeeding" = "Gentle Refeeding";
-"Gradual Transition" = "Gradual Transition";
-"Health & Appointments" = "Health & Appointments";
-"Healthy Meal Suggestions" = "Healthy Meal Suggestions";
-"Heart Rate" = "Heart Rate";
-"History" = "History";
-"Hydration Balance" = "Hydration Balance";
-"Hydration with Care" = "Hydration with Care";
+"Consult Your Doctor" = "Consultez votre médecin";
+"Consult Your Nephrologist" = "Consultez votre néphrologue";
+"Continue regular thyroid function tests to ensure your condition remains stable while practicing intermittent fasting." = "Continuez les tests réguliers de la fonction thyroïdienne pour vous assurer que votre état reste stable pendant la pratique du jeûne intermittent.";
+"Date: %@" = "Date : %@";
+"Digestive Rest" = "Repos digestif";
+"During extended fasts, avoid strenuous exercise. Light activities like walking or gentle stretching are better options." = "Pendant les jeûnes prolongés, évitez les exercices intenses. Des activités légères comme la marche ou des étirements doux sont de meilleures options.";
+"Eating Window:" = "Fenêtre d'alimentation :";
+"Edit Reading" = "Modifier la lecture";
+"Enhanced Medication Visuals" = "Visuels améliorés des médicaments";
+"Ensure adequate calcium intake during your eating window. Consider calcium-rich foods like dairy, fortified plant milks, or leafy greens." = "Assurez un apport adéquat en calcium pendant votre fenêtre d'alimentation. Envisagez des aliments riches en calcium comme les produits laitiers, les laits végétaux enrichis ou les légumes-feuilles.";
+"Ensure adequate protein intake during your eating window, as protein is essential for bone health." = "Assurez un apport adéquat en protéines pendant votre fenêtre d'alimentation, car les protéines sont essentielles à la santé des os.";
+"Fasting gives your digestive system time to rest and repair, which may help reduce symptoms." = "Le jeûne donne à votre système digestif le temps de se reposer et de se réparer, ce qui peut aider à réduire les symptômes.";
+"Fasting Hours:" = "Heures de jeûne :";
+"Fasting may help reduce inflammation, potentially providing relief from arthritis symptoms." = "Le jeûne peut aider à réduire l'inflammation, offrant potentiellement un soulagement des symptômes de l'arthrite.";
+"Fasting may increase the production of brain-derived neurotrophic factor (BDNF), which supports brain health and may protect against neurodegenerative diseases." = "Le jeûne peut augmenter la production du facteur neurotrophique dérivé du cerveau (BDNF), qui soutient la santé cérébrale et peut protéger contre les maladies neurodégénératives.";
+"Fasting Protocol Guide" = "Guide du protocole de jeûne";
+"Fasting triggers cellular repair processes, including autophagy, where cells remove damaged components." = "Le jeûne déclenche des processus de réparation cellulaire, y compris l'autophagie, où les cellules éliminent les composants endommagés.";
+"Fat" = "Lipides";
+"Follow your doctor's recommendations for fluid intake during fasting, as both over-hydration and dehydration can be problematic." = "Suivez les recommandations de votre médecin concernant l'apport hydrique pendant le jeûne, car une surhydratation ou une déshydratation peuvent être problématiques.";
+"Food Selection" = "Sélection des aliments";
+"General Fasting Guidelines" = "Directives générales de jeûne";
+"Gentle Movement" = "Mouvement doux";
+"Gentle Refeeding" = " réalimentation douce";
+"Gradual Transition" = "Transition progressive";
+"Health & Appointments" = "Santé et rendez-vous";
+"Healthy Meal Suggestions" = "Suggestions de repas sains";
+"Heart Rate" = "Fréquence cardiaque";
+"History" = "Historique";
+"Hydration Balance" = "Équilibre hydrique";
+"Hydration with Care" = "Hydratation avec soin";
 "If you experience severe headaches, dizziness, confusion, or weakness, break your fast immediately and consult your doctor." = "Si vous ressentez de violents maux de tête, des étourdissements, de la confusion ou de la faiblesse, arrêtez immédiatement le jeûne et consultez votre médecin.";
-"If you take blood pressure medications, work with your doctor to monitor how fasting affects your blood pressure and adjust medications if necessary." = "If you take blood pressure medications, work with your doctor to monitor how fasting affects your blood pressure and adjust medications if necessary.";
-"Include weight-bearing exercises during your eating window to help maintain bone density." = "Include weight-bearing exercises during your eating window to help maintain bone density.";
-"Incorporate gentle stretching or yoga during fasting periods to maintain joint mobility." = "Incorporate gentle stretching or yoga during fasting periods to maintain joint mobility.";
+"If you take blood pressure medications, work with your doctor to monitor how fasting affects your blood pressure and adjust medications if necessary." = "Si vous prenez des médicaments pour la tension artérielle, collaborez avec votre médecin pour surveiller comment le jeûne affecte votre tension et ajustez les médicaments si nécessaire.";
+"Include weight-bearing exercises during your eating window to help maintain bone density." = "Incluez des exercices de mise en charge pendant votre fenêtre d'alimentation pour aider à maintenir la densité osseuse.";
+"Incorporate gentle stretching or yoga during fasting periods to maintain joint mobility." = "Intégrez des étirements doux ou du yoga pendant les périodes de jeûne pour maintenir la mobilité articulaire.";
 "Insulin Sensitivity" = "Sensibilité à l'insuline";
-"Iodine-Rich Foods" = "Iodine-Rich Foods";
-"Kidney disease affects electrolyte balance. Regular monitoring during fasting periods is essential." = "Kidney disease affects electrolyte balance. Regular monitoring during fasting periods is essential.";
-"Kidney disease requires specialized fasting protocols. Always consult with your kidney specialist before fasting." = "Kidney disease requires specialized fasting protocols. Always consult with your kidney specialist before fasting.";
+"Iodine-Rich Foods" = "Aliments riches en iode";
+"Kidney disease affects electrolyte balance. Regular monitoring during fasting periods is essential." = "Les maladies rénales affectent l'équilibre électrolytique. Une surveillance régulière pendant les périodes de jeûne est essentielle.";
+"Kidney disease requires specialized fasting protocols. Always consult with your kidney specialist before fasting." = "Les maladies rénales nécessitent des protocoles de jeûne spécialisés. Consultez toujours votre néphrologue avant de jeûner.";
 "Know When to Stop" = "Savoir quand s'arrêter";
-"Listen to Your Body" = "Listen to Your Body";
-"Maintain Electrolyte Balance" = "Maintain Electrolyte Balance";
-"Maintain vitamin D supplementation as recommended by your doctor, as it's crucial for calcium absorption." = "Maintain vitamin D supplementation as recommended by your doctor, as it's crucial for calcium absorption.";
-"Meal Details" = "Meal Details";
-"Medication Color Options" = "Medication Color Options";
-"Medication Details" = "Medication Details";
+"Listen to Your Body" = "Écoutez votre corps";
+"Maintain Electrolyte Balance" = "Maintenir l'équilibre électrolytique";
+"Maintain vitamin D supplementation as recommended by your doctor, as it's crucial for calcium absorption." = "Maintenez une supplémentation en vitamine D selon les recommandations de votre médecin, car elle est cruciale pour l'absorption du calcium.";
+"Meal Details" = "Détails du repas";
+"Medication Color Options" = "Options de couleur des médicaments";
+"Medication Details" = "Détails des médicaments";
 "Medication Timing" = "Moment de la prise des médicaments";
-"Minerals" = "Minerals";
-"Monitor Blood Pressure" = "Monitor Blood Pressure";
-"Monitor Blood Sugar Closely" = "Monitor Blood Sugar Closely";
-"Monitor Electrolytes" = "Monitor Electrolytes";
-"Monitor Energy Levels" = "Monitor Energy Levels";
-"Month" = "Month";
-"Notes: %@" = "Notes: %@";
+"Minerals" = "Minéraux";
+"Monitor Blood Pressure" = "Surveiller la tension artérielle";
+"Monitor Blood Sugar Closely" = "Surveiller attentivement la glycémie";
+"Monitor Electrolytes" = "Surveiller les électrolytes";
+"Monitor Energy Levels" = "Surveiller les niveaux d'énergie";
+"Month" = "Mois";
+"Notes: %@" = "Remarques : %@";
 "Notes" = "Notes";
-"Nutritional Information" = "Nutritional Information";
-"Pay attention to energy levels during fasting. Excessive fatigue may indicate a need to adjust your fasting schedule." = "Pay attention to energy levels during fasting. Excessive fatigue may indicate a need to adjust your fasting schedule.";
-"Pay close attention to how your body responds to fasting and adjust your approach accordingly." = "Pay close attention to how your body responds to fasting and adjust your approach accordingly.";
-"Pill Appearance" = "Pill Appearance";
-"Pill Color" = "Pill Color";
-"Portion Size Guide" = "Portion Size Guide";
+"Nutritional Information" = "Informations nutritionnelles";
+"Pay attention to energy levels during fasting. Excessive fatigue may indicate a need to adjust your fasting schedule." = "Faites attention à vos niveaux d'énergie pendant le jeûne. Une fatigue excessive peut indiquer la nécessité d'ajuster votre programme de jeûne.";
+"Pay close attention to how your body responds to fasting and adjust your approach accordingly." = "Soyez très attentif à la façon dont votre corps réagit au jeûne et ajustez votre approche en conséquence.";
+"Pill Appearance" = "Apparence de la pilule";
+"Pill Color" = "Couleur de la pilule";
+"Portion Size Guide" = "Guide des tailles de portion";
 "Portion Size" = "Taille de la Portion";
 "Select Portion Size" = "Sélectionner la Taille de la Portion";
 "Portion Size Guide" = "Guide des Tailles de Portion";
@@ -477,36 +475,36 @@
 "Small" = "Petite";
 "Medium" = "Moyenne";
 "Large" = "Grande";
-"Probiotic Support" = "Probiotic Support";
-"Protein Intake" = "Protein Intake";
-"Protein" = "Protein";
+"Probiotic Support" = "Soutien probiotique";
+"Protein Intake" = "Apport en protéines";
+"Protein" = "Protéines";
 "Reduced Inflammation" = "Inflammation réduite";
 "Regular fasting can improve insulin sensitivity, potentially reducing the risk of type 2 diabetes." = "Le jeûne régulier peut améliorer la sensibilité à l'insuline, réduisant potentiellement le risque de diabète de type 2.";
-"Regular Testing" = "Regular Testing";
-"Save Medication" = "Save Medication";
-"Save Settings" = "Save Settings";
-"Schedule:" = "Schedule:";
-"Schedule" = "Schedule";
-"Select Pill Shape" = "Select Pill Shape";
-"Select Shape" = "Select Shape";
-"Selected" = "Selected";
-"Shorter Fasting Periods" = "Shorter Fasting Periods";
-"Shorter Fasting Windows" = "Shorter Fasting Windows";
-"Start Gradually" = "Start Gradually";
-"Stay hydrated but avoid carbonated or caffeinated beverages that might irritate your digestive tract." = "Stay hydrated but avoid carbonated or caffeinated beverages that might irritate your digestive tract.";
+"Regular Testing" = "Tests réguliers";
+"Save Medication" = "Enregistrer le médicament";
+"Save Settings" = "Enregistrer les paramètres";
+"Schedule:" = "Programme :";
+"Schedule" = "Programme";
+"Select Pill Shape" = "Sélectionner la forme de la pilule";
+"Select Shape" = "Sélectionner la forme";
+"Selected" = "Sélectionné";
+"Shorter Fasting Periods" = "Périodes de jeûne plus courtes";
+"Shorter Fasting Windows" = "Fenêtres de jeûne plus courtes";
+"Start Gradually" = "Commencer progressivement";
+"Stay hydrated but avoid carbonated or caffeinated beverages that might irritate your digestive tract." = "Restez hydraté mais évitez les boissons gazeuses ou caféinées qui pourraient irriter votre tube digestif.";
 "Studies suggest that fasting may reduce inflammatory markers in the body, which are linked to many chronic diseases." = "Des études suggèrent que le jeûne peut réduire les marqueurs inflammatoires dans le corps, qui sont liés à de nombreuses maladies chroniques.";
 "Take medications as prescribed by your doctor. Some medications need to be taken with food, which may require adjusting your fasting schedule." = "Prenez vos médicaments comme prescrit par votre médecin. Certains médicaments doivent être pris avec de la nourriture, ce qui peut nécessiter d'ajuster votre horaire de jeûne.";
-"Time(s) to Take Medication" = "Time(s) to Take Medication";
-"Times:" = "Times:";
-"Trends" = "Trends";
-"Vitamin D" = "Vitamin D";
-"Vitamins" = "Vitamins";
-"Week" = "Week";
-"Weight-Bearing Exercise" = "Weight-Bearing Exercise";
-"Weight" = "Weight";
-"When breaking your fast, include iodine-rich foods like seaweed, fish, or eggs to support thyroid function." = "When breaking your fast, include iodine-rich foods like seaweed, fish, or eggs to support thyroid function.";
-"Work with your healthcare provider to adjust medication timing if needed to accommodate your fasting schedule." = "Work with your healthcare provider to adjust medication timing if needed to accommodate your fasting schedule.";
-"Your Protocol: %@" = "Your Protocol: %@";
+"Time(s) to Take Medication" = "Heure(s) de prise du médicament";
+"Times:" = "Heures :";
+"Trends" = "Tendances";
+"Vitamin D" = "Vitamine D";
+"Vitamins" = "Vitamines";
+"Week" = "Semaine";
+"Weight-Bearing Exercise" = "Exercice de mise en charge";
+"Weight" = "Poids";
+"When breaking your fast, include iodine-rich foods like seaweed, fish, or eggs to support thyroid function." = "Lorsque vous rompez votre jeûne, incluez des aliments riches en iode comme les algues, le poisson ou les œufs pour soutenir la fonction thyroïdienne.";
+"Work with your healthcare provider to adjust medication timing if needed to accommodate your fasting schedule." = "Collaborez avec votre professionnel de la santé pour ajuster l'heure de prise des médicaments si nécessaire pour s'adapter à votre programme de jeûne.";
+"Your Protocol: %@" = "Votre protocole : %@";
 
 /* Localized strings for Fasting Timer */
 "FASTING_TIMER_TITLE" = "Minuteur de jeûne";
@@ -791,6 +789,13 @@
 
 "Adding a New Meal" = "Ajout d'un nouveau repas";
 "When adding a meal, follow these steps:" = "Lors de l'ajout d'un repas, suivez ces étapes :";
+/* Voice Synthesis Common Phrases */
+"Good morning" = "Bonjour";
+"Good afternoon" = "Bon après-midi";
+"Good evening" = "Bonsoir";
+
+/* Greeting format - in French */
+"%@, %@" = "%1$@, %2$@";
 "Search for Food: Tap 'Search Food Database' to find foods" = "Rechercher un aliment : Appuyez sur 'Rechercher dans la base de données alimentaire' pour trouver des aliments";
 "Enter Meal Details: Add a name, select meal type (breakfast, lunch, dinner, or snack)" = "Saisir les détails du repas : Ajoutez un nom, sélectionnez le type de repas (petit-déjeuner, déjeuner, dîner ou collation)";
 "Set Portion Size: Choose small, medium, or large to adjust calories accordingly" = "Définir la taille de la portion : Choisissez petite, moyenne ou grande pour ajuster les calories en conséquence";
@@ -1357,51 +1362,71 @@
 
 /* About Section */
 "About" = "À propos";
-"About Senior Nutrition" = "À propos de Senior Nutrition";
-"Version" = "Version";
-"Current Version" = "Version actuelle";
-"App Information" = "Informations sur l'application";
-"Legal Documents" = "Documents légaux";
+"About the App" = "À propos de l'application";
+"Our Vision" = "Notre vision";
+"Key Features" = "Fonctionnalités clés";
+"The Story Behind" = "L'histoire derrière";
+"Safety First" = "La sécurité avant tout";
+"Contact Us" = "Contactez-nous";
+"Legal Information" = "Informations légales";
 "Privacy Policy" = "Politique de confidentialité";
 "Terms of Service" = "Conditions d'utilisation";
-"Last Updated" = "Dernière mise à jour";
-"Contact Information" = "Informations de contact";
-"Support Email" = "Email de support";
-"Company Location" = "Localisation de l'entreprise";
-"Company Address" = "Adresse de l'entreprise";
 
-/* Privacy Policy Content */
-"Privacy Policy Introduction" = "Cette Politique de confidentialité décrit comment SeniorNutritionApp ('nous') collecte, utilise et divulgue vos informations lorsque vous utilisez notre application mobile ('l'Application').";
+/* About Content */
+"Senior Nutrition is a comprehensive health and wellness app designed specifically for adults aged 50 and above. Our mission is to support healthy aging through personalized nutrition guidance, mindful eating practices, and safe fasting protocols tailored for seniors." = "Senior Nutrition est une application complète de santé et de bien-être conçue spécifiquement pour les adultes de 50 ans et plus. Notre mission est de soutenir un vieillissement en bonne santé grâce à des conseils nutritionnels personnalisés, des pratiques alimentaires conscientes et des protocoles de jeûne sûrs adaptés aux seniors.";
 
-"1. Information We Collect" = "1. Informations que nous collectons";
-"Information We Collect Content" = "Nous pouvons collecter les types d'informations suivants :\n\n• Informations personnelles : Informations que vous fournissez directement, comme votre nom, date de naissance, genre, données de santé et préférences.\n\n• Informations d'utilisation : Informations sur votre interaction avec l'Application.\n\n• Informations sur l'appareil : Informations sur votre appareil et système.\n\n• Données vocales : Commandes vocales lorsque vous utilisez les fonctionnalités vocales.\n\n• Données de santé : Données liées à la santé avec votre permission.\n\n• Données de localisation : Informations de localisation pour les fonctionnalités d'urgence.";
+"We believe that proper nutrition is fundamental to healthy aging. Our app combines the latest research in senior nutrition with user-friendly technology to help older adults maintain their health, independence, and quality of life." = "Nous croyons qu'une bonne nutrition est fondamentale pour un vieillissement en bonne santé. Notre application combine les dernières recherches en matière de nutrition des seniors avec une technologie conviviale pour aider les personnes âgées à maintenir leur santé, leur indépendance et leur qualité de vie.";
 
-"2. How We Use Your Information" = "2. Comment nous utilisons vos informations";
-"How We Use Information Content" = "Nous utilisons vos informations pour :\n\n• Fournir et améliorer les fonctionnalités de l'Application\n• Personnaliser votre expérience\n• Envoyer des notifications importantes\n• Analyser les modèles d'utilisation\n• Assurer la sécurité de l'Application\n• Respecter les exigences légales\n• Activer les fonctionnalités de contact d'urgence";
+"This app was born from a deep understanding of the unique nutritional needs of seniors and the challenges they face in maintaining healthy eating habits. We worked closely with nutritionists, geriatric care specialists, and seniors themselves to create a tool that's both comprehensive and easy to use." = "Cette application est née d'une profonde compréhension des besoins nutritionnels uniques des seniors et des défis qu'ils rencontrent pour maintenir de saines habitudes alimentaires. Nous avons travaillé en étroite collaboration avec des nutritionnistes, des spécialistes en gériatrie et les seniors eux-mêmes pour créer un outil à la fois complet et facile à utiliser.";
 
-"3. Information Sharing" = "3. Partage d'informations";
-"Information Sharing Content" = "Nous ne vendons pas vos informations personnelles. Nous partageons les informations uniquement :\n\n• Avec votre consentement explicite\n• Avec les fournisseurs de services qui aident à faire fonctionner l'Application\n• Avec les contacts d'urgence lorsque vous activez les fonctionnalités d'urgence\n• Lorsque la loi l'exige\n• En cas de transferts d'entreprise";
+"All our features, especially the fasting protocols, are designed with senior safety in mind. We incorporate regular reminders, health checks, and emergency override options to ensure a safe and healthy experience." = "Toutes nos fonctionnalités, en particulier les protocoles de jeûne, sont conçues en pensant à la sécurité des seniors. Nous intégrons des rappels réguliers, des contrôles de santé et des options d'annulation d'urgence pour garantir une expérience sûre et saine.";
 
-/* Menu Sections */
-"HEALTH & WELLNESS" = "SANTÉ & BIEN-ÊTRE";
-"ACCOUNT & SETTINGS" = "COMPTE & PARAMÈTRES";
-"HELP & SUPPORT" = "AIDE & ASSISTANCE";
+"This app is designed for informational purposes only and should not replace professional medical advice. Always consult with your healthcare provider before starting any new diet or fasting program." = "Cette application est conçue uniquement à des fins d'information et ne doit pas remplacer l'avis médical professionnel. Consultez toujours votre professionnel de santé avant de commencer un nouveau régime alimentaire ou un programme de jeûne.";
 
-/* Menu Items */
-"Medications" = "Médicaments";
-"Appointments" = "Rendez-vous";
-"Health" = "Santé";
-"Health Tips" = "Conseils Santé";
-"Profile" = "Profil";
-"Settings" = "Paramètres";
-"Help" = "Aide";
-"Emergency Contacts" = "Contacts d'Urgence";
+/* About Features */
+"Personalized nutrition tracking and recommendations" = "Suivi nutritionnel personnalisé et recommandations";
+"Senior-friendly fasting protocols with safety features" = "Protocoles de jeûne adaptés aux seniors avec fonctions de sécurité";
+"Medication and meal schedule integration" = "Intégration des horaires de médicaments et de repas";
+"Multi-language support (English, French, Spanish, Hebrew)" = "Support multilingue (anglais, français, espagnol, hébreu)";
+"Enhanced accessibility with adjustable text sizes" = "Accessibilité améliorée avec tailles de texte ajustables";
+"Voice assistance for hands-free operation" = "Assistance vocale pour une utilisation mains libres";
 
-/* Bottom Navigation */
-"More" = "Plus";
-"Nutrition" = "Nutrition";
-"Water" = "Eau";
-"Fast" = "Jeûne";
-"Home" = "Accueil";
+/* Key Features Titles */
+"Fasting Timer" = "Minuteur de Jeûne";
+"Nutrition Tracking" = "Suivi Nutritionnel";
+"Appointment Management" = "Gestion des Rendez-vous";
+"Health Monitoring" = "Suivi de Santé";
+"Medication Management" = "Gestion des Médicaments";
+"Quick Actions" = "Actions Rapides";
+
+/* Key Features Descriptions */
+"Advanced fasting protocol options for seniors" = "Options de protocoles de jeûne avancées pour les seniors";
+"Real-time tracking with health safety indicators" = "Suivi en temps réel avec indicateurs de sécurité santé";
+"Customizable fasting and eating windows" = "Fenêtres de jeûne et d'alimentation personnalisables";
+"Integration with medication and meal schedules" = "Intégration avec les horaires de médicaments et de repas";
+
+"Simplified meal logging with photos or voice input" = "Enregistrement simplifié des repas avec photos ou commande vocale";
+"Nutritional analysis with senior-specific recommendations" = "Analyse nutritionnelle avec recommandations spécifiques aux seniors";
+"Customizable meal reminders and hydration tracking" = "Rappels de repas personnalisables et suivi de l'hydratation";
+"Food database with barcode scanning capability" = "Base de données alimentaire avec capacité de lecture de codes-barres";
+
+"Automatic reminders with customizable advance notice" = "Rappels automatiques avec préavis personnalisable";
+"Location and provider information storage" = "Stockage des informations de localisation et de prestataires";
+"Calendar integration and sharing with caregivers" = "Intégration du calendrier et partage avec les soignants";
+
+"Track vital signs including blood pressure, heart rate, and weight" = "Suivi des signes vitaux incluant tension artérielle, fréquence cardiaque et poids";
+"Blood sugar monitoring with customizable target ranges" = "Surveillance de la glycémie avec plages cibles personnalisables";
+"Visual data trends with weekly and monthly analysis" = "Tendances visuelles des données avec analyse hebdomadaire et mensuelle";
+"Health data export for healthcare provider review" = "Export des données de santé pour examen par les professionnels de santé";
+
+"Visual medication identification system" = "Système d'identification visuelle des médicaments";
+"Smart scheduling with fasting compatibility alerts" = "Planification intelligente avec alertes de compatibilité de jeûne";
+"Refill reminders and medication history tracking" = "Rappels de renouvellement et suivi de l'historique des médicaments";
+"Food and timing requirement notifications" = "Notifications des exigences alimentaires et de timing";
+
+"One-tap meal and medication logging" = "Enregistrement des repas et médicaments en un tap";
+"Voice-activated commands for hands-free operation" = "Commandes vocales pour une utilisation mains libres";
+"Emergency contact access with location sharing" = "Accès aux contacts d'urgence avec partage de localisation";
+"Instant health data recording and visualization" = "Enregistrement et visualisation instantanés des données de santé";
 
 

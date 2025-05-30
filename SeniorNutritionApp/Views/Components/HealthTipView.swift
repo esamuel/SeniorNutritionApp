@@ -46,7 +46,7 @@ struct HealthTipsCarousel: View {
         VStack(alignment: .leading, spacing: 16) {
             if showHeader {
                 HStack {
-                    Text("Health Tips")
+                    Text(NSLocalizedString("Health Tips", comment: ""))
                         .font(.title3)
                         .fontWeight(.bold)
                     
@@ -54,7 +54,7 @@ struct HealthTipsCarousel: View {
                     
                     if let action = onViewMoreTapped {
                         Button(action: action) {
-                            Text("View More")
+                            Text(NSLocalizedString("View More", comment: ""))
                                 .font(.subheadline)
                                 .foregroundColor(.accentColor)
                         }
