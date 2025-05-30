@@ -171,45 +171,97 @@ struct ProfileView: View {
     
     private func medicalConditionsSection(_ profile: UserProfile) -> some View {
         Group {
-            if !profile.medicalConditions.isEmpty {
-                Section(header: Text("Medical Conditions")
-                    .font(.system(size: userSettings.textSize.size, weight: .bold))
-                    .foregroundColor(.red)) {
-                    
-                    ForEach(profile.medicalConditions, id: \.self) { condition in
+                Section(header: HStack {
+                    Text("Medical Conditions")
+                        .font(.system(size: userSettings.textSize.size, weight: .bold))
+                        .foregroundColor(.red)
+                    Spacer()
+                    Button(action: {
+                        showingProfileSetup = true
+                    }) {
+                        Image(systemName: "pencil.circle")
+                            .foregroundColor(.blue)
+                    }
+                    Button(action: {
+                        if var updatedProfile = userSettings.userProfile {
+                            updatedProfile.medicalConditions = []
+                            userSettings.updateProfile(updatedProfile)
+                        }
+                    }) {
+                        Image(systemName: "trash.circle")
+                            .foregroundColor(.red)
+                    }
+                }) {
+                    if profile.medicalConditions.isEmpty {
                         HStack {
-                            Image(systemName: "heart.text.square")
-                                .foregroundColor(.red)
-                            Text(condition)
+                            Image(systemName: "info.circle")
+                                .foregroundColor(.secondary)
+                            Text("No medical conditions added")
                                 .font(.system(size: userSettings.textSize.size))
+                                .foregroundColor(.secondary)
                         }
                         .padding(.vertical, 4)
+                    } else {
+                        ForEach(profile.medicalConditions, id: \.self) { condition in
+                            HStack {
+                                Image(systemName: "heart.text.square")
+                                    .foregroundColor(.red)
+                                Text(condition)
+                                    .font(.system(size: userSettings.textSize.size))
+                            }
+                            .padding(.vertical, 4)
+                        }
                     }
                 }
                 .listRowBackground(Color.red.opacity(0.05))
-            }
         }
     }
     
     private func dietaryRestrictionsSection(_ profile: UserProfile) -> some View {
         Group {
-            if !profile.dietaryRestrictions.isEmpty {
-                Section(header: Text("Dietary Restrictions")
-                    .font(.system(size: userSettings.textSize.size, weight: .bold))
-                    .foregroundColor(.orange)) {
-                    
-                    ForEach(profile.dietaryRestrictions, id: \.self) { restriction in
+                Section(header: HStack {
+                    Text("Dietary Restrictions")
+                        .font(.system(size: userSettings.textSize.size, weight: .bold))
+                        .foregroundColor(.orange)
+                    Spacer()
+                    Button(action: {
+                        showingProfileSetup = true
+                    }) {
+                        Image(systemName: "pencil.circle")
+                            .foregroundColor(.blue)
+                    }
+                    Button(action: {
+                        if var updatedProfile = userSettings.userProfile {
+                            updatedProfile.dietaryRestrictions = []
+                            userSettings.updateProfile(updatedProfile)
+                        }
+                    }) {
+                        Image(systemName: "trash.circle")
+                            .foregroundColor(.red)
+                    }
+                }) {
+                    if profile.dietaryRestrictions.isEmpty {
                         HStack {
-                            Image(systemName: "fork.knife")
-                                .foregroundColor(.orange)
-                            Text(restriction)
+                            Image(systemName: "info.circle")
+                                .foregroundColor(.secondary)
+                            Text("No dietary restrictions added")
                                 .font(.system(size: userSettings.textSize.size))
+                                .foregroundColor(.secondary)
                         }
                         .padding(.vertical, 4)
+                    } else {
+                        ForEach(profile.dietaryRestrictions, id: \.self) { restriction in
+                            HStack {
+                                Image(systemName: "fork.knife")
+                                    .foregroundColor(.orange)
+                                Text(restriction)
+                                    .font(.system(size: userSettings.textSize.size))
+                            }
+                            .padding(.vertical, 4)
+                        }
                     }
                 }
                 .listRowBackground(Color.orange.opacity(0.05))
-            }
         }
     }
     
