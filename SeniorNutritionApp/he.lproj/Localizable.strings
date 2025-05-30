@@ -1873,6 +1873,13 @@
 "Personal Information" = "מידע אישי";
 "Physical Information" = "מידע פיזי";
 
+/* Form Fields */
+"First Name" = "שם פרטי";
+"Last Name" = "שם משפחה";
+"Date of Birth" = "תאריך לידה";
+"Height (cm)" = "גובה (סמ)";
+"Weight (kg)" = "משקל (קג)";
+
 "Good night" = "לילה טוב";
 "And your fasting status" = "ומצב הצום שלך";
 "Time remaining" = "זמן שנותר";

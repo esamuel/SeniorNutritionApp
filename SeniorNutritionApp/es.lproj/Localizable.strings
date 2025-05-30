@@ -1424,3 +1424,10 @@
 "Emergency Contacts" = "Contactos de Emergencia";
 "Personal Information" = "Información Personal";
 "Physical Information" = "Información Física";
+
+/* Form Fields */
+"First Name" = "Nombre";
+"Last Name" = "Apellido";
+"Date of Birth" = "Fecha de nacimiento";
+"Height (cm)" = "Altura (cm)";
+"Weight (kg)" = "Peso (kg)";

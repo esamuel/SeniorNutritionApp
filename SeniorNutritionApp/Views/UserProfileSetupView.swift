@@ -67,20 +67,20 @@ struct UserProfileSetupView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Personal Information")
+                Section(header: Text(NSLocalizedString("Personal Information", comment: ""))
                         .font(.headline)
                         .foregroundColor(.blue)) {
-                    TextField("First Name", text: $firstName)
+                    TextField(NSLocalizedString("First Name", comment: ""), text: $firstName)
                         .padding(8)
                         .background(Color.blue.opacity(0.1))
                         .cornerRadius(8)
                     
-                    TextField("Last Name", text: $lastName)
+                    TextField(NSLocalizedString("Last Name", comment: ""), text: $lastName)
                         .padding(8)
                         .background(Color.blue.opacity(0.1))
                         .cornerRadius(8)
                     
-                    DatePicker("Date of Birth", selection: $dateOfBirth, displayedComponents: .date)
+                    DatePicker(NSLocalizedString("Date of Birth", comment: ""), selection: $dateOfBirth, displayedComponents: .date)
                         .datePickerStyle(CompactDatePickerStyle())
                         .datePickerLTR()
                         .padding(8)
@@ -118,16 +118,16 @@ struct UserProfileSetupView: View {
                 }
                 .listRowBackground(Color.clear)
                 
-                Section(header: Text("Physical Information")
+                Section(header: Text(NSLocalizedString("Physical Information", comment: ""))
                         .font(.headline)
                         .foregroundColor(.green)) {
-                    TextField("Height (cm)", text: $height)
+                    TextField(NSLocalizedString("Height (cm)", comment: ""), text: $height)
                         .keyboardType(.decimalPad)
                         .padding(8)
                         .background(Color.green.opacity(0.1))
                         .cornerRadius(8)
                     
-                    TextField("Weight (kg)", text: $weight)
+                    TextField(NSLocalizedString("Weight (kg)", comment: ""), text: $weight)
                         .keyboardType(.decimalPad)
                         .padding(8)
                         .background(Color.green.opacity(0.1))
@@ -135,7 +135,7 @@ struct UserProfileSetupView: View {
                 }
                 .listRowBackground(Color.clear)
                 
-                Section(header: Text("Medical Conditions")
+                Section(header: Text(NSLocalizedString("Medical Conditions", comment: ""))
                         .font(.headline)
                         .foregroundColor(.orange)) {
                     
@@ -208,7 +208,7 @@ struct UserProfileSetupView: View {
                 }
                 .listRowBackground(Color.clear)
                 
-                Section(header: Text("Dietary Restrictions")
+                Section(header: Text(NSLocalizedString("Dietary Restrictions", comment: ""))
                         .font(.headline)
                         .foregroundColor(.purple)) {
                     
@@ -283,7 +283,7 @@ struct UserProfileSetupView: View {
                 .listRowBackground(Color.clear)
                 
                 // Enhanced Emergency Contacts Section with list of current contacts
-                Section(header: Text("Emergency Contacts")
+                Section(header: Text(NSLocalizedString("Emergency Contacts", comment: ""))
                         .font(.headline)
                         .foregroundColor(.pink)) {
                     

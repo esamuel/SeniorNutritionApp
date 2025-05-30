@@ -842,6 +842,13 @@
 "Emergency Contacts" = "Contacts d'Urgence";
 "Personal Information" = "Informations Personnelles";
 "Physical Information" = "Informations Physiques";
+
+/* Form Fields */
+"First Name" = "Prénom";
+"Last Name" = "Nom de famille";
+"Date of Birth" = "Date de naissance";
+"Height (cm)" = "Taille (cm)";
+"Weight (kg)" = "Poids (kg)";
 "Search for Food: Tap 'Search Food Database' to find foods" = "Rechercher un aliment : Appuyez sur 'Rechercher dans la base de données alimentaire' pour trouver des aliments";
 "Enter Meal Details: Add a name, select meal type (breakfast, lunch, dinner, or snack)" = "Saisir les détails du repas : Ajoutez un nom, sélectionnez le type de repas (petit-déjeuner, déjeuner, dîner ou collation)";
 "Set Portion Size: Choose small, medium, or large to adjust calories accordingly" = "Définir la taille de la portion : Choisissez petite, moyenne ou grande pour ajuster les calories en conséquence";

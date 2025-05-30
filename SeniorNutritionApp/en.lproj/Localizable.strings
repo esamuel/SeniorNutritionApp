@@ -600,3 +600,10 @@
 "Emergency Contacts" = "Emergency Contacts";
 "Personal Information" = "Personal Information";
 "Physical Information" = "Physical Information";
+
+/* Form Fields */
+"First Name" = "First Name";
+"Last Name" = "Last Name";
+"Date of Birth" = "Date of Birth";
+"Height (cm)" = "Height (cm)";
+"Weight (kg)" = "Weight (kg)";
