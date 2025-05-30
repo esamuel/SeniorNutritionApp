@@ -450,23 +450,17 @@
 "Absorption decreases with age. Consider a supplement or consume fortified foods." = "La absorción disminuye con la edad. Considere un suplemento o consuma alimentos fortificados.";
 "Vitamin D3" = "Vitamina D3";
 "Important for calcium absorption and immune function. Consider a supplement if you have limited sun exposure." = "Importante para la absorción de calcio y la función inmune. Considere un suplemento si tiene exposición limitada al sol.";
-
-/* German text keys that need Spanish translations */
-"Empfohlene Nahrungsergänzungsmittel" = "Suplementos a Considerar";
-"Allgemeine Ernährungstipps für Senioren" = "Consejos Nutricionales Generales para Personas Mayores";
-"Tipps für Ihre Erkrankungen" = "Consejos para Sus Condiciones Médicas";
-"Tipps für Ihre Ernährungseinschränkungen" = "Consejos para Sus Restricciones Alimentarias";
-"Lesen" = "Leer";
+"Read" = "Leer";
 "Hidden Dairy" = "Lácteos Ocultos";
 "Check labels for ingredients like whey, casein, and lactose which indicate dairy content." = "Verifique las etiquetas para ingredientes como suero, caseína y lactosa que indican contenido lácteo.";
 "Calcium Alternatives" = "Alternativas de Calcio";
 "Include non-dairy calcium sources like fortified plant milks, tofu, leafy greens, and canned fish with bones." = "Incluya fuentes de calcio no lácteas como leches vegetales fortificadas, tofu, verduras de hoja verde y pescado enlatado con huesos.";
-"Hinweis: Konsultieren Sie immer Ihren Arzt, bevor Sie mit der Einnahme von Nahrungsergänzungsmitteln beginnen." = "Nota: Consulte siempre con su médico antes de comenzar cualquier régimen de suplementos.";
 
 /* Detailed Help Guide */
 "Help: %@" = "Ayuda: %@";
 "Close" = "Cerrar";
 "Dashboard Overview" = "Descripción General del Panel";
+{{ ... }}
 "The Home dashboard provides a complete overview of your daily health information. Here you can see your fasting status, upcoming medications, water intake progress, and recent meals all in one place." = "El panel de inicio proporciona una visión completa de su información de salud diaria. Aquí puede ver su estado de ayuno, medicamentos próximos, progreso de ingesta de agua y comidas recientes, todo en un solo lugar.";
 "Main Features" = "Características Principales";
 "Health Status Cards: Quick view of vital health metrics" = "Tarjetas de Estado de Salud: Vista rápida de métricas vitales de salud";
@@ -801,13 +795,11 @@
 "If you need further assistance with the More section or any other features, please contact our support team through the Help & Support option or call our senior support line." = "Si necesita más ayuda con la sección Más o cualquier otra función, comuníquese con nuestro equipo de soporte a través de la opción Ayuda y Soporte o llame a nuestra línea de soporte para personas mayores."; 
 
 /* Auto-filled missing keys */
-"%@ pill shape" = "%@ pill shape";
+"%@ pill shape" = "%@ forma de pastilla";
 "%d cal" = "%d cal";
-"%d g carbs" = "%d g carbs";
+"%d g carbs" = "%d g carbohidratos";
 "%d g fat" = "%d g fat";
 "%d g protein" = "%d g protein";
-"%d hours" = "%d hours";
-"%d min" = "%d min";
 "%d/%d%@" = "%d/%d%@";
 "3 Months" = "3 Months";
 "3D Pill Shape Options" = "3D Pill Shape Options";
@@ -1310,87 +1302,79 @@
 
 /* About Section */
 "About" = "Acerca de";
-"About Senior Nutrition" = "Acerca de Senior Nutrition";
-"Version" = "Versión";
-"Current Version" = "Versión actual";
-"App Information" = "Información de la aplicación";
-"Legal Documents" = "Documentos legales";
+"About the App" = "Acerca de la aplicación";
+"Our Vision" = "Nuestra visión";
+"Key Features" = "Características principales";
+"The Story Behind" = "La historia detrás";
+"Safety First" = "La seguridad primero";
+"Contact Us" = "Contáctenos";
+"Legal Information" = "Información legal";
 "Privacy Policy" = "Política de privacidad";
 "Terms of Service" = "Términos de servicio";
-"Last Updated" = "Última actualización";
-"Contact Information" = "Información de contacto";
-"Support Email" = "Correo de soporte";
-"Company Location" = "Ubicación de la empresa";
-"Company Address" = "Dirección de la empresa";
 
-/* Privacy Policy Content */
-"Privacy Policy Introduction" = "Esta Política de Privacidad describe cómo SeniorNutritionApp ('nosotros') recopila, utiliza y divulga su información cuando usa nuestra aplicación móvil (la 'Aplicación').";
+/* About Content */
+"Senior Nutrition is a comprehensive health and wellness app designed specifically for adults aged 50 and above. Our mission is to support healthy aging through personalized nutrition guidance, mindful eating practices, and safe fasting protocols tailored for seniors." = "Senior Nutrition es una aplicación integral de salud y bienestar diseñada específicamente para adultos mayores de 50 años. Nuestra misión es apoyar un envejecimiento saludable a través de orientación nutricional personalizada, prácticas de alimentación consciente y protocolos de ayuno seguros adaptados para personas mayores.";
 
-"1. Information We Collect" = "1. Información que recopilamos";
-"Information We Collect Content" = "Podemos recopilar los siguientes tipos de información:\n\n• Información personal: Información que proporciona directamente, como su nombre, fecha de nacimiento, género, datos de salud y preferencias.\n\n• Información de uso: Información sobre cómo interactúa con la Aplicación.\n\n• Información del dispositivo: Información sobre su dispositivo y sistema.\n\n• Datos de voz: Comandos de voz cuando utiliza las funciones de voz.\n\n• Datos de salud: Datos relacionados con la salud con su permiso.\n\n• Datos de ubicación: Información de ubicación para funciones de emergencia.";
+"We believe that proper nutrition is fundamental to healthy aging. Our app combines the latest research in senior nutrition with user-friendly technology to help older adults maintain their health, independence, and quality of life." = "Creemos que una nutrición adecuada es fundamental para un envejecimiento saludable. Nuestra aplicación combina las últimas investigaciones en nutrición para personas mayores con tecnología fácil de usar para ayudar a los adultos mayores a mantener su salud, independencia y calidad de vida.";
 
-"2. How We Use Your Information" = "2. Cómo utilizamos su información";
-"How We Use Information Content" = "Utilizamos su información para:\n\n• Proporcionar y mejorar las funciones de la Aplicación\n• Personalizar su experiencia\n• Enviar notificaciones importantes\n• Analizar patrones de uso\n• Garantizar la seguridad de la Aplicación\n• Cumplir con requisitos legales\n• Habilitar funciones de contacto de emergencia";
+"This app was born from a deep understanding of the unique nutritional needs of seniors and the challenges they face in maintaining healthy eating habits. We worked closely with nutritionists, geriatric care specialists, and seniors themselves to create a tool that's both comprehensive and easy to use." = "Esta aplicación nació de una profunda comprensión de las necesidades nutricionales únicas de las personas mayores y los desafíos que enfrentan para mantener hábitos alimenticios saludables. Trabajamos en estrecha colaboración con nutricionistas, especialistas en atención geriátrica y los propios adultos mayores para crear una herramienta que sea completa y fácil de usar.";
 
-"3. Information Sharing" = "3. Compartir información";
-"Information Sharing Content" = "No vendemos su información personal. Compartimos información solo:\n\n• Con su consentimiento explícito\n• Con proveedores de servicios que ayudan a operar la Aplicación\n• Con contactos de emergencia cuando activa las funciones de emergencia\n• Cuando lo requiere la ley\n• En caso de transferencias comerciales";
+"All our features, especially the fasting protocols, are designed with senior safety in mind. We incorporate regular reminders, health checks, and emergency override options to ensure a safe and healthy experience." = "Todas nuestras funciones, especialmente los protocolos de ayuno, están diseñadas pensando en la seguridad de las personas mayores. Incorporamos recordatorios regulares, controles de salud y opciones de anulación de emergencia para garantizar una experiencia segura y saludable.";
 
-/* Terms of Service Content */
-"Terms Introduction" = "Por favor, lea atentamente estos Términos de Servicio ('Términos') antes de usar la aplicación móvil SeniorNutritionApp (la 'Aplicación'). Al acceder o usar la Aplicación, acepta estar sujeto a estos Términos.";
+"This app is designed for informational purposes only and should not replace professional medical advice. Always consult with your healthcare provider before starting any new diet or fasting program." = "Esta aplicación está diseñada solo con fines informativos y no debe reemplazar el consejo médico profesional. Consulte siempre con su proveedor de atención médica antes de comenzar cualquier nueva dieta o programa de ayuno.";
 
-"1. Use of the App" = "1. Uso de la Aplicación";
-"Use of App Content" = "SeniorNutritionApp proporciona herramientas para el seguimiento nutricional, planificación de comidas, recordatorios de medicamentos y gestión del ayuno para personas mayores. Usted acepta usar la Aplicación solo para sus fines previstos y en cumplimiento con las leyes aplicables.\n\nIMPORTANTE: La Aplicación es solo para fines informativos y no proporciona consejos médicos. Consulte siempre a su proveedor de atención médica para decisiones médicas.";
+/* About Features */
+"Personalized nutrition tracking and recommendations" = "Seguimiento nutricional personalizado y recomendaciones";
+"Senior-friendly fasting protocols with safety features" = "Protocolos de ayuno adaptados para personas mayores con características de seguridad";
+"Medication and meal schedule integration" = "Integración de horarios de medicamentos y comidas";
+"Multi-language support (English, French, Spanish, Hebrew)" = "Soporte multilingüe (inglés, francés, español, hebreo)";
+"Enhanced accessibility with adjustable text sizes" = "Accesibilidad mejorada con tamaños de texto ajustables";
+"Voice assistance for hands-free operation" = "Asistencia por voz para operación manos libres";
 
-"2. Medical Disclaimer" = "2. Descargo de Responsabilidad Médica";
-"Medical Disclaimer Content" = "La Aplicación está destinada únicamente a fines informativos y organizativos. No proporciona consejos médicos, diagnósticos o tratamientos. Consulte siempre a su médico o proveedor de salud calificado antes de tomar decisiones relacionadas con la salud. Nunca ignore el consejo médico profesional debido a algo que haya leído en la Aplicación.";
+/* Key Features Titles */
+"Fasting Timer" = "Temporizador de Ayuno";
+"Nutrition Tracking" = "Seguimiento Nutricional";
+"Appointment Management" = "Gestión de Citas";
+"Health Monitoring" = "Monitoreo de Salud";
+"Medication Management" = "Gestión de Medicamentos";
+"Quick Actions" = "Acciones Rápidas";
 
-"3. Your Account" = "3. Su Cuenta";
-"Account Content" = "Al crear una cuenta, debe proporcionar información precisa y completa. Usted es responsable de mantener la seguridad de su cuenta y de cualquier actividad que ocurra bajo su cuenta. Notifíquenos inmediatamente sobre cualquier uso no autorizado.";
+/* Key Features Descriptions */
+"Advanced fasting protocol options for seniors" = "Opciones avanzadas de protocolos de ayuno para personas mayores";
+"Real-time tracking with health safety indicators" = "Seguimiento en tiempo real con indicadores de seguridad de salud";
+"Customizable fasting and eating windows" = "Ventanas personalizables de ayuno y alimentación";
+"Integration with medication and meal schedules" = "Integración con horarios de medicamentos y comidas";
 
-"4. Privacy and Data" = "4. Privacidad y Datos";
-"Privacy Content" = "Su privacidad es importante para nosotros. Nuestra Política de Privacidad explica cómo recopilamos, usamos y protegemos su información. Al usar la Aplicación, acepta nuestras prácticas de datos como se describe en la Política de Privacidad.";
+"Simplified meal logging with photos or voice input" = "Registro simplificado de comidas con fotos o entrada por voz";
+"Nutritional analysis with senior-specific recommendations" = "Análisis nutricional con recomendaciones específicas para personas mayores";
+"Customizable meal reminders and hydration tracking" = "Recordatorios de comidas personalizables y seguimiento de hidratación";
+"Food database with barcode scanning capability" = "Base de datos de alimentos con capacidad de escaneo de códigos de barras";
 
-/* Menu Sections */
-"HEALTH & WELLNESS" = "SALUD Y BIENESTAR";
-"ACCOUNT & SETTINGS" = "CUENTA Y CONFIGURACIÓN";
-"HELP & SUPPORT" = "AYUDA Y SOPORTE";
+"Automatic reminders with customizable advance notice" = "Recordatorios automáticos con aviso previo personalizable";
+"Location and provider information storage" = "Almacenamiento de información de ubicación y proveedores";
+"Calendar integration and sharing with caregivers" = "Integración de calendario y compartir con cuidadores";
 
-/* Menu Items */
-"Medications" = "Medicamentos";
-"Appointments" = "Citas";
-"Health" = "Salud";
-"Health Tips" = "Consejos de Salud";
-"Profile" = "Perfil";
-"Settings" = "Configuración";
-"Help" = "Ayuda";
-"Emergency Contacts" = "Contactos de Emergencia";
+"Track vital signs including blood pressure, heart rate, and weight" = "Seguimiento de signos vitales incluyendo presión arterial, frecuencia cardíaca y peso";
+"Blood sugar monitoring with customizable target ranges" = "Monitoreo de azúcar en sangre con rangos objetivo personalizables";
+"Visual data trends with weekly and monthly analysis" = "Tendencias visuales de datos con análisis semanal y mensual";
+"Health data export for healthcare provider review" = "Exportación de datos de salud para revisión del proveedor de atención médica";
 
-/* Bottom Navigation */
-"More" = "Más";
-"Nutrition" = "Nutrición";
-"Water" = "Agua";
-"Fast" = "Ayuno";
-"Home" = "Inicio";
+"Visual medication identification system" = "Sistema visual de identificación de medicamentos";
+"Smart scheduling with fasting compatibility alerts" = "Programación inteligente con alertas de compatibilidad de ayuno";
+"Refill reminders and medication history tracking" = "Recordatorios de recarga y seguimiento del historial de medicamentos";
+"Food and timing requirement notifications" = "Notificaciones de requisitos de alimentos y horarios";
+
+"One-tap meal and medication logging" = "Registro de comidas y medicamentos con un toque";
+"Voice-activated commands for hands-free operation" = "Comandos activados por voz para operación manos libres";
+"Emergency contact access with location sharing" = "Acceso a contactos de emergencia con compartir ubicación";
+"Instant health data recording and visualization" = "Registro y visualización instantánea de datos de salud";
+
+
 
 /* Voice Synthesis Common Phrases */
 "Good morning" = "Buenos días";
 "Good afternoon" = "Buenas tardes";
 "Good evening" = "Buenas noches";
-"Good night" = "Buenas noches";
-"And your fasting status" = "Y su estado de ayuno";
-"Time remaining" = "Tiempo restante";
-"percent remain" = "por ciento restante";
-"This is a test of the voice settings" = "Esta es una prueba de la configuración de voz";
-"I am speaking at" = "Estoy hablando a ritmo";
-"Hello, this is a voice sample" = "Hola, esta es una muestra de voz";
-"I can read your medication reminders and health tips clearly" = "Puedo leer claramente sus recordatorios de medicamentos y consejos de salud";
-"Today's schedule" = "Horario de hoy";
-"Upcoming appointments" = "Citas próximas";
-"You have no upcoming appointments" = "No tiene citas próximas";
-"Today's medications" = "Medicamentos de hoy";
-"Fasting Timer features" = "Características del temporizador de ayuno";
-"Nutrition Tracking features" = "Características de seguimiento nutricional";
-"Appointment Management features" = "Características de gestión de citas";
-"rate" = "ritmo";
 
-
+/* Greeting format - in Spanish */
+"%@, %@" = "%1$@, %2$@";

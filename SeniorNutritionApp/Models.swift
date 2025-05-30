@@ -45,13 +45,26 @@ enum FastingProtocol: String, CaseIterable, Identifiable, Codable {
     var description: String {
         switch self {
         case .twelveTwelve: 
-            return "Fast for 12 hours, eat within a 12-hour window. Ideal for beginners."
+            return NSLocalizedString("Fast for 12 hours, eat within a 12-hour window. Ideal for beginners.", comment: "")
         case .fourteenTen:
-            return "Fast for 14 hours, eat within a 10-hour window. Moderate intensity."
+            return NSLocalizedString("Fast for 14 hours, eat within a 10-hour window. Moderate intensity.", comment: "")
         case .sixteenEight:
-            return "Fast for 16 hours, eat within an 8-hour window. Standard protocol."
+            return NSLocalizedString("Fast for 16 hours, eat within an 8-hour window. Standard protocol.", comment: "")
         case .custom:
-            return "Custom fasting protocol with your preferred hours."
+            return NSLocalizedString("Custom fasting protocol with your preferred hours.", comment: "")
+        }
+    }
+    
+    var localizedTitle: String {
+        switch self {
+        case .twelveTwelve:
+            return NSLocalizedString("12:12 (Gentle)", comment: "")
+        case .fourteenTen:
+            return NSLocalizedString("14:10 (Moderate)", comment: "")
+        case .sixteenEight:
+            return NSLocalizedString("16:8 (Standard)", comment: "")
+        case .custom:
+            return NSLocalizedString("Custom Protocol", comment: "")
         }
     }
     

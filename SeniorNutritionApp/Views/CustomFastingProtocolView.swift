@@ -9,24 +9,24 @@ struct CustomFastingProtocolView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Fasting Hours")) {
-                    Stepper("Fasting: \(fastingHours) hours", value: $fastingHours, in: 12...24)
+                Section(header: Text(NSLocalizedString("Fasting Hours", comment: ""))) {
+                    Stepper(String(format: NSLocalizedString("Fasting: %d hours", comment: ""), fastingHours), value: $fastingHours, in: 12...24)
                         .font(.system(size: userSettings.textSize.size))
                 }
                 
-                Section(header: Text("Eating Hours")) {
-                    Stepper("Eating: \(eatingHours) hours", value: $eatingHours, in: 4...12)
+                Section(header: Text(NSLocalizedString("Eating Hours", comment: ""))) {
+                    Stepper(String(format: NSLocalizedString("Eating: %d hours", comment: ""), eatingHours), value: $eatingHours, in: 4...12)
                         .font(.system(size: userSettings.textSize.size))
                 }
                 
-                Section(header: Text("Total Hours")) {
-                    Text("Total: \(fastingHours + eatingHours) hours")
+                Section(header: Text(NSLocalizedString("Total Hours", comment: ""))) {
+                    Text(String(format: NSLocalizedString("Total: %d hours", comment: ""), fastingHours + eatingHours))
                         .font(.system(size: userSettings.textSize.size))
                         .foregroundColor(.secondary)
                 }
                 
                 Section {
-                    Button("Save Protocol") {
+                    Button(NSLocalizedString("Save Protocol", comment: "")) {
                         FastingProtocol.setCustomProtocol(fastingHours: fastingHours, eatingHours: eatingHours)
                         userSettings.activeFastingProtocol = .custom
                         dismiss()
@@ -39,11 +39,11 @@ struct CustomFastingProtocolView: View {
                     .cornerRadius(10)
                 }
             }
-            .navigationTitle("Custom Protocol")
+            .navigationTitle(NSLocalizedString("Custom Protocol", comment: ""))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") {
+                    Button(NSLocalizedString("Cancel", comment: "")) {
                         dismiss()
                     }
                     .font(.system(size: userSettings.textSize.size))

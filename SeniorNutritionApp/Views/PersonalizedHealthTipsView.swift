@@ -67,7 +67,7 @@ struct PersonalizedHealthTipsView: View {
                     
                     // Fasting safety tips
                     tipSection(
-                        title: "Fasting Safety Guidelines",
+                        title: NSLocalizedString("Fasting Safety Guidelines", comment: ""),
                         icon: "exclamationmark.shield",
                         color: .orange,
                         isReading: $isReadingSafetyTips,
@@ -81,7 +81,7 @@ struct PersonalizedHealthTipsView: View {
                     
                     // Fasting benefits
                     tipSection(
-                        title: "Benefits of Intermittent Fasting",
+                        title: NSLocalizedString("Benefits of Intermittent Fasting", comment: ""),
                         icon: "star",
                         color: .green,
                         isReading: $isReadingFastingTips,
@@ -186,26 +186,26 @@ struct PersonalizedHealthTipsView: View {
     private var generalFastingTips: [HealthTip] {
         [
             HealthTip(
-                title: "Stay Hydrated",
-                description: "Drink plenty of water during your fasting periods. Aim for at least 8-10 glasses daily to prevent dehydration.",
+                title: NSLocalizedString("Stay Hydrated", comment: ""),
+                description: NSLocalizedString("Drink plenty of water during your fasting periods. Aim for at least 8-10 glasses daily to prevent dehydration.", comment: ""),
                 category: .hydration,
                 icon: "drop.fill"
             ),
             HealthTip(
-                title: "Ease Into Fasting",
-                description: "If you're new to fasting, start with shorter fasting periods and gradually increase the duration as your body adapts.",
+                title: NSLocalizedString("Ease Into Fasting", comment: ""),
+                description: NSLocalizedString("If you're new to fasting, start with shorter fasting periods and gradually increase the duration as your body adapts.", comment: ""),
                 category: .fasting,
                 icon: "clock"
             ),
             HealthTip(
-                title: "Break Fast Gently",
-                description: "Break your fast with easily digestible foods like soups, fruits, or small portions of protein to avoid digestive discomfort.",
+                title: NSLocalizedString("Break Fast Gently", comment: ""),
+                description: NSLocalizedString("Break your fast with easily digestible foods like soups, fruits, or small portions of protein to avoid digestive discomfort.", comment: ""),
                 category: .nutrition,
                 icon: "fork.knife"
             ),
             HealthTip(
-                title: "Monitor Your Body",
-                description: "Pay attention to how you feel during fasting. Mild hunger is normal, but dizziness, extreme fatigue, or confusion are not.",
+                title: NSLocalizedString("Monitor Your Body", comment: ""),
+                description: NSLocalizedString("Pay attention to how you feel during fasting. Mild hunger is normal, but dizziness, extreme fatigue, or confusion are not.", comment: ""),
                 category: .general,
                 icon: "heart.text.square"
             )
@@ -215,26 +215,26 @@ struct PersonalizedHealthTipsView: View {
     private var fastingSafetyTips: [HealthTip] {
         [
             HealthTip(
-                title: "Know When to Stop",
-                description: "If you experience severe headaches, dizziness, confusion, or weakness, break your fast immediately and consult your doctor.",
+                title: NSLocalizedString("Know When to Stop", comment: ""),
+                description: NSLocalizedString("If you experience severe headaches, dizziness, confusion, or weakness, break your fast immediately and consult your doctor.", comment: ""),
                 category: .seniorSpecific,
                 icon: "exclamationmark.triangle"
             ),
             HealthTip(
-                title: "Medication Timing",
-                description: "Take medications as prescribed by your doctor. Some medications need to be taken with food, which may require adjusting your fasting schedule.",
+                title: NSLocalizedString("Medication Timing", comment: ""),
+                description: NSLocalizedString("Take medications as prescribed by your doctor. Some medications need to be taken with food, which may require adjusting your fasting schedule.", comment: ""),
                 category: .medication,
                 icon: "pills"
             ),
             HealthTip(
-                title: "Consult Healthcare Providers",
-                description: "Always consult with your healthcare provider before starting a fasting regimen, especially if you have chronic health conditions.",
+                title: NSLocalizedString("Consult Healthcare Providers", comment: ""),
+                description: NSLocalizedString("Always consult with your healthcare provider before starting a fasting regimen, especially if you have chronic health conditions.", comment: ""),
                 category: .general,
                 icon: "person.text.rectangle"
             ),
             HealthTip(
-                title: "Avoid Overexertion",
-                description: "During extended fasts, avoid strenuous exercise. Light activities like walking or gentle stretching are better options.",
+                title: NSLocalizedString("Avoid Overexertion", comment: ""),
+                description: NSLocalizedString("During extended fasts, avoid strenuous exercise. Light activities like walking or gentle stretching are better options.", comment: ""),
                 category: .activity,
                 icon: "figure.walk"
             )
@@ -244,26 +244,26 @@ struct PersonalizedHealthTipsView: View {
     private var fastingBenefits: [HealthTip] {
         [
             HealthTip(
-                title: "Cellular Repair",
-                description: "Fasting triggers cellular repair processes, including autophagy, where cells remove damaged components.",
+                title: NSLocalizedString("Cellular Repair", comment: ""),
+                description: NSLocalizedString("Fasting triggers cellular repair processes, including autophagy, where cells remove damaged components.", comment: ""),
                 category: .general,
                 icon: "checkmark.seal"
             ),
             HealthTip(
-                title: "Insulin Sensitivity",
-                description: "Regular fasting can improve insulin sensitivity, potentially reducing the risk of type 2 diabetes.",
+                title: NSLocalizedString("Insulin Sensitivity", comment: ""),
+                description: NSLocalizedString("Regular fasting can improve insulin sensitivity, potentially reducing the risk of type 2 diabetes.", comment: ""),
                 category: .general,
                 icon: "chart.line.downtrend.xyaxis"
             ),
             HealthTip(
-                title: "Reduced Inflammation",
-                description: "Studies suggest that fasting may reduce inflammatory markers in the body, which are linked to many chronic diseases.",
+                title: NSLocalizedString("Reduced Inflammation", comment: ""),
+                description: NSLocalizedString("Studies suggest that fasting may reduce inflammatory markers in the body, which are linked to many chronic diseases.", comment: ""),
                 category: .general,
                 icon: "flame.slash"
             ),
             HealthTip(
-                title: "Brain Health",
-                description: "Fasting may increase the production of brain-derived neurotrophic factor (BDNF), which supports brain health and may protect against neurodegenerative diseases.",
+                title: NSLocalizedString("Brain Health", comment: ""),
+                description: NSLocalizedString("Fasting may increase the production of brain-derived neurotrophic factor (BDNF), which supports brain health and may protect against neurodegenerative diseases.", comment: ""),
                 category: .general,
                 icon: "brain"
             )
@@ -498,7 +498,7 @@ struct PersonalizedHealthTipsView: View {
     // MARK: - Text-to-Speech Methods
     
     private func readGeneralTips() {
-        var speech = "General Fasting Tips. "
+        var speech = NSLocalizedString("General Fasting Tips", comment: "") + ". "
         
         for tip in generalFastingTips {
             speech += "\(tip.title): \(tip.description) "
@@ -512,10 +512,10 @@ struct PersonalizedHealthTipsView: View {
             return
         }
         
-        var speech = "Tips for Your Health Conditions. "
+        var speech = NSLocalizedString("Tips for Your Health Conditions", comment: "") + ". "
         
         for condition in profile.medicalConditions {
-            speech += "For \(condition): "
+            speech += NSLocalizedString("For", comment: "") + " \(condition): "
             
             let tips = healthTipsForCondition(condition)
             for tip in tips {
@@ -527,7 +527,7 @@ struct PersonalizedHealthTipsView: View {
     }
     
     private func readSafetyTips() {
-        var speech = "Fasting Safety Guidelines. "
+        var speech = NSLocalizedString("Fasting Safety Guidelines", comment: "") + ". "
         
         for tip in fastingSafetyTips {
             speech += "\(tip.title): \(tip.description) "
@@ -537,7 +537,7 @@ struct PersonalizedHealthTipsView: View {
     }
     
     private func readFastingBenefits() {
-        var speech = "Benefits of Intermittent Fasting. "
+        var speech = NSLocalizedString("Benefits of Intermittent Fasting", comment: "") + ". "
         
         for tip in fastingBenefits {
             speech += "\(tip.title): \(tip.description) "

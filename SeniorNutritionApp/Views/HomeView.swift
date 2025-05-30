@@ -640,9 +640,9 @@ struct HomeView: View {
     }
     
     private var formattedDate: String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .full
-        return formatter.string(from: Date())
+        // Use our new Date extension for proper localized formatting
+        // This will respect the app's language setting (Hebrew, Spanish, French, etc.)
+        return Date().localizedFullDateString()
     }
     
     // Helper method to format time until an event
@@ -1102,9 +1102,8 @@ struct HomeView: View {
     
     // Add a new helper method for formatting appointment dates
     private func formatAppointmentDate(_ date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.setLocalizedDateFormatFromTemplate("MMM d, yyyy h:mm a")
-        return dateFormatter.string(from: date)
+        // Use our new localized date formatter for proper display in all languages
+        return date.localizedString(dateStyle: .medium, timeStyle: .short)
     }
     
     // Add a new helper method for calculating days until appointment

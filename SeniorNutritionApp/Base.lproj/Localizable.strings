@@ -1015,3 +1015,66 @@
 "Track how different foods affect your symptoms to identify patterns and triggers." = "Track how different foods affect your symptoms to identify patterns and triggers.";
 "Balanced Approach" = "Balanced Approach";
 "Focus on a balanced diet rich in whole foods while limiting processed foods and added sugars." = "Focus on a balanced diet rich in whole foods while limiting processed foods and added sugars.";
+
+/* Fasting Safety Guidelines */
+"Fasting Safety Guidelines" = "Fasting Safety Guidelines";
+"Benefits of Intermittent Fasting" = "Benefits of Intermittent Fasting";
+
+"Stay Hydrated" = "Stay Hydrated";
+"Drink plenty of water during your fasting periods. Aim for at least 8-10 glasses daily to prevent dehydration." = "Drink plenty of water during your fasting periods. Aim for at least 8-10 glasses daily to prevent dehydration.";
+
+"Ease Into Fasting" = "Ease Into Fasting";
+"If you're new to fasting, start with shorter fasting periods and gradually increase the duration as your body adapts." = "If you're new to fasting, start with shorter fasting periods and gradually increase the duration as your body adapts.";
+
+"Break Fast Gently" = "Break Fast Gently";
+"Break your fast with easily digestible foods like soups, fruits, or small portions of protein to avoid digestive discomfort." = "Break your fast with easily digestible foods like soups, fruits, or small portions of protein to avoid digestive discomfort.";
+
+"Monitor Your Body" = "Monitor Your Body";
+"Pay attention to how you feel during fasting. Mild hunger is normal, but dizziness, extreme fatigue, or confusion are not." = "Pay attention to how you feel during fasting. Mild hunger is normal, but dizziness, extreme fatigue, or confusion are not.";
+
+"Know When to Stop" = "Know When to Stop";
+"If you experience severe headaches, dizziness, confusion, or weakness, break your fast immediately and consult your doctor." = "If you experience severe headaches, dizziness, confusion, or weakness, break your fast immediately and consult your doctor.";
+
+/* Benefits of Intermittent Fasting */
+"Cellular Repair" = "Cellular Repair";
+"Fasting triggers cellular repair processes, including autophagy, where cells remove damaged components." = "Fasting triggers cellular repair processes, including autophagy, where cells remove damaged components.";
+
+"Insulin Sensitivity" = "Insulin Sensitivity";
+"Regular fasting can improve insulin sensitivity, potentially reducing the risk of type 2 diabetes." = "Regular fasting can improve insulin sensitivity, potentially reducing the risk of type 2 diabetes.";
+
+"Reduced Inflammation" = "Reduced Inflammation";
+"Studies suggest that fasting may reduce inflammatory markers in the body, which are linked to many chronic diseases." = "Studies suggest that fasting may reduce inflammatory markers in the body, which are linked to many chronic diseases.";
+
+"Brain Health" = "Brain Health";
+"Fasting may increase the production of brain-derived neurotrophic factor (BDNF), which supports brain health and may protect against neurodegenerative diseases." = "Fasting may increase the production of brain-derived neurotrophic factor (BDNF), which supports brain health and may protect against neurodegenerative diseases.";
+
+/* About Section */
+"About" = "About";
+"About the App" = "About the App";
+"Our Vision" = "Our Vision";
+"Key Features" = "Key Features";
+"The Story Behind" = "The Story Behind";
+"Safety First" = "Safety First";
+"Contact Us" = "Contact Us";
+"Legal Information" = "Legal Information";
+"Privacy Policy" = "Privacy Policy";
+"Terms of Service" = "Terms of Service";
+
+/* About Content */
+"Senior Nutrition is a comprehensive health and wellness app designed specifically for adults aged 50 and above. Our mission is to support healthy aging through personalized nutrition guidance, mindful eating practices, and safe fasting protocols tailored for seniors." = "Senior Nutrition is a comprehensive health and wellness app designed specifically for adults aged 50 and above. Our mission is to support healthy aging through personalized nutrition guidance, mindful eating practices, and safe fasting protocols tailored for seniors.";
+
+"We believe that proper nutrition is fundamental to healthy aging. Our app combines the latest research in senior nutrition with user-friendly technology to help older adults maintain their health, independence, and quality of life." = "We believe that proper nutrition is fundamental to healthy aging. Our app combines the latest research in senior nutrition with user-friendly technology to help older adults maintain their health, independence, and quality of life.";
+
+"This app was born from a deep understanding of the unique nutritional needs of seniors and the challenges they face in maintaining healthy eating habits. We worked closely with nutritionists, geriatric care specialists, and seniors themselves to create a tool that's both comprehensive and easy to use." = "This app was born from a deep understanding of the unique nutritional needs of seniors and the challenges they face in maintaining healthy eating habits. We worked closely with nutritionists, geriatric care specialists, and seniors themselves to create a tool that's both comprehensive and easy to use.";
+
+"All our features, especially the fasting protocols, are designed with senior safety in mind. We incorporate regular reminders, health checks, and emergency override options to ensure a safe and healthy experience." = "All our features, especially the fasting protocols, are designed with senior safety in mind. We incorporate regular reminders, health checks, and emergency override options to ensure a safe and healthy experience.";
+
+"This app is designed for informational purposes only and should not replace professional medical advice. Always consult with your healthcare provider before starting any new diet or fasting program." = "This app is designed for informational purposes only and should not replace professional medical advice. Always consult with your healthcare provider before starting any new diet or fasting program.";
+
+/* About Features */
+"Personalized nutrition tracking and recommendations" = "Personalized nutrition tracking and recommendations";
+"Senior-friendly fasting protocols with safety features" = "Senior-friendly fasting protocols with safety features";
+"Medication and meal schedule integration" = "Medication and meal schedule integration";
+"Multi-language support (English, French, Spanish, Hebrew)" = "Multi-language support (English, French, Spanish, Hebrew)";
+"Enhanced accessibility with adjustable text sizes" = "Enhanced accessibility with adjustable text sizes";
+"Voice assistance for hands-free operation" = "Voice assistance for hands-free operation";
