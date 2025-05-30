@@ -29,17 +29,39 @@ struct UserProfileSetupView: View {
     @State private var newMedicalCondition: String = ""
     @State private var newDietaryRestriction: String = ""
     
-    // Common medical conditions and dietary restrictions as suggestions
-    private let commonMedicalConditions = [
+    // Comprehensive list of medical conditions
+    private let medicalConditionOptions = [
         NSLocalizedString("High Blood Pressure", comment: ""),
         NSLocalizedString("Diabetes", comment: ""),
-        NSLocalizedString("Heart Disease", comment: "")
+        NSLocalizedString("Heart Disease", comment: ""),
+        NSLocalizedString("Arthritis", comment: ""),
+        NSLocalizedString("Osteoporosis", comment: ""),
+        NSLocalizedString("Asthma", comment: ""),
+        NSLocalizedString("COPD", comment: ""),
+        NSLocalizedString("Cancer", comment: ""),
+        NSLocalizedString("Stroke", comment: ""),
+        NSLocalizedString("Alzheimer's", comment: ""),
+        NSLocalizedString("Parkinson's", comment: ""),
+        NSLocalizedString("Kidney Disease", comment: ""),
+        NSLocalizedString("Thyroid Disorder", comment: ""),
+        NSLocalizedString("Chronic Pain", comment: "")
     ]
     
-    private let commonDietaryRestrictions = [
+    // Comprehensive list of dietary restrictions
+    private let dietaryRestrictionOptions = [
         NSLocalizedString("Vegetarian", comment: ""),
+        NSLocalizedString("Vegan", comment: ""),
         NSLocalizedString("Gluten-Free", comment: ""),
-        NSLocalizedString("Low Sodium", comment: "")
+        NSLocalizedString("Dairy-Free", comment: ""),
+        NSLocalizedString("Nut-Free", comment: ""),
+        NSLocalizedString("Low Sodium", comment: ""),
+        NSLocalizedString("Low Sugar", comment: ""),
+        NSLocalizedString("Low Fat", comment: ""),
+        NSLocalizedString("Kosher", comment: ""),
+        NSLocalizedString("Halal", comment: ""),
+        NSLocalizedString("Pescatarian", comment: ""),
+        NSLocalizedString("Keto", comment: ""),
+        NSLocalizedString("Paleo", comment: "")
     ]
     
     var body: some View {
@@ -152,27 +174,36 @@ struct UserProfileSetupView: View {
                     .background(Color.orange.opacity(0.1))
                     .cornerRadius(8)
                     
-                    // Common suggestions
-                    Text(NSLocalizedString("Suggestions:", comment: ""))
-                        .font(.subheadline)
+                    // Common medical conditions list
+                    Text(NSLocalizedString("Select from common conditions:", comment: ""))
+                        .font(.headline)
                         .foregroundColor(.secondary)
                         .padding(.top, 8)
                     
-                    ForEach(commonMedicalConditions, id: \.self) { condition in
-                        if !medicalConditions.contains(condition) {
-                            Button(action: {
+                    ForEach(medicalConditionOptions, id: \.self) { condition in
+                        Button(action: {
+                            if medicalConditions.contains(condition) {
+                                medicalConditions.removeAll { $0 == condition }
+                            } else {
                                 medicalConditions.append(condition)
-                            }) {
-                                HStack {
-                                    Text(condition)
-                                    Spacer()
-                                    Image(systemName: "plus")
+                            }
+                        }) {
+                            HStack {
+                                Text(condition)
+                                    .foregroundColor(.primary)
+                                Spacer()
+                                if medicalConditions.contains(condition) {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .foregroundColor(.green)
+                                } else {
+                                    Image(systemName: "plus.circle")
+                                        .foregroundColor(.blue)
                                 }
                             }
-                            .padding(8)
-                            .background(Color.orange.opacity(0.05))
-                            .cornerRadius(8)
                         }
+                        .padding(8)
+                        .background(medicalConditions.contains(condition) ? Color.orange.opacity(0.15) : Color.orange.opacity(0.05))
+                        .cornerRadius(8)
                     }
                 }
                 .listRowBackground(Color.clear)
@@ -216,27 +247,36 @@ struct UserProfileSetupView: View {
                     .background(Color.purple.opacity(0.1))
                     .cornerRadius(8)
                     
-                    // Common suggestions
-                    Text(NSLocalizedString("Suggestions:", comment: ""))
-                        .font(.subheadline)
+                    // Common dietary restrictions list
+                    Text(NSLocalizedString("Select from common restrictions:", comment: ""))
+                        .font(.headline)
                         .foregroundColor(.secondary)
                         .padding(.top, 8)
                     
-                    ForEach(commonDietaryRestrictions, id: \.self) { restriction in
-                        if !dietaryRestrictions.contains(restriction) {
-                            Button(action: {
+                    ForEach(dietaryRestrictionOptions, id: \.self) { restriction in
+                        Button(action: {
+                            if dietaryRestrictions.contains(restriction) {
+                                dietaryRestrictions.removeAll { $0 == restriction }
+                            } else {
                                 dietaryRestrictions.append(restriction)
-                            }) {
-                                HStack {
-                                    Text(restriction)
-                                    Spacer()
-                                    Image(systemName: "plus")
+                            }
+                        }) {
+                            HStack {
+                                Text(restriction)
+                                    .foregroundColor(.primary)
+                                Spacer()
+                                if dietaryRestrictions.contains(restriction) {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .foregroundColor(.green)
+                                } else {
+                                    Image(systemName: "plus.circle")
+                                        .foregroundColor(.blue)
                                 }
                             }
-                            .padding(8)
-                            .background(Color.purple.opacity(0.05))
-                            .cornerRadius(8)
                         }
+                        .padding(8)
+                        .background(dietaryRestrictions.contains(restriction) ? Color.purple.opacity(0.15) : Color.purple.opacity(0.05))
+                        .cornerRadius(8)
                     }
 
                 }

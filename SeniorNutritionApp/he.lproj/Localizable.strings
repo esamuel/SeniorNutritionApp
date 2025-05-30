@@ -1826,6 +1826,45 @@
 
 /* Greeting format - in Hebrew, name comes first */
 "%@, %@" = "%2$@, %1$@";
+
+/* Medical Conditions */
+"High Blood Pressure" = "לחץ דם גבוה";
+"Diabetes" = "סוכרת";
+"Heart Disease" = "מחלת לב";
+"Arthritis" = "דלקת מפרקים";
+"Osteoporosis" = "אוסטאופורוזיס";
+"Asthma" = "אסטמה";
+"COPD" = "מחלת ריאות חסימתית כרונית";
+"Cancer" = "סרטן";
+"Stroke" = "שבץ";
+"Alzheimer's" = "אלצהיימר";
+"Parkinson's" = "פרקינסון";
+"Kidney Disease" = "מחלת כליות";
+"Thyroid Disorder" = "הפרעת בלוטת התריס";
+"Chronic Pain" = "כאב כרוני";
+
+/* Dietary Restrictions */
+"Vegetarian" = "צמחוני";
+"Vegan" = "טבעוני";
+"Gluten-Free" = "נטול גלוטן";
+"Dairy-Free" = "נטול חלב";
+"Nut-Free" = "נטול אגוזים";
+"Low Sodium" = "דל נתרן";
+"Low Sugar" = "דל סוכר";
+"Low Fat" = "דל שומן";
+"Kosher" = "כשר";
+"Halal" = "חלאל";
+"Pescatarian" = "פסקטריאני";
+"Keto" = "קטו";
+"Paleo" = "פליאו";
+
+/* Profile Setup */
+"Select from common conditions:" = "בחר ממצבים רפואיים נפוצים:";
+"Select from common restrictions:" = "בחר מהגבלות תזונה נפוצות:";
+"Add medical condition" = "הוסף מצב רפואי";
+"Add dietary restriction" = "הוסף הגבלת תזונה";
+"No medical conditions added" = "לא נוספו מצבים רפואיים";
+"No dietary restrictions added" = "לא נוספו הגבלות תזונה";
 "Good night" = "לילה טוב";
 "And your fasting status" = "ומצב הצום שלך";
 "Time remaining" = "זמן שנותר";

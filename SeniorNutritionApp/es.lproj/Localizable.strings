@@ -1378,3 +1378,42 @@
 
 /* Greeting format - in Spanish */
 "%@, %@" = "%1$@, %2$@";
+
+/* Medical Conditions */
+"High Blood Pressure" = "Hipertensión arterial";
+"Diabetes" = "Diabetes";
+"Heart Disease" = "Enfermedad cardíaca";
+"Arthritis" = "Artritis";
+"Osteoporosis" = "Osteoporosis";
+"Asthma" = "Asma";
+"COPD" = "EPOC";
+"Cancer" = "Cáncer";
+"Stroke" = "Derrame cerebral";
+"Alzheimer's" = "Alzheimer";
+"Parkinson's" = "Parkinson";
+"Kidney Disease" = "Enfermedad renal";
+"Thyroid Disorder" = "Trastorno de tiroides";
+"Chronic Pain" = "Dolor crónico";
+
+/* Dietary Restrictions */
+"Vegetarian" = "Vegetariano";
+"Vegan" = "Vegano";
+"Gluten-Free" = "Sin gluten";
+"Dairy-Free" = "Sin lácteos";
+"Nut-Free" = "Sin frutos secos";
+"Low Sodium" = "Bajo en sodio";
+"Low Sugar" = "Bajo en azúcar";
+"Low Fat" = "Bajo en grasa";
+"Kosher" = "Kosher";
+"Halal" = "Halal";
+"Pescatarian" = "Pescetariano";
+"Keto" = "Cetogénica";
+"Paleo" = "Paleo";
+
+/* Profile Setup */
+"Select from common conditions:" = "Seleccione entre condiciones comunes:";
+"Select from common restrictions:" = "Seleccione entre restricciones comunes:";
+"Add medical condition" = "Añadir condición médica";
+"Add dietary restriction" = "Añadir restricción dietética";
+"No medical conditions added" = "No se han añadido condiciones médicas";
+"No dietary restrictions added" = "No se han añadido restricciones dietéticas";

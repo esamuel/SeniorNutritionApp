@@ -796,6 +796,45 @@
 
 /* Greeting format - in French */
 "%@, %@" = "%1$@, %2$@";
+
+/* Medical Conditions */
+"High Blood Pressure" = "Hypertension artérielle";
+"Diabetes" = "Diabète";
+"Heart Disease" = "Maladie cardiaque";
+"Arthritis" = "Arthrite";
+"Osteoporosis" = "Ostéoporose";
+"Asthma" = "Asthme";
+"COPD" = "BPCO";
+"Cancer" = "Cancer";
+"Stroke" = "AVC";
+"Alzheimer's" = "Alzheimer";
+"Parkinson's" = "Parkinson";
+"Kidney Disease" = "Maladie rénale";
+"Thyroid Disorder" = "Trouble de la thyroïde";
+"Chronic Pain" = "Douleur chronique";
+
+/* Dietary Restrictions */
+"Vegetarian" = "Végétarien";
+"Vegan" = "Végétalien";
+"Gluten-Free" = "Sans gluten";
+"Dairy-Free" = "Sans produits laitiers";
+"Nut-Free" = "Sans noix";
+"Low Sodium" = "Faible en sodium";
+"Low Sugar" = "Faible en sucre";
+"Low Fat" = "Faible en gras";
+"Kosher" = "Casher";
+"Halal" = "Halal";
+"Pescatarian" = "Pescetarien";
+"Keto" = "Cétogène";
+"Paleo" = "Paléo";
+
+/* Profile Setup */
+"Select from common conditions:" = "Sélectionnez parmi les conditions courantes:";
+"Select from common restrictions:" = "Sélectionnez parmi les restrictions courantes:";
+"Add medical condition" = "Ajouter une condition médicale";
+"Add dietary restriction" = "Ajouter une restriction alimentaire";
+"No medical conditions added" = "Aucune condition médicale ajoutée";
+"No dietary restrictions added" = "Aucune restriction alimentaire ajoutée";
 "Search for Food: Tap 'Search Food Database' to find foods" = "Rechercher un aliment : Appuyez sur 'Rechercher dans la base de données alimentaire' pour trouver des aliments";
 "Enter Meal Details: Add a name, select meal type (breakfast, lunch, dinner, or snack)" = "Saisir les détails du repas : Ajoutez un nom, sélectionnez le type de repas (petit-déjeuner, déjeuner, dîner ou collation)";
 "Set Portion Size: Choose small, medium, or large to adjust calories accordingly" = "Définir la taille de la portion : Choisissez petite, moyenne ou grande pour ajuster les calories en conséquence";

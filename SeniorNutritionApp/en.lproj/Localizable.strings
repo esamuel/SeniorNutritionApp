@@ -550,3 +550,46 @@
 "Nutritional information automatically scales with portion size" = "Nutritional information automatically scales with portion size";
 "Original nutritional values are for a %@ portion" = "Original nutritional values are for a %@ portion";
 "Values scaled by %@× from %@ size" = "Values scaled by %@× from %@ size"; 
+/* Voice Synthesis Common Phrases */
+"Good morning" = "Good morning";
+"Good afternoon" = "Good afternoon";
+"Good evening" = "Good evening";
+
+/* Medical Conditions */
+"High Blood Pressure" = "High Blood Pressure";
+"Diabetes" = "Diabetes";
+"Heart Disease" = "Heart Disease";
+"Arthritis" = "Arthritis";
+"Osteoporosis" = "Osteoporosis";
+"Asthma" = "Asthma";
+"COPD" = "COPD";
+"Cancer" = "Cancer";
+"Stroke" = "Stroke";
+"Alzheimer's" = "Alzheimer's";
+"Parkinson's" = "Parkinson's";
+"Kidney Disease" = "Kidney Disease";
+"Thyroid Disorder" = "Thyroid Disorder";
+"Chronic Pain" = "Chronic Pain";
+
+/* Dietary Restrictions */
+"Vegetarian" = "Vegetarian";
+"Vegan" = "Vegan";
+"Gluten-Free" = "Gluten-Free";
+"Dairy-Free" = "Dairy-Free";
+"Nut-Free" = "Nut-Free";
+"Low Sodium" = "Low Sodium";
+"Low Sugar" = "Low Sugar";
+"Low Fat" = "Low Fat";
+"Kosher" = "Kosher";
+"Halal" = "Halal";
+"Pescatarian" = "Pescatarian";
+"Keto" = "Keto";
+"Paleo" = "Paleo";
+
+/* Profile Setup */
+"Select from common conditions:" = "Select from common conditions:";
+"Select from common restrictions:" = "Select from common restrictions:";
+"Add medical condition" = "Add medical condition";
+"Add dietary restriction" = "Add dietary restriction";
+"No medical conditions added" = "No medical conditions added";
+"No dietary restrictions added" = "No dietary restrictions added";
