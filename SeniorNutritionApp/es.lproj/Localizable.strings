@@ -1417,3 +1417,10 @@
 "Add dietary restriction" = "Añadir restricción dietética";
 "No medical conditions added" = "No se han añadido condiciones médicas";
 "No dietary restrictions added" = "No se han añadido restricciones dietéticas";
+
+/* Profile Section Titles */
+"Medical Conditions" = "Condiciones Médicas";
+"Dietary Restrictions" = "Restricciones Dietéticas";
+"Emergency Contacts" = "Contactos de Emergencia";
+"Personal Information" = "Información Personal";
+"Physical Information" = "Información Física";

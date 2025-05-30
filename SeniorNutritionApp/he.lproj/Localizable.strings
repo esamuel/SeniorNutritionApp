@@ -1859,12 +1859,20 @@
 "Paleo" = "פליאו";
 
 /* Profile Setup */
-"Select from common conditions:" = "בחר ממצבים רפואיים נפוצים:";
-"Select from common restrictions:" = "בחר מהגבלות תזונה נפוצות:";
+"Select from common conditions:" = "בחר מתוך מצבים רפואיים נפוצים:";
+"Select from common restrictions:" = "בחר מתוך הגבלות תזונה נפוצות:";
 "Add medical condition" = "הוסף מצב רפואי";
 "Add dietary restriction" = "הוסף הגבלת תזונה";
 "No medical conditions added" = "לא נוספו מצבים רפואיים";
 "No dietary restrictions added" = "לא נוספו הגבלות תזונה";
+
+/* Profile Section Titles */
+"Medical Conditions" = "מצבים רפואיים";
+"Dietary Restrictions" = "הגבלות תזונה";
+"Emergency Contacts" = "אנשי קשר לחירום";
+"Personal Information" = "מידע אישי";
+"Physical Information" = "מידע פיזי";
+
 "Good night" = "לילה טוב";
 "And your fasting status" = "ומצב הצום שלך";
 "Time remaining" = "זמן שנותר";

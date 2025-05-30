@@ -593,3 +593,10 @@
 "Add dietary restriction" = "Add dietary restriction";
 "No medical conditions added" = "No medical conditions added";
 "No dietary restrictions added" = "No dietary restrictions added";
+
+/* Profile Section Titles */
+"Medical Conditions" = "Medical Conditions";
+"Dietary Restrictions" = "Dietary Restrictions";
+"Emergency Contacts" = "Emergency Contacts";
+"Personal Information" = "Personal Information";
+"Physical Information" = "Physical Information";

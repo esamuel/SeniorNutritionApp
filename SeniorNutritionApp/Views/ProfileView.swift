@@ -135,7 +135,7 @@ struct ProfileView: View {
     }
     
     private func personalInformationSection(_ profile: UserProfile) -> some View {
-        Section(header: Text("Personal Information")
+        Section(header: Text(NSLocalizedString("Personal Information", comment: ""))
             .font(.system(size: userSettings.textSize.size, weight: .bold))
             .foregroundColor(.blue)) {
             
@@ -155,7 +155,7 @@ struct ProfileView: View {
     }
     
     private func healthInformationSection(_ profile: UserProfile) -> some View {
-        Section(header: Text("Physical Information")
+        Section(header: Text(NSLocalizedString("Physical Information", comment: ""))
             .font(.system(size: userSettings.textSize.size, weight: .bold))
             .foregroundColor(.green)) {
             profileRow(title: "Height", value: "\(Int(profile.height)) cm", iconName: "ruler", color: .teal)
@@ -172,7 +172,7 @@ struct ProfileView: View {
     private func medicalConditionsSection(_ profile: UserProfile) -> some View {
         Group {
                 Section(header: HStack {
-                    Text("Medical Conditions")
+                    Text(NSLocalizedString("Medical Conditions", comment: ""))
                         .font(.system(size: userSettings.textSize.size, weight: .bold))
                         .foregroundColor(.red)
                     Spacer()
@@ -196,7 +196,7 @@ struct ProfileView: View {
                         HStack {
                             Image(systemName: "info.circle")
                                 .foregroundColor(.secondary)
-                            Text("No medical conditions added")
+                            Text(NSLocalizedString("No medical conditions added", comment: ""))
                                 .font(.system(size: userSettings.textSize.size))
                                 .foregroundColor(.secondary)
                         }
@@ -220,7 +220,7 @@ struct ProfileView: View {
     private func dietaryRestrictionsSection(_ profile: UserProfile) -> some View {
         Group {
                 Section(header: HStack {
-                    Text("Dietary Restrictions")
+                    Text(NSLocalizedString("Dietary Restrictions", comment: ""))
                         .font(.system(size: userSettings.textSize.size, weight: .bold))
                         .foregroundColor(.orange)
                     Spacer()
@@ -244,7 +244,7 @@ struct ProfileView: View {
                         HStack {
                             Image(systemName: "info.circle")
                                 .foregroundColor(.secondary)
-                            Text("No dietary restrictions added")
+                            Text(NSLocalizedString("No dietary restrictions added", comment: ""))
                                 .font(.system(size: userSettings.textSize.size))
                                 .foregroundColor(.secondary)
                         }
@@ -266,7 +266,7 @@ struct ProfileView: View {
     }
     
     private func emergencyContactsSection(_ profile: UserProfile) -> some View {
-        Section(header: Text("Emergency Contacts")
+        Section(header: Text(NSLocalizedString("Emergency Contacts", comment: ""))
             .font(.system(size: userSettings.textSize.size, weight: .bold))
             .foregroundColor(.purple)) {
             
