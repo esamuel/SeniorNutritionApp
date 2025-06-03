@@ -226,178 +226,32 @@ struct FoodDatabaseView: View {
         
         return foods
     }
-}
-
-// Filtered foods
-private var filteredFoods: [FoodItem] {
-    var foods = foodDatabase.foodItems + foodDatabase.customFoodItems
     
-    // Apply search filter
-    if !searchText.isEmpty {
-        foods = foods.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
-    }
-    
-    // Apply category filter
-    if let category = selectedCategory {
-        foods = foods.filter { $0.category == category }
-    }
-    
-    return foods
-}
-
-// Recipes list
-private var recipesList: some View {
-    List {
-        ForEach(recipeManager.recipes) { recipe in
-            NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text(recipe.name)
-                        .font(.system(size: userSettings.textSize.size, weight: .medium))
-                    
-                    HStack {
-                        Text("\(recipe.ingredients.count) ingredients")
-                        Spacer()
-                        Text("\(Int(recipe.totalNutritionalInfo.calories / Double(recipe.servings))) cal/serving")
+    // MARK: - Views
+    private var recipesList: some View {
+        List {
+            ForEach(recipeManager.recipes) { recipe in
+                NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(recipe.name)
+                            .font(.system(size: userSettings.textSize.size, weight: .medium))
+                        
+                        HStack {
+                            Text("\(recipe.ingredients.count) ingredients")
+                            Spacer()
+                            Text("\(Int(recipe.totalNutritionalInfo.calories / Double(recipe.servings))) cal/serving")
+                        }
+                        .font(.system(size: userSettings.textSize.size - 2))
+                        .foregroundColor(.secondary)
                     }
-                    .font(.system(size: userSettings.textSize.size - 2))
-                    .foregroundColor(.secondary)
+                    .padding(.vertical, 4)
                 }
-                .padding(.vertical, 4)
             }
-        }
-        .onDelete { indexSet in
-            for index in indexSet {
-                recipeManager.deleteRecipe(recipeManager.recipes[index])
+            .onDelete { indexSet in
+                for index in indexSet {
+                    recipeManager.deleteRecipe(recipeManager.recipes[index])
+                }
             }
         }
     }
 }
-
-// Add Food View
-struct AddFoodView: View {
-    @EnvironmentObject private var userSettings: UserSettings
-    @Environment(\.presentationMode) private var presentationMode
-    
-    @State private var name = ""
-    @State private var selectedCategory: FoodCategory = .other
-    @State private var servingSize: Double = 100
-    @State private var servingUnit = "g"
-    @State private var nutritionalInfo = NutritionalInfo()
-    @State private var notes = ""
-    
-    var onSave: (FoodItem) -> Void
-    
-    var body: some View {
-        NavigationView {
-            Form {
-                Section(header: Text("Food Details").font(.system(size: userSettings.textSize.size))) {
-                    TextField("Food name", text: $name)
-                        .font(.system(size: userSettings.textSize.size))
-                    
-                    Picker("Category", selection: $selectedCategory) {
-                        ForEach(FoodCategory.allCases, id: \.self) { category in
-                            Text(category.rawValue)
-                                .tag(category)
-                        }
-                    }
-                    .font(.system(size: userSettings.textSize.size))
-                    
-                    HStack {
-                        Text("Serving Size")
-                        Spacer()
-                        TextField("Size", value: $servingSize, format: .number)
-                            .keyboardType(.decimalPad)
-                            .multilineTextAlignment(.trailing)
-                            .frame(width: 80)
-                        Text(servingUnit)
-                    }
-                    .font(.system(size: userSettings.textSize.size))
-                }
-                
-                Section(header: Text("Nutritional Information").font(.system(size: userSettings.textSize.size))) {
-                    Group {
-                        HStack {
-                            Text("Calories")
-                            Spacer()
-                            TextField("Calories", value: $nutritionalInfo.calories, format: .number)
-                                .keyboardType(.decimalPad)
-                                .multilineTextAlignment(.trailing)
-                        }
-                        
-                        HStack {
-                            Text("Protein (g)")
-                            Spacer()
-                            TextField("Protein", value: $nutritionalInfo.protein, format: .number)
-                                .keyboardType(.decimalPad)
-                                .multilineTextAlignment(.trailing)
-                        }
-                        
-                        HStack {
-                            Text("Carbs (g)")
-                            Spacer()
-                            TextField("Carbs", value: $nutritionalInfo.carbohydrates, format: .number)
-                                .keyboardType(.decimalPad)
-                                .multilineTextAlignment(.trailing)
-                        }
-                        
-                        HStack {
-                            Text("Fat (g)")
-                            Spacer()
-                            TextField("Fat", value: $nutritionalInfo.fat, format: .number)
-                                .keyboardType(.decimalPad)
-                                .multilineTextAlignment(.trailing)
-                        }
-                    }
-                    .font(.system(size: userSettings.textSize.size))
-                }
-                
-                Section(header: Text("Notes").font(.system(size: userSettings.textSize.size))) {
-                    TextEditor(text: $notes)
-                        .frame(height: 100)
-                        .font(.system(size: userSettings.textSize.size))
-                }
-                
-                Section {
-                    Button(action: saveFood) {
-                        Text("Save Food")
-                            .font(.system(size: userSettings.textSize.size))
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.blue)
-                            .cornerRadius(10)
-                    }
-                    .disabled(name.isEmpty)
-                }
-                .listRowBackground(Color.clear)
-            }
-            .navigationTitle(NSLocalizedString("Add Food", comment: ""))
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(NSLocalizedString("Cancel", comment: "")) {
-                        presentationMode.wrappedValue.dismiss()
-                    }
-                    .font(.system(size: userSettings.textSize.size))
-                }
-            }
-        }
-    }
-    
-    // Save food
-    private func saveFood() {
-        let newFood = FoodItem(
-            id: UUID(),
-            name: name,
-            category: selectedCategory,
-            nutritionalInfo: nutritionalInfo,
-            servingSize: servingSize,
-            servingUnit: servingUnit,
-            isCustom: true,
-            notes: notes.isEmpty ? nil : notes
-        )
-        
-        onSave(newFood)
-        presentationMode.wrappedValue.dismiss()
-    }
-} 
