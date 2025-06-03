@@ -6,14 +6,16 @@ struct FoodDatabaseView: View {
     }
     
     @EnvironmentObject private var userSettings: UserSettings
+    @EnvironmentObject private var premiumManager: PremiumManager
     @StateObject private var foodDatabase = FoodDatabaseService()
+    @StateObject private var recipeManager = RecipeManager.shared
+    
     @State private var searchText = ""
     @State private var selectedCategory: FoodCategory?
     @State private var showingAddFood = false
     @State private var showingRecipeBuilder = false
     @State private var showingPremiumAlert = false
     @State private var viewMode: ViewMode = .foods
-    @StateObject private var recipeManager = RecipeManager.shared
     
     var body: some View {
         NavigationView {
@@ -38,8 +40,8 @@ struct FoodDatabaseView: View {
                 } else {
                     // Recipes list
                     recipesList
+                }
             }
-            .navigationTitle(NSLocalizedString("Food Database", comment: ""))
             .navigationBarTitleDisplayMode(.large)
             .navigationTitle(viewMode == .foods ? NSLocalizedString("Food Database", comment: "") : NSLocalizedString("Recipes", comment: ""))
             .toolbar {
@@ -63,7 +65,6 @@ struct FoodDatabaseView: View {
                                 .imageScale(.large)
                         }
                     }
-
                 }
                 
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -92,9 +93,6 @@ struct FoodDatabaseView: View {
                 Button("Cancel", role: .cancel) {}
             } message: {
                 Text("Recipe Builder is a premium feature. Upgrade to create custom recipes and automatically calculate nutritional values.")
-            }
-            .onAppear {
-
             }
             .onAppear {
                 foodDatabase.loadFoodDatabase()
@@ -143,7 +141,7 @@ struct FoodDatabaseView: View {
         Button(action: {
             selectedCategory = selectedCategory == category ? nil : category
         }) {
-            Text(category.rawValue)
+            Text(category.localizedString)
                 .font(.system(size: userSettings.textSize.size - 2))
                 .padding(.horizontal, 15)
                 .padding(.vertical, 8)
@@ -215,15 +213,104 @@ struct FoodDatabaseView: View {
         
         // Apply search filter
         if !searchText.isEmpty {
-            foods = foods.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+            foods = foods.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+        }
+    List {
+        ForEach(filteredFoods) { food in
+            foodRow(food)
+        }
+    }
+}
+
+// Food row
+private func foodRow(_ food: FoodItem) -> some View {
+    VStack(alignment: .leading, spacing: 8) {
+        HStack {
+            Text(food.name)
+                .font(.system(size: userSettings.textSize.size, weight: .medium))
+            
+            Spacer()
+            
+            Text("\(Int(food.nutritionalInfo.calories)) cal")
+                .font(.system(size: userSettings.textSize.size - 2))
+                .foregroundColor(.secondary)
         }
         
-        // Apply category filter
-        if let category = selectedCategory {
-            foods = foods.filter { $0.category == category }
+        HStack {
+            Text("\(Int(food.nutritionalInfo.protein))g protein")
+                .font(.system(size: userSettings.textSize.size - 2))
+                .foregroundColor(.secondary)
+            
+            Text("•")
+                .foregroundColor(.secondary)
+            
+            Text("\(Int(food.nutritionalInfo.carbohydrates))g carbs")
+                .font(.system(size: userSettings.textSize.size - 2))
+                .foregroundColor(.secondary)
+            
+            Text("•")
+                .foregroundColor(.secondary)
+            
+            Text("\(Int(food.nutritionalInfo.fat))g fat")
+                .font(.system(size: userSettings.textSize.size - 2))
+                .foregroundColor(.secondary)
         }
         
-        return foods
+        if food.isCustom {
+            Text("Custom Food")
+                .font(.system(size: userSettings.textSize.size - 4))
+                .foregroundColor(.blue)
+                .padding(.horizontal, 8)
+                .padding(.vertical, 2)
+                .background(Color.blue.opacity(0.1))
+                .cornerRadius(4)
+        }
+    }
+    .padding(.vertical, 4)
+}
+
+// Filtered foods
+private var filteredFoods: [FoodItem] {
+    var foods = foodDatabase.foodItems + foodDatabase.customFoodItems
+    
+    // Apply search filter
+    if !searchText.isEmpty {
+        foods = foods.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+    }
+    
+    // Apply category filter
+    if let category = selectedCategory {
+        foods = foods.filter { $0.category == category }
+    }
+    
+    return foods
+}
+
+// Recipes list
+private var recipesList: some View {
+    List {
+        ForEach(recipeManager.recipes) { recipe in
+            NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(recipe.name)
+                        .font(.system(size: userSettings.textSize.size, weight: .medium))
+                    
+                    HStack {
+                        Text("\(recipe.ingredients.count) ingredients")
+                        Spacer()
+                        Text("\(Int(recipe.totalNutritionalInfo.calories / Double(recipe.servings))) cal/serving")
+                    }
+                    .font(.system(size: userSettings.textSize.size - 2))
+                    .foregroundColor(.secondary)
+                }
+                .padding(.vertical, 4)
+            }
+        }
+        .onDelete { indexSet in
+            for index in indexSet {
+                recipeManager.deleteRecipe(recipeManager.recipes[index])
+            }
+        }
     }
 }
 
