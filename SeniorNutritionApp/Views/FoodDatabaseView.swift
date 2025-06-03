@@ -1,34 +1,69 @@
 import SwiftUI
 
 struct FoodDatabaseView: View {
+    enum ViewMode {
+        case foods, recipes
+    }
+    
     @EnvironmentObject private var userSettings: UserSettings
     @StateObject private var foodDatabase = FoodDatabaseService()
     @State private var searchText = ""
     @State private var selectedCategory: FoodCategory?
     @State private var showingAddFood = false
+    @State private var showingRecipeBuilder = false
+    @State private var showingPremiumAlert = false
+    @State private var viewMode: ViewMode = .foods
+    @StateObject private var recipeManager = RecipeManager.shared
     
     var body: some View {
         NavigationView {
             VStack {
-                // Search bar
-                searchBar
+                // View mode picker
+                Picker("View Mode", selection: $viewMode) {
+                    Text("Foods").tag(ViewMode.foods)
+                    Text("Recipes").tag(ViewMode.recipes)
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .padding()
                 
-                // Category filter
-                categoryFilter
-                
-                // Food list
-                foodList
+                if viewMode == .foods {
+                    // Search bar
+                    searchBar
+                    
+                    // Category filter
+                    categoryFilter
+                    
+                    // Food list
+                    foodList
+                } else {
+                    // Recipes list
+                    recipesList
             }
             .navigationTitle(NSLocalizedString("Food Database", comment: ""))
             .navigationBarTitleDisplayMode(.large)
+            .navigationTitle(viewMode == .foods ? NSLocalizedString("Food Database", comment: "") : NSLocalizedString("Recipes", comment: ""))
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        showingAddFood = true
-                    }) {
-                        Image(systemName: "plus")
-                            .imageScale(.large)
+                    if viewMode == .foods {
+                        Button(action: {
+                            showingAddFood = true
+                        }) {
+                            Image(systemName: "plus")
+                                .imageScale(.large)
+                        }
+                    } else {
+                        Button(action: {
+                            if premiumManager.checkFeatureAccess("recipe_builder") {
+                                showingRecipeBuilder = true
+                            } else {
+                                showingPremiumAlert = true
+                            }
+                        }) {
+                            Image(systemName: "plus")
+                                .imageScale(.large)
+                        }
                     }
+
                 }
                 
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -44,6 +79,22 @@ struct FoodDatabaseView: View {
                 AddFoodView { newFood in
                     foodDatabase.addCustomFood(newFood)
                 }
+            }
+            .sheet(isPresented: $showingRecipeBuilder) {
+                RecipeBuilderView { recipe in
+                    recipeManager.addRecipe(recipe)
+                }
+            }
+            .alert("Premium Feature", isPresented: $showingPremiumAlert) {
+                Button("Learn More") {
+                    // Show premium features view
+                }
+                Button("Cancel", role: .cancel) {}
+            } message: {
+                Text("Recipe Builder is a premium feature. Upgrade to create custom recipes and automatically calculate nutritional values.")
+            }
+            .onAppear {
+
             }
             .onAppear {
                 foodDatabase.loadFoodDatabase()
