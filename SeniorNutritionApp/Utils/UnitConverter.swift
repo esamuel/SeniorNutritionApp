@@ -60,7 +60,7 @@ struct UnitConverter {
     
     static func defaultUnitFor(foodCategory: FoodCategory) -> String {
         switch foodCategory {
-        case .beverages, .sauces, .soups:
+        case .beverages, .condiments:
             return "ml"
         default:
             return "g"
@@ -69,7 +69,7 @@ struct UnitConverter {
     
     static func suggestedUnitsFor(foodCategory: FoodCategory) -> [String] {
         switch foodCategory {
-        case .beverages, .sauces, .soups:
+        case .beverages, .condiments:
             return volumeUnits
         default:
             return weightUnits

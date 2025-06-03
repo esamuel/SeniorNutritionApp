@@ -29,26 +29,15 @@ class RecipeManager: ObservableObject {
     }
     
     private func loadRecipes() {
-        Task {
-            do {
-                if let data = try await PersistentStorage.shared.loadData(forKey: storageKey) as? Data,
-                   let decoded = try? JSONDecoder().decode([Recipe].self, from: data) {
-                    self.recipes = decoded
-                }
-            } catch {
-                print("Error loading recipes: \(error)")
-            }
+        if let data = UserDefaults.standard.data(forKey: storageKey),
+           let decoded = try? JSONDecoder().decode([Recipe].self, from: data) {
+            self.recipes = decoded
         }
     }
     
     private func saveRecipes() {
-        Task {
-            do {
-                let data = try JSONEncoder().encode(recipes)
-                try await PersistentStorage.shared.saveData(data, forKey: storageKey)
-            } catch {
-                print("Error saving recipes: \(error)")
-            }
+        if let encoded = try? JSONEncoder().encode(recipes) {
+            UserDefaults.standard.set(encoded, forKey: storageKey)
         }
     }
 }
