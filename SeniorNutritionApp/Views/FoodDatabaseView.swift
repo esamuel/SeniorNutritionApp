@@ -1,15 +1,18 @@
 import SwiftUI
 
 struct FoodDatabaseView: View {
-    enum ViewMode {
+    // MARK: - View Mode
+    private enum ViewMode {
         case foods, recipes
     }
     
+    // MARK: - Environment & State Objects
     @EnvironmentObject private var userSettings: UserSettings
     @EnvironmentObject private var premiumManager: PremiumManager
     @StateObject private var foodDatabase = FoodDatabaseService()
     @StateObject private var recipeManager = RecipeManager.shared
     
+    // MARK: - State
     @State private var searchText = ""
     @State private var selectedCategory: FoodCategory?
     @State private var showingAddFood = false
@@ -207,7 +210,7 @@ struct FoodDatabaseView: View {
         .padding(.vertical, 4)
     }
     
-    // Filtered foods
+    // MARK: - Computed Properties
     private var filteredFoods: [FoodItem] {
         var foods = foodDatabase.foodItems + foodDatabase.customFoodItems
         
@@ -215,58 +218,14 @@ struct FoodDatabaseView: View {
         if !searchText.isEmpty {
             foods = foods.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
         }
-    List {
-        ForEach(filteredFoods) { food in
-            foodRow(food)
-        }
-    }
-}
-
-// Food row
-private func foodRow(_ food: FoodItem) -> some View {
-    VStack(alignment: .leading, spacing: 8) {
-        HStack {
-            Text(food.name)
-                .font(.system(size: userSettings.textSize.size, weight: .medium))
-            
-            Spacer()
-            
-            Text("\(Int(food.nutritionalInfo.calories)) cal")
-                .font(.system(size: userSettings.textSize.size - 2))
-                .foregroundColor(.secondary)
+        
+        // Apply category filter
+        if let category = selectedCategory {
+            foods = foods.filter { $0.category == category }
         }
         
-        HStack {
-            Text("\(Int(food.nutritionalInfo.protein))g protein")
-                .font(.system(size: userSettings.textSize.size - 2))
-                .foregroundColor(.secondary)
-            
-            Text("•")
-                .foregroundColor(.secondary)
-            
-            Text("\(Int(food.nutritionalInfo.carbohydrates))g carbs")
-                .font(.system(size: userSettings.textSize.size - 2))
-                .foregroundColor(.secondary)
-            
-            Text("•")
-                .foregroundColor(.secondary)
-            
-            Text("\(Int(food.nutritionalInfo.fat))g fat")
-                .font(.system(size: userSettings.textSize.size - 2))
-                .foregroundColor(.secondary)
-        }
-        
-        if food.isCustom {
-            Text("Custom Food")
-                .font(.system(size: userSettings.textSize.size - 4))
-                .foregroundColor(.blue)
-                .padding(.horizontal, 8)
-                .padding(.vertical, 2)
-                .background(Color.blue.opacity(0.1))
-                .cornerRadius(4)
-        }
+        return foods
     }
-    .padding(.vertical, 4)
 }
 
 // Filtered foods
