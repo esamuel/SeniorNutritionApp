@@ -79,9 +79,9 @@ struct RecipeDetailView: View {
             }
         }
         .sheet(isPresented: $isEditing) {
-            RecipeBuilderView(recipe: recipe) { updatedRecipe in
+            RecipeBuilderView(onSave: { updatedRecipe in
                 recipeManager.updateRecipe(updatedRecipe)
-            }
+            })
         }
         .alert("Delete Recipe", isPresented: $showingDeleteConfirmation) {
             Button("Delete", role: .destructive) {
