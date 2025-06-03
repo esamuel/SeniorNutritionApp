@@ -13,7 +13,7 @@
 "Track Your Meals & Nutrition" = "Suivez vos repas et votre nutrition";
 "Monitor your diet with our easy-to-use food tracking system, including nutritional analysis and personalized recommendations." = "Surveillez votre alimentation avec notre système de suivi facile à utiliser, incluant une analyse nutritionnelle et des recommandations personnalisées.";
 "Photo-based meal logging" = "Enregistrement des repas par photo";
-"Built-in barcode scanner" = "Scanner de code-barres intégré";
+"Built-in barcode scanner (Premium)" = "Scanner de code-barres intégré (Premium)";
 "Voice input for hands-free recording" = "Saisie vocale pour un enregistrement mains libres";
 "Personalized Fasting Protocols" = "Protocoles de jeûne personnalisés";
 "Follow gentle, senior-friendly intermittent fasting schedules with built-in safety features and health monitoring." = "Suivez des horaires de jeûne intermittent adaptés aux seniors, avec des fonctions de sécurité intégrées et un suivi de la santé.";
@@ -842,6 +842,14 @@
 "Emergency Contacts" = "Contacts d'Urgence";
 "Personal Information" = "Informations Personnelles";
 "Physical Information" = "Informations Physiques";
+"American Units" = "Unités Américaines";
+"Using feet/inches and pounds" = "Utilisation des pieds/pouces et livres";
+"Using centimeters and kilograms" = "Utilisation des centimètres et kilogrammes";
+"Height:" = "Taille:";
+"Weight:" = "Poids:";
+"ft" = "pi";
+"in" = "po";
+"lbs" = "lb";
 
 /* Form Fields */
 "First Name" = "Prénom";
@@ -849,6 +857,23 @@
 "Date of Birth" = "Date de naissance";
 "Height (cm)" = "Taille (cm)";
 "Weight (kg)" = "Poids (kg)";
+"Gender" = "Genre";
+"Male" = "Masculin";
+"Female" = "Féminin";
+"Other" = "Autre";
+
+/* Age Format */
+"%d years, %d months" = "%d ans, %d mois";
+"%d months" = "%d mois";
+
+/* BMI Classifications */
+"Severely Underweight" = "Insuffisance pondérale sévère";
+"Underweight" = "Insuffisance pondérale";
+"Normal" = "Normal";
+"Overweight" = "Surpoids";
+"Obese (Class I)" = "Obésité (Classe I)";
+"Obese (Class II)" = "Obésité (Classe II)";
+"Obese (Class III)" = "Obésité (Classe III)";
 "Search for Food: Tap 'Search Food Database' to find foods" = "Rechercher un aliment : Appuyez sur 'Rechercher dans la base de données alimentaire' pour trouver des aliments";
 "Enter Meal Details: Add a name, select meal type (breakfast, lunch, dinner, or snack)" = "Saisir les détails du repas : Ajoutez un nom, sélectionnez le type de repas (petit-déjeuner, déjeuner, dîner ou collation)";
 "Set Portion Size: Choose small, medium, or large to adjust calories accordingly" = "Définir la taille de la portion : Choisissez petite, moyenne ou grande pour ajuster les calories en conséquence";
@@ -1111,9 +1136,150 @@
 "Activity" = "Activité";
 "Medication" = "Médicaments";
 "SeniorSpecific" = "Spécifique aux Seniors";
+"Diabetes" = "Diabète";
+"BloodPressure" = "Pression Artérielle";
+"WeightManagement" = "Gestion du Poids";
 
 // Health Tip Titles
 "health_tip_sleep_title" = "Priorisez un Sommeil de Qualité";
+
+// Diabetes Tips
+"health_tip_diabetes_monitor_title" = "Surveillez Régulièrement Votre Glycémie";
+"health_tip_diabetes_monitor_description" = "Vérifiez votre taux de glucose sanguin selon les recommandations de votre professionnel de santé. Une surveillance régulière vous aide à comprendre comment l'alimentation, l'activité et les médicaments affectent vos niveaux.";
+
+"health_tip_diabetes_glycemic_title" = "Choisissez des Aliments à Faible Index Glycémique";
+"health_tip_diabetes_glycemic_description" = "Les aliments à faible index glycémique (IG) font monter la glycémie plus lentement. Préférez les céréales complètes, les légumineuses et les légumes non féculents aux glucides raffinés.";
+
+"health_tip_diabetes_meal_timing_title" = "Prenez Vos Repas à Heures Régulières";
+"health_tip_diabetes_meal_timing_description" = "Essayez de manger à la même heure chaque jour pour maintenir une glycémie stable. Évitez de sauter des repas, surtout si vous prenez des médicaments.";
+
+"health_tip_diabetes_active_title" = "Restez Actif Après les Repas";
+"health_tip_diabetes_active_description" = "Une courte marche après les repas peut aider à réduire les pics de glycémie post-repas. Visez une promenade de 10-15 minutes après votre repas principal de la journée.";
+
+"health_tip_diabetes_stress_title" = "Gérez Votre Niveau de Stress";
+"health_tip_diabetes_stress_description" = "Le stress peut augmenter la glycémie. Pratiquez des techniques de relaxation comme la respiration profonde, la méditation ou le yoga doux pour aider à gérer le stress.";
+
+"health_tip_diabetes_feet_title" = "Examinez Vos Pieds Quotidiennement";
+"health_tip_diabetes_feet_description" = "Les personnes diabétiques doivent inspecter leurs pieds quotidiennement pour détecter coupures, ampoules, rougeurs ou gonflements. Un bon soin des pieds prévient les complications.";
+
+"health_tip_diabetes_hydration_title" = "Restez Hydraté";
+"health_tip_diabetes_hydration_description" = "Une bonne hydratation aide vos reins à éliminer l'excès de sucre par l'urine. Visez 8 verres d'eau par jour, davantage si votre glycémie est élevée.";
+
+"health_tip_diabetes_fiber_title" = "Incluez des Fibres à Chaque Repas";
+"health_tip_diabetes_fiber_description" = "Les fibres ralentissent l'absorption du sucre et améliorent la glycémie. Visez 25-30 grammes de fibres quotidiennement provenant de légumes, fruits, céréales complètes et légumineuses.";
+
+"health_tip_diabetes_alcohol_title" = "Limitez la Consommation d'Alcool";
+"health_tip_diabetes_alcohol_description" = "L'alcool peut faire chuter dangereusement la glycémie si vous prenez de l'insuline ou certains médicaments antidiabétiques. Si vous buvez, faites-le avec modération et toujours avec de la nourriture.";
+
+"health_tip_diabetes_abc_title" = "Connaissez Vos ABC";
+"health_tip_diabetes_abc_description" = "Pour la gestion du diabète, rappelez-vous vos ABC : A1C (test de glycémie), Blood pressure (pression artérielle) et Cholesterol (cholestérol). Maintenez les trois dans les plages cibles.";
+
+"health_tip_diabetes_portion_title" = "Le Contrôle des Portions Est Important";
+"health_tip_diabetes_portion_description" = "Même les aliments sains peuvent augmenter la glycémie si les portions sont trop grandes. Utilisez des tasses à mesurer ou une balance alimentaire jusqu'à ce que vous puissiez estimer précisément les tailles de portions.";
+
+"health_tip_diabetes_fats_title" = "Choisissez des Graisses Saines";
+"health_tip_diabetes_fats_description" = "Remplacez les graisses saturées par des graisses saines provenant de sources comme l'huile d'olive, les avocats et les noix pour améliorer la sensibilité à l'insuline et la santé cardiaque.";
+
+"health_tip_diabetes_low_sugar_title" = "Soyez Préparé pour l'Hypoglycémie";
+"health_tip_diabetes_low_sugar_description" = "Ayez toujours sur vous un glucide à action rapide comme des comprimés de glucose, du jus ou des bonbons durs pour traiter l'hypoglycémie (baisse du taux de sucre dans le sang).";
+
+"health_tip_diabetes_eye_title" = "Planifiez des Examens Oculaires Réguliers";
+"health_tip_diabetes_eye_description" = "Le diabète augmente le risque de problèmes oculaires. Faites-vous faire un examen oculaire complet avec dilatation au moins une fois par an pour détecter les problèmes précocement.";
+
+"health_tip_diabetes_sleep_title" = "Priorisez un Sommeil de Qualité";
+"health_tip_diabetes_sleep_description" = "Un mauvais sommeil peut affecter le contrôle de la glycémie et la sensibilité à l'insuline. Visez 7-8 heures de sommeil de qualité chaque nuit.";
+
+// Blood Pressure Tips
+"health_tip_bp_sodium_title" = "Réduisez Votre Consommation de Sodium";
+"health_tip_bp_sodium_description" = "Limitez le sodium à 1 500-2 300 mg par jour. Lisez les étiquettes des aliments, évitez les aliments transformés et utilisez des herbes et épices au lieu du sel pour assaisonner.";
+
+"health_tip_bp_dash_title" = "Suivez le Régime DASH";
+"health_tip_bp_dash_description" = "Le régime DASH (Approches Diététiques pour Stopper l'Hypertension) met l'accent sur les fruits, légumes, céréales complètes, protéines maigres et produits laitiers faibles en gras, tout en limitant le sodium et les graisses saturées.";
+
+"health_tip_bp_monitor_title" = "Surveillez Votre Tension Artérielle";
+"health_tip_bp_monitor_description" = "La surveillance régulière à domicile vous aide à suivre vos progrès et vous alerte sur d'éventuels problèmes. Tenez un journal de vos mesures pour le partager avec votre médecin.";
+
+"health_tip_bp_alcohol_title" = "Limitez la Consommation d'Alcool";
+"health_tip_bp_alcohol_description" = "L'alcool excessif peut augmenter la tension artérielle. Limitez-vous à un verre par jour pour les femmes et deux pour les hommes, ou envisagez d'éviter complètement l'alcool.";
+
+"health_tip_bp_potassium_title" = "Augmentez Votre Apport en Potassium";
+"health_tip_bp_potassium_description" = "Le potassium aide à équilibrer le sodium dans vos cellules. Incluez des aliments riches en potassium comme les bananes, les pommes de terre, les avocats et les légumes verts dans votre alimentation.";
+
+"health_tip_bp_stress_title" = "Pratiquez la Gestion du Stress";
+"health_tip_bp_stress_description" = "Le stress chronique contribue à l'hypertension. Essayez la respiration profonde, la méditation, le yoga ou d'autres techniques de relaxation quotidiennement.";
+
+"health_tip_bp_weight_title" = "Maintenez un Poids Santé";
+"health_tip_bp_weight_description" = "Même une perte de poids modeste peut réduire significativement la tension artérielle. Visez un IMC entre 18,5 et 24,9.";
+
+"health_tip_bp_exercise_title" = "Faites de l'Exercice Régulièrement";
+"health_tip_bp_exercise_description" = "Visez au moins 150 minutes d'activité modérée par semaine. L'exercice régulier renforce votre cœur et l'aide à pomper plus efficacement.";
+
+"health_tip_bp_caffeine_title" = "Limitez Votre Consommation de Caféine";
+"health_tip_bp_caffeine_description" = "La caféine peut temporairement faire monter la tension artérielle. Limitez le café, le thé et les boissons énergétiques, surtout si vous souffrez d'hypertension.";
+
+"health_tip_bp_medication_title" = "Prenez Vos Médicaments Comme Prescrit";
+"health_tip_bp_medication_description" = "Les médicaments contre l'hypertension fonctionnent mieux lorsqu'ils sont pris régulièrement selon les indications. Ne sautez jamais de doses et n'arrêtez jamais de prendre vos médicaments sans consulter votre médecin.";
+
+"health_tip_bp_calcium_title" = "Augmentez Votre Apport en Calcium";
+"health_tip_bp_calcium_description" = "Un apport adéquat en calcium aide à réguler la tension artérielle. Incluez des produits laitiers faibles en gras, des laits végétaux fortifiés ou des suppléments de calcium si recommandés par votre médecin.";
+
+"health_tip_bp_smoking_title" = "Arrêtez de Fumer";
+"health_tip_bp_smoking_description" = "Chaque cigarette augmente temporairement la tension artérielle. Arrêter de fumer aide à réduire la tension artérielle et améliore la santé cardiovasculaire globale.";
+
+"health_tip_bp_breathing_title" = "Pratiquez la Respiration Profonde";
+"health_tip_bp_breathing_description" = "Une respiration lente et profonde pendant 5-10 minutes par jour peut aider à réduire la tension artérielle. Essayez de respirer profondément par le nez et d'expirer par la bouche.";
+
+"health_tip_bp_processed_title" = "Limitez les Aliments Transformés";
+"health_tip_bp_processed_description" = "Les aliments hautement transformés contiennent souvent du sodium caché et des graisses malsaines. Choisissez des aliments entiers et non transformés dans la mesure du possible.";
+
+"health_tip_bp_sleep_title" = "Maintenez un Sommeil Régulier";
+"health_tip_bp_sleep_description" = "Visez 7-8 heures de sommeil de qualité chaque nuit. Une mauvaise qualité de sommeil et l'apnée du sommeil peuvent contribuer à l'hypertension.";
+
+// Weight Management Tips
+"health_tip_weight_portion_title" = "Pratiquez le Contrôle des Portions";
+"health_tip_weight_portion_description" = "Utilisez des assiettes plus petites, mesurez les portions et soyez conscient des tailles de portions. Même les aliments sains peuvent contribuer à la prise de poids lorsque les portions sont trop grandes.";
+
+"health_tip_weight_mindful_title" = "Mangez en Pleine Conscience";
+"health_tip_weight_mindful_description" = "Ralentissez en mangeant, savourez chaque bouchée et soyez attentif aux signaux de faim et de satiété. Évitez les distractions comme la télévision ou les téléphones pendant les repas.";
+
+"health_tip_weight_planning_title" = "Planifiez les Repas à l'Avance";
+"health_tip_weight_planning_description" = "Planifier et préparer les repas à l'avance aide à prévenir les choix impulsifs et malsains. Essayez de cuisiner en lots le week-end pour faciliter les repas en semaine.";
+
+"health_tip_weight_hydration_title" = "Restez Hydraté";
+"health_tip_weight_hydration_description" = "Parfois, la soif est confondue avec la faim. Buvez de l'eau avant les repas et tout au long de la journée pour rester hydraté et aider à contrôler l'appétit.";
+
+"health_tip_weight_protein_title" = "Incluez des Protéines à Chaque Repas";
+"health_tip_weight_protein_description" = "Les protéines augmentent la satiété et aident à préserver la masse musculaire pendant la perte de poids. Incluez des sources de protéines maigres comme le poisson, la volaille, les haricots ou le tofu à chaque repas.";
+
+"health_tip_weight_fiber_title" = "Concentrez-vous sur les Fibres";
+"health_tip_weight_fiber_description" = "Les aliments riches en fibres favorisent la satiété et soutiennent la santé digestive. Visez 25-30 grammes par jour provenant de légumes, fruits, céréales complètes et légumineuses.";
+
+"health_tip_weight_movement_title" = "Bougez Tout au Long de la Journée";
+"health_tip_weight_movement_description" = "Au-delà de l'exercice structuré, cherchez des moyens d'augmenter le mouvement quotidien. Utilisez les escaliers, garez-vous plus loin ou levez-vous pendant les appels téléphoniques.";
+
+"health_tip_weight_tracking_title" = "Suivez Vos Progrès";
+"health_tip_weight_tracking_description" = "Tenez un journal alimentaire et d'activités pour augmenter la conscience et la responsabilité. Les applications ou les carnets simples peuvent aider à suivre les tendances au fil du temps.";
+
+"health_tip_weight_stress_title" = "Gérez l'Alimentation Liée au Stress";
+"health_tip_weight_stress_description" = "Trouvez des moyens non alimentaires de faire face au stress, comme marcher, respirer profondément ou appeler un ami. Identifiez les déclencheurs de l'alimentation émotionnelle et développez des réponses alternatives.";
+
+"health_tip_weight_sleep_title" = "Obtenez un Sommeil Adéquat";
+"health_tip_weight_sleep_description" = "Un sommeil insuffisant perturbe les hormones de la faim et augmente les envies. Priorisez 7-8 heures de sommeil de qualité pour soutenir les efforts de contrôle du poids.";
+
+"health_tip_weight_strength_title" = "Développez du Muscle avec l'Entraînement en Force";
+"health_tip_weight_strength_description" = "Le muscle brûle plus de calories que la graisse, même au repos. Incluez des exercices de renforcement musculaire 2-3 fois par semaine pour augmenter le métabolisme.";
+
+"health_tip_weight_nutrient_title" = "Choisissez des Aliments Riches en Nutriments";
+"health_tip_weight_nutrient_description" = "Concentrez-vous sur les aliments qui fournissent un maximum de nutrition pour les calories. Remplissez votre assiette de légumes colorés, de protéines maigres et de céréales complètes.";
+
+"health_tip_weight_liquid_title" = "Soyez Conscient des Calories Liquides";
+"health_tip_weight_liquid_description" = "Les calories des boissons s'accumulent rapidement et ne satisfont souvent pas la faim. Limitez les boissons sucrées, l'alcool et les boissons au café à haute teneur en calories.";
+
+"health_tip_weight_goals_title" = "Fixez des Objectifs Réalistes";
+"health_tip_weight_goals_description" = "Visez une perte de poids progressive et durable de 0,5-1 kg par semaine. Les petits objectifs atteignables mènent à un succès durable.";
+
+"health_tip_weight_activities_title" = "Trouvez des Activités que Vous Aimez";
+"health_tip_weight_activities_description" = "L'exercice ne devrait pas être ressenti comme une punition. Explorez différentes activités jusqu'à ce que vous trouviez quelque chose d'agréable que vous maintiendrez à long terme.";
 "health_tip_stress_title" = "Gérez les Niveaux de Stress";
 "health_tip_checkups_title" = "Planifiez des Examens Réguliers";
 
@@ -1136,40 +1302,35 @@
 "health_tip_medication_schedule_title" = "Calendrier des Médicaments";
 "health_tip_medication_food_title" = "Prenez avec de la Nourriture si Nécessaire";
 
-"health_tip_senior_balance_title" = "Exercices d'Équilibre";
-"health_tip_senior_vision_title" = "Protégez Votre Vision";
+"health_tip_senior_balance_title" = "Exercices d'équilibre";
+"health_tip_senior_vision_title" = "Protégez votre vision";
+"health_tip_senior_social_title" = "Restez socialement actif";
+"health_tip_senior_home_title" = "Liste de sécurité domestique";
+"health_tip_senior_memory_title" = "Gardez votre esprit vif";
+"health_tip_senior_temperature_title" = "Conscience de la température";
 
 // Health Tip Descriptions
 "health_tip_sleep_description" = "Visez 7 à 8 heures de sommeil de qualité chaque nuit. Un horaire de sommeil régulier aide à réguler le métabolisme et favorise la santé générale.";
 "health_tip_stress_description" = "Pratiquez des techniques de relaxation comme la respiration profonde, la méditation ou le yoga doux pour gérer le stress, qui peut affecter la santé cardiaque et la digestion.";
 "health_tip_checkups_description" = "Les examens de santé réguliers sont essentiels. Planifiez des visites chez votre médecin au moins une fois par an, davantage si vous avez des maladies chroniques.";
-
-"health_tip_protein_description" = "Les seniors ont besoin de plus de protéines pour maintenir leur masse musculaire. Visez 1 à 1,2 g par kg de poids corporel quotidiennement, provenant de viandes maigres, poisson, œufs, produits laitiers et protéines végétales.";
-"health_tip_fiber_description" = "Mangez des aliments riches en fibres comme les céréales complètes, les fruits, les légumes et les légumineuses pour soutenir la santé digestive et gérer les niveaux de cholestérol.";
-"health_tip_calcium_description" = "Les adultes de plus de 50 ans ont besoin de 1200 mg de calcium par jour. Incluez des produits laitiers, des laits végétaux enrichis, du poisson en conserve avec arêtes et des légumes verts dans votre alimentation.";
-"health_tip_vitaminD_description" = "La vitamine D aide à l'absorption du calcium. Profitez de l'exposition au soleil et envisagez un supplément, surtout pendant les mois d'hiver.";
-
-"health_tip_fasting_hydration_description" = "Buvez beaucoup d'eau pendant vos périodes de jeûne. Restez hydraté avec au moins 8 à 10 verres par jour pour prévenir la déshydratation.";
-"health_tip_fasting_listen_body_description" = "Si vous ne vous sentez pas bien pendant le jeûne - éprouvant des vertiges, une fatigue extrême ou de la confusion - arrêtez immédiatement votre jeûne.";
-"health_tip_fasting_break_description" = "Rompez votre jeûne avec des aliments facilement digestibles comme des soupes, des fruits ou de petites portions de protéines pour éviter l'inconfort digestif.";
-"health_tip_fasting_sleep_description" = "Un sommeil de qualité aide aux résultats du jeûne. Maintenez un horaire de sommeil régulier pour soutenir votre routine de jeûne intermittent.";
-
-"health_tip_hydration_reminder_description" = "Définissez des rappels pour boire de l'eau tout au long de la journée. Votre sensation de soif peut diminuer avec l'âge, rendant les rappels programmés utiles.";
-"health_tip_hydration_foods_description" = "Les fruits comme la pastèque, les oranges, et les légumes comme le concombre et la laitue sont d'excellentes sources d'hydratation au-delà de l'eau plate.";
-
-"health_tip_activity_walking_description" = "Une marche quotidienne de 30 minutes améliore la circulation, la santé cardiaque et l'humeur. C'est l'un des exercices les plus simples et efficaces pour les seniors.";
+{{ ... }}
 "health_tip_activity_strength_description" = "Même un entraînement de force léger 2-3 fois par semaine aide à maintenir la masse musculaire, la densité osseuse et l'indépendance en vieillissant.";
 
 "health_tip_medication_schedule_description" = "Prenez les médicaments à la même heure chaque jour pour maintenir des niveaux constants dans votre sang et maximiser l'efficacité.";
 "health_tip_medication_food_description" = "Certains médicaments doivent être pris avec de la nourriture. Suivez les instructions de votre médecin concernant la synchronisation des médicaments avec les repas.";
 
-"health_tip_senior_balance_description" = "Pratiquez des exercices d'équilibre comme se tenir sur un pied ou marcher talon-pointe pour prévenir les chutes, qui représentent un risque majeur pour les seniors.";
-"health_tip_senior_vision_description" = "Faites vérifier vos yeux chaque année. Une bonne vision est cruciale pour prévenir les chutes et maintenir la qualité de vie.";
+"health_tip_senior_balance_description" = "Pratiquez des exercices d'équilibre comme se tenir sur un pied ou marcher talon-pointe pour prévenir les chutes, qui sont un risque majeur pour les personnes âgées.";
+"health_tip_senior_vision_description" = "Faites examiner vos yeux chaque année. Une bonne vision est essentielle pour prévenir les chutes et maintenir la qualité de vie.";
+"health_tip_senior_social_description" = "L'interaction sociale régulière peut aider à maintenir la fonction cognitive et le bien-être émotionnel. Envisagez de rejoindre des groupes communautaires, de planifier des appels vidéo réguliers avec la famille ou de participer à des activités locales pour personnes âgées.";
+"health_tip_senior_home_description" = "Sécurisez votre maison en assurant un bon éclairage, en éliminant les risques de trébuchement, en installant des barres d'appui dans les salles de bain et en gardant les articles fréquemment utilisés à portée de main. Un environnement sûr aide à maintenir l'indépendance.";
+"health_tip_senior_memory_description" = "Participez à des exercices mentaux quotidiens comme les puzzles, la lecture, l'apprentissage de nouvelles compétences ou les jeux de mémoire. La stimulation mentale régulière aide à maintenir la fonction cognitive et peut réduire le risque de problèmes de mémoire.";
+"health_tip_senior_temperature_description" = "En vieillissant, notre corps devient plus sensible aux températures extrêmes. Restez au chaud par temps froid, évitez la surchauffe en été et maintenez des températures intérieures confortables. N'oubliez pas de vous habiller en couches et de rester hydraté.";
 
 "Show Onboarding Again" = "Afficher l'Introduction à Nouveau";
 "Local Backup" = "Sauvegarde Locale";
 "Export Backup" = "Exporter la Sauvegarde";
 "Import Backup" = "Importer la Sauvegarde";
+{{ ... }}
 "App Language" = "Langue de l'Application";
 "Fix Language Issues" = "Résoudre les Problèmes de Langue";
 "Reset to System Language" = "Réinitialiser à la Langue du Système";
@@ -1481,5 +1642,11 @@
 "Voice-activated commands for hands-free operation" = "Commandes vocales pour une utilisation mains libres";
 "Emergency contact access with location sharing" = "Accès aux contacts d'urgence avec partage de localisation";
 "Instant health data recording and visualization" = "Enregistrement et visualisation instantanés des données de santé";
+
+"Consider consulting with a registered dietitian for personalized guidance on your specific dietary restriction." = "Envisagez de consulter un(e) diététicien(ne) diplômé(e) pour des conseils personnalisés adaptés à vos restrictions alimentaires.";
+"Ensure your restricted diet still provides all essential nutrients through careful food choices or supplements if necessary." = "Assurez-vous que votre régime restrictif apporte tous les nutriments essentiels grâce à des choix alimentaires judicieux ou à des compléments si nécessaire.";
+
+"Allemand" = "Allemand";
+"Langue : changez la langue de l'application (anglais, espagnol, français, hébreu)" = "Langue : changez la langue de l'application (anglais, espagnol, français, hébreu)";
 
 

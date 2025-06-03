@@ -6,6 +6,14 @@ A comprehensive iOS app designed to support seniors (ages 50–120) in managing 
 
 ## Features
 
+### Premium Features
+- **Barcode Scanner**
+  - Quickly add foods by scanning product barcodes
+  - Automatic nutritional information lookup
+  - Instant addition to meal tracking
+  - Save frequently scanned items for quick access
+
+### Standard Features
 - **Medication Management**
   - Add, edit, and track medications
   - 3D pill shape and color selection for easy identification
@@ -40,7 +48,7 @@ A comprehensive iOS app designed to support seniors (ages 50–120) in managing 
   - Context-sensitive help throughout the app
 
 - **Multilingual Support**
-  - Full translations in English, German, French, Spanish
+  - Full translations in English, French, Spanish
   - Complete Right-to-Left (RTL) language support for Hebrew
   - Optimized layouts for text expansion/contraction in different languages
 
@@ -66,7 +74,85 @@ A comprehensive iOS app designed to support seniors (ages 50–120) in managing 
 
 ## Screenshots
 
-> _Add screenshots of the main screens here_
+### How to Add Screenshots
+
+1. Run the app in the iOS Simulator or on a physical device
+2. Capture screenshots of the following key screens:
+   - Home/Menu screen
+   - Medication Management
+   - Fasting Timer
+   - Meal Tracking
+   - Health Monitoring
+   - Help & Support
+3. Save the screenshots in the `/Screenshots` folder with descriptive names
+4. Replace the placeholders below with your actual screenshots
+
+### Main Screens
+
+<table>
+  <tr>
+    <td><img src="Screenshots/home_screen.png" alt="Home Screen" width="250"/></td>
+    <td><img src="Screenshots/medication_screen.png" alt="Medication Management" width="250"/></td>
+    <td><img src="Screenshots/fasting_screen.png" alt="Fasting Timer" width="250"/></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Home Screen</b></td>
+    <td align="center"><b>Medication Management</b></td>
+    <td align="center"><b>Fasting Timer</b></td>
+  </tr>
+  <tr>
+    <td><img src="Screenshots/meal_tracking.png" alt="Meal Tracking" width="250"/></td>
+    <td><img src="Screenshots/health_monitoring.png" alt="Health Monitoring" width="250"/></td>
+    <td><img src="Screenshots/help_support.png" alt="Help & Support" width="250"/></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Meal Tracking</b></td>
+    <td align="center"><b>Health Monitoring</b></td>
+    <td align="center"><b>Help & Support</b></td>
+  </tr>
+</table>
+
+---
+
+## Video Shorts
+
+Short video demonstrations can better showcase interactive features and animations.
+
+### How to Add Video Shorts
+
+1. Record short (15-30 second) video clips demonstrating key features in action
+2. Save the videos in MP4 format in the `/Videos` folder
+3. Replace the placeholders below with your actual videos
+
+### Feature Demonstrations
+
+<table>
+  <tr>
+    <td width="33%">
+      <video width="100%" controls>
+        <source src="Videos/onboarding_demo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <p align="center"><b>Onboarding Experience</b></p>
+    </td>
+    <td width="33%">
+      <video width="100%" controls>
+        <source src="Videos/medication_reminder.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <p align="center"><b>Medication Reminder Flow</b></p>
+    </td>
+    <td width="33%">
+      <video width="100%" controls>
+        <source src="Videos/fasting_timer.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <p align="center"><b>Fasting Timer in Action</b></p>
+    </td>
+  </tr>
+</table>
+
+> Note: For GitHub README display, you may need to convert videos to GIFs or host them elsewhere and link to them.
 
 ---
 
@@ -95,7 +181,6 @@ A comprehensive iOS app designed to support seniors (ages 50–120) in managing 
 ## Multilingual Support
 - English (default)
 - Hebrew (with full RTL support)
-- German
 - French
 - Spanish
 - Customized layouts for each language to ensure proper text display
@@ -108,6 +193,7 @@ A comprehensive iOS app designed to support seniors (ages 50–120) in managing 
 - No health/medical advice is given—reminders and tracking only
 - Data is stored locally and not shared without consent
 - Fully supports Apple's accessibility guidelines
+- In-app purchases for premium features comply with App Store guidelines
 
 ---
 
@@ -129,7 +215,7 @@ Contributions are welcome! Please open an issue or submit a pull request. For ma
 
 ## Contact
 
-For questions, feedback, or support, contact: [your-email@example.com]
+For questions, feedback, or support, contact: [support@seniornutritionapp.com](mailto:support@seniornutritionapp.com)
 
 ---
 
