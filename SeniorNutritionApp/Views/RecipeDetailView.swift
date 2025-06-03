@@ -79,7 +79,7 @@ struct RecipeDetailView: View {
             }
         }
         .sheet(isPresented: $isEditing) {
-            RecipeBuilderView(existingRecipe: recipe) { updatedRecipe in
+            RecipeBuilderView(recipe: recipe) { updatedRecipe in
                 recipeManager.updateRecipe(updatedRecipe)
             }
         }
