@@ -844,7 +844,9 @@ struct HomeView: View {
             return
         }
         
-        let notificationTime = calendar.date(byAdding: .minute, value: -30, to: actualNextDose) ?? actualNextDose
+        // Use the user's preference for reminder lead time (0 minutes means notification at the exact time)
+        let leadTime = userSettings.medicationReminderLeadTime
+        let notificationTime = leadTime > 0 ? calendar.date(byAdding: .minute, value: -leadTime, to: actualNextDose) ?? actualNextDose : actualNextDose
         
         // Ensure notification time is in the future
         guard notificationTime > now else {
