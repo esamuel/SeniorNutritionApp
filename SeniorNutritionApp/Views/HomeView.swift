@@ -631,11 +631,11 @@ struct HomeView: View {
     private var timeOfDay: String {
         let hour = Calendar.current.component(.hour, from: Date())
         if hour < 12 {
-            return NSLocalizedString("Good morning", comment: "")
+            return NSLocalizedString("Good Morning", comment: "Morning greeting")
         } else if hour < 17 {
-            return NSLocalizedString("Good afternoon", comment: "")
+            return NSLocalizedString("Good Afternoon", comment: "Afternoon greeting")
         } else {
-            return NSLocalizedString("Good evening", comment: "")
+            return NSLocalizedString("Good Evening", comment: "Evening greeting")
         }
     }
     

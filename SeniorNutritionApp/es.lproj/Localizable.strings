@@ -176,7 +176,7 @@
 "Upcoming Appointments" = "Próximas citas";
 "See All" = "Ver todo";
 "No upcoming appointments" = "No hay próximas citas";
-"%@, %@" = "%@, %@";
+"%@, %@" = "%1$@, %2$@";
 "Morning" = "Mañana";
 "Afternoon" = "Tarde";
 "Evening" = "Noche";
@@ -788,6 +788,76 @@
 "Settings Not Saving: Restart the app if settings aren't being applied" = "Configuración No se Guarda: Reinicie la aplicación si la configuración no se aplica";
 "Profile Updates: Make sure to tap Save after changing profile information" = "Actualizaciones de Perfil: Asegúrese de tocar Guardar después de cambiar la información del perfil";
 "Printing Problems: Ensure your device is connected to a printer or sharing service" = "Problemas de Impresión: Asegúrese de que su dispositivo esté conectado a una impresora o servicio de compartir";
+
+// HealthView Localizations
+"Blood Pressure" = "Presión arterial";
+"Blood Sugar" = "Azúcar en sangre";
+
+/* Health Detail View Localizations */
+"Average" = "Promedio";
+"Latest" = "Último";
+"Trend" = "Tendencia";
+"Trends" = "Tendencias";
+"Week" = "Semana";
+"Month" = "Mes";
+"3 Months" = "3 Meses";
+"No change" = "Sin cambios";
+"Time Range" = "Rango de tiempo";
+
+/* Blood Pressure Status Messages */
+"Your blood pressure is in the normal range. Keep up the good work!" = "Tu presión arterial está en el rango normal. ¡Sigue con el buen trabajo!";
+"Your blood pressure is slightly elevated. Consider lifestyle changes." = "Tu presión arterial está ligeramente elevada. Considera cambios en tu estilo de vida.";
+"Your blood pressure is in hypertension stage 1. Consult your doctor." = "Tu presión arterial está en la etapa 1 de hipertensión. Consulta a tu médico.";
+"Your blood pressure is in hypertension stage 2. Medical attention recommended." = "Tu presión arterial está en la etapa 2 de hipertensión. Se recomienda atención médica.";
+"Your blood pressure is critically high. Seek immediate medical attention!" = "Tu presión arterial está críticamente alta. ¡Busca atención médica inmediata!";
+"Monitor your blood pressure regularly." = "Monitorea tu presión arterial regularmente.";
+"Start tracking your blood pressure to see insights." = "Comienza a seguir tu presión arterial para ver información detallada.";
+
+/* Heart Rate Status Messages */
+"Your heart rate is in the normal range. Keep up the good work!" = "Tu ritmo cardíaco está en el rango normal. ¡Sigue con el buen trabajo!";
+"Your heart rate is elevated. If this persists, consider consulting your doctor." = "Tu ritmo cardíaco está elevado. Si esto persiste, considera consultar a tu médico.";
+"Your heart rate is lower than normal. If you feel unwell, consult your doctor." = "Tu ritmo cardíaco es más bajo de lo normal. Si te sientes mal, consulta a tu médico.";
+"Your heart rate is very high. Consider medical attention if accompanied by other symptoms." = "Tu ritmo cardíaco es muy alto. Considera atención médica si está acompañado de otros síntomas.";
+"Monitor your heart rate regularly." = "Monitorea tu ritmo cardíaco regularmente.";
+"Start tracking your heart rate to see insights." = "Comienza a seguir tu ritmo cardíaco para ver información detallada.";
+
+/* Blood Sugar Status Messages */
+"Your blood sugar is in the normal range. Keep up the good work!" = "Tu nivel de azúcar en sangre está en el rango normal. ¡Sigue con el buen trabajo!";
+"Your blood sugar is in the pre-diabetic range. Consider lifestyle changes or consult your doctor." = "Tu nivel de azúcar en sangre está en el rango prediabético. Considera cambios en tu estilo de vida o consulta a tu médico.";
+"Your blood sugar is in the diabetic range. Consult your doctor for guidance." = "Tu nivel de azúcar en sangre está en el rango diabético. Consulta a tu médico para orientación.";
+"Your blood sugar is low. Consider eating something with carbohydrates." = "Tu nivel de azúcar en sangre es bajo. Considera comer algo con carbohidratos.";
+"Your blood sugar is very low. Seek medical attention if you feel unwell." = "Tu nivel de azúcar en sangre es muy bajo. Busca atención médica si te sientes mal.";
+"Monitor your blood sugar regularly." = "Monitorea tu nivel de azúcar en sangre regularmente.";
+"Start tracking your blood sugar to see insights." = "Comienza a seguir tu nivel de azúcar en sangre para ver información detallada.";
+
+/* Weight Status Messages */
+"Your weight has been stable recently. Good job maintaining consistency!" = "Tu peso ha sido estable recientemente. ¡Buen trabajo manteniendo la consistencia!";
+"You've gained %.1f kg recently. Monitor your intake if this wasn't intended." = "Has ganado %.1f kg recientemente. Monitorea tu ingesta si esto no fue intencional.";
+"You've lost %.1f kg recently. If intentional, good progress!" = "Has perdido %.1f kg recientemente. Si fue intencional, ¡buen progreso!";
+"Track your weight regularly to see insights and trends." = "Controle su peso regularmente para ver información y tendencias.";
+
+/* Health Resume Formats */
+"Blood Pressure: %d/%d mmHg" = "Presión arterial: %d/%d mmHg";
+"Heart Rate: %d BPM" = "Frecuencia cardíaca: %d LPM";
+"Weight: %.1f kg" = "Peso: %.1f kg";
+"Blood Sugar: %.1f mg/dL" = "Glucosa en sangre: %.1f mg/dL";
+
+/* Health Summary Formats */
+"%d/%d mmHg" = "%d/%d mmHg";
+"%d BPM" = "%d LPM";
+"%.1f kg" = "%.1f kg";
+"%.1f mg/dL" = "%.1f mg/dL";
+
+/* Health View Titles */
+"Blood Pressure" = "Presión arterial";
+"Heart Rate" = "Frecuencia cardíaca";
+"Weight" = "Peso";
+"Blood Sugar" = "Glucosa en sangre";
+"Health Report" = "Informe de salud";
+"Add New Goal" = "Añadir nuevo objetivo";
+
+"Tap to view history and charts." = "Toque para ver el historial y los gráficos.";
+"No recent activity" = "No hay actividad reciente";
 "Language Issues: If text appears cut off after changing language, restart the app" = "Problemas de Idioma: Si el texto aparece cortado después de cambiar el idioma, reinicie la aplicación";
 "Help Videos: If videos won't play, check your internet connection" = "Videos de Ayuda: Si los videos no se reproducen, verifique su conexión a Internet";
 
