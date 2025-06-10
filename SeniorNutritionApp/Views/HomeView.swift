@@ -23,6 +23,7 @@ struct HomeView: View {
     @State private var showingAddAppointment = false
     @State private var appointmentToEdit: Appointment?
     @State private var healthTips: [HealthTip] = []
+    @State private var refreshTrigger = false // Add this to force view refresh
     private let healthTipsService = HealthTipsService.shared
     
     var body: some View {
@@ -97,6 +98,14 @@ struct HomeView: View {
                 count: 3,
                 categories: [.general, .nutrition, .fasting]
             )
+        }
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("LanguageDidChange"))) { _ in
+            // Force view refresh when language changes
+            healthTips = healthTipsService.getRandomTips(
+                count: 3,
+                categories: [.general, .nutrition, .fasting]
+            )
+            refreshTrigger.toggle() // Use state to trigger refresh
         }
     }
     
@@ -215,39 +224,38 @@ struct HomeView: View {
             ZStack {
                 // Complete background circle in gray
                 Circle()
-                    .stroke(style: StrokeStyle(lineWidth: 20))
+                    .stroke(lineWidth: 20)
+                    .opacity(0.3)
                     .foregroundColor(Color(.systemGray5))
                 
                 // Fasting period (red)
                 Circle()
                     .trim(from: 0, to: calculateFastingPortion())
-                    .stroke(fastingManager.fastingState == .fasting ? Color.red : Color.red.opacity(0.3), lineWidth: 20)
+                    .stroke(style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
+                    .foregroundColor(fastingManager.fastingState == .fasting ? Color.red : Color.red.opacity(0.3))
                     .rotationEffect(.degrees(-90))
                 
                 // Eating period (green)
                 Circle()
                     .trim(from: calculateFastingPortion(), to: 1)
-                    .stroke(fastingManager.fastingState == .eating ? Color.green : Color.green.opacity(0.3), lineWidth: 20)
+                    .stroke(style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
+                    .foregroundColor(fastingManager.fastingState == .eating ? Color.green : Color.green.opacity(0.3))
                     .rotationEffect(.degrees(-90))
                 
                 // Center content
                 VStack(spacing: 5) {
-                    Text(fastingManager.fastingState.title)
-                        .font(.system(size: userSettings.textSize.size + 4, weight: .bold))
-                        .foregroundColor(fastingManager.fastingState.color)
-                    
                     Text(formatRemainingTime())
                         .font(.system(size: userSettings.textSize.size + 12, weight: .bold))
                         .contentTransition(.numericText())
                         .animation(.linear(duration: 0.5), value: fastingManager.currentTime)
                     
-                    Text("\(calculatePercentageRemaining())% remain")
+                    Text(String(format: "%d%%", calculatePercentageRemaining()))
                         .font(.system(size: userSettings.textSize.size))
                         .foregroundColor(.secondary)
                     
-                    Text(fastingManager.fastingState == .fasting ? NSLocalizedString("of fasting", comment: "") : NSLocalizedString("of eating window", comment: ""))
-                        .font(.system(size: userSettings.textSize.size - 2))
-                        .foregroundColor(.secondary)
+                    Text(fastingManager.fastingState == .fasting ? NSLocalizedString("Fasting", comment: "") : NSLocalizedString("Eating Window", comment: ""))
+                        .font(.system(size: userSettings.textSize.size + 4, weight: .bold))
+                        .foregroundColor(fastingManager.fastingState.color)
                 }
             }
             .frame(height: 250)
@@ -263,157 +271,113 @@ struct HomeView: View {
     private var quickActionsSection: some View {
         VStack(alignment: .leading, spacing: 15) {
             Text(NSLocalizedString("Quick Actions", comment: ""))
-                .font(.system(size: userSettings.textSize.size + 4, weight: .bold))
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .font(.system(size: userSettings.textSize.size, weight: .bold))
             
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 15) {
+                // Profile button
+                quickActionButton(
+                    icon: "person.fill",
+                    title: NSLocalizedString("Profile", comment: ""),
+                    color: .indigo
+                ) {
+                    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                       let window = windowScene.windows.first {
+                        let profileView = ProfileView()
+                        let hostingController = UIHostingController(rootView: 
+                            NavigationView {
+                                profileView
+                            }
+                            .environmentObject(userSettings)
+                            .environmentObject(languageManager)
+                        )
+                        window.rootViewController?.present(hostingController, animated: true)
+                    }
+                }
+                
+                // Appointments button
+                quickActionButton(
+                    icon: "calendar",
+                    title: NSLocalizedString("Appointments", comment: ""),
+                    color: .blue
+                ) {
+                    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                       let window = windowScene.windows.first {
+                        let appointmentsView = AppointmentsView()
+                        let hostingController = UIHostingController(rootView: 
+                            NavigationView {
+                                appointmentsView
+                            }
+                            .environmentObject(userSettings)
+                            .environmentObject(languageManager)
+                            .environmentObject(appointmentManager)
+                        )
+                        window.rootViewController?.present(hostingController, animated: true)
+                    }
+                }
+                
                 // Add Medication button
-                Button(action: {
+                quickActionButton(
+                    icon: "pills",
+                    title: NSLocalizedString("Add Medication", comment: ""),
+                    color: .purple
+                ) {
                     if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                        let window = windowScene.windows.first {
                         let medicationInputView = MedicationInputView()
-                        let hostingController = UIHostingController(rootView: medicationInputView.environmentObject(userSettings))
+                        let hostingController = UIHostingController(rootView: 
+                            NavigationView {
+                                medicationInputView
+                            }
+                            .environmentObject(userSettings)
+                            .environmentObject(languageManager)
+                        )
                         window.rootViewController?.present(hostingController, animated: true)
                     }
-                }) {
-                    VStack(spacing: 10) {
-                        RoundedRectangle(cornerRadius: 24)
-                            .fill(Color(red: 0.55, green: 0.27, blue: 0.68))
-                            .frame(width: 110, height: 110)
-                            .overlay(
-                                ZStack {
-                                    // First pill - capsule at an angle
-                                    Capsule()
-                                        .fill(Color.white)
-                                        .frame(width: 20, height: 40)
-                                        .rotationEffect(.degrees(30))
-                                        .offset(x: -10, y: -5)
-                                    
-                                    // Second pill - round tablet
-                                    Circle()
-                                        .fill(Color.white)
-                                        .frame(width: 30)
-                                        .offset(x: 12, y: 8)
-                                }
-                                .scaleEffect(1.4) // Scale up to match other icons
-                            )
-                        
-                        Text(NSLocalizedString("Add Medication", comment: ""))
-                            .font(.system(size: userSettings.textSize.size))
-                            .foregroundColor(Color(red: 0.55, green: 0.27, blue: 0.68))
-                            .multilineTextAlignment(.center)
-                    }
-                    .frame(maxWidth: .infinity)
                 }
                 
-                // Track Water button
-                Button(action: {
-                    showingWaterTracker = true
-                }) {
-                    VStack(spacing: 10) {
-                        RoundedRectangle(cornerRadius: 24)
-                            .fill(Color(red: 0.0, green: 0.45, blue: 0.9))
-                            .frame(width: 110, height: 110)
-                            .overlay(
-                                Image(systemName: "drop.fill")
-                                    .font(.system(size: 44))
-                                    .foregroundColor(.white)
-                            )
-                        
-                        Text(NSLocalizedString("Track Water", comment: ""))
-                            .font(.system(size: userSettings.textSize.size))
-                            .foregroundColor(Color(red: 0.0, green: 0.45, blue: 0.9))
-                            .multilineTextAlignment(.center)
-                    }
-                    .frame(maxWidth: .infinity)
-                }
-                
-                // Log Meal button
-                Button(action: {
+                // Add meal button
+                quickActionButton(
+                    icon: "fork.knife",
+                    title: NSLocalizedString("Add Meal", comment: ""),
+                    color: .orange
+                ) {
                     showingAddMeal = true
-                }) {
-                    VStack(spacing: 10) {
-                        RoundedRectangle(cornerRadius: 24)
-                            .fill(Color(red: 0.25, green: 0.65, blue: 0.25))
-                            .frame(width: 110, height: 110)
-                            .overlay(
-                                Image(systemName: "fork.knife")
-                                    .font(.system(size: 42))
-                                    .foregroundColor(.white)
-                                    .offset(y: -3)
-                            )
-                        
-                        Text(NSLocalizedString("Log Meal", comment: ""))
-                            .font(.system(size: userSettings.textSize.size))
-                            .foregroundColor(Color(red: 0.25, green: 0.65, blue: 0.25))
-                            .multilineTextAlignment(.center)
-                    }
-                    .frame(maxWidth: .infinity)
                 }
                 
-                // Fasting quick access button
-                Button(action: {
-                    showingFastingTimer = true
-                }) {
-                    VStack(spacing: 10) {
-                        RoundedRectangle(cornerRadius: 24)
-                            .fill(Color.orange)
-                            .frame(width: 110, height: 110)
-                            .overlay(
-                                Image(systemName: "timer")
-                                    .font(.system(size: 44))
-                                    .foregroundColor(.white)
-                            )
-                        Text(NSLocalizedString("Fasting", comment: ""))
-                            .font(.system(size: userSettings.textSize.size))
-                            .foregroundColor(Color.orange)
-                            .multilineTextAlignment(.center)
-                    }
-                    .frame(maxWidth: .infinity)
+                // Water tracker button
+                quickActionButton(
+                    icon: "drop.fill",
+                    title: NSLocalizedString("Water Tracker", comment: ""),
+                    color: .blue
+                ) {
+                    showingWaterTracker = true
                 }
                 
-                // Emergency button
-                Button(action: {
+                // Emergency contacts button
+                quickActionButton(
+                    icon: "phone.fill",
+                    title: NSLocalizedString("Emergency", comment: ""),
+                    color: .red
+                ) {
                     showingEmergencyContacts = true
-                }) {
-                    VStack(spacing: 10) {
-                        RoundedRectangle(cornerRadius: 24)
-                            .fill(Color(red: 0.9, green: 0.15, blue: 0.15))
-                            .frame(width: 110, height: 110)
-                            .overlay(
-                                Image(systemName: "phone.fill")
-                                    .font(.system(size: 44))
-                                    .foregroundColor(.white)
-                            )
-                        
-                        Text(NSLocalizedString("Emergency", comment: ""))
-                            .font(.system(size: userSettings.textSize.size))
-                            .foregroundColor(Color(red: 0.9, green: 0.15, blue: 0.15))
-                            .multilineTextAlignment(.center)
-                    }
-                    .frame(maxWidth: .infinity)
                 }
                 
-                // Health quick access button
-                Button(action: {
+                // Health dashboard button
+                quickActionButton(
+                    icon: "heart.fill",
+                    title: NSLocalizedString("Health", comment: ""),
+                    color: .pink
+                ) {
                     showingHealthDashboard = true
-                }) {
-                    VStack(spacing: 10) {
-                        RoundedRectangle(cornerRadius: 24)
-                            .fill(Color(red: 0.95, green: 0.45, blue: 0.15))
-                            .frame(width: 110, height: 110)
-                            .overlay(
-                                Image(systemName: "heart.text.square")
-                                    .font(.system(size: 44))
-                                    .foregroundColor(.white)
-                            )
-                        
-                        Text(NSLocalizedString("Health", comment: ""))
-                            .font(.system(size: userSettings.textSize.size))
-                            .foregroundColor(Color(red: 0.95, green: 0.45, blue: 0.15))
-                            .multilineTextAlignment(.center)
-                    }
-                    .frame(maxWidth: .infinity)
+                }
+                
+                // Fasting button
+                quickActionButton(
+                    icon: "timer",
+                    title: NSLocalizedString("Fasting", comment: ""),
+                    color: .orange
+                ) {
+                    showingFastingTimer = true
                 }
             }
         }
@@ -431,6 +395,7 @@ struct HomeView: View {
         }
         .sheet(isPresented: $showingHealthDashboard) {
             HealthDataTabView()
+                .environmentObject(userSettings)
         }
         .sheet(isPresented: $showingFastingTimer) {
             FastingTimerView()
@@ -631,11 +596,11 @@ struct HomeView: View {
     private var timeOfDay: String {
         let hour = Calendar.current.component(.hour, from: Date())
         if hour < 12 {
-            return NSLocalizedString("Good morning", comment: "")
+            return NSLocalizedString("Good Morning", comment: "Morning greeting")
         } else if hour < 17 {
-            return NSLocalizedString("Good afternoon", comment: "")
+            return NSLocalizedString("Good Afternoon", comment: "Afternoon greeting")
         } else {
-            return NSLocalizedString("Good evening", comment: "")
+            return NSLocalizedString("Good Evening", comment: "Evening greeting")
         }
     }
     
@@ -651,9 +616,11 @@ struct HomeView: View {
         
         if let hour = components.hour, let minute = components.minute {
             if hour > 0 {
-                return "\(hour) hour\(hour == 1 ? NSLocalizedString("s", comment: "") : "") \(minute) min"
+                let hoursString = String.localizedStringWithFormat(NSLocalizedString("%d hours", comment: "Number of hours"), hour)
+                let minutesString = String.localizedStringWithFormat(NSLocalizedString("%d min", comment: "Number of minutes"), minute)
+                return String(format: NSLocalizedString("%@ %@", comment: "Time format: X hours Y minutes"), hoursString, minutesString)
             } else {
-                return "\(minute) minute\(minute == 1 ? NSLocalizedString("s", comment: "") : "")"
+                return String.localizedStringWithFormat(NSLocalizedString("%d min", comment: "Number of minutes"), minute)
             }
         }
         
@@ -756,7 +723,7 @@ struct HomeView: View {
     
     private func formatRemainingTime() -> String {
         let remaining = calculateRemainingTime()
-        return String(format: "%02d:%02d", remaining.hours, remaining.minutes)
+        return String(format: "%d:%02d", remaining.hours, remaining.minutes)
     }
     
     private func calculatePercentageRemaining() -> Int {
@@ -844,7 +811,9 @@ struct HomeView: View {
             return
         }
         
-        let notificationTime = calendar.date(byAdding: .minute, value: -30, to: actualNextDose) ?? actualNextDose
+        // Use the user's preference for reminder lead time (0 minutes means notification at the exact time)
+        let leadTime = userSettings.medicationReminderLeadTime
+        let notificationTime = leadTime > 0 ? calendar.date(byAdding: .minute, value: -leadTime, to: actualNextDose) ?? actualNextDose : actualNextDose
         
         // Ensure notification time is in the future
         guard notificationTime > now else {

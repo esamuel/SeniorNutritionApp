@@ -32,7 +32,7 @@ struct BloodSugarDetailView: View {
             }
             .padding()
         }
-        .navigationTitle("Blood Sugar")
+        .navigationTitle(NSLocalizedString("Blood Sugar", comment: "Navigation title for Blood Sugar detail view"))
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: { showingAddEntry = true }) {
@@ -49,18 +49,18 @@ struct BloodSugarDetailView: View {
             EditBloodSugarView(entry: entry)
                 .environment(\.managedObjectContext, viewContext)
         }
-        .alert("Delete Entry", isPresented: $showingDeleteAlert) {
-            Button("Delete", role: .destructive) {
+        .alert(NSLocalizedString("Delete Entry", comment: "Alert title for deleting entry"), isPresented: $showingDeleteAlert) {
+            Button(NSLocalizedString("Delete", comment: "Delete button text"), role: .destructive) {
                 if let entry = selectedEntry {
                     deleteEntry(entry)
                     selectedEntry = nil
                 }
             }
-            Button("Cancel", role: .cancel) {
+            Button(NSLocalizedString("Cancel", comment: "Cancel button text"), role: .cancel) {
                 selectedEntry = nil
             }
         } message: {
-            Text("Are you sure you want to delete this entry? This action cannot be undone.")
+            Text(NSLocalizedString("Are you sure you want to delete this entry? This action cannot be undone.", comment: "Delete confirmation message"))
         }
     }
     
@@ -68,14 +68,14 @@ struct BloodSugarDetailView: View {
         VStack(spacing: 16) {
             HStack(spacing: 20) {
                 statsCard(
-                    title: "Latest",
+                    title: NSLocalizedString("Latest", comment: "Latest reading label"),
                     value: latestReading,
                     color: latestColor,
                     icon: "drop.fill"
                 )
                 
                 statsCard(
-                    title: "Average",
+                    title: NSLocalizedString("Average", comment: "Average reading label"),
                     value: averageReading,
                     color: averageColor,
                     icon: "chart.bar.fill"
@@ -111,27 +111,27 @@ struct BloodSugarDetailView: View {
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color(.systemGray6))
+        .background(Color(.secondarySystemBackground))
         .cornerRadius(12)
     }
     
     private var chartSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("Trends")
+            Text(NSLocalizedString("Trends", comment: "Trends section title"))
                 .font(.title2)
                 .bold()
             
             // Time range picker
-            Picker("Time Range", selection: $timeRange) {
-                Text("Week").tag(TimeRange.week)
-                Text("Month").tag(TimeRange.month)
-                Text("3 Months").tag(TimeRange.threeMonths)
+            Picker(NSLocalizedString("Time Range", comment: "Time range picker label"), selection: $timeRange) {
+                Text(NSLocalizedString("Week", comment: "Time range option: Week")).tag(TimeRange.week)
+                Text(NSLocalizedString("Month", comment: "Time range option: Month")).tag(TimeRange.month)
+                Text(NSLocalizedString("3 Months", comment: "Time range option: Three Months")).tag(TimeRange.threeMonths)
             }
             .pickerStyle(SegmentedPickerStyle())
             .padding(.bottom, 8)
             
             if entries.isEmpty {
-                Text("No data available to display chart")
+                Text(NSLocalizedString("No data available to display chart", comment: "Message when no chart data is available"))
                     .foregroundColor(.secondary)
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.vertical, 40)
@@ -144,7 +144,7 @@ struct BloodSugarDetailView: View {
             }
         }
         .padding()
-        .background(Color.white)
+        .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(radius: 2)
     }
@@ -168,7 +168,8 @@ struct BloodSugarDetailView: View {
                     x: .value("Date", entry.date ?? Date()),
                     y: .value("Blood Sugar", entry.glucose)
                 )
-                .foregroundStyle(.orange)
+                .foregroundStyle(Color.purple.opacity(0.8))
+                .symbolSize(50)
                 .lineStyle(StrokeStyle(lineWidth: 2))
             }
             
@@ -195,6 +196,7 @@ struct BloodSugarDetailView: View {
                 if let date = value.as(Date.self) {
                     AxisValueLabel {
                         Text(date, format: self.timeRange.dateFormat)
+                            .foregroundColor(.primary)
                     }
                 }
             }
@@ -207,7 +209,7 @@ struct BloodSugarDetailView: View {
         }
         .chartLegend(position: .bottom) {
             HStack(spacing: 20) {
-                LegendItem(color: .orange, label: "Blood Sugar")
+                LegendItem(color: .orange, label: NSLocalizedString("Blood Sugar", comment: "Chart legend for blood sugar"))
                 LegendItem(color: .green, label: "Normal")
                 LegendItem(color: .yellow, label: "Pre-diabetic")
             }
@@ -232,12 +234,12 @@ struct BloodSugarDetailView: View {
     
     private var historySection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("History")
+            Text(NSLocalizedString("History", comment: "History section title"))
                 .font(.title2)
                 .bold()
             
             if entries.isEmpty {
-                Text("No recorded blood sugar entries")
+                Text(NSLocalizedString("No recorded blood sugar entries", comment: "Message when no blood sugar entries are recorded"))
                     .foregroundColor(.secondary)
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.vertical, 20)
@@ -265,7 +267,7 @@ struct BloodSugarDetailView: View {
             }
         }
         .padding()
-        .background(Color.white)
+        .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(radius: 2)
     }
@@ -295,7 +297,7 @@ struct BloodSugarDetailView: View {
                 .cornerRadius(5)
         }
         .padding()
-        .background(Color(.systemGray6))
+        .background(Color(.secondarySystemBackground))
         .cornerRadius(12)
     }
     
@@ -348,20 +350,20 @@ struct BloodSugarDetailView: View {
             let category = bloodSugarCategory(value: latest.glucose)
             switch category {
             case "Normal":
-                return "Your blood sugar is in the normal range. Keep up the good work!"
+                return NSLocalizedString("Your blood sugar is in the normal range. Keep up the good work!", comment: "Blood sugar status: normal")
             case "Pre-diabetic":
-                return "Your blood sugar is in the pre-diabetic range. Consider lifestyle changes or consult your doctor."
+                return NSLocalizedString("Your blood sugar is in the pre-diabetic range. Consider lifestyle changes.", comment: "Blood sugar status: pre-diabetic")
             case "Diabetic":
-                return "Your blood sugar is in the diabetic range. Consult your doctor for guidance."
+                return NSLocalizedString("Your blood sugar is in the diabetic range. Consult your doctor for guidance.", comment: "Blood sugar status: diabetic")
             case "Low":
-                return "Your blood sugar is low. Consider eating something with carbohydrates."
+                return NSLocalizedString("Your blood sugar is low. Consider eating something with carbohydrates.", comment: "Blood sugar status: low")
             case "Very Low":
-                return "Your blood sugar is very low. Seek medical attention if you feel unwell."
+                return NSLocalizedString("Your blood sugar is very low. Seek medical attention if you feel unwell.", comment: "Blood sugar status: very low")
             default:
-                return "Monitor your blood sugar regularly."
+                return NSLocalizedString("Monitor your blood sugar regularly.", comment: "Blood sugar status: monitor regularly")
             }
         }
-        return "Start tracking your blood sugar to see insights."
+        return NSLocalizedString("Start tracking your blood sugar to see insights.", comment: "Blood sugar status: start tracking")
     }
     
     private var filteredEntries: [BloodSugarEntry] {

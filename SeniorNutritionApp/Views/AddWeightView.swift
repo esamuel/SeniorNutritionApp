@@ -13,19 +13,19 @@ struct AddWeightView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text(NSLocalizedString("Weight Reading", comment: ""))) {
+                Section(header: Text(NSLocalizedString("Weight Reading", comment: "Section header for weight reading input"))) {
                     HStack {
-                        TextField(NSLocalizedString("Weight", comment: ""), text: $weight)
+                        TextField(NSLocalizedString("Weight", comment: "Placeholder for weight input"), text: $weight)
                             .keyboardType(.decimalPad)
                             .focused($weightFieldIsFocused)
-                        Text("kg")
+                        Text(NSLocalizedString("kg", comment: "Unit for weight"))
                             .foregroundColor(.secondary)
                     }
                 }
                 
                 Section {
                     DatePicker(
-                        NSLocalizedString("Date and Time", comment: ""),
+                        NSLocalizedString("Date and Time", comment: "Label for date and time picker"),
                         selection: $date,
                         displayedComponents: [.date, .hourAndMinute]
                     )
@@ -39,16 +39,16 @@ struct AddWeightView: View {
                     }
                 }
             }
-            .navigationTitle(NSLocalizedString("Add Weight", comment: ""))
+            .navigationTitle(NSLocalizedString("Add Weight", comment: "Navigation title for adding weight entry"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button(NSLocalizedString("Cancel", comment: "")) {
+                    Button(NSLocalizedString("Cancel", comment: "Cancel button text")) {
                         dismiss()
                     }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(NSLocalizedString("Save", comment: "")) {
+                    Button(NSLocalizedString("Save", comment: "Save button text")) {
                         saveReading()
                     }
                 }
@@ -64,13 +64,13 @@ struct AddWeightView: View {
     
     private func saveReading() {
         guard let weightValue = Double(weight.replacingOccurrences(of: ",", with: ".")), weightValue > 0 else {
-            error = NSLocalizedString("Please enter a valid weight", comment: "")
+            error = NSLocalizedString("Please enter a valid weight", comment: "Error message for invalid weight")
             return
         }
         
         // Validate weight is within reasonable range (20-300 kg)
         guard weightValue >= 20 && weightValue <= 300 else {
-            error = NSLocalizedString("Weight should be between 20 and 300 kg", comment: "")
+            error = NSLocalizedString("Weight should be between 20 and 300 kg", comment: "Error message for weight out of range")
             return
         }
         
@@ -83,7 +83,7 @@ struct AddWeightView: View {
             try viewContext.save()
             dismiss()
         } catch {
-            self.error = NSLocalizedString("Failed to save. Please try again.", comment: "")
+            self.error = NSLocalizedString("Failed to save. Please try again.", comment: "Error message for failed save operation")
         }
     }
 }

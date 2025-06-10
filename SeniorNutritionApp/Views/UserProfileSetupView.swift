@@ -24,55 +24,63 @@ struct UserProfileSetupView: View {
     private let sectionColors: [Color] = [.blue.opacity(0.1), .green.opacity(0.1), .orange.opacity(0.1), .purple.opacity(0.1), .pink.opacity(0.1)]
     
     private let genderOptions = ["Male", "Female", "Other"]
+    // Empty arrays for medical conditions and dietary restrictions
+    // Users can add their own real information
+    @State private var newMedicalCondition: String = ""
+    @State private var newDietaryRestriction: String = ""
+    
+    // Comprehensive list of medical conditions
     private let medicalConditionOptions = [
-        "High Blood Pressure",
-        "Diabetes",
-        "Heart Disease",
-        "Arthritis",
-        "Osteoporosis",
-        "Asthma",
-        "COPD",
-        "Cancer",
-        "Stroke",
-        "Alzheimer's",
-        "Parkinson's",
-        "Other"
+        NSLocalizedString("High Blood Pressure", comment: ""),
+        NSLocalizedString("Diabetes", comment: ""),
+        NSLocalizedString("Heart Disease", comment: ""),
+        NSLocalizedString("Arthritis", comment: ""),
+        NSLocalizedString("Osteoporosis", comment: ""),
+        NSLocalizedString("Asthma", comment: ""),
+        NSLocalizedString("COPD", comment: ""),
+        NSLocalizedString("Cancer", comment: ""),
+        NSLocalizedString("Stroke", comment: ""),
+        NSLocalizedString("Alzheimer's", comment: ""),
+        NSLocalizedString("Parkinson's", comment: ""),
+        NSLocalizedString("Kidney Disease", comment: ""),
+        NSLocalizedString("Thyroid Disorder", comment: ""),
+        NSLocalizedString("Chronic Pain", comment: "")
     ]
     
+    // Comprehensive list of dietary restrictions
     private let dietaryRestrictionOptions = [
-        "Vegetarian",
-        "Vegan",
-        "Gluten-Free",
-        "Dairy-Free",
-        "Nut-Free",
-        "Low Sodium",
-        "Low Sugar",
-        "Low Fat",
-        "Kosher",
-        "Halal",
-        "Pescatarian",
-        "Keto",
-        "Paleo",
-        "Other"
+        NSLocalizedString("Vegetarian", comment: ""),
+        NSLocalizedString("Vegan", comment: ""),
+        NSLocalizedString("Gluten-Free", comment: ""),
+        NSLocalizedString("Dairy-Free", comment: ""),
+        NSLocalizedString("Nut-Free", comment: ""),
+        NSLocalizedString("Low Sodium", comment: ""),
+        NSLocalizedString("Low Sugar", comment: ""),
+        NSLocalizedString("Low Fat", comment: ""),
+        NSLocalizedString("Kosher", comment: ""),
+        NSLocalizedString("Halal", comment: ""),
+        NSLocalizedString("Pescatarian", comment: ""),
+        NSLocalizedString("Keto", comment: ""),
+        NSLocalizedString("Paleo", comment: "")
     ]
     
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Personal Information")
+                Section(header: Text(NSLocalizedString("Personal Information", comment: ""))
                         .font(.headline)
                         .foregroundColor(.blue)) {
-                    TextField("First Name", text: $firstName)
+                    TextField(NSLocalizedString("First Name", comment: ""), text: $firstName)
                         .padding(8)
                         .background(Color.blue.opacity(0.1))
                         .cornerRadius(8)
                     
-                    TextField("Last Name", text: $lastName)
+                    TextField(NSLocalizedString("Last Name", comment: ""), text: $lastName)
                         .padding(8)
                         .background(Color.blue.opacity(0.1))
                         .cornerRadius(8)
                     
-                    DatePicker("Date of Birth", selection: $dateOfBirth, displayedComponents: .date)
+                    DatePicker(NSLocalizedString("Date of Birth", comment: ""), selection: $dateOfBirth, displayedComponents: .date)
                         .datePickerStyle(CompactDatePickerStyle())
                         .datePickerLTR()
                         .padding(8)
@@ -110,16 +118,16 @@ struct UserProfileSetupView: View {
                 }
                 .listRowBackground(Color.clear)
                 
-                Section(header: Text("Physical Information")
+                Section(header: Text(NSLocalizedString("Physical Information", comment: ""))
                         .font(.headline)
                         .foregroundColor(.green)) {
-                    TextField("Height (cm)", text: $height)
+                    TextField(NSLocalizedString("Height (cm)", comment: ""), text: $height)
                         .keyboardType(.decimalPad)
                         .padding(8)
                         .background(Color.green.opacity(0.1))
                         .cornerRadius(8)
                     
-                    TextField("Weight (kg)", text: $weight)
+                    TextField(NSLocalizedString("Weight (kg)", comment: ""), text: $weight)
                         .keyboardType(.decimalPad)
                         .padding(8)
                         .background(Color.green.opacity(0.1))
@@ -127,50 +135,155 @@ struct UserProfileSetupView: View {
                 }
                 .listRowBackground(Color.clear)
                 
-                Section(header: Text("Medical Conditions")
+                Section(header: Text(NSLocalizedString("Medical Conditions", comment: ""))
                         .font(.headline)
                         .foregroundColor(.orange)) {
-                    ForEach(medicalConditionOptions, id: \.self) { condition in
-                        Toggle(condition, isOn: Binding(
-                            get: { medicalConditions.contains(condition) },
-                            set: { isOn in
-                                if isOn {
-                                    medicalConditions.append(condition)
-                                } else {
-                                    medicalConditions.removeAll { $0 == condition }
-                                }
+                    
+                    // Display existing medical conditions with delete option
+                    ForEach(medicalConditions, id: \.self) { condition in
+                        HStack {
+                            Text(condition)
+                            Spacer()
+                            Button(action: {
+                                medicalConditions.removeAll { $0 == condition }
+                            }) {
+                                Image(systemName: "xmark.circle.fill")
+                                    .foregroundColor(.red)
                             }
-                        ))
+                        }
                         .padding(8)
                         .background(Color.orange.opacity(0.1))
                         .cornerRadius(8)
                     }
-                }
-                .listRowBackground(Color.clear)
-                
-                Section(header: Text("Dietary Restrictions")
+                    
+                    // Add new medical condition
+                    HStack {
+                        TextField(NSLocalizedString("Add medical condition", comment: ""), text: $newMedicalCondition)
+                        Button(action: {
+                            if !newMedicalCondition.isEmpty && !medicalConditions.contains(newMedicalCondition) {
+                                medicalConditions.append(newMedicalCondition)
+                                newMedicalCondition = ""
+                            }
+                        }) {
+                            Image(systemName: "plus.circle.fill")
+                                .foregroundColor(.green)
+                        }
+                        .disabled(newMedicalCondition.isEmpty)
+                    }
+                    .padding(8)
+                    .background(Color.orange.opacity(0.1))
+                    .cornerRadius(8)
+                    
+                    // Common medical conditions list
+                    Text(NSLocalizedString("Select from common conditions:", comment: ""))
                         .font(.headline)
-                        .foregroundColor(.purple)) {
-                    ForEach(dietaryRestrictionOptions, id: \.self) { restriction in
-                        Toggle(restriction, isOn: Binding(
-                            get: { dietaryRestrictions.contains(restriction) },
-                            set: { isOn in
-                                if isOn {
-                                    dietaryRestrictions.append(restriction)
+                        .foregroundColor(.secondary)
+                        .padding(.top, 8)
+                    
+                    ForEach(medicalConditionOptions, id: \.self) { condition in
+                        Button(action: {
+                            if medicalConditions.contains(condition) {
+                                medicalConditions.removeAll { $0 == condition }
+                            } else {
+                                medicalConditions.append(condition)
+                            }
+                        }) {
+                            HStack {
+                                Text(condition)
+                                    .foregroundColor(.primary)
+                                Spacer()
+                                if medicalConditions.contains(condition) {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .foregroundColor(.green)
                                 } else {
-                                    dietaryRestrictions.removeAll { $0 == restriction }
+                                    Image(systemName: "plus.circle")
+                                        .foregroundColor(.blue)
                                 }
                             }
-                        ))
+                        }
                         .padding(8)
-                        .background(Color.purple.opacity(0.1))
+                        .background(medicalConditions.contains(condition) ? Color.orange.opacity(0.15) : Color.orange.opacity(0.05))
                         .cornerRadius(8)
                     }
                 }
                 .listRowBackground(Color.clear)
                 
+                Section(header: Text(NSLocalizedString("Dietary Restrictions", comment: ""))
+                        .font(.headline)
+                        .foregroundColor(.purple)) {
+                    
+                    // Display existing dietary restrictions with delete option
+                    ForEach(dietaryRestrictions, id: \.self) { restriction in
+                        HStack {
+                            Text(restriction)
+                            Spacer()
+                            Button(action: {
+                                dietaryRestrictions.removeAll { $0 == restriction }
+                            }) {
+                                Image(systemName: "xmark.circle.fill")
+                                    .foregroundColor(.red)
+                            }
+                        }
+                        .padding(8)
+                        .background(Color.purple.opacity(0.1))
+                        .cornerRadius(8)
+                    }
+                    
+                    // Add new dietary restriction
+                    HStack {
+                        TextField(NSLocalizedString("Add dietary restriction", comment: ""), text: $newDietaryRestriction)
+                        Button(action: {
+                            if !newDietaryRestriction.isEmpty && !dietaryRestrictions.contains(newDietaryRestriction) {
+                                dietaryRestrictions.append(newDietaryRestriction)
+                                newDietaryRestriction = ""
+                            }
+                        }) {
+                            Image(systemName: "plus.circle.fill")
+                                .foregroundColor(.green)
+                        }
+                        .disabled(newDietaryRestriction.isEmpty)
+                    }
+                    .padding(8)
+                    .background(Color.purple.opacity(0.1))
+                    .cornerRadius(8)
+                    
+                    // Common dietary restrictions list
+                    Text(NSLocalizedString("Select from common restrictions:", comment: ""))
+                        .font(.headline)
+                        .foregroundColor(.secondary)
+                        .padding(.top, 8)
+                    
+                    ForEach(dietaryRestrictionOptions, id: \.self) { restriction in
+                        Button(action: {
+                            if dietaryRestrictions.contains(restriction) {
+                                dietaryRestrictions.removeAll { $0 == restriction }
+                            } else {
+                                dietaryRestrictions.append(restriction)
+                            }
+                        }) {
+                            HStack {
+                                Text(restriction)
+                                    .foregroundColor(.primary)
+                                Spacer()
+                                if dietaryRestrictions.contains(restriction) {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .foregroundColor(.green)
+                                } else {
+                                    Image(systemName: "plus.circle")
+                                        .foregroundColor(.blue)
+                                }
+                            }
+                        }
+                        .padding(8)
+                        .background(dietaryRestrictions.contains(restriction) ? Color.purple.opacity(0.15) : Color.purple.opacity(0.05))
+                        .cornerRadius(8)
+                    }
+
+                }
+                .listRowBackground(Color.clear)
+                
                 // Enhanced Emergency Contacts Section with list of current contacts
-                Section(header: Text("Emergency Contacts")
+                Section(header: Text(NSLocalizedString("Emergency Contacts", comment: ""))
                         .font(.headline)
                         .foregroundColor(.pink)) {
                     

@@ -32,7 +32,7 @@ struct BloodPressureDetailView: View {
             }
             .padding()
         }
-        .navigationTitle("Blood Pressure")
+        .navigationTitle(NSLocalizedString("Blood Pressure", comment: "Navigation title for Blood Pressure detail view"))
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: { showingAddEntry = true }) {
@@ -49,18 +49,18 @@ struct BloodPressureDetailView: View {
             EditBloodPressureView(entry: entry)
                 .environment(\.managedObjectContext, viewContext)
         }
-        .alert("Delete Entry", isPresented: $showingDeleteAlert) {
-            Button("Delete", role: .destructive) {
+        .alert(NSLocalizedString("Delete Entry", comment: "Alert title for deleting entry"), isPresented: $showingDeleteAlert) {
+            Button(NSLocalizedString("Delete", comment: "Delete button text"), role: .destructive) {
                 if let entry = selectedEntry {
                     deleteEntry(entry)
                     selectedEntry = nil
                 }
             }
-            Button("Cancel", role: .cancel) {
+            Button(NSLocalizedString("Cancel", comment: "Cancel button text"), role: .cancel) {
                 selectedEntry = nil
             }
         } message: {
-            Text("Are you sure you want to delete this entry? This action cannot be undone.")
+            Text(NSLocalizedString("Are you sure you want to delete this entry? This action cannot be undone.", comment: "Delete confirmation message"))
         }
     }
     
@@ -68,14 +68,14 @@ struct BloodPressureDetailView: View {
         VStack(spacing: 16) {
             HStack(spacing: 20) {
                 statsCard(
-                    title: "Latest",
+                    title: NSLocalizedString("Latest", comment: "Latest reading label"),
                     value: latestReading,
                     color: latestColor,
                     icon: "heart.fill"
                 )
                 
                 statsCard(
-                    title: "Average",
+                    title: NSLocalizedString("Average", comment: "Average reading label"),
                     value: averageReading,
                     color: averageColor,
                     icon: "chart.bar.fill"
@@ -111,27 +111,27 @@ struct BloodPressureDetailView: View {
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color(.systemGray6))
+        .background(Color(.secondarySystemBackground))
         .cornerRadius(12)
     }
     
     private var chartSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("Trends")
+            Text(NSLocalizedString("Trends", comment: "Trends section title"))
                 .font(.title2)
                 .bold()
             
             // Time range picker
-            Picker("Time Range", selection: $timeRange) {
-                Text("Week").tag(TimeRange.week)
-                Text("Month").tag(TimeRange.month)
-                Text("3 Months").tag(TimeRange.threeMonths)
+            Picker(NSLocalizedString("Time Range", comment: "Time range picker label"), selection: $timeRange) {
+                Text(NSLocalizedString("Week", comment: "Time range option: Week")).tag(TimeRange.week)
+                Text(NSLocalizedString("Month", comment: "Time range option: Month")).tag(TimeRange.month)
+                Text(NSLocalizedString("3 Months", comment: "Time range option: Three Months")).tag(TimeRange.threeMonths)
             }
             .pickerStyle(SegmentedPickerStyle())
             .padding(.bottom, 8)
             
             if entries.isEmpty {
-                Text("No data available to display chart")
+                Text(NSLocalizedString("No data available to display chart", comment: "Message when no chart data is available"))
                     .foregroundColor(.secondary)
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.vertical, 40)
@@ -144,7 +144,7 @@ struct BloodPressureDetailView: View {
             }
         }
         .padding()
-        .background(Color.white)
+        .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(radius: 2)
     }
@@ -175,7 +175,7 @@ struct BloodPressureDetailView: View {
                     x: .value("Date", entry.date ?? Date()),
                     y: .value("Systolic", entry.systolic)
                 )
-                .foregroundStyle(.red)
+                .foregroundStyle(Color.red.opacity(0.8))
                 .lineStyle(StrokeStyle(lineWidth: 2))
                 
                 // Diastolic line
@@ -183,7 +183,7 @@ struct BloodPressureDetailView: View {
                     x: .value("Date", entry.date ?? Date()),
                     y: .value("Diastolic", entry.diastolic)
                 )
-                .foregroundStyle(.blue)
+                .foregroundStyle(Color.blue.opacity(0.8))
                 .lineStyle(StrokeStyle(lineWidth: 2))
             }
             
@@ -209,6 +209,7 @@ struct BloodPressureDetailView: View {
                 if let date = value.as(Date.self) {
                     AxisValueLabel {
                         Text(date, format: self.timeRange.dateFormat)
+                            .foregroundColor(.primary)
                     }
                 }
             }
@@ -221,8 +222,8 @@ struct BloodPressureDetailView: View {
         }
         .chartLegend(position: .bottom, spacing: 20) {
             HStack {
-                LegendItem(color: .red, label: "Systolic")
-                LegendItem(color: .blue, label: "Diastolic")
+                LegendItem(color: .red, label: NSLocalizedString("Systolic", comment: "Chart legend for systolic blood pressure"))
+                LegendItem(color: .blue, label: NSLocalizedString("Diastolic", comment: "Chart legend for diastolic blood pressure"))
             }
         }
     }
@@ -245,12 +246,12 @@ struct BloodPressureDetailView: View {
     
     private var historySection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("History")
+            Text(NSLocalizedString("History", comment: "History section title"))
                 .font(.title2)
                 .bold()
             
             if entries.isEmpty {
-                Text("No recorded blood pressure entries")
+                Text(NSLocalizedString("No recorded blood pressure entries", comment: "Message when no blood pressure entries are recorded"))
                     .foregroundColor(.secondary)
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.vertical, 20)
@@ -278,7 +279,7 @@ struct BloodPressureDetailView: View {
             }
         }
         .padding()
-        .background(Color.white)
+        .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(radius: 2)
     }
@@ -308,7 +309,7 @@ struct BloodPressureDetailView: View {
                 .cornerRadius(5)
         }
         .padding()
-        .background(Color(.systemGray6))
+        .background(Color(.secondarySystemBackground))
         .cornerRadius(12)
     }
     
@@ -365,20 +366,20 @@ struct BloodPressureDetailView: View {
             let category = bloodPressureCategory(systolic: Int(latest.systolic), diastolic: Int(latest.diastolic))
             switch category {
             case "Normal":
-                return "Your blood pressure is in the normal range. Keep up the good work!"
+                return NSLocalizedString("Your blood pressure is in the normal range. Keep up the good work!", comment: "Blood pressure status: normal")
             case "Elevated":
-                return "Your blood pressure is slightly elevated. Consider lifestyle changes."
+                return NSLocalizedString("Your blood pressure is elevated. Consider lifestyle changes.", comment: "Blood pressure status: elevated")
             case "Stage 1":
-                return "Your blood pressure is in hypertension stage 1. Consult your doctor."
+                return NSLocalizedString("Your blood pressure is in hypertension stage 1. Consult your doctor.", comment: "Blood pressure status: hypertension stage 1")
             case "Stage 2":
-                return "Your blood pressure is in hypertension stage 2. Medical attention recommended."
+                return NSLocalizedString("Your blood pressure is in hypertension stage 2. Seek immediate medical attention.", comment: "Blood pressure status: hypertension stage 2")
             case "Crisis":
-                return "Your blood pressure is critically high. Seek immediate medical attention!"
+                return NSLocalizedString("Your blood pressure is critically high. Seek immediate medical attention!", comment: "Blood pressure status: crisis")
             default:
-                return "Monitor your blood pressure regularly."
+                return NSLocalizedString("Track your blood pressure regularly to see insights and trends.", comment: "Blood pressure status: default message")
             }
         }
-        return "Start tracking your blood pressure to see insights."
+        return NSLocalizedString("Track your blood pressure regularly to see insights and trends.", comment: "Blood pressure status: default message")
     }
     
     private var filteredEntries: [BloodPressureEntry] {

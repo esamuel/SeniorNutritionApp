@@ -1,33 +1,72 @@
 import SwiftUI
 
 struct FoodDatabaseView: View {
+    // MARK: - View Mode
+    private enum ViewMode {
+        case foods, recipes
+    }
+    
+    // MARK: - Environment & State Objects
     @EnvironmentObject private var userSettings: UserSettings
+    @EnvironmentObject private var premiumManager: PremiumManager
     @StateObject private var foodDatabase = FoodDatabaseService()
+    @StateObject private var recipeManager = RecipeManager.shared
+    
+    // MARK: - State
     @State private var searchText = ""
     @State private var selectedCategory: FoodCategory?
     @State private var showingAddFood = false
+    @State private var showingRecipeBuilder = false
+    @State private var showingPremiumAlert = false
+    @State private var viewMode: ViewMode = .foods
     
     var body: some View {
         NavigationView {
             VStack {
-                // Search bar
-                searchBar
+                // View mode picker
+                Picker("View Mode", selection: $viewMode) {
+                    Text("Foods").tag(ViewMode.foods)
+                    Text("Recipes").tag(ViewMode.recipes)
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .padding()
                 
-                // Category filter
-                categoryFilter
-                
-                // Food list
-                foodList
+                if viewMode == .foods {
+                    // Search bar
+                    searchBar
+                    
+                    // Category filter
+                    categoryFilter
+                    
+                    // Food list
+                    foodList
+                } else {
+                    // Recipes list
+                    recipesList
+                }
             }
-            .navigationTitle(NSLocalizedString("Food Database", comment: ""))
             .navigationBarTitleDisplayMode(.large)
+            .navigationTitle(viewMode == .foods ? NSLocalizedString("Food Database", comment: "") : NSLocalizedString("Recipes", comment: ""))
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        showingAddFood = true
-                    }) {
-                        Image(systemName: "plus")
-                            .imageScale(.large)
+                    if viewMode == .foods {
+                        Button(action: {
+                            showingAddFood = true
+                        }) {
+                            Image(systemName: "plus")
+                                .imageScale(.large)
+                        }
+                    } else {
+                        Button(action: {
+                            if premiumManager.checkFeatureAccess("recipe_builder") {
+                                showingRecipeBuilder = true
+                            } else {
+                                showingPremiumAlert = true
+                            }
+                        }) {
+                            Image(systemName: "plus")
+                                .imageScale(.large)
+                        }
                     }
                 }
                 
@@ -44,6 +83,19 @@ struct FoodDatabaseView: View {
                 AddFoodView { newFood in
                     foodDatabase.addCustomFood(newFood)
                 }
+            }
+            .sheet(isPresented: $showingRecipeBuilder) {
+                RecipeBuilderView { recipe in
+                    recipeManager.addRecipe(recipe)
+                }
+            }
+            .alert("Premium Feature", isPresented: $showingPremiumAlert) {
+                Button("Learn More") {
+                    // Show premium features view
+                }
+                Button("Cancel", role: .cancel) {}
+            } message: {
+                Text("Recipe Builder is a premium feature. Upgrade to create custom recipes and automatically calculate nutritional values.")
             }
             .onAppear {
                 foodDatabase.loadFoodDatabase()
@@ -92,7 +144,7 @@ struct FoodDatabaseView: View {
         Button(action: {
             selectedCategory = selectedCategory == category ? nil : category
         }) {
-            Text(category.rawValue)
+            Text(category.localizedString)
                 .font(.system(size: userSettings.textSize.size - 2))
                 .padding(.horizontal, 15)
                 .padding(.vertical, 8)
@@ -158,13 +210,13 @@ struct FoodDatabaseView: View {
         .padding(.vertical, 4)
     }
     
-    // Filtered foods
+    // MARK: - Computed Properties
     private var filteredFoods: [FoodItem] {
         var foods = foodDatabase.foodItems + foodDatabase.customFoodItems
         
         // Apply search filter
         if !searchText.isEmpty {
-            foods = foods.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+            foods = foods.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
         }
         
         // Apply category filter
@@ -174,133 +226,32 @@ struct FoodDatabaseView: View {
         
         return foods
     }
-}
-
-// Add Food View
-struct AddFoodView: View {
-    @EnvironmentObject private var userSettings: UserSettings
-    @Environment(\.presentationMode) private var presentationMode
     
-    @State private var name = ""
-    @State private var selectedCategory: FoodCategory = .other
-    @State private var servingSize: Double = 100
-    @State private var servingUnit = "g"
-    @State private var nutritionalInfo = NutritionalInfo()
-    @State private var notes = ""
-    
-    var onSave: (FoodItem) -> Void
-    
-    var body: some View {
-        NavigationView {
-            Form {
-                Section(header: Text("Food Details").font(.system(size: userSettings.textSize.size))) {
-                    TextField("Food name", text: $name)
-                        .font(.system(size: userSettings.textSize.size))
-                    
-                    Picker("Category", selection: $selectedCategory) {
-                        ForEach(FoodCategory.allCases, id: \.self) { category in
-                            Text(category.rawValue)
-                                .tag(category)
-                        }
-                    }
-                    .font(.system(size: userSettings.textSize.size))
-                    
-                    HStack {
-                        Text("Serving Size")
-                        Spacer()
-                        TextField("Size", value: $servingSize, format: .number)
-                            .keyboardType(.decimalPad)
-                            .multilineTextAlignment(.trailing)
-                            .frame(width: 80)
-                        Text(servingUnit)
-                    }
-                    .font(.system(size: userSettings.textSize.size))
-                }
-                
-                Section(header: Text("Nutritional Information").font(.system(size: userSettings.textSize.size))) {
-                    Group {
-                        HStack {
-                            Text("Calories")
-                            Spacer()
-                            TextField("Calories", value: $nutritionalInfo.calories, format: .number)
-                                .keyboardType(.decimalPad)
-                                .multilineTextAlignment(.trailing)
-                        }
+    // MARK: - Views
+    private var recipesList: some View {
+        List {
+            ForEach(recipeManager.recipes) { recipe in
+                NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(recipe.name)
+                            .font(.system(size: userSettings.textSize.size, weight: .medium))
                         
                         HStack {
-                            Text("Protein (g)")
+                            Text("\(recipe.ingredients.count) ingredients")
                             Spacer()
-                            TextField("Protein", value: $nutritionalInfo.protein, format: .number)
-                                .keyboardType(.decimalPad)
-                                .multilineTextAlignment(.trailing)
+                            Text("\(Int(recipe.totalNutritionalInfo.calories / Double(recipe.servings))) cal/serving")
                         }
-                        
-                        HStack {
-                            Text("Carbs (g)")
-                            Spacer()
-                            TextField("Carbs", value: $nutritionalInfo.carbohydrates, format: .number)
-                                .keyboardType(.decimalPad)
-                                .multilineTextAlignment(.trailing)
-                        }
-                        
-                        HStack {
-                            Text("Fat (g)")
-                            Spacer()
-                            TextField("Fat", value: $nutritionalInfo.fat, format: .number)
-                                .keyboardType(.decimalPad)
-                                .multilineTextAlignment(.trailing)
-                        }
+                        .font(.system(size: userSettings.textSize.size - 2))
+                        .foregroundColor(.secondary)
                     }
-                    .font(.system(size: userSettings.textSize.size))
+                    .padding(.vertical, 4)
                 }
-                
-                Section(header: Text("Notes").font(.system(size: userSettings.textSize.size))) {
-                    TextEditor(text: $notes)
-                        .frame(height: 100)
-                        .font(.system(size: userSettings.textSize.size))
-                }
-                
-                Section {
-                    Button(action: saveFood) {
-                        Text("Save Food")
-                            .font(.system(size: userSettings.textSize.size))
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.blue)
-                            .cornerRadius(10)
-                    }
-                    .disabled(name.isEmpty)
-                }
-                .listRowBackground(Color.clear)
             }
-            .navigationTitle(NSLocalizedString("Add Food", comment: ""))
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(NSLocalizedString("Cancel", comment: "")) {
-                        presentationMode.wrappedValue.dismiss()
-                    }
-                    .font(.system(size: userSettings.textSize.size))
+            .onDelete { indexSet in
+                for index in indexSet {
+                    recipeManager.deleteRecipe(recipeManager.recipes[index])
                 }
             }
         }
     }
-    
-    // Save food
-    private func saveFood() {
-        let newFood = FoodItem(
-            id: UUID(),
-            name: name,
-            category: selectedCategory,
-            nutritionalInfo: nutritionalInfo,
-            servingSize: servingSize,
-            servingUnit: servingUnit,
-            isCustom: true,
-            notes: notes.isEmpty ? nil : notes
-        )
-        
-        onSave(newFood)
-        presentationMode.wrappedValue.dismiss()
-    }
-} 
+}

@@ -164,6 +164,10 @@
 "Nutrition" = "תזונה";
 "Nutrition Tips for Seniors" = "טיפים תזונתיים לגיל השלישי";
 "View More Tips" = "הצג עוד טיפים";
+"View More" = "צפה בעוד";
+"All" = "הכל";
+"Health Tips" = "טיפים בריאותיים";
+"Search health tips" = "חיפוש טיפים בריאותיים";
 "General Nutrition Tips for Seniors" = "טיפים תזונתיים כלליים לגיל השלישי";
 "Tips for Your Medical Conditions" = "טיפים למצבים הרפואיים שלך";
 "Tips for Your Dietary Restrictions" = "טיפים להגבלות התזונה שלך";
@@ -269,12 +273,14 @@
 "of fasting" = "מתוך צום";
 "of eating window" = "מתוך חלון אכילה";
 "Quick Actions" = "פעולות מהירות";
+"Profile" = "פרופיל";
+"Appointments" = "תורים";
 "Add Medication" = "הוסף תרופה";
-"Track Water" = "עקוב אחרי מים";
-"Log Meal" = "רשום ארוחה";
-"Fasting" = "צום";
+"Add Meal" = "הוסף ארוחה";
+"Water Tracker" = "מעקב מים";
 "Emergency" = "חירום";
 "Health" = "בריאות";
+"Fasting" = "צום";
 "Today's Schedule" = "לוח זמנים להיום";
 "Read Today's Schedule" = "קרא את לוח הזמנים של היום";
 "Reads out your appointments and medications for today" = "קורא את הפגישות והתרופות שלך להיום";
@@ -509,7 +515,7 @@
 "Improved metabolic flexibility" = "גמישות מטבולית משופרת";
 "Better appetite control" = "שליטה טובה יותר בתיאבון";
 "Increased mental clarity" = "בהירות מחשבתית מוגברת";
-"Supports cellular repair processes" = "תומך בתהליכי תיקון תאים";
+"Supports cellular repair processes" = "תומך בתהליכי תיקון תאיים";
 "Maximum autophagy benefits" = "יתרונות מרביים של אוטופגיה";
 "Significant fat burning potential" = "פוטנציאל משמעותי לשריפת שומן";
 "Improved insulin sensitivity" = "רגישות משופרת לאינסולין";
@@ -656,7 +662,7 @@
 "Break your fast with a balanced meal containing protein, healthy fats, and complex carbohydrates to prevent blood sugar spikes." = "סיים את הצום עם ארוחה מאוזנת המכילה חלבון, שומנים בריאים ופחמימות מורכבות כדי למנוע עליות בסוכר הדם.";
 "Break your fast with anti-inflammatory foods like fatty fish, berries, turmeric, and leafy greens." = "סיים את הצום עם מזונות אנטי-דלקתיים כמו דגים שמנים, פירות יער, כורכום וירקות עליים.";
 "Break your fast with easily digestible foods and avoid known trigger foods that aggravate your condition." = "סיים את הצום עם מזונות קלים לעיכול והימנע ממזונות מעוררים ידועים שמחמירים את המצב שלך.";
-"Built-in barcode scanner" = "סורק ברקוד מובנה";
+"Built-in barcode scanner (Premium)" = "סורק ברקוד מובנה (פרימיום)";
 "Calcium Timing" = "תזמון סידן";
 "Calories" = "קלוריות";
 "Cancel" = "ביטול";
@@ -1085,7 +1091,7 @@
 "Fasting Integration: The app will remind you to stay hydrated during fasting periods" = "שילוב צום: האפליקציה תזכיר לך לשמור על הידרציה במהלך תקופות צום";
 "Medication Reminders: Water reminders can be synchronized with medication times" = "תזכורות תרופות: תזכורות מים יכולות להיות מסונכרנות עם זמני תרופות";
 "Health Tracking: Your hydration status contributes to your overall health assessment" = "מעקב בריאות: מצב ההידרציה שלך תורם להערכת הבריאות הכללית שלך";
-"Reports: Hydration data is included in health reports you can share with providers" = "דוחות: נתוני הידרציה כלולים בדוחות בריאות שאתה יכול לשתף עם ספקים";
+"Reports: Hydration data is included in health reports you can share with providers" = "דוחות: נתוני ההידרציה כלולים בדוחות בריאות שאתה יכול לשתף עם ספקים";
 
 "Troubleshooting" = "פתרון בעיות";
 "Using with Other Features" = "שימוש עם תכונות אחרות";
@@ -1195,6 +1201,7 @@
 "Text Size: Adjust text size for better readability" = "גודל טקסט: התאם את גודל הטקסט לקריאות טובה יותר";
 "Voice Settings: Configure voice assistant and reading features" = "הגדרות קול: הגדר את העוזר הקולי ותכונות הקריאה";
 "Appearance: Toggle dark mode, high contrast, and other visual options" = "מראה: הפעל מצב כהה, ניגודיות גבוהה ואפשרויות חזותיות אחרות";
+"Language: Change the app language (English, Spanish, French, Hebrew)" = "שפה: שנה את שפת האפליקציה (אנגלית, ספרדית, צרפתית, עברית)";
 "Language: Change the app language (English, Spanish, French, German, Hebrew)" = "שפה: שנה את שפת האפליקציה (אנגלית, ספרדית, צרפתית, גרמנית, עברית)";
 "Notifications: Customize alert types, sounds, and timing" = "התראות: התאם אישית סוגי התראות, צלילים ותזמון";
 "Data Management: Back up and restore your app data" = "ניהול נתונים: גבה ושחזר את נתוני האפליקציה שלך";
@@ -1369,9 +1376,135 @@
 "Activity" = "פעילות";
 "Medication" = "תרופות";
 "SeniorSpecific" = "מיוחד לגיל השלישי";
+"Diabetes" = "סוכרת";
+"BloodPressure" = "לחץ דם";
+"WeightManagement" = "ניהול משקל";
 
 // Health Tip Titles
 "health_tip_sleep_title" = "תנו עדיפות לשינה איכותית";
+
+// Diabetes Tips
+"health_tip_diabetes_monitor_title" = "נטרו את רמת הסוכר בדם באופן קבוע";
+"health_tip_diabetes_monitor_description" = "בדקו את רמת הסוכר בדם לפי המלצות איש המקצוע. ניטור קבוע מסייע להבין כיצד התזונה, הפעילות והתרופות משפיעים על הרמות שלכם.";
+
+"health_tip_diabetes_glycemic_title" = "בחרו מזונות עם אינדקס גליקמי נמוך";
+"health_tip_diabetes_glycemic_description" = "מזונות עם אינדקס גליקמי נמוך מעלים את רמת הסוכר בדם לאט יותר. העדיפו דגנים מלאים, קטניות וירקות לא עמילניים על פני פחמימות מעובדות.";
+
+"health_tip_diabetes_meal_timing_title" = "אכלו את הארוחות שלכם בשעות קבועות";
+"health_tip_diabetes_meal_timing_description" = "נסו לאכול באותה שעה בכל יום כדי לשמור על רמת סוכר יציבה בדם. הימנעו מלדלג על ארוחות, במיוחד אם אתם נוטלים תרופות.";
+
+"health_tip_diabetes_active_title" = "הישארו פעילים לאחר הארוחות";
+"health_tip_diabetes_active_description" = "הליכה קצרה לאחר ארוחות יכולה לעזור להפחית את עליות הסוכר לאחר הארוחה. שאפו להליכה של 10-15 דקות לאחר הארוחה העיקרית שלכם ביום.";
+
+"health_tip_diabetes_stress_title" = "נהלו את רמות המתח שלכם";
+"health_tip_diabetes_stress_description" = "מתח יכול להעלות את רמת הסוכר בדם. תרגלו טכניקות הרגעה כמו נשימה עמוקה, מדיטציה או יוגה עדינה כדי לעזור בניהול המתח.";
+
+"health_tip_diabetes_feet_title" = "בדקו את הרגליים שלכם מדי יום";
+"health_tip_diabetes_feet_description" = "אנשים עם סוכרת צריכים לבדוק את הרגליים שלהם מדי יום לחיתוכים, שלפוחיות, אדמומיות או נפיחות. טיפול טוב ברגליים מונע סיבוכים.";
+
+"health_tip_diabetes_hydration_title" = "הישארו מיוהדרים";
+"health_tip_diabetes_hydration_description" = "הידרציה טובה מסייעת לכליות שלכם לסלק עודף סוכר דרך השתן. שאפו ל-8 כוסות מים ביום, יותר אם רמת הסוכר שלכם גבוהה.";
+
+"health_tip_diabetes_fiber_title" = "הכלילו סיבים בכל ארוחה";
+"health_tip_diabetes_fiber_description" = "סיבים מאטים את ספיגת הסוכר ומשפרים את רמת הסוכר בדם. שאפו ל-25-30 גרם סיבים יומיים מירקות, פירות, דגנים מלאים וקטניות.";
+
+"health_tip_diabetes_alcohol_title" = "הגבילו צריכת אלכוהול";
+"health_tip_diabetes_alcohol_description" = "אלכוהול עלול להוריד את רמת הסוכר בדם באופן מסוכן אם אתם נוטלים אינסולין או תרופות מסוימות לסוכרת. אם אתם שותים, עשו זאת במתינות ותמיד עם אוכל.";
+
+"health_tip_diabetes_abc_title" = "הכירו את ה-ABC שלכם";
+"health_tip_diabetes_abc_description" = "לניהול סוכרת, זכרו את ה-ABC שלכם: A1C (בדיקת סוכר), לחץ דם (Blood pressure) וכולסטרול (Cholesterol). שמרו על שלושתם בטווחים המטרה.";
+
+"health_tip_diabetes_portion_title" = "בקרת מנות חשובה";
+"health_tip_diabetes_portion_description" = "אפילו מזונות בריאים יכולים להעלות את רמת הסוכר בדם אם המנות גדולות מדי. השתמשו בכוסות מדידה או משקל מזון עד שתוכלו להעריך במדויק גדלי מנות.";
+
+"health_tip_diabetes_fats_title" = "בחרו שומנים בריאים";
+"health_tip_diabetes_fats_description" = "החליפו שומנים רוויים בשומנים בריאים ממקורות כמו שמן זית, אבוקדו ואגוזים כדי לשפר את רגישות האינסולין ובריאות הלב.";
+
+"health_tip_diabetes_low_sugar_title" = "היו מוכנים להיפוגליקמיה";
+"health_tip_diabetes_low_sugar_description" = "החזיקו תמיד פחמימה מהירת פעולה כמו טבליות גלוקוז, מיץ או סוכריות קשות לטיפול בהיפוגליקמיה (רמת סוכר נמוכה בדם).";
+
+"health_tip_diabetes_eye_title" = "תכננו בדיקות עיניים סדירות";
+"health_tip_diabetes_eye_description" = "סוכרת מגדילה את הסיכון לבעיות עיניים. ערכו בדיקת עיניים מקיפה עם הרחבת אישונים לפחות פעם בשנה כדי לגלות בעיות מוקדם.";
+
+"health_tip_diabetes_sleep_title" = "תנו עדיפות לשינה איכותית";
+"health_tip_diabetes_sleep_description" = "שינה לקויה יכולה להשפיע על שליטה ברמת הסוכר בדם ורגישות לאינסולין. שאפו ל-7-8 שעות שינה איכותית כל לילה.";
+
+/* Blood Pressure Tips */
+"health_tip_bp_sodium_title" = "הפחיתו את צריכת הנתרן";
+"health_tip_bp_sodium_description" = "הגבילו את הנתרן ל-1,500-2,300 מ\"ג ביום. קראו תוויות מזון, הימנעו ממזונות מעובדים והשתמשו בעשבי תיבול ותבלינים במקום מלח לתיבול.";
+
+"health_tip_bp_dash_title" = "אמצו את דיאטת DASH";
+"health_tip_bp_dash_description" = "דיאטת DASH (גישות תזונתיות לעצירת יתר לחץ דם) מדגישה פירות, ירקות, דגנים מלאים, חלבונים רזים ומוצרי חלב דלי שומן, תוך הגבלת נתרן ושומנים רוויים.";
+
+"health_tip_bp_monitor_title" = "נטרו את לחץ הדם שלכם";
+"health_tip_bp_monitor_description" = "ניטור קבוע בבית מסייע לכם לעקוב אחר התקדמותכם ומתריע לכם על בעיות אפשריות. נהלו יומן של המדידות שלכם כדי לשתף אותן עם הרופא שלכם.";
+
+"health_tip_bp_alcohol_title" = "הגבילו צריכת אלכוהול";
+"health_tip_bp_alcohol_description" = "אלכוהול מוגזם יכול להעלות את לחץ הדם. הגבילו עצמכם לכוסית אחת ביום לנשים ושתיים לגברים, או שקלו להימנע מאלכוהול לחלוטין.";
+
+"health_tip_bp_potassium_title" = "הגבירו את צריכת האשלגן";
+"health_tip_bp_potassium_description" = "אשלגן מסייע לאזן את הנתרן בתאים שלכם. כללו מזונות עשירים באשלגן כמו בננות, תפוחי אדמה, אבוקדו וירקות ירוקים בתזונה שלכם.";
+
+"health_tip_bp_stress_title" = "תרגלו ניהול מתח";
+"health_tip_bp_stress_description" = "מתח כרוני תורם ליתר לחץ דם. נסו נשימה עמוקה, מדיטציה, יוגה או טכניקות הרפיה אחרות באופן יומי.";
+
+"health_tip_bp_weight_title" = "שמרו על משקל בריא";
+"health_tip_bp_weight_description" = "אפילו ירידה צנועה במשקל יכולה להפחית משמעותית את לחץ הדם. שאפו למדד מסת גוף (BMI) בין 18.5 ל-24.9.";
+
+"health_tip_bp_exercise_title" = "התעמלו באופן קבוע";
+"health_tip_bp_exercise_description" = "שאפו ללפחות 150 דקות של פעילות מתונה בשבוע. פעילות גופנית סדירה מחזקת את הלב שלכם ומסייעת לו לשאוב ביעילות רבה יותר.";
+
+"health_tip_bp_caffeine_title" = "הגבילו את צריכת הקפאין";
+"health_tip_bp_caffeine_description" = "קפאין יכול להעלות את לחץ הדם באופן זמני. הגבילו קפה, תה ומשקאות אנרגיה, במיוחד אם יש לכם יתר לחץ דם.";
+
+"health_tip_bp_medication_title" = "קחו את התרופות שלכם כמושחם";
+"health_tip_bp_medication_description" = "תרופות ליתר לחץ דם עובדות טוב יותר כאשר נוטלים אותן באופן קבוע כמושחם. לעולם אל תדלגו על מנות ולעולם אל תפסיקו לקחת את התרופות שלכם ללא התייעצות עם הרופא שלכם.";
+
+"health_tip_bp_calcium_title" = "הגבירו את צריכת הסידן";
+"health_tip_bp_calcium_description" = "צריכת סידן מספקת מסייעת בויסות לחץ דם. כללו מוצרי חלב דלי שומן, משקאות צמחיים מעושרים או תוספי סידן אם מומלץ על ידי הרופא שלכם.";
+
+"health_tip_bp_smoking_title" = "הפסיקו לעשן";
+"health_tip_bp_smoking_description" = "כל סיגריה מעלה את לחץ הדם באופן זמני. הפסקת עישון מסייעת להפחית את לחץ הדם ומשפרת את בריאות הלב וכלי הדם באופן כללי.";
+
+"health_tip_bp_breathing_title" = "תרגלו נשימה עמוקה";
+"health_tip_bp_breathing_description" = "נשימה איטית ועמוקה במשך 5-10 דקות ביום יכולה לסייע בהפחתת לחץ דם. נסו לנשום עמוק דרך האף ולנשוף דרך הפה.";
+
+"health_tip_bp_processed_title" = "הגבילו מזונות מעובדים";
+"health_tip_bp_processed_description" = "מזונות מעובדים מאוד מכילים לעתים קרובות נתרן מוסתר ושומנים לא בריאים. בחרו במזונות שלמים ולא מעובדים ככל האפשר.";
+
+"health_tip_bp_sleep_title" = "שמרו על שינה סדירה";
+"health_tip_bp_sleep_description" = "שאפו ל-7-8 שעות שינה איכותית כל לילה. איכות שינה ירודה ודום נשימה בשינה עלולים לתרום ליתר לחץ דם.";
+
+/* Weight Management Tips */
+"health_tip_weight_portion_title" = "תרגלו בקרת מנות";
+"health_tip_weight_portion_description" = "השתמשו בצלחות קטנות יותר, מדדו מנות והיו מודעים לגודל המנות. אפילו מזונות בריאים יכולים לתרום לעלייה במשקל כאשר המנות גדולות מדי.";
+
+"health_tip_weight_mindful_title" = "אכלו במודעות";
+"health_tip_weight_mindful_description" = "האטו בזמן האכילה, תיהנו מכל ביס ושימו לב לסימני רעב ושובע. הימנעו מהסחות דעת כמו טלוויזיה או טלפונים במהלך הארוחות.";
+
+"health_tip_weight_protein_title" = "הגבירו את צריכת החלבון";
+"health_tip_weight_protein_description" = "חלבון מסייע לתחושת שובע ושמירה על מסת שריר. כללו מקורות חלבון רזים בכל ארוחה, כמו דגים, עוף רזה, ביצים, טופו או קטניות.";
+
+"health_tip_weight_fiber_title" = "בחרו מזונות עשירים בסיבים";
+"health_tip_weight_fiber_description" = "סיבים תזונתיים מסייעים לתחושת שובע ומשפרים את בריאות העיכול. הגבירו את צריכת הפירות, הירקות, הקטניות והדגנים המלאים.";
+
+"health_tip_weight_hydration_title" = "שתו מים לפני הארוחות";
+"health_tip_weight_hydration_description" = "שתיית כוס מים לפני הארוחה יכולה לסייע בהפחתת התיאבון. לעתים קרובות אנו מבלבלים בין צמא לרעב.";
+
+"health_tip_weight_sleep_title" = "שפרו את איכות השינה";
+"health_tip_weight_sleep_description" = "שינה לקויה משפיעה על הורמוני הרעב ויכולה להוביל לאכילה מוגזמת. שאפו ל-7-8 שעות שינה איכותית כל לילה.";
+
+"health_tip_weight_journal_title" = "נהלו יומן מזון";
+"health_tip_weight_journal_description" = "תיעוד מה שאתם אוכלים מגביר את המודעות ומסייע בזיהוי דפוסי אכילה. רשמו את המזונות, המנות והתחושות שלכם לפני ואחרי האכילה.";
+
+"health_tip_weight_planning_title" = "תכננו ארוחות מראש";
+"health_tip_weight_planning_description" = "תכנון ארוחות מראש מפחית את הסיכוי לבחירות לא בריאות בזמן רעב. הכינו ארוחות בריאות מראש לימים עמוסים.";
+
+"health_tip_weight_snacks_title" = "בחרו חטיפים בריאים";
+"health_tip_weight_snacks_description" = "הכינו חטיפים בריאים מראש כמו ירקות חתוכים, פירות, אגוזים ללא מלח או יוגורט יוני דל שומן כדי להימנע מבחירות לא בריאות.";
+
+"health_tip_weight_activity_title" = "הוסיפו פעילות יומית";
+"health_tip_weight_activity_description" = "מצאו דרכים להוסיף תנועה לשגרה היומית שלכם. חנו רחוק יותר, קחו מדרגות במקום מעלית, ערכו פגישות תוך כדי הליכה או קומו להתמתח כל שעה.";
 "health_tip_stress_title" = "נהלו את רמות הלחץ";
 "health_tip_checkups_title" = "תכננו בדיקות קבועות";
 
@@ -1395,14 +1528,21 @@
 "health_tip_medication_food_title" = "קחו עם אוכל כשצריך";
 
 "health_tip_senior_balance_title" = "תרגילי שיווי משקל";
-"health_tip_senior_vision_title" = "הגנו על הראייה שלכם";
+"health_tip_senior_vision_title" = "שמירה על הראייה";
+"health_tip_senior_social_title" = "שמירה על פעילות חברתית";
+"health_tip_senior_home_title" = "רשימת בטיחות ביתית";
+"health_tip_senior_memory_title" = "שמירה על חדות מחשבתית";
+"health_tip_senior_temperature_title" = "מודעות לטמפרטורה";
+
+"Consider consulting with a registered dietitian for personalized guidance on your specific dietary restriction." = "שקול להתייעץ עם דיאטנ/ית מוסמכ/ת להכוונה מותאמת אישית בהתאם למגבלות התזונה שלך.";
+"Ensure your restricted diet still provides all essential nutrients through careful food choices or supplements if necessary." = "ודא שהתזונה המוגבלת שלך מספקת את כל אבות המזון החיוניים באמצעות בחירות מזון נכונות או תוספים במידת הצורך.";
 
 // Health Tip Descriptions
 "health_tip_sleep_description" = "שאפו ל-7-8 שעות שינה איכותית כל לילה. לוח זמני שינה עקבי עוזר לווסת את חילוף החומרים ומקדם בריאות כללית.";
 "health_tip_stress_description" = "תרגלו טכניקות הרפיה כמו נשימות עמוקות, מדיטציה או יוגה עדינה לניהול לחץ, שיכול להשפיע על בריאות הלב והעיכול.";
 "health_tip_checkups_description" = "בדיקות בריאות קבועות הן חיוניות. תכננו ביקורים אצל הרופא לפחות פעם בשנה, יותר אם יש לכם מצבים כרוניים.";
 
-"health_tip_protein_description" = "מבוגרים זקוקים ליותר חלבון לשמירה על מסת השריר. שאפו ל-1-1.2 גרם לק\"ג משקל גוף יומי ממקורות כמו בשר רזה, דגים, ביצים, מוצרי חלב וחלבונים צמחיים.";
+"health_tip_protein_description" = "מבוגרים זקוקים ליותר חלבון לשמירה על מסת השריר. שאפו ל-1-1.2 גרם לק\"ג משקל גוף יומי ממקורות כמו בשר רזל, דגים, ביצים, מוצרי חלב וחלבונים צמחיים.";
 "health_tip_fiber_description" = "אכלו מזונות עשירים בסיבים כמו דגנים מלאים, פירות, ירקות וקטניות לתמיכה בבריאות העיכול וניהול רמות הכולסטרול.";
 "health_tip_calcium_description" = "מבוגרים מעל גיל 50 זקוקים ל-1200 מ\"ג סידן יומי. כללו מוצרי חלב, משקאות צמחיים מועשרים, דגים משומרים עם עצמות וירקות עליים בתזונה שלכם.";
 "health_tip_vitaminD_description" = "ויטמין D עוזר בספיגת סידן. קבלו קצת חשיפה לשמש ושקלו תוסף, במיוחד בחודשי החורף.";
@@ -1421,8 +1561,12 @@
 "health_tip_medication_schedule_description" = "קחו תרופות באותה שעה כל יום לשמירה על רמות קבועות בזרם הדם ולמקסום היעילות.";
 "health_tip_medication_food_description" = "חלק מהתרופות צריכות להילקח עם אוכל. עקבו אחר הוראות הרופא שלכם לגבי תזמון התרופות עם הארוחות.";
 
-"health_tip_senior_balance_description" = "תרגלו תרגילי שיווי משקל כמו עמידה על רגל אחת או הליכת עקב-בוהן למניעת נפילות, שהן סיכון משמעותי למבוגרים.";
-"health_tip_senior_vision_description" = "בדקו את העיניים שלכם מדי שנה. ראייה טובה חיונית למניעת נפילות ולשמירה על איכות חיים.";
+"health_tip_senior_balance_description" = "תרגלו תרגילי שיווי משקל כמו עמידה על רגל אחת או הליכת עקב-בהונות למניעת נפילות, שהן סיכון משמעותי לקשישים.";
+"health_tip_senior_vision_description" = "בדקו את העיניים מדי שנה. ראייה טובה חיונית למניעת נפילות ולשמירה על איכות החיים.";
+"health_tip_senior_social_description" = "אינטראקציה חברתית קבועה יכולה לסייע בשמירה על תפקוד קוגניטיבי ורווחה רגשית. שקלו להצטרף לקבוצות קהילתיות, לקבוע שיחות וידאו קבועות עם המשפחה או להשתתף בפעילויות מקומיות לגיל השלישי.";
+"health_tip_senior_home_description" = "הפכו את ביתכם לבטוח יותר על ידי הבטחת תאורה טובה, הסרת מכשולים, התקנת מאחזי יד בחדרי האמבטיה ושמירת פריטים בשימוש תכוף בהישג יד. סביבה בטוחה מסייעת בשמירה על עצמאות.";
+"health_tip_senior_memory_description" = "עסקו בתרגילים מנטליים יומיים כמו פאזלים, קריאה, למידת מיומנויות חדשות או משחקי זיכרון. גירוי מנטלי קבוע מסייע בשמירה על תפקוד קוגניטיבי ועשוי להפחית את הסיכון לבעיות זיכרון.";
+"health_tip_senior_temperature_description" = "ככל שאנו מזדקנים, גופנו נעשה רגיש יותר לטמפרטורות קיצוניות. הישארו חמים במזג אוויר קר, הימנעו מחימום יתר בקיץ ושמרו על טמפרטורות נוחות בבית. זכרו להתלבש בשכבות ולהישאר מיודרים.";
 
 "Show Onboarding Again" = "הצג הדרכה מחדש";
 "Local Backup" = "גיבוי מקומי";
@@ -1678,7 +1822,7 @@
 "Track Your Meals & Nutrition" = "מעקב אחר הארוחות והתזונה שלך";
 "Monitor your diet with our easy-to-use food tracking system, including nutritional analysis and personalized recommendations." = "עקוב אחר התזונה שלך עם מערכת מעקב מזון קלה לשימוש, כולל ניתוח תזונתי והמלצות מותאמות אישית.";
 "Photo-based meal logging" = "תיעוד ארוחות מבוסס תמונות";
-"Built-in barcode scanner" = "סורק ברקוד מובנה";
+"Built-in barcode scanner (Premium)" = "סורק ברקוד מובנה (פרימיום)";
 "Voice input for hands-free recording" = "קלט קולי לתיעוד ללא ידיים";
 "Personalized Fasting Protocols" = "פרוטוקולי צום מותאמים אישית";
 "Follow gentle, senior-friendly intermittent fasting schedules with built-in safety features and health monitoring." = "עקוב אחר לוחות זמנים של צום לסירוגין ידידותיים למבוגרים, עם תכונות בטיחות מובנות וניטור בריאות.";
@@ -1826,6 +1970,85 @@
 
 /* Greeting format - in Hebrew, name comes first */
 "%@, %@" = "%2$@, %1$@";
+
+/* Medical Conditions */
+"High Blood Pressure" = "לחץ דם גבוה";
+"Diabetes" = "סוכרת";
+"Heart Disease" = "מחלת לב";
+"Arthritis" = "דלקת מפרקים";
+"Osteoporosis" = "אוסטאופורוזיס";
+"Asthma" = "אסטמה";
+"COPD" = "מחלת ריאות חסימתית כרונית";
+"Cancer" = "סרטן";
+"Stroke" = "שבץ";
+"Alzheimer's" = "אלצהיימר";
+"Parkinson's" = "פרקינסון";
+"Kidney Disease" = "מחלת כליות";
+"Thyroid Disorder" = "הפרעת בלוטת התריס";
+"Chronic Pain" = "כאב כרוני";
+
+/* Dietary Restrictions */
+"Vegetarian" = "צמחוני";
+"Vegan" = "טבעוני";
+"Gluten-Free" = "נטול גלוטן";
+"Dairy-Free" = "נטול חלב";
+"Nut-Free" = "נטול אגוזים";
+"Low Sodium" = "דל נתרן";
+"Low Sugar" = "דל סוכר";
+"Low Fat" = "דל שומן";
+"Kosher" = "כשר";
+"Halal" = "חלאל";
+"Pescatarian" = "פסקטריאני";
+"Keto" = "קטו";
+"Paleo" = "פליאו";
+
+/* Profile Setup */
+"Select from common conditions:" = "בחר מתוך מצבים רפואיים נפוצים:";
+"Select from common restrictions:" = "בחר מתוך הגבלות תזונה נפוצות:";
+"Add medical condition" = "הוסף מצב רפואי";
+"Add dietary restriction" = "הוסף הגבלת תזונה";
+"No medical conditions added" = "לא נוספו מצבים רפואיים";
+"No dietary restrictions added" = "לא נוספו הגבלות תזונה";
+
+/* Profile Section Titles */
+"Medical Conditions" = "מצבים רפואיים";
+"Dietary Restrictions" = "הגבלות תזונה";
+"Emergency Contacts" = "אנשי קשר לחירום";
+"Personal Information" = "מידע אישי";
+"Physical Information" = "מידע פיזי";
+"American Units" = "יחידות אמריקאיות";
+"Using feet/inches and pounds" = "שימוש ברגל/אינץ' וליברות";
+"Using centimeters and kilograms" = "שימוש בסנטימטרים וקילוגרמים";
+"Height:" = "גובה:";
+"Weight:" = "משקל:";
+"ft" = "רגל";
+"in" = "אינץ'";
+"lbs" = "ליברות";
+
+/* Form Fields */
+"First Name" = "שם פרטי";
+"Last Name" = "שם משפחה";
+"Date of Birth" = "תאריך לידה";
+"Height (cm)" = "גובה (סמ)";
+"Weight (kg)" = "משקל (קג)";
+"Gender" = "מגדר";
+"Male" = "זכר";
+"Female" = "נקבה";
+"Other" = "אחר";
+
+/* Age Format */
+"%d years, %d months" = "%d שנים, %d חודשים";
+"%d months" = "%d חודשים";
+
+/* BMI Classifications */
+"Severely Underweight" = "תת משקל חמור";
+"Underweight" = "תת משקל";
+"Normal" = "נורמלי";
+"Overweight" = "עודף משקל";
+"Obese (Class I)" = "השמנת יתר (דרגה א')";
+"Obese (Class II)" = "השמנת יתר (דרגה ב')";
+"Obese (Class III)" = "השמנת יתר (דרגה ג')";
+
 "Good night" = "לילה טוב";
 "And your fasting status" = "ומצב הצום שלך";
 "Time remaining" = "זמן שנותר";
@@ -1844,3 +2067,4 @@
 "rate" = "קצב";
 
 
+"For" = "עבור";
