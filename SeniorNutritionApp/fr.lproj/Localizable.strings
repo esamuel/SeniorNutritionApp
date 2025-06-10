@@ -92,6 +92,10 @@
 "Nutrition" = "Nutrition";
 "Nutrition Tips for Seniors" = "Conseils Nutritionnels pour les Seniors";
 "View More Tips" = "Voir plus de conseils";
+"View More" = "Voir plus";
+"All" = "Tout";
+"Health Tips" = "Conseils santé";
+"Search health tips" = "Rechercher des conseils santé";
 "General Nutrition Tips for Seniors" = "Conseils Nutritionnels Généraux pour les Seniors";
 "Tips for Your Medical Conditions" = "Conseils pour vos conditions médicales";
 "Tips for Your Dietary Restrictions" = "Conseils pour vos restrictions alimentaires";
@@ -185,24 +189,26 @@
 "Today is %@" = "Aujourd'hui c'est %@";
 "Medication Reminders" = "Rappels de médicaments";
 "No medications scheduled for today" = "Aucun médicament prévu pour aujourd'hui";
-"%@ in %@" = "%@ dans %@";
 "And your fasting status: %@" = "Et votre statut de jeûne : %@";
 "Time remaining: %@" = "Temps restant : %@";
 "%d percent remain." = "%d pour cent restants.";
 "of fasting" = "de jeûne";
 "of eating window" = "de fenêtre alimentaire";
-"Quick Actions" = "Actions rapides";
+"Quick Actions" = "Actions Rapides";
+"Profile" = "Profil";
+"Appointments" = "Rendez-vous";
 "Add Medication" = "Ajouter un médicament";
-"Track Water" = "Suivre l'eau";
-"Log Meal" = "Enregistrer un repas";
-"Fasting" = "Jeûne";
+"Add Meal" = "Ajouter un repas";
+"Water Tracker" = "Suivi de l'eau";
 "Emergency" = "Urgence";
 "Health" = "Santé";
+"Fasting" = "Jeûne";
 "Today's Schedule" = "Programme du jour";
 "Read Today's Schedule" = "Lire le programme du jour";
 "Reads out your appointments and medications for today" = "Lit vos rendez-vous et médicaments du jour";
 "Upcoming Appointments" = "Rendez-vous à venir";
 "See All" = "Voir tout";
+{{ ... }}
 "No upcoming appointments" = "Aucun rendez-vous à venir";
 "Add Appointment" = "Ajouter un rendez-vous";
 "%@, %@" = "%@, %@";
@@ -309,6 +315,47 @@
 "Tips for Your Health Conditions" = "Conseils pour vos conditions de santé";
 "Fasting Safety Guidelines" = "Consignes de sécurité pour le jeûne";
 "Benefits of Intermittent Fasting" = "Bénéfices du jeûne intermittent";
+/* Health Tips - Fasting */
+"Stay Hydrated" = "Restez hydraté";
+"health_tip_fasting_hydration_title" = "Hydratation pendant le jeûne";
+"health_tip_fasting_hydration_description" = "Pensez à boire beaucoup d'eau pendant vos périodes de jeûne. Visez au moins 8 à 10 verres par jour pour prévenir la déshydratation.";
+
+"health_tip_fasting_listen_body_title" = "Écoutez votre corps";
+"health_tip_fasting_listen_body_description" = "Si vous ne vous sentez pas bien pendant le jeûne - comme des étourdissements, une fatigue extrême ou de la confusion - envisagez d'arrêter votre jeûne et consultez votre professionnel de santé.";
+
+"health_tip_fasting_break_title" = "Rompre le jeûne";
+"health_tip_fasting_break_description" = "Vous pourriez trouver utile de rompre votre jeûne avec des aliments facilement digestibles comme des soupes, des fruits ou de petites portions de protéines pour éviter l'inconfort digestif.";
+
+"health_tip_fasting_sleep_title" = "Sommeil et jeûne";
+"health_tip_fasting_sleep_description" = "Un sommeil de qualité peut aider à soutenir votre routine de jeûne. Envisagez de maintenir un horaire de sommeil régulier pour faciliter vos objectifs de jeûne intermittent.";
+
+/* Health Tips - Hydration */
+"health_tip_hydration_reminder_title" = "Rappels d'hydratation";
+"health_tip_hydration_reminder_description" = "Vous pourriez trouver utile de configurer des rappels pour boire de l'eau tout au long de la journée, car la sensation de soif peut diminuer avec l'âge.";
+
+"health_tip_hydration_foods_title" = "Aliments hydratants";
+"health_tip_hydration_foods_description" = "Envisagez d'inclure des aliments hydratants comme la pastèque, les oranges, le concombre et la laitue dans votre alimentation comme sources supplémentaires d'hydratation en plus de l'eau.";
+
+/* Health Tips - Activity */
+"health_tip_activity_walking_title" = "Marche quotidienne";
+"health_tip_activity_walking_description" = "Une marche quotidienne de 30 minutes peut aider à améliorer la circulation, la santé cardiaque et l'humeur. De nombreuses personnes âgées trouvent que c'est l'une des formes d'exercice les plus accessibles et efficaces.";
+
+"health_tip_activity_strength_title" = "Exercices de force";
+"health_tip_activity_strength_description" = "Envisagez un entraînement de force léger 2-3 fois par semaine, car de nombreuses personnes âgées trouvent que cela aide à maintenir la masse musculaire, la densité osseuse et l'indépendance.";
+
+/* Health Tips - Medication */
+"health_tip_medication_schedule_title" = "Horaires des médicaments";
+"health_tip_medication_schedule_description" = "Prendre des médicaments à des heures régulières chaque jour peut aider à maintenir des niveaux stables dans votre circulation sanguine. Envisagez de discuter du meilleur horaire avec votre professionnel de santé.";
+
+"health_tip_medication_food_title" = "Médicaments et repas";
+"health_tip_medication_food_description" = "Certains médicaments doivent être pris avec de la nourriture. Envisagez de discuter avec votre professionnel de santé du meilleur moment pour prendre vos médicaments par rapport aux repas.";
+
+/* Health Tips - Senior Specific */
+"health_tip_senior_balance_title" = "Exercices d'équilibre";
+"health_tip_senior_balance_description" = "Pratiquez des exercices d'équilibre comme se tenir sur un pied ou marcher talon-pointe pour prévenir les chutes, qui sont un risque important pour les personnes âgées.";
+
+"health_tip_senior_vision_title" = "Santé des yeux";
+"health_tip_senior_vision_description" = "Faites examiner vos yeux chaque année. Une bonne vision est cruciale pour prévenir les chutes et maintenir la qualité de vie.";
 "Stay Hydrated" = "Restez hydraté";
 "Drink plenty of water during your fasting periods. Aim for at least 8-10 glasses daily to prevent dehydration." = "Buvez beaucoup d'eau pendant vos périodes de jeûne. Essayez de boire au moins 8 à 10 verres par jour pour éviter la déshydratation.";
 "Ease Into Fasting" = "Allez-y progressivement";
@@ -316,6 +363,7 @@
 "Break Fast Gently" = "Rompez le jeûne en douceur";
 "Break your fast with easily digestible foods like soups, fruits, or small portions of protein to avoid digestive discomfort." = "Rompez le jeûne avec des aliments faciles à digérer comme des soupes, des fruits ou de petites portions de protéines pour éviter l'inconfort digestif.";
 "Monitor Your Body" = "Surveillez votre corps";
+{{ ... }}
 "Pay attention to how you feel during fasting. Mild hunger is normal, but dizziness, extreme fatigue, or confusion are not." = "Faites attention à votre ressenti pendant le jeûne. Une légère faim est normale, mais des étourdissements, une fatigue extrême ou de la confusion ne le sont pas.";
 
 "Help Guide" = "Guide d'aide";

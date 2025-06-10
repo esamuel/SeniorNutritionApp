@@ -6,6 +6,8 @@ struct HealthView: View {
     @Environment(\.layoutDirection) private var layoutDirection
     @Environment(\.managedObjectContext) private var viewContext
     @State private var selectedTab = 0
+    @State private var refreshID = UUID()
+    @State private var activities: [HealthActivity] = []
     
     // Sheet presentation states
     @State private var showingBloodPressureInput = false
@@ -40,11 +42,10 @@ struct HealthView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            // Custom segmented control
             HStack {
-                segmentButton(title: NSLocalizedString("Overview", comment: ""), tag: 0)
-                segmentButton(title: NSLocalizedString("Vitals", comment: ""), tag: 1)
-                segmentButton(title: NSLocalizedString("Reports", comment: ""), tag: 2)
+                segmentButton(title: NSLocalizedString("Overview", comment: "Segmented control tab for health overview"), tag: 0)
+                segmentButton(title: NSLocalizedString("Vitals", comment: "Segmented control tab for vital signs"), tag: 1)
+                segmentButton(title: NSLocalizedString("Reports", comment: "Segmented control tab for health reports"), tag: 2)
             }
             .padding()
             .background(Color(.systemBackground))
@@ -64,7 +65,8 @@ struct HealthView: View {
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
         }
-        .navigationTitle(NSLocalizedString("Health", comment: ""))
+        .id(refreshID)
+        .navigationTitle(NSLocalizedString("Health", comment: "Navigation title for Health view"))
         .sheet(isPresented: $showingBloodPressureInput) {
             AddBloodPressureView()
         }
@@ -76,6 +78,13 @@ struct HealthView: View {
         }
         .sheet(isPresented: $showingBloodSugarInput) {
             AddBloodSugarView()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("LanguageDidChange"))) { _ in
+            self.refreshID = UUID()
+            self.activities = getRecentActivities()
+        }
+        .onAppear {
+            self.activities = getRecentActivities()
         }
     }
     
@@ -117,7 +126,7 @@ struct HealthView: View {
             VStack(spacing: 20) {
                 // Blood Pressure Card
                 vitalsCard(
-                    title: NSLocalizedString("Blood Pressure", comment: ""),
+                    title: NSLocalizedString("Blood Pressure", comment: "Title for Blood Pressure vital card"),
                     icon: "heart.fill",
                     color: .red,
                     latestReading: formatBPReading(bpEntries.first),
@@ -126,7 +135,7 @@ struct HealthView: View {
                 
                 // Heart Rate Card
                 vitalsCard(
-                    title: NSLocalizedString("Heart Rate", comment: ""),
+                    title: NSLocalizedString("Heart Rate", comment: "Title for Heart Rate vital card"),
                     icon: "waveform.path.ecg",
                     color: .orange,
                     latestReading: formatHRReading(hrEntries.first),
@@ -135,7 +144,7 @@ struct HealthView: View {
                 
                 // Weight Card
                 vitalsCard(
-                    title: NSLocalizedString("Weight", comment: ""),
+                    title: NSLocalizedString("Weight", comment: "Title for Weight vital card"),
                     icon: "scalemass",
                     color: .blue,
                     latestReading: formatWeightReading(weightEntries.first),
@@ -144,7 +153,7 @@ struct HealthView: View {
                 
                 // Blood Sugar Card
                 vitalsCard(
-                    title: NSLocalizedString("Blood Sugar", comment: ""),
+                    title: NSLocalizedString("Blood Sugar", comment: "Title for Blood Sugar vital card"),
                     icon: "drop.fill",
                     color: .purple,
                     latestReading: formatBSReading(bsEntries.first),
@@ -164,7 +173,7 @@ struct HealthView: View {
                 }) {
                     HStack {
                         Image(systemName: "doc.fill")
-                        Text(NSLocalizedString("Generate Health Report", comment: ""))
+                        Text(NSLocalizedString("Generate Health Report", comment: "Button to generate health report"))
                             .font(.system(size: userSettings.textSize.size))
                     }
                     .padding()
@@ -176,13 +185,13 @@ struct HealthView: View {
                 
                 // Previous Reports Section
                 VStack(alignment: .leading, spacing: 10) {
-                    Text(NSLocalizedString("Previous Reports", comment: ""))
+                    Text(NSLocalizedString("Previous Reports", comment: "Section title for previous health reports"))
                         .font(.system(size: userSettings.textSize.size, weight: .bold))
                     
                     if let lastReport = getLastGeneratedReport() {
                         reportRow(report: lastReport)
                     } else {
-                        Text(NSLocalizedString("No previous reports available", comment: ""))
+                        Text(NSLocalizedString("No previous reports available", comment: "Message when no previous reports are found"))
                             .font(.system(size: userSettings.textSize.size))
                             .foregroundColor(.secondary)
                     }
@@ -195,15 +204,15 @@ struct HealthView: View {
     
     private var summaryCard: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text(NSLocalizedString("Health Summary", comment: ""))
+            Text(NSLocalizedString("Health Summary", comment: "Title for health summary card"))
                 .font(.system(size: userSettings.textSize.size, weight: .bold))
             
             if let lastBP = bpEntries.first {
                 healthMetricRow(
                     icon: "heart.fill",
                     color: .red,
-                    title: "Blood Pressure",
-                    value: "\(lastBP.systolic)/\(lastBP.diastolic) mmHg"
+                    title: NSLocalizedString("Blood Pressure", comment: "Label for blood pressure"),
+                    value: "\(lastBP.systolic)/\(lastBP.diastolic) \(NSLocalizedString("mmHg", comment: "Unit for blood pressure"))"
                 )
             }
             
@@ -211,8 +220,8 @@ struct HealthView: View {
                 healthMetricRow(
                     icon: "waveform.path.ecg",
                     color: .orange,
-                    title: "Heart Rate",
-                    value: "\(lastHR.bpm) BPM"
+                    title: NSLocalizedString("Heart Rate", comment: "Label for heart rate"),
+                    value: "\(lastHR.bpm) \(NSLocalizedString("BPM", comment: "Unit for beats per minute"))"
                 )
             }
             
@@ -220,8 +229,8 @@ struct HealthView: View {
                 healthMetricRow(
                     icon: "scalemass",
                     color: .blue,
-                    title: "Weight",
-                    value: String(format: "%.1f kg", lastWeight.weight)
+                    title: NSLocalizedString("Weight", comment: "Label for weight"),
+                    value: String(format: "%.1f %@", lastWeight.weight, NSLocalizedString("kg", comment: "Unit for kilogram"))
                 )
             }
             
@@ -229,8 +238,8 @@ struct HealthView: View {
                 healthMetricRow(
                     icon: "drop.fill",
                     color: .purple,
-                    title: "Blood Sugar",
-                    value: String(format: "%.1f mg/dL", lastBS.glucose)
+                    title: NSLocalizedString("Blood Sugar", comment: "Label for blood sugar"),
+                    value: String(format: "%.1f %@", lastBS.glucose, NSLocalizedString("mg/dL", comment: "Unit for milligrams per deciliter"))
                 )
             }
         }
@@ -242,10 +251,10 @@ struct HealthView: View {
     
     private var activityCard: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text(NSLocalizedString("Recent Activity", comment: ""))
+            Text(NSLocalizedString("Recent Activity", comment: "Title for recent activity section"))
                 .font(.system(size: userSettings.textSize.size, weight: .bold))
             
-            ForEach(getRecentActivities(), id: \.id) { activity in
+            ForEach(activities) { activity in
                 HStack {
                     Image(systemName: activity.icon)
                         .foregroundColor(activity.color)
@@ -289,7 +298,7 @@ struct HealthView: View {
             }) {
                 HStack {
                     Image(systemName: "plus.circle.fill")
-                    Text("Add New Goal")
+                    Text(NSLocalizedString("Add New Goal", comment: "Button to add a new health goal"))
                 }
                 .font(.system(size: userSettings.textSize.size))
                 .foregroundColor(.blue)
@@ -348,22 +357,22 @@ struct HealthView: View {
     
     private func formatBPReading(_ entry: BloodPressureEntry?) -> String {
         guard let entry = entry else { return NSLocalizedString("No data available", comment: "") }
-        return "\(entry.systolic)/\(entry.diastolic) mmHg"
+        return "\(entry.systolic)/\(entry.diastolic) \(NSLocalizedString("mmHg", comment: "Unit for blood pressure"))"
     }
     
     private func formatHRReading(_ entry: HeartRateEntry?) -> String {
         guard let entry = entry else { return NSLocalizedString("No data available", comment: "") }
-        return "\(entry.bpm) BPM"
+        return "\(entry.bpm) \(NSLocalizedString("BPM", comment: "Unit for beats per minute"))"
     }
     
     private func formatWeightReading(_ entry: WeightEntry?) -> String {
         guard let entry = entry else { return NSLocalizedString("No data available", comment: "") }
-        return String(format: "%.1f kg", entry.weight)
+        return String(format: "%.1f %@", entry.weight, NSLocalizedString("kg", comment: "Unit for kilogram"))
     }
     
     private func formatBSReading(_ entry: BloodSugarEntry?) -> String {
         guard let entry = entry else { return NSLocalizedString("No data available", comment: "") }
-        return String(format: "%.1f mg/dL", entry.glucose)
+        return String(format: "%.1f %@", entry.glucose, NSLocalizedString("mg/dL", comment: "Unit for milligrams per deciliter"))
     }
     
     private func formatDate(_ date: Date) -> String {
@@ -389,7 +398,7 @@ struct HealthView: View {
             activities.append(HealthActivity(
                 icon: "heart.fill",
                 color: .red,
-                description: "Blood Pressure: \(entry.systolic)/\(entry.diastolic) mmHg",
+                description: "\(NSLocalizedString("Blood Pressure", comment: "Label for blood pressure")): \(entry.systolic)/\(entry.diastolic) \(NSLocalizedString("mmHg", comment: "Unit for blood pressure"))",
                 date: entry.date ?? Date()
             ))
         }
@@ -399,7 +408,7 @@ struct HealthView: View {
             activities.append(HealthActivity(
                 icon: "waveform.path.ecg",
                 color: .orange,
-                description: "Heart Rate: \(entry.bpm) BPM",
+                description: "\(NSLocalizedString("Heart Rate", comment: "Label for heart rate")): \(entry.bpm) \(NSLocalizedString("BPM", comment: "Unit for beats per minute"))",
                 date: entry.date ?? Date()
             ))
         }
@@ -409,7 +418,7 @@ struct HealthView: View {
             activities.append(HealthActivity(
                 icon: "scalemass",
                 color: .blue,
-                description: String(format: "Weight: %.1f kg", entry.weight),
+                description: String(format: "\(NSLocalizedString("Weight", comment: "Label for weight")): %.1f %@", entry.weight, NSLocalizedString("kg", comment: "Unit for kilogram")),
                 date: entry.date ?? Date()
             ))
         }
@@ -444,7 +453,7 @@ struct HealthView: View {
         HStack {
             Image(systemName: "doc.text.fill")
                 .foregroundColor(.blue)
-            Text("Health Report")
+            Text(NSLocalizedString("Health Report", comment: "Title for health report"))
                 .font(.system(size: userSettings.textSize.size))
             Spacer()
             Text(formatDate(report))
@@ -465,4 +474,4 @@ struct HealthView_Previews: PreviewProvider {
                 .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         }
     }
-} 
+}

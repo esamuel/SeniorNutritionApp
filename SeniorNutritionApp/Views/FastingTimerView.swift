@@ -19,14 +19,14 @@ private struct TimerSectionView: View {
             // Timer display
             ZStack {
                 Circle()
-                    .stroke(lineWidth: 15)
+                    .stroke(lineWidth: 20)
                     .opacity(0.3)
                     .foregroundColor(fastingState == .fasting ? .green : .orange)
                     .frame(width: 250, height: 250) // Set a specific size for the circle
                 
                 Circle()
                     .trim(from: 0, to: CGFloat(calculatePercentageRemaining()) / 100)
-                    .stroke(style: StrokeStyle(lineWidth: 15, lineCap: .round, lineJoin: .round))
+                    .stroke(style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
                     .foregroundColor(fastingState == .fasting ? .green : .orange)
                     .frame(width: 250, height: 250) // Match the size of the background circle
                     .rotationEffect(Angle(degrees: -90))
@@ -36,7 +36,7 @@ private struct TimerSectionView: View {
                     Text(formatTimeString(hours: remaining.hours, minutes: remaining.minutes))
                         .font(.system(size: textSize + 20, weight: .bold))
                         .contentTransition(.numericText())
-                    Text(String(format: NSLocalizedString("%d percent remain.", comment: ""), calculatePercentageRemaining()))
+                    Text(String(format: "%d%%", calculatePercentageRemaining()))
                         .font(.system(size: textSize))
                         .foregroundColor(.secondary)
                         .contentTransition(.numericText())
@@ -143,13 +143,12 @@ private struct TimerSectionView: View {
     }
     
     private func formatTimeString(hours: Int, minutes: Int) -> String {
-        return String(format: "%02d:%02d", hours, minutes)
+        return String(format: "%d:%02d", hours, minutes)
     }
 }
 
 // MARK: - TimelineSectionView
 private struct TimelineSectionView: View {
-    let medications: [Medication]
     let lastMealTime: Date
     let nextMealTime: Date
     let textSize: CGFloat
@@ -177,26 +176,6 @@ private struct TimelineSectionView: View {
                 }
             }
             .padding(.top, 10)
-            
-            if !medications.isEmpty {
-                Text(NSLocalizedString("Medication Schedule", comment: ""))
-                    .font(.system(size: textSize - 2, weight: .medium))
-                    .padding(.top, 5)
-                
-                ForEach(medications) { medication in
-                    HStack {
-                        Image(systemName: "pill.fill")
-                            .foregroundColor(.blue)
-                        Text(medication.name)
-                            .font(.system(size: textSize - 2))
-                        Spacer()
-                        Text(formatFirstTime(for: medication))
-                            .font(.system(size: textSize - 2))
-                            .foregroundColor(.secondary)
-                    }
-                    .padding(.vertical, 5)
-                }
-            }
         }
         .padding()
         .background(Color(.systemBackground))
@@ -206,20 +185,6 @@ private struct TimelineSectionView: View {
     
     private func formatTimeRange(start: Date, end: Date) -> String {
         return "\(timeFormatter.string(from: start)) - \(timeFormatter.string(from: end))"
-    }
-    
-    private func formatFirstTime(for medication: Medication) -> String {
-        guard let firstTime = medication.timesOfDay.first else { return "" }
-        
-        let calendar = Calendar.current
-        var components = DateComponents()
-        components.hour = firstTime.hour
-        components.minute = firstTime.minute
-        
-        if let date = calendar.date(from: components) {
-            return DateFormattingUtility.shared.formatTime(date)
-        }
-        return String(format: "%02d:%02d", firstTime.hour, firstTime.minute)
     }
 }
 
@@ -459,7 +424,6 @@ struct FastingTimerView: View {
     // Timeline section
     private var timelineSection: some View {
         TimelineSectionView(
-            medications: userSettings.medications,
             lastMealTime: fastingManager.lastMealTime,
             nextMealTime: fastingManager.nextMealTime,
             textSize: userSettings.textSize.size,
@@ -651,7 +615,6 @@ struct FastingTimerView: View {
                     "Skip breakfast or have it later",
                     "Stay hydrated during fasting",
                     "Break fast with a light meal",
-                    "Take medications as prescribed with food if needed"
                 ]
             case .fourteenTen:
                 return [
@@ -742,7 +705,6 @@ struct FastingTimerView: View {
     private struct TimelineView: View {
         let lastMealTime: Date
         let nextMealTime: Date
-        let medications: [Medication]
         let textSize: CGFloat
         let timeFormatter: DateFormatter
         

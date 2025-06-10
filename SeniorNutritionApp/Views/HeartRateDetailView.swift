@@ -32,7 +32,7 @@ struct HeartRateDetailView: View {
             }
             .padding()
         }
-        .navigationTitle("Heart Rate")
+        .navigationTitle(NSLocalizedString("Heart Rate", comment: "Navigation title for Heart Rate detail view"))
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: { showingAddEntry = true }) {
@@ -49,18 +49,18 @@ struct HeartRateDetailView: View {
             EditHeartRateView(entry: entry)
                 .environment(\.managedObjectContext, viewContext)
         }
-        .alert("Delete Entry", isPresented: $showingDeleteAlert) {
-            Button("Delete", role: .destructive) {
+        .alert(NSLocalizedString("Delete Entry", comment: "Alert title for deleting entry"), isPresented: $showingDeleteAlert) {
+            Button(NSLocalizedString("Delete", comment: "Delete button text"), role: .destructive) {
                 if let entry = selectedEntry {
                     deleteEntry(entry)
                     selectedEntry = nil
                 }
             }
-            Button("Cancel", role: .cancel) {
+            Button(NSLocalizedString("Cancel", comment: "Cancel button text"), role: .cancel) {
                 selectedEntry = nil
             }
         } message: {
-            Text("Are you sure you want to delete this entry? This action cannot be undone.")
+            Text(NSLocalizedString("Are you sure you want to delete this entry? This action cannot be undone.", comment: "Delete confirmation message"))
         }
     }
     
@@ -68,14 +68,14 @@ struct HeartRateDetailView: View {
         VStack(spacing: 16) {
             HStack(spacing: 20) {
                 statsCard(
-                    title: "Latest",
+                    title: NSLocalizedString("Latest", comment: "Latest reading label"),
                     value: latestReading,
                     color: latestColor,
                     icon: "waveform.path.ecg"
                 )
                 
                 statsCard(
-                    title: "Average",
+                    title: NSLocalizedString("Average", comment: "Average reading label"),
                     value: averageReading,
                     color: averageColor,
                     icon: "chart.bar.fill"
@@ -111,27 +111,27 @@ struct HeartRateDetailView: View {
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color(.systemGray6))
+        .background(Color(.secondarySystemBackground))
         .cornerRadius(12)
     }
     
     private var chartSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("Trends")
+            Text(NSLocalizedString("Trends", comment: "Trends section title"))
                 .font(.title2)
                 .bold()
             
             // Time range picker
-            Picker("Time Range", selection: $timeRange) {
-                Text("Week").tag(TimeRange.week)
-                Text("Month").tag(TimeRange.month)
-                Text("3 Months").tag(TimeRange.threeMonths)
+            Picker(NSLocalizedString("Time Range", comment: "Time range picker label"), selection: $timeRange) {
+                Text(NSLocalizedString("Week", comment: "Time range option: Week")).tag(TimeRange.week)
+                Text(NSLocalizedString("Month", comment: "Time range option: Month")).tag(TimeRange.month)
+                Text(NSLocalizedString("3 Months", comment: "Time range option: Three Months")).tag(TimeRange.threeMonths)
             }
             .pickerStyle(SegmentedPickerStyle())
             .padding(.bottom, 8)
             
             if entries.isEmpty {
-                Text("No data available to display chart")
+                Text(NSLocalizedString("No data available to display chart", comment: "Message when no chart data is available"))
                     .foregroundColor(.secondary)
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.vertical, 40)
@@ -144,7 +144,7 @@ struct HeartRateDetailView: View {
             }
         }
         .padding()
-        .background(Color.white)
+        .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(radius: 2)
     }
@@ -168,7 +168,8 @@ struct HeartRateDetailView: View {
                     x: .value("Date", entry.date ?? Date()),
                     y: .value("Heart Rate", entry.bpm)
                 )
-                .foregroundStyle(.blue)
+                .foregroundStyle(Color.blue.opacity(0.8))
+                .symbolSize(50)
                 .lineStyle(StrokeStyle(lineWidth: 2))
             }
             
@@ -186,6 +187,7 @@ struct HeartRateDetailView: View {
                 if let date = value.as(Date.self) {
                     AxisValueLabel {
                         Text(date, format: self.timeRange.dateFormat)
+                            .foregroundColor(.primary)
                     }
                 }
             }
@@ -198,7 +200,7 @@ struct HeartRateDetailView: View {
         }
         .chartLegend(position: .bottom) {
             HStack(spacing: 20) {
-                LegendItem(color: .blue, label: "Heart Rate (BPM)")
+                LegendItem(color: .blue, label: NSLocalizedString("Heart Rate (BPM)", comment: "Chart legend for heart rate"))
                 LegendItem(color: .green, label: "Normal Range")
             }
         }
@@ -222,12 +224,12 @@ struct HeartRateDetailView: View {
     
     private var historySection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("History")
+            Text(NSLocalizedString("History", comment: "History section title"))
                 .font(.title2)
                 .bold()
             
             if entries.isEmpty {
-                Text("No recorded heart rate entries")
+                Text(NSLocalizedString("No recorded heart rate entries", comment: "Message when no heart rate entries are recorded"))
                     .foregroundColor(.secondary)
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.vertical, 20)
@@ -255,7 +257,7 @@ struct HeartRateDetailView: View {
             }
         }
         .padding()
-        .background(Color.white)
+        .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(radius: 2)
     }
@@ -285,7 +287,7 @@ struct HeartRateDetailView: View {
                 .cornerRadius(5)
         }
         .padding()
-        .background(Color(.systemGray6))
+        .background(Color(.secondarySystemBackground))
         .cornerRadius(12)
     }
     
@@ -338,18 +340,18 @@ struct HeartRateDetailView: View {
             let category = heartRateCategory(value: Int(latest.bpm))
             switch category {
             case "Normal":
-                return "Your heart rate is in the normal range. Keep up the good work!"
+                return NSLocalizedString("Your heart rate is in the normal range. Keep up the good work!", comment: "Heart rate status: normal")
             case "High":
-                return "Your heart rate is elevated. If this persists, consider consulting your doctor."
+                return NSLocalizedString("Your heart rate is elevated. If this persists, consider consulting your doctor.", comment: "Heart rate status: high")
             case "Low":
-                return "Your heart rate is lower than normal. If you feel unwell, consult your doctor."
+                return NSLocalizedString("Your heart rate is lower than normal. Consult your doctor.", comment: "Heart rate status: low")
             case "Very High":
-                return "Your heart rate is very high. Consider medical attention if accompanied by other symptoms."
+                return NSLocalizedString("Your heart rate is very high. Consider medical attention if accompanied by other symptoms.", comment: "Heart rate status: very high")
             default:
-                return "Monitor your heart rate regularly."
+                return NSLocalizedString("Track your heart rate regularly to see insights and trends.", comment: "Heart rate status: default message")
             }
         }
-        return "Start tracking your heart rate to see insights."
+        return NSLocalizedString("Start tracking your heart rate to see insights.", comment: "Heart rate status: start tracking")
     }
     
     private var filteredEntries: [HeartRateEntry] {

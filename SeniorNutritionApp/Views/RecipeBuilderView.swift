@@ -6,14 +6,32 @@ struct RecipeBuilderView: View {
     @Environment(\.presentationMode) private var presentationMode
     
     @StateObject private var foodDatabase = FoodDatabaseService()
-    @State private var recipeName = ""
-    @State private var ingredients: [RecipeIngredient] = []
-    @State private var notes = ""
-    @State private var servings = 1
+    @State private var recipeName: String
+    @State private var ingredients: [RecipeIngredient]
+    @State private var notes: String
+    @State private var servings: Int
     @State private var showingFoodPicker = false
     @State private var showingPremiumAlert = false
     
+    private let isEditing: Bool
     var onSave: (Recipe) -> Void
+    
+    init(recipe: Recipe? = nil, onSave: @escaping (Recipe) -> Void) {
+        if let recipe = recipe {
+            _recipeName = State(initialValue: recipe.name)
+            _ingredients = State(initialValue: recipe.ingredients)
+            _notes = State(initialValue: recipe.notes ?? "")
+            _servings = State(initialValue: recipe.servings)
+            self.isEditing = true
+        } else {
+            _recipeName = State(initialValue: "")
+            _ingredients = State(initialValue: [])
+            _notes = State(initialValue: "")
+            _servings = State(initialValue: 1)
+            self.isEditing = false
+        }
+        self.onSave = onSave
+    }
     
     private var canSave: Bool {
         !recipeName.isEmpty && !ingredients.isEmpty
@@ -90,7 +108,7 @@ struct RecipeBuilderView: View {
                         .font(.system(size: userSettings.textSize.size))
                 }
             }
-            .navigationTitle("Create Recipe")
+            .navigationTitle(isEditing ? "Edit Recipe" : "Create Recipe")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {

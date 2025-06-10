@@ -21,12 +21,14 @@
 "of fasting" = "of fasting";
 "of eating window" = "of eating window";
 "Quick Actions" = "Quick Actions";
+"Profile" = "Profile";
+"Appointments" = "Appointments";
 "Add Medication" = "Add Medication";
-"Track Water" = "Track Water";
-"Log Meal" = "Log Meal";
-"Fasting" = "Fasting";
+"Add Meal" = "Add Meal";
+"Water Tracker" = "Water Tracker";
 "Emergency" = "Emergency";
 "Health" = "Health";
+"Fasting" = "Fasting";
 "Today's Schedule" = "Today's Schedule";
 "Read Today's Schedule" = "Read Today's Schedule";
 "Reads out your appointments and medications for today" = "Reads out your appointments and medications for today";

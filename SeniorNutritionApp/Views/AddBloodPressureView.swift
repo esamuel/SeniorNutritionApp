@@ -14,26 +14,26 @@ struct AddBloodPressureView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text(NSLocalizedString("Blood Pressure Reading", comment: ""))) {
+                Section(header: Text(NSLocalizedString("Blood Pressure Reading", comment: "Section header for blood pressure reading input"))) {
                     HStack {
-                        TextField(NSLocalizedString("Systolic", comment: ""), text: $systolic)
+                        TextField(NSLocalizedString("Systolic", comment: "Placeholder for systolic blood pressure input"), text: $systolic)
                             .keyboardType(.numberPad)
                             .focused($systolicFieldIsFocused)
-                        Text("mmHg")
+                        Text(NSLocalizedString("mmHg", comment: "Unit for blood pressure"))
                             .foregroundColor(.secondary)
                     }
                     
                     HStack {
-                        TextField(NSLocalizedString("Diastolic", comment: ""), text: $diastolic)
+                        TextField(NSLocalizedString("Diastolic", comment: "Placeholder for diastolic blood pressure input"), text: $diastolic)
                             .keyboardType(.numberPad)
-                        Text("mmHg")
+                        Text(NSLocalizedString("mmHg", comment: "Unit for blood pressure"))
                             .foregroundColor(.secondary)
                     }
                 }
                 
                 Section {
                     DatePicker(
-                        NSLocalizedString("Date and Time", comment: ""),
+                        NSLocalizedString("Date and Time", comment: "Label for date and time picker"),
                         selection: $date,
                         displayedComponents: [.date, .hourAndMinute]
                     )
@@ -47,16 +47,16 @@ struct AddBloodPressureView: View {
                     }
                 }
             }
-            .navigationTitle(NSLocalizedString("Add Blood Pressure", comment: ""))
+            .navigationTitle(NSLocalizedString("Add Blood Pressure", comment: "Navigation title for adding blood pressure entry"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button(NSLocalizedString("Cancel", comment: "")) {
+                    Button(NSLocalizedString("Cancel", comment: "Cancel button text")) {
                         dismiss()
                     }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(NSLocalizedString("Save", comment: "")) {
+                    Button(NSLocalizedString("Save", comment: "Save button text")) {
                         saveReading()
                     }
                 }
@@ -72,17 +72,17 @@ struct AddBloodPressureView: View {
     
     private func saveReading() {
         guard let systolicValue = Int32(systolic), systolicValue > 0 else {
-            error = NSLocalizedString("Please enter a valid systolic pressure", comment: "")
+            error = NSLocalizedString("Please enter a valid systolic pressure", comment: "Error message for invalid systolic pressure")
             return
         }
         
         guard let diastolicValue = Int32(diastolic), diastolicValue > 0 else {
-            error = NSLocalizedString("Please enter a valid diastolic pressure", comment: "")
+            error = NSLocalizedString("Please enter a valid diastolic pressure", comment: "Error message for invalid diastolic pressure")
             return
         }
         
         guard systolicValue >= diastolicValue else {
-            error = NSLocalizedString("Systolic pressure must be higher than diastolic pressure", comment: "")
+            error = NSLocalizedString("Systolic pressure must be higher than diastolic pressure", comment: "Error message when systolic is not higher than diastolic")
             return
         }
         
@@ -96,7 +96,7 @@ struct AddBloodPressureView: View {
             try viewContext.save()
             dismiss()
         } catch {
-            self.error = NSLocalizedString("Failed to save. Please try again.", comment: "")
+            self.error = NSLocalizedString("Failed to save. Please try again.", comment: "Error message for failed save operation")
         }
     }
 }

@@ -33,7 +33,7 @@ struct WeightDetailView: View {
             }
             .padding()
         }
-        .navigationTitle("Weight")
+        .navigationTitle(NSLocalizedString("Weight", comment: "Navigation title for Weight detail view"))
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: { showingAddEntry = true }) {
@@ -52,18 +52,18 @@ struct WeightDetailView: View {
                 .environment(\.managedObjectContext, viewContext)
                 .environmentObject(userSettings)
         }
-        .alert("Delete Entry", isPresented: $showingDeleteAlert) {
-            Button("Delete", role: .destructive) {
+        .alert(NSLocalizedString("Delete Entry", comment: "Alert title for deleting entry"), isPresented: $showingDeleteAlert) {
+            Button(NSLocalizedString("Delete", comment: "Delete button text"), role: .destructive) {
                 if let entry = selectedEntry {
                     deleteEntry(entry)
                     selectedEntry = nil
                 }
             }
-            Button("Cancel", role: .cancel) {
+            Button(NSLocalizedString("Cancel", comment: "Cancel button text"), role: .cancel) {
                 selectedEntry = nil
             }
         } message: {
-            Text("Are you sure you want to delete this entry? This action cannot be undone.")
+            Text(NSLocalizedString("Are you sure you want to delete this entry? This action cannot be undone.", comment: "Delete confirmation message"))
         }
     }
     
@@ -71,14 +71,14 @@ struct WeightDetailView: View {
         VStack(spacing: 16) {
             HStack(spacing: 20) {
                 statsCard(
-                    title: "Latest",
+                    title: NSLocalizedString("Latest", comment: "Latest reading label"),
                     value: latestReading,
                     color: .green,
                     icon: "scalemass.fill"
                 )
                 
                 statsCard(
-                    title: "Trend",
+                    title: NSLocalizedString("Trend", comment: "Trend label"),
                     value: weightTrend,
                     color: trendColor,
                     icon: "arrow.up.right"
@@ -114,31 +114,31 @@ struct WeightDetailView: View {
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color(.systemGray6))
+        .background(Color(.secondarySystemBackground))
         .cornerRadius(12)
     }
     
     private var chartSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("Trends")
+            Text(NSLocalizedString("Trends", comment: "Trends section title"))
                 .font(.title2)
                 .bold()
             
             // Time range picker
             Picker("Time Range", selection: $timeRange) {
-                Text("Week").tag(TimeRange.week)
-                Text("Month").tag(TimeRange.month)
-                Text("3 Months").tag(TimeRange.threeMonths)
+                Text(NSLocalizedString("Week", comment: "Time range option: Week")).tag(TimeRange.week)
+                Text(NSLocalizedString("Month", comment: "Time range option: Month")).tag(TimeRange.month)
+                Text(NSLocalizedString("3 Months", comment: "Time range option: Three Months")).tag(TimeRange.threeMonths)
             }
             .pickerStyle(SegmentedPickerStyle())
             .padding(.bottom, 8)
             
             if entries.isEmpty {
-                Text("No data available to display chart")
+                Text(NSLocalizedString("No data available to display chart", comment: "Message when no chart data is available"))
                     .foregroundColor(.secondary)
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.vertical, 40)
-                    .background(Color(.systemGray6))
+                    .background(Color(.secondarySystemBackground))
                     .cornerRadius(12)
             } else {
                 weightChart
@@ -147,52 +147,60 @@ struct WeightDetailView: View {
             }
         }
         .padding()
-        .background(Color.white)
+        .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(radius: 2)
     }
     
     private var weightChart: some View {
         let sortedEntries = filteredEntries.sorted { ($0.date ?? Date()) < ($1.date ?? Date()) }
-        _ = sortedEntries.first?.date ?? Date().addingTimeInterval(-7*24*60*60) // 1 week ago if empty
-        _ = sortedEntries.last?.date ?? Date() // Today if empty
         
-        return Chart {
-            ForEach(sortedEntries) { entry in
-                // Weight point
-                PointMark(
-                    x: .value("Date", entry.date ?? Date()),
-                    y: .value("Weight", entry.weight)
-                )
-                .foregroundStyle(.green)
-                
-                // Weight line
-                LineMark(
-                    x: .value("Date", entry.date ?? Date()),
-                    y: .value("Weight", entry.weight)
-                )
-                .foregroundStyle(.green)
-                .lineStyle(StrokeStyle(lineWidth: 2))
-            }
+        // Calculate min and max weights for Y-axis range
+        let weights = sortedEntries.map { $0.weight }
+        let minWeight = (weights.min() ?? 0) - 1 // Add 1kg padding below
+        let maxWeight = (weights.max() ?? 100) + 1 // Add 1kg padding above
+        let weightRange = maxWeight - minWeight
+        
+        return Chart(sortedEntries) { entry in
+            LineMark(
+                x: .value("Date", entry.date ?? Date()),
+                y: .value("Weight", entry.weight)
+            )
+            .foregroundStyle(Color.green.opacity(0.8))
+            .lineStyle(StrokeStyle(lineWidth: 2))
+            
+            PointMark(
+                x: .value("Date", entry.date ?? Date()),
+                y: .value("Weight", entry.weight)
+            )
+            .foregroundStyle(Color.green.opacity(0.8))
+            .symbolSize(50)
         }
         .chartXAxis {
             AxisMarks(preset: .automatic) { value in
                 if let date = value.as(Date.self) {
                     AxisValueLabel {
                         Text(date, format: self.timeRange.dateFormat)
+                            .foregroundColor(.primary)
                     }
                 }
             }
         }
         .chartYAxis {
-            AxisMarks(preset: .automatic) { value in
-                AxisValueLabel()
+            AxisMarks(values: .stride(by: max(0.5, weightRange / 10))) { value in // More frequent marks
+                AxisValueLabel {
+                    if let weight = value.as(Double.self) {
+                        Text(String(format: "%.1f", weight))
+                            .foregroundColor(.primary)
+                    }
+                }
                 AxisGridLine()
             }
         }
+        .chartYScale(domain: minWeight...maxWeight) // Custom Y-axis range
         .chartLegend(position: .bottom) {
             HStack(spacing: 20) {
-                LegendItem(color: .green, label: "Weight (kg/lbs)")
+                LegendItem(color: .green, label: NSLocalizedString("Weight (kg/lbs)", comment: "Chart legend for weight"))
             }
         }
     }
@@ -215,12 +223,12 @@ struct WeightDetailView: View {
     
     private var historySection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("History")
+            Text(NSLocalizedString("History", comment: "History section title"))
                 .font(.title2)
                 .bold()
             
             if entries.isEmpty {
-                Text("No recorded weight entries")
+                Text(NSLocalizedString("Tap to view history and charts", comment: "Instruction to view history"))
                     .foregroundColor(.secondary)
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.vertical, 20)
@@ -248,7 +256,7 @@ struct WeightDetailView: View {
             }
         }
         .padding()
-        .background(Color.white)
+        .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(radius: 2)
     }
@@ -284,7 +292,7 @@ struct WeightDetailView: View {
             }
         }
         .padding()
-        .background(Color(.systemGray6))
+        .background(Color(.secondarySystemBackground))
         .cornerRadius(12)
     }
     
@@ -351,13 +359,14 @@ struct WeightDetailView: View {
             let diff = latest - previous
             
             if abs(diff) < 0.5 {
-                return "Your weight has been stable recently. Good job maintaining consistency!"
+                return NSLocalizedString("Your weight has been stable recently. Good job maintaining consistency!", comment: "Weight insights message")
             } else if diff > 0 {
-                return "You've gained \(String(format: "%.1f", diff)) kg recently. Monitor your intake if this wasn't intended."
+                return String(format: NSLocalizedString("You've gained %.1f kg recently. Monitor your intake if this wasn't intended.", comment: "Weight insights message"), diff)
             } else {
-                return "You've lost \(String(format: "%.1f", abs(diff))) kg recently. If intentional, good progress!"
+                return String(format: NSLocalizedString("You've lost %.1f kg recently. If intentional, good progress!", comment: "Weight insights message"), abs(diff))
             }
         }
+        return NSLocalizedString("Track your weight regularly to see insights and trends.", comment: "Weight insights message")
         return "Track your weight regularly to see insights and trends."
     }
     
