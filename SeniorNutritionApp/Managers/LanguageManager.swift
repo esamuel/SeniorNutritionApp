@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import Combine
 
 class LanguageManager: ObservableObject {
     static let shared = LanguageManager()
@@ -35,9 +36,15 @@ class LanguageManager: ObservableObject {
             // Apply the language change to Bundle
             Bundle.setLanguage(currentLanguage)
             
+            // Update layout direction for RTL/LTR
+            LocalizationUtils.updateLayoutDirection()
+            
             // Notify observers of the change
             objectWillChange.send()
             NotificationCenter.default.post(name: NSNotification.Name("LanguageDidChange"), object: nil)
+            
+            // Post a system-wide notification for any views that need to update
+            NotificationCenter.default.post(name: NSLocale.currentLocaleDidChangeNotification, object: nil)
             
             print("[LanguageManager] Language changed to: \(currentLanguage)")
         }
@@ -201,6 +208,12 @@ class LanguageManager: ObservableObject {
             return "he"
         }
         
+        // Special case for Spanish variants (es-ES, es-MX, etc.)
+        if localeLanguageCode.hasPrefix("es") && supported.contains("es") {
+            print("[LanguageManager] Detected Spanish variant, using 'es'")
+            return "es"
+        }
+        
         // Try to match the first preferred language
         for lang in preferredLanguages {
             print("[LanguageManager] Checking preferred language: \(lang)")
@@ -218,6 +231,12 @@ class LanguageManager: ObservableObject {
                     print("[LanguageManager] Found match after splitting by '-': \(langCode)")
                     return langCode
                 }
+                
+                // Handle Spanish variants
+                if langCode == "es" && supported.contains("es") {
+                    print("[LanguageManager] Found Spanish variant in preferred languages")
+                    return "es"
+                }
             }
             
             // Try splitting by underscore (e.g., "en_US" → "en")
@@ -227,6 +246,12 @@ class LanguageManager: ObservableObject {
                     print("[LanguageManager] Found match after splitting by '_': \(langCode)")
                     return langCode
                 }
+                
+                // Handle Spanish variants with underscore
+                if langCode == "es" && supported.contains("es") {
+                    print("[LanguageManager] Found Spanish variant with underscore")
+                    return "es"
+                }
             }
             
             // Special case for Hebrew
@@ -234,12 +259,20 @@ class LanguageManager: ObservableObject {
                 print("[LanguageManager] Detected Hebrew language code variant")
                 return "he"
             }
+            
+            // Special case for Spanish
+            if lang.hasPrefix("es") && supported.contains("es") {
+                print("[LanguageManager] Detected Spanish language code variant")
+                return "es"
+            }
         }
         
         // If no match found among preferred languages, default to English
         print("[LanguageManager] No match found, defaulting to English")
         return "en"
     }
+    
+    // MARK: - Public Properties
     
     var isRTL: Bool {
         return ["he", "ar"].contains(currentLanguage)
@@ -259,9 +292,13 @@ class LanguageManager: ObservableObject {
     func forceRefreshLocalization() {
         // Re-apply the current language to force a refresh
         Bundle.setLanguage(currentLanguage)
+        // Update layout direction
+        LocalizationUtils.updateLayoutDirection()
         // Notify of changes
         objectWillChange.send()
         NotificationCenter.default.post(name: NSNotification.Name("LanguageDidChange"), object: nil)
+        // Post system notification
+        NotificationCenter.default.post(name: NSLocale.currentLocaleDidChangeNotification, object: nil)
     }
 }
 

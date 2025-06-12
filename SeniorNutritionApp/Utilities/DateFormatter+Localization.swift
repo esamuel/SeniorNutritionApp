@@ -1,6 +1,9 @@
 import Foundation
+import SwiftUI
 
-// Extension to provide localized date formatting that respects the app's language settings
+// MARK: - Date Formatter Extensions
+
+/// Provides localized date formatting that respects the app's language and RTL settings
 extension DateFormatter {
     
     /// Returns a date formatter configured for the current app language
@@ -27,14 +30,20 @@ extension DateFormatter {
         
         formatter.locale = Locale(identifier: localeIdentifier)
         
-        // For Hebrew, ensure correct calendar and direction
-        if currentLanguage == "he" {
-            // Use Hebrew calendar for Hebrew locale
-            formatter.calendar = Calendar(identifier: .hebrew)
+        // For RTL languages, ensure correct calendar and direction
+        if LocalizationUtils.isRTL {
+            // Use appropriate calendar for RTL languages
+            if currentLanguage == "he" {
+                formatter.calendar = Calendar(identifier: .hebrew)
+            } else {
+                formatter.calendar = Calendar(identifier: .gregorian)
+            }
             
-            // Customize date format for Hebrew if needed
+            // Customize date format for RTL languages if needed
             if dateStyle != .none && timeStyle == .none {
-                formatter.dateFormat = "EEEE, d MMMM yyyy"
+                formatter.dateFormat = currentLanguage == "he" ? 
+                    "EEEE, d MMMM yyyy" : // Hebrew format
+                    "EEEE, d MMMM yyyy"    // Other RTL languages
             }
         }
         
@@ -57,7 +66,26 @@ extension DateFormatter {
     }
 }
 
-// Extension for FastingTimerView to provide localized time formatting
+// MARK: - Number Formatter Extensions
+
+extension NumberFormatter {
+    /// Returns a number formatter configured for the current app language
+    static func localizedNumberFormatter(minimumFractionDigits: Int = 0, 
+                                      maximumFractionDigits: Int = 2) -> NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = minimumFractionDigits
+        formatter.maximumFractionDigits = maximumFractionDigits
+        
+        // Set locale based on current language
+        formatter.locale = Locale(identifier: LanguageManager.shared.currentLanguage)
+        
+        return formatter
+    }
+}
+
+// MARK: - FastingManager Extension
+
 extension FastingManager {
     /// Get a properly localized time formatter for the FastingTimerView
     static func getLocalizedTimeFormatter() -> DateFormatter {
@@ -86,8 +114,21 @@ extension FastingManager {
     }
 }
 
-// Extension for Date to provide easy access to localized formatting
+// MARK: - Date Extensions
+
 extension Date {
+    /// Returns a view that displays a localized date with proper RTL support
+    func localizedDateView(dateStyle: DateFormatter.Style = .medium, 
+                         timeStyle: DateFormatter.Style = .short) -> some View {
+        let formatter = DateFormatter.localizedFormatter(dateStyle: dateStyle, timeStyle: timeStyle)
+        let dateString = formatter.string(from: self)
+        
+        return Text(dateString)
+            .multilineTextAlignment(LocalizationUtils.isRTL ? .trailing : .leading)
+            .fixedSize(horizontal: false, vertical: true)
+    }
+    
+    /// Format this date with the app's current language settings
     /// Format this date with the app's current language settings
     func localizedString(dateStyle: DateFormatter.Style = .medium, timeStyle: DateFormatter.Style = .short) -> String {
         return DateFormatter.localizedFormatter(dateStyle: dateStyle, timeStyle: timeStyle).string(from: self)
