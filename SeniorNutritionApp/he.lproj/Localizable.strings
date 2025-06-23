@@ -794,17 +794,6 @@
 "Voice input for hands-free recording" = "קלט קולי להקלטה ללא ידיים";
 "Voice-guided assistance available" = "סיוע קולי מונחה זמין";
 "Week" = "שבוע";
-"Weight-Bearing Exercise" = "תרגילי נשיאת משקל";
-"Weight" = "משקל";
-"When breaking your fast, include iodine-rich foods like seaweed, fish, or eggs to support thyroid function." = "בסיום הצום, כלול מזונות עשירים ביוד כגון אצות ים, דגים או ביצים לתמיכה בתפקוד בלוטת התריס.";
-"Work with your healthcare provider to adjust medication timing if needed to accommodate your fasting schedule." = "עבוד עם הרופא שלך כדי להתאים את זמני נטילת התרופות במידת הצורך כדי להתאים ללוח הזמנים של הצום שלך.";
-"Your Protocol: %@" = "הפרוטוקול שלך: %@";
-/* Localized strings for Fasting Timer */
-"FASTING_TIMER_TITLE" = "טיימר צום";
-"FASTING_PROTOCOL_STANDARD" = "סטנדרטי";
-"FASTING_PROTOCOL_MODERATE" = "מתון";
-"FASTING_PROTOCOL_GENTLE" = "עדין";
-"SELECT_BUTTON" = "בחר";
 /* Fasting Protocol Descriptions */
 "PROTOCOL_12_12_DESCRIPTION" = "צום למשך 12 שעות, אכילה בתוך חלון של 12 שעות. אידיאלי למתחילים.";
 "PROTOCOL_14_10_DESCRIPTION" = "צום למשך 14 שעות, אכילה בתוך חלון של 10 שעות. עצימות בינונית.";
@@ -2068,3 +2057,125 @@
 
 
 "For" = "עבור";
+<<<<<<< Updated upstream
+=======
+
+/* Emergency Number Settings */
+"Emergency Number" = "מספר חירום";
+"Detected for your region" = "זוהה עבור האזור שלך";
+"Use Custom Emergency Number" = "השתמש במספר חירום מותאם אישית";
+"Custom Emergency Number" = "מספר חירום מותאם אישית";
+"Enter emergency number" = "הכנס מספר חירום";
+"Make sure this is the correct emergency number for your location" = "וודא שזה מספר החירום הנכון עבור המיקום שלך";
+"Currently active" = "פעיל כרגע";
+
+/* Voice Assistance Help Strings */
+"Voice Assistance" = "סיוע קולי";
+"Learn how to use voice commands" = "למד כיצד להשתמש בפקודות קוליות";
+"Using Voice Commands" = "שימוש בפקודות קוליות";
+"Voice commands make the app easier to use, especially for those with limited mobility or vision. Here's how to get started:" = "פקודות קוליות הופכות את האפליקציה לקלה יותר לשימוש, במיוחד עבור אנשים עם מוגבלות בתנועה או בראייה. הנה איך להתחיל:";
+"Activating Voice Commands" = "הפעלת פקודות קוליות";
+"Tap the microphone icon in the top right corner of any screen" = "הקש על סמל המיקרופון בפינה הימנית העליונה של כל מסך";
+"Wait for the \"Listening...\" prompt" = "המתן להודעה \"מקשיב...\"";
+"Speak your command clearly and then pause" = "אמור את הפקודה שלך בבירור ואז עצור";
+"The app will automatically process your command without needing to tap again" = "האפליקציה תעבד אוטומטית את הפקודה שלך מבלי שתצטרך להקיש שוב";
+"You'll see a confirmation message and the app will take action" = "תראה הודעת אישור והאפליקציה תבצע את הפעולה";
+"Available Voice Commands" = "פקודות קוליות זמינות";
+"Navigation Commands:" = "פקודות ניווט:";
+"Navigate to the home screen" = "נווט למסך הבית";
+"Go to the nutrition tracking screen" = "עבור למסך מעקב התזונה";
+"Open the water tracking screen" = "פתח את מסך מעקב המים";
+"Navigate to the fasting timer" = "נווט לטיימר הצום";
+"View your medications" = "צפה בתרופות שלך";
+"Open the help screen" = "פתח את מסך העזרה";
+"Action Commands:" = "פקודות פעולה:";
+"Log water consumption" = "רשום צריכת מים";
+"Record a new meal" = "רשום ארוחה חדשה";
+"Begin a fasting period" = "התחל תקופת צום";
+"End the current fast" = "סיים את הצום הנוכחי";
+"Mark medication as taken" = "סמן תרופה כנלקחה";
+"Create a new reminder" = "צור תזכורת חדשה";
+"Information Commands:" = "פקודות מידע:";
+"Hear a summary of your daily progress" = "שמע סיכום של ההתקדמות היומית שלך";
+"Check your water intake for the day" = "בדוק את צריכת המים שלך ליום";
+"Find out when your next medication is due" = "ברר מתי התרופה הבאה שלך אמורה להילקח";
+"Check the status of your current fast" = "בדוק את מצב הצום הנוכחי שלך";
+"Tips for Better Voice Recognition" = "טיפים לזיהוי קולי טוב יותר";
+"Speak clearly and at a moderate pace" = "דבר בבירור ובקצב מתון";
+"Reduce background noise when possible" = "הפחת רעשי רקע כאשר אפשר";
+"Hold the device about 8-12 inches from your mouth" = "החזק את המכשיר במרחק של כ-20-30 סנטימטרים מהפה שלך";
+"If the app doesn't understand, try rephrasing your command" = "אם האפליקציה לא מבינה, נסה לנסח מחדש את הפקודה שלך";
+"For better recognition, use the exact command phrases listed above" = "לזיהוי טוב יותר, השתמש בביטויי הפקודה המדויקים הרשומים לעיל";
+"A demonstration of voice command features" = "הדגמה של תכונות פקודה קולית";
+"Watch Video Tutorial" = "צפה במדריך וידאו";
+"Voice Help" = "עזרה קולית";
+
+/* App Tour Localization */
+"App Tour" = "סיור באפליקציה";
+"Take a guided tour of the app" = "קח סיור מודרך באפליקציה";
+"Restart Tour" = "התחל סיור מחדש";
+"Previous" = "הקודם";
+"Next" = "הבא";
+"Finish" = "סיים";
+
+/* Tour Steps */
+"Welcome to Senior Nutrition App" = "ברוכים הבאים לאפליקציית תזונה לגיל השלישי";
+"This guided tour will help you learn how to use the app's main features." = "סיור מודרך זה יעזור לך ללמוד כיצד להשתמש בתכונות העיקריות של האפליקציה.";
+"Home Screen" = "מסך הבית";
+"The Home screen shows your daily summary, including nutrition, water intake, and active fasting timers." = "מסך הבית מציג את הסיכום היומי שלך, כולל תזונה, צריכת מים וטיימרי צום פעילים.";
+"Nutrition Tracking" = "מעקב תזונה";
+"Track your meals and monitor nutritional intake with the Nutrition tab." = "עקוב אחר הארוחות שלך ועקוב אחר הצריכה התזונתית עם לשונית התזונה.";
+"Water Tracking" = "מעקב מים";
+"Stay hydrated by logging your water intake in the Water tab." = "שמור על לחות על ידי תיעוד צריכת המים שלך בלשונית המים.";
+"Fasting Timer" = "טיימר צום";
+"Use the Fasting Timer to track your fasting periods and eating windows." = "השתמש בטיימר הצום כדי לעקוב אחר תקופות הצום וחלונות האכילה שלך.";
+"More Options" = "אפשרויות נוספות";
+"Access medications, health tips, help resources, and emergency contacts from the More tab." = "גש לתרופות, טיפים בריאותיים, משאבי עזרה ואנשי קשר לחירום מלשונית 'עוד'.";
+"Accessibility Features" = "תכונות נגישות";
+"Customize text size, enable voice commands, and adjust other settings to make the app easier to use." = "התאם אישית את גודל הטקסט, אפשר פקודות קוליות והתאם הגדרות אחרות כדי להפוך את האפליקציה לקלה יותר לשימוש.";
+"Ready to Start!" = "מוכן להתחיל!";
+"You've completed the tour. Tap 'Finish' to start using the app." = "סיימת את הסיור. הקש על 'סיים' כדי להתחיל להשתמש באפליקציה.";
+
+/* Voice Assistance Help Strings */
+"Voice Assistance" = "סיוע קולי";
+"Learn how to use voice commands" = "למד כיצד להשתמש בפקודות קוליות";
+"Using Voice Commands" = "שימוש בפקודות קוליות";
+"Voice commands make the app easier to use, especially for those with limited mobility or vision. Here's how to get started:" = "פקודות קוליות הופכות את האפליקציה לקלה יותר לשימוש, במיוחד עבור אנשים עם מוגבלות בתנועה או בראייה. הנה איך להתחיל:";
+"Activating Voice Commands" = "הפעלת פקודות קוליות";
+"Tap the microphone icon in the top right corner of any screen" = "הקש על סמל המיקרופון בפינה הימנית העליונה של כל מסך";
+"Wait for the \"Listening...\" prompt" = "המתן להודעה \"מקשיב...\"";
+"Speak your command clearly and then pause" = "אמור את הפקודה שלך בבירור ואז עצור";
+"The app will automatically process your command without needing to tap again" = "האפליקציה תעבד אוטומטית את הפקודה שלך מבלי שתצטרך להקיש שוב";
+"You'll see a confirmation message and the app will take action" = "תראה הודעת אישור והאפליקציה תבצע את הפעולה";
+"Available Voice Commands" = "פקודות קוליות זמינות";
+"Navigation Commands:" = "פקודות ניווט:";
+"Navigate to the home screen" = "נווט למסך הבית";
+"Go to the nutrition tracking screen" = "עבור למסך מעקב התזונה";
+"Open the water tracking screen" = "פתח את מסך מעקב המים";
+"Navigate to the fasting timer" = "נווט לטיימר הצום";
+"View your medications" = "צפה בתרופות שלך";
+"Open the help screen" = "פתח את מסך העזרה";
+"Action Commands:" = "פקודות פעולה:";
+"Log water consumption" = "רשום צריכת מים";
+"Record a new meal" = "רשום ארוחה חדשה";
+"Begin a fasting period" = "התחל תקופת צום";
+"End the current fast" = "סיים את הצום הנוכחי";
+"Mark medication as taken" = "סמן תרופה כנלקחה";
+"Create a new reminder" = "צור תזכורת חדשה";
+"Information Commands:" = "פקודות מידע:";
+"Hear a summary of your daily progress" = "שמע סיכום של ההתקדמות היומית שלך";
+"Check your water intake for the day" = "בדוק את צריכת המים שלך ליום";
+"Find out when your next medication is due" = "ברר מתי התרופה הבאה שלך אמורה להילקח";
+"Check the status of your current fast" = "בדוק את מצב הצום הנוכחי שלך";
+"Tips for Better Voice Recognition" = "טיפים לזיהוי קולי טוב יותר";
+"Speak clearly and at a moderate pace" = "דבר בבירור ובקצב מתון";
+"Reduce background noise when possible" = "הפחת רעשי רקע כאשר אפשר";
+"Hold the device about 8-12 inches from your mouth" = "החזק את המכשיר במרחק של כ-20-30 סנטימטרים מהפה שלך";
+"If the app doesn't understand, try rephrasing your command" = "אם האפליקציה לא מבינה, נסה לנסח מחדש את הפקודה שלך";
+"For better recognition, use the exact command phrases listed above" = "לזיהוי טוב יותר, השתמש בביטויי הפקודה המדויקים הרשומים לעיל";
+"A demonstration of voice command features" = "הדגמה של תכונות פקודה קולית";
+"Watch Video Tutorial" = "צפה במדריך וידאו";
+"Voice Help" = "עזרה קולית";
+
+/* End of Localizable.strings */
+>>>>>>> Stashed changes

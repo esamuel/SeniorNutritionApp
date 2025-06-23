@@ -1,3 +1,114 @@
+/* Core UI Strings */
+"Home" = "Inicio";
+"Good Morning" = "Buenos Días";
+"Good Afternoon" = "Buenas Tardes";
+"Good Evening" = "Buenas Noches";
+"Quick Actions" = "Acciones Rápidas";
+"Today's Schedule" = "Horario de Hoy";
+"Medication Reminders" = "Recordatorios de Medicamentos";
+"No medications scheduled for today" = "No hay medicamentos programados para hoy";
+"Upcoming Appointments" = "Próximas Citas";
+"No upcoming appointments" = "No hay citas próximas";
+"See All" = "Ver Todo";
+"Add Appointment" = "Agregar Cita";
+"Profile" = "Perfil";
+"Appointments" = "Citas";
+"Add Medication" = "Agregar Medicamento";
+"Add Meal" = "Agregar Comida";
+"Water Tracker" = "Seguimiento de Agua";
+"Emergency" = "Emergencia";
+"Health" = "Salud";
+"Fasting" = "Ayuno";
+"Eating Window" = "Ventana de Alimentación";
+"Read" = "Leer";
+"Stop" = "Parar";
+"Age: %d years, %d months" = "Edad: %d años, %d meses";
+"Age: %d months" = "Edad: %d meses";
+"Today is %@" = "Hoy es %@";
+"%@ in %@" = "%@ en %@";
+"%d hours" = "%d horas";
+"%d min" = "%d minutos";
+"%@ %@" = "%@ %@";
+"Now" = "Ahora";
+"Today" = "Hoy";
+"Tomorrow" = "Mañana";
+"Past" = "Pasado";
+"Edit" = "Editar";
+"Delete" = "Eliminar";
+"Open Settings" = "Abrir Configuración";
+"Get Help" = "Obtener Ayuda";
+"Read Welcome Summary" = "Leer Resumen de Bienvenida";
+"Reads out your greeting and medication reminders" = "Lee tu saludo y recordatorios de medicamentos";
+"Read Today's Schedule" = "Leer Horario de Hoy";
+"Reads out your appointments and medications for today" = "Lee tus citas y medicamentos para hoy";
+
+/* Date and Time Formatting */
+"s" = "s";
+
+/* Voice and Speech */
+"Medication Reminders." = "Recordatorios de Medicamentos.";
+"No medications scheduled for today." = "No hay medicamentos programados para hoy.";
+"And your fasting status: %@. " = "Y tu estado de ayuno: %@. ";
+"Time remaining: %@. " = "Tiempo restante: %@. ";
+"%d percent remain." = "%d por ciento restante.";
+"Today's schedule: " = "Horario de hoy: ";
+"You have no upcoming appointments." = "No tienes citas próximas.";
+"Upcoming appointments: " = "Citas próximas: ";
+"Today's medications: " = "Medicamentos de hoy: ";
+"in" = "en";
+"minutes" = "minutos";
+"hours" = "horas";
+"hour" = "hora";
+"minute" = "minuto";
+"And your fasting status" = "Y tu estado de ayuno";
+"Time remaining" = "Tiempo restante";
+"percent remain" = "por ciento restante";
+"This is a test of the voice settings" = "Esta es una prueba de la configuración de voz";
+"I am speaking at" = "Estoy hablando a ritmo";
+"rate" = "ritmo";
+"Hello, this is a voice sample" = "Hola, esta es una muestra de voz";
+"I can read your medication reminders and health tips clearly" = "Puedo leer claramente tus recordatorios de medicamentos y consejos de salud";
+
+/* Help Guide */
+"Help Guide" = "Guía de Ayuda";
+"Done" = "Hecho";
+"Welcome to Senior Nutrition App" = "Bienvenido a la Aplicación de Nutrición para Adultos Mayores";
+"Your comprehensive health companion for managing nutrition, fasting, medications, and wellness tracking. This guide will help you navigate the app's features effectively." = "Tu compañero integral de salud para gestionar nutrición, ayuno, medicamentos y seguimiento de bienestar. Esta guía te ayudará a navegar las características de la aplicación de manera efectiva.";
+"Fasting Timer" = "Temporizador de Ayuno";
+"Advanced fasting protocol options for seniors" = "Opciones avanzadas de protocolo de ayuno para adultos mayores";
+"Real-time tracking with health safety indicators" = "Seguimiento en tiempo real con indicadores de seguridad de salud";
+"Customizable fasting and eating windows" = "Ventanas de ayuno y alimentación personalizables";
+"Integration with medication and meal schedules" = "Integración con horarios de medicamentos y comidas";
+"Nutrition Tracking" = "Seguimiento de Nutrición";
+"Simplified meal logging with photos or voice input" = "Registro simplificado de comidas con fotos o entrada de voz";
+"Nutritional analysis with senior-specific recommendations" = "Análisis nutricional con recomendaciones específicas para adultos mayores";
+"Customizable meal reminders and hydration tracking" = "Recordatorios de comidas personalizables y seguimiento de hidratación";
+"Food database with barcode scanning capability" = "Base de datos de alimentos con capacidad de escaneo de códigos de barras";
+"Appointment Management" = "Gestión de Citas";
+"Easy scheduling and tracking of medical appointments" = "Programación y seguimiento fácil de citas médicas";
+"Automatic reminders with customizable advance notice" = "Recordatorios automáticos con aviso anticipado personalizable";
+"Location and provider information storage" = "Almacenamiento de información de ubicación y proveedor";
+"Calendar integration and sharing with caregivers" = "Integración de calendario y compartir con cuidadores";
+"Health Monitoring" = "Monitoreo de Salud";
+"Track vital signs including blood pressure, heart rate, and weight" = "Rastrea signos vitales incluyendo presión arterial, frecuencia cardíaca y peso";
+"Blood sugar monitoring with customizable target ranges" = "Monitoreo de azúcar en sangre con rangos objetivo personalizables";
+"Visual data trends with weekly and monthly analysis" = "Tendencias de datos visuales con análisis semanal y mensual";
+"Health data export for healthcare provider review" = "Exportación de datos de salud para revisión del proveedor de atención médica";
+"Medication Management" = "Gestión de Medicamentos";
+"Visual medication identification system" = "Sistema visual de identificación de medicamentos";
+"Smart scheduling with fasting compatibility alerts" = "Programación inteligente con alertas de compatibilidad de ayuno";
+"Refill reminders and medication history tracking" = "Recordatorios de recarga y seguimiento del historial de medicamentos";
+"Food and timing requirement notifications" = "Notificaciones de requisitos de comida y tiempo";
+"Important Tips" = "Consejos Importantes";
+"Always consult healthcare providers before changing medication routines" = "Siempre consulta con proveedores de atención médica antes de cambiar rutinas de medicamentos";
+"Stay hydrated with at least 8 glasses of water daily, especially during fasting" = "Mantente hidratado con al menos 8 vasos de agua diarios, especialmente durante el ayuno";
+"Monitor for dizziness, weakness, or discomfort during fasting periods" = "Monitorea mareos, debilidad o molestias durante períodos de ayuno";
+"Use the emergency override feature if you experience any concerning symptoms" = "Usa la función de anulación de emergencia si experimentas síntomas preocupantes";
+"Emergency Information" = "Información de Emergencia";
+"If you experience dizziness, weakness, confusion, or any unusual symptoms during fasting, stop immediately and eat something with protein and carbohydrates. Contact your healthcare provider or emergency services if symptoms persist or worsen." = "Si experimentas mareos, debilidad, confusión o síntomas inusuales durante el ayuno, detente inmediatamente y come algo con proteína y carbohidratos. Contacta a tu proveedor de atención médica o servicios de emergencia si los síntomas persisten o empeoran.";
+"Need More Help?" = "¿Necesitas Más Ayuda?";
+"Contact our support team via the Help & Support section in the More tab, or use the voice assistance feature for immediate guidance." = "Contacta a nuestro equipo de soporte a través de la sección Ayuda y Soporte en la pestaña Más, o usa la función de asistencia de voz para orientación inmediata.";
+
 /* Health Tips - Fasting */
 "health_tip_fasting_hydration_title" = "Hidratación durante el ayuno";
 "health_tip_fasting_hydration_description" = "Considere beber mucha agua durante sus períodos de ayuno. Intente tomar al menos 8-10 vasos diarios para ayudar a prevenir la deshidratación.";
@@ -38,3 +149,123 @@
 
 "health_tip_senior_vision_title" = "Salud visual";
 "health_tip_senior_vision_description" = "Hágase revisar los ojos anualmente. Una buena visión es crucial para prevenir caídas y mantener la calidad de vida.";
+<<<<<<< Updated upstream
+=======
+
+/* Emergency Number Settings */
+"Emergency Number" = "Número de Emergencia";
+"Detected for your region" = "Detectado para tu región";
+"Use Custom Emergency Number" = "Usar Número de Emergencia Personalizado";
+"Custom Emergency Number" = "Número de Emergencia Personalizado";
+"Enter emergency number" = "Ingresa número de emergencia";
+"Make sure this is the correct emergency number for your location" = "Asegúrate de que este sea el número de emergencia correcto para tu ubicación";
+"Currently active" = "Actualmente activo";
+
+/* Voice Assistance Help Strings */
+"Voice Assistance" = "Asistencia por Voz";
+"Learn how to use voice commands" = "Aprenda a usar comandos de voz";
+"Using Voice Commands" = "Uso de Comandos de Voz";
+"Voice commands make the app easier to use, especially for those with limited mobility or vision. Here's how to get started:" = "Los comandos de voz facilitan el uso de la aplicación, especialmente para aquellos con movilidad o visión limitada. Así es como comenzar:";
+"Activating Voice Commands" = "Activación de Comandos de Voz";
+"Tap the microphone icon in the top right corner of any screen" = "Toque el icono del micrófono en la esquina superior derecha de cualquier pantalla";
+"Wait for the \"Listening...\" prompt" = "Espere a que aparezca el mensaje \"Escuchando...\"";
+"Speak your command clearly and then pause" = "Diga su comando claramente y luego haga una pausa";
+"The app will automatically process your command without needing to tap again" = "La aplicación procesará automáticamente su comando sin necesidad de tocar nuevamente";
+"You'll see a confirmation message and the app will take action" = "Verá un mensaje de confirmación y la aplicación tomará acción";
+"Available Voice Commands" = "Comandos de Voz Disponibles";
+"Navigation Commands:" = "Comandos de Navegación:";
+"Navigate to the home screen" = "Navegar a la pantalla de inicio";
+"Go to the nutrition tracking screen" = "Ir a la pantalla de seguimiento nutricional";
+"Open the water tracking screen" = "Abrir la pantalla de seguimiento de agua";
+"Navigate to the fasting timer" = "Navegar al temporizador de ayuno";
+"View your medications" = "Ver sus medicamentos";
+"Open the help screen" = "Abrir la pantalla de ayuda";
+"Action Commands:" = "Comandos de Acción:";
+"Log water consumption" = "Registrar consumo de agua";
+"Record a new meal" = "Registrar una nueva comida";
+"Begin a fasting period" = "Comenzar un período de ayuno";
+"End the current fast" = "Finalizar el ayuno actual";
+"Mark medication as taken" = "Marcar medicamento como tomado";
+"Create a new reminder" = "Crear un nuevo recordatorio";
+"Information Commands:" = "Comandos de Información:";
+"Hear a summary of your daily progress" = "Escuchar un resumen de su progreso diario";
+"Check your water intake for the day" = "Verificar su consumo de agua del día";
+"Find out when your next medication is due" = "Averiguar cuándo debe tomar su próximo medicamento";
+"Check the status of your current fast" = "Verificar el estado de su ayuno actual";
+"Tips for Better Voice Recognition" = "Consejos para un Mejor Reconocimiento de Voz";
+"Speak clearly and at a moderate pace" = "Hable claramente y a un ritmo moderado";
+"Reduce background noise when possible" = "Reduzca el ruido de fondo cuando sea posible";
+"Hold the device about 8-12 inches from your mouth" = "Sostenga el dispositivo a unos 20-30 centímetros de su boca";
+"If the app doesn't understand, try rephrasing your command" = "Si la aplicación no entiende, intente reformular su comando";
+"For better recognition, use the exact command phrases listed above" = "Para un mejor reconocimiento, use las frases de comando exactas enumeradas anteriormente";
+"A demonstration of voice command features" = "Una demostración de las funciones de comandos de voz";
+"Watch Video Tutorial" = "Ver Tutorial en Video";
+"Voice Help" = "Ayuda de Voz";
+
+/* Voice Assistance Help Strings */
+"Voice Assistance" = "Asistencia por Voz";
+"Learn how to use voice commands" = "Aprenda a usar comandos de voz";
+"Using Voice Commands" = "Uso de Comandos de Voz";
+"Voice commands make the app easier to use, especially for those with limited mobility or vision. Here's how to get started:" = "Los comandos de voz facilitan el uso de la aplicación, especialmente para aquellos con movilidad o visión limitada. Así es como comenzar:";
+"Activating Voice Commands" = "Activación de Comandos de Voz";
+"Tap the microphone icon in the top right corner of any screen" = "Toque el icono del micrófono en la esquina superior derecha de cualquier pantalla";
+"Wait for the \"Listening...\" prompt" = "Espere a que aparezca el mensaje \"Escuchando...\"";
+"Speak your command clearly and then pause" = "Diga su comando claramente y luego haga una pausa";
+"The app will automatically process your command without needing to tap again" = "La aplicación procesará automáticamente su comando sin necesidad de tocar nuevamente";
+"You'll see a confirmation message and the app will take action" = "Verá un mensaje de confirmación y la aplicación tomará acción";
+"Available Voice Commands" = "Comandos de Voz Disponibles";
+"Navigation Commands:" = "Comandos de Navegación:";
+"Navigate to the home screen" = "Navegar a la pantalla de inicio";
+"Go to the nutrition tracking screen" = "Ir a la pantalla de seguimiento nutricional";
+"Open the water tracking screen" = "Abrir la pantalla de seguimiento de agua";
+"Navigate to the fasting timer" = "Navegar al temporizador de ayuno";
+"View your medications" = "Ver sus medicamentos";
+"Open the help screen" = "Abrir la pantalla de ayuda";
+"Action Commands:" = "Comandos de Acción:";
+"Log water consumption" = "Registrar consumo de agua";
+"Record a new meal" = "Registrar una nueva comida";
+"Begin a fasting period" = "Comenzar un período de ayuno";
+"End the current fast" = "Finalizar el ayuno actual";
+"Mark medication as taken" = "Marcar medicamento como tomado";
+"Create a new reminder" = "Crear un nuevo recordatorio";
+"Information Commands:" = "Comandos de Información:";
+"Hear a summary of your daily progress" = "Escuchar un resumen de su progreso diario";
+"Check your water intake for the day" = "Verificar su consumo de agua del día";
+"Find out when your next medication is due" = "Averiguar cuándo debe tomar su próximo medicamento";
+"Check the status of your current fast" = "Verificar el estado de su ayuno actual";
+"Tips for Better Voice Recognition" = "Consejos para un Mejor Reconocimiento de Voz";
+"Speak clearly and at a moderate pace" = "Hable claramente y a un ritmo moderado";
+"Reduce background noise when possible" = "Reduzca el ruido de fondo cuando sea posible";
+"Hold the device about 8-12 inches from your mouth" = "Sostenga el dispositivo a unos 20-30 centímetros de su boca";
+"If the app doesn't understand, try rephrasing your command" = "Si la aplicación no entiende, intente reformular su comando";
+"For better recognition, use the exact command phrases listed above" = "Para un mejor reconocimiento, use las frases de comando exactas enumeradas anteriormente";
+"A demonstration of voice command features" = "Una demostración de las funciones de comandos de voz";
+"Watch Video Tutorial" = "Ver Tutorial en Video";
+"Voice Help" = "Ayuda de Voz";
+
+/* App Tour Localization */
+"App Tour" = "Tour de la Aplicación";
+"Take a guided tour of the app" = "Toma un tour guiado de la aplicación";
+"Restart Tour" = "Reiniciar Tour";
+"Previous" = "Anterior";
+"Next" = "Siguiente";
+"Finish" = "Finalizar";
+
+/* Tour Steps */
+"Welcome to Senior Nutrition App" = "Bienvenido a la Aplicación de Nutrición para Adultos Mayores";
+"This guided tour will help you learn how to use the app's main features." = "Este tour guiado te ayudará a aprender cómo usar las características principales de la aplicación.";
+"Home Screen" = "Pantalla de Inicio";
+"The Home screen shows your daily summary, including nutrition, water intake, and active fasting timers." = "La pantalla de inicio muestra tu resumen diario, incluyendo nutrición, consumo de agua y temporizadores de ayuno activos.";
+"Nutrition Tracking" = "Seguimiento de Nutrición";
+"Track your meals and monitor nutritional intake with the Nutrition tab." = "Rastrea tus comidas y monitorea el consumo nutricional con la pestaña de Nutrición.";
+"Water Tracking" = "Seguimiento de Agua";
+"Stay hydrated by logging your water intake in the Water tab." = "Mantente hidratado registrando tu consumo de agua en la pestaña de Agua.";
+"Fasting Timer" = "Temporizador de Ayuno";
+"Use the Fasting Timer to track your fasting periods and eating windows." = "Usa el Temporizador de Ayuno para rastrear tus períodos de ayuno y ventanas de alimentación.";
+"More Options" = "Más Opciones";
+"Access medications, health tips, help resources, and emergency contacts from the More tab." = "Accede a medicamentos, consejos de salud, recursos de ayuda y contactos de emergencia desde la pestaña Más.";
+"Accessibility Features" = "Características de Accesibilidad";
+"Customize text size, enable voice commands, and adjust other settings to make the app easier to use." = "Personaliza el tamaño del texto, habilita comandos de voz y ajusta otras configuraciones para hacer la aplicación más fácil de usar.";
+"Ready to Start!" = "¡Listo para Empezar!";
+"You've completed the tour. Tap 'Finish' to start using the app." = "Has completado el tour. Toca 'Finalizar' para comenzar a usar la aplicación.";
+>>>>>>> Stashed changes
