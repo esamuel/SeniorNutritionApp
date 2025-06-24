@@ -205,79 +205,34 @@ class VoiceManager: NSObject, ObservableObject {
             return text
         }
         
-        // Common phrases that might appear in voice synthesis
-        let commonTranslations: [String: [String: String]] = [
-            "he": [
-                "Good morning": "בוקר טוב",
-                "Good afternoon": "צהריים טובים", 
-                "Good evening": "ערב טוב",
-                "Good night": "לילה טוב",
-                "Medication Reminders": "תזכורות תרופות",
-                "No medications scheduled for today": "אין תרופות מתוכננות להיום",
-                "in": "בעוד",
-                "minutes": "דקות",
-                "hours": "שעות",
-                "hour": "שעה",
-                "minute": "דקה",
-                "And your fasting status": "ומצב הצום שלך",
-                "Time remaining": "זמן שנותר",
-                "percent remain": "אחוז נותר",
-                "This is a test of the voice settings": "זהו מבחן של הגדרות הקול",
-                "I am speaking at": "אני מדבר בקצב",
-                "rate": "קצב",
-                "Hello, this is a voice sample": "שלום, זוהי דוגמת קול",
-                "I can read your medication reminders and health tips clearly": "אני יכול לקרוא את תזכורות התרופות והטיפים הבריאותיים שלך בבירור"
-            ],
-            "fr": [
-                "Good morning": "Bonjour",
-                "Good afternoon": "Bon après-midi",
-                "Good evening": "Bonsoir", 
-                "Good night": "Bonne nuit",
-                "Medication Reminders": "Rappels de médicaments",
-                "No medications scheduled for today": "Aucun médicament prévu pour aujourd'hui",
-                "in": "dans",
-                "minutes": "minutes",
-                "hours": "heures",
-                "hour": "heure",
-                "minute": "minute",
-                "And your fasting status": "Et votre statut de jeûne",
-                "Time remaining": "Temps restant",
-                "percent remain": "pour cent restant",
-                "This is a test of the voice settings": "Ceci est un test des paramètres vocaux",
-                "I am speaking at": "Je parle à un rythme",
-                "rate": "rythme",
-                "Hello, this is a voice sample": "Bonjour, ceci est un échantillon vocal",
-                "I can read your medication reminders and health tips clearly": "Je peux lire clairement vos rappels de médicaments et conseils de santé"
-            ],
-            "es": [
-                "Good morning": "Buenos días",
-                "Good afternoon": "Buenas tardes",
-                "Good evening": "Buenas noches",
-                "Good night": "Buenas noches",
-                "Medication Reminders": "Recordatorios de medicamentos",
-                "No medications scheduled for today": "No hay medicamentos programados para hoy",
-                "in": "en",
-                "minutes": "minutos",
-                "hours": "horas",
-                "hour": "hora",
-                "minute": "minuto",
-                "And your fasting status": "Y su estado de ayuno",
-                "Time remaining": "Tiempo restante",
-                "percent remain": "por ciento restante",
-                "This is a test of the voice settings": "Esta es una prueba de la configuración de voz",
-                "I am speaking at": "Estoy hablando a ritmo",
-                "rate": "ritmo",
-                "Hello, this is a voice sample": "Hola, esta es una muestra de voz",
-                "I can read your medication reminders and health tips clearly": "Puedo leer claramente sus recordatorios de medicamentos y consejos de salud"
-            ]
+        // Get the appropriate language bundle
+        guard let langPath = Bundle.main.path(forResource: currentLang, ofType: "lproj"),
+              let langBundle = Bundle(path: langPath) else {
+            print("DEBUG: Could not find language bundle for \(currentLang)")
+            return text
+        }
+        
+        // Common phrases that might appear in voice synthesis - use localization files
+        let commonKeys = [
+            "Good morning", "Good afternoon", "Good evening", "Good night",
+            "Medication Reminders", "No medications scheduled for today",
+            "in", "minutes", "hours", "hour", "minute",
+            "And your fasting status", "Time remaining", "percent remain",
+            "This is a test of the voice settings", "I am speaking at", "rate",
+            "Hello, this is a voice sample", 
+            "I can read your medication reminders and health tips clearly"
         ]
         
         var translatedText = text
         
-        // Apply translations for the current language
-        if let translations = commonTranslations[currentLang] {
-            for (english, translated) in translations {
-                translatedText = translatedText.replacingOccurrences(of: english, with: translated, options: .caseInsensitive)
+        // Apply translations from localization files
+        for key in commonKeys {
+            if translatedText.contains(key) {
+                let localizedValue = langBundle.localizedString(forKey: key, value: key, table: nil)
+                if localizedValue != key {
+                    translatedText = translatedText.replacingOccurrences(of: key, with: localizedValue, options: .caseInsensitive)
+                    print("DEBUG: Translated '\(key)' to '\(localizedValue)'")
+                }
             }
         }
         

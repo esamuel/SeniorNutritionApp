@@ -26,6 +26,9 @@ struct HomeView: View {
     @State private var refreshTrigger = false // Add this to force view refresh
     private let healthTipsService = HealthTipsService.shared
     
+    // Create a publisher for language change notifications
+    private let languageChangePublisher = NotificationCenter.default.publisher(for: NSNotification.Name("LanguageDidChange"))
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -99,13 +102,18 @@ struct HomeView: View {
                 categories: [.general, .nutrition, .fasting]
             )
         }
-        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("LanguageDidChange"))) { _ in
+        .onReceive(languageChangePublisher) { _ in
             // Force view refresh when language changes
             healthTips = healthTipsService.getRandomTips(
                 count: 3,
                 categories: [.general, .nutrition, .fasting]
             )
             refreshTrigger.toggle() // Use state to trigger refresh
+            
+            // Force a complete view refresh by updating state
+            DispatchQueue.main.async {
+                refreshTrigger.toggle()
+            }
         }
     }
     

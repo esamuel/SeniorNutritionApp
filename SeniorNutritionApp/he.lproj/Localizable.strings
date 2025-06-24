@@ -212,7 +212,7 @@
 "Securely share records with healthcare providers" = "שתף רשומות בצורה מאובטחת עם ספקי בריאות";
 "Accessibility Support" = "תמיכה בנגישות";
 "Voice Assistance" = "סיוע קולי";
-"Get help with voice navigation settings" = "קבל עזרה בהגדרות ניווט קולי";
+"Learn how to use voice commands" = "למד כיצד להשתמש בפקודות קוליות";
 "Text Size Help" = "עזרה בגודל טקסט";
 "Adjust the app for better readability" = "התאם את האפליקציה לקריאות טובה יותר";
 "Gesture Controls" = "בקרות מחווה";
@@ -794,6 +794,17 @@
 "Voice input for hands-free recording" = "קלט קולי להקלטה ללא ידיים";
 "Voice-guided assistance available" = "סיוע קולי מונחה זמין";
 "Week" = "שבוע";
+"Weight-Bearing Exercise" = "תרגילי נשיאת משקל";
+"Weight" = "משקל";
+"When breaking your fast, include iodine-rich foods like seaweed, fish, or eggs to support thyroid function." = "בסיום הצום, כלול מזונות עשירים ביוד כגון אצות ים, דגים או ביצים לתמיכה בתפקוד בלוטת התריס.";
+"Work with your healthcare provider to adjust medication timing if needed to accommodate your fasting schedule." = "עבוד עם הרופא שלך כדי להתאים את זמני נטילת התרופות במידת הצורך כדי להתאים ללוח הזמנים של הצום שלך.";
+"Your Protocol: %@" = "הפרוטוקול שלך: %@";
+/* Localized strings for Fasting Timer */
+"FASTING_TIMER_TITLE" = "טיימר צום";
+"FASTING_PROTOCOL_STANDARD" = "סטנדרטי";
+"FASTING_PROTOCOL_MODERATE" = "מתון";
+"FASTING_PROTOCOL_GENTLE" = "עדין";
+"SELECT_BUTTON" = "בחר";
 /* Fasting Protocol Descriptions */
 "PROTOCOL_12_12_DESCRIPTION" = "צום למשך 12 שעות, אכילה בתוך חלון של 12 שעות. אידיאלי למתחילים.";
 "PROTOCOL_14_10_DESCRIPTION" = "צום למשך 14 שעות, אכילה בתוך חלון של 10 שעות. עצימות בינונית.";
@@ -2057,8 +2068,6 @@
 
 
 "For" = "עבור";
-<<<<<<< Updated upstream
-=======
 
 /* Emergency Number Settings */
 "Emergency Number" = "מספר חירום";
@@ -2068,47 +2077,6 @@
 "Enter emergency number" = "הכנס מספר חירום";
 "Make sure this is the correct emergency number for your location" = "וודא שזה מספר החירום הנכון עבור המיקום שלך";
 "Currently active" = "פעיל כרגע";
-
-/* Voice Assistance Help Strings */
-"Voice Assistance" = "סיוע קולי";
-"Learn how to use voice commands" = "למד כיצד להשתמש בפקודות קוליות";
-"Using Voice Commands" = "שימוש בפקודות קוליות";
-"Voice commands make the app easier to use, especially for those with limited mobility or vision. Here's how to get started:" = "פקודות קוליות הופכות את האפליקציה לקלה יותר לשימוש, במיוחד עבור אנשים עם מוגבלות בתנועה או בראייה. הנה איך להתחיל:";
-"Activating Voice Commands" = "הפעלת פקודות קוליות";
-"Tap the microphone icon in the top right corner of any screen" = "הקש על סמל המיקרופון בפינה הימנית העליונה של כל מסך";
-"Wait for the \"Listening...\" prompt" = "המתן להודעה \"מקשיב...\"";
-"Speak your command clearly and then pause" = "אמור את הפקודה שלך בבירור ואז עצור";
-"The app will automatically process your command without needing to tap again" = "האפליקציה תעבד אוטומטית את הפקודה שלך מבלי שתצטרך להקיש שוב";
-"You'll see a confirmation message and the app will take action" = "תראה הודעת אישור והאפליקציה תבצע את הפעולה";
-"Available Voice Commands" = "פקודות קוליות זמינות";
-"Navigation Commands:" = "פקודות ניווט:";
-"Navigate to the home screen" = "נווט למסך הבית";
-"Go to the nutrition tracking screen" = "עבור למסך מעקב התזונה";
-"Open the water tracking screen" = "פתח את מסך מעקב המים";
-"Navigate to the fasting timer" = "נווט לטיימר הצום";
-"View your medications" = "צפה בתרופות שלך";
-"Open the help screen" = "פתח את מסך העזרה";
-"Action Commands:" = "פקודות פעולה:";
-"Log water consumption" = "רשום צריכת מים";
-"Record a new meal" = "רשום ארוחה חדשה";
-"Begin a fasting period" = "התחל תקופת צום";
-"End the current fast" = "סיים את הצום הנוכחי";
-"Mark medication as taken" = "סמן תרופה כנלקחה";
-"Create a new reminder" = "צור תזכורת חדשה";
-"Information Commands:" = "פקודות מידע:";
-"Hear a summary of your daily progress" = "שמע סיכום של ההתקדמות היומית שלך";
-"Check your water intake for the day" = "בדוק את צריכת המים שלך ליום";
-"Find out when your next medication is due" = "ברר מתי התרופה הבאה שלך אמורה להילקח";
-"Check the status of your current fast" = "בדוק את מצב הצום הנוכחי שלך";
-"Tips for Better Voice Recognition" = "טיפים לזיהוי קולי טוב יותר";
-"Speak clearly and at a moderate pace" = "דבר בבירור ובקצב מתון";
-"Reduce background noise when possible" = "הפחת רעשי רקע כאשר אפשר";
-"Hold the device about 8-12 inches from your mouth" = "החזק את המכשיר במרחק של כ-20-30 סנטימטרים מהפה שלך";
-"If the app doesn't understand, try rephrasing your command" = "אם האפליקציה לא מבינה, נסה לנסח מחדש את הפקודה שלך";
-"For better recognition, use the exact command phrases listed above" = "לזיהוי טוב יותר, השתמש בביטויי הפקודה המדויקים הרשומים לעיל";
-"A demonstration of voice command features" = "הדגמה של תכונות פקודה קולית";
-"Watch Video Tutorial" = "צפה במדריך וידאו";
-"Voice Help" = "עזרה קולית";
 
 /* App Tour Localization */
 "App Tour" = "סיור באפליקציה";
@@ -2136,46 +2104,140 @@
 "Ready to Start!" = "מוכן להתחיל!";
 "You've completed the tour. Tap 'Finish' to start using the app." = "סיימת את הסיור. הקש על 'סיים' כדי להתחיל להשתמש באפליקציה.";
 
-/* Voice Assistance Help Strings */
-"Voice Assistance" = "סיוע קולי";
-"Learn how to use voice commands" = "למד כיצד להשתמש בפקודות קוליות";
-"Using Voice Commands" = "שימוש בפקודות קוליות";
-"Voice commands make the app easier to use, especially for those with limited mobility or vision. Here's how to get started:" = "פקודות קוליות הופכות את האפליקציה לקלה יותר לשימוש, במיוחד עבור אנשים עם מוגבלות בתנועה או בראייה. הנה איך להתחיל:";
-"Activating Voice Commands" = "הפעלת פקודות קוליות";
-"Tap the microphone icon in the top right corner of any screen" = "הקש על סמל המיקרופון בפינה הימנית העליונה של כל מסך";
-"Wait for the \"Listening...\" prompt" = "המתן להודעה \"מקשיב...\"";
-"Speak your command clearly and then pause" = "אמור את הפקודה שלך בבירור ואז עצור";
-"The app will automatically process your command without needing to tap again" = "האפליקציה תעבד אוטומטית את הפקודה שלך מבלי שתצטרך להקיש שוב";
-"You'll see a confirmation message and the app will take action" = "תראה הודעת אישור והאפליקציה תבצע את הפעולה";
-"Available Voice Commands" = "פקודות קוליות זמינות";
-"Navigation Commands:" = "פקודות ניווט:";
-"Navigate to the home screen" = "נווט למסך הבית";
-"Go to the nutrition tracking screen" = "עבור למסך מעקב התזונה";
-"Open the water tracking screen" = "פתח את מסך מעקב המים";
-"Navigate to the fasting timer" = "נווט לטיימר הצום";
-"View your medications" = "צפה בתרופות שלך";
-"Open the help screen" = "פתח את מסך העזרה";
-"Action Commands:" = "פקודות פעולה:";
-"Log water consumption" = "רשום צריכת מים";
-"Record a new meal" = "רשום ארוחה חדשה";
-"Begin a fasting period" = "התחל תקופת צום";
-"End the current fast" = "סיים את הצום הנוכחי";
-"Mark medication as taken" = "סמן תרופה כנלקחה";
-"Create a new reminder" = "צור תזכורת חדשה";
-"Information Commands:" = "פקודות מידע:";
-"Hear a summary of your daily progress" = "שמע סיכום של ההתקדמות היומית שלך";
-"Check your water intake for the day" = "בדוק את צריכת המים שלך ליום";
-"Find out when your next medication is due" = "ברר מתי התרופה הבאה שלך אמורה להילקח";
-"Check the status of your current fast" = "בדוק את מצב הצום הנוכחי שלך";
-"Tips for Better Voice Recognition" = "טיפים לזיהוי קולי טוב יותר";
-"Speak clearly and at a moderate pace" = "דבר בבירור ובקצב מתון";
-"Reduce background noise when possible" = "הפחת רעשי רקע כאשר אפשר";
-"Hold the device about 8-12 inches from your mouth" = "החזק את המכשיר במרחק של כ-20-30 סנטימטרים מהפה שלך";
-"If the app doesn't understand, try rephrasing your command" = "אם האפליקציה לא מבינה, נסה לנסח מחדש את הפקודה שלך";
-"For better recognition, use the exact command phrases listed above" = "לזיהוי טוב יותר, השתמש בביטויי הפקודה המדויקים הרשומים לעיל";
-"A demonstration of voice command features" = "הדגמה של תכונות פקודה קולית";
-"Watch Video Tutorial" = "צפה במדריך וידאו";
-"Voice Help" = "עזרה קולית";
+/* Terms of Use */
+"terms_of_use_title" = "תנאי שימוש";
+"terms_of_use_intro" = "אנא קרא תנאי שימוש אלה בעיון לפני השימוש באפליקציית SeniorNutritionApp (\"השירות\") המופעלת על ידינו.";
+"terms_of_use_accounts_header" = "חשבונות";
+"terms_of_use_accounts_content" = "בעת יצירת חשבון אצלנו, עליך לספק לנו מידע מדויק, מלא ועדכני בכל עת. אי עמידה בכך מהווה הפרה של התנאים, אשר עלולה לגרום לסיום מיידי של חשבונך בשירות שלנו.";
+"terms_of_use_disclaimer_header" = "כתב ויתור";
+"terms_of_use_disclaimer_content" = "השימוש שלך בשירות הוא על אחריותך בלבד. השירות מסופק \"כפי שהוא\" ו\"כפי שזמין\". השירות מסופק ללא אחריות מכל סוג שהוא, בין אם מפורשת ובין אם משתמעת.";
+"terms_of_use_health_disclaimer_header" = "כתב ויתור רפואי";
+"terms_of_use_health_disclaimer_content" = "התוכן באפליקציה זו אינו מיועד להוות תחליף לייעוץ רפואי מקצועי, אבחון או טיפול. פנה תמיד לייעוץ של הרופא שלך או ספק שירותי בריאות מוסמך אחר בכל שאלה שיש לך בנוגע למצב רפואי.";
 
-/* End of Localizable.strings */
->>>>>>> Stashed changes
+/* Privacy Policy */
+"privacy_policy_title" = "מדיניות פרטיות";
+"privacy_policy_intro" = "דף זה מודיע לך על המדיניות שלנו בנוגע לאיסוף, שימוש וחשיפה של נתונים אישיים בעת השימוש בשירות שלנו ועל הבחירות ששייכת לך בנוגע לנתונים אלה.";
+"privacy_policy_collection_header" = "איסוף ושימוש במידע";
+"privacy_policy_collection_content" = "אנו אוספים מספר סוגים שונים של מידע למטרות שונות כדי לספק ולשפר את השירות שלנו עבורך. זה עשוי לכלול מידע שאתה מספק, כגון שמך, גילך, נתוני בריאות והרגלי תזונה.";
+"privacy_policy_data_use_header" = "שימוש בנתונים";
+"privacy_policy_data_use_content" = "אנו משתמשים בנתונים שנאספו למטרות שונות, כגון לספק ולתחזק את השירות שלנו, להודיע לך על שינויים בשירות שלנו, לאפשר לך להשתתף בתכונות אינטראקטיביות של השירות שלנו כאשר תבחר לעשות זאת, ולספק תמיכת לקוחות.";
+"privacy_policy_security_header" = "אבטחת נתונים";
+"privacy_policy_security_content" = "אבטחת הנתונים שלך חשובה לנו, אך זכור כי שום שיטת שידור דרך האינטרנט, או שיטת אחסון אלקטרונית אינה בטוחה ב-100%. בעוד אנו שואפים להשתמש באמצעים מקובלים מסחרית כדי להגן על הנתונים האישיים שלך, איננו יכולים להבטיח את ביטחונם המוחלט.";
+
+/* Nutrition Tracking */
+"nutrition_tracking_help_title" = "עזרה במעקב תזונה";
+"nutrition_tracking_help_description" = "למד כיצד לתעד ולנתח את הארוחות שלך";
+"nutrition_tracking_getting_started_intro" = "תכונת מעקב התזונה עוזרת לך לעקוב אחר צריכת המזון היומית והאיזון התזונתי שלך. כך משתמשים בה:";
+"nutrition_tracking_step_1" = "הקש על לשונית 'תזונה' בתחתית המסך";
+"nutrition_tracking_step_2" = "בחר 'הוסף ארוחה' כדי לתעד מה אכלת";
+"nutrition_tracking_step_3" = "בחר מתוך מאכלים נפוצים או חפש פריטים ספציפיים";
+"nutrition_tracking_step_4" = "הוסף גודל מנה ושמור את הארוחה שלך";
+"nutrition_tracking_logging_tips_header" = "טיפים לתיעוד ארוחות";
+"nutrition_tracking_tip_1" = "תעד ארוחות בהקדם האפשרי לאחר האכילה לדיוק מרבי";
+"nutrition_tracking_tip_2" = "השתמש בסמל המצלמה כדי לצלם תמונה של הארוחה שלך לעיון";
+"nutrition_tracking_tip_3" = "הערך את גודל המנות באמצעות מידות ביתיות נפוצות (כוסות, כפות)";
+"nutrition_tracking_tip_4" = "שמור ארוחות תכופות כמועדפים לתיעוד מהיר יותר";
+"nutrition_tracking_analysis_header" = "הבנת ניתוח תזונתי";
+"nutrition_tracking_analysis_intro" = "האפליקציה מספקת תובנות תזונתיות מפורטות עבור הארוחות שלך:";
+"nutrition_tracking_analysis_calories" = "קלוריות: סך כל האנרגיה במזון שלך";
+"nutrition_tracking_analysis_macronutrients" = "מקרו-נוטריינטים: פירוט של חלבונים, שומנים ופחמימות";
+"nutrition_tracking_analysis_micronutrients" = "מיקרו-נוטריינטים: ויטמינים ומינרלים חיוניים";
+"nutrition_tracking_analysis_daily_goals" = "יעדים יומיים: התקדמות לעבר יעדי התזונה המותאמים אישית שלך";
+"nutrition_tracking_weekly_reports_header" = "דוחות שבועיים";
+"nutrition_tracking_weekly_reports_intro" = "צפה בסיכום התזונה השבועי שלך כדי לעקוב אחר מגמות והתקדמות:";
+"nutrition_tracking_report_step_1" = "הקש על 'דוחות' במדור התזונה";
+"nutrition_tracking_report_step_2" = "צפה בממוצעים ובמגמות יומיות";
+"nutrition_tracking_report_step_3" = "זהה פערים תזונתיים כדי לשפר את התזונה שלך";
+"nutrition_tracking_report_step_4" = "שתף דוחות עם ספקי שירותי בריאות במידת הצורך";
+"nutrition_tracking_video_description" = "מדריך חזותי לשימוש בתכונות מעקב התזונה";
+
+/* Fasting Timer */
+"fasting_timer_help_title" = "עזרה בטיימר צום";
+"fasting_timer_help_description" = "נהל את תקופות הצום וחלונות האכילה שלך";
+"fasting_timer_getting_started_intro" = "טיימר הצום עוזר לך לעקוב אחר פרוטוקולי הצום לסירוגין שלך. כך מתחילים:";
+"fasting_timer_step_1" = "הקש על לשונית 'צום' בתחתית המסך";
+"fasting_timer_step_2" = "בחר 'התחל צום' כדי להתחיל את תקופת הצום שלך";
+"fasting_timer_step_3" = "האפליקציה תעקוב אחר משך הזמן ותציג את הזמן הנותר";
+"fasting_timer_step_4" = "הקש על 'סיים צום' כאשר אתה מוכן לשבור את הצום";
+"fasting_timer_protocols_header" = "בחירת פרוטוקול צום";
+"fasting_timer_protocol_16_8" = "פרוטוקול 16:8: צום למשך 16 שעות ואכילה בחלון של 8 שעות";
+"fasting_timer_protocol_18_6" = "פרוטוקול 18:6: צום למשך 18 שעות ואכילה בחלון של 6 שעות";
+"fasting_timer_protocol_custom" = "פרוטוקול מותאם אישית: הגדר משכי צום ואכילה משלך";
+"fasting_timer_safety_header" = "הנחיות בטיחות לצום";
+"fasting_timer_safety_tip_1" = "הקפד על שתיית מים, תה או קפה שחור במהלך הצום";
+"fasting_timer_safety_tip_2" = "שבור את הצום בעדינות עם ארוחה קטנה וקלה לעיכול";
+"fasting_timer_safety_tip_3" = "הקשב לגופך והפסק לצום אם אתה מרגיש לא טוב";
+"fasting_timer_safety_tip_4" = "התייעץ עם איש מקצוע בתחום הבריאות לפני התחלת כל משטר צום חדש";
+"fasting_timer_notifications_header" = "התראות";
+"fasting_timer_notifications_intro" = "קבל תזכורות לתחילת וסיום תקופות הצום שלך:";
+"fasting_timer_notification_start" = "הפעל התראות לתחילת תקופת הצום";
+"fasting_timer_notification_end" = "הפעל התראות לסיום תקופת הצום";
+"fasting_timer_notification_halfway" = "קבל התראה באמצע הדרך של הצום שלך";
+"fasting_timer_video_description" = "מדריך חזותי כיצד להגדיר ולהשתמש בטיימר הצום";
+
+/* Voice Assistance */
+"voice_assistance_help_title" = "עזרה בסייען קולי";
+"voice_assistance_help_description" = "השתמש בפקודות קוליות כדי לנווט באפליקציה";
+"voice_assistance_getting_started_intro" = "הסייען הקולי מאפשר לך לשלוט באפליקציה ללא ידיים. כך מפעילים ומשתמשים בו:";
+"voice_assistance_step_1" = "עבור אל 'הגדרות' > 'נגישות' > 'סייען קולי'";
+"voice_assistance_step_2" = "הפעל את המתג 'הפעל סייען קולי'";
+"voice_assistance_step_3" = "השתמש במילת ההפעלה (למשל, 'היי סניור נוטרישן') כדי להתחיל להאזין";
+"voice_assistance_step_4" = "אמור את הפקודה שלך בבירור";
+"voice_assistance_commands_header" = "פקודות קוליות נפוצות";
+"voice_assistance_command_check_schedule" = "'בדוק את לוח הזמנים שלי': שמע את הפגישות ותזכורות התרופות הקרובות שלך";
+"voice_assistance_command_log_meal" = "'תעד ארוחה': התחל בתהליך תיעוד ארוחה חדשה";
+"voice_assistance_command_start_fast" = "'התחל צום': הפעל את טיימר הצום שלך";
+"voice_assistance_command_get_health_tip" = "'תן לי טיפ בריאותי': שמע טיפ בריאותי יומי";
+"voice_assistance_customization_header" = "התאמה אישית של הקול";
+"voice_assistance_customization_intro" = "התאם אישית את קול הסייען כך שיתאים להעדפותיך:";
+"voice_assistance_customization_rate" = "התאם את קצב הדיבור (איטי יותר או מהיר יותר)";
+"voice_assistance_customization_pitch" = "שנה את גובה הצליל של הקול (גבוה יותר או נמוך יותר)";
+"voice_assistance_customization_volume" = "שלוט בעוצמת פלט הקול";
+"voice_assistance_privacy_header" = "פרטיות ונתונים";
+"voice_assistance_privacy_intro" = "אנו נותנים עדיפות לפרטיותך. כך אנו מטפלים בנתוני הקול שלך:";
+"voice_assistance_privacy_activation" = "האפליקציה מאזינה רק כאשר מזוהה מילת ההפעלה";
+"voice_assistance_privacy_processing" = "פקודות קוליות מעובדות במכשיר כדי להבטיח פרטיות";
+"voice_assistance_privacy_storage" = "הקלטות קוליות אינן נשמרות או משותפות";
+"voice_assistance_video_description" = "מדריך חזותי להגדרת ושימוש בסייען הקולי";
+
+/* Video Tutorials */
+"video_tutorials_title" = "מדריכי וידאו";
+"video_tutorials_description" = "למד כיצד להשתמש באפליקציה עם מדריכי הווידאו שלנו.";
+"video_tutorial_getting_started_title" = "מתחילים";
+"video_tutorial_getting_started_description" = "סקירה בסיסית של תכונות האפליקציה והניווט.";
+"video_tutorial_profile_title" = "ניהול פרופיל";
+"video_tutorial_profile_description" = "כיצד להגדיר ולנהל את פרופיל המשתמש שלך.";
+"video_tutorial_medication_management_title" = "ניהול תרופות";
+"video_tutorial_medication_management_description" = "מדריך להוספה ומעקב אחר התרופות שלך.";
+"video_tutorial_fasting_timer_title" = "טיימר צום";
+"video_tutorial_fasting_timer_description" = "כיצד להשתמש בטיימר הצום למעקב אחר תקופות הצום שלך.";
+"video_tutorial_nutrition_tracking_title" = "מעקב תזונתי";
+"video_tutorial_nutrition_tracking_description" = "למד כיצד לתעד את הארוחות שלך ולעקוב אחר התזונה שלך.";
+"video_tutorial_accessibility_features_title" = "תכונות נגישות";
+"video_tutorial_accessibility_features_description" = "כיצד להשתמש בסייען הקולי, טקסט דינמי ותכונות נגישות אחרות.";
+"video_developer_notes_title" = "הערות למפתחים";
+"video_developer_notes_body" = "אנא ודא שקבצי הווידאו (MP4/MOV) ממוקמים בספריית Resources/Videos כדי שהתצוגה המקדימה תיטען כראוי.";
+
+/* Medication Help */
+"medication_help_title" = "עזרה בתרופות";
+"medication_help_description" = "למד כיצד לנהל את התרופות והתזכורות שלך.";
+"medication_help_nav_title" = "עזרה בתרופות";
+"medication_getting_started_title" = "תחילת העבודה";
+"medication_getting_started_body" = "תכונת ניהול התרופות מסייעת לך לעקוב אחר התרופות שלך, להגדיר תזכורות ולתעד מתי נטלת אותן. כך תתחיל:";
+"medication_getting_started_step1" = "הקש על לשונית 'תרופות' בתחתית המסך.";
+"medication_getting_started_step2" = "הקש על 'הוסף תרופה' כדי להזין מרשם או תוסף חדש.";
+"medication_getting_started_step3" = "מלא את שם התרופה, המינון והתדירות.";
+"medication_getting_started_step4" = "הגדר זמנים ספציפיים לתזכורות כדי להבטיח שלא תחמיץ מנה.";
+"medication_managing_reminders_title" = "ניהול תזכורות";
+"medication_managing_reminders_body" = "האפליקציה מקלה על ניהול לוח הזמנים של התרופות שלך:";
+"medication_managing_reminders_item1" = "קבלת התראות: קבל התראות בטלפון שלך כאשר הגיע הזמן ליטול תרופה.";
+"medication_managing_reminders_item2" = "תיעוד מנות: סמן תרופות כ'נלקחו' ישירות מההתראה או בתוך האפליקציה.";
+"medication_managing_reminders_item3" = "צפה בהיסטוריה: שמור תיעוד של היסטוריית התרופות שלך כדי לשתף עם הרופא שלך.";
+"medication_managing_reminders_item4" = "דחיית תזכורות: אם אתה עסוק, תוכל לדחות תזכורת לפרק זמן קצר.";
+"medication_health_considerations_title" = "שיקולי בריאות";
+"medication_health_considerations_body" = "הערות חשובות לניהול התרופות שלך:";
+"medication_health_note1" = "התייעץ תמיד עם ספק שירותי הבריאות שלך לפני התחלה או הפסקה של כל תרופה.";
+"medication_health_note2" = "יש ליטול תרופות מסוימות עם אוכל. בדוק עם הרופא או הרוקח שלך.";
+"medication_health_note3" = "שמור על רשימת התרופות שלך מעודכנת בכל שינוי מהרופא שלך.";
+"medication_health_note4" = "השתמש בתכונת 'הדפס' כדי ליצור עותק פיזי של רשימת התרופות שלך לפגישות.";
+"medication_video_description" = "מדריך חזותי לשימוש בתכונות ניהול התרופות.";

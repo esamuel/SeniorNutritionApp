@@ -399,6 +399,180 @@
 "health_tip_stress_description" = "You may find it helpful to practice relaxation techniques like deep breathing, meditation, or gentle yoga to manage stress, which can impact heart health and digestion.";
 "health_tip_checkups_description" = "Regular health screenings can be beneficial. Consider scheduling check-ups with your doctor at least once a year, more if you have chronic conditions.";
 
+/* LEGAL */
+"Terms of Use" = "Terms of Use";
+"Privacy Policy" = "Privacy Policy";
+"LEGAL" = "LEGAL";
+"Emergency Call" = "Emergency Call";
+"Call" = "Call";
+"Are you sure you want to call %@?" = "Are you sure you want to call %@?";
+
+/* Nutrition Help */
+"nutrition_tracking_title" = "Nutrition Tracking";
+"nutrition_tracking_description" = "Learn how to log and analyze your meals";
+"nutrition_help_title" = "Nutrition Help";
+"nutrition_getting_started_title" = "Getting Started";
+"nutrition_getting_started_body" = "The Nutrition Tracking feature helps you monitor your daily food intake and nutritional balance. Here's how to use it:";
+"nutrition_getting_started_step1" = "Tap the 'Nutrition' tab at the bottom of your screen";
+"nutrition_getting_started_step2" = "Select 'Add Meal' to record what you've eaten";
+"nutrition_getting_started_step3" = "Choose from common foods or search for specific items";
+"nutrition_getting_started_step4" = "Add portion sizes and save your meal";
+"nutrition_logging_tips_title" = "Meal Logging Tips";
+"nutrition_logging_tip1" = "Log meals as soon as possible after eating for better accuracy";
+"nutrition_logging_tip2" = "Use the camera icon to take a photo of your meal for reference";
+"nutrition_logging_tip3" = "Estimate portion sizes using common household measures (cups, tablespoons)";
+"nutrition_logging_tip4" = "Save frequent meals as favorites for quicker logging";
+"nutrition_analysis_title" = "Understanding Nutrition Analysis";
+"nutrition_analysis_body" = "The app provides detailed nutritional information for your meals:";
+"nutrition_analysis_item1" = "Calories: Total energy content of your food";
+"nutrition_analysis_item2" = "Macronutrients: Breakdown of proteins, fats, and carbohydrates";
+"nutrition_analysis_item3" = "Micronutrients: Essential vitamins and minerals";
+"nutrition_analysis_item4" = "Daily Goals: Progress toward your personalized nutrition targets";
+"nutrition_reports_title" = "Weekly Reports";
+"nutrition_reports_body" = "View your weekly nutrition summary to track patterns and progress:";
+"nutrition_reports_step1" = "Tap 'Reports' in the Nutrition section";
+"nutrition_reports_step2" = "See daily averages and trends";
+"nutrition_reports_step3" = "Identify nutritional gaps to improve your diet";
+"nutrition_reports_step4" = "Share reports with healthcare providers if needed";
+"nutrition_video_description" = "A visual guide to using the nutrition tracking features";
+"watch_video_tutorial_button" = "Watch Video Tutorial";
+
+/* Fasting Timer Help */
+"fasting_timer_help_title" = "Fasting Timer";
+"fasting_timer_help_description" = "Understanding fasting protocols and timer features";
+"fasting_help_nav_title" = "Fasting Help";
+"fasting_what_is_title" = "What is Intermittent Fasting?";
+"fasting_what_is_body" = "Intermittent fasting is an eating pattern that cycles between periods of fasting and eating. It doesn't specify which foods to eat but rather when you should eat them. Common fasting protocols include:";
+"fasting_protocol1" = "16:8 - Fast for 16 hours, eat during an 8-hour window";
+"fasting_protocol2" = "18:6 - Fast for 18 hours, eat during a 6-hour window";
+"fasting_protocol3" = "20:4 - Fast for 20 hours, eat during a 4-hour window";
+"fasting_protocol4" = "5:2 - Eat normally for 5 days, restrict calories for 2 days";
+"fasting_using_timer_title" = "Using the Fasting Timer";
+"fasting_using_timer_body" = "Our fasting timer helps you track your fasting periods:";
+"fasting_using_timer_step1" = "Tap the 'Fast' tab at the bottom of your screen";
+"fasting_using_timer_step2" = "Select your preferred fasting protocol";
+"fasting_using_timer_step3" = "Tap 'Start Fast' when you begin your fasting period";
+"fasting_using_timer_step4" = "The timer will count down until your eating window";
+"fasting_using_timer_step5" = "Tap 'End Fast' when you break your fast";
+"fasting_timer_features_title" = "Timer Features";
+"fasting_timer_feature1" = "Progress Circle: Visual representation of your fasting progress";
+"fasting_timer_feature2" = "Milestone Markers: Shows key points in your fasting journey";
+"fasting_timer_feature3" = "Notifications: Receive alerts at important fasting milestones";
+"fasting_timer_feature4" = "History: View your past fasting sessions and statistics";
+"fasting_timer_feature5" = "Notes: Add comments about how you feel during your fast";
+"fasting_health_considerations_title" = "Health Considerations";
+"fasting_health_considerations_body" = "Important health notes about fasting:";
+"fasting_health_note1" = "Always consult with your healthcare provider before starting any fasting regimen";
+"fasting_health_note2" = "Stay hydrated during fasting periods";
+"fasting_health_note3" = "If you feel unwell, it's okay to end your fast early";
+"fasting_health_note4" = "Certain medications should be taken with food - check with your doctor";
+"fasting_health_note5" = "Fasting is not recommended for pregnant women or individuals with certain health conditions";
+"fasting_video_description" = "A visual guide to using the fasting timer features";
+
+/* Voice Assistance Help */
+"voice_assistance_title" = "Voice Assistance";
+"voice_assistance_description" = "Learn how to use voice commands";
+"voice_assistance_help_title" = "Voice Help";
+"voice_using_commands_title" = "Using Voice Commands";
+"voice_using_commands_body" = "Voice commands make the app easier to use, especially for those with limited mobility or vision. Here's how to get started:";
+"voice_activating_title" = "Activating Voice Commands";
+"voice_activating_step1" = "Tap the microphone icon in the top right corner of any screen";
+"voice_activating_step2" = "Wait for the \"Listening...\" prompt";
+"voice_activating_step3" = "Speak your command clearly and then pause";
+"voice_activating_step4" = "The app will automatically process your command without needing to tap again";
+"voice_activating_step5" = "You'll see a confirmation message and the app will take action";
+"voice_available_commands_title" = "Available Voice Commands";
+"voice_navigation_commands_title" = "Navigation Commands:";
+"voice_command_navigate_home" = "Navigate to the home screen";
+"voice_command_navigate_nutrition" = "Go to the nutrition tracking screen";
+"voice_command_navigate_water" = "Open the water tracking screen";
+"voice_command_navigate_fasting" = "Navigate to the fasting timer";
+"voice_command_navigate_medications" = "View your medications";
+"voice_command_navigate_help" = "Open the help screen";
+"voice_action_commands_title" = "Action Commands:";
+"voice_command_log_water" = "Log water consumption";
+"voice_command_log_meal" = "Record a new meal";
+"voice_command_start_fast" = "Begin a fasting period";
+"voice_command_end_fast" = "End the current fast";
+"voice_command_take_medication" = "Mark medication as taken";
+"voice_command_create_reminder" = "Create a new reminder";
+"voice_information_commands_title" = "Information Commands:";
+"voice_command_hear_summary" = "Hear a summary of your daily progress";
+"voice_command_check_water" = "Check your water intake for the day";
+"voice_command_check_medication" = "Find out when your next medication is due";
+"voice_command_check_fast" = "Check the status of your current fast";
+"voice_tips_title" = "Tips for Better Voice Recognition";
+"voice_tip1" = "Speak clearly and at a moderate pace";
+"voice_tip2" = "Reduce background noise when possible";
+"voice_tip3" = "Hold the device about 8-12 inches from your mouth";
+"voice_tip4" = "If the app doesn't understand, try rephrasing your command";
+"voice_tip5" = "For better recognition, use the exact command phrases listed above";
+"voice_assistance_video_description" = "A demonstration of voice command features";
+"voice_command_set_language" = "Set language to [language]";
+
+/* Video Tutorials */
+"video_tutorials_title" = "Video Tutorials";
+"video_tutorials_description" = "Watch step-by-step guides for key features";
+"video_getting_started_title" = "Getting Started";
+"video_getting_started_description" = "An overview of the app and its main features.";
+"video_profile_management_title" = "Profile Management";
+"video_profile_management_description" = "How to set up and update your personal health profile.";
+"video_medication_management_title" = "Medication Management";
+"video_medication_management_description" = "A guide to adding medications and setting reminders.";
+"video_fasting_timer_title" = "Using the Fasting Timer";
+"video_fasting_timer_description" = "Learn how to use the intermittent fasting timer.";
+"video_nutrition_tracking_title" = "Nutrition Tracking";
+"video_nutrition_tracking_description" = "How to log meals and track your nutritional intake.";
+"video_accessibility_features_title" = "Accessibility Features";
+"video_accessibility_features_description" = "Learn about voice commands, text size, and other accessibility options.";
+"video_developer_notes_title" = "Developer Notes";
+"video_developer_notes_body" = "The videos used in this app are placeholders. For development, ensure your video files (MP4 or MOV) are placed in the 'Resources/Videos/' directory of the project. Do not add them to the Xcode project directly to avoid build issues. The app will automatically detect and load them.";
+
+/* Medication Help */
+"medication_help_title" = "Medication Help";
+"medication_help_description" = "Learn how to manage your medications and reminders.";
+"medication_help_nav_title" = "Medication Help";
+"medication_getting_started_title" = "Getting Started";
+"medication_getting_started_body" = "The Medication Management feature helps you keep track of your medications, set reminders, and log when you've taken them. Here's how to get started:";
+"medication_getting_started_step1" = "Tap the 'Medications' tab at the bottom of your screen.";
+"medication_getting_started_step2" = "Tap 'Add Medication' to enter a new prescription or supplement.";
+"medication_getting_started_step3" = "Fill in the medication name, dosage, and frequency.";
+"medication_getting_started_step4" = "Set specific times for reminders to ensure you never miss a dose.";
+"medication_managing_reminders_title" = "Managing Reminders";
+"medication_managing_reminders_body" = "The app makes it easy to manage your medication schedule:";
+"medication_managing_reminders_item1" = "Receive Notifications: Get alerts on your phone when it's time to take a medication.";
+"medication_managing_reminders_item2" = "Log Doses: Mark medications as 'Taken' directly from the notification or within the app.";
+"medication_managing_reminders_item3" = "View History: Keep a log of your medication history to share with your doctor.";
+"medication_managing_reminders_item4" = "Snooze Reminders: If you're busy, you can snooze a reminder for a short period.";
+"medication_health_considerations_title" = "Health Considerations";
+"medication_health_considerations_body" = "Important notes for managing your medications:";
+"medication_health_note1" = "Always consult with your healthcare provider before starting or stopping any medication.";
+"medication_health_note2" = "Some medications need to be taken with food. Check with your doctor or pharmacist.";
+"medication_health_note3" = "Keep your medication list updated with any changes from your doctor.";
+"medication_health_note4" = "Use the 'Print' feature to create a physical copy of your medication list for appointments.";
+"medication_video_description" = "A visual guide to using the medication management features.";
+
+
+"terms_content_governing_law" = "These Terms of Use shall be governed by and construed in accordance with the laws of the jurisdiction in which our company is located, without regard to its conflict of law principles.";
+
+/* Privacy Policy */
+"privacy_policy_title" = "Privacy Policy";
+"privacy_policy_intro" = "Your privacy is important to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application. Please read this privacy policy carefully.";
+"privacy_section_data_collection" = "1. Information We Collect";
+"privacy_content_data_collection" = "We may collect information about you in a variety of ways. The information we may collect on the App includes personal data you voluntarily provide to us, such as your name, age, health conditions, and dietary preferences.";
+"privacy_section_data_usage" = "2. How We Use Your Information";
+"privacy_content_data_usage" = "Having accurate information about you permits us to provide you with a smooth, efficient, and customized experience. Specifically, we may use information collected about you via the App to personalize your experience and offer tailored health recommendations.";
+"privacy_section_data_sharing" = "3. Disclosure of Your Information";
+"privacy_content_data_sharing" = "We do not share your personal information with third parties except as required by law or to protect our rights. Your data is used solely for the functionality of the app and is not sold or rented to others.";
+"privacy_section_data_security" = "4. Security of Your Information";
+"privacy_content_data_security" = "We use administrative, technical, and physical security measures to help protect your personal information. While we have taken reasonable steps to secure the personal information you provide to us, please be aware that despite our efforts, no security measures are perfect or impenetrable.";
+"privacy_section_user_rights" = "5. Your Rights";
+"privacy_content_user_rights" = "You have the right to review, change, or delete your personal information at any time. You can do this by accessing your account settings within the app or by contacting us directly.";
+"privacy_section_policy_changes" = "6. Changes to This Privacy Policy";
+"privacy_content_policy_changes" = "We may update this Privacy Policy from time to time. We will notify you of any changes by updating the 'Last Updated' date of this Privacy Policy. You are encouraged to periodically review this Privacy Policy to stay informed of our updates.";
+"privacy_section_contact" = "7. Contact Us";
+"privacy_content_contact" = "If you have questions or comments about this Privacy Policy, please contact us at support@seniornutrition.com.";
+
 "health_tip_protein_description" = "Many seniors find that getting 1-1.2g of protein per kg of body weight daily from sources like lean meats, fish, eggs, dairy, and plant proteins helps maintain muscle mass.";
 "health_tip_fiber_description" = "You might want to include fiber-rich foods like whole grains, fruits, vegetables, and legumes in your diet to support digestive health and help manage cholesterol levels.";
 "health_tip_calcium_description" = "Many adults over 50 find that getting around 1200mg of calcium daily from dairy products, fortified plant milks, canned fish with bones, and leafy greens supports bone health.";
@@ -783,3 +957,384 @@
 "Obese (Class I)" = "Obese (Class I)";
 "Obese (Class II)" = "Obese (Class II)";
 "Obese (Class III)" = "Obese (Class III)";
+
+/* Emergency Number Settings */
+"Emergency Number" = "Emergency Number";
+"Detected for your region" = "Detected for your region";
+"Use Custom Emergency Number" = "Use Custom Emergency Number";
+"Custom Emergency Number" = "Custom Emergency Number";
+"Enter emergency number" = "Enter emergency number";
+"Make sure this is the correct emergency number for your location" = "Make sure this is the correct emergency number for your location";
+"Currently active" = "Currently active";
+
+/* Help & Assistance - New Sections */
+"Getting Started" = "Getting Started";
+"Core Features" = "Core Features";
+"Health Monitoring" = "Health Monitoring";
+"Accessibility" = "Accessibility";
+"Legal" = "Legal";
+"Nutrition Tracking" = "Nutrition Tracking";
+"Track meals, analyze nutrition, and monitor daily intake" = "Track meals, analyze nutrition, and monitor daily intake";
+"Fasting Timer" = "Fasting Timer";
+"Manage intermittent fasting schedules and track progress" = "Manage intermittent fasting schedules and track progress";
+"Water Tracking" = "Water Tracking";
+"Monitor daily hydration and set water intake goals" = "Monitor daily hydration and set water intake goals";
+"Medication Management" = "Medication Management";
+"Set reminders, track medications, and manage your health" = "Set reminders, track medications, and manage your health";
+"Health Data" = "Health Data";
+"Track blood pressure, blood sugar, heart rate, and weight" = "Track blood pressure, blood sugar, heart rate, and weight";
+"Appointments" = "Appointments";
+"Manage medical appointments and reminders" = "Manage medical appointments and reminders";
+"Voice Assistance" = "Voice Assistance";
+"Use voice commands to navigate and control the app" = "Use voice commands to navigate and control the app";
+"Accessibility Features" = "Accessibility Features";
+"Text size, contrast, and other accessibility options" = "Text size, contrast, and other accessibility options";
+"Video Tutorials" = "Video Tutorials";
+"Watch step-by-step video guides" = "Watch step-by-step video guides";
+
+/* Help View Titles */
+"Water Tracking Help" = "Water Tracking Help";
+"Stay hydrated and monitor your daily water intake" = "Stay hydrated and monitor your daily water intake";
+"Tap the 'Water' tab at the bottom of your screen" = "Tap the 'Water' tab at the bottom of your screen";
+"Set your daily water intake goal (recommended 8-10 glasses)" = "Set your daily water intake goal (recommended 8-10 glasses)";
+"Use the + button to log each glass of water you drink" = "Use the + button to log each glass of water you drink";
+"Track your progress throughout the day" = "Track your progress throughout the day";
+"Key Features" = "Key Features";
+"Daily Goal Setting: Customize your hydration target" = "Daily Goal Setting: Customize your hydration target";
+"Quick Logging: Tap to add water with one touch" = "Quick Logging: Tap to add water with one touch";
+"Progress Tracking: Visual progress bar shows daily completion" = "Progress Tracking: Visual progress bar shows daily completion";
+"Reminders: Get notifications to stay hydrated" = "Reminders: Get notifications to stay hydrated";
+"History: View your water intake over time" = "History: View your water intake over time";
+"Hydration Tips" = "Hydration Tips";
+"Drink water first thing in the morning" = "Drink water first thing in the morning";
+"Keep a water bottle nearby throughout the day" = "Keep a water bottle nearby throughout the day";
+"Drink water before, during, and after exercise" = "Drink water before, during, and after exercise";
+"Listen to your body's thirst signals" = "Listen to your body's thirst signals";
+"Consider your activity level and climate" = "Consider your activity level and climate";
+"Health Benefits" = "Health Benefits";
+"Maintains body temperature and metabolism" = "Maintains body temperature and metabolism";
+"Supports kidney function and waste removal" = "Supports kidney function and waste removal";
+"Improves skin health and appearance" = "Improves skin health and appearance";
+"Enhances cognitive function and energy levels" = "Enhances cognitive function and energy levels";
+"Aids digestion and nutrient absorption" = "Aids digestion and nutrient absorption";
+"Troubleshooting" = "Troubleshooting";
+"If you forget to log water, you can add it later" = "If you forget to log water, you can add it later";
+"Adjust your daily goal based on your needs" = "Adjust your daily goal based on your needs";
+"Enable notifications to get hydration reminders" = "Enable notifications to get hydration reminders";
+"Check your weekly progress to see patterns" = "Check your weekly progress to see patterns";
+
+/* Health Monitoring Help */
+"Health Data Help" = "Health Data Help";
+"Health Data Tracking" = "Health Data Tracking";
+"Monitor vital signs and track your health progress" = "Monitor vital signs and track your health progress";
+"Available Health Metrics" = "Available Health Metrics";
+"Blood Pressure: Track systolic and diastolic readings" = "Blood Pressure: Track systolic and diastolic readings";
+"Blood Sugar: Monitor glucose levels for diabetes management" = "Blood Sugar: Monitor glucose levels for diabetes management";
+"Heart Rate: Record resting and active heart rates" = "Heart Rate: Record resting and active heart rates";
+"Weight: Track body weight changes over time" = "Weight: Track body weight changes over time";
+"Body Mass Index (BMI): Automatic calculation from height and weight" = "Body Mass Index (BMI): Automatic calculation from height and weight";
+"Tap the 'Health' tab at the bottom of your screen" = "Tap the 'Health' tab at the bottom of your screen";
+"Select the health metric you want to track" = "Select the health metric you want to track";
+"Tap 'Add' to enter a new reading" = "Tap 'Add' to enter a new reading";
+"Enter your measurement and any notes" = "Enter your measurement and any notes";
+"View your history and trends over time" = "View your history and trends over time";
+"Data Entry: Easy input forms for each health metric" = "Data Entry: Easy input forms for each health metric";
+"History Tracking: View all your past readings" = "History Tracking: View all your past readings";
+"Trend Analysis: See patterns and changes over time" = "Trend Analysis: See patterns and changes over time";
+"Target Ranges: Set personal health goals" = "Target Ranges: Set personal health goals";
+"Export Data: Share with healthcare providers" = "Export Data: Share with healthcare providers";
+"Reminders: Get notifications for regular check-ins" = "Reminders: Get notifications for regular check-ins";
+"Health Monitoring Tips" = "Health Monitoring Tips";
+"Take measurements at the same time each day" = "Take measurements at the same time each day";
+"Use proper equipment for accurate readings" = "Use proper equipment for accurate readings";
+"Record any factors that might affect your readings" = "Record any factors that might affect your readings";
+"Share your data with your healthcare provider" = "Share your data with your healthcare provider";
+"Set realistic health goals with your doctor" = "Set realistic health goals with your doctor";
+"Privacy & Security" = "Privacy & Security";
+"Your health data is stored locally on your device" = "Your health data is stored locally on your device";
+"Data is encrypted and secure" = "Data is encrypted and secure";
+"You control what data to share" = "You control what data to share";
+"No health data is sent to third parties" = "No health data is sent to third parties";
+"You can export or delete your data anytime" = "You can export or delete your data anytime";
+"If readings seem unusual, double-check your measurements" = "If readings seem unusual, double-check your measurements";
+"Use the notes field to record any special circumstances" = "Use the notes field to record any special circumstances";
+"Set up reminders to maintain consistent tracking" = "Set up reminders to maintain consistent tracking";
+"Export your data regularly as a backup" = "Export your data regularly as a backup";
+"Contact support if you need help with data entry" = "Contact support if you need help with data entry";
+
+/* Appointments Help */
+"Appointments Help" = "Appointments Help";
+"Appointment Management" = "Appointment Management";
+"Organize and track your medical appointments" = "Organize and track your medical appointments";
+"Tap the 'More' tab and select 'Appointments'" = "Tap the 'More' tab and select 'Appointments'";
+"Tap 'Add Appointment' to create a new entry" = "Tap 'Add Appointment' to create a new entry";
+"Enter appointment details including date, time, and provider" = "Enter appointment details including date, time, and provider";
+"Add notes about what to discuss or prepare" = "Add notes about what to discuss or prepare";
+"Set reminders to ensure you don't miss appointments" = "Set reminders to ensure you don't miss appointments";
+"Appointment Scheduling: Add new appointments with full details" = "Appointment Scheduling: Add new appointments with full details";
+"Provider Information: Store doctor and facility contact details" = "Provider Information: Store doctor and facility contact details";
+"Reminder System: Get notifications before appointments" = "Reminder System: Get notifications before appointments";
+"Notes & Preparation: Add important information to discuss" = "Notes & Preparation: Add important information to discuss";
+"Calendar View: See all appointments in chronological order" = "Calendar View: See all appointments in chronological order";
+"History Tracking: Keep records of past appointments" = "History Tracking: Keep records of past appointments";
+"Location Details: Store addresses and directions" = "Location Details: Store addresses and directions";
+"Best Practices" = "Best Practices";
+"Add appointments as soon as you schedule them" = "Add appointments as soon as you schedule them";
+"Include provider contact information for easy access" = "Include provider contact information for easy access";
+"Set reminders 1-2 days before appointments" = "Set reminders 1-2 days before appointments";
+"Add notes about questions to ask or symptoms to discuss" = "Add notes about questions to ask or symptoms to discuss";
+"Record appointment outcomes and follow-up instructions" = "Record appointment outcomes and follow-up instructions";
+"Keep a list of medications to bring to appointments" = "Keep a list of medications to bring to appointments";
+"Organization Tips" = "Organization Tips";
+"Use consistent naming for providers and facilities" = "Use consistent naming for providers and facilities";
+"Add appointment type (checkup, specialist, test, etc.)" = "Add appointment type (checkup, specialist, test, etc.)";
+"Include insurance information if needed" = "Include insurance information if needed";
+"Note any special instructions (fasting, bring records, etc.)" = "Note any special instructions (fasting, bring records, etc.)";
+"Set different reminder times for different appointment types" = "Set different reminder times for different appointment types";
+"Integration with Other Features" = "Integration with Other Features";
+"Link appointments with medication reminders" = "Link appointments with medication reminders";
+"Prepare health data to share with providers" = "Prepare health data to share with providers";
+"Track symptoms before appointments" = "Track symptoms before appointments";
+"Record doctor's recommendations in notes" = "Record doctor's recommendations in notes";
+"Set follow-up reminders based on appointment outcomes" = "Set follow-up reminders based on appointment outcomes";
+"If reminders aren't working, check notification settings" = "If reminders aren't working, check notification settings";
+"Use the search function to find specific appointments" = "Use the search function to find specific appointments";
+"Export appointment data to share with caregivers" = "Export appointment data to share with caregivers";
+"Backup your appointment data regularly" = "Backup your appointment data regularly";
+"Contact support if you need help with calendar sync" = "Contact support if you need help with calendar sync";
+
+/* Accessibility Help */
+"Accessibility Help" = "Accessibility Help";
+"Make the app easier to use with accessibility options" = "Make the app easier to use with accessibility options";
+"Text Size Options" = "Text Size Options";
+"Small: Compact text for more information on screen" = "Small: Compact text for more information on screen";
+"Medium: Standard text size (default)" = "Medium: Standard text size (default)";
+"Large: Easier to read for vision challenges" = "Large: Easier to read for vision challenges";
+"Extra Large: Maximum readability for low vision" = "Extra Large: Maximum readability for low vision";
+"Change text size in Settings > Accessibility" = "Change text size in Settings > Accessibility";
+"High Contrast Mode" = "High Contrast Mode";
+"Enhances text and button visibility" = "Enhances text and button visibility";
+"Increases contrast between elements" = "Increases contrast between elements";
+"Makes the app easier to navigate" = "Makes the app easier to navigate";
+"Helpful for users with vision impairments" = "Helpful for users with vision impairments";
+"Toggle in Settings > Accessibility" = "Toggle in Settings > Accessibility";
+"Use voice commands to navigate the app" = "Use voice commands to navigate the app";
+"Hands-free operation for mobility challenges" = "Hands-free operation for mobility challenges";
+"Voice feedback for all app actions" = "Voice feedback for all app actions";
+"Customizable voice settings and speed" = "Customizable voice settings and speed";
+"Access detailed voice help in Voice Assistance section" = "Access detailed voice help in Voice Assistance section";
+"Navigation Assistance" = "Navigation Assistance";
+"Large, easy-to-tap buttons throughout the app" = "Large, easy-to-tap buttons throughout the app";
+"Clear visual hierarchy and organization" = "Clear visual hierarchy and organization";
+"Consistent navigation patterns" = "Consistent navigation patterns";
+"Back buttons always visible" = "Back buttons always visible";
+"Minimal gestures required for operation" = "Minimal gestures required for operation";
+"Color and Visual Aids" = "Color and Visual Aids";
+"Color-coded sections for easy identification" = "Color-coded sections for easy identification";
+"Icons accompany all text labels" = "Icons accompany all text labels";
+"Clear visual feedback for all actions" = "Clear visual feedback for all actions";
+"Progress indicators for long operations" = "Progress indicators for long operations";
+"Consistent color scheme throughout" = "Consistent color scheme throughout";
+"Cognitive Support Features" = "Cognitive Support Features";
+"Simple, intuitive interface design" = "Simple, intuitive interface design";
+"Step-by-step guidance for complex tasks" = "Step-by-step guidance for complex tasks";
+"Clear confirmation messages" = "Clear confirmation messages";
+"Consistent terminology throughout" = "Consistent terminology throughout";
+"Helpful tooltips and explanations" = "Helpful tooltips and explanations";
+"Undo options for most actions" = "Undo options for most actions";
+"Motor Assistance" = "Motor Assistance";
+"Large touch targets for easy tapping" = "Large touch targets for easy tapping";
+"Minimal fine motor skills required" = "Minimal fine motor skills required";
+"Voice commands reduce physical interaction" = "Voice commands reduce physical interaction";
+"Simple swipe gestures only" = "Simple swipe gestures only";
+"No complex multi-finger gestures" = "No complex multi-finger gestures";
+"Settings and Customization" = "Settings and Customization";
+"Access all accessibility settings in Settings tab" = "Access all accessibility settings in Settings tab";
+"Changes apply immediately across the app" = "Changes apply immediately across the app";
+"Settings are saved automatically" = "Settings are saved automatically";
+"Reset to defaults option available" = "Reset to defaults option available";
+"Test settings before committing to changes" = "Test settings before committing to changes";
+"If text is too small, increase text size in Settings" = "If text is too small, increase text size in Settings";
+"If buttons are hard to tap, enable high contrast" = "If buttons are hard to tap, enable high contrast";
+"If voice commands aren't working, check microphone permissions" = "If voice commands aren't working, check microphone permissions";
+"If app seems slow, try reducing text size" = "If app seems slow, try reducing text size";
+"Contact support for additional accessibility needs" = "Contact support for additional accessibility needs";
+
+/* Comprehensive FAQ Content */
+"Frequently Asked Questions" = "Frequently Asked Questions";
+"Search FAQs..." = "Search FAQs...";
+"Can't find an answer?" = "Can't find an answer?";
+
+/* General App Questions */
+"faq_general_what_is_app" = "What is the Senior Nutrition App?";
+"faq_general_what_is_app_answer" = "The Senior Nutrition App is a comprehensive health and nutrition management tool designed specifically for seniors. It helps you track meals, monitor health metrics, manage medications, set fasting schedules, and maintain hydration. The app provides personalized insights and reminders to support your health goals.";
+
+"faq_general_who_is_for" = "Who is this app designed for?";
+"faq_general_who_is_for_answer" = "This app is designed for seniors and older adults who want to maintain their health through better nutrition and lifestyle management. It's particularly helpful for those managing chronic conditions, taking medications, or following specific dietary plans. The app's accessibility features make it suitable for users with various abilities.";
+
+"faq_general_is_free" = "Is the app free to use?";
+"faq_general_is_free_answer" = "The app offers both free and premium features. The free version includes basic nutrition tracking, water monitoring, medication reminders, and health data logging. Premium features include advanced analytics, unlimited food database access, priority support, and additional customization options.";
+
+"faq_general_data_privacy" = "How is my health data protected?";
+"faq_general_data_privacy_answer" = "Your health data is stored locally on your device and is never shared with third parties without your explicit consent. All data is encrypted and secure. You have complete control over what information is stored and can export or delete your data at any time.";
+
+/* Getting Started */
+"faq_startup_how_begin" = "How do I get started with the app?";
+"faq_startup_how_begin_answer" = "Start by setting up your profile with basic information like age, weight, and health goals. Take the app tour to familiarize yourself with the features. Begin by adding your first meal or setting up medication reminders. The app will guide you through each step.";
+
+"faq_startup_profile_setup" = "How do I set up my profile?";
+"faq_startup_profile_setup_answer" = "Go to Settings > Profile to enter your personal information including age, weight, height, activity level, and health conditions. This helps the app provide personalized recommendations and accurate nutritional calculations.";
+
+"faq_startup_language_change" = "How do I change the app language?";
+"faq_startup_language_change_answer" = "Go to Settings > Language to select your preferred language. The app supports English, Spanish, French, and Hebrew. The change takes effect immediately and applies to all app content.";
+
+"faq_startup_data_backup" = "How do I backup my data?";
+"faq_startup_data_backup_answer" = "Your data is automatically saved locally on your device. For additional security, you can export your data through Settings > Data Management. We recommend regular backups, especially before device updates.";
+
+/* Nutrition Tracking */
+"faq_nutrition_how_track" = "How do I track my meals?";
+"faq_nutrition_how_track_answer" = "Tap the 'Nutrition' tab and select 'Add Meal'. Choose from our extensive food database or add custom foods. Enter portion sizes and the app will calculate calories, macronutrients, and other nutritional information. You can also take photos of your meals for visual tracking.";
+
+"faq_nutrition_food_database" = "How comprehensive is the food database?";
+"faq_nutrition_food_database_answer" = "Our database includes thousands of foods including common meals, restaurant items, and international cuisine. Premium users have access to unlimited database searches and can add unlimited custom foods.";
+
+"faq_nutrition_custom_foods" = "Can I add my own foods?";
+"faq_nutrition_custom_foods_answer" = "Yes! You can add custom foods by entering nutritional information manually. This is useful for homemade recipes, local foods, or items not in our database. Custom foods are saved to your personal database.";
+
+"faq_nutrition_portion_sizes" = "How do I measure portion sizes accurately?";
+"faq_nutrition_portion_sizes_answer" = "Use household measurements (cups, tablespoons), weight in grams, or visual comparisons. The app provides portion size guides and common serving sizes. For best accuracy, use a food scale when possible.";
+
+"faq_nutrition_goals_setting" = "How do I set nutrition goals?";
+"faq_nutrition_goals_setting_answer" = "Go to Settings > Nutrition Goals to set daily targets for calories, protein, carbohydrates, fats, and other nutrients. The app can suggest goals based on your profile, or you can set custom targets with your healthcare provider.";
+
+/* Fasting Timer */
+"faq_fasting_what_is" = "What is intermittent fasting?";
+"faq_fasting_what_is_answer" = "Intermittent fasting involves cycling between eating and fasting periods. Common protocols include 16:8 (16 hours fasting, 8 hours eating) or 12:12. The app helps you track fasting periods and provides guidance on safe fasting practices.";
+
+"faq_fasting_safe" = "Is intermittent fasting safe for seniors?";
+"faq_fasting_safe_answer" = "Intermittent fasting can be safe for many seniors, but consult your healthcare provider first, especially if you have diabetes, take medications, or have underlying health conditions. Start with shorter fasting periods and monitor how you feel.";
+
+"faq_fasting_protocols" = "What fasting protocols are available?";
+"faq_fasting_protocols_answer" = "The app supports common protocols like 16:8, 18:6, 20:4, and 12:12. You can also create custom fasting schedules. The app tracks your fasting periods and provides reminders for eating windows.";
+
+"faq_fasting_medications" = "Can I take medications during fasting?";
+"faq_fasting_medications_answer" = "Always follow your doctor's instructions regarding medication timing. Some medications should be taken with food, while others can be taken on an empty stomach. Never skip prescribed medications without consulting your healthcare provider.";
+
+"faq_fasting_emergency_stop" = "What if I need to stop fasting early?";
+"faq_fasting_emergency_stop_answer" = "You can stop fasting at any time by tapping the 'Stop Fasting' button. Listen to your body - if you feel unwell, dizzy, or extremely hungry, it's important to eat. The app will record your actual fasting duration.";
+
+/* Water Tracking */
+"faq_water_how_much" = "How much water should I drink daily?";
+"faq_water_how_much_answer" = "General recommendations suggest 8-10 glasses (64-80 ounces) per day, but individual needs vary based on age, activity level, climate, and health conditions. The app can help you set personalized hydration goals.";
+
+"faq_water_reminders" = "How do water reminders work?";
+"faq_water_reminders_answer" = "You can set up hydration reminders in the Water Tracking section. The app will send notifications at regular intervals to remind you to drink water. You can customize reminder frequency and timing.";
+
+"faq_water_other_drinks" = "Do other drinks count toward hydration?";
+"faq_water_other_drinks_answer" = "Water is the best choice for hydration, but other beverages like herbal tea, milk, and juice also contribute to fluid intake. Coffee and alcohol can be dehydrating, so balance them with water.";
+
+/* Medication Management */
+"faq_medication_add" = "How do I add my medications?";
+"faq_medication_add_answer" = "Go to the Medications section and tap 'Add Medication'. Enter the medication name, dosage, frequency, and timing. You can also add notes about side effects or special instructions.";
+
+"faq_medication_reminders" = "How do medication reminders work?";
+"faq_medication_reminders_answer" = "The app sends push notifications at your scheduled medication times. You can set multiple reminders per day and customize the notification sound and message. Reminders continue until you mark the medication as taken.";
+
+"faq_medication_missed" = "What if I miss a medication dose?";
+"faq_medication_missed_answer" = "If you miss a dose, check with your healthcare provider about whether to take it late or skip it. The app can help you track missed doses and provide guidance, but always follow your doctor's instructions.";
+
+"faq_medication_refills" = "How do I track medication refills?";
+"faq_medication_refills_answer" = "You can set refill reminders in the medication settings. The app will notify you when it's time to refill prescriptions. You can also track your medication inventory and set alerts for low supplies.";
+
+"faq_medication_share" = "Can I share my medication list with my doctor?";
+"faq_medication_share_answer" = "Yes, you can export your medication list and share it with healthcare providers. This helps ensure accurate medication reconciliation and reduces the risk of drug interactions.";
+
+/* Health Data */
+"faq_health_what_track" = "What health metrics can I track?";
+"faq_health_what_track_answer" = "You can track blood pressure, blood sugar, heart rate, weight, and BMI. The app provides charts and trends to help you monitor changes over time and identify patterns.";
+
+"faq_health_accuracy" = "How accurate are the health tracking features?";
+"faq_health_accuracy_answer" = "The app provides a convenient way to record and track your health data, but the accuracy depends on the quality of your measurements and equipment. Always use properly calibrated devices and follow measurement protocols.";
+
+"faq_health_export" = "How do I export my health data?";
+"faq_health_export_answer" = "Go to Settings > Data Management to export your health data in various formats. You can share this data with healthcare providers or keep it as a backup.";
+
+"faq_health_doctor_share" = "Should I share my app data with my doctor?";
+"faq_health_doctor_share_answer" = "Sharing your app data can help your healthcare provider better understand your health patterns and make more informed decisions. Always discuss what data to share and how it will be used.";
+
+/* Appointments */
+"faq_appointments_add" = "How do I add medical appointments?";
+"faq_appointments_add_answer" = "Go to the Appointments section and tap 'Add Appointment'. Enter the date, time, provider information, and any notes about what to discuss or prepare for the appointment.";
+
+"faq_appointments_reminders" = "How do appointment reminders work?";
+"faq_appointments_reminders_answer" = "You can set reminders for appointments at various intervals (1 day before, 2 hours before, etc.). The app will send notifications to ensure you don't miss important medical appointments.";
+
+"faq_appointments_notes" = "Can I add notes to appointments?";
+"faq_appointments_notes_answer" = "Yes, you can add detailed notes about what to discuss with your doctor, symptoms to report, questions to ask, or any preparation needed (like fasting for blood tests).";
+
+/* Accessibility */
+"faq_accessibility_text_size" = "How do I change the text size?";
+"faq_accessibility_text_size_answer" = "Go to Settings > Accessibility to adjust text size. You can choose from Small, Medium, Large, or Extra Large. The change applies immediately across the entire app.";
+
+"faq_accessibility_voice" = "How do I use voice commands?";
+"faq_accessibility_voice_answer" = "Enable voice assistance in Settings > Voice Assistance. You can then use voice commands to navigate the app, add meals, set reminders, and perform other functions. Voice feedback is also available.";
+
+"faq_accessibility_contrast" = "How do I enable high contrast mode?";
+"faq_accessibility_contrast_answer" = "Go to Settings > Accessibility and toggle 'High Contrast Mode'. This increases the contrast between text and backgrounds, making the app easier to read for users with vision challenges.";
+
+/* Technical Issues */
+"faq_technical_notifications" = "Why aren't my notifications working?";
+"faq_technical_notifications_answer" = "Check your device's notification settings for the app. Go to Settings > Notifications and ensure the app has permission to send notifications. Also check that Do Not Disturb mode is not enabled.";
+
+"faq_technical_data_loss" = "What if I lose my data?";
+"faq_technical_data_loss_answer" = "Your data is stored locally on your device. If you need to restore data, check if you have a recent backup. For future protection, regularly export your data through Settings > Data Management.";
+
+"faq_technical_app_crash" = "What if the app crashes?";
+"faq_technical_app_crash_answer" = "Try closing and reopening the app. If crashes persist, restart your device. If the problem continues, contact support with details about when the crash occurs and what you were doing.";
+
+"faq_technical_sync_issues" = "How do I sync data between devices?";
+"faq_technical_sync_issues_answer" = "Currently, the app stores data locally on each device. To transfer data between devices, use the export/import feature in Settings > Data Management. We're working on cloud sync for future updates.";
+
+/* Support */
+"faq_support_contact" = "How do I contact support?";
+"faq_support_contact_answer" = "You can contact support by email at support@seniornutrition.app or through the Contact Support option in the Help section. We typically respond within 24-48 hours.";
+
+"faq_support_video_chat" = "Can I schedule a video call with support?";
+"faq_support_video_chat_answer" = "Yes! We offer video chat support for complex issues or personalized assistance. Request a video call through the Help section, and we'll schedule a convenient time for you.";
+
+"faq_support_feature_request" = "How do I request new features?";
+"faq_support_feature_request_answer" = "We welcome feature requests! Send your suggestions to support@seniornutrition.app with 'Feature Request' in the subject line. We review all requests and prioritize based on user needs.";
+
+/* Emergency */
+"faq_emergency_number" = "What emergency number does the app use?";
+"faq_emergency_number_answer" = "The app automatically detects your region and uses the appropriate emergency number (911 for US, 112 for EU, etc.). You can also set a custom emergency number in Settings > Emergency Number.";
+
+"faq_emergency_contacts" = "How do I add emergency contacts?";
+"faq_emergency_contacts_answer" = "Go to the Emergency Contacts section to add family members, caregivers, or healthcare providers. These contacts can be called directly from the app in case of emergency.";
+
+"faq_emergency_medical" = "What medical information should I include?";
+"faq_emergency_medical_answer" = "Include important medical information like allergies, current medications, chronic conditions, and emergency contacts. This information can be crucial for emergency responders and healthcare providers.";
+
+// App Tour
+"Welcome to Senior Nutrition" = "Welcome to Senior Nutrition";
+"Your personal companion for healthy aging. Track nutrition, manage medications, and monitor your health with ease." = "Your personal companion for healthy aging. Track nutrition, manage medications, and monitor your health with ease.";
+"Personalized Nutrition" = "Personalized Nutrition";
+"Log your meals, analyze nutritional content, and get personalized recommendations to support your health goals." = "Log your meals, analyze nutritional content, and get personalized recommendations to support your health goals.";
+"Water Tracking" = "Water Tracking";
+"Stay hydrated with easy water logging, customizable goals, and smart reminders throughout your day." = "Stay hydrated with easy water logging, customizable goals, and smart reminders throughout your day.";
+"Fasting Timer" = "Fasting Timer";
+"Manage intermittent fasting schedules with visual timers, progress tracking, and customizable protocols." = "Manage intermittent fasting schedules with visual timers, progress tracking, and customizable protocols.";
+"Medication Management" = "Medication Management";
+"Never miss a dose with smart reminders, medication tracking, and easy refill alerts." = "Never miss a dose with smart reminders, medication tracking, and easy refill alerts.";
+"Health Monitoring" = "Health Monitoring";
+"Track blood pressure, blood sugar, weight, and heart rate with detailed history and trends." = "Track blood pressure, blood sugar, weight, and heart rate with detailed history and trends.";
+"Accessibility & Support" = "Accessibility & Support";
+"Large text options, voice assistance, comprehensive help, and emergency contacts for your safety." = "Large text options, voice assistance, comprehensive help, and emergency contacts for your safety.";
+"Premium Features" = "Premium Features";
+"Unlock advanced analytics, unlimited meal tracking, detailed reports, and priority support." = "Unlock advanced analytics, unlimited meal tracking, detailed reports, and priority support.";
+"Ready to Get Started" = "Ready to Get Started";
+"Set up your profile, add your first meal, and begin your journey to better health today!" = "Set up your profile, add your first meal, and begin your journey to better health today!";
+"Skip" = "Skip";
+"Next" = "Next";
+"Get Started" = "Get Started";
+"Show App Tour Again" = "Show App Tour Again";

@@ -44,6 +44,18 @@ class UserSettings: ObservableObject {
         }
     }
     
+    // App Tour state
+    @Published var hasSeenAppTour: Bool = false {
+        didSet {
+            UserDefaults.standard.set(hasSeenAppTour, forKey: "hasSeenAppTour")
+        }
+    }
+    @Published var appTourVersion: String = "1.0" {
+        didSet {
+            UserDefaults.standard.set(appTourVersion, forKey: "appTourVersion")
+        }
+    }
+    
     // User profile data
     @Published var userName: String = "User" {
         didSet {
@@ -144,6 +156,20 @@ class UserSettings: ObservableObject {
         didSet { saveUserData() }
     }
     
+    // Emergency number settings
+    @Published var customEmergencyNumber: String? {
+        didSet {
+            UserDefaults.standard.set(customEmergencyNumber, forKey: "customEmergencyNumber")
+            saveUserData()
+        }
+    }
+    @Published var useCustomEmergencyNumber: Bool = false {
+        didSet {
+            UserDefaults.standard.set(useCustomEmergencyNumber, forKey: "useCustomEmergencyNumber")
+            saveUserData()
+        }
+    }
+    
     @Published var isLoaded: Bool = false
     
     @Published var selectedLanguage: String = UserDefaults.standard.string(forKey: "AppLanguage") ?? LanguageManager.shared.currentLanguage {
@@ -164,6 +190,15 @@ class UserSettings: ObservableObject {
     init() {
         setupMedicationObservers()
         self.medications = []
+        
+        // Initialize emergency number settings
+        self.customEmergencyNumber = UserDefaults.standard.string(forKey: "customEmergencyNumber")
+        self.useCustomEmergencyNumber = UserDefaults.standard.bool(forKey: "useCustomEmergencyNumber")
+        
+        // Initialize app tour settings
+        self.hasSeenAppTour = UserDefaults.standard.bool(forKey: "hasSeenAppTour")
+        self.appTourVersion = UserDefaults.standard.string(forKey: "appTourVersion") ?? "1.0"
+        
         // Synchronize selectedLanguage with LanguageManager
         if let saved = UserDefaults.standard.string(forKey: "AppLanguage") {
             print("UserSettings: Found saved language: \(saved)")
@@ -322,6 +357,48 @@ class UserSettings: ObservableObject {
     func updateProfile(_ profile: UserProfile) {
         self.userProfile = profile
         self.userName = profile.firstName
+    }
+    
+    // MARK: - Emergency Number Methods
+    
+    /// Get the effective emergency number (custom if set and enabled, otherwise country-based)
+    func getEffectiveEmergencyNumber() -> String {
+        if useCustomEmergencyNumber, let custom = customEmergencyNumber, !custom.isEmpty {
+            return custom
+        }
+        return AppConfig.Emergency.emergencyNumber
+    }
+    
+    /// Get the effective emergency service name
+    func getEffectiveEmergencyServiceName() -> String {
+        if useCustomEmergencyNumber, let custom = customEmergencyNumber, !custom.isEmpty {
+            return NSLocalizedString("Emergency Services", comment: "")
+        }
+        return AppConfig.Emergency.emergencyServiceName
+    }
+    
+    /// Get the detected country emergency info for display purposes
+    func getDetectedEmergencyInfo() -> EmergencyNumberInfo {
+        return AppConfig.Emergency.currentEmergencyInfo
+    }
+    
+    // MARK: - App Tour Methods
+    
+    /// Check if the app tour should be shown
+    func shouldShowAppTour() -> Bool {
+        // Show if user hasn't seen it yet, or if there's a new version
+        return !hasSeenAppTour || appTourVersion != "1.0"
+    }
+    
+    /// Mark the app tour as completed
+    func markAppTourCompleted() {
+        hasSeenAppTour = true
+        appTourVersion = "1.0"
+    }
+    
+    /// Reset app tour to show again (for testing or updates)
+    func resetAppTour() {
+        hasSeenAppTour = false
     }
     
     // Function to reset all settings to default

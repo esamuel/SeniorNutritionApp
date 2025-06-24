@@ -63,12 +63,12 @@ struct EmergencyContactsView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
                     List {
-                        // 911 Emergency
+                        // Emergency Services (Dynamic Number)
                         Button(action: {
                             contactToCall = EmergencyContact(
-                                name: "Emergency Services",
+                                name: userSettings.getEffectiveEmergencyServiceName(),
                                 relationship: .other,
-                                phoneNumber: "911"
+                                phoneNumber: userSettings.getEffectiveEmergencyNumber()
                             )
                             showingCallAlert = true
                         }) {
@@ -84,10 +84,10 @@ struct EmergencyContactsView: View {
                                 }
                                 
                                 VStack(alignment: .leading, spacing: 4) {
-                                    Text("Emergency Services")
+                                    Text(userSettings.getEffectiveEmergencyServiceName())
                                         .font(.system(size: 18, weight: .bold))
                                     
-                                    Text("911")
+                                    Text(userSettings.getEffectiveEmergencyNumber())
                                         .font(.system(size: 16))
                                 }
                                 

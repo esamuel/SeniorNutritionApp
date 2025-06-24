@@ -12,6 +12,7 @@ struct SettingsView: View {
     @State private var showingBackupInfoAlert = false // For backup/restore info
     @State private var showingOnboarding = false // NEW: controls onboarding sheet
     @State private var showingTranslationUtility = false
+    @State private var showingAppTourResetAlert = false
     enum BackupAlert: Identifiable {
         var id: String {
             switch self {
@@ -154,6 +155,68 @@ struct SettingsView: View {
                     }
                 }
                 
+                // Emergency Number section
+                Section(header: sectionHeader(NSLocalizedString("Emergency Number", comment: ""))) {
+                    VStack(alignment: .leading, spacing: 12) {
+                        // Show detected emergency number
+                        HStack {
+                            Image(systemName: "location.fill")
+                                .foregroundColor(.blue)
+                                .frame(width: 30)
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(NSLocalizedString("Detected for your region", comment: ""))
+                                    .font(.system(size: userSettings.textSize.size, weight: .semibold))
+                                Text("\(userSettings.getDetectedEmergencyInfo().name): \(userSettings.getDetectedEmergencyInfo().number)")
+                                    .font(.system(size: userSettings.textSize.size - 2))
+                                    .foregroundColor(.secondary)
+                            }
+                            Spacer()
+                        }
+                        
+                        Divider()
+                        
+                        // Toggle for custom emergency number
+                        Toggle(NSLocalizedString("Use Custom Emergency Number", comment: ""), isOn: $userSettings.useCustomEmergencyNumber)
+                            .font(.system(size: userSettings.textSize.size))
+                        
+                        // Custom emergency number input
+                        if userSettings.useCustomEmergencyNumber {
+                            VStack(alignment: .leading, spacing: 8) {
+                                Text(NSLocalizedString("Custom Emergency Number", comment: ""))
+                                    .font(.system(size: userSettings.textSize.size, weight: .semibold))
+                                TextField(NSLocalizedString("Enter emergency number", comment: ""), text: Binding(
+                                    get: { userSettings.customEmergencyNumber ?? "" },
+                                    set: { userSettings.customEmergencyNumber = $0.isEmpty ? nil : $0 }
+                                ))
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .keyboardType(.phonePad)
+                                .font(.system(size: userSettings.textSize.size))
+                                
+                                Text(NSLocalizedString("Make sure this is the correct emergency number for your location", comment: ""))
+                                    .font(.system(size: userSettings.textSize.size - 4))
+                                    .foregroundColor(.orange)
+                                    .padding(.top, 4)
+                            }
+                        }
+                        
+                        // Show currently active emergency number
+                        HStack {
+                            Image(systemName: "phone.fill")
+                                .foregroundColor(.red)
+                                .frame(width: 30)
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(NSLocalizedString("Currently active", comment: ""))
+                                    .font(.system(size: userSettings.textSize.size, weight: .semibold))
+                                Text("\(userSettings.getEffectiveEmergencyServiceName()): \(userSettings.getEffectiveEmergencyNumber())")
+                                    .font(.system(size: userSettings.textSize.size - 2))
+                                    .foregroundColor(.secondary)
+                            }
+                            Spacer()
+                        }
+                    }
+                    .padding(.vertical, 8)
+                }
+                
                 // Help & support section
                 Section(header: sectionHeader(NSLocalizedString("Help & Support", comment: ""))) {
                     settingsRow(
@@ -199,6 +262,18 @@ struct SettingsView: View {
                     .sheet(isPresented: $showingOnboarding) {
                         OnboardingView(isFirstLaunch: false)
                             .environmentObject(userSettings)
+                    }
+                    
+                    // Reset App Tour Button
+                    Button(action: { 
+                        userSettings.resetAppTour()
+                        showingAppTourResetAlert = true
+                    }) {
+                        settingsRowContent(
+                            icon: "map.fill",
+                            title: NSLocalizedString("Show App Tour Again", comment: ""),
+                            color: .purple
+                        )
                     }
                     
                     // Backup Data Section updated for local backup
@@ -297,6 +372,11 @@ struct SettingsView: View {
                 Button("OK") { }
             } message: {
                 Text("Your app data (settings, medications, etc.) is typically included in your device's standard backups (iCloud or computer backups) if you have enabled them in your device settings. Restore data by restoring your device from a backup.")
+            }
+            .alert("App Tour Reset", isPresented: $showingAppTourResetAlert) {
+                Button("OK") { }
+            } message: {
+                Text("App tour has been reset. The tour will be shown again the next time you launch the app.")
             }
             // New unified alert for backup and restore results
             .alert(item: $backupAlert) { alert in
