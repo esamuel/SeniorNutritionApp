@@ -331,3 +331,158 @@
 "medication_health_note3" = "Mantenga su lista de medicamentos actualizada con cualquier cambio de su médico.";
 "medication_health_note4" = "Utilice la función 'Imprimir' para crear una copia física de su lista de medicamentos para las citas.";
 "medication_video_description" = "Una guía visual para utilizar las funciones de gestión de medicamentos.";
+
+/* FAQ - Frequently Asked Questions */
+"Frequently Asked Questions" = "Preguntas Frecuentes";
+"Search FAQs..." = "Buscar Preguntas Frecuentes...";
+"Can't find an answer?" = "¿No encuentras una respuesta?";
+
+/* General App Questions */
+"faq_general_what_is_app" = "¿Qué es la Aplicación de Nutrición para Adultos Mayores?";
+"faq_general_what_is_app_answer" = "La Aplicación de Nutrición para Adultos Mayores es una herramienta integral de gestión de salud y nutrición diseñada específicamente para adultos mayores. Te ayuda a rastrear comidas, monitorear métricas de salud, gestionar medicamentos y seguir protocolos de ayuno intermitente de manera segura.";
+
+"faq_general_who_is_for" = "¿Para quién está diseñada esta aplicación?";
+"faq_general_who_is_for_answer" = "Esta aplicación está diseñada específicamente para adultos mayores (60+) que quieren mejorar su salud y nutrición. Es especialmente útil para personas que siguen dietas especiales, toman múltiples medicamentos, o quieren monitorear su salud de manera proactiva.";
+
+"faq_general_is_free" = "¿La aplicación es gratuita?";
+"faq_general_is_free_answer" = "La aplicación ofrece tanto funciones gratuitas como premium. La versión gratuita incluye seguimiento básico de nutrición, monitoreo de agua, recordatorios de medicamentos y registro de datos de salud. Las funciones premium incluyen análisis avanzados, acceso ilimitado a la base de datos de alimentos, soporte prioritario y opciones de personalización adicionales.";
+
+"faq_general_data_privacy" = "¿Cómo protegen mi privacidad y datos?";
+"faq_general_data_privacy_answer" = "Sus datos de salud se almacenan localmente en su dispositivo y nunca se comparten con terceros sin su consentimiento explícito. Todos los datos están encriptados y seguros. Tiene control completo sobre qué información se almacena y puede exportar o eliminar sus datos en cualquier momento.";
+
+/* Getting Started */
+"faq_startup_how_begin" = "¿Cómo empiezo a usar la aplicación?";
+"faq_startup_how_begin_answer" = "Comience configurando su perfil con información básica como edad, peso y objetivos de salud. Tome el tour de la aplicación para familiarizarse con las funciones. Comience agregando su primera comida o configurando recordatorios de medicamentos. La aplicación le guiará a través de cada paso.";
+
+"faq_startup_profile_setup" = "¿Cómo configuro mi perfil?";
+"faq_startup_profile_setup_answer" = "Vaya a Configuración > Perfil para ingresar su información personal incluyendo edad, peso, altura, nivel de actividad y condiciones de salud. Esto ayuda a la aplicación a proporcionar recomendaciones personalizadas y cálculos nutricionales precisos.";
+
+"faq_startup_language_change" = "¿Cómo cambio el idioma de la aplicación?";
+"faq_startup_language_change_answer" = "Vaya a Configuración > Idioma para seleccionar su idioma preferido. La aplicación admite inglés, español, francés y hebreo. El cambio toma efecto inmediatamente y se aplica a todo el contenido de la aplicación.";
+
+"faq_startup_data_backup" = "¿Cómo hago una copia de seguridad de mis datos?";
+"faq_startup_data_backup_answer" = "Sus datos se guardan automáticamente localmente en su dispositivo. Para mayor seguridad, puede exportar sus datos a través de Configuración > Gestión de Datos. Recomendamos copias de seguridad regulares, especialmente antes de actualizaciones del dispositivo.";
+
+/* Nutrition Tracking */
+"faq_nutrition_how_track" = "¿Cómo rastreo mis comidas?";
+"faq_nutrition_how_track_answer" = "Toque la pestaña 'Nutrición' y seleccione 'Agregar Comida'. Puede buscar alimentos en la base de datos, escanear códigos de barras (función premium), o agregar alimentos personalizados. Especifique el tamaño de la porción y guarde la comida.";
+
+"faq_nutrition_food_database" = "¿Qué incluye la base de datos de alimentos?";
+"faq_nutrition_food_database_answer" = "Nuestra base de datos incluye miles de alimentos con información nutricional detallada. Incluye alimentos comunes, productos envasados, comidas preparadas y opciones para dietas especiales como sin gluten, sin lactosa y vegetarianas.";
+
+"faq_nutrition_custom_foods" = "¿Puedo agregar alimentos personalizados?";
+"faq_nutrition_custom_foods_answer" = "Sí, puede agregar alimentos personalizados con información nutricional específica. Esto es útil para recetas caseras, alimentos regionales o productos que no están en la base de datos.";
+
+"faq_nutrition_portion_sizes" = "¿Cómo determino el tamaño de las porciones?";
+"faq_nutrition_portion_sizes_answer" = "La aplicación ofrece múltiples opciones de tamaño de porción: tazas, cucharadas, gramos, onzas y porciones comunes. Puede usar tazas medidoras o estimar basándose en comparaciones visuales. Con el tiempo, se volverá más preciso en sus estimaciones.";
+
+"faq_nutrition_goals_setting" = "¿Cómo establezco mis objetivos nutricionales?";
+"faq_nutrition_goals_setting_answer" = "Los objetivos se establecen automáticamente basándose en su perfil (edad, peso, nivel de actividad). Puede ajustar estos objetivos en Configuración > Perfil. La aplicación también considera condiciones de salud como diabetes o hipertensión para personalizar las recomendaciones.";
+
+/* Fasting Timer */
+"faq_fasting_what_is" = "¿Qué es el ayuno intermitente?";
+"faq_fasting_what_is_answer" = "El ayuno intermitente es un patrón de alimentación que alterna entre períodos de ayuno y alimentación. No especifica qué alimentos comer, sino cuándo comerlos. Los protocolos comunes incluyen 16:8 (ayunar 16 horas, comer en 8 horas) o 18:6.";
+
+"faq_fasting_safe" = "¿Es seguro el ayuno intermitente para adultos mayores?";
+"faq_fasting_safe_answer" = "El ayuno intermitente puede ser seguro para adultos mayores sanos, pero siempre debe consultar con su proveedor de atención médica antes de comenzar. La aplicación incluye características de seguridad como la función de anulación de emergencia y recordatorios de hidratación.";
+
+"faq_fasting_protocols" = "¿Qué protocolos de ayuno están disponibles?";
+"faq_fasting_protocols_answer" = "La aplicación incluye protocolos preestablecidos como 16:8, 18:6, 20:4 y 5:2. También puede crear protocolos personalizados. Todos los protocolos incluyen características de seguridad y recordatorios de hidratación.";
+
+"faq_fasting_medications" = "¿Cómo manejo mis medicamentos durante el ayuno?";
+"faq_fasting_medications_answer" = "Algunos medicamentos deben tomarse con alimentos. La aplicación le recordará sobre estos requisitos y le ayudará a programar medicamentos durante sus ventanas de alimentación cuando sea posible. Siempre consulte con su médico sobre el momento de tomar medicamentos.";
+
+"faq_fasting_emergency_stop" = "¿Qué hago si me siento mal durante el ayuno?";
+"faq_fasting_emergency_stop_answer" = "Si experimenta mareos, debilidad, confusión o cualquier síntoma preocupante, detenga el ayuno inmediatamente usando el botón de anulación de emergencia. Coma algo con proteína y carbohidratos. Si los síntomas persisten, contacte a su proveedor de atención médica.";
+
+/* Water Tracking */
+"faq_water_how_much" = "¿Cuánta agua debo beber?";
+"faq_water_how_much_answer" = "La recomendación general es 8-10 vasos de agua por día, pero esto puede variar según su edad, peso, nivel de actividad y clima. La aplicación le ayuda a establecer un objetivo personalizado y rastrear su progreso.";
+
+"faq_water_reminders" = "¿Cómo funcionan los recordatorios de agua?";
+"faq_water_reminders_answer" = "Puede configurar recordatorios de hidratación en la sección de Seguimiento de Agua. La aplicación enviará notificaciones a intervalos regulares para recordarle beber agua. Puede personalizar la frecuencia y el momento de los recordatorios.";
+
+"faq_water_other_drinks" = "¿Puedo rastrear otras bebidas además del agua?";
+"faq_water_other_drinks_answer" = "Sí, puede rastrear té, café, jugos y otras bebidas. Sin embargo, el agua pura es la mejor opción para la hidratación. La aplicación le ayudará a mantener un equilibrio saludable entre diferentes tipos de bebidas.";
+
+/* Medication Management */
+"faq_medication_add" = "¿Cómo agrego mis medicamentos?";
+"faq_medication_add_answer" = "Vaya a la sección de Medicamentos y toque 'Agregar Medicamento'. Ingrese el nombre, dosis, frecuencia y cualquier requisito especial (como tomar con alimentos). Puede agregar múltiples medicamentos y establecer recordatorios personalizados.";
+
+"faq_medication_reminders" = "¿Cómo funcionan los recordatorios de medicamentos?";
+"faq_medication_reminders_answer" = "La aplicación enviará notificaciones en los momentos programados para recordarle tomar sus medicamentos. Puede marcar medicamentos como 'Tomados' directamente desde la notificación o dentro de la aplicación. También puede posponer recordatorios si es necesario.";
+
+"faq_medication_missed" = "¿Qué hago si olvido tomar un medicamento?";
+"faq_medication_missed_answer" = "Si olvida una dosis, marque el medicamento como 'Olvidado' en la aplicación. Para la mayoría de los medicamentos, puede tomarlo tan pronto como se acuerde, pero consulte con su farmacéutico o médico sobre qué hacer con dosis olvidadas específicas.";
+
+"faq_medication_refills" = "¿Cómo manejo los reabastecimientos de medicamentos?";
+"faq_medication_refills_answer" = "La aplicación puede rastrear la cantidad de píldoras restantes y enviarle recordatorios cuando sea momento de reabastecer. Puede establecer recordatorios para contactar a su farmacia o médico para nuevas recetas.";
+
+"faq_medication_share" = "¿Puedo compartir mi lista de medicamentos con mi médico?";
+"faq_medication_share_answer" = "Sí, puede exportar su lista de medicamentos como un documento PDF o imprimirla. Esto es útil para citas médicas o en caso de emergencia. La información incluye nombres de medicamentos, dosis, frecuencia y notas especiales.";
+
+/* Health Data */
+"faq_health_what_track" = "¿Qué datos de salud puedo rastrear?";
+"faq_health_what_track_answer" = "Puede rastrear presión arterial, azúcar en sangre, frecuencia cardíaca, peso e IMC. La aplicación proporciona gráficos y tendencias para ayudarle a monitorear cambios a lo largo del tiempo e identificar patrones.";
+
+"faq_health_accuracy" = "¿Qué tan precisas son las funciones de seguimiento de salud?";
+"faq_health_accuracy_answer" = "La aplicación proporciona una forma conveniente de registrar y rastrear sus datos de salud, pero la precisión depende de la calidad de sus mediciones y equipos. Siempre use dispositivos calibrados correctamente y siga los protocolos de medición.";
+
+"faq_health_export" = "¿Cómo exporto mis datos de salud?";
+"faq_health_export_answer" = "Vaya a Configuración > Gestión de Datos para exportar sus datos de salud en varios formatos. Puede compartir estos datos con proveedores de atención médica o mantenerlos como respaldo.";
+
+"faq_health_doctor_share" = "¿Debería compartir los datos de mi aplicación con mi médico?";
+"faq_health_doctor_share_answer" = "Compartir los datos de su aplicación puede ayudar a su proveedor de atención médica a comprender mejor sus patrones de salud y tomar decisiones más informadas. Siempre discuta qué datos compartir y cómo se utilizarán.";
+
+/* Appointments */
+"faq_appointments_add" = "¿Cómo agrego citas médicas?";
+"faq_appointments_add_answer" = "Vaya a la sección de Citas y toque 'Agregar Cita'. Ingrese la fecha, hora, información del proveedor y cualquier nota sobre qué discutir o preparar para la cita.";
+
+"faq_appointments_reminders" = "¿Cómo funcionan los recordatorios de citas?";
+"faq_appointments_reminders_answer" = "Puede establecer recordatorios para citas en varios intervalos (1 día antes, 2 horas antes, etc.). La aplicación enviará notificaciones para asegurarse de que no se pierda citas médicas importantes.";
+
+"faq_appointments_notes" = "¿Puedo agregar notas a las citas?";
+"faq_appointments_notes_answer" = "Sí, puede agregar notas detalladas sobre qué discutir con su médico, síntomas a reportar, preguntas para hacer, o cualquier preparación necesaria (como ayunar para análisis de sangre).";
+
+/* Accessibility */
+"faq_accessibility_text_size" = "¿Cómo cambio el tamaño del texto?";
+"faq_accessibility_text_size_answer" = "Vaya a Configuración > Accesibilidad > Tamaño de Texto. Puede elegir entre Pequeño, Mediano, Grande y Extra Grande. El cambio se aplica inmediatamente en toda la aplicación.";
+
+"faq_accessibility_voice" = "¿Cómo uso los comandos de voz?";
+"faq_accessibility_voice_answer" = "Active la asistencia de voz en Configuración > Accesibilidad > Asistencia de Voz. Use la palabra de activación (por ejemplo, 'Hola Senior Nutrition') y luego diga su comando. Los comandos incluyen navegación, registro de comidas y consultas de información.";
+
+"faq_accessibility_contrast" = "¿Cómo mejoro el contraste visual?";
+"faq_accessibility_contrast_answer" = "Active el modo de alto contraste en Configuración > Accesibilidad > Alto Contraste. Esto hace que el texto y los botones sean más visibles y fáciles de distinguir.";
+
+/* Technical Issues */
+"faq_technical_notifications" = "¿Por qué no recibo notificaciones?";
+"faq_technical_notifications_answer" = "Verifique que las notificaciones estén habilitadas en Configuración > Notificaciones. También asegúrese de que las notificaciones de la aplicación estén habilitadas en la configuración de su dispositivo.";
+
+"faq_technical_data_loss" = "¿Qué hago si pierdo mis datos?";
+"faq_technical_data_loss_answer" = "Sus datos se guardan localmente en su dispositivo. Si pierde datos, puede restaurarlos desde una copia de seguridad de su dispositivo. Para mayor seguridad, use regularmente la función de exportación de datos.";
+
+"faq_technical_app_crash" = "¿Qué hago si la aplicación se bloquea?";
+"faq_technical_app_crash_answer" = "Intente cerrar completamente la aplicación y volver a abrirla. Si el problema persiste, reinicie su dispositivo. Si continúa, contacte a nuestro soporte técnico con detalles sobre cuándo ocurre el problema.";
+
+"faq_technical_sync_issues" = "¿Cómo sincronizo mis datos entre dispositivos?";
+"faq_technical_sync_issues_answer" = "Actualmente, la aplicación almacena datos localmente en cada dispositivo. Para transferir datos entre dispositivos, use la función de exportación/importación en Configuración > Gestión de Datos. Estamos trabajando en sincronización en la nube para futuras actualizaciones.";
+
+/* Support */
+"faq_support_contact" = "¿Cómo contacto al soporte?";
+"faq_support_contact_answer" = "Puede contactar al soporte por correo electrónico en support@seniornutrition.app o a través de la opción Contactar Soporte en la sección de Ayuda. Típicamente respondemos dentro de 24-48 horas.";
+
+"faq_support_video_chat" = "¿Puedo programar una videollamada con soporte?";
+"faq_support_video_chat_answer" = "¡Sí! Ofrecemos soporte por videollamada para problemas complejos o asistencia personalizada. Solicite una videollamada a través de la sección de Ayuda, y programaremos un momento conveniente para usted.";
+
+"faq_support_feature_request" = "¿Cómo solicito nuevas funciones?";
+"faq_support_feature_request_answer" = "¡Aceptamos solicitudes de funciones! Envíe sus sugerencias a support@seniornutrition.app con 'Solicitud de Función' en el asunto. Revisamos todas las solicitudes y priorizamos basándonos en las necesidades de los usuarios.";
+
+/* Emergency */
+"faq_emergency_number" = "¿Qué número de emergencia usa la aplicación?";
+"faq_emergency_number_answer" = "La aplicación detecta automáticamente su región y usa el número de emergencia apropiado (911 para EE.UU., 112 para UE, etc.). También puede establecer un número de emergencia personalizado en Configuración > Número de Emergencia.";
+
+"faq_emergency_contacts" = "¿Cómo agrego contactos de emergencia?";
+"faq_emergency_contacts_answer" = "Vaya a la sección de Contactos de Emergencia para agregar miembros de la familia, cuidadores o proveedores de atención médica. Estos contactos pueden ser llamados directamente desde la aplicación en caso de emergencia.";
+
+"faq_emergency_medical" = "¿Qué información médica debo incluir?";
+"faq_emergency_medical_answer" = "Incluya información médica importante como alergias, medicamentos actuales, condiciones crónicas y contactos de emergencia. Esta información puede ser crucial para los servicios de emergencia y proveedores de atención médica.";
