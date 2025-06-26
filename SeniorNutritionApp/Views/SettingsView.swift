@@ -94,23 +94,32 @@ struct SettingsView: View {
                 
                 // Language section
                 Section(header: Text(NSLocalizedString("Language", comment: "")).font(.system(size: userSettings.textSize.size, weight: .bold))) {
-                    // Always show language picker
-                    Picker(NSLocalizedString("App Language", comment: ""), selection: $userSettings.selectedLanguage) {
-                        ForEach(userSettings.supportedLanguages, id: \.self) { code in
-                            HStack {
-                                Text(getFlagEmoji(for: code))
-                                    .font(.title2)
-                                Text(languageDisplayName(for: code))
+                    // Language picker with navigation
+                    NavigationLink(destination: LanguageSelectorView()) {
+                        HStack {
+                            Image(systemName: "globe")
+                                .foregroundColor(.blue)
+                                .frame(width: 30)
+                            
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(NSLocalizedString("App Language", comment: ""))
+                                    .font(.system(size: userSettings.textSize.size))
+                                
+                                HStack {
+                                    Text(getFlagEmoji(for: userSettings.selectedLanguage))
+                                        .font(.title3)
+                                    Text(languageDisplayName(for: userSettings.selectedLanguage))
+                                        .font(.system(size: userSettings.textSize.size - 2))
+                                        .foregroundColor(.secondary)
+                                }
                             }
-                            .tag(code)
+                            
+                            Spacer()
+                            
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(.gray)
+                                .font(.caption)
                         }
-                    }
-                    .pickerStyle(MenuPickerStyle())
-                    .font(.system(size: userSettings.textSize.size))
-                    .onChange(of: userSettings.selectedLanguage) { newLang in
-                        // Disable follow system when manually selecting a language
-                        languageManager.followSystemLanguage = false
-                        LanguageManager.shared.setLanguage(newLang)
                     }
                     Button(action: {
                         // Explicitly force a refresh of the language system
