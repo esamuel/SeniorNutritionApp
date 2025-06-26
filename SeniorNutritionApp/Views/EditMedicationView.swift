@@ -488,7 +488,7 @@ struct EditMedicationView: View {
             
             // Schedule the new notification if a date was found
             if let actualNextDose = nextDoseDate {
-                let notificationTime = calendar.date(byAdding: .minute, value: -30, to: actualNextDose) ?? actualNextDose
+                let notificationTime = calendar.date(byAdding: .minute, value: -userSettings.medicationReminderLeadTime, to: actualNextDose) ?? actualNextDose
                 if notificationTime > now {
                     let content = UNMutableNotificationContent()
                     content.title = "Medication Reminder"

@@ -810,7 +810,7 @@ struct HomeView: View {
             }
         }
         
-        // 2. If a next dose was found, schedule the notification (30 mins prior)
+        // 2. If a next dose was found, schedule the notification (based on user's lead time preference)
         guard let actualNextDose = nextDoseDate else {
             // No upcoming dose found within the check range, maybe remove existing notification?
             // Or handle based on specific app logic (e.g., log, do nothing)

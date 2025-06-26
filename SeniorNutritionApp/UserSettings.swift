@@ -140,7 +140,7 @@ class UserSettings: ObservableObject {
     @Published var medicationRemindersEnabled: Bool = true {
         didSet { saveUserData() }
     }
-    @Published var medicationReminderLeadTime: Int = 30 {
+    @Published var medicationReminderLeadTime: Int = 0 {
         didSet { saveUserData() }
     }
     @Published var mealWindowRemindersEnabled: Bool = true {
@@ -439,7 +439,7 @@ class UserSettings: ObservableObject {
 
         // Reset notification settings
         medicationRemindersEnabled = true
-        medicationReminderLeadTime = 30
+        medicationReminderLeadTime = 0
         mealWindowRemindersEnabled = true
         fastingRemindersEnabled = true
         dailyTipsEnabled = true
