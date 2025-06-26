@@ -2,6 +2,7 @@ import SwiftUI
 
 struct MenuView: View {
     @EnvironmentObject private var userSettings: UserSettings
+    @EnvironmentObject var languageManager: LanguageManager
     @Environment(\.layoutDirection) private var layoutDirection
     
     var body: some View {

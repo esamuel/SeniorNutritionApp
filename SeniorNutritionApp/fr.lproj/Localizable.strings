@@ -1979,3 +1979,16 @@
 "faq_emergency_contacts_answer" = "Allez dans la section Contacts d'urgence pour ajouter des membres de la famille, des soignants ou des fournisseurs de soins de santé. Ces contacts peuvent être appelés directement depuis l'application en cas d'urgence.";
 "faq_emergency_medical" = "Quelles informations médicales dois-je inclure ?";
 "faq_emergency_medical_answer" = "Incluez des informations médicales importantes comme les allergies, les médicaments actuels, les conditions chroniques et les contacts d'urgence. Ces informations peuvent être cruciales pour les services d'urgence et les fournisseurs de soins de santé.";
+
+/* Nutrition Goals */
+"nutrition_goals_title" = "Objectifs Nutritionnels";
+"set_calorie_goal" = "Définissez votre objectif calorique quotidien";
+"expand_macros" = "Étendre aux macronutriments";
+"set_protein_goal" = "Définissez votre objectif quotidien de protéines";
+"set_carb_goal" = "Définissez votre objectif quotidien de glucides";
+"set_fat_goal" = "Définissez votre objectif quotidien de lipides";
+"save_goals" = "Enregistrer les objectifs";
+"current_goal" = "Votre objectif quotidien";
+"goal_reached" = "Vous avez atteint votre objectif !";
+"goal_below" = "Vous êtes en dessous de votre objectif";
+"goal_exceeded" = "Vous avez dépassé votre objectif";

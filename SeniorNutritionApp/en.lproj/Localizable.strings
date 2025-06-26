@@ -1338,3 +1338,16 @@
 "Next" = "Next";
 "Get Started" = "Get Started";
 "Show App Tour Again" = "Show App Tour Again";
+
+/* Nutrition Goals */
+"nutrition_goals_title" = "Nutrition Goals";
+"set_calorie_goal" = "Set your daily calorie target";
+"expand_macros" = "Expand to macros";
+"set_protein_goal" = "Set your daily protein target";
+"set_carb_goal" = "Set your daily carbohydrate target";
+"set_fat_goal" = "Set your daily fat target";
+"save_goals" = "Save Goals";
+"current_goal" = "Your daily goal";
+"goal_reached" = "You have reached your goal!";
+"goal_below" = "You are below your goal";
+"goal_exceeded" = "You have exceeded your goal";

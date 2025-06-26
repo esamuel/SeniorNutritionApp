@@ -181,6 +181,12 @@ class UserSettings: ObservableObject {
         }
     }
     
+    @Published var dailyCalorieGoal: Int = 2000
+    @Published var macroGoalsEnabled: Bool = false
+    @Published var dailyProteinGoal: Int = 75
+    @Published var dailyCarbGoal: Int = 250
+    @Published var dailyFatGoal: Int = 70
+    
     let supportedLanguages: [String] = ["en", "es", "fr", "he"]
     
     private let localDataKey = "userData"

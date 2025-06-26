@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct HealthTipsView: View {
+    @EnvironmentObject var languageManager: LanguageManager
     @State private var selectedCategory: HealthTipCategory? = nil
     @State private var searchText = ""
     @State private var refreshTrigger = false // Add this to force view refresh

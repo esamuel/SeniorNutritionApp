@@ -3,6 +3,7 @@ import CoreData
 
 struct HealthView: View {
     @EnvironmentObject private var userSettings: UserSettings
+    @EnvironmentObject var languageManager: LanguageManager
     @Environment(\.layoutDirection) private var layoutDirection
     @Environment(\.managedObjectContext) private var viewContext
     @State private var selectedTab = 0

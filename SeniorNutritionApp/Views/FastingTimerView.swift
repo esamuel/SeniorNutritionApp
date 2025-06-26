@@ -191,6 +191,7 @@ private struct TimelineSectionView: View {
 // MARK: - FastingTimerView
 struct FastingTimerView: View {
     @EnvironmentObject private var userSettings: UserSettings
+    @EnvironmentObject var languageManager: LanguageManager
     @StateObject private var fastingManager = FastingManager.shared
     
     @State private var showingProtocolPicker = false

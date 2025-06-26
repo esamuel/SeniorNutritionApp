@@ -6,6 +6,7 @@ import SwiftUI
 
 struct NutritionView: View {
     @EnvironmentObject private var userSettings: UserSettings
+    @EnvironmentObject var languageManager: LanguageManager
     @EnvironmentObject private var mealManager: MealManager
     @EnvironmentObject private var userCommonMeals: UserCommonMeals
     @State private var showingAddMeal = false
@@ -20,6 +21,7 @@ struct NutritionView: View {
     @State private var showingFoodDatabase = false
     @State private var showingCommonMealDeleteAlert = false
     @State private var commonMealToDelete: Meal?
+    @State private var showingNutritionGoals = false
 
     var body: some View {
         NavigationView {
@@ -140,12 +142,43 @@ struct NutritionView: View {
     private var mealsView: some View {
         ScrollView {
             VStack(spacing: 25) {
+                nutritionGoalsSection
                 todayMealsSection
                 commonMealsSection
                 nutritionTipsSection
                 foodDatabaseSection
             }
             .padding()
+        }
+    }
+
+    private var nutritionGoalsSection: some View {
+        Button(action: { showingNutritionGoals = true }) {
+            HStack {
+                Image(systemName: "target")
+                    .font(.system(size: 28))
+                    .foregroundColor(.purple)
+                    .padding(.trailing, 8)
+                VStack(alignment: .leading) {
+                    Text(NSLocalizedString("nutrition_goals_title", comment: ""))
+                        .font(.system(size: userSettings.textSize.size, weight: .bold))
+                        .foregroundColor(.primary)
+                    Text(NSLocalizedString("set_calorie_goal", comment: ""))
+                        .font(.system(size: userSettings.textSize.size - 4))
+                        .foregroundColor(.secondary)
+                }
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .foregroundColor(.gray)
+            }
+            .padding()
+            .background(Color(.systemGray6))
+            .cornerRadius(16)
+            .shadow(radius: 1)
+        }
+        .sheet(isPresented: $showingNutritionGoals) {
+            NutritionGoalsView()
+                .environmentObject(userSettings)
         }
     }
 

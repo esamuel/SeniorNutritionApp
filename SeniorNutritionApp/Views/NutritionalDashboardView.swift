@@ -5,6 +5,7 @@ import UIKit
 
 struct NutritionalDashboardView: View {
     @EnvironmentObject private var userSettings: UserSettings
+    @EnvironmentObject var languageManager: LanguageManager
     @ObservedObject var mealManager: MealManager
     @State private var selectedDate = Date()
     
@@ -27,6 +28,12 @@ struct NutritionalDashboardView: View {
                 mineralProgressSection
             }
             .padding()
+        }
+        .onAppear {
+            Task { await mealManager.updateGoalsFromUserSettings(userSettings) }
+        }
+        .onChange(of: selectedDate) { _ in
+            Task { await mealManager.updateGoalsFromUserSettings(userSettings) }
         }
     }
     

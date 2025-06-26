@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct WaterReminderView: View {
+    @EnvironmentObject var languageManager: LanguageManager
     @StateObject private var manager = WaterReminderManager()
     @State private var showingSettings = false
     @State private var showingCustomAmount = false

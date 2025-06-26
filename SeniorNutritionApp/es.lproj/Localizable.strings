@@ -486,3 +486,20 @@
 
 "faq_emergency_medical" = "¿Qué información médica debo incluir?";
 "faq_emergency_medical_answer" = "Incluya información médica importante como alergias, medicamentos actuales, condiciones crónicas y contactos de emergencia. Esta información puede ser crucial para los servicios de emergencia y proveedores de atención médica.";
+
+/* Nutrition Goals */
+"nutrition_goals_title" = "Metas de Nutrición";
+"set_calorie_goal" = "Establece tu objetivo diario de calorías";
+"expand_macros" = "Expandir a macronutrientes";
+"set_protein_goal" = "Establece tu objetivo diario de proteínas";
+"set_carb_goal" = "Establece tu objetivo diario de carbohidratos";
+"set_fat_goal" = "Establece tu objetivo diario de grasas";
+"save_goals" = "Guardar Metas";
+"current_goal" = "Tu objetivo diario";
+"goal_reached" = "¡Has alcanzado tu objetivo!";
+"goal_below" = "Estás por debajo de tu objetivo";
+"goal_exceeded" = "Has superado tu objetivo";
+"Calories" = "Calorías";
+"Protein" = "Proteína";
+"Carbs" = "Carbohidratos";
+"Fat" = "Grasas";

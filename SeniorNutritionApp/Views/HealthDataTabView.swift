@@ -2,6 +2,7 @@ import SwiftUI
 import CoreData
 
 struct HealthDataTabView: View {
+    @EnvironmentObject var languageManager: LanguageManager
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
         entity: BloodPressureEntry.entity(),
