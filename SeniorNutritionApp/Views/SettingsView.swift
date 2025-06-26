@@ -97,7 +97,12 @@ struct SettingsView: View {
                     // Always show language picker
                     Picker(NSLocalizedString("App Language", comment: ""), selection: $userSettings.selectedLanguage) {
                         ForEach(userSettings.supportedLanguages, id: \.self) { code in
-                            Text(languageDisplayName(for: code)).tag(code)
+                            HStack {
+                                Text(getFlagEmoji(for: code))
+                                    .font(.title2)
+                                Text(languageDisplayName(for: code))
+                            }
+                            .tag(code)
                         }
                     }
                     .pickerStyle(MenuPickerStyle())
@@ -444,6 +449,17 @@ struct SettingsView: View {
         case "fr": return "Français"
         case "he": return "עברית"
         default: return code
+        }
+    }
+    
+    // Helper function to get flag emoji for language code
+    private func getFlagEmoji(for code: String) -> String {
+        switch code {
+        case "en": return "🇺🇸"
+        case "he": return "🇮🇱"
+        case "es": return "🇪🇸"
+        case "fr": return "🇫🇷"
+        default: return "��️"
         }
     }
     
