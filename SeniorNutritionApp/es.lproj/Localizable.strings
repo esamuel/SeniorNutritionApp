@@ -399,6 +399,204 @@
 "faq_water_how_much" = "¿Cuánta agua debo beber?";
 "faq_water_how_much_answer" = "La recomendación general es 8-10 vasos de agua por día, pero esto puede variar según su edad, peso, nivel de actividad y clima. La aplicación le ayuda a establecer un objetivo personalizado y rastrear su progreso.";
 
+/* Nutrition UI */
+"Nutrition" = "Nutrición";
+"Dashboard" = "Panel";
+"Meals" = "Comidas";
+"Daily Summary" = "Resumen Diario";
+"Calories" = "Calorías";
+"Macronutrients" = "Macronutrientes";
+"Protein" = "Proteínas";
+"Carbs" = "Carbohidratos";
+"Fats" = "Grasas";
+"Vitamins" = "Vitaminas";
+"Vitamin D" = "Vitamina D";
+"Vitamin B12" = "Vitamina B12";
+"Vitamin C" = "Vitamina C";
+"Folate" = "Folato";
+"Minerals" = "Minerales";
+"Calcium" = "Calcio";
+"Potassium" = "Potasio";
+"Iron" = "Hierro";
+"Magnesium" = "Magnesio";
+"Zinc" = "Zinc";
+"View" = "Ver";
+"Delete Meal" = "Eliminar Comida";
+"Are you sure you want to delete this meal?" = "¿Estás seguro de que quieres eliminar esta comida?";
+"Delete Common Meal" = "Eliminar Comida Común";
+"Are you sure you want to delete this common meal?" = "¿Estás seguro de que quieres eliminar esta comida común?";
+"View Nutritional Goals" = "Ver Objetivos Nutricionales";
+"Today's Meals" = "Comidas de Hoy";
+"No meals logged for today." = "No hay comidas registradas para hoy.";
+"Log your first meal to get started!" = "¡Registra tu primera comida para empezar!";
+"Edit Meal" = "Editar Comida";
+"Common Meals" = "Comidas Comunes";
+"You haven't saved any common meals yet." = "Aún no has guardado ninguna comida común.";
+"Add a meal and swipe left on it to save it as a common meal for quick logging." = "Añade una comida y desliza hacia la izquierda para guardarla como comida común y registrarla rápidamente.";
+"Add to Common Meals" = "Añadir a Comidas Comunes";
+"Meal added to common meals" = "Comida añadida a las comidas comunes";
+"Delete common meal" = "Eliminar comida común";
+"Nutrition Tips for Seniors" = "Consejos de Nutrición para Mayores";
+"Protein is Important" = "La Proteína es Importante";
+"Try to include protein with every meal to maintain muscle mass." = "Intenta incluir proteínas en cada comida para mantener la masa muscular.";
+"Stay Hydrated" = "Mantente Hidratado";
+"Drink water regularly, even when not fasting." = "Bebe agua regularmente, incluso cuando no estés ayunando.";
+"Healthy Fats" = "Grasas Saludables";
+"Include sources of healthy fats like olive oil, avocados, and nuts." = "Incluye fuentes de grasas saludables como aceite de oliva, aguacates y frutos secos.";
+"View More Tips" = "Ver Más Consejos";
+"Food Database" = "Base de Datos de Alimentos";
+"Browse All Food Items" = "Explorar Todos los Alimentos";
+"View detailed nutrition information for all foods, including pasta dishes and more" = "Ver información nutricional detallada de todos los alimentos, incluyendo platos de pasta y más.";
+
+/* Nutrition Goals UI */
+"nutrition_goals_title" = "Objetivos de Nutrición";
+"set_calorie_goal" = "Establecer objetivo de calorías";
+"expand_macros" = "Detallar Macronutrientes";
+"set_protein_goal" = "Objetivo de Proteínas (g)";
+"set_carb_goal" = "Objetivo de Carbohidratos (g)";
+"Fat" = "Grasa";
+"set_fat_goal" = "Objetivo de Grasas (g)";
+"Cancel" = "Cancelar";
+"save_goals" = "Guardar";
+
+/* Water Tracking UI */
+"Water Tracking" = "Seguimiento de Agua";
+"of %.0f ml" = "de %.0f ml";
+"Quick Add" = "Añadir Rápido";
+"Add Custom Amount" = "Añadir Cantidad Personalizada";
+"Today's Log" = "Registro de Hoy";
+"No water intake logged today" = "No se ha registrado consumo de agua hoy";
+"Total: %.0f ml" = "Total: %.0f ml";
+"Hydration Tips" = "Consejos de Hidratación";
+"Remember to drink water regularly throughout the day" = "Recuerda beber agua regularmente durante todo el día";
+"Enter amount in milliliters" = "Introduce la cantidad en mililitros";
+"Amount" = "Cantidad";
+"Add" = "Añadir";
+
+/* Water Reminder UI */
+"Water Reminder" = "Recordatorio de Agua";
+"Enter the amount of water in milliliters" = "Introduce la cantidad de agua en mililitros";
+"Daily Goal" = "Objetivo Diario";
+"Daily Goal (ml)" = "Objetivo Diario (ml)";
+"Reminder Settings" = "Ajustes de Recordatorio";
+"Enable Reminders" = "Activar Recordatorios";
+"Frequency" = "Frecuencia";
+"Every 30 minutes" = "Cada 30 minutos";
+"Every hour" = "Cada hora";
+"Every 2 hours" = "Cada 2 horas";
+"Custom" = "Personalizado";
+"Custom Minutes" = "Minutos Personalizados";
+"Start Time" = "Hora de Inicio";
+"End Time" = "Hora de Fin";
+"Settings" = "Ajustes";
+"Save" = "Guardar";
+
+/* Water Tracking Help UI */
+"Water Tracking Help" = "Ayuda de Seguimiento de Agua";
+"Stay hydrated and monitor your daily water intake" = "Mantente hidratado y monitorea tu consumo diario de agua";
+"Tap the 'Water' tab at the bottom of your screen" = "Toca la pestaña 'Agua' en la parte inferior de tu pantalla";
+"Set your daily water intake goal (recommended 8-10 glasses)" = "Establece tu objetivo diario de consumo de agua (recomendado 8-10 vasos)";
+"Use the + button to log each glass of water you drink" = "Usa el botón + para registrar cada vaso de agua que bebas";
+"Track your progress throughout the day" = "Sigue tu progreso a lo largo del día";
+"Key Features" = "Características Clave";
+"Daily Goal Setting: Customize your hydration target" = "Establecimiento de Objetivo Diario: Personaliza tu meta de hidratación";
+"Quick Logging: Tap to add water with one touch" = "Registro Rápido: Toca para añadir agua con un solo toque";
+"Progress Tracking: Visual progress bar shows daily completion" = "Seguimiento de Progreso: La barra de progreso visual muestra tu avance diario";
+"Reminders: Get notifications to stay hydrated" = "Recordatorios: Recibe notificaciones para mantenerte hidratado";
+"History: View your water intake over time" = "Historial: Visualiza tu consumo de agua a lo largo del tiempo";
+"Drink water first thing in the morning" = "Bebe agua a primera hora de la mañana";
+"Keep a water bottle nearby throughout the day" = "Mantén una botella de agua cerca durante todo el día";
+"Drink water before, during, and after exercise" = "Bebe agua antes, durante y después del ejercicio";
+"Listen to your body's thirst signals" = "Escucha las señales de sed de tu cuerpo";
+"Consider your activity level and climate" = "Considera tu nivel de actividad y el clima";
+"Health Benefits" = "Beneficios para la Salud";
+"Maintains body temperature and metabolism" = "Mantiene la temperatura corporal y el metabolismo";
+"Supports kidney function and waste removal" = "Apoya la función renal y la eliminación de desechos";
+"Improves skin health and appearance" = "Mejora la salud y la apariencia de la piel";
+"Enhances cognitive function and energy levels" = "Mejora la función cognitiva y los niveles de energía";
+"Aids digestion and nutrient absorption" = "Ayuda a la digestión y la absorción de nutrientes";
+"Troubleshooting" = "Solución de Problemas";
+"If you forget to log water, you can add it later" = "Si olvidas registrar agua, puedes añadirla más tarde";
+"Adjust your daily goal based on your needs" = "Ajusta tu objetivo diario según tus necesidades";
+"Enable notifications to get hydration reminders" = "Activa las notificaciones para recibir recordatorios de hidratación";
+"Check your weekly progress to see patterns" = "Revisa tu progreso semanal para ver patrones";
+
+/* Fasting Timer UI */
+"Fasting Timer" = "Temporizador de Ayuno";
+"of fasting" = "de ayuno";
+"of eating window" = "de ventana de alimentación";
+"Last Meal" = "Última Comida";
+"Next Meal" = "Próxima Comida";
+"End Fasting Early" = "Terminar Ayuno Temprano";
+"Start Fasting" = "Comenzar Ayuno";
+"Emergency Override" = "Anulación de Emergencia";
+"Health Tips" = "Consejos de Salud";
+"Remember to drink plenty of water during your fast" = "Recuerda beber mucha agua durante tu ayuno";
+"If you feel unwell, end your fast immediately" = "Si te sientes mal, termina tu ayuno inmediatamente";
+"Quality sleep helps with fasting results" = "Un sueño de calidad ayuda con los resultados del ayuno";
+"View More Health Tips" = "Ver Más Consejos de Salud";
+"Manage intermittent fasting schedules and track progress" = "Gestiona los horarios de ayuno intermitente y sigue tu progreso";
+
+/* Fasting Timer Help UI */
+"Fasting Timer Help" = "Ayuda del Temporizador de Ayuno";
+"What is Intermittent Fasting?" = "¿Qué es el Ayuno Intermitente?";
+"Intermittent fasting cycles between eating and fasting periods" = "El ayuno intermitente alterna entre períodos de comida y de ayuno";
+"Common protocols: 16:8 (16 hours fasting, 8 hours eating)" = "Protocolos comunes: 16:8 (16 horas de ayuno, 8 horas para comer)";
+"Other options: 18:6, 20:4, or custom schedules" = "Otras opciones: 18:6, 20:4, o horarios personalizados";
+"May help with weight management and metabolic health" = "Puede ayudar con el control de peso y la salud metabólica";
+"Always consult your doctor before starting any fasting plan" = "Consulta siempre a tu médico antes de comenzar cualquier plan de ayuno";
+"Choose a fasting protocol or create a custom schedule" = "Elige un protocolo de ayuno o crea un horario personalizado";
+"Set your fasting start time and duration" = "Establece la hora de inicio y la duración de tu ayuno";
+"Tap 'Start Fasting' to begin your fasting period" = "Toca 'Comenzar Ayuno' para iniciar tu período de ayuno";
+"The timer will track your progress automatically" = "El temporizador seguirá tu progreso automáticamente";
+"Multiple Protocols: 16:8, 18:6, 20:4, and custom schedules" = "Múltiples Protocolos: 16:8, 18:6, 20:4 y horarios personalizados";
+"Visual Timer: See your fasting progress in real-time" = "Temporizador Visual: Ve tu progreso de ayuno en tiempo real";
+"Notifications: Get alerts for start, end, and milestone times" = "Notificaciones: Recibe alertas para las horas de inicio, fin e hitos";
+"Progress Tracking: View your fasting history and streaks" = "Seguimiento de Progreso: Visualiza tu historial y rachas de ayuno";
+"Emergency Stop: End fasting early if needed" = "Parada de Emergencia: Termina el ayuno temprano si es necesario";
+"Statistics: Track your fasting patterns over time" = "Estadísticas: Sigue tus patrones de ayuno a lo largo del tiempo";
+"Safety Guidelines" = "Pautas de Seguridad";
+"Consult your healthcare provider before starting fasting" = "Consulta a tu proveedor de atención médica antes de comenzar el ayuno";
+"Listen to your body and stop if you feel unwell" = "Escucha a tu cuerpo y detente si no te sientes bien";
+"Don't skip prescribed medications without doctor approval" = "No omitas los medicamentos recetados sin la aprobación de tu médico";
+"Start with shorter fasting periods and gradually increase" = "Comienza con períodos de ayuno más cortos y auméntalos gradualmente";
+"Eat nutritious foods during your eating window" = "Come alimentos nutritivos durante tu ventana de alimentación";
+"Notifications & Reminders" = "Notificaciones y Recordatorios";
+"Fasting Start: Notification when your fast begins" = "Inicio del Ayuno: Notificación cuando comienza tu ayuno";
+"Fasting End: Alert when it's time to eat" = "Fin del Ayuno: Alerta cuando es hora de comer";
+"Halfway Point: Motivation at the midpoint" = "Punto Intermedio: Motivación en el punto medio";
+"Custom Reminders: Set your own notification times" = "Recordatorios Personalizados: Establece tus propios horarios de notificación";
+"Emergency Alerts: Quick access to stop fasting" = "Alertas de Emergencia: Acceso rápido para detener el ayuno";
+"If you need to stop fasting early, tap 'Stop Fasting'" = "Si necesitas detener el ayuno temprano, toca 'Detener Ayuno'";
+"Adjust your fasting schedule in the settings" = "Ajusta tu horario de ayuno en la configuración";
+"Check notification permissions if alerts aren't working" = "Verifica los permisos de notificación si las alertas no funcionan";
+"Contact support if you have technical issues" = "Contacta con el soporte si tienes problemas técnicos";
+"Video Tutorial" = "Video Tutorial";
+"Watch our step-by-step video guide for fasting timer" = "Mira nuestra guía de video paso a paso para el temporizador de ayuno";
+"Learn about different fasting protocols and safety tips" = "Aprende sobre los diferentes protocolos de ayuno y consejos de seguridad";
+"Watch Video Tutorial" = "Ver Video Tutorial";
+
+/* Custom Fasting Protocol UI */
+"Custom Protocol" = "Protocolo Personalizado";
+"Fasting Hours" = "Horas de Ayuno";
+"Fasting: %d hours" = "Ayuno: %d horas";
+"Eating Hours" = "Horas para Comer";
+"Eating: %d hours" = "Comida: %d horas";
+"Total Hours" = "Horas Totales";
+"Total: %d hours" = "Total: %d horas";
+"Save Protocol" = "Guardar Protocolo";
+
+/* Fasting Protocols */
+"12:12 (Gentle)" = "12:12 (Suave)";
+"14:10 (Moderate)" = "14:10 (Moderado)";
+"16:8 (Standard)" = "16:8 (Estándar)";
+"Custom Protocol" = "Protocolo Personalizado";
+"Fast for 12 hours, eat within a 12-hour window. Ideal for beginners." = "Ayunar durante 12 horas, comer en una ventana de 12 horas. Ideal para principiantes.";
+"Fast for 14 hours, eat within a 10-hour window. Moderate intensity." = "Ayunar durante 14 horas, comer en una ventana de 10 horas. Intensidad moderada.";
+"Fast for 16 hours, eat within an 8-hour window. Standard protocol." = "Ayunar durante 16 horas, comer en una ventana de 8 horas. Protocolo estándar.";
+"Custom fasting protocol with your preferred hours." = "Protocolo de ayuno personalizado con tus horas preferidas.";
+
+
 "faq_water_reminders" = "¿Cómo funcionan los recordatorios de agua?";
 "faq_water_reminders_answer" = "Puede configurar recordatorios de hidratación en la sección de Seguimiento de Agua. La aplicación enviará notificaciones a intervalos regulares para recordarle beber agua. Puede personalizar la frecuencia y el momento de los recordatorios.";
 
@@ -503,3 +701,72 @@
 "Protein" = "Proteína";
 "Carbs" = "Carbohidratos";
 "Fat" = "Grasas";
+
+/* Fasting Protocol Details */
+"Benefits" = "Beneficios";
+"Recommended For" = "Recomendado Para";
+"Guidelines" = "Pautas";
+"Currently Selected" = "Actualmente Seleccionado";
+"Select This Protocol" = "Seleccionar este Protocolo";
+
+/* 12:12 Protocol */
+"Gentle introduction to intermittent fasting" = "Introducción suave al ayuno intermitente";
+"Helps regulate blood sugar levels" = "Ayuda a regular los niveles de azúcar en sangre";
+"Supports better sleep patterns" = "Apoya mejores patrones de sueño";
+"Minimal disruption to daily routine" = "Mínima interrupción de la rutina diaria";
+"Beginners to intermittent fasting" = "Principiantes en el ayuno intermitente";
+"Those with regular medication schedules" = "Personas con horarios regulares de medicación";
+"People with active social lives" = "Personas con vida social activa";
+"Those who prefer eating dinner with family" = "Quienes prefieren cenar con la familia";
+"Start your fast after dinner" = "Comience su ayuno después de la cena";
+"Skip breakfast or have it later" = "Omita el desayuno o tómelo más tarde";
+"Stay hydrated during fasting" = "Manténgase hidratado durante el ayuno";
+"Break fast with a light meal" = "Rompa el ayuno con una comida ligera";
+
+/* 14:10 Protocol */
+"Enhanced fat burning" = "Quema de grasa mejorada";
+"Improved metabolic flexibility" = "Flexibilidad metabólica mejorada";
+"Better appetite control" = "Mejor control del apetito";
+"Increased mental clarity" = "Mayor claridad mental";
+"Supports cellular repair processes" = "Apoya los procesos de reparación celular";
+"Experienced fasters looking for more benefits" = "Ayunadores experimentados que buscan más beneficios";
+"Those with stable blood sugar control" = "Personas con control estable del azúcar en sangre";
+"People looking for weight management" = "Personas que buscan controlar su peso";
+"Those with flexible morning schedules" = "Personas con horarios matutinos flexibles";
+"Consider ending eating by 8 PM" = "Considere terminar de comer a las 8 PM";
+"Break fast around 10 AM" = "Rompa el ayuno alrededor de las 10 AM";
+"Plan meals within the 10-hour window" = "Planifique las comidas dentro de la ventana de 10 horas";
+"Stay active but avoid intense exercise while fasting" = "Manténgase activo pero evite el ejercicio intenso durante el ayuno";
+"Monitor how you feel and adjust if needed" = "Controle cómo se siente y ajuste si es necesario";
+
+/* 16:8 Protocol */
+"Maximum autophagy benefits" = "Máximos beneficios de autofagia";
+"Significant fat burning potential" = "Potencial significativo de quema de grasa";
+"Improved insulin sensitivity" = "Sensibilidad a la insulina mejorada";
+"Enhanced cognitive function" = "Función cognitiva mejorada";
+"Promotes cellular repair and longevity" = "Promueve la reparación celular y la longevidad";
+"Experienced fasters" = "Ayunadores experimentados";
+"Those seeking maximum health benefits" = "Quienes buscan los máximos beneficios para la salud";
+"People with stable health conditions" = "Personas con condiciones de salud estables";
+"Those comfortable with longer fasting periods" = "Personas cómodas con períodos de ayuno más largos";
+"End eating by 7 PM" = "Termine de comer a las 7 PM";
+"Break fast at 11 AM" = "Rompa el ayuno a las 11 AM";
+"Plan 2-3 nutritious meals in eating window" = "Planifique 2-3 comidas nutritivas en la ventana de alimentación";
+"Stay well hydrated" = "Manténgase bien hidratado";
+"Consider electrolyte supplementation" = "Considere la suplementación con electrolitos";
+"Break fast with protein-rich foods" = "Rompa el ayuno con alimentos ricos en proteínas";
+
+/* Custom Protocol */
+"Tailored to your specific needs" = "Adaptado a sus necesidades específicas";
+"Flexible scheduling" = "Programación flexible";
+"Adaptable to your lifestyle" = "Adaptable a su estilo de vida";
+"Can be adjusted as needed" = "Se puede ajustar según sea necesario";
+"Those with unique scheduling needs" = "Personas con necesidades de programación únicas";
+"People with specific health considerations" = "Personas con consideraciones de salud específicas";
+"Those who've tried other protocols" = "Quienes han probado otros protocolos";
+"People with varying daily routines" = "Personas con rutinas diarias variables";
+"Choose times that fit your schedule" = "Elija horarios que se ajusten a su agenda";
+"Maintain consistent fasting periods" = "Mantenga períodos de ayuno consistentes";
+"Listen to your body's signals" = "Escuche las señales de su cuerpo";
+"Adjust the protocol as needed" = "Ajuste el protocolo según sea necesario";
+"Keep track of your progress" = "Lleve un registro de su progreso";

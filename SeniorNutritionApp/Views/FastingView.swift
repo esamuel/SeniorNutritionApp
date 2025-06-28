@@ -8,6 +8,16 @@ struct FastingView: View {
         FastingTimerView()
             .environmentObject(userSettings)
             .environmentObject(languageManager)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text(NSLocalizedString("Fasting Timer", comment: ""))
+                        .font(.headline)
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.75)
+                        .multilineTextAlignment(.center)
+                }
+            }
     }
 }
 

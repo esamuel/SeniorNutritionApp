@@ -112,8 +112,16 @@ struct FastingTimerHelpView: View {
             }
             .padding()
         }
-        .navigationTitle(NSLocalizedString("Fasting Timer Help", comment: ""))
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text(NSLocalizedString("Fasting Timer Help", comment: ""))
+                    .font(.headline)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.75)
+                    .multilineTextAlignment(.center)
+            }
+        }
     }
 }
 

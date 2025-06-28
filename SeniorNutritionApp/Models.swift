@@ -35,37 +35,70 @@ enum Relationship: String, CaseIterable, Identifiable, Codable {
 
 // Fasting protocol options
 enum FastingProtocol: String, CaseIterable, Identifiable, Codable {
-    case twelveTwelve = "12:12 (Gentle)"
-    case fourteenTen = "14:10 (Moderate)"
-    case sixteenEight = "16:8 (Standard)"
-    case custom = "Custom Protocol"
-    
+    case twelveTwelve
+    case fourteenTen
+    case sixteenEight
+    case custom
+
     var id: String { self.rawValue }
-    
-    var description: String {
-        switch self {
-        case .twelveTwelve: 
-            return NSLocalizedString("Fast for 12 hours, eat within a 12-hour window. Ideal for beginners.", comment: "")
-        case .fourteenTen:
-            return NSLocalizedString("Fast for 14 hours, eat within a 10-hour window. Moderate intensity.", comment: "")
-        case .sixteenEight:
-            return NSLocalizedString("Fast for 16 hours, eat within an 8-hour window. Standard protocol.", comment: "")
-        case .custom:
-            return NSLocalizedString("Custom fasting protocol with your preferred hours.", comment: "")
-        }
-    }
-    
+
     var localizedTitle: String {
         switch self {
         case .twelveTwelve:
-            return NSLocalizedString("12:12 (Gentle)", comment: "")
+            return NSLocalizedString("12:12 (Gentle)", comment: "Fasting protocol title")
         case .fourteenTen:
-            return NSLocalizedString("14:10 (Moderate)", comment: "")
+            return NSLocalizedString("14:10 (Moderate)", comment: "Fasting protocol title")
         case .sixteenEight:
-            return NSLocalizedString("16:8 (Standard)", comment: "")
+            return NSLocalizedString("16:8 (Standard)", comment: "Fasting protocol title")
         case .custom:
-            return NSLocalizedString("Custom Protocol", comment: "")
+            return NSLocalizedString("Custom Protocol", comment: "Fasting protocol title")
         }
+    }
+
+    var localizedDescription: String {
+        switch self {
+        case .twelveTwelve:
+            return NSLocalizedString("Fast for 12 hours, eat within a 12-hour window. Ideal for beginners.", comment: "Fasting protocol description")
+        case .fourteenTen:
+            return NSLocalizedString("Fast for 14 hours, eat within a 10-hour window. Moderate intensity.", comment: "Fasting protocol description")
+        case .sixteenEight:
+            return NSLocalizedString("Fast for 16 hours, eat within an 8-hour window. Standard protocol.", comment: "Fasting protocol description")
+        case .custom:
+            return NSLocalizedString("Custom fasting protocol with your preferred hours.", comment: "Fasting protocol description")
+        }
+    }
+
+    var benefits: [String] {
+        let key: String
+        switch self {
+        case .twelveTwelve: key = "12:12_benefits"
+        case .fourteenTen: key = "14:10_benefits"
+        case .sixteenEight: key = "16:8_benefits"
+        case .custom: key = "Custom_benefits"
+        }
+        return NSLocalizedString(key, comment: "").components(separatedBy: "\n")
+    }
+
+    var recommendedFor: [String] {
+        let key: String
+        switch self {
+        case .twelveTwelve: key = "12:12_recommended"
+        case .fourteenTen: key = "14:10_recommended"
+        case .sixteenEight: key = "16:8_recommended"
+        case .custom: key = "Custom_recommended"
+        }
+        return NSLocalizedString(key, comment: "").components(separatedBy: "\n")
+    }
+
+    var guidelines: [String] {
+        let key: String
+        switch self {
+        case .twelveTwelve: key = "12:12_guidelines"
+        case .fourteenTen: key = "14:10_guidelines"
+        case .sixteenEight: key = "16:8_guidelines"
+        case .custom: key = "Custom_guidelines"
+        }
+        return NSLocalizedString(key, comment: "").components(separatedBy: "\n")
     }
     
     var fastingHours: Int {

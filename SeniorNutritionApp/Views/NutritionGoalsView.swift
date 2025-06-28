@@ -49,12 +49,26 @@ struct NutritionGoalsView: View {
                     }
                 }
             }
-            .navigationBarTitle(Text(NSLocalizedString("nutrition_goals_title", comment: "")), displayMode: .inline)
-            .navigationBarItems(leading: Button(action: { presentationMode.wrappedValue.dismiss() }) {
-                Text(NSLocalizedString("Cancel", comment: ""))
-            }, trailing: Button(action: saveGoals) {
-                Text(NSLocalizedString("save_goals", comment: ""))
-            })
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: { presentationMode.wrappedValue.dismiss() }) {
+                        Text(NSLocalizedString("Cancel", comment: ""))
+                    }
+                }
+                ToolbarItem(placement: .principal) {
+                    Text(NSLocalizedString("nutrition_goals_title", comment: ""))
+                        .font(.headline)
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.75)
+                        .multilineTextAlignment(.center)
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: saveGoals) {
+                        Text(NSLocalizedString("save_goals", comment: ""))
+                    }
+                }
+            }
             .onAppear {
                 calorieGoal = String(userSettings.dailyCalorieGoal)
                 showMacros = userSettings.macroGoalsEnabled

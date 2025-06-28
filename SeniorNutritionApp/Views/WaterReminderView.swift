@@ -87,8 +87,15 @@ struct WaterReminderView: View {
                     }
                 }
             }
-            .navigationTitle(NSLocalizedString("Water Reminder", comment: ""))
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text(NSLocalizedString("Water Reminder", comment: ""))
+                        .font(.headline)
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.75)
+                        .multilineTextAlignment(.center)
+                }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         showingSettings = true

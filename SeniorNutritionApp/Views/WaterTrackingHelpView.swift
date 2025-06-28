@@ -84,8 +84,16 @@ struct WaterTrackingHelpView: View {
             }
             .padding()
         }
-        .navigationTitle(NSLocalizedString("Water Tracking Help", comment: ""))
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text(NSLocalizedString("Water Tracking Help", comment: ""))
+                    .font(.headline)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.75)
+                    .multilineTextAlignment(.center)
+            }
+        }
     }
 }
 

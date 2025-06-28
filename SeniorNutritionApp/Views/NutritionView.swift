@@ -39,13 +39,22 @@ struct NutritionView: View {
                     mealsView
                 }
             }
-            .navigationTitle(NSLocalizedString("Nutrition", comment: ""))
-            .navigationBarTitleDisplayMode(.large)
             .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text(NSLocalizedString("Nutrition", comment: ""))
+                        .font(.headline)
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.75)
+                        .multilineTextAlignment(.center)
+                }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: { showingAddMeal = true }) {
-                        Image(systemName: "plus")
-                            .imageScale(.large)
+                    HStack {
+                        Button(action: { showingNutritionGoals = true }) {
+                            Image(systemName: "target")
+                        }
+                        Button(action: { showingAddMeal = true }) {
+                            Image(systemName: "plus")
+                        }
                     }
                 }
             }
