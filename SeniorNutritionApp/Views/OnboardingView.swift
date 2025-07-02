@@ -270,7 +270,7 @@ struct CoachMark: View {
                     
                     // Message bubble
                     VStack {
-                        Text(message)
+                        Text(NSLocalizedString(message, comment: "Coach mark message"))
                             .font(.system(size: 18))
                             .foregroundColor(.white)
                             .padding()

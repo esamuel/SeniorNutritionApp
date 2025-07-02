@@ -33,14 +33,14 @@ struct MedicationInputView: View {
                 VStack(spacing: 20) {
                     // Medication Details Section
                     VStack(alignment: .leading, spacing: 15) {
-                        Text("Medication Details")
+                        Text(NSLocalizedString("Medication Details", comment: ""))
                             .font(.system(size: userSettings.textSize.size, weight: .bold))
                             .padding(.horizontal)
                         
                         VStack(spacing: 15) {
                             // Name Input
                             HStack {
-                                TextField("Medication Name", text: $medicationName)
+                                TextField(NSLocalizedString("Medication Name", comment: ""), text: $medicationName)
                                     .font(.system(size: userSettings.textSize.size))
                                     .textFieldStyle(RoundedBorderTextFieldStyle())
                                 
@@ -82,7 +82,7 @@ struct MedicationInputView: View {
                             }
                             
                             // Dosage Input
-                            TextField("Dosage", text: $dosage)
+                            TextField(NSLocalizedString("Dosage", comment: ""), text: $dosage)
                                 .font(.system(size: userSettings.textSize.size))
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                         }
@@ -95,16 +95,17 @@ struct MedicationInputView: View {
                     
                     // Schedule Section
                     VStack(alignment: .leading, spacing: 15) {
-                        Text("Schedule")
+                        Text(NSLocalizedString("Schedule", comment: ""))
                             .font(.system(size: userSettings.textSize.size, weight: .bold))
                             .padding(.horizontal)
                         
                         VStack(spacing: 15) {
                             // Frequency Type Picker
-                            Picker("Frequency", selection: $selectedFrequencyType) {
-                                ForEach(FrequencyType.allCases) { type in
-                                    Text(type.rawValue).tag(type)
-                                }
+                            Picker(NSLocalizedString("Frequency", comment: ""), selection: $selectedFrequencyType) {
+                                Text(NSLocalizedString("Daily", comment: "")).tag(FrequencyType.daily)
+                                Text(NSLocalizedString("Weekly", comment: "")).tag(FrequencyType.weekly)
+                                Text(NSLocalizedString("Interval (in days)", comment: "")).tag(FrequencyType.interval)
+                                Text(NSLocalizedString("Monthly", comment: "")).tag(FrequencyType.monthly)
                             }
                             .pickerStyle(SegmentedPickerStyle())
                             .padding(.bottom, 5)
@@ -112,13 +113,14 @@ struct MedicationInputView: View {
                             // Conditional Inputs based on Frequency Type
                             switch selectedFrequencyType {
                             case .weekly:
+                                Text(NSLocalizedString("On these days:", comment: ""))
                                 WeekdayMultiSelector(selectedDays: $weeklySelectedDays)
                                     .padding(.vertical, 5)
                             case .interval:
-                                Stepper("Every " + String(intervalDays) + " days", value: $intervalDays, in: 1...30)
-                                DatePicker("Starting From", selection: $intervalStartDate, displayedComponents: .date)
+                                Stepper(String(format: NSLocalizedString("Every %d days", comment: "Stepper for interval days"), intervalDays), value: $intervalDays, in: 1...30)
+                                DatePicker(NSLocalizedString("Starting From", comment: ""), selection: $intervalStartDate, displayedComponents: .date)
                             case .monthly:
-                                Picker("Day of the Month", selection: $monthlySelectedDay) {
+                                Picker(NSLocalizedString("Day of the Month", comment: ""), selection: $monthlySelectedDay) {
                                     ForEach(1...31, id: \.self) { day in
                                         Text(String(day)).tag(day)
                                     }
@@ -131,7 +133,7 @@ struct MedicationInputView: View {
                             
                             Divider().padding(.vertical, 5)
                             
-                            Text("Time(s) to Take Medication")
+                            Text(NSLocalizedString("At these times:", comment: ""))
                                 .font(.system(size: userSettings.textSize.size - 1, weight: .semibold))
                                 .foregroundColor(.secondary)
                             
@@ -170,7 +172,7 @@ struct MedicationInputView: View {
                             }) {
                                 HStack {
                                     Image(systemName: "plus.circle.fill")
-                                    Text("Add Time")
+                                    Text(NSLocalizedString("Add Time", comment: ""))
                                 }
                                 .font(.system(size: userSettings.textSize.size))
                                 .foregroundColor(.blue)
@@ -188,7 +190,7 @@ struct MedicationInputView: View {
                     
                     // Notes Section
                     VStack(alignment: .leading, spacing: 15) {
-                        Text("Notes")
+                        Text(NSLocalizedString("Additional Details", comment: ""))
                             .font(.system(size: userSettings.textSize.size, weight: .bold))
                             .padding(.horizontal)
                         
@@ -204,7 +206,7 @@ struct MedicationInputView: View {
                     
                     // Save Button
                     Button(action: saveMedication) {
-                        Text("Save Medication")
+                        Text(NSLocalizedString("Save Medication", comment: ""))
                             .font(.system(size: userSettings.textSize.size, weight: .bold))
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
@@ -217,12 +219,18 @@ struct MedicationInputView: View {
                 }
                 .padding(.vertical)
             }
-            .navigationTitle("Add Medication")
+            .navigationTitle(NSLocalizedString("Add Medication", comment: ""))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") {
+                    Button(NSLocalizedString("Cancel", comment: "")) {
                         dismiss()
+                    }
+                    .font(.system(size: userSettings.textSize.size))
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(NSLocalizedString("Save", comment: "")) {
+                        saveMedication()
                     }
                     .font(.system(size: userSettings.textSize.size))
                 }
@@ -287,7 +295,7 @@ struct MedicationInputView: View {
     // MARK: - Pill Appearance Section
     private var pillAppearanceSection: some View {
         VStack(alignment: .leading, spacing: 15) {
-            Text("Pill Appearance")
+            Text(NSLocalizedString("Pill Appearance", comment: ""))
                 .font(.system(size: userSettings.textSize.size, weight: .bold))
                 .padding(.horizontal)
             VStack(spacing: 15) {
@@ -296,7 +304,7 @@ struct MedicationInputView: View {
                     Pill3DView(shape: mapToPill3DShape(selectedShape), color: selectedColor)
                         .frame(width: 80, height: 40)
                         .padding(.vertical, 8)
-                    Button("Select Shape") {
+                    Button(NSLocalizedString("Select Shape", comment: "")) {
                         showingShapePicker = true
                     }
                     .font(.system(size: userSettings.textSize.size))
@@ -309,7 +317,7 @@ struct MedicationInputView: View {
                 }
                 // Color Picker
                 HStack {
-                    Text("Pill Color")
+                    Text(NSLocalizedString("Pill Color", comment: ""))
                         .font(.system(size: userSettings.textSize.size))
                     Spacer()
                     Button(action: { showingColorPicker = true }) {
@@ -320,7 +328,7 @@ struct MedicationInputView: View {
                     }
                 }
                 .sheet(isPresented: $showingColorPicker) {
-                    ColorPicker("Select Pill Color", selection: $selectedColor)
+                    ColorPicker(NSLocalizedString("Select Pill Color", comment: ""), selection: $selectedColor)
                         .padding()
                 }
             }

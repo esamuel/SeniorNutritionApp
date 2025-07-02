@@ -18,11 +18,11 @@ struct EmergencyContactsView: View {
                         .frame(height: 120)
                     
                     VStack {
-                        Text("Emergency Contacts")
+                        Text(NSLocalizedString("Emergency Contacts", comment: "Title for emergency contacts screen"))
                             .font(.system(size: 24, weight: .bold))
                             .foregroundColor(.white)
                         
-                        Text("Tap a contact to call")
+                        Text(NSLocalizedString("Tap a contact to call", comment: "Subtitle for emergency contacts screen"))
                             .font(.system(size: 16))
                             .foregroundColor(.white)
                     }
@@ -35,11 +35,11 @@ struct EmergencyContactsView: View {
                             .font(.system(size: 60))
                             .foregroundColor(.red)
                         
-                        Text("No emergency contacts")
+                        Text(NSLocalizedString("No emergency contacts", comment: "Message when no emergency contacts are added"))
                             .font(.title2)
                             .fontWeight(.bold)
                         
-                        Text("Add emergency contacts to quickly reach someone in case of emergency")
+                        Text(NSLocalizedString("Add emergency contacts to quickly reach someone in case of emergency", comment: "Prompt to add emergency contacts"))
                             .font(.body)
                             .multilineTextAlignment(.center)
                             .padding(.horizontal)
@@ -49,7 +49,7 @@ struct EmergencyContactsView: View {
                         }) {
                             HStack {
                                 Image(systemName: "plus.circle.fill")
-                                Text("Add Contact")
+                                Text(NSLocalizedString("Add Contact", comment: "Button to add a new contact"))
                                     .fontWeight(.semibold)
                             }
                             .padding()
@@ -145,7 +145,7 @@ struct EmergencyContactsView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Close") {
+                    Button(NSLocalizedString("Close", comment: "Button to close the screen")) {
                         presentationMode.wrappedValue.dismiss()
                     }
                 }
@@ -164,9 +164,9 @@ struct EmergencyContactsView: View {
             }
             .alert(isPresented: $showingCallAlert) {
                 Alert(
-                    title: Text("Call \(contactToCall?.name ?? "Contact")"),
-                    message: Text("Are you sure you want to call \(contactToCall?.phoneNumber ?? "")?"),
-                    primaryButton: .default(Text("Call")) {
+                    title: Text(String(format: NSLocalizedString("Call %s", comment: "Alert title to confirm call"), contactToCall?.name ?? NSLocalizedString("Contact", comment: "Default contact name"))),
+                    message: Text(String(format: NSLocalizedString("Are you sure you want to call %s?", comment: "Alert message to confirm call"), contactToCall?.phoneNumber ?? "")),
+                    primaryButton: .default(Text(NSLocalizedString("Call", comment: "Button to confirm a call"))) {
                         if let phoneNumber = contactToCall?.phoneNumber,
                            let url = URL(string: "tel://\(phoneNumber.replacingOccurrences(of: " ", with: ""))") {
                             UIApplication.shared.open(url)

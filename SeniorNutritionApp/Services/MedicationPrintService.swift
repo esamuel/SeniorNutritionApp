@@ -351,7 +351,7 @@ struct FastingProtocolPrintView: View {
                     }
                 }
                 
-                Text(fastingProtocol.description)
+                Text(fastingProtocol.localizedDescription)
                     .font(.system(size: 16))
                     .padding(.top, 10)
                     .foregroundColor(.gray)

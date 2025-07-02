@@ -86,8 +86,8 @@ class WaterReminderManager: ObservableObject {
     
     private func scheduleReminders() {
         let content = UNMutableNotificationContent()
-        content.title = "Time to Hydrate!"
-        content.body = "Don't forget to drink some water"
+        content.title = NSLocalizedString("Time to Hydrate!", comment: "Water reminder notification title")
+        content.body = NSLocalizedString("Don't forget to drink some water", comment: "Water reminder notification body")
         content.sound = .default
         
         let calendar = Calendar.current

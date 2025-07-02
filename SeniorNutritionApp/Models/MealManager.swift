@@ -2,7 +2,7 @@ import Foundation
 import SwiftUI
 import Combine
 // Add missing model imports
-import SeniorNutritionApp // If all models are in the main module, or:
+
 // import the specific files if needed, e.g.:
 // import "Meal.swift"
 // import "NutritionalModels.swift"

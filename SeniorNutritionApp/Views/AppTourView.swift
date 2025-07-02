@@ -111,7 +111,7 @@ struct AppTourView: View {
                 // Bottom buttons
                 HStack {
                     if currentPage < tourPages.count - 1 {
-                        Button("Skip") {
+                        Button(NSLocalizedString("Skip", comment: "Button to skip the tour")) {
                             markTourCompleted()
                             presentationMode.wrappedValue.dismiss()
                         }
@@ -120,7 +120,7 @@ struct AppTourView: View {
                         
                         Spacer()
                         
-                        Button("Next") {
+                        Button(NSLocalizedString("Next", comment: "Button to go to the next tour page")) {
                             withAnimation {
                                 currentPage += 1
                             }
@@ -132,7 +132,7 @@ struct AppTourView: View {
                         .background(tourPages[currentPage].backgroundColor)
                         .cornerRadius(25)
                     } else {
-                        Button("Get Started") {
+                        Button(NSLocalizedString("Get Started", comment: "Button to start using the app after the tour")) {
                             markTourCompleted()
                             presentationMode.wrappedValue.dismiss()
                         }
@@ -177,12 +177,12 @@ struct TourPageView: View {
             
             // Content
             VStack(spacing: 20) {
-                Text(page.title)
+                Text(NSLocalizedString(page.title, comment: "Tour page title"))
                     .font(.system(size: userSettings.textSize.size + 6, weight: .bold))
                     .multilineTextAlignment(.center)
                     .foregroundColor(.primary)
                 
-                Text(page.description)
+                Text(NSLocalizedString(page.description, comment: "Tour page description"))
                     .font(.system(size: userSettings.textSize.size))
                     .multilineTextAlignment(.center)
                     .foregroundColor(.secondary)

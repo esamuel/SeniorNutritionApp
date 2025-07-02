@@ -170,7 +170,7 @@ struct FastingProtocolPreview: View {
                         .stroke(Color.gray.opacity(0.3), lineWidth: 1)
                 )
                 
-                Text(userSettings.activeFastingProtocol.description)
+                Text(userSettings.activeFastingProtocol.localizedDescription)
                     .font(.body)
                     .padding(.top, 8)
                 

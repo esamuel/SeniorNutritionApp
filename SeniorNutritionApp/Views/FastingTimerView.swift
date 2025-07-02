@@ -419,7 +419,7 @@ struct FastingTimerView: View {
                     .accessibilityLabel(NSLocalizedString("Change Fasting Protocol", comment: ""))
                 }
             }
-            .sheet(isPresented: $showingProtocolPicker) {
+                .sheet(isPresented: $showingProtocolPicker) {
                 protocolPickerView
             }
             .sheet(isPresented: $showingLastMealPicker) {
@@ -462,27 +462,20 @@ struct FastingTimerView: View {
         }
     }
     
-    // MARK: - ProtocolInfoSectionView
-    private struct ProtocolInfoSectionView: View {
-        @EnvironmentObject private var userSettings: UserSettings
-        
-        var body: some View {
-            VStack(alignment: .leading, spacing: 15) {
-                header
-                
-                Text(String(format: NSLocalizedString("Current Protocol: %@", comment: ""), userSettings.activeFastingProtocol.localizedTitle))
-                    .font(.system(size: userSettings.textSize.size, weight: .bold))
-                
-                Text(userSettings.activeFastingProtocol.localizedDescription)
-                    .font(.system(size: userSettings.textSize.size - 2))
-                    .foregroundColor(.secondary)
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding()
-            .background(Color(.systemBackground))
-            .cornerRadius(16)
-            .shadow(radius: 2)
+    private var currentProtocolSection: some View {
+        VStack(alignment: .leading, spacing: 15) {
+            Text(String(format: NSLocalizedString("Current Protocol: %@", comment: ""), userSettings.activeFastingProtocol.localizedTitle))
+                .font(.system(size: userSettings.textSize.size, weight: .bold))
+            
+            Text(userSettings.activeFastingProtocol.localizedDescription)
+                .font(.system(size: userSettings.textSize.size - 2))
+                .foregroundColor(.secondary)
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding()
+        .background(Color(.systemBackground))
+        .cornerRadius(16)
+        .shadow(radius: 2)
     }
     
     // Timer section with large display
@@ -530,7 +523,7 @@ struct FastingTimerView: View {
                 VStack(spacing: 20) {
                     ForEach(FastingProtocol.allCases) { proto in
                         ProtocolCard(
-                            protocol: proto,
+                            fastingProtocol: proto,
                             isSelected: userSettings.activeFastingProtocol == proto,
                             onSelect: {
                                 if proto == .custom {
@@ -562,9 +555,118 @@ struct FastingTimerView: View {
     
     // Protocol Card View
     // MARK: - ProtocolCard
+private struct ProtocolCard: View {
+    let fastingProtocol: FastingProtocol
+    let isSelected: Bool
+    let onSelect: () -> Void
+    @State private var isExpanded = false
+    @EnvironmentObject private var userSettings: UserSettings
 
+    var body: some View {
+        VStack(alignment: .leading, spacing: 15) {
+            Button(action: {
+                withAnimation(.spring()) {
+                    isExpanded.toggle()
+                }
+            }) {
+                HStack {
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text(fastingProtocol.localizedTitle)
+                            .font(.system(size: userSettings.textSize.size + 2, weight: .bold))
+                        Text(fastingProtocol.localizedDescription)
+                            .font(.system(size: userSettings.textSize.size - 1))
+                            .foregroundColor(.secondary)
+                    }
+                    Spacer()
+                    if isSelected {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundColor(.green)
+                            .font(.title)
+                    }
+                    Image(systemName: "chevron.down")
+                        .foregroundColor(.gray)
+                        .rotationEffect(.degrees(isExpanded ? -180 : 0))
+                }
+            }
+            .buttonStyle(PlainButtonStyle())
 
+            if isExpanded {
+                VStack(alignment: .leading, spacing: 20) {
+                    DetailSectionView(
+                        title: NSLocalizedString("Benefits", comment: ""),
+                        details: fastingProtocol.benefits,
+                        icon: "heart.fill",
+                        iconColor: .pink,
+                        textSize: userSettings.textSize.size
+                    )
+                    DetailSectionView(
+                        title: NSLocalizedString("Recommended For", comment: ""),
+                        details: fastingProtocol.recommendedFor,
+                        icon: "person.fill",
+                        iconColor: .blue,
+                        textSize: userSettings.textSize.size
+                    )
+                    DetailSectionView(
+                        title: NSLocalizedString("Guidelines", comment: ""),
+                        details: fastingProtocol.guidelines,
+                        icon: "list.bullet.clipboard.fill",
+                        iconColor: .orange,
+                        textSize: userSettings.textSize.size
+                    )
+                    
+                    Button(action: onSelect) {
+                        Text(isSelected ? NSLocalizedString("Currently Selected", comment: "") : NSLocalizedString("Select This Protocol", comment: ""))
+                            .font(.system(size: userSettings.textSize.size, weight: .semibold))
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(isSelected ? Color.gray : Color.blue)
+                            .cornerRadius(12)
+                            .shadow(radius: isSelected ? 0 : 3)
+                    }
+                    .disabled(isSelected)
+                }
+                .padding(.top, 10)
+                .transition(.opacity)
+            }
+        }
+        .padding()
+        .background(Color(.secondarySystemBackground))
+        .cornerRadius(16)
+        .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 2)
+    }
+}
 
+// MARK: - DetailSectionView
+private struct DetailSectionView: View {
+    let title: String
+    let details: [String]
+    let icon: String
+    let iconColor: Color
+    let textSize: CGFloat
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                Image(systemName: icon)
+                    .foregroundColor(iconColor)
+                Text(title)
+                    .font(.system(size: textSize, weight: .bold))
+            }
+            
+            ForEach(details.filter { !$0.isEmpty }, id: \.self) { detail in
+                HStack(alignment: .top, spacing: 8) {
+                    Image(systemName: "checkmark.circle")
+                        .foregroundColor(.green)
+                        .font(.system(size: textSize - 2))
+                    Text(detail)
+                        .font(.system(size: textSize - 2))
+                    Spacer()
+                }
+            }
+        }
+    }
+}
     
     // MARK: - ActionButtonsSectionView
     private struct ActionButtonsSectionView: View {
@@ -644,119 +746,7 @@ struct FastingTimerView: View {
     
 
 
-// MARK: - ProtocolCard
-private struct ProtocolCard: View {
-    let `protocol`: FastingProtocol
-    let isSelected: Bool
-    let onSelect: () -> Void
-    @State private var isExpanded = false
-    @EnvironmentObject private var userSettings: UserSettings
 
-    var body: some View {
-        VStack(alignment: .leading, spacing: 15) {
-            Button(action: {
-                withAnimation(.spring()) {
-                    isExpanded.toggle()
-                }
-            }) {
-                HStack {
-                    VStack(alignment: .leading, spacing: 5) {
-                        Text(protocol.localizedTitle)
-                            .font(.system(size: userSettings.textSize.size + 2, weight: .bold))
-                        Text(protocol.localizedDescription)
-                            .font(.system(size: userSettings.textSize.size - 1))
-                            .foregroundColor(.secondary)
-                    }
-                    Spacer()
-                    if isSelected {
-                        Image(systemName: "checkmark.circle.fill")
-                            .foregroundColor(.green)
-                            .font(.title)
-                    }
-                    Image(systemName: "chevron.down")
-                        .foregroundColor(.gray)
-                        .rotationEffect(.degrees(isExpanded ? -180 : 0))
-                }
-            }
-            .buttonStyle(PlainButtonStyle())
-
-            if isExpanded {
-                VStack(alignment: .leading, spacing: 20) {
-                    DetailSectionView(
-                        title: NSLocalizedString("Benefits", comment: ""),
-                        details: `protocol`.benefits,
-                        icon: "heart.fill",
-                        iconColor: .pink,
-                        textSize: userSettings.textSize.size
-                    )
-                    DetailSectionView(
-                        title: NSLocalizedString("Recommended For", comment: ""),
-                        details: `protocol`.recommendedFor,
-                        icon: "person.fill",
-                        iconColor: .blue,
-                        textSize: userSettings.textSize.size
-                    )
-                    DetailSectionView(
-                        title: NSLocalizedString("Guidelines", comment: ""),
-                        details: `protocol`.guidelines,
-                        icon: "list.bullet.clipboard.fill",
-                        iconColor: .orange,
-                        textSize: userSettings.textSize.size
-                    )
-                    
-                    Button(action: onSelect) {
-                        Text(isSelected ? NSLocalizedString("Currently Selected", comment: "") : NSLocalizedString("Select This Protocol", comment: ""))
-                            .font(.system(size: userSettings.textSize.size, weight: .semibold))
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(isSelected ? Color.gray : Color.blue)
-                            .cornerRadius(12)
-                            .shadow(radius: isSelected ? 0 : 3)
-                    }
-                    .disabled(isSelected)
-                }
-                .padding(.top, 10)
-                .transition(.opacity)
-            }
-        }
-        .padding()
-        .background(Color(.secondarySystemBackground))
-        .cornerRadius(16)
-        .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 2)
-    }
-}
-
-// MARK: - DetailSectionView
-private struct DetailSectionView: View {
-    let title: String
-    let details: [String]
-    let icon: String
-    let iconColor: Color
-    let textSize: CGFloat
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                Image(systemName: icon)
-                    .foregroundColor(iconColor)
-                Text(title)
-                    .font(.system(size: textSize, weight: .bold))
-            }
-            
-            ForEach(details.filter { !$0.isEmpty }, id: \.self) { detail in
-                HStack(alignment: .top, spacing: 8) {
-                    Image(systemName: "checkmark.circle")
-                        .foregroundColor(.green)
-                        .font(.system(size: textSize - 2))
-                    Text(detail)
-                        .font(.system(size: textSize - 2))
-                    Spacer()
-                }
-            }
-        }
-    }
-}
 
 struct FastingTimerView_Previews: PreviewProvider {
         static var previews: some View {

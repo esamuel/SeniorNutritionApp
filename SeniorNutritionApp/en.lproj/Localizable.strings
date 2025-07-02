@@ -1,3 +1,17 @@
+// Cuisine Types
+"General" = "General";
+"Chinese" = "Chinese";
+"Russian" = "Russian";
+"Middle Eastern" = "Middle Eastern";
+"Korean" = "Korean";
+"Japanese" = "Japanese";
+"Indian" = "Indian";
+"Mexican" = "Mexican";
+"Italian" = "Italian";
+"Cuisine" = "Cuisine";
+"All Cuisines" = "All Cuisines";
+"No foods in this cuisine" = "No foods in this cuisine";
+
 // HomeView localization
 "Home" = "Home";
 "Open Settings" = "Open Settings";

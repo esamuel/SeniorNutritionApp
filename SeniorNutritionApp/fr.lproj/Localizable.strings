@@ -93,8 +93,8 @@
 "Nutrition Tips for Seniors" = "Conseils Nutritionnels pour les Seniors";
 "View More Tips" = "Voir plus de conseils";
 "View More" = "Voir plus";
-"All" = "Tout";
-"Health Tips" = "Conseils santé";
+"All" = "Tous";
+"Health Tips" = "Conseils de santé";
 "Search health tips" = "Rechercher des conseils santé";
 "General Nutrition Tips for Seniors" = "Conseils Nutritionnels Généraux pour les Seniors";
 "Tips for Your Medical Conditions" = "Conseils pour vos conditions médicales";
@@ -198,6 +198,52 @@
 "Profile" = "Profil";
 "Appointments" = "Rendez-vous";
 "Add Medication" = "Ajouter un médicament";
+
+/* Medications View */
+"Current Medications" = "Médicaments actuels";
+"No medications added" = "Aucun médicament ajouté";
+"Delete Medication" = "Supprimer le médicament";
+"Are you sure you want to delete this medication? This action cannot be undone." = "Êtes-vous sûr de vouloir supprimer ce médicament ? Cette action est irréversible.";
+
+/* Help View */
+"Getting Started" = "Pour commencer";
+"Core Features" = "Fonctionnalités principales";
+"Health Monitoring" = "Suivi de la santé";
+"Support Options" = "Options de support";
+"Legal" = "Légal";
+"Help & Support" = "Aide et support";
+"App Tour" = "Visite de l'application";
+"Take a guided tour of the app" = "Faites une visite guidée de l'application";
+"FAQ" = "FAQ";
+"Frequently asked questions" = "Questions fréquemment posées";
+"Track meals, analyze nutrition, and monitor daily intake" = "Suivez les repas, analysez la nutrition et surveillez l'apport quotidien";
+"Manage intermittent fasting schedules and track progress" = "Gérez les horaires de jeûne intermittent et suivez les progrès";
+"Water Tracking" = "Suivi de l'eau";
+"Monitor daily hydration and set water intake goals" = "Surveillez l'hydratation quotidienne et fixez des objectifs de consommation d'eau";
+"Set reminders, track medications, and manage your health" = "Définissez des rappels, suivez les médicaments et gérez votre santé";
+"Health Data" = "Données de santé";
+"Track blood pressure, blood sugar, heart rate, and weight" = "Suivez la tension artérielle, la glycémie, la fréquence cardiaque et le poids";
+"Manage doctor's appointments and health check-ups" = "Gérez les rendez-vous chez le médecin et les bilans de santé";
+"Control the app with your voice" = "Contrôlez l'application avec votre voix";
+"Text & Display" = "Texte et affichage";
+"Adjust text size and display settings" = "Ajustez la taille du texte et les paramètres d'affichage";
+"Contact Support" = "Contacter le support";
+"Email us for help and feedback" = "Envoyez-nous un e-mail pour obtenir de l'aide et des commentaires";
+"Watch step-by-step video guides" = "Regardez des guides vidéo étape par étape";
+"Read our privacy policy" = "Lisez notre politique de confidentialité";
+"Terms of Use" = "Conditions d'utilisation";
+"Read our terms of use" = "Lisez nos conditions d'utilisation";
+"Emergency Help" = "Aide d'urgence";
+"Call emergency services" = "Appeler les services d'urgence";
+"Call %s" = "Appeler %s";
+"Are you sure you want to call %s?" = "Êtes-vous sûr de vouloir appeler le %s ?";
+"Contact" = "Contacter";
+
+/* Menu View */
+"HEALTH & WELLNESS" = "SANTÉ ET BIEN-ÊTRE";
+"HELP & SUPPORT" = "AIDE ET SUPPORT";
+"Medications" = "Médicaments";
+"Help" = "Aide";
 "Add Meal" = "Ajouter un repas";
 "Water Tracker" = "Suivi de l'eau";
 "Emergency" = "Urgence";
@@ -344,18 +390,9 @@
 "health_tip_activity_strength_description" = "Envisagez un entraînement de force léger 2-3 fois par semaine, car de nombreuses personnes âgées trouvent que cela aide à maintenir la masse musculaire, la densité osseuse et l'indépendance.";
 
 /* Health Tips - Medication */
-"health_tip_medication_schedule_title" = "Horaires des médicaments";
-"health_tip_medication_schedule_description" = "Prendre des médicaments à des heures régulières chaque jour peut aider à maintenir des niveaux stables dans votre circulation sanguine. Envisagez de discuter du meilleur horaire avec votre professionnel de santé.";
 
-"health_tip_medication_food_title" = "Médicaments et repas";
-"health_tip_medication_food_description" = "Certains médicaments doivent être pris avec de la nourriture. Envisagez de discuter avec votre professionnel de santé du meilleur moment pour prendre vos médicaments par rapport aux repas.";
 
 /* Health Tips - Senior Specific */
-"health_tip_senior_balance_title" = "Exercices d'équilibre";
-"health_tip_senior_balance_description" = "Pratiquez des exercices d'équilibre comme se tenir sur un pied ou marcher talon-pointe pour prévenir les chutes, qui sont un risque important pour les personnes âgées.";
-
-"health_tip_senior_vision_title" = "Santé des yeux";
-"health_tip_senior_vision_description" = "Faites examiner vos yeux chaque année. Une bonne vision est cruciale pour prévenir les chutes et maintenir la qualité de vie.";
 "Stay Hydrated" = "Restez hydraté";
 "Drink plenty of water during your fasting periods. Aim for at least 8-10 glasses daily to prevent dehydration." = "Buvez beaucoup d'eau pendant vos périodes de jeûne. Essayez de boire au moins 8 à 10 verres par jour pour éviter la déshydratation.";
 "Ease Into Fasting" = "Allez-y progressivement";
@@ -366,12 +403,323 @@
 {{ ... }}
 "Pay attention to how you feel during fasting. Mild hunger is normal, but dizziness, extreme fatigue, or confusion are not." = "Faites attention à votre ressenti pendant le jeûne. Une légère faim est normale, mais des étourdissements, une fatigue extrême ou de la confusion ne le sont pas.";
 
-"Help Guide" = "Guide d'aide";
+/* Accessibility Help View */
+"Accessibility Help" = "Aide à l'accessibilité";
+"Accessibility Features" = "Fonctionnalités d'accessibilité";
+"Make the app easier to use with accessibility options" = "Facilitez l'utilisation de l'application avec les options d'accessibilité";
+"Text Size Options" = "Options de taille de texte";
+"Small: Compact text for more information on screen" = "Petit : Texte compact pour plus d'informations à l'écran";
+"Medium: Standard text size (default)" = "Moyen : Taille de texte standard (par défaut)";
+"Large: Easier to read for vision challenges" = "Grand : Plus facile à lire pour les problèmes de vision";
+"Extra Large: Maximum readability for low vision" = "Très grand : Lisibilité maximale pour une basse vision";
+"Change text size in Settings > Accessibility" = "Changez la taille du texte dans Paramètres > Accessibilité";
+"High Contrast Mode" = "Mode contraste élevé";
+"Enhances text and button visibility" = "Améliore la visibilité du texte et des boutons";
+"Increases contrast between elements" = "Augmente le contraste entre les éléments";
+"Makes the app easier to navigate" = "Facilite la navigation dans l'application";
+"Helpful for users with vision impairments" = "Utile pour les utilisateurs ayant une déficience visuelle";
+"Toggle in Settings > Accessibility" = "Activez dans Paramètres > Accessibilité";
+"Use voice commands to navigate the app" = "Utilisez les commandes vocales pour naviguer dans l'application";
+"Hands-free operation for mobility challenges" = "Fonctionnement mains libres pour les problèmes de mobilité";
+"Voice feedback for all app actions" = "Retour vocal pour toutes les actions de l'application";
+"Customizable voice settings and speed" = "Paramètres vocaux et vitesse personnalisables";
+"Access detailed voice help in Voice Assistance section" = "Accédez à l'aide vocale détaillée dans la section Assistance vocale";
+"Navigation Assistance" = "Assistance à la navigation";
+"Large, easy-to-tap buttons throughout the app" = "Boutons larges et faciles à toucher dans toute l'application";
+"Clear visual hierarchy and organization" = "Hiérarchie visuelle et organisation claires";
+"Consistent navigation patterns" = "Modèles de navigation cohérents";
+"Back buttons always visible" = "Boutons de retour toujours visibles";
+"Minimal gestures required for operation" = "Gestes minimaux requis pour le fonctionnement";
+"Visual Design" = "Conception visuelle";
+"Color-coded sections for easy identification" = "Sections avec code couleur pour une identification facile";
+"Icons accompany all text labels" = "Les icônes accompagnent toutes les étiquettes de texte";
+"Clear visual feedback for all actions" = "Retour visuel clair pour toutes les actions";
+"Progress indicators for long operations" = "Indicateurs de progression pour les opérations longues";
+"Consistent color scheme throughout" = "Palette de couleurs cohérente partout";
+"Cognitive Support Features" = "Fonctionnalités de soutien cognitif";
+"Simple, intuitive interface design" = "Conception d'interface simple et intuitive";
+"Step-by-step guidance for complex tasks" = "Guidage étape par étape pour les tâches complexes";
+"Clear confirmation messages" = "Messages de confirmation clairs";
+"Consistent terminology throughout" = "Terminologie cohérente partout";
+"Helpful tooltips and explanations" = "Info-bulles et explications utiles";
+"Undo options for most actions" = "Options d'annulation pour la plupart des actions";
+"Motor Assistance" = "Assistance motrice";
+"Large touch targets for easy tapping" = "Grandes zones tactiles pour un tapotement facile";
+"Minimal fine motor skills required" = "Compétences motrices fines minimales requises";
+"Voice commands reduce physical interaction" = "Les commandes vocales réduisent l'interaction physique";
+"Simple swipe gestures only" = "Uniquement des gestes de balayage simples";
+"No complex multi-finger gestures" = "Pas de gestes complexes à plusieurs doigts";
+"Settings and Customization" = "Paramètres et personnalisation";
+"Access all accessibility settings in Settings tab" = "Accédez à tous les paramètres d'accessibilité dans l'onglet Paramètres";
+"Changes apply immediately across the app" = "Les modifications s'appliquent immédiatement dans toute l'application";
+"Settings are saved automatically" = "Les paramètres sont enregistrés automatiquement";
+"Reset to defaults option available" = "Option de réinitialisation aux valeurs par défaut disponible";
+"Test settings before committing to changes" = "Testez les paramètres avant de valider les modifications";
+"Troubleshooting" = "Dépannage";
+"If text is too small, increase text size in Settings" = "Si le texte est trop petit, augmentez la taille du texte dans les Paramètres";
+"If buttons are hard to tap, enable high contrast" = "Si les boutons sont difficiles à toucher, activez le contraste élevé";
+"If voice commands aren't working, check microphone permissions" = "Si les commandes vocales ne fonctionnent pas, vérifiez les autorisations du microphone";
+"If app seems slow, try reducing text size" = "Si l'application semble lente, essayez de réduire la taille du texte";
+"Contact support for additional accessibility needs" = "Contactez le support pour des besoins d'accessibilité supplémentaires";
+
+/* Health Monitoring Help View */
+"Health Data Help" = "Aide sur les données de santé";
+"Monitor vital signs and track your health progress" = "Surveillez les signes vitaux et suivez vos progrès de santé";
+"Available Health Metrics" = "Métriques de santé disponibles";
+"Blood Pressure: Track systolic and diastolic readings" = "Tension artérielle : Suivez les lectures systoliques et diastoliques";
+"Blood Sugar: Monitor glucose levels for diabetes management" = "Glycémie : Surveillez les niveaux de glucose pour la gestion du diabète";
+"Heart Rate: Record resting and active heart rates" = "Fréquence cardiaque : Enregistrez les fréquences cardiaques au repos et actives";
+"Weight: Track body weight changes over time" = "Poids : Suivez l'évolution du poids corporel dans le temps";
+"Body Mass Index (BMI): Automatic calculation from height and weight" = "Indice de masse corporelle (IMC) : Calcul automatique à partir de la taille et du poids";
+"Tap the 'Health' tab at the bottom of your screen" = "Appuyez sur l'onglet 'Santé' en bas de votre écran";
+"Select the health metric you want to track" = "Sélectionnez la métrique de santé que vous souhaitez suivre";
+"Tap 'Add' to enter a new reading" = "Appuyez sur 'Ajouter' pour entrer une nouvelle lecture";
+"Enter your measurement and any notes" = "Entrez votre mesure et toutes les notes";
+"View your history and trends over time" = "Consultez votre historique et vos tendances au fil du temps";
+"Key Features" = "Fonctionnalités clés";
+"Data Entry: Easy input forms for each health metric" = "Saisie de données : Formulaires de saisie faciles pour chaque métrique de santé";
+"History Tracking: View all your past readings" = "Suivi de l'historique : Consultez toutes vos lectures passées";
+"Trend Analysis: See patterns and changes over time" = "Analyse des tendances : Voyez les modèles et les changements au fil du temps";
+"Target Ranges: Set personal health goals" = "Plages cibles : Définissez des objectifs de santé personnels";
+"Export Data: Share with healthcare providers" = "Exporter les données : Partagez avec les prestataires de soins de santé";
+"Reminders: Get notifications for regular check-ins" = "Rappels : Recevez des notifications pour des contrôles réguliers";
+"Health Monitoring Tips" = "Conseils de surveillance de la santé";
+"Take measurements at the same time each day" = "Prenez les mesures à la même heure chaque jour";
+"Use proper equipment for accurate readings" = "Utilisez un équipement approprié pour des lectures précises";
+"Record any factors that might affect your readings" = "Enregistrez tous les facteurs qui pourraient affecter vos lectures";
+"Share your data with your healthcare provider" = "Partagez vos données avec votre prestataire de soins de santé";
+"Set realistic health goals with your doctor" = "Fixez des objectifs de santé réalistes avec votre médecin";
+"Privacy & Security" = "Confidentialité et sécurité";
+"Your health data is stored locally on your device" = "Vos données de santé sont stockées localement sur votre appareil";
+"Data is encrypted and secure" = "Les données sont cryptées et sécurisées";
+"You control what data to share" = "Vous contrôlez les données à partager";
+"No health data is sent to third parties" = "Aucune donnée de santé n'est envoyée à des tiers";
+"You can export or delete your data anytime" = "Vous pouvez exporter ou supprimer vos données à tout moment";
+"If readings seem unusual, double-check your measurements" = "Si les lectures semblent inhabituelles, vérifiez vos mesures";
+"Use the notes field to record any special circumstances" = "Utilisez le champ des notes pour enregistrer toute circonstance particulière";
+"Set up reminders to maintain consistent tracking" = "Configurez des rappels pour maintenir un suivi cohérent";
+"Export your data regularly as a backup" = "Exportez régulièrement vos données comme sauvegarde";
+"Contact support if you need help with data entry" = "Contactez le support si vous avez besoin d'aide pour la saisie des données";
+
+/* Appointment Help View */
+"Appointments Help" = "Aide pour les rendez-vous";
+"Appointment Management" = "Gestion des rendez-vous";
+"Organize and track your medical appointments" = "Organisez et suivez vos rendez-vous médicaux";
+"Tap the 'More' tab and select 'Appointments'" = "Appuyez sur l'onglet 'Plus' et sélectionnez 'Rendez-vous'";
+"Tap 'Add Appointment' to create a new entry" = "Appuyez sur 'Ajouter un rendez-vous' pour créer une nouvelle entrée";
+"Enter appointment details including date, time, and provider" = "Entrez les détails du rendez-vous, y compris la date, l'heure et le prestataire";
+"Add notes about what to discuss or prepare" = "Ajoutez des notes sur ce qu'il faut discuter ou préparer";
+"Set reminders to ensure you don't miss appointments" = "Définissez des rappels pour vous assurer de ne pas manquer vos rendez-vous";
+"Appointment Scheduling: Add new appointments with full details" = "Planification de rendez-vous : Ajoutez de nouveaux rendez-vous avec tous les détails";
+"Provider Information: Store doctor and facility contact details" = "Informations sur le prestataire : Stockez les coordonnées du médecin et de l'établissement";
+"Reminder System: Get notifications before appointments" = "Système de rappel : Recevez des notifications avant les rendez-vous";
+"Notes & Preparation: Add important information to discuss" = "Notes et préparation : Ajoutez des informations importantes à discuter";
+"Calendar View: See all appointments in chronological order" = "Vue Calendrier : Voir tous les rendez-vous par ordre chronologique";
+"History Tracking: Keep records of past appointments" = "Suivi de l'historique : Conservez les enregistrements des rendez-vous passés";
+"Location Details: Store addresses and directions" = "Détails de l'emplacement : Stockez les adresses et les itinéraires";
+"Best Practices" = "Meilleures pratiques";
+"Add appointments as soon as you schedule them" = "Ajoutez les rendez-vous dès que vous les planifiez";
+"Include provider contact information for easy access" = "Incluez les coordonnées du prestataire pour un accès facile";
+"Set reminders 1-2 days before appointments" = "Définissez des rappels 1 à 2 jours avant les rendez-vous";
+"Add notes about questions to ask or symptoms to discuss" = "Ajoutez des notes sur les questions à poser ou les symptômes à discuter";
+"Record appointment outcomes and follow-up instructions" = "Enregistrez les résultats des rendez-vous et les instructions de suivi";
+"Keep a list of medications to bring to appointments" = "Gardez une liste des médicaments à apporter aux rendez-vous";
+"Organization Tips" = "Conseils d'organisation";
+"Use consistent naming for providers and facilities" = "Utilisez une dénomination cohérente pour les prestataires et les établissements";
+"Add appointment type (checkup, specialist, test, etc.)" = "Ajoutez le type de rendez-vous (bilan, spécialiste, test, etc.)";
+"Include insurance information if needed" = "Incluez les informations d'assurance si nécessaire";
+"Note any special instructions (fasting, bring records, etc.)" = "Notez toutes les instructions spéciales (jeûne, apporter des dossiers, etc.)";
+"Set different reminder times for different appointment types" = "Définissez des heures de rappel différentes pour différents types de rendez-vous";
+"Integration with Other Features" = "Intégration avec d'autres fonctionnalités";
+"Link appointments with medication reminders" = "Liez les rendez-vous aux rappels de médicaments";
+"Prepare health data to share with providers" = "Préparez les données de santé à partager avec les prestataires";
+"Track symptoms before appointments" = "Suivez les symptômes avant les rendez-vous";
+"Record doctor's recommendations in notes" = "Enregistrez les recommandations du médecin dans les notes";
+"Set follow-up reminders based on appointment outcomes" = "Définissez des rappels de suivi en fonction des résultats des rendez-vous";
+"If reminders aren't working, check notification settings" = "Si les rappels ne fonctionnent pas, vérifiez les paramètres de notification";
+"Use the search function to find specific appointments" = "Utilisez la fonction de recherche pour trouver des rendez-vous spécifiques";
+"Export appointment data to share with caregivers" = "Exportez les données de rendez-vous pour les partager avec les soignants";
+"Backup your appointment data regularly" = "Sauvegardez régulièrement vos données de rendez-vous";
+"Contact support if you need help with calendar sync" = "Contactez le support si vous avez besoin d'aide pour la synchronisation du calendrier";
+
+/* Voice Assistance Help View */
+"voice_help_nav_title" = "Aide vocale";
+"voice_help_intro" = "Les commandes vocales facilitent l'utilisation de l'application, en particulier pour les personnes à mobilité ou vision réduite. Voici comment commencer :";
+"voice_activation_header" = "Activation des commandes vocales";
+"voice_activation_step1" = "Appuyez sur l'icône du microphone dans le coin supérieur droit de n'importe quel écran";
+"voice_activation_step2" = "Attendez l'invite 'À l'écoute...'";
+"voice_activation_step3" = "Parlez clairement votre commande, puis faites une pause";
+"voice_activation_step4" = "L'application traitera automatiquement votre commande sans qu'il soit nécessaire d'appuyer à nouveau";
+"voice_commands_header" = "Commandes vocales disponibles";
+"voice_nav_commands_header" = "Commandes de navigation";
+"voice_command_navigate_home" = "Naviguer vers l'accueil";
+"voice_command_navigate_nutrition" = "Aller à l'écran de suivi nutritionnel";
+"voice_command_navigate_water" = "Ouvrir l'écran de suivi de l'eau";
+"voice_command_navigate_fasting" = "Naviguer vers le minuteur de jeûne";
+"voice_command_view_medications" = "Voir vos médicaments";
+"voice_command_open_help" = "Ouvrir l'écran d'aide";
+"voice_action_commands_header" = "Commandes d'action";
+"voice_command_log_water" = "Enregistrer la consommation d'eau";
+"voice_command_record_meal" = "Enregistrer un nouveau repas";
+"voice_command_begin_fast" = "Commencer une période de jeûne";
+"voice_command_end_fast" = "Terminer le jeûne en cours";
+"voice_command_mark_medication_taken" = "Marquer le médicament comme pris";
+"voice_command_create_reminder" = "Créer un nouveau rappel";
+"voice_command_set_language" = "Définir la langue sur [langue]";
+"voice_info_commands_header" = "Commandes d'information";
+"voice_command_daily_progress" = "Entendre un résumé de vos progrès quotidiens";
+"voice_command_check_water_intake" = "Vérifier votre consommation d'eau pour la journée";
+"voice_command_next_medication" = "Savoir quand votre prochain médicament est dû";
+"voice_command_check_fast_status" = "Vérifier l'état de votre jeûne actuel";
+"voice_tips_header" = "Conseils pour une meilleure reconnaissance vocale";
+"voice_tip_speak_clearly" = "Parlez clairement et à un rythme modéré";
+"voice_tip_reduce_noise" = "Réduisez le bruit de fond lorsque c'est possible";
+"voice_tip_rephrase" = "Si l'application ne comprend pas, essayez de reformuler votre commande";
+"voice_tip_use_exact_phrases" = "Pour une meilleure reconnaissance, utilisez les phrases de commande exactes listées ci-dessus";
+"video_tutorial_header" = "Tutoriel vidéo";
+
+/* FAQ View */
+"Frequently Asked Questions" = "Questions fréquemment posées";
+"Search FAQs..." = "Rechercher dans la FAQ...";
+"Can't find an answer?" = "Vous ne trouvez pas de réponse ?";
+"Contact Support" = "Contacter le support";
+"faq_general_what_is_app" = "Qu'est-ce que l'application Senior Nutrition ?";
+"faq_general_what_is_app_answer" = "C'est une application de santé complète conçue pour les seniors afin de gérer leur nutrition, leur jeûne, leurs médicaments et leur bien-être général.";
+"faq_general_who_is_for" = "À qui s'adresse cette application ?";
+"faq_general_who_is_for_answer" = "L'application est spécialement conçue pour les personnes âgées, leurs soignants et les membres de leur famille qui souhaitent suivre et améliorer leur santé.";
+"faq_general_is_free" = "L'application est-elle gratuite ?";
+"faq_general_is_free_answer" = "Oui, les fonctionnalités de base de l'application sont gratuites. Des fonctionnalités avancées peuvent être disponibles via un abonnement.";
+"faq_general_data_privacy" = "Comment mes données sont-elles protégées ?";
+"faq_general_data_privacy_answer" = "Nous accordons la priorité à votre vie privée. Toutes les données sont cryptées et stockées en toute sécurité. Nous ne partageons jamais vos informations de santé sans votre consentement. Consultez notre politique de confidentialité pour plus de détails.";
+"faq_startup_how_begin" = "Comment commencer ?";
+"faq_startup_how_begin_answer" = "Téléchargez l'application, créez votre profil en saisissant des informations de base sur votre santé, et commencez à explorer les fonctionnalités comme le suivi des repas et les rappels de médicaments.";
+"faq_startup_profile_setup" = "Dois-je remplir toutes les informations de mon profil ?";
+"faq_startup_profile_setup_answer" = "Remplir votre profil avec précision nous aide à personnaliser les recommandations pour vous, mais vous pouvez commencer avec des informations de base et compléter le reste plus tard.";
+"faq_startup_language_change" = "Puis-je changer la langue de l'application ?";
+"faq_startup_language_change_answer" = "Oui, vous pouvez changer la langue dans les paramètres de l'application. Nous prenons en charge plusieurs langues pour mieux vous servir.";
+"faq_startup_data_backup" = "Comment puis-je sauvegarder mes données ?";
+"faq_startup_data_backup_answer" = "L'application sauvegarde automatiquement vos données sur votre compte. Vous pouvez également exporter manuellement vos données depuis la section des paramètres.";
+"faq_nutrition_how_track" = "Comment puis-je suivre ma nutrition ?";
+"faq_nutrition_how_track_answer" = "Allez à la section 'Nutrition', appuyez sur 'Ajouter un repas', et recherchez ou saisissez les aliments que vous avez mangés. Vous pouvez également prendre une photo de votre repas pour une saisie plus rapide.";
+"faq_nutrition_food_database" = "Votre base de données alimentaires est-elle complète ?";
+"faq_nutrition_food_database_answer" = "Nous avons une base de données complète d'aliments. Si vous ne trouvez pas un article, vous pouvez l'ajouter manuellement à votre journal.";
+"faq_nutrition_custom_foods" = "Puis-je ajouter mes propres aliments ou recettes personnalisés ?";
+"faq_nutrition_custom_foods_answer" = "Oui, vous pouvez créer des aliments et des recettes personnalisés pour un suivi précis de vos repas faits maison.";
+"faq_nutrition_portion_sizes" = "Comment estimer les tailles des portions ?";
+"faq_nutrition_portion_sizes_answer" = "L'application fournit des guides visuels et des mesures courantes (tasses, onces) pour vous aider à estimer les tailles des portions avec précision.";
+"faq_nutrition_goals_setting" = "Puis-je définir mes propres objectifs nutritionnels ?";
+"faq_nutrition_goals_setting_answer" = "Oui, vous pouvez définir des objectifs personnalisés pour les calories, les macronutriments et les micronutriments en fonction des recommandations de votre médecin.";
+"faq_fasting_what_is" = "Qu'est-ce que le jeûne intermittent ?";
+"faq_fasting_what_is_answer" = "Le jeûne intermittent est un modèle alimentaire qui alterne entre des périodes de jeûne et d'alimentation. Consultez la section d'aide sur le jeûne pour en savoir plus.";
+"faq_fasting_safe" = "Le jeûne est-il sans danger pour les seniors ?";
+"faq_fasting_safe_answer" = "Le jeûne peut offrir des avantages pour la santé, mais il est important de consulter votre médecin avant de commencer tout nouveau régime de jeûne, surtout si vous avez des problèmes de santé sous-jacents.";
+"faq_fasting_protocols" = "Quels protocoles de jeûne l'application prend-elle en charge ?";
+"faq_fasting_protocols_answer" = "L'application prend en charge les protocoles de jeûne courants comme 16:8, 18:6 et 5:2. Vous pouvez également créer un programme de jeûne personnalisé.";
+"faq_fasting_medications" = "Puis-je prendre des médicaments pendant le jeûne ?";
+"faq_fasting_medications_answer" = "Certains médicaments doivent être pris avec de la nourriture. Veuillez consulter votre médecin ou votre pharmacien pour savoir comment gérer vos médicaments pendant les périodes de jeûne.";
+"faq_fasting_emergency_stop" = "Que dois-je faire si je me sens mal pendant un jeûne ?";
+"faq_fasting_emergency_stop_answer" = "Si vous vous sentez mal, il est important d'arrêter votre jeûne immédiatement. Écoutez votre corps et consultez un professionnel de la santé si les symptômes persistent.";
+"faq_water_how_much" = "Combien d'eau devrais-je boire chaque jour ?";
+"faq_water_how_much_answer" = "Les besoins en hydratation varient. L'application fournit une recommandation personnalisée basée sur votre profil, mais il est toujours préférable de consulter votre médecin.";
+"faq_water_reminders" = "Puis-je définir des rappels pour boire de l'eau ?";
+"faq_water_reminders_answer" = "Oui, vous pouvez configurer des rappels personnalisables tout au long de la journée pour vous aider à atteindre vos objectifs d'hydratation.";
+"faq_water_other_drinks" = "D'autres boissons comptent-elles dans mon apport hydrique ?";
+"faq_water_other_drinks_answer" = "Bien que l'eau soit la meilleure, d'autres liquides comme les tisanes et les bouillons peuvent contribuer à votre hydratation. L'application vous permet de suivre différents types de boissons.";
+"faq_medication_add" = "Comment ajouter mes médicaments ?";
+"faq_medication_add_answer" = "Allez à la section 'Médicaments', appuyez sur 'Ajouter un médicament', et entrez le nom, le dosage et l'horaire. Vous pouvez également scanner le code-barres sur l'emballage de votre médicament.";
+"faq_medication_reminders" = "Comment fonctionnent les rappels de médicaments ?";
+"faq_medication_reminders_answer" = "L'application vous enverra des notifications lorsque qu'il est temps de prendre vos médicaments. Vous pouvez marquer chaque dose comme prise directement depuis la notification.";
+"faq_medication_missed" = "Que faire si je manque une dose ?";
+"faq_medication_missed_answer" = "L'application vous permet d'enregistrer une dose manquée. Consultez votre médecin ou votre pharmacien pour obtenir des conseils sur la marche à suivre si vous manquez une dose de votre médicament.";
+"faq_medication_refills" = "L'application peut-elle me rappeler de renouveler mes ordonnances ?";
+"faq_medication_refills_answer" = "Oui, vous pouvez définir des rappels de renouvellement en fonction du nombre de pilules que vous avez, afin de ne jamais être à court de médicaments importants.";
+"faq_medication_share" = "Puis-je partager ma liste de médicaments avec mon médecin ?";
+"faq_medication_share_answer" = "Oui, vous pouvez exporter votre liste de médicaments et votre historique de prise pour les partager avec votre médecin ou vos soignants.";
+"faq_health_what_track" = "Quelles données de santé puis-je suivre ?";
+"faq_health_what_track_answer" = "Vous pouvez suivre diverses mesures de santé, notamment la tension artérielle, la glycémie, le poids et la fréquence cardiaque. Ces données vous aident, ainsi que votre médecin, à surveiller votre santé globale.";
+"faq_health_accuracy" = "Dans quelle mesure le suivi de la santé est-il précis ?";
+"faq_health_accuracy_answer" = "La précision dépend de la saisie correcte des données. Utilisez des appareils médicaux fiables pour les mesures et saisissez-les dans l'application. L'application fournit des tendances et des informations basées sur les données que vous fournissez.";
+"faq_health_export" = "Puis-je exporter mes données de santé ?";
+"faq_health_export_answer" = "Oui, vous pouvez exporter vos données de santé pour les partager avec votre médecin ou pour vos archives personnelles.";
+"faq_health_doctor_share" = "Comment puis-je partager mes données de santé avec mon médecin ?";
+"faq_health_doctor_share_answer" = "Exportez vos données de santé sous forme de rapport PDF ou CSV, que vous pouvez ensuite imprimer ou envoyer par e-mail directement à votre médecin depuis l'application.";
+"faq_appointments_add" = "Comment puis-je gérer mes rendez-vous chez le médecin ?";
+"faq_appointments_add_answer" = "La section 'Rendez-vous' vous permet d'ajouter et de suivre tous vos rendez-vous médicaux. Vous pouvez définir des rappels et ajouter des notes pour chaque rendez-vous.";
+"faq_appointments_reminders" = "Recevrai-je des rappels pour mes rendez-vous ?";
+"faq_appointments_reminders_answer" = "Oui, vous pouvez définir plusieurs rappels pour chaque rendez-vous afin de vous assurer de ne jamais en manquer un.";
+"faq_appointments_notes" = "Puis-je ajouter des notes à mes rendez-vous ?";
+"faq_appointments_notes_answer" = "Oui, vous pouvez ajouter des notes pour noter les questions à poser à votre médecin, les symptômes à discuter ou les instructions de suivi.";
+"faq_accessibility_text_size" = "Comment puis-je ajuster la taille du texte ?";
+"faq_accessibility_text_size_answer" = "Vous pouvez modifier la taille du texte dans les paramètres d'accessibilité de l'application pour améliorer la lisibilité.";
+"faq_accessibility_voice" = "L'application prend-elle en charge les commandes vocales ?";
+"faq_accessibility_voice_answer" = "Oui, l'application inclut une assistance vocale pour une navigation et une utilisation mains libres. Consultez la section d'aide vocale pour une liste des commandes disponibles.";
+"faq_accessibility_contrast" = "Existe-t-il un mode à contraste élevé ?";
+"faq_accessibility_contrast_answer" = "Oui, vous pouvez activer un mode à contraste élevé dans les paramètres d'accessibilité pour améliorer la visibilité pour les utilisateurs malvoyants.";
+"faq_technical_notifications" = "Je ne reçois pas de notifications. Que dois-je faire ?";
+"faq_technical_notifications_answer" = "Assurez-vous que les notifications sont activées pour l'application dans les paramètres de votre téléphone. Vérifiez également les paramètres de notification de l'application pour vous assurer que les rappels sont configurés correctement.";
+"faq_technical_data_loss" = "J'ai perdu mes données. Puis-je les récupérer ?";
+"faq_technical_data_loss_answer" = "Si vos données ont été sauvegardées sur votre compte, vous devriez pouvoir les restaurer en vous reconnectant. Si vous avez besoin d'aide, contactez notre équipe de support.";
+"faq_technical_app_crash" = "L'application n'arrête pas de planter. Que puis-je faire ?";
+"faq_technical_app_crash_answer" = "Essayez de redémarrer votre appareil et assurez-vous que l'application est mise à jour avec la dernière version. Si le problème persiste, veuillez contacter le support avec les détails de votre appareil et ce que vous faisiez lorsque l'application a planté.";
+"faq_technical_sync_issues" = "Mes données ne se synchronisent pas entre les appareils.";
+"faq_technical_sync_issues_answer" = "Assurez-vous d'être connecté au même compte sur les deux appareils et que vous disposez d'une connexion Internet stable. Si les problèmes de synchronisation persistent, contactez le support pour obtenir de l'aide.";
+"faq_support_contact" = "Comment puis-je contacter le support client ?";
+"faq_support_contact_answer" = "Vous pouvez contacter le support par e-mail à [email de support], ou via la section 'Contactez-nous' de l'application.";
+"faq_support_video_chat" = "Proposez-vous un support par chat vidéo ?";
+"faq_support_video_chat_answer" = "Oui, nous proposons un support par chat vidéo pour des démonstrations personnalisées et un dépannage. Vous pouvez prendre rendez-vous via la section d'aide.";
+"faq_support_feature_request" = "Puis-je demander une nouvelle fonctionnalité ?";
+"faq_support_feature_request_answer" = "Absolument ! Nous apprécions les commentaires des utilisateurs. Veuillez soumettre vos demandes de fonctionnalités via la section de commentaires de l'application ou en contactant notre équipe de support.";
+"faq_emergency_number" = "L'application peut-elle appeler les services d'urgence ?";
+"faq_emergency_number_answer" = "Oui, il y a un bouton d'urgence dans l'application qui peut être configuré pour appeler le 911 ou un contact d'urgence désigné.";
+"faq_emergency_contacts" = "Comment configurer les contacts d'urgence ?";
+"faq_emergency_contacts_answer" = "Vous pouvez ajouter des contacts d'urgence dans votre profil. Ces contacts seront avertis si vous activez la fonction d'urgence.";
+"faq_emergency_medical" = "Où puis-je stocker mes informations médicales d'urgence ?";
+"faq_emergency_medical_answer" = "Il existe une section 'ID médical' dans votre profil où vous pouvez stocker des informations vitales telles que les allergies, les problèmes de santé et les médicaments actuels pour un accès rapide en cas d'urgence.";
+
+/* Privacy Policy View */
+"privacy_policy_title" = "Politique de confidentialité";
+"privacy_policy_intro" = "Votre vie privée est importante pour nous. Cette politique explique quelles informations nous collectons et comment nous les utilisons pour améliorer votre expérience.";
+"privacy_section_data_collection" = "Collecte de données";
+"privacy_content_data_collection" = "Nous collectons les informations que vous fournissez, telles que les détails du profil, les repas enregistrés et les données de santé, pour personnaliser votre expérience et fournir des informations pertinentes.";
+"privacy_section_data_usage" = "Utilisation des données";
+"privacy_content_data_usage" = "Les données sont utilisées pour suivre vos progrès, offrir des recommandations personnalisées et améliorer nos services. Les données agrégées et anonymisées peuvent être utilisées à des fins de recherche.";
+"privacy_section_data_sharing" = "Partage de données";
+"privacy_content_data_sharing" = "Nous ne partageons pas vos informations personnelles de santé avec des tiers sans votre consentement explicite, sauf si la loi l'exige. Vous pouvez choisir de partager des rapports avec votre médecin ou vos soignants.";
+"privacy_section_data_security" = "Sécurité des données";
+"privacy_content_data_security" = "Nous utilisons des mesures de sécurité conformes aux normes de l'industrie, y compris le cryptage, pour protéger vos données contre tout accès non autorisé.";
+"privacy_section_user_rights" = "Vos droits";
+"privacy_content_user_rights" = "Vous avez le droit d'accéder, de modifier ou de supprimer vos informations personnelles. Vous pouvez gérer vos données dans les paramètres de l'application ou en contactant le support.";
+"privacy_section_policy_changes" = "Modifications de la politique";
+"privacy_content_policy_changes" = "Nous pouvons mettre à jour cette politique de confidentialité périodiquement. Nous vous informerons de tout changement important via l'application ou par e-mail.";
+"privacy_section_contact" = "Nous contacter";
+"privacy_content_contact" = "Si vous avez des questions sur cette politique de confidentialité, veuillez nous contacter à [email de support].";
+"Last Updated: June 1, 2025" = "Dernière mise à jour : 1er juin 2025";
+
+/* Terms of Use View */
+"terms_of_use_title" = "Conditions d'utilisation";
+"terms_intro" = "En utilisant notre application, vous acceptez de vous conformer à ces conditions. Veuillez les lire attentivement.";
+"terms_section_acceptance" = "Acceptation des conditions";
+"terms_content_acceptance" = "En accédant ou en utilisant notre application, vous acceptez d'être lié par ces Conditions d'utilisation et notre Politique de confidentialité. Si vous n'êtes pas d'accord, n'utilisez pas l'application.";
+"terms_section_health_disclaimer" = "Avis de non-responsabilité en matière de santé";
+"terms_content_health_disclaimer" = "Notre application fournit des informations sur la santé à des fins éducatives uniquement. Elle ne remplace pas un avis médical professionnel. Consultez toujours un professionnel de la santé pour des conseils personnalisés.";
+"terms_section_user_accounts" = "Comptes d'utilisateurs";
+"terms_content_user_accounts" = "Vous êtes responsable du maintien de la confidentialité des informations de votre compte et de toutes les activités qui se déroulent sous votre compte. Vous devez nous informer immédiatement de toute utilisation non autorisée.";
+"terms_section_ip" = "Propriété intellectuelle";
+"terms_content_ip" = "Tout le contenu et les matériaux de l'application, y compris les logos, le texte et les graphiques, sont notre propriété ou celle de nos concédants de licence et sont protégés par les lois sur la propriété intellectuelle.";
+"terms_section_termination" = "Résiliation";
+"terms_content_termination" = "Nous pouvons résilier ou suspendre votre accès à l'application à tout moment, sans préavis, pour toute violation de ces conditions.";
+"terms_section_liability" = "Limitation de responsabilité";
+"terms_content_liability" = "Nous ne sommes pas responsables des dommages directs, indirects, accessoires ou consécutifs résultant de votre utilisation de l'application.";
+"terms_section_governing_law" = "Droit applicable";
+"terms_content_governing_law" = "Ces conditions sont régies par les lois de notre juridiction, sans égard à ses dispositions en matière de conflit de lois.";
+
+"Privacy Policy" = "Politique de confidentialité";
 "Your comprehensive health companion for managing nutrition, fasting, medications, and wellness tracking. This guide will help you navigate the app's features effectively." = "Votre compagnon santé complet pour gérer la nutrition, le jeûne, les médicaments et le suivi du bien-être. Ce guide vous aidera à naviguer efficacement dans les fonctionnalités de l'application.";
 "Advanced fasting protocol options for seniors" = "Options avancées de protocoles de jeûne pour les seniors";
 "Real-time tracking with health safety indicators" = "Suivi en temps réel avec indicateurs de sécurité santé";
 "Customizable fasting and eating windows" = "Fenêtres de jeûne et de repas personnalisables";
 "Integration with medication and meal schedules" = "Intégration avec les horaires de médicaments et de repas";
+{{ ... }}
 "Nutrition Tracking" = "Suivi nutritionnel";
 "Simplified meal logging with photos or voice input" = "Enregistrement simplifié des repas avec photos ou saisie vocale";
 "Nutritional analysis with senior-specific recommendations" = "Analyse nutritionnelle avec recommandations spécifiques aux seniors";
@@ -422,6 +770,58 @@
 "End Time" = "Heure de fin";
 "Settings" = "Paramètres";
 "Save" = "Enregistrer";
+"Time to Hydrate!" = "C'est l'heure de s'hydrater !";
+"Don't forget to drink some water" = "N'oubliez pas de boire de l'eau";
+
+/* Water Reminder Frequency */
+"Every 30 Minutes" = "Toutes les 30 minutes";
+"Every Hour" = "Toutes les heures";
+"Every 2 Hours" = "Toutes les 2 heures";
+"Every 3 Hours" = "Toutes les 3 heures";
+"Custom" = "Personnalisé";
+
+/* Water Tracking Help */
+"Water Tracking Help" = "Aide sur le suivi de l'eau";
+"Stay hydrated and monitor your daily water intake" = "Restez hydraté et surveillez votre consommation d'eau quotidienne";
+"Getting Started" = "Pour commencer";
+"Tap the 'Water' tab at the bottom of your screen" = "Appuyez sur l'onglet 'Eau' en bas de votre écran";
+"Set your daily water intake goal (recommended 8-10 glasses)" = "Définissez votre objectif quotidien de consommation d'eau (recommandé 8-10 verres)";
+"Use the + button to log each glass of water you drink" = "Utilisez le bouton + pour enregistrer chaque verre d'eau que vous buvez";
+"Track your progress throughout the day" = "Suivez vos progrès tout au long de la journée";
+"Key Features" = "Fonctionnalités clés";
+"Daily Goal Setting: Customize your hydration target" = "Définition d'objectif quotidien : Personnalisez votre cible d'hydratation";
+"Quick Logging: Tap to add water with one touch" = "Enregistrement rapide : Appuyez pour ajouter de l'eau en un seul toucher";
+"Progress Tracking: Visual progress bar shows daily completion" = "Suivi de progression : La barre de progression visuelle montre l'achèvement quotidien";
+"Reminders: Get notifications to stay hydrated" = "Rappels : Recevez des notifications pour rester hydraté";
+"History: View your water intake over time" = "Historique : Consultez votre consommation d'eau au fil du temps";
+"Hydration Tips" = "Conseils d'hydratation";
+"Drink water first thing in the morning" = "Buvez de l'eau dès le matin";
+"Keep a water bottle nearby throughout the day" = "Gardez une bouteille d'eau à proximité tout au long de la journée";
+"Drink water before, during, and after exercise" = "Buvez de l'eau avant, pendant et après l'exercice";
+"Listen to your body's thirst signals" = "Écoutez les signaux de soif de votre corps";
+"Consider your activity level and climate" = "Tenez compte de votre niveau d'activité et du climat";
+"Health Benefits" = "Bienfaits pour la santé";
+"Maintains body temperature and metabolism" = "Maintient la température corporelle et le métabolisme";
+"Supports kidney function and waste removal" = "Soutient la fonction rénale et l'élimination des déchets";
+"Improves skin health and appearance" = "Améliore la santé et l'apparence de la peau";
+"Enhances cognitive function and energy levels" = "Améliore les fonctions cognitives et les niveaux d'énergie";
+"Aids digestion and nutrient absorption" = "Aide à la digestion et à l'absorption des nutriments";
+"Troubleshooting" = "Dépannage";
+"If you forget to log water, you can add it later" = "Si vous oubliez d'enregistrer l'eau, vous pouvez l'ajouter plus tard";
+"Adjust your daily goal based on your needs" = "Ajustez votre objectif quotidien en fonction de vos besoins";
+"Enable notifications to get hydration reminders" = "Activez les notifications pour recevoir des rappels d'hydratation";
+"Check your weekly progress to see patterns" = "Vérifiez votre progression hebdomadaire pour voir les tendances";
+
+/* Water View */
+"of %.0f ml" = "sur %.0f ml";
+"Quick Add" = "Ajout rapide";
+"Today's Log" = "Journal d'aujourd'hui";
+"No water intake logged today" = "Aucune consommation d'eau enregistrée aujourd'hui";
+"Total: %.0f ml" = "Total : %.0f ml";
+"Remember to drink water regularly throughout the day" = "N'oubliez pas de boire de l'eau régulièrement tout au long de la journée";
+"Enter amount in milliliters" = "Entrez la quantité en millilitres";
+"Amount" = "Quantité";
+"Cancel" = "Annuler";
 "%@ pill shape" = "%@ forme de pilule";
 "%d cal" = "%d cal";
 "%d g carbs" = "%d g glucides";
@@ -598,6 +998,16 @@
 "Fast for 12 hours, eat within a 12-hour window. Ideal for beginners." = "Jeûne pendant 12 heures, mangez dans une fenêtre de 12 heures. Idéal pour les débutants.";
 "Fast for 14 hours, eat within a 10-hour window. Moderate intensity." = "Jeûne pendant 14 heures, mangez dans une fenêtre de 10 heures. Intensité modérée.";
 "Fast for 16 hours, eat within an 8-hour window. Standard protocol." = "Jeûne pendant 16 heures, mangez dans une fenêtre de 8 heures. Protocole standard.";
+
+/* FAQ - Frequently Asked Questions */
+"faq_title" = "Foire Aux Questions";
+"faq_description" = "Trouvez des réponses aux questions courantes sur l'application";
+"faq_nav_title" = "FAQ";
+"Frequently Asked Questions" = "Foire Aux Questions";
+"Search FAQs..." = "Rechercher dans la FAQ...";
+"Can't find an answer?" = "Vous ne trouvez pas de réponse ?";
+"Contact Support" = "Contacter le support";
+
 "Custom fasting protocol with your preferred hours." = "Protocole de jeûne personnalisé avec vos heures préférées.";
 
 /* Personalized Nutrition Tips */
@@ -887,7 +1297,7 @@
 /* Profile Section Titles */
 "Medical Conditions" = "Conditions Médicales";
 "Dietary Restrictions" = "Restrictions Alimentaires";
-"Emergency Contacts" = "Contacts d'Urgence";
+"Emergency Contacts" = "Contacts d'urgence";
 "Personal Information" = "Informations Personnelles";
 "Physical Information" = "Informations Physiques";
 "American Units" = "Unités Américaines";
@@ -1171,7 +1581,16 @@
 "food_database_promo_text" = "Consultez les informations nutritionnelles détaillées pour tous les aliments, y compris les plats de pâtes et plus encore";
 
 // Health Tips View
-"Health Tips" = "Conseils Santé";
+"Health Tips" = "Conseils de santé";
+
+/*
+ MenuView.swift
+ */
+"More" = "Plus";
+"HEALTH & WELLNESS" = "SANTÉ ET BIEN-ÊTRE";
+"HELP & SUPPORT" = "AIDE ET SOUTIEN";
+"Medications" = "Médicaments";
+"Help" = "Aide";
 "All" = "Tous";
 "View More" = "Voir Plus";
 "Search health tips" = "Rechercher des conseils santé";
@@ -1336,16 +1755,16 @@
 "health_tip_calcium_title" = "Obtenez Suffisamment de Calcium";
 "health_tip_vitaminD_title" = "N'Oubliez Pas la Vitamine D";
 
-"health_tip_fasting_hydration_title" = "Restez Hydraté Pendant le Jeûne";
-"health_tip_fasting_listen_body_title" = "Écoutez Votre Corps";
-"health_tip_fasting_break_title" = "Rompez le Jeûne en Douceur";
-"health_tip_fasting_sleep_title" = "Un Sommeil de Qualité Aide au Jeûne";
 
-"health_tip_hydration_reminder_title" = "Définissez des Rappels d'Hydratation";
-"health_tip_hydration_foods_title" = "Mangez des Aliments Hydratants";
 
-"health_tip_activity_walking_title" = "Bienfaits de la Marche Quotidienne";
-"health_tip_activity_strength_title" = "L'Entraînement de Force est Important";
+
+
+
+
+
+
+
+
 
 "health_tip_medication_schedule_title" = "Calendrier des Médicaments";
 "health_tip_medication_food_title" = "Prenez avec de la Nourriture si Nécessaire";
@@ -1361,8 +1780,12 @@
 "health_tip_sleep_description" = "Visez 7 à 8 heures de sommeil de qualité chaque nuit. Un horaire de sommeil régulier aide à réguler le métabolisme et favorise la santé générale.";
 "health_tip_stress_description" = "Pratiquez des techniques de relaxation comme la respiration profonde, la méditation ou le yoga doux pour gérer le stress, qui peut affecter la santé cardiaque et la digestion.";
 "health_tip_checkups_description" = "Les examens de santé réguliers sont essentiels. Planifiez des visites chez votre médecin au moins une fois par an, davantage si vous avez des maladies chroniques.";
+"health_tip_protein_description" = "Les seniors ont besoin de plus de protéines pour préserver leur masse musculaire. Incluez des sources comme la volaille, le poisson, les haricots et les noix dans vos repas.";
+"health_tip_fiber_description" = "Les aliments riches en fibres comme les fruits, les légumes et les grains entiers favorisent la santé digestive et aident à maintenir un poids santé.";
+"health_tip_calcium_description" = "Le calcium est vital pour la santé des os. Les produits laitiers, les légumes-feuilles et les aliments enrichis sont d'excellentes sources.";
+"health_tip_vitaminD_description" = "La vitamine D aide à l'absorption du calcium. Pensez à l'exposition au soleil (avec modération) et aux aliments enrichis ou aux suppléments, après consultation de votre médecin.";
 {{ ... }}
-"health_tip_activity_strength_description" = "Même un entraînement de force léger 2-3 fois par semaine aide à maintenir la masse musculaire, la densité osseuse et l'indépendance en vieillissant.";
+
 
 "health_tip_medication_schedule_description" = "Prenez les médicaments à la même heure chaque jour pour maintenir des niveaux constants dans votre sang et maximiser l'efficacité.";
 "health_tip_medication_food_description" = "Certains médicaments doivent être pris avec de la nourriture. Suivez les instructions de votre médecin concernant la synchronisation des médicaments avec les repas.";
@@ -1967,11 +2390,11 @@
 "faq_technical_sync_issues_answer" = "Actuellement, l'application stocke les données localement sur chaque appareil. Pour transférer des données entre appareils, utilisez la fonction d'exportation/importation dans Paramètres > Gestion des données. Nous travaillons sur la synchronisation cloud pour les futures mises à jour.";
 
 "faq_support_contact" = "Comment contacter le support ?";
-"faq_support_contact_answer" = "Vous pouvez contacter le support par email à support@seniornutrition.app ou via l'option Contacter le support dans la section Aide. Nous répondons généralement dans les 24-48 heures.";
+"faq_support_contact_answer" = "Vous pouvez contacter le support par email à support@saniornutritionapp.com ou via l'option Contacter le support dans la section Aide. Nous répondons généralement dans les 24-48 heures.";
 "faq_support_video_chat" = "Puis-je programmer un appel vidéo avec le support ?";
 "faq_support_video_chat_answer" = "Oui ! Nous offrons un support par appel vidéo pour des problèmes complexes ou une assistance personnalisée. Demandez un appel vidéo via la section Aide, et nous programmerons un moment convenable pour vous.";
 "faq_support_feature_request" = "Comment demander de nouvelles fonctionnalités ?";
-"faq_support_feature_request_answer" = "Nous accueillons les demandes de fonctionnalités ! Envoyez vos suggestions à support@seniornutrition.app avec 'Demande de fonctionnalité' dans l'objet. Nous examinons toutes les demandes et priorisons basé sur les besoins des utilisateurs.";
+"faq_support_feature_request_answer" = "Nous accueillons les demandes de fonctionnalités ! Envoyez vos suggestions à support@saniornutritionapp.com avec 'Demande de fonctionnalité' dans l'objet. Nous examinons toutes les demandes et priorisons basé sur les besoins des utilisateurs.";
 
 "faq_emergency_number" = "Quel numéro d'urgence l'application utilise-t-elle ?";
 "faq_emergency_number_answer" = "L'application détecte automatiquement votre région et utilise le numéro d'urgence approprié (911 pour les États-Unis, 112 pour l'UE, etc.). Vous pouvez également définir un numéro d'urgence personnalisé dans Paramètres > Numéro d'urgence.";

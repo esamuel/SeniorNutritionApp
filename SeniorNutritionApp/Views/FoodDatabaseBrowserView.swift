@@ -12,6 +12,7 @@ struct FoodDatabaseBrowserView: View {
     @StateObject private var foodDatabase = FoodDatabaseService()
     @State private var searchText = ""
     @State private var selectedCategory: FoodCategory?
+    @State private var selectedCuisine: CuisineType?
     @State private var showingFoodDetail = false
     @State private var selectedFood: FoodItem?
     @State private var showingAllCategories = true
@@ -118,6 +119,19 @@ struct FoodDatabaseBrowserView: View {
                     }
                     .padding(.horizontal)
                     .padding(.vertical, 8)
+                }
+                
+                // Cuisine filter
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 10) {
+                        cuisineButton(nil)
+                        
+                        ForEach(CuisineType.allCases, id: \.self) { cuisine in
+                            cuisineButton(cuisine)
+                        }
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 4)
                 }
                 
                 // Food count
@@ -278,6 +292,21 @@ struct FoodDatabaseBrowserView: View {
         }
     }
     
+    // Cuisine button
+    private func cuisineButton(_ cuisine: CuisineType?) -> some View {
+        Button(action: {
+            selectedCuisine = cuisine
+        }) {
+            Text(cuisine?.localizedString ?? NSLocalizedString("All", comment: ""))
+                .font(.system(size: userSettings.textSize.size - 2))
+                .padding(.horizontal, 15)
+                .padding(.vertical, 8)
+                .background((selectedCuisine == cuisine) ? Color.blue : Color.gray.opacity(0.2))
+                .foregroundColor((selectedCuisine == cuisine) ? .white : .primary)
+                .cornerRadius(20)
+        }
+    }
+    
     // Food row
     private func foodRow(_ food: FoodItem) -> some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -357,6 +386,11 @@ struct FoodDatabaseBrowserView: View {
         // Apply category filter
         if let category = selectedCategory {
             foods = foods.filter { $0.category == category }
+        }
+        
+        // Apply cuisine filter
+        if let cuisine = selectedCuisine {
+            foods = foods.filter { $0.cuisineType == cuisine }
         }
         
         // Sort based on current language

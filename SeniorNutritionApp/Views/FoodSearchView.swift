@@ -8,6 +8,7 @@ struct FoodSearchView: View {
     @Binding var selectedFood: FoodItem?
     @State private var searchText = ""
     @State private var selectedCategory: FoodCategory?
+    @State private var selectedCuisine: CuisineType?
     @State private var showingAllFoods = false
     
     var body: some View {
@@ -59,41 +60,62 @@ struct FoodSearchView: View {
                     .padding(.horizontal)
                 }
                 
+                // Cuisine filter
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 10) {
+                        // All cuisines button
+                        Button(action: {
+                            selectedCuisine = nil
+                        }) {
+                            Text(NSLocalizedString("All Cuisines", comment: ""))
+                                .font(.system(size: userSettings.textSize.size - 2))
+                                .padding(.horizontal, 15)
+                                .padding(.vertical, 8)
+                                .background(selectedCuisine == nil ? Color.green : Color(.systemGray6))
+                                .foregroundColor(selectedCuisine == nil ? .white : .primary)
+                                .cornerRadius(20)
+                        }
+                        
+                        // Cuisine buttons
+                        ForEach(CuisineType.allCases, id: \.self) { cuisine in
+                            cuisineButton(cuisine)
+                        }
+                    }
+                    .padding(.horizontal)
+                }
+                
                 // Food list
-                if showingAllFoods || !searchText.isEmpty || selectedCategory != nil {
+                if showingAllFoods || !searchText.isEmpty || selectedCategory != nil || selectedCuisine != nil {
                     List {
                         ForEach(filteredFoods) { food in
                             foodRow(food)
                         }
                     }
                 } else {
-                    // Initial view - grouped food categories
+                    // Initial view - grouped food categories and cuisines
                     List {
                         Group {
                             foodCategorySection(title: "Recent Selections", foods: Array(foodDatabase.foodItems.prefix(5)))
                             
+                            // Cuisine sections
+                            foodCuisineSection(title: "Chinese", cuisine: .chinese)
+                            foodCuisineSection(title: "Russian", cuisine: .russian)
+                            foodCuisineSection(title: "Japanese", cuisine: .japanese)
+                            foodCuisineSection(title: "Italian", cuisine: .italian)
+                            foodCuisineSection(title: "Indian", cuisine: .indian)
+                        }
+                        
+                        Group {
+                            foodCuisineSection(title: "Mexican", cuisine: .mexican)
+                            foodCuisineSection(title: "Korean", cuisine: .korean)
+                            foodCuisineSection(title: "Middle Eastern", cuisine: .middleEastern)
+                            
+                            // Traditional category sections
                             foodCategorySection(title: "Fruits", 
                                                 foods: foodDatabase.foodItems.filter { $0.category == .fruits }.prefix(5))
                             
                             foodCategorySection(title: "Vegetables", 
                                                 foods: foodDatabase.foodItems.filter { $0.category == .vegetables }.prefix(5))
-                            
-                            foodCategorySection(title: "Protein", 
-                                                foods: foodDatabase.foodItems.filter { $0.category == .protein }.prefix(5))
-                            
-                            foodCategorySection(title: "Dairy", 
-                                                foods: foodDatabase.foodItems.filter { $0.category == .dairy }.prefix(5))
-                        }
-                        
-                        Group {
-                            foodCategorySection(title: "Grains", 
-                                                foods: foodDatabase.foodItems.filter { $0.category == .grains }.prefix(5))
-                            
-                            foodCategorySection(title: "Beverages", 
-                                                foods: foodDatabase.foodItems.filter { $0.category == .beverages }.prefix(5))
-                            
-                            foodCategorySection(title: "Snacks", 
-                                                foods: foodDatabase.foodItems.filter { $0.category == .snacks }.prefix(5))
                         }
                         
                         Button(action: {
@@ -123,6 +145,7 @@ struct FoodSearchView: View {
                         Button("Categories") {
                             showingAllFoods = false
                             selectedCategory = nil
+                            selectedCuisine = nil
                             searchText = ""
                         }
                         .font(.system(size: userSettings.textSize.size))
@@ -181,6 +204,52 @@ struct FoodSearchView: View {
                 .background(selectedCategory == category ? Color.blue : Color(.systemGray6))
                 .foregroundColor(selectedCategory == category ? .white : .primary)
                 .cornerRadius(20)
+        }
+    }
+    
+    // Cuisine button
+    private func cuisineButton(_ cuisine: CuisineType) -> some View {
+        Button(action: {
+            selectedCuisine = selectedCuisine == cuisine ? nil : cuisine
+        }) {
+            Text(cuisine.localizedString)
+                .font(.system(size: userSettings.textSize.size - 2))
+                .padding(.horizontal, 15)
+                .padding(.vertical, 8)
+                .background(selectedCuisine == cuisine ? Color.green : Color(.systemGray6))
+                .foregroundColor(selectedCuisine == cuisine ? .white : .primary)
+                .cornerRadius(20)
+        }
+    }
+    
+    // Food cuisine section with see all button
+    private func foodCuisineSection(title: String, cuisine: CuisineType) -> some View {
+        let localizedTitle = NSLocalizedString(title, comment: "Cuisine section title")
+        let cuisineFoods = foodDatabase.foodItems.filter { $0.cuisineType == cuisine }.prefix(5)
+        
+        return Section(header: Text(localizedTitle)
+            .font(.system(size: userSettings.textSize.size, weight: .bold))) {
+            
+            if cuisineFoods.isEmpty {
+                Text(NSLocalizedString("No foods in this cuisine", comment: "Empty cuisine message"))
+                    .font(.system(size: userSettings.textSize.size))
+                    .foregroundColor(.secondary)
+                    .padding(.vertical, 8)
+            } else {
+                ForEach(Array(cuisineFoods)) { food in
+                    foodRow(food)
+                }
+                
+                Button(action: {
+                    selectedCuisine = cuisine
+                    showingAllFoods = true
+                }) {
+                    Text(String(format: NSLocalizedString("See All %@", comment: "See all cuisine button"), localizedTitle))
+                        .font(.system(size: userSettings.textSize.size - 1))
+                        .foregroundColor(.green)
+                }
+                .padding(.vertical, 4)
+            }
         }
     }
     
@@ -255,6 +324,11 @@ struct FoodSearchView: View {
         // Apply category filter
         if let category = selectedCategory {
             foods = foods.filter { $0.category == category }
+        }
+        
+        // Apply cuisine filter
+        if let cuisine = selectedCuisine {
+            foods = foods.filter { $0.cuisineType == cuisine }
         }
         
         return foods

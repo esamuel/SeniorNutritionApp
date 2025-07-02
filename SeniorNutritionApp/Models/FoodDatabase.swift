@@ -1,10 +1,29 @@
 import Foundation
 
+// MARK: - Cuisine Type
+enum CuisineType: String, Codable, CaseIterable {
+    case general = "General"
+    case chinese = "Chinese"
+    case russian = "Russian"
+    case middleEastern = "Middle Eastern"
+    case korean = "Korean"
+    case japanese = "Japanese"
+    case indian = "Indian"
+    case mexican = "Mexican"
+    case italian = "Italian"
+    
+    // Get localized cuisine name
+    var localizedString: String {
+        return NSLocalizedString(self.rawValue, comment: "Cuisine type")
+    }
+}
+
 // MARK: - Food Item
 struct FoodItem: Identifiable, Codable, Equatable {
     var id: UUID
     var name: String
     var category: FoodCategory
+    var cuisineType: CuisineType
     var nutritionalInfo: NutritionalInfo
     var servingSize: Double // in grams
     var servingUnit: String // e.g., "g", "oz", "cup"
@@ -16,6 +35,25 @@ struct FoodItem: Identifiable, Codable, Equatable {
     var notesFr: String?
     var notesEs: String?
     var notesHe: String?
+    
+    // Default initializer with general cuisine type for backward compatibility
+    init(id: UUID = UUID(), name: String, category: FoodCategory, cuisineType: CuisineType = .general, nutritionalInfo: NutritionalInfo, servingSize: Double, servingUnit: String, isCustom: Bool = false, notes: String? = nil, nameFr: String? = nil, nameEs: String? = nil, nameHe: String? = nil, notesFr: String? = nil, notesEs: String? = nil, notesHe: String? = nil) {
+        self.id = id
+        self.name = name
+        self.category = category
+        self.cuisineType = cuisineType
+        self.nutritionalInfo = nutritionalInfo
+        self.servingSize = servingSize
+        self.servingUnit = servingUnit
+        self.isCustom = isCustom
+        self.notes = notes
+        self.nameFr = nameFr
+        self.nameEs = nameEs
+        self.nameHe = nameHe
+        self.notesFr = notesFr
+        self.notesEs = notesEs
+        self.notesHe = notesHe
+    }
     
     // Computed property for nutritional info per 100g
     var nutritionalInfoPer100g: NutritionalInfo {
@@ -57,6 +95,7 @@ struct FoodItem: Identifiable, Codable, Equatable {
         lhs.id == rhs.id &&
         lhs.name == rhs.name &&
         lhs.category == rhs.category &&
+        lhs.cuisineType == rhs.cuisineType &&
         lhs.nutritionalInfo == rhs.nutritionalInfo &&
         lhs.servingSize == rhs.servingSize &&
         lhs.servingUnit == rhs.servingUnit &&
@@ -211,7 +250,7 @@ class FoodDatabaseService: ObservableObject {
         print("\n=== Starting to load food database ===")
         
         // Load all foods from all food item files
-        var allFoods = SampleFoodData.foods + NewFoodItems.foods + AdditionalFoodItems.foods + DairyFoodItems.foods + BeverageFoodItems.foods + SnackFoodItems.foods + FruitFoodItems.foods + PastaFoodItems.foods + CakeFoodItems.foods + BreadAndSandwichFoodItems.foods + StuffedDishFoodItems.foods + SeedFoodItems.foods + CondimentFoodItems.foods + FishMealItems.foods
+        var allFoods = SampleFoodData.foods + NewFoodItems.foods + AdditionalFoodItems.foods + DairyFoodItems.foods + BeverageFoodItems.foods + SnackFoodItems.foods + FruitFoodItems.foods + PastaFoodItems.foods + CakeFoodItems.foods + BreadAndSandwichFoodItems.foods + StuffedDishFoodItems.foods + SeedFoodItems.foods + CondimentFoodItems.foods + FishMealItems.foods + GrainDishItems.foods + ItalianCuisineItems.foods + VegetableFoodItems.foods + MexicanCuisineFoodItems.foods + IndianCuisineFoodItems.foods + ChineseCuisineFoodItems.foods + JapaneseCuisineFoodItems.foods + KoreanCuisineFoodItems.foods + MiddleEasternCuisineFoodItems.foods + RussianCuisineFoodItems.foods
         
         print("\nInitial food count: \(allFoods.count)")
         print("\nAvailable foods:")
@@ -515,6 +554,12 @@ class FoodDatabaseService: ObservableObject {
     func foodsByCategory(_ category: FoodCategory) -> [FoodItem] {
         let allFoods = foodItems + customFoodItems
         return allFoods.filter { $0.category == category }
+    }
+    
+    // Get foods by cuisine type
+    func foodsByCuisine(_ cuisineType: CuisineType) -> [FoodItem] {
+        let allFoods = foodItems + customFoodItems
+        return allFoods.filter { $0.cuisineType == cuisineType }
     }
     
     // Save custom foods

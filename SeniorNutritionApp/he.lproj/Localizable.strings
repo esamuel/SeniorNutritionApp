@@ -1,3 +1,17 @@
+// Cuisine Types
+"General" = "כללי";
+"Chinese" = "סיני";
+"Russian" = "רוסי";
+"Middle Eastern" = "מזרח תיכוני";
+"Korean" = "קוריאני";
+"Japanese" = "יפני";
+"Indian" = "הודי";
+"Mexican" = "מקסיקני";
+"Italian" = "איטלקי";
+"Cuisine" = "מטבח";
+"All Cuisines" = "כל המטבחים";
+"No foods in this cuisine" = "אין מזון במטבח זה";
+
 /* About Section */
 "About" = "אודות";
 "About the App" = "אודות האפליקציה";
@@ -7,6 +21,8 @@
 "Safety First" = "בטיחות תחילה";
 "Contact Us" = "צור קשר";
 "Legal Information" = "מידע משפטי";
+"Terms of Service" = "תנאי שירות";
+"End User License Agreement" = "הסכם רישיון משתמש קצה";
 
 /* About Content */
 "Senior Nutrition is a comprehensive health and wellness app designed specifically for adults aged 50 and above. Our mission is to support healthy aging through personalized nutrition guidance, mindful eating practices, and safe fasting protocols tailored for seniors." = "Senior Nutrition היא אפליקציה מקיפה לבריאות ורווחה שתוכננה במיוחד למבוגרים בני 50 ומעלה. המשימה שלנו היא לתמוך בהזדקנות בריאה באמצעות הדרכה תזונתית מותאמת אישית, שיטות אכילה מודעת ופרוטוקולי צום בטוחים המותאמים לגיל השלישי.";
@@ -2118,6 +2134,26 @@
 "privacy_policy_title" = "מדיניות פרטיות";
 "privacy_policy_intro" = "דף זה מודיע לך על המדיניות שלנו בנוגע לאיסוף, שימוש וחשיפה של נתונים אישיים בעת השימוש בשירות שלנו ועל הבחירות ששייכת לך בנוגע לנתונים אלה.";
 "privacy_policy_collection_header" = "איסוף ושימוש במידע";
+
+/* Privacy Policy Sections */
+"privacy_section_data_collection" = "איסוף נתונים";
+"privacy_section_data_usage" = "שימוש בנתונים";
+"privacy_section_data_sharing" = "שיתוף נתונים";
+"privacy_section_data_security" = "אבטחת נתונים";
+"privacy_section_user_rights" = "זכויות המשתמש";
+"privacy_section_policy_changes" = "שינויים במדיניות";
+"privacy_section_contact" = "יצירת קשר";
+
+/* Privacy Policy Content */
+"privacy_content_data_collection" = "אנו אוספים מספר סוגים שונים של מידע למטרות שונות כדי לספק ולשפר את השירות שלנו אליך. המידע שאנו אוספים כולל נתוני תזונה, נתוני צום, מדדי בריאות, ונתוני שימוש אפליקציה, אך אנחנו מאחסנים אותם בצורה מקומית על המכשיר שלך.";
+"privacy_content_data_usage" = "אנו משתמשים בנתונים שנאספו למטרות שונות: לספק ולתחזק את השירות שלנו, להודיע לך על שינויים בשירות שלנו, לאפשר לך להשתתף בתכונות אינטראקטיביות של השירות שלנו, לספק תמיכה בלקוחות, לאסוף ניתוחים לשיפור השירות, ולנטר את השימוש בשירות.";
+"privacy_content_data_sharing" = "אנו לא משתפים את הנתונים האישיים שלך עם צדדים שלישיים, אלא אם כן תבחר במפורש לייצא ולשתף אותם עם ספקי שירותי בריאות או אנשים אחרים. אנו לא מוכרים, מסחרים, או משכירים את הנתונים האישיים של המשתמשים לאחרים.";
+"privacy_content_data_security" = "אבטחת הנתונים שלך חשובה לנו, אבל זכור שאף שיטת שידור דרך האינטרנט או שיטת אחסון אלקטרוני אינה בטוחה ב-100%. בעוד שאנו שואפים להשתמש באמצעים מסחריים מקובלים להגנה על המידע האישי שלך, איננו יכולים להבטיח את הביטחון המוחלט שלו. נתוני האפליקציה מאוחסנים בצורה מקומית ומוצפנים.";
+"privacy_content_user_rights" = "יש לך זכויות מסוימות ביחס למידע שלך, כולל הזכות לגשת, לעדכן או למחוק מידע שיש לנו עליך. בכל עת, אתה יכול לגשת ולעדכן את המידע שלך על ידי כניסה לחשבון שלך. אתה יכול גם לבקש למחוק את כל הנתונים שלך מהאפליקציה באמצעות ההגדרות.";
+"privacy_content_policy_changes" = "אנו עשויים לעדכן את מדיניות הפרטיות שלנו מעת לעת. אנו נודיע לך על כל שינויים על ידי פרסום מדיניות הפרטיות החדשה בדף זה ועדכון 'תאריך עדכון אחרון' בראש מדיניות הפרטיות. מומלץ לסקור מדיניות פרטיות זו מפעם לפעם לשינויים.";
+"privacy_content_contact" = "אם יש לך שאלות כלשהן לגבי מדיניות הפרטיות הזו, אנא צור איתנו קשר בכתובת privacy@seniornutritionapp.com.";
+
+"Last Updated: June 1, 2025" = "עודכן לאחרונה: 1 ביוני, 2025";
 "privacy_policy_collection_content" = "אנו אוספים מספר סוגים שונים של מידע למטרות שונות כדי לספק ולשפר את השירות שלנו עבורך. זה עשוי לכלול מידע שאתה מספק, כגון שמך, גילך, נתוני בריאות והרגלי תזונה.";
 "privacy_policy_data_use_header" = "שימוש בנתונים";
 "privacy_policy_data_use_content" = "אנו משתמשים בנתונים שנאספו למטרות שונות, כגון לספק ולתחזק את השירות שלנו, להודיע לך על שינויים בשירות שלנו, לאפשר לך להשתתף בתכונות אינטראקטיביות של השירות שלנו כאשר תבחר לעשות זאת, ולספק תמיכת לקוחות.";
@@ -2196,6 +2232,131 @@
 "voice_assistance_privacy_header" = "פרטיות ונתונים";
 "voice_assistance_privacy_intro" = "אנו נותנים עדיפות לפרטיותך. כך אנו מטפלים בנתוני הקול שלך:";
 "voice_assistance_privacy_activation" = "האפליקציה מאזינה רק כאשר מזוהה מילת ההפעלה";
+
+/* VoiceAssistanceHelpView */
+"voice_help_nav_title" = "עזרה קולית";
+"voice_help_intro" = "פקודות קוליות הופכות את האפליקציה לקלה יותר לשימוש, במיוחד עבור אלה עם מוגבלות תנועה או ראייה. הנה איך להתחיל:";
+"voice_activation_header" = "הפעלת פקודות קוליות";
+"voice_activation_step1" = "הקש על סמל המיקרופון בפינה הימנית העליונה של כל מסך";
+"voice_activation_step2" = "המתן להנחיה \"מקשיב...\"";
+"voice_activation_step3" = "אמור את הפקודה שלך בבירור ואז עצור";
+"voice_activation_step4" = "האפליקציה תעבד אוטומטית את הפקודה שלך בלי צורך להקיש שוב";
+"voice_commands_header" = "פקודות קוליות זמינות";
+"voice_nav_commands_header" = "פקודות ניווט";
+"voice_command_navigate_home" = "נווט למסך הבית";
+"voice_command_navigate_nutrition" = "עבור למסך מעקב התזונה";
+"voice_command_navigate_water" = "פתח את מסך מעקב המים";
+"voice_command_navigate_fasting" = "נווט לטיימר הצום";
+"voice_command_view_medications" = "הצג את התרופות שלי";
+"voice_command_open_help" = "פתח את מסך העזרה";
+"voice_action_commands_header" = "פקודות פעולה";
+"voice_command_log_water" = "רשום צריכת מים";
+"voice_command_record_meal" = "תעד ארוחה חדשה";
+"voice_command_begin_fast" = "התחל תקופת צום";
+"voice_command_end_fast" = "סיים את הצום הנוכחי";
+"voice_command_mark_medication_taken" = "סמן תרופה כנלקחה";
+"voice_command_create_reminder" = "צור תזכורת חדשה";
+"voice_command_set_language" = "הגדר שפה";
+"voice_info_commands_header" = "פקודות מידע";
+"voice_command_daily_progress" = "שמע סיכום של ההתקדמות היומית שלי";
+"voice_command_check_water_intake" = "בדוק את צריכת המים שלי להיום";
+"voice_command_next_medication" = "מתי התרופה הבאה שלי";
+"voice_command_check_fast_status" = "בדוק את מצב הצום הנוכחי שלי";
+"voice_tips_header" = "טיפים לזיהוי קולי טוב יותר";
+"voice_tip_speak_clearly" = "דבר בבירור ובקצב בינוני";
+"voice_tip_reduce_noise" = "הפחת רעשי רקע כאשר אפשר";
+"voice_tip_rephrase" = "אם האפליקציה לא מבינה, נסה לנסח מחדש את הפקודה שלך";
+"voice_tip_use_exact_phrases" = "לזיהוי טוב יותר, השתמש בביטויי פקודה מדויקים כפי שמופיעים למעלה";
+"video_tutorial_header" = "הדרכה בוידאו";
+
+/* Accessibility Help */
+"Accessibility Help" = "עזרה בנגישות";
+"Accessibility Features" = "תכונות נגישות";
+"Make the app easier to use with accessibility options" = "הפוך את האפליקציה לקלה יותר לשימוש עם אפשרויות נגישות";
+
+/* Text Size Options */
+"Text Size Options" = "אפשרויות גודל טקסט";
+"Small: Compact text for more information on screen" = "קטן: טקסט קומפקטי למידע רב יותר על המסך";
+"Medium: Standard text size (default)" = "בינוני: גודל טקסט סטנדרטי (ברירת מחדל)";
+"Large: Easier to read for vision challenges" = "גדול: קל יותר לקריאה עבור אתגרי ראייה";
+"Extra Large: Maximum readability for low vision" = "גדול במיוחד: קריאות מקסימלית לראייה ירודה";
+"Change text size in Settings > Accessibility" = "שנה את גודל הטקסט בהגדרות > נגישות";
+
+/* High Contrast Mode */
+"High Contrast Mode" = "מצב ניגודיות גבוהה";
+"Enhances text and button visibility" = "משפר את נראות הטקסט והכפתורים";
+"Increases contrast between elements" = "מגדיל את הניגודיות בין אלמנטים";
+"Makes the app easier to navigate" = "הופך את האפליקציה לקלה יותר לניווט";
+"Helpful for users with vision impairments" = "שימושי למשתמשים עם לקויות ראייה";
+"Toggle in Settings > Accessibility" = "הפעל/כבה בהגדרות > נגישות";
+
+/* Voice Assistance */
+"Voice Assistance" = "סיוע קולי";
+"Use voice commands to navigate the app" = "השתמש בפקודות קוליות לניווט באפליקציה";
+"Hands-free operation for mobility challenges" = "הפעלה ללא ידיים לאתגרי ניידות";
+"Voice feedback for all app actions" = "משוב קולי לכל פעולות האפליקציה";
+"Customizable voice settings and speed" = "הגדרות קול וקצב הניתנות להתאמה אישית";
+"Access detailed voice help in Voice Assistance section" = "גש לעזרה קולית מפורטת בסעיף סיוע קולי";
+
+/* Navigation Assistance */
+"Navigation Assistance" = "סיוע בניווט";
+"Large, easy-to-tap buttons throughout the app" = "כפתורים גדולים וקלים להקשה בכל רחבי האפליקציה";
+"Clear visual hierarchy and organization" = "היררכיה וארגון חזותי ברור";
+"Consistent navigation patterns" = "דפוסי ניווט עקביים";
+"Back buttons always visible" = "כפתורי חזרה תמיד גלויים";
+"Minimal gestures required for operation" = "מחוות מינימליות נדרשות להפעלה";
+"Color-coded sections for easy identification" = "מקטעים מקודדים בצבעים לזיהוי קל";
+"Icons accompany all text labels" = "סמלים מלווים את כל תוויות הטקסט";
+"Clear visual feedback for all actions" = "משוב חזותי ברור לכל הפעולות";
+"Progress indicators for long operations" = "מחווני התקדמות לפעולות ארוכות";
+"Consistent color scheme throughout" = "סכמת צבעים עקבית לאורך כל האפליקציה";
+
+/* Cognitive Support */
+"Cognitive Support Features" = "תכונות תמיכה קוגניטיבית";
+"Simple, intuitive interface design" = "עיצוב ממשק פשוט ואינטואיטיבי";
+"Step-by-step guidance for complex tasks" = "הדרכה שלב אחר שלב למשימות מורכבות";
+"Clear confirmation messages" = "הודעות אישור ברורות";
+"Consistent terminology throughout" = "טרמינולוגיה עקבית לאורך כל האפליקציה";
+"Helpful tooltips and explanations" = "טיפים והסברים מועילים";
+"Undo options for most actions" = "אפשרויות ביטול לרוב הפעולות";
+
+/* Motor Assistance */
+"Motor Assistance" = "סיוע מוטורי";
+"Large touch targets for easy tapping" = "יעדי מגע גדולים להקשה קלה";
+"Minimal fine motor skills required" = "מיומנויות מוטוריות עדינות מינימליות נדרשות";
+"Voice commands reduce physical interaction" = "פקודות קוליות מפחיתות אינטראקציה פיזית";
+"Simple swipe gestures only" = "מחוות החלקה פשוטות בלבד";
+"No complex multi-finger gestures" = "ללא מחוות מורכבות של מספר אצבעות";
+
+/* Settings and Customization */
+"Settings and Customization" = "הגדרות והתאמה אישית";
+"Access all accessibility settings in Settings tab" = "גש לכל הגדרות הנגישות בלשונית הגדרות";
+"Changes apply immediately across the app" = "שינויים חלים באופן מיידי בכל רחבי האפליקציה";
+"Settings are saved automatically" = "ההגדרות נשמרות אוטומטית";
+"Reset to defaults option available" = "אפשרות איפוס לברירות מחדל זמינה";
+"Test settings before committing to changes" = "בדוק הגדרות לפני שמירת השינויים";
+
+/* Troubleshooting */
+"Troubleshooting" = "פתרון בעיות";
+"If text is too small, increase text size in Settings" = "אם הטקסט קטן מדי, הגדל את גודל הטקסט בהגדרות";
+"If buttons are hard to tap, enable high contrast" = "אם קשה להקיש על הכפתורים, הפעל ניגודיות גבוהה";
+"If voice commands aren't working, check microphone permissions" = "אם פקודות קוליות אינן עובדות, בדוק את הרשאות המיקרופון";
+"If app seems slow, try reducing text size" = "אם האפליקציה נראית איטית, נסה להקטין את גודל הטקסט";
+"Contact support for additional accessibility needs" = "צור קשר עם התמיכה לצרכי נגישות נוספים";
+
+/* Help & Support View Subtitles */
+"Track blood pressure, blood sugar, heart rate, and weight" = "עקוב אחר לחץ דם, סוכר בדם, קצב לב ומשקל";
+"Manage medical appointments and reminders" = "נהל פגישות רפואיות ותזכורות";
+"Use voice commands to navigate and control the app" = "השתמש בפקודות קוליות לניווט ושליטה באפליקציה";
+"Text size, contrast, and other accessibility options" = "גודל טקסט, ניגודיות ואפשרויות נגישות אחרות";
+"Get help from our support team" = "קבל עזרה מצוות התמיכה שלנו";
+"Schedule a video call with support" = "קבע שיחת וידאו עם התמיכה";
+"Watch step-by-step video guides" = "צפה במדריכי וידאו שלב אחר שלב";
+"Read our privacy policy" = "קרא את מדיניות הפרטיות שלנו";
+"Read our terms of use" = "קרא את תנאי השימוש שלנו";
+"Call emergency services" = "התקשר לשירותי חירום";
+"Take a guided tour of the app" = "קח סיור מודרך באפליקציה";
+"Frequently asked questions" = "שאלות נפוצות";
 "voice_assistance_privacy_processing" = "פקודות קוליות מעובדות במכשיר כדי להבטיח פרטיות";
 "voice_assistance_privacy_storage" = "הקלטות קוליות אינן נשמרות או משותפות";
 "voice_assistance_video_description" = "מדריך חזותי להגדרת ושימוש בסייען הקולי";
@@ -2241,10 +2402,11 @@
 "medication_health_note3" = "שמור על רשימת התרופות שלך מעודכנת בכל שינוי מהרופא שלך.";
 "medication_health_note4" = "השתמש בתכונת 'הדפס' כדי ליצור עותק פיזי של רשימת התרופות שלך לפגישות.";
 "medication_video_description" = "מדריך חזותי לשימוש בתכונות ניהול התרופות.";
-/* FAQ - Frequently Asked Questions */
-
 
 /* FAQ - Frequently Asked Questions */
+"faq_title" = "שאלות נפוצות";
+"faq_description" = "מצא תשובות לשאלות נפוצות על האפליקציה";
+"faq_nav_title" = "שאלות נפוצות";
 "Frequently Asked Questions" = "שאלות נפוצות";
 "Search FAQs..." = "חפש בשאלות נפוצות...";
 "Can't find an answer?" = "לא מוצא תשובה?";
@@ -2341,11 +2503,11 @@
 "faq_technical_sync_issues_answer" = "כרגע הנתונים נשמרים מקומית. אפשר להעביר נתונים בין מכשירים דרך ייצוא/ייבוא בהגדרות > ניהול נתונים. סנכרון ענן יתווסף בעתיד.";
 
 "faq_support_contact" = "איך יוצרים קשר עם התמיכה?";
-"faq_support_contact_answer" = "אפשר לפנות לתמיכה בדוא\"ל support@seniornutrition.app או דרך כפתור 'צור קשר' במדור העזרה. נענה תוך 24-48 שעות.";
+"faq_support_contact_answer" = "אפשר לפנות לתמיכה בדוא\"\u05dc support@saniornutritionapp.com או דרך כפתור 'צור קשר' במדור העזרה. נענה תוך 24-48 שעות.";
 "faq_support_video_chat" = "האם אפשר לתאם שיחת וידאו עם התמיכה?";
 "faq_support_video_chat_answer" = "כן! אפשר לבקש שיחת וידאו במדור העזרה ונקבע מועד נוח עבורך.";
 "faq_support_feature_request" = "איך מבקשים תכונה חדשה?";
-"faq_support_feature_request_answer" = "נשמח לשמוע רעיונות! שלח הצעה ל-support@seniornutrition.app עם נושא 'בקשת תכונה'. אנו בודקים כל בקשה.";
+"faq_support_feature_request_answer" = "נשמח לשמוע רעיונות! שלח הצעה ל-support@saniornutritionapp.com עם נושא 'בקשת תכונה'. אנו בודקים כל בקשה.";
 
 "faq_emergency_number" = "איזה מספר חירום האפליקציה משתמשת?";
 "faq_emergency_number_answer" = "האפליקציה מזהה אוטומטית את האזור שלך ומשתמשת במספר החירום המתאים (911 לארה\"ב, 112 לאירופה וכו'). אפשר להגדיר מספר חירום מותאם אישית בהגדרות > מספר חירום.";
@@ -2353,3 +2515,288 @@
 "faq_emergency_contacts_answer" = "גש למדור אנשי קשר לחירום כדי להוסיף בני משפחה, מטפלים או רופאים. אפשר להתקשר אליהם ישירות מהאפליקציה במקרה חירום.";
 "faq_emergency_medical" = "איזה מידע רפואי כדאי לכלול?";
 "faq_emergency_medical_answer" = "הוסף מידע חשוב כמו אלרגיות, תרופות, מחלות כרוניות ואנשי קשר לחירום. מידע זה יכול להציל חיים במצבי חירום.";
+
+/* Core Features Help Section */
+"Core Features" = "תכונות מרכזיות";
+"Track meals, analyze nutrition, and monitor daily intake" = "עקוב אחר ארוחות, נתח תזונה ונטר צריכה יומית";
+"Manage intermittent fasting schedules and track progress" = "נהל לוחות זמנים לצום לסירוגין ועקוב אחר התקדמות";
+"Monitor daily hydration and set water intake goals" = "נטר הידרציה יומית וקבע יעדי צריכת מים";
+"Set reminders, track medications, and manage your health" = "קבע תזכורות, עקוב אחר תרופות ונהל את הבריאות שלך";
+
+/* Nutrition Help View */
+"Nutrition Help" = "עזרה בתזונה";
+"Nutrition Tracking" = "מעקב תזונה";
+
+/* Getting Started Section */
+"Getting Started" = "התחלה";
+"Tap the 'Nutrition' tab at the bottom of your screen" = "הקש על הלשונית 'תזונה' בתחתית המסך";
+"Tap 'Add Meal' to log your food" = "הקש על 'הוסף ארוחה' כדי לרשום את המזון שלך";
+"Search for foods or add custom items" = "חפש מזונות או הוסף פריטים מותאמים אישית";
+"Enter portion sizes and meal time" = "הזן גודל מנות וזמן ארוחה";
+"Review nutrition analysis for each meal" = "בדוק ניתוח תזונתי לכל ארוחה";
+
+/* Key Features Section - Note: "Key Features" already translated */
+"Extensive Food Database: Thousands of foods and recipes" = "מאגר מזון נרחב: אלפי מזונות ומתכונים";
+"Custom Foods: Add your own recipes and items" = "מזונות מותאמים אישית: הוסף מתכונים ופריטים משלך";
+"Photo Logging: Take pictures of your meals" = "תיעוד תמונות: צלם תמונות של הארוחות שלך";
+"Nutrition Analysis: See calories, macros, and micronutrients" = "ניתוח תזונתי: ראה קלוריות, מאקרו ומיקרו-נוטריאנטים";
+"Daily & Weekly Reports: Track trends and progress" = "דוחות יומיים ושבועיים: עקוב אחר מגמות והתקדמות";
+"Personalized Goals: Set calorie and nutrient targets" = "יעדים מותאמים אישית: הגדר יעדי קלוריות וחומרי תזונה";
+
+/* Meal Logging Tips Section */
+"Meal Logging Tips" = "טיפים לרישום ארוחות";
+"Log meals as soon as you eat for best accuracy" = "רשום ארוחות מיד לאחר האכילה לדיוק מרבי";
+"Use the barcode scanner for packaged foods (if available)" = "השתמש בסורק הברקוד למזון ארוז (אם זמין)";
+"Estimate portions using household measures or a food scale" = "אמוד מנות באמצעות כלי מדידה ביתיים או משקל מזון";
+"Add notes for special meals or recipes" = "הוסף הערות לארוחות או מתכונים מיוחדים";
+"Review your daily summary to spot missing entries" = "בדוק את הסיכום היומי שלך כדי לאתר רשומות חסרות";
+
+/* Understanding Nutrition Analysis Section */
+"Understanding Nutrition Analysis" = "הבנת ניתוח תזונתי";
+"Calories: Total energy for each meal and day" = "קלוריות: סך האנרגיה לכל ארוחה ויום";
+"Macronutrients: Protein, carbohydrates, and fats breakdown" = "מאקרונוטריאנטים: פירוט חלבונים, פחמימות ושומנים";
+"Micronutrients: Vitamins and minerals tracked" = "מיקרונוטריאנטים: מעקב אחר ויטמינים ומינרלים";
+"Daily Goals: Compare intake to your personalized targets" = "יעדים יומיים: השווה צריכה ליעדים האישיים שלך";
+"Charts: Visualize trends over time" = "תרשימים: הצג מגמות לאורך זמן";
+
+/* Weekly & Monthly Reports Section */
+"Weekly & Monthly Reports" = "דוחות שבועיים וחודשיים";
+"View weekly and monthly nutrition summaries" = "צפה בסיכומי תזונה שבועיים וחודשיים";
+"Identify trends in calories and nutrients" = "זהה מגמות בקלוריות וחומרי תזונה";
+"Export reports to share with your doctor or caregiver" = "ייצא דוחות לשיתוף עם הרופא או המטפל שלך";
+"Use reports to adjust your goals and habits" = "השתמש בדוחות כדי להתאים את היעדים וההרגלים שלך";
+
+/* Troubleshooting Section */
+"Troubleshooting" = "פתרון בעיות";
+"If a food is missing, add it as a custom item" = "אם חסר מזון, הוסף אותו כפריט מותאם אישית";
+"Edit or delete meals from your daily log" = "ערוך או מחק ארוחות מהיומן היומי שלך";
+"Check your portion sizes for accuracy" = "בדוק את גודלי המנות שלך לדיוק";
+"Contact support if you need help with food entries" = "פנה לתמיכה אם אתה זקוק לעזרה עם רשומות מזון";
+
+/* Video Tutorial Section */
+"Video Tutorial" = "הדרכת וידאו";
+"Watch our step-by-step video guide for nutrition tracking" = "צפה במדריך הוידאו שלנו שלב אחר שלב למעקב תזונתי";
+"Find more tutorials in the Help section" = "מצא עוד הדרכות במדור העזרה";
+"Watch Video Tutorial" = "צפה בהדרכת וידאו";
+
+/* FastingTimerHelpView */
+"Fasting Timer Help" = "עזרה בטיימר צום";
+"Fasting Timer" = "טיימר צום";
+
+/* What is Intermittent Fasting Section */
+"What is Intermittent Fasting?" = "מהו צום לסירוגין?";
+"Intermittent fasting cycles between eating and fasting periods" = "צום לסירוגין מחזורי בין תקופות אכילה וצום";
+"Common protocols: 16:8 (16 hours fasting, 8 hours eating)" = "פרוטוקולים נפוצים: 16:8 (16 שעות צום, 8 שעות אכילה)";
+"Other options: 18:6, 20:4, or custom schedules" = "אפשרויות נוספות: 18:6, 20:4, או לוחות זמנים מותאמים אישית";
+"May help with weight management and metabolic health" = "עשוי לסייע בניהול משקל ובריאות מטבולית";
+"Always consult your doctor before starting any fasting plan" = "התייעץ תמיד עם הרופא שלך לפני התחלת תוכנית צום כלשהי";
+
+/* FastingTimerHelpView Getting Started */
+"Tap the 'Fasting' tab at the bottom of your screen" = "הקש על הלשונית 'צום' בתחתית המסך";
+"Choose a fasting protocol or create a custom schedule" = "בחר פרוטוקול צום או צור לוח זמנים מותאם אישית";
+"Set your fasting start time and duration" = "הגדר את זמן ההתחלה ומשך הצום שלך";
+"Tap 'Start Fasting' to begin your fasting period" = "הקש על 'התחל צום' כדי להתחיל את תקופת הצום שלך";
+"The timer will track your progress automatically" = "הטיימר יעקוב אחר התקדמותך באופן אוטומטי";
+
+/* FastingTimerHelpView Key Features */
+"Multiple Protocols: 16:8, 18:6, 20:4, and custom schedules" = "פרוטוקולים מרובים: 16:8, 18:6, 20:4, ולוחות זמנים מותאמים אישית";
+"Visual Timer: See your fasting progress in real-time" = "טיימר חזותי: צפה בהתקדמות הצום שלך בזמן אמת";
+"Notifications: Get alerts for start, end, and milestone times" = "התראות: קבל התראות לזמני התחלה, סיום ואבני דרך";
+"Progress Tracking: View your fasting history and streaks" = "מעקב התקדמות: צפה בהיסטוריית הצום והרצפים שלך";
+"Emergency Stop: End fasting early if needed" = "עצירת חירום: סיים צום מוקדם אם צריך";
+"Statistics: Track your fasting patterns over time" = "סטטיסטיקה: עקוב אחר דפוסי הצום שלך לאורך זמן";
+
+/* FastingTimerHelpView Safety Guidelines */
+"Safety Guidelines" = "הנחיות בטיחות";
+"Consult your healthcare provider before starting fasting" = "התייעץ עם הרופא שלך לפני התחלת צום";
+"Stay hydrated during fasting periods" = "שמור על רמת נוזלים במהלך תקופות הצום";
+"Listen to your body and stop if you feel unwell" = "הקשב לגופך והפסק אם אתה מרגיש לא טוב";
+"Don't skip prescribed medications without doctor approval" = "אל תדלג על תרופות מרשם ללא אישור רופא";
+"Start with shorter fasting periods and gradually increase" = "התחל עם תקופות צום קצרות יותר והגדל בהדרגה";
+"Eat nutritious foods during your eating window" = "אכול מזונות מזינים במהלך חלון האכילה שלך";
+
+/* FastingTimerHelpView Notifications */
+"Notifications & Reminders" = "התראות ותזכורות";
+"Fasting Start: Notification when your fast begins" = "התחלת צום: התראה כשהצום שלך מתחיל";
+"Fasting End: Alert when it's time to eat" = "סיום צום: התראה כשהגיע הזמן לאכול";
+"Halfway Point: Motivation at the midpoint" = "נקודת אמצע: מוטיבציה בנקודת האמצע";
+"Custom Reminders: Set your own notification times" = "תזכורות מותאמות אישית: הגדר את זמני ההתראות שלך";
+"Emergency Alerts: Quick access to stop fasting" = "התראות חירום: גישה מהירה להפסקת צום";
+
+/* FastingTimerHelpView Troubleshooting */
+"If you need to stop fasting early, tap 'Stop Fasting'" = "אם עליך להפסיק את הצום מוקדם, הקש על 'הפסק צום'";
+"Adjust your fasting schedule in the settings" = "התאם את לוח הזמנים של הצום בהגדרות";
+"Check notification permissions if alerts aren't working" = "בדוק הרשאות התראה אם ההתראות אינן פועלות";
+"Contact support if you have technical issues" = "פנה לתמיכה אם יש לך בעיות טכניות";
+
+/* FastingTimerHelpView Video Tutorial */
+"Watch our step-by-step video guide for fasting timer" = "צפה במדריך הוידאו שלנו שלב אחר שלב לטיימר צום";
+"Learn about different fasting protocols and safety tips" = "למד על פרוטוקולי צום שונים וטיפי בטיחות";
+
+/* WaterTrackingHelpView */
+"Water Tracking Help" = "עזרה במעקב מים";
+"Water Tracking" = "מעקב מים";
+"Stay hydrated and monitor your daily water intake" = "שמור על רמת נוזלים ועקוב אחר צריכת המים היומית שלך";
+
+/* WaterTrackingHelpView Getting Started */
+"Tap the 'Water' tab at the bottom of your screen" = "הקש על לשונית 'מים' בתחתית המסך שלך";
+"Set your daily water intake goal (recommended 8-10 glasses)" = "הגדר את יעד צריכת המים היומית שלך (מומלץ 8-10 כוסות)";
+"Use the + button to log each glass of water you drink" = "השתמש בכפתור + כדי לתעד כל כוס מים שאתה שותה";
+"Track your progress throughout the day" = "עקוב אחר ההתקדמות שלך לאורך היום";
+
+/* WaterTrackingHelpView Key Features */
+"Daily Goal Setting: Customize your hydration target" = "הגדרת יעד יומי: התאם אישית את יעד ההידרציה שלך";
+"Quick Logging: Tap to add water with one touch" = "תיעוד מהיר: הקש כדי להוסיף מים בנגיעה אחת";
+"Progress Tracking: Visual progress bar shows daily completion" = "מעקב התקדמות: סרגל התקדמות חזותי מציג השלמה יומית";
+"Reminders: Get notifications to stay hydrated" = "תזכורות: קבל התראות לשמירה על הידרציה";
+"History: View your water intake over time" = "היסטוריה: צפה בצריכת המים שלך לאורך זמן";
+
+/* WaterTrackingHelpView Hydration Tips */
+"Hydration Tips" = "טיפים להידרציה";
+"Drink water first thing in the morning" = "שתה מים ראשית דבר בבוקר";
+"Keep a water bottle nearby throughout the day" = "שמור בקבוק מים בקרבתך לאורך היום";
+"Drink water before, during, and after exercise" = "שתה מים לפני, במהלך ואחרי פעילות גופנית";
+"Listen to your body's thirst signals" = "הקשב לאותות הצמא של הגוף שלך";
+"Consider your activity level and climate" = "קח בחשבון את רמת הפעילות והאקלים שלך";
+
+/* WaterTrackingHelpView Health Benefits */
+"Health Benefits" = "יתרונות בריאותיים";
+"Maintains body temperature and metabolism" = "שומר על טמפרטורת הגוף וחילוף החומרים";
+"Supports kidney function and waste removal" = "תומך בתפקוד הכליות והסרת פסולת";
+"Improves skin health and appearance" = "משפר את בריאות העור ומראהו";
+"Enhances cognitive function and energy levels" = "משפר תפקוד קוגניטיבי ורמות אנרגיה";
+"Aids digestion and nutrient absorption" = "מסייע בעיכול וספיגת חומרי תזונה";
+
+/* WaterTrackingHelpView Troubleshooting */
+"If you forget to log water, you can add it later" = "אם שכחת לתעד שתיית מים, תוכל להוסיף זאת מאוחר יותר";
+"Adjust your daily goal based on your needs" = "התאם את היעד היומי שלך בהתאם לצרכים שלך";
+"Enable notifications to get hydration reminders" = "אפשר התראות כדי לקבל תזכורות הידרציה";
+"Check your weekly progress to see patterns" = "בדוק את ההתקדמות השבועית שלך כדי לראות דפוסים";
+
+/* MedicationHelpView */
+"Medication Management Help" = "עזרה בניהול תרופות";
+"Medication Management" = "ניהול תרופות";
+
+/* MedicationHelpView Getting Started */
+"Tap the 'Medications' tab in the More section" = "הקש על לשונית 'תרופות' בסקציית עוד";
+"Tap 'Add Medication' to create a new entry" = "הקש 'הוסף תרופה' כדי ליצור רשומה חדשה";
+"Enter medication name, dosage, and frequency" = "הזן שם תרופה, מינון ותדירות";
+"Set reminder times for each medication" = "הגדר זמני תזכורת לכל תרופה";
+"Add notes about side effects or special instructions" = "הוסף הערות על תופעות לוואי או הוראות מיוחדות";
+
+/* MedicationHelpView Key Features */
+"Medication Database: Store all your medications in one place" = "מסד נתוני תרופות: אחסן את כל התרופות שלך במקום אחד";
+"Smart Reminders: Get notifications at the right times" = "תזכורות חכמות: קבל התראות בזמנים הנכונים";
+"Dosage Tracking: Log when you take each medication" = "מעקב מינון: תעד כאשר אתה לוקח כל תרופה";
+"Refill Alerts: Get notified when refills are needed" = "התראות מילוי מחדש: קבל התראה כאשר יש צורך במילוי מחדש";
+"Medication History: Track your adherence over time" = "היסטוריית תרופות: עקוב אחר ההיצמדות שלך לאורך זמן";
+"Export Lists: Share medication lists with healthcare providers" = "יצוא רשימות: שתף רשימות תרופות עם ספקי שירותי בריאות";
+
+/* MedicationHelpView Managing Reminders */
+"Managing Reminders" = "ניהול תזכורות";
+"Set multiple reminder times for each medication" = "הגדר מספר זמני תזכורת לכל תרופה";
+"Customize notification sounds and messages" = "התאם אישית צלילי התראות והודעות";
+"Snooze reminders if you need more time" = "השהה תזכורות אם אתה צריך עוד זמן";
+"Mark medications as taken to stop reminders" = "סמן תרופות כנלקחו כדי להפסיק את התזכורות";
+"Review missed doses and take action" = "סקור מנות שהוחמצו ונקוט פעולה";
+
+/* MedicationHelpView Health Considerations */
+"Health Considerations" = "שיקולים בריאותיים";
+"Never skip prescribed medications without doctor approval" = "לעולם אל תדלג על תרופות מרשם ללא אישור רופא";
+"Take medications at the same time each day when possible" = "קח תרופות באותה שעה בכל יום כאשר אפשרי";
+"Store medications properly and check expiration dates" = "אחסן תרופות כראוי ובדוק תאריכי תפוגה";
+"Report side effects to your healthcare provider" = "דווח על תופעות לוואי לספק שירותי הבריאות שלך";
+"Keep an updated medication list for emergencies" = "שמור על רשימת תרופות מעודכנת למקרי חירום";
+
+/* MedicationHelpView Troubleshooting */
+"If reminders aren't working, check notification settings" = "אם התזכורות אינן עובדות, בדוק את הגדרות ההתראות";
+"Edit medication details if dosages change" = "ערוך את פרטי התרופה אם המינונים משתנים";
+"Use the search function to find specific medications" = "השתמש בפונקציית החיפוש כדי למצוא תרופות ספציפיות";
+"Export your medication list as a backup" = "ייצא את רשימת התרופות שלך כגיבוי";
+"Contact support if you need help with medication tracking" = "צור קשר עם התמיכה אם אתה צריך עזרה עם מעקב אחר תרופות";
+
+/* MedicationHelpView Video Tutorial */
+"Watch our step-by-step video guide for medication management" = "צפה במדריך הוידאו שלנו שלב אחר שלב לניהול תרופות";
+"Learn how to set up reminders and track your medications" = "למד איך להגדיר תזכורות ולעקוב אחר התרופות שלך";
+
+/* HealthMonitoringHelpView Header */
+"Health Data Tracking" = "מעקב נתוני בריאות";
+"Monitor vital signs and track your health progress" = "עקוב אחר סימנים חיוניים ועקוב אחר התקדמות הבריאות שלך";
+"Health Data Help" = "עזרה בנתוני בריאות";
+
+/* HealthMonitoringHelpView Available Metrics */
+"Available Health Metrics" = "מדדי בריאות זמינים";
+"Blood Pressure: Track systolic and diastolic readings" = "לחץ דם: עקוב אחר קריאות סיסטוליות ודיאסטוליות";
+"Blood Sugar: Monitor glucose levels for diabetes management" = "רמת סוכר בדם: נטר רמות גלוקוז לניהול סוכרת";
+"Heart Rate: Record resting and active heart rates" = "קצב לב: תיעוד דופק במנוחה ובפעילות";
+"Weight: Track body weight changes over time" = "משקל: עקוב אחר שינויי משקל גוף לאורך זמן";
+"Body Mass Index (BMI): Automatic calculation from height and weight" = "מדד מסת גוף (BMI): חישוב אוטומטי מגובה ומשקל";
+
+/* HealthMonitoringHelpView Getting Started */
+"Getting Started" = "התחלה";
+"Tap the 'Health' tab at the bottom of your screen" = "הקש על לשונית 'בריאות' בתחתית המסך שלך";
+"Select the health metric you want to track" = "בחר את מדד הבריאות שברצונך לעקוב אחריו";
+"Tap 'Add' to enter a new reading" = "הקש 'הוסף' כדי להזין קריאה חדשה";
+"Enter your measurement and any notes" = "הזן את המדידה שלך וכל הערה";
+"View your history and trends over time" = "צפה בהיסטוריה ומגמות שלך לאורך זמן";
+
+/* HealthMonitoringHelpView Key Features */
+"Key Features" = "תכונות מרכזיות";
+"Data Entry: Easy input forms for each health metric" = "הזנת נתונים: טפסי קלט קלים לכל מדד בריאות";
+"History Tracking: View all your past readings" = "מעקב היסטוריה: צפה בכל הקריאות הקודמות שלך";
+"Trend Analysis: See patterns and changes over time" = "ניתוח מגמות: צפה בדפוסים ושינויים לאורך זמן";
+"Target Ranges: Set personal health goals" = "טווחי יעד: קבע יעדי בריאות אישיים";
+"Export Data: Share with healthcare providers" = "ייצוא נתונים: שתף עם ספקי שירותי בריאות";
+"Reminders: Get notifications for regular check-ins" = "תזכורות: קבל התראות לבדיקות קבועות";
+
+/* HealthMonitoringHelpView Health Tips */
+"Health Monitoring Tips" = "טיפים למעקב בריאות";
+"Take measurements at the same time each day" = "בצע מדידות באותה שעה בכל יום";
+"Use proper equipment for accurate readings" = "השתמש בציוד מתאים לקריאות מדויקות";
+"Record any factors that might affect your readings" = "תעד כל גורם שעשוי להשפיע על הקריאות שלך";
+"Share your data with your healthcare provider" = "שתף את הנתונים שלך עם ספק שירותי הבריאות שלך";
+"Set realistic health goals with your doctor" = "קבע יעדי בריאות ריאליים עם הרופא שלך";
+
+/* HealthMonitoringHelpView Privacy */
+"Privacy & Security" = "פרטיות ואבטחה";
+"Your health data is stored locally on your device" = "נתוני הבריאות שלך מאוחסנים באופן מקומי במכשיר שלך";
+"Data is encrypted and secure" = "הנתונים מוצפנים ומאובטחים";
+"You control what data to share" = "אתה שולט באילו נתונים לשתף";
+"No health data is sent to third parties" = "לא נשלחים נתוני בריאות לצדדים שלישיים";
+"You can export or delete your data anytime" = "באפשרותך לייצא או למחוק את הנתונים שלך בכל עת";
+
+/* HealthMonitoringHelpView Troubleshooting */
+"If readings seem unusual, double-check your measurements" = "אם הקריאות נראות חריגות, בדוק שוב את המדידות שלך";
+"Use the notes field to record any special circumstances" = "השתמש בשדה ההערות כדי לתעד נסיבות מיוחדות";
+"Set up reminders to maintain consistent tracking" = "הגדר תזכורות כדי לשמור על מעקב עקבי";
+"Export your data regularly as a backup" = "ייצא את הנתונים שלך באופן קבוע כגיבוי";
+"Contact support if you need help with data entry" = "צור קשר עם התמיכה אם אתה צריך עזרה עם הזנת נתונים";
+
+"History Tracking: View all your past readings" = "מעקב היסטוריה: צפה בכל הקריאות הקודמות שלך";
+"Trend Analysis: See patterns and changes over time" = "ניתוח מגמות: צפה בדפוסים ושינויים לאורך זמן";
+"Target Ranges: Set personal health goals" = "טווחי יעד: קבע יעדי בריאות אישיים";
+"Export Data: Share with healthcare providers" = "ייצוא נתונים: שתף עם ספקי שירותי בריאות";
+"Reminders: Get notifications for regular check-ins" = "תזכורות: קבל התראות לבדיקות קבועות";
+
+/* HealthMonitoringHelpView Health Tips */
+"Health Monitoring Tips" = "טיפים למעקב בריאות";
+"Take measurements at the same time each day" = "בצע מדידות באותה שעה בכל יום";
+"Use proper equipment for accurate readings" = "השתמש בציוד מתאים לקריאות מדויקות";
+"Record any factors that might affect your readings" = "תעד כל גורם שעשוי להשפיע על הקריאות שלך";
+"Share your data with your healthcare provider" = "שתף את הנתונים שלך עם ספק שירותי הבריאות שלך";
+"Set realistic health goals with your doctor" = "קבע יעדי בריאות ריאליים עם הרופא שלך";
+
+/* HealthMonitoringHelpView Privacy */
+"Privacy & Security" = "פרטיות ואבטחה";
+"Your health data is stored locally on your device" = "נתוני הבריאות שלך מאוחסנים באופן מקומי במכשיר שלך";
+"Data is encrypted and secure" = "הנתונים מוצפנים ומאובטחים";
+"You control what data to share" = "אתה שולט באילו נתונים לשתף";
+"No health data is sent to third parties" = "לא נשלחים נתוני בריאות לצדדים שלישיים";
+"You can export or delete your data anytime" = "באפשרותך לייצא או למחוק את הנתונים שלך בכל עת";
+
+/* HealthMonitoringHelpView Troubleshooting */
+"If readings seem unusual, double-check your measurements" = "אם הקריאות נראות חריגות, בדוק שוב את המדידות שלך";
+"Use the notes field to record any special circumstances" = "השתמש בשדה ההערות כדי לתעד נסיבות מיוחדות";
+"Set up reminders to maintain consistent tracking" = "הגדר תזכורות כדי לשמור על מעקב עקבי";
+"Export your data regularly as a backup" = "ייצא את הנתונים שלך באופן קבוע כגיבוי";
+"Contact support if you need help with data entry" = "צור קשר עם התמיכה אם אתה צריך עזרה עם הזנת נתונים";

@@ -39,7 +39,7 @@ class PersistentStorage {
             // Set the "do not back up" attribute to avoid iCloud backup
             // which helps ensure the data survives even if not backed up
             var resourceValues = URLResourceValues()
-            resourceValues.isExcludedFromBackup = true
+            resourceValues.isExcludedFromBackup = false
             var mutableURL = directoryURL
             try mutableURL.setResourceValues(resourceValues)
         } catch {
@@ -52,6 +52,16 @@ class PersistentStorage {
         return try await withCheckedThrowingContinuation { continuation in
             saveQueue.async {
                 do {
+                    // Create a backup before saving
+                    if FileManager.default.fileExists(atPath: self.dataFileURL.path) {
+                        let backupURL = self.dataFileURL.appendingPathExtension("bak")
+                        if FileManager.default.fileExists(atPath: backupURL.path) {
+                            try FileManager.default.removeItem(at: backupURL)
+                        }
+                        try FileManager.default.copyItem(at: self.dataFileURL, to: backupURL)
+                        print("Successfully created local backup.")
+                    }
+                    
                     let encoder = JSONEncoder()
                     let encodedData = try encoder.encode(data)
                     try encodedData.write(to: self.dataFileURL)
@@ -74,8 +84,28 @@ class PersistentStorage {
             print("Successfully loaded data for key: \(key)")
             return decodedData
         } catch {
-            print("Error loading data for key \(key): \(error)")
-            return nil
+            print("Could not load main data file: \(error). Attempting to restore from backup.")
+            
+            let backupURL = self.dataFileURL.appendingPathExtension("bak")
+            if FileManager.default.fileExists(atPath: backupURL.path) {
+                do {
+                    let backupData = try Data(contentsOf: backupURL)
+                    let decoder = JSONDecoder()
+                    let decodedData = try decoder.decode(T.self, from: backupData)
+                    
+                    // Restore the main data file from the backup
+                    try backupData.write(to: self.dataFileURL)
+                    
+                    print("Successfully restored data from backup for key: \(key)")
+                    return decodedData
+                } catch {
+                    print("Failed to load or restore from backup: \(error)")
+                    return nil
+                }
+            } else {
+                print("No backup file found for key \(key).")
+                return nil
+            }
         }
     }
     

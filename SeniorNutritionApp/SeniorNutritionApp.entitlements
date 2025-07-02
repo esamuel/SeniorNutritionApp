@@ -11,14 +11,6 @@
 	<key>com.apple.developer.icloud-services</key>
 	<array>
 		<string>CloudKit</string>
-		<string>&lt;key&gt;com.apple.developer.icloud-services&lt;/key&gt;
-&lt;array&gt;</string>
-		<string>&lt;key&gt;com.apple.developer.icloud-container-identifiers&lt;/key&gt;/string&gt;
-&lt;array&gt;</string>
-		<string>&lt;string&gt;CloudKit&lt;/string&gt;
-&lt;/array&gt;</string>
-		<string> &lt;string&gt;iCloud.com.samueleskenasy.SeniorNutritionApp&lt;/string&gt;
-&lt;/array&gt;</string>
 	</array>
 </dict>
 </plist>

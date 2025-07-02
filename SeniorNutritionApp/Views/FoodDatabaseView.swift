@@ -15,6 +15,7 @@ struct FoodDatabaseView: View {
     // MARK: - State
     @State private var searchText = ""
     @State private var selectedCategory: FoodCategory?
+    @State private var selectedCuisine: CuisineType?
     @State private var showingAddFood = false
     @State private var showingRecipeBuilder = false
     @State private var showingPremiumAlert = false
@@ -37,6 +38,9 @@ struct FoodDatabaseView: View {
                     
                     // Category filter
                     categoryFilter
+                    
+                    // Cuisine filter
+                    cuisineFilter
                     
                     // Food list
                     foodList
@@ -154,6 +158,33 @@ struct FoodDatabaseView: View {
         }
     }
     
+    // Cuisine filter
+    private var cuisineFilter: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 10) {
+                ForEach(CuisineType.allCases, id: \.self) { cuisine in
+                    cuisineButton(cuisine)
+                }
+            }
+            .padding(.horizontal)
+        }
+    }
+    
+    // Cuisine button
+    private func cuisineButton(_ cuisine: CuisineType) -> some View {
+        Button(action: {
+            selectedCuisine = selectedCuisine == cuisine ? nil : cuisine
+        }) {
+            Text(cuisine.localizedString)
+                .font(.system(size: userSettings.textSize.size - 2))
+                .padding(.horizontal, 15)
+                .padding(.vertical, 8)
+                .background(selectedCuisine == cuisine ? Color.blue : Color(.systemGray6))
+                .foregroundColor(selectedCuisine == cuisine ? .white : .primary)
+                .cornerRadius(20)
+        }
+    }
+    
     // Food list
     private var foodList: some View {
         List {
@@ -222,6 +253,11 @@ struct FoodDatabaseView: View {
         // Apply category filter
         if let category = selectedCategory {
             foods = foods.filter { $0.category == category }
+        }
+        
+        // Apply cuisine filter
+        if let cuisine = selectedCuisine {
+            foods = foods.filter { $0.cuisineType == cuisine }
         }
         
         return foods

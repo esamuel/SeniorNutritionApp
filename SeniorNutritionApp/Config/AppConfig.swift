@@ -2,7 +2,7 @@ import Foundation
 
 struct AppConfig {
     struct Support {
-        static let email = "support@seniornutrition.app"
+        static let email = "support@saniornutritionapp.com"
         static let location = "123 Health St, Wellness City, CA 90210"
         static let hours = "Mon-Fri, 9 AM - 5 PM PST"
     }

@@ -194,8 +194,8 @@ class UserSettings: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     
     init() {
+        loadUserData()
         setupMedicationObservers()
-        self.medications = []
         
         // Initialize emergency number settings
         self.customEmergencyNumber = UserDefaults.standard.string(forKey: "customEmergencyNumber")
