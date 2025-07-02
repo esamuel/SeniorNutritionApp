@@ -163,18 +163,6 @@ struct FoodSearchView: View {
                         }
                         .font(.system(size: userSettings.textSize.size))
                     }
-                } else {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button("🔄") {
-                            // Manual translation trigger for debugging
-                            Task { @MainActor in
-                                print("DEBUG: Manual translation triggered")
-                                await foodDatabase.translateCommonFoodsFirst(for: LanguageManager.shared.currentLanguage)
-                                refreshTrigger = UUID()
-                                foodDatabase.objectWillChange.send()
-                            }
-                        }
-                    }
                 }
             }
             .onAppear {
@@ -315,13 +303,6 @@ struct FoodSearchView: View {
                 HStack {
                     Text(food.localizedName())
                         .font(.system(size: userSettings.textSize.size, weight: .medium))
-                        .onAppear {
-                            // Debug: Print the food name and its translations
-                            print("DEBUG: Displaying food '\(food.name)'")
-                            print("DEBUG: Current language: \(LanguageManager.shared.currentLanguage)")
-                            print("DEBUG: Hebrew name: \(food.nameHe ?? "nil")")
-                            print("DEBUG: localizedName(): \(food.localizedName())")
-                        }
                     
                     Spacer()
                     
