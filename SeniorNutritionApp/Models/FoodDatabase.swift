@@ -1068,7 +1068,7 @@ class FoodDatabaseService: ObservableObject {
     
     // Translate the most common/visible foods first for immediate UI update
     @MainActor
-    private func translateCommonFoodsFirst(for language: String) async {
+    func translateCommonFoodsFirst(for language: String) async {
         let commonFoods = [
             "Cooked Green Peas", "Broccoli", "Beef Stew", "Oatmeal", "Greek Salad",
             "Apple", "Banana", "Chicken", "Rice", "Pasta", "Bread", "Milk", "Cheese",

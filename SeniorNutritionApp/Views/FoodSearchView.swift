@@ -11,6 +11,7 @@ struct FoodSearchView: View {
     @State private var selectedCuisine: CuisineType?
     @State private var showingAllFoods = false
     @State private var isTranslating = false
+    @State private var refreshTrigger = UUID()
     
     var body: some View {
         NavigationView {
@@ -141,6 +142,7 @@ struct FoodSearchView: View {
                     }
                 }
             }
+            .id(refreshTrigger) // Force view refresh when trigger changes
             .navigationTitle("Search Foods")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -161,6 +163,18 @@ struct FoodSearchView: View {
                         }
                         .font(.system(size: userSettings.textSize.size))
                     }
+                } else {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button("🔄") {
+                            // Manual translation trigger for debugging
+                            Task { @MainActor in
+                                print("DEBUG: Manual translation triggered")
+                                await foodDatabase.translateCommonFoodsFirst(for: LanguageManager.shared.currentLanguage)
+                                refreshTrigger = UUID()
+                                foodDatabase.objectWillChange.send()
+                            }
+                        }
+                    }
                 }
             }
             .onAppear {
@@ -177,8 +191,15 @@ struct FoodSearchView: View {
                     // Hide loading and show content with translated names
                     isTranslating = false
                     
-                    // Force an immediate UI refresh to show translated names
+                    // Force multiple UI refreshes to ensure view updates
                     foodDatabase.objectWillChange.send()
+                    refreshTrigger = UUID()
+                    
+                    // Add a small delay and force another refresh
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        self.foodDatabase.objectWillChange.send()
+                        self.refreshTrigger = UUID()
+                    }
                 }
             }
             .onChange(of: LanguageManager.shared.currentLanguage) { _ in
@@ -294,6 +315,13 @@ struct FoodSearchView: View {
                 HStack {
                     Text(food.localizedName())
                         .font(.system(size: userSettings.textSize.size, weight: .medium))
+                        .onAppear {
+                            // Debug: Print the food name and its translations
+                            print("DEBUG: Displaying food '\(food.name)'")
+                            print("DEBUG: Current language: \(LanguageManager.shared.currentLanguage)")
+                            print("DEBUG: Hebrew name: \(food.nameHe ?? "nil")")
+                            print("DEBUG: localizedName(): \(food.localizedName())")
+                        }
                     
                     Spacer()
                     
