@@ -136,6 +136,24 @@ struct SettingsView: View {
                         Label(NSLocalizedString("Fix Language Issues", comment: ""), systemImage: "arrow.triangle.2.circlepath")
                             .padding(.vertical, 8)
                     }
+                    
+                    // Add food database translation button
+                    Button(action: {
+                        // Force translate all food items to current language
+                        Task {
+                            let foodDatabase = FoodDatabaseService()
+                            await foodDatabase.translateAllFoodItems()
+                            
+                            // Provide user feedback
+                            DispatchQueue.main.async {
+                                let generator = UINotificationFeedbackGenerator()
+                                generator.notificationOccurred(.success)
+                            }
+                        }
+                    }) {
+                        Label(NSLocalizedString("Translate Food Database", comment: ""), systemImage: "globe.badge.chevron.backward")
+                            .padding(.vertical, 8)
+                    }
                     Button(action: {
                         print("SettingsView: Reset to System Language pressed")
                         // First, reset in LanguageManager (which will handle removing from UserDefaults)

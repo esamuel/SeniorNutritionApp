@@ -155,6 +155,16 @@ struct FoodSearchView: View {
             .onAppear {
                 // Ensure the database is loaded when view appears
                 foodDatabase.loadFoodDatabase()
+                // Ensure food database is translated for current language
+                Task {
+                    await foodDatabase.checkAndTranslateIfNeeded()
+                }
+            }
+            .onChange(of: LanguageManager.shared.currentLanguage) { _ in
+                // When language changes, retranslate foods
+                Task {
+                    await foodDatabase.checkAndTranslateIfNeeded()
+                }
             }
         }
     }

@@ -101,9 +101,19 @@ struct FoodDatabaseView: View {
             } message: {
                 Text("Recipe Builder is a premium feature. Upgrade to create custom recipes and automatically calculate nutritional values.")
             }
-            .onAppear {
-                foodDatabase.loadFoodDatabase()
+                    .onAppear {
+            foodDatabase.loadFoodDatabase()
+            // Ensure food database is translated for current language
+            Task {
+                await foodDatabase.checkAndTranslateIfNeeded()
             }
+        }
+        .onChange(of: LanguageManager.shared.currentLanguage) { _ in
+            // When language changes, retranslate foods
+            Task {
+                await foodDatabase.checkAndTranslateIfNeeded()
+            }
+        }
         }
     }
     

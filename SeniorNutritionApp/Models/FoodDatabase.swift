@@ -1047,7 +1047,11 @@ class FoodDatabaseService: ObservableObject {
     @MainActor
     func checkAndTranslateIfNeeded() async {
         let lang = LanguageManager.shared.currentLanguage
-        if lang != "en" && lastTranslatedLanguage != lang {
+        
+        // Always check if translations are missing, even if language hasn't changed
+        let needsTranslation = lang != "en" && (lastTranslatedLanguage != lang || hasIncompleteTranslations(for: lang))
+        
+        if needsTranslation {
             print("[FoodDatabaseService] Translating all foods for language: \(lang)")
             let _ = await translateAllFoodItems()
             lastTranslatedLanguage = lang
@@ -1055,5 +1059,36 @@ class FoodDatabaseService: ObservableObject {
                 self.objectWillChange.send()
             }
         }
+    }
+    
+    // Check if there are incomplete translations for the given language
+    private func hasIncompleteTranslations(for language: String) -> Bool {
+        // Check first 10 foods to see if they have translations
+        let sampleSize = min(10, foodItems.count)
+        let sampleFoods = Array(foodItems.prefix(sampleSize))
+        
+        for food in sampleFoods {
+            switch language {
+            case "he":
+                if food.nameHe == nil || food.nameHe?.isEmpty == true {
+                    print("[FoodDatabaseService] Missing Hebrew translation for: \(food.name)")
+                    return true
+                }
+            case "fr":
+                if food.nameFr == nil || food.nameFr?.isEmpty == true {
+                    print("[FoodDatabaseService] Missing French translation for: \(food.name)")
+                    return true
+                }
+            case "es":
+                if food.nameEs == nil || food.nameEs?.isEmpty == true {
+                    print("[FoodDatabaseService] Missing Spanish translation for: \(food.name)")
+                    return true
+                }
+            default:
+                break
+            }
+        }
+        
+        return false
     }
 } 
