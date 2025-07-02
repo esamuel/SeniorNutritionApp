@@ -1,3 +1,17 @@
+// Cuisine Types
+"General" = "Général";
+"Chinese" = "Chinois";
+"Russian" = "Russe";
+"Middle Eastern" = "Moyen-Oriental";
+"Korean" = "Coréen";
+"Japanese" = "Japonais";
+"Indian" = "Indien";
+"Mexican" = "Mexicain";
+"Italian" = "Italien";
+"Cuisine" = "Cuisine";
+"All Cuisines" = "Toutes les Cuisines";
+"No foods in this cuisine" = "Aucun aliment dans cette cuisine";
+
 "Onboarding Loaded" = "Chargement de l'accueil";
 "Skip" = "Passer";
 "Close" = "Fermer";

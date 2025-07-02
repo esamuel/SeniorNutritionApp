@@ -33,7 +33,7 @@ struct RecipeDetailView: View {
                     ForEach(recipe.ingredients) { ingredient in
                         HStack {
                             Text("•")
-                            Text("\(ingredient.food.name)")
+                            Text("\(ingredient.food.localizedName())")
                             Spacer()
                             Text("\(String(format: "%.1f", ingredient.quantity))\(ingredient.unit)")
                                 .foregroundColor(.secondary)

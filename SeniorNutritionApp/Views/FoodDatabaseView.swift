@@ -198,7 +198,7 @@ struct FoodDatabaseView: View {
     private func foodRow(_ food: FoodItem) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Text(food.name)
+                Text(food.localizedName())
                     .font(.system(size: userSettings.textSize.size, weight: .medium))
                 
                 Spacer()
@@ -247,7 +247,24 @@ struct FoodDatabaseView: View {
         
         // Apply search filter
         if !searchText.isEmpty {
-            foods = foods.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+            let searchQuery = searchText.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            foods = foods.filter { food in
+                // Search in all available languages
+                let nameInEnglish = food.name.lowercased().contains(searchQuery)
+                let nameInFrench = (food.nameFr ?? "").lowercased().contains(searchQuery)
+                let nameInSpanish = (food.nameEs ?? "").lowercased().contains(searchQuery)
+                let nameInHebrew = (food.nameHe ?? "").lowercased().contains(searchQuery)
+                
+                // Also search in localized notes if available
+                let notesInEnglish = (food.notes ?? "").lowercased().contains(searchQuery)
+                let notesInFrench = (food.notesFr ?? "").lowercased().contains(searchQuery)
+                let notesInSpanish = (food.notesEs ?? "").lowercased().contains(searchQuery)
+                let notesInHebrew = (food.notesHe ?? "").lowercased().contains(searchQuery)
+                
+                return nameInEnglish || nameInFrench || nameInSpanish || nameInHebrew ||
+                       notesInEnglish || notesInFrench || notesInSpanish || notesInHebrew
+            }
         }
         
         // Apply category filter

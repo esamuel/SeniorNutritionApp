@@ -51,7 +51,7 @@ struct RecipeBuilderView: View {
                 Section(header: Text("Ingredients").font(.system(size: userSettings.textSize.size))) {
                     ForEach(ingredients) { ingredient in
                         HStack {
-                            Text(ingredient.food.name)
+                            Text(ingredient.food.localizedName())
                                 .font(.system(size: userSettings.textSize.size))
                             Spacer()
                             Text("\(Int(ingredient.quantity))\(ingredient.unit)")
@@ -179,7 +179,7 @@ struct FoodPickerView: View {
                     onSelect(food)
                     presentationMode.wrappedValue.dismiss()
                 }) {
-                    Text(food.name)
+                                            Text(food.localizedName())
                         .font(.system(size: userSettings.textSize.size))
                 }
             }
@@ -202,6 +202,16 @@ struct FoodPickerView: View {
         if searchText.isEmpty {
             return foods
         }
-        return foods.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+        let searchQuery = searchText.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        return foods.filter { food in
+            // Search in all available languages
+            let nameInEnglish = food.name.lowercased().contains(searchQuery)
+            let nameInFrench = (food.nameFr ?? "").lowercased().contains(searchQuery)
+            let nameInSpanish = (food.nameEs ?? "").lowercased().contains(searchQuery)
+            let nameInHebrew = (food.nameHe ?? "").lowercased().contains(searchQuery)
+            
+            return nameInEnglish || nameInFrench || nameInSpanish || nameInHebrew
+        }
     }
 }

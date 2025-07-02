@@ -16,7 +16,7 @@ struct IngredientQuantityView: View {
     
     var body: some View {
         HStack {
-            Text(ingredient.food.name)
+            Text(ingredient.food.localizedName())
                 .font(.system(size: userSettings.textSize.size))
             
             Spacer()
