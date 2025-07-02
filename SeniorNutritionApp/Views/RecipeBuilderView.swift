@@ -194,6 +194,13 @@ struct FoodPickerView: View {
                     .font(.system(size: userSettings.textSize.size))
                 }
             }
+            .onAppear {
+                foodDatabase.loadFoodDatabase()
+                // Ensure food database is translated for current language
+                Task {
+                    await foodDatabase.checkAndTranslateIfNeeded()
+                }
+            }
         }
     }
     
