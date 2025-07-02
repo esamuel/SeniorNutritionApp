@@ -10,6 +10,7 @@ struct FoodSearchView: View {
     @State private var selectedCategory: FoodCategory?
     @State private var selectedCuisine: CuisineType?
     @State private var showingAllFoods = false
+    @State private var isTranslating = false
     
     var body: some View {
         NavigationView {
@@ -91,6 +92,16 @@ struct FoodSearchView: View {
                             foodRow(food)
                         }
                     }
+                } else if isTranslating {
+                    // Show loading while translating
+                    VStack {
+                        ProgressView()
+                        Text("Loading foods...")
+                            .font(.system(size: userSettings.textSize.size))
+                            .foregroundColor(.secondary)
+                            .padding(.top)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
                     // Initial view - grouped food categories and cuisines
                     List {
@@ -153,11 +164,21 @@ struct FoodSearchView: View {
                 }
             }
             .onAppear {
+                // Show loading state immediately
+                isTranslating = true
+                
                 // Ensure the database is loaded when view appears
                 foodDatabase.loadFoodDatabase()
-                // Ensure food database is translated for current language
-                Task {
+                
+                // Ensure food database is translated for current language BEFORE showing content
+                Task { @MainActor in
                     await foodDatabase.checkAndTranslateIfNeeded()
+                    
+                    // Hide loading and show content with translated names
+                    isTranslating = false
+                    
+                    // Force an immediate UI refresh to show translated names
+                    foodDatabase.objectWillChange.send()
                 }
             }
             .onChange(of: LanguageManager.shared.currentLanguage) { _ in
