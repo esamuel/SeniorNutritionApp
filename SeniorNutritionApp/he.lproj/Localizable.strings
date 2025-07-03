@@ -305,6 +305,14 @@
 "No upcoming appointments" = "אין פגישות קרובות";
 "Add Appointment" = "הוסף פגישה";
 "%@, %@" = "%@, %2$@";
+"Eating reminder" = "תזכורת אכילה";
+"Fasting reminder" = "תזכורת צום";
+"1 hour" = "שעה אחת";
+"%d hours" = "%d שעות";
+"1 minute" = "דקה אחת";
+"%d minutes" = "%d דקות";
+"0 minutes" = "0 דקות";
+" and " = " ו";
 "Morning" = "בוקר";
 "Afternoon" = "צהריים";
 "Evening" = "ערב";
@@ -2800,3 +2808,161 @@
 "Set up reminders to maintain consistent tracking" = "הגדר תזכורות כדי לשמור על מעקב עקבי";
 "Export your data regularly as a backup" = "ייצא את הנתונים שלך באופן קבוע כגיבוי";
 "Contact support if you need help with data entry" = "צור קשר עם התמיכה אם אתה צריך עזרה עם הזנת נתונים";
+
+
+/* Health Condition Tips - Hebrew Translations */
+"Monitor Blood Sugar Closely" = "עקוב מקרוב אחר רמת הסוכר בדם";
+"Check your blood glucose levels more frequently during fasting periods to ensure they remain within a safe range." = "בדוק את רמות הגלוקוז בדם שלך בתדירות גבוהה יותר במהלך תקופות הצום כדי להבטיח שהן נשארות בטווח בטוח.";
+"Shorter Fasting Windows" = "חלונות צום קצרים יותר";
+"Consider shorter fasting periods (12-14 hours) rather than extended fasts to avoid blood sugar fluctuations." = "שקול תקופות צום קצרות יותר (12-14 שעות) במקום צום ממושך כדי להימנע מתנודות ברמת הסוכר בדם.";
+"Break Fast Appropriately" = "סיים את הצום בצורה מתאימה";
+"Break your fast with a balanced meal containing protein, healthy fats, and complex carbohydrates to prevent blood sugar spikes." = "סיים את הצום עם ארוחה מאוזנת המכילה חלבון, שומנים בריאים ופחמימות מורכבות כדי למנוע עליות חדות ברמת הסוכר בדם.";
+"Monitor Blood Pressure" = "עקוב אחר לחץ הדם";
+"Check your blood pressure regularly during fasting periods, as fasting can sometimes cause fluctuations." = "בדוק את לחץ הדם שלך באופן קבוע במהלך תקופות הצום, מכיוון שצום יכול לעתים לגרום לתנודות.";
+"Maintain Electrolyte Balance" = "שמור על איזון אלקטרוליטים";
+"Consider adding a pinch of salt to your water or drinking sugar-free electrolyte beverages during longer fasts." = "שקול להוסיף קורט מלח למים שלך או לשתות משקאות אלקטרוליטים ללא סוכר במהלך צום ממושך.";
+"Gradual Transition" = "מעבר הדרגתי";
+"If you take blood pressure medications, work with your doctor to monitor how fasting affects your blood pressure and adjust medications if necessary." = "אם אתה נוטל תרופות ללחץ דם, עבוד עם הרופא שלך כדי לעקוב אחר האופן שבו הצום משפיע על לחץ הדם שלך ולהתאים תרופות במידת הצורך.";
+"Consult Your Nephrologist" = "התייעץ עם הנפרולוג שלך";
+"Kidney disease requires specialized fasting protocols. Always consult with your kidney specialist before fasting." = "מחלת כליות דורשת פרוטוקולי צום מיוחדים. התייעץ תמיד עם מומחה הכליות שלך לפני צום.";
+"Shorter Fasting Periods" = "תקופות צום קצרות יותר";
+"Consider time-restricted eating (10-12 hours) rather than extended fasting periods to minimize stress on the kidneys." = "שקול אכילה מוגבלת בזמן (10-12 שעות) במקום תקופות צום ממושכות כדי למזער לחץ על הכליות.";
+"Hydration Balance" = "איזון הידרציה";
+"Follow your doctor's recommendations for fluid intake during fasting, as both over-hydration and dehydration can be problematic." = "עקוב אחר המלצות הרופא שלך לצריכת נוזלים במהלך הצום, מכיוון שגם הידרציה יתר וגם התייבשות יכולות להיות בעייתיות.";
+"Monitor Electrolytes" = "עקוב אחר אלקטרוליטים";
+"Kidney disease affects electrolyte balance. Regular monitoring during fasting periods is essential." = "מחלת כליות משפיעה על איזון האלקטרוליטים. מעקב קבוע במהלך תקופות הצום הוא חיוני.";
+"Monitor Energy Levels" = "עקוב אחר רמות האנרגיה";
+"Pay attention to energy levels during fasting. Excessive fatigue may indicate a need to adjust your fasting schedule." = "שים לב לרמות האנרגיה במהלך הצום. עייפות מוגזמת עשויה להצביע על צורך להתאים את לוח הזמנים של הצום שלך.";
+"Iodine-Rich Foods" = "מזונות עשירים ביוד";
+"When breaking your fast, include iodine-rich foods like seaweed, fish, or eggs to support thyroid function." = "כאשר אתה מסיים את הצום, כלול מזונות עשירים ביוד כמו אצות ים, דגים או ביצים כדי לתמוך בתפקוד בלוטת התריס.";
+"Regular Testing" = "בדיקות קבועות";
+"Continue regular thyroid function tests to ensure your condition remains stable while practicing intermittent fasting." = "המשך בבדיקות תפקוד בלוטת התריס קבועות כדי להבטיח שהמצב שלך נשאר יציב בזמן תרגול צום לסירוגין.";
+"Anti-Inflammatory Benefits" = "יתרונות אנטי-דלקתיים";
+"Fasting may help reduce inflammation, potentially providing relief from arthritis symptoms." = "צום עשוי לעזור להפחית דלקת, ועשוי לספק הקלה מתסמיני דלקת פרקים.";
+"Gentle Movement" = "תנועה עדינה";
+"Incorporate gentle stretching or yoga during fasting periods to maintain joint mobility." = "שלב מתיחות עדינות או יוגה במהלך תקופות הצום כדי לשמור על ניידות המפרקים.";
+"Anti-Inflammatory Foods" = "מזונות אנטי-דלקתיים";
+"Break your fast with anti-inflammatory foods like fatty fish, berries, turmeric, and leafy greens." = "סיים את הצום עם מזונות אנטי-דלקתיים כמו דגים שמנוניים, פירות יער, כורכום וירקות עליים.";
+"Digestive Rest" = "מנוחה למערכת העיכול";
+"Fasting gives your digestive system time to rest and repair, which may help reduce symptoms." = "צום נותן למערכת העיכול שלך זמן לנוח ולהתאושש, מה שעשוי לעזור להפחית תסמינים.";
+"Gentle Refeeding" = "חזרה עדינה לאכילה";
+"Break your fast with easily digestible foods and avoid known trigger foods that aggravate your condition." = "סיים את הצום עם מזונות הניתנים לעיכול בקלות והימנע ממזונות מעורר ידועים שמחמירים את המצב שלך.";
+"Hydration with Care" = "הידרציה בזהירות";
+"Stay hydrated but avoid carbonated or caffeinated beverages that might irritate your digestive tract." = "שמור על הידרציה אך הימנע ממשקאות מוגזים או המכילים קפאין שעלולים לגרות את מערכת העיכול שלך.";
+"Probiotic Support" = "תמיכה פרוביוטית";
+"Consider including probiotic-rich foods when breaking your fast to support gut health." = "שקול לכלול מזונות עשירים בפרוביוטיקה כאשר אתה מסיים את הצום כדי לתמוך בבריאות המעיים.";
+"Calcium Timing" = "תזמון סידן";
+"Ensure adequate calcium intake during your eating window. Consider calcium-rich foods like dairy, fortified plant milks, or leafy greens." = "הבטח צריכת סידן מספקת במהלך חלון האכילה שלך. שקול מזונות עשירים בסידן כמו מוצרי חלב, משקאות צמחיים מועשרים או ירקות עליים.";
+"Weight-Bearing Exercise" = "תרגילי נשיאת משקל";
+"Include weight-bearing exercises during your eating window to help maintain bone density." = "כלול תרגילי נשיאת משקל במהלך חלון האכילה שלך כדי לעזור לשמור על צפיפות העצם.";
+"Protein Intake" = "צריכת חלבון";
+"Ensure adequate protein intake during your eating window, as protein is essential for bone health." = "הבטח צריכת חלבון מספקת במהלך חלון האכילה שלך, מכיוון שחלבון הוא חיוני לבריאות העצם.";
+"Consult Your Doctor" = "התייעץ עם הרופא שלך";
+"Always discuss your fasting regimen with your healthcare provider to ensure it's safe for your specific health condition." = "דון תמיד במשטר הצום שלך עם ספק שירותי הבריאות שלך כדי להבטיח שהוא בטוח למצב הבריאותי הספציפי שלך.";
+"Start Gradually" = "התחל בהדרגה";
+"Begin with shorter fasting periods and gradually extend them as your body adapts." = "התחל עם תקופות צום קצרות יותר והאריך אותן בהדרגה כאשר הגוף שלך מסתגל.";
+"Listen to Your Body" = "הקשב לגוף שלך";
+"Pay close attention to how your body responds to fasting and adjust your approach accordingly." = "שים לב היטב לאופן שבו הגוף שלך מגיב לצום והתאם את הגישה שלך בהתאם.";
+"Medication Management" = "ניהול תרופות";
+"Work with your healthcare provider to adjust medication timing if needed to accommodate your fasting schedule." = "עבוד עם ספק שירותי הבריאות שלך כדי להתאים את זמני נטילת התרופות במידת הצורך כדי להתאים ללוח הזמנים של הצום שלך.";
+
+/* Detailed Fasting Protocol Information - Hebrew */
+/* 12:12 Protocol Details */
+"12:12_benefits" = "הכנסה עדינה לצום לסירוגין\nעוזר לווסת רמות סוכר בדם\nמשפר איכות שינה\nהפרעה מינימלית לשגרה יומית\nתומך בבריאות מערכת העיכול\nקל יותר לשמור לטווח ארוך";
+
+"12:12_recommended" = "מתחילים בצום לסירוגין\nאנשים עם לוחות זמנים קבועים לתרופות\nאנשים עם חיים חברתיים פעילים\nאלה שמעדיפים לאכול ארוחת ערב עם המשפחה\nאנשים בגיל השלישי המתחילים במסע הצום\nכל מי שיש לו רגישויות עיכול";
+
+"12:12_guidelines" = "התחל את הצום שלך אחרי ארוחת הערב (בסביבות 19:00-20:00)\nדלג על ארוחת הבוקר או אכל אותה מאוחר יותר (בסביבות 07:00-08:00)\nשמור על הידרציה במהלך תקופות הצום\nסיים את הצום עם ארוחה קלה ומזינה\nטול תרופות כפי שנקבע עם אוכל במידת הצורך\nהקשב לגוף שלך והתאם במידת הצורך";
+
+/* 14:10 Protocol Details */
+"14:10_benefits" = "שריפת שומן מוגברת בהשוואה ל-12:12\nגמישות מטבולית משופרת\nשליטה טובה יותר בתיאבון\nבהירות מנטלית מוגברת\nתומך בתהליכי תיקון תאיים\nיתרונות משמעותיים יותר בניהול משקל";
+
+"14:10_recommended" = "צמים מנוסים המחפשים יותר יתרונות\nאנשים עם שליטה יציבה ברמות הסוכר בדם\nאנשים המחפשים ניהול משקל\nאלה עם לוחות זמנים גמישים בבוקר\nאנשים הנוחים עם תקופות צום ארוכות יותר\nאנשים המחפשים יתרונות מטבוליים מוגברים";
+
+"14:10_guidelines" = "שקול לסיים לאכול עד השעה 20:00\nסיים את הצום בסביבות השעה 10:00\nתכנן ארוחות בתוך חלון של 10 שעות\nהישאר פעיל אך הימנע מפעילות גופנית אינטנסיבית במהלך הצום\nעקוב אחר איך אתה מרגיש והתאם במידת הצורך\nשמור על הידרציה מספקת לאורך כל הזמן";
+
+/* 16:8 Protocol Details */
+"16:8_benefits" = "יתרונות מקסימליים של אוטופגיה\nפוטנציאל משמעותי לשריפת שומן\nרגישות משופרת לאינסולין\nבהירות מנטלית ומיקוד מוגברים\nתהליכי תיקון תאיים חזקים יותר\nגמישות מטבולית אופטימלית\nיתרונות מקסימליים בניהול משקל";
+
+"16:8_recommended" = "צמים מנוסים המחפשים יתרונות מקסימליים\nאנשים עם מצבי בריאות יציבים\nאנשים הנוחים עם תקופות צום ארוכות יותר\nאנשים עם לוחות זמנים גמישים\nאלה המחפשים שיפורים מטבוליים משמעותיים\nאנשים עם מטרות ניהול משקל";
+
+"16:8_guidelines" = "סיים לאכול עד השעה 19:00\nסיים את הצום בשעה 11:00\nתכנן 2-3 ארוחות מזינות בחלון האכילה\nשמור על הידרציה טובה לאורך כל הצום\nשקול תוספי אלקטרוליטים\nסיים את הצום עם מזונות עשירים בחלבון\nעקוב אחר רמות האנרגיה והתאם לפי הצורך";
+
+/* Custom Protocol Details */
+"Custom_benefits" = "מותאם לצרכים הספציפיים שלך\nאפשרויות תזמון גמישות\nמתאים לאורח החיים שלך\nגישה אישית לצום\nיכול להתאים לשיקולי בריאות ייחודיים\nמאפשר התקדמות הדרגתית";
+
+"Custom_recommended" = "אנשים עם צרכי תזמון ייחודיים\nאנשים עם שיקולי בריאות ספציפיים\nאלה שניסו פרוטוקולים אחרים\nאנשים עם שגרות יומיות משתנות\nאנשים הדורשים גישות אישיות\nאלה העוברים בין פרוטוקולים";
+
+"Custom_guidelines" = "בחר זמנים המתאימים ללוח הזמנים שלך\nשמור על תקופות צום עקביות\nהקשב לאותות הגוף שלך\nהתאם את הפרוטוקול לפי הצורך\nעקוב אחר ההתקדמות שלך\nהתייעץ עם ספקי שירותי בריאות לקבלת הנחיה";
+
+/* Appointment timing localization - Hebrew */
+"Today" = "היום";
+"Tomorrow" = "מחר";
+"Past" = "עבר";
+"%d day" = "%d יום";
+"%d days" = "%d ימים";
+
+/* Health Data Tab Localization - Hebrew */
+"No entries yet. Tap + to add your first reading." = "אין עדיין רשומות. הקש + כדי להוסיף את הקריאה הראשונה שלך.";
+"Tap to view history and charts" = "הקש כדי לצפות בהיסטוריה ובגרפים";
+
+/* Blood Pressure Detail View Localization - Hebrew */
+"N/A" = "לא זמין";
+"Latest" = "אחרון";
+"Average" = "ממוצע";
+"Normal" = "תקין";
+"Elevated" = "מוגבר";
+"Stage 1" = "שלב 1";
+"Stage 2" = "שלב 2";
+"Crisis" = "משבר";
+"Your blood pressure is in the normal range. Keep up the good work!" = "לחץ הדם שלך בטווח התקין. המשך בעבודה הטובה!";
+"Your blood pressure is elevated. Consider lifestyle changes." = "לחץ הדם שלך מוגבר. שקול שינויי אורח חיים.";
+"Your blood pressure is in hypertension stage 1. Consult your doctor." = "לחץ הדם שלך בשלב יתר לחץ דם 1. התייעץ עם הרופא שלך.";
+"Your blood pressure is in hypertension stage 2. Seek immediate medical attention." = "לחץ הדם שלך בשלב יתר לחץ דם 2. פנה לטיפול רפואי מיידי.";
+"Your blood pressure is critically high. Seek immediate medical attention!" = "לחץ הדם שלך גבוה באופן קריטי. פנה לטיפול רפואי מיידי!";
+"Track your blood pressure regularly to see insights and trends." = "עקוב אחר לחץ הדם שלך באופן קבוע כדי לראות תובנות ומגמות.";
+"Trends" = "מגמות";
+"Time Range" = "טווח זמן";
+"Week" = "שבוע";
+"Month" = "חודש";
+"3 Months" = "3 חודשים";
+"No data available to display chart" = "אין נתונים זמינים להצגת גרף";
+"Systolic" = "סיסטולי";
+"Diastolic" = "דיאסטולי";
+"History" = "היסטוריה";
+"No readings recorded yet" = "עדיין לא נרשמו קריאות";
+"Systolic (top)" = "סיסטולי (עליון)";
+"Diastolic (bottom)" = "דיאסטולי (תחתון)";
+"Date & Time" = "תאריך ושעה";
+"Edit Reading" = "ערוך קריאה";
+"Please enter valid numbers" = "אנא הזן מספרים תקפים";
+"Failed to save: \(error.localizedDescription)" = "נכשל בשמירה: \(error.localizedDescription)";
+
+/* Health Section Titles - Hebrew */
+"Blood Pressure" = "לחץ דם";
+"Blood Sugar" = "רמת סוכר בדם";
+"Heart Rate" = "דופק";
+"Weight" = "משקל";
+
+/* Heart Rate Status Messages - Hebrew */
+"Your heart rate is in the normal range. Keep up the good work!" = "קצב הלב שלך בטווח התקין. המשך בעבודה הטובה!";
+"Your heart rate is elevated. If this persists, consider consulting your doctor." = "קצב הלב שלך מוגבר. אם זה נמשך, שקול להתייעץ עם הרופא שלך.";
+"Your heart rate is lower than normal. Consult your doctor." = "קצב הלב שלך נמוך מהרגיל. התייעץ עם הרופא שלך.";
+"Your heart rate is very high. Consider medical attention if accompanied by other symptoms." = "קצב הלב שלך גבוה מאוד. שקול טיפול רפואי אם מלווה בתסמינים אחרים.";
+"Track your heart rate regularly to see insights and trends." = "עקוב אחר קצב הלב שלך באופן קבוע כדי לראות תובנות ומגמות.";
+"Start tracking your heart rate to see insights." = "התחל לעקוב אחר קצב הלב שלך כדי לראות תובנות.";
+
+/* Weight Status Messages - Hebrew */
+"Your weight has been stable recently. Good job maintaining consistency!" = "המשקל שלך היה יציב לאחרונה. כל הכבוד על שמירת העקביות!";
+"You've gained %.1f kg recently. Monitor your intake if this wasn't intended." = "עלית %.1f ק\"ג לאחרונה. עקוב אחר הצריכה שלך אם זה לא היה מכוון.";
+"You've lost %.1f kg recently. If intentional, good progress!" = "ירדת %.1f ק\"ג לאחרונה. אם זה מכוון, התקדמות טובה!";
+"Track your weight regularly to see insights and trends." = "עקוב אחר המשקל שלך באופן קבוע כדי לראות תובנות ומגמות.";
+
+/* Blood Sugar Status Messages - Hebrew */
+"Your blood sugar is in the normal range. Keep up the good work!" = "רמת הסוכר בדם שלך בטווח התקין. המשך בעבודה הטובה!";
+"Your blood sugar is in the pre-diabetic range. Consider lifestyle changes." = "רמת הסוכר בדם שלך בטווח טרום-סוכרתי. שקול שינויי אורח חיים.";
+"Your blood sugar is in the diabetic range. Consult your doctor for guidance." = "רמת הסוכר בדם שלך בטווח הסוכרתי. התייעץ עם הרופא שלך לקבלת הנחיה.";
+"Your blood sugar is low. Consider eating something with carbohydrates." = "רמת הסוכר בדם שלך נמוכה. שקול לאכול משהו עם פחמימות.";
+"Your blood sugar is very low. Seek medical attention if you feel unwell." = "רמת הסוכר בדם שלך נמוכה מאוד. פנה לטיפול רפואי אם אתה מרגיש לא טוב.";
+"Monitor your blood sugar regularly." = "עקוב אחר רמת הסוכר בדם שלך באופן קבוע.";
+"Start tracking your blood sugar to see insights." = "התחל לעקוב אחר רמת הסוכר בדם שלך כדי לראות תובנות.";

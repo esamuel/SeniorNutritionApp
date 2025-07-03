@@ -287,7 +287,7 @@ struct BloodPressureDetailView: View {
     private func bloodPressureRow(entry: BloodPressureEntry) -> some View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
-                Text("\(entry.systolic)/\(entry.diastolic) mmHg")
+                Text("\(entry.systolic)/\(entry.diastolic) \(NSLocalizedString("mmHg", comment: "Unit for blood pressure"))")
                     .font(.system(size: 18, weight: .bold))
                     .foregroundColor(bloodPressureColor(systolic: Int(entry.systolic), diastolic: Int(entry.diastolic)))
                 
@@ -329,7 +329,7 @@ struct BloodPressureDetailView: View {
         if let latest = entries.first {
             return "\(latest.systolic)/\(latest.diastolic)"
         }
-        return "N/A"
+        return NSLocalizedString("N/A", comment: "Not available abbreviation")
     }
     
     private var latestColor: Color {
@@ -341,7 +341,7 @@ struct BloodPressureDetailView: View {
     
     private var averageReading: String {
         if entries.isEmpty {
-            return "N/A"
+            return NSLocalizedString("N/A", comment: "Not available abbreviation")
         }
         
         let avgSystolic = entries.reduce(0) { $0 + Double($1.systolic) } / Double(entries.count)
@@ -365,15 +365,15 @@ struct BloodPressureDetailView: View {
         if let latest = entries.first {
             let category = bloodPressureCategory(systolic: Int(latest.systolic), diastolic: Int(latest.diastolic))
             switch category {
-            case "Normal":
+            case NSLocalizedString("Normal", comment: "Blood pressure category: Normal"):
                 return NSLocalizedString("Your blood pressure is in the normal range. Keep up the good work!", comment: "Blood pressure status: normal")
-            case "Elevated":
+            case NSLocalizedString("Elevated", comment: "Blood pressure category: Elevated"):
                 return NSLocalizedString("Your blood pressure is elevated. Consider lifestyle changes.", comment: "Blood pressure status: elevated")
-            case "Stage 1":
+            case NSLocalizedString("Stage 1", comment: "Blood pressure category: Stage 1"):
                 return NSLocalizedString("Your blood pressure is in hypertension stage 1. Consult your doctor.", comment: "Blood pressure status: hypertension stage 1")
-            case "Stage 2":
+            case NSLocalizedString("Stage 2", comment: "Blood pressure category: Stage 2"):
                 return NSLocalizedString("Your blood pressure is in hypertension stage 2. Seek immediate medical attention.", comment: "Blood pressure status: hypertension stage 2")
-            case "Crisis":
+            case NSLocalizedString("Crisis", comment: "Blood pressure category: Crisis"):
                 return NSLocalizedString("Your blood pressure is critically high. Seek immediate medical attention!", comment: "Blood pressure status: crisis")
             default:
                 return NSLocalizedString("Track your blood pressure regularly to see insights and trends.", comment: "Blood pressure status: default message")
@@ -407,15 +407,15 @@ struct BloodPressureDetailView: View {
     
     private func bloodPressureCategory(systolic: Int, diastolic: Int) -> String {
         if systolic >= 180 || diastolic >= 120 {
-            return "Crisis"
+            return NSLocalizedString("Crisis", comment: "Blood pressure category: Crisis")
         } else if systolic >= 140 || diastolic >= 90 {
-            return "Stage 2"
+            return NSLocalizedString("Stage 2", comment: "Blood pressure category: Stage 2")
         } else if (systolic >= 130 && systolic < 140) || (diastolic >= 80 && diastolic < 90) {
-            return "Stage 1"
+            return NSLocalizedString("Stage 1", comment: "Blood pressure category: Stage 1")
         } else if (systolic >= 120 && systolic < 130) && diastolic < 80 {
-            return "Elevated"
+            return NSLocalizedString("Elevated", comment: "Blood pressure category: Elevated")
         } else {
-            return "Normal"
+            return NSLocalizedString("Normal", comment: "Blood pressure category: Normal")
         }
     }
     
@@ -423,13 +423,13 @@ struct BloodPressureDetailView: View {
         let category = bloodPressureCategory(systolic: systolic, diastolic: diastolic)
         
         switch category {
-        case "Normal":
+        case NSLocalizedString("Normal", comment: "Blood pressure category: Normal"):
             return .green
-        case "Elevated":
+        case NSLocalizedString("Elevated", comment: "Blood pressure category: Elevated"):
             return .yellow
-        case "Stage 1":
+        case NSLocalizedString("Stage 1", comment: "Blood pressure category: Stage 1"):
             return .orange
-        case "Stage 2", "Crisis":
+        case NSLocalizedString("Stage 2", comment: "Blood pressure category: Stage 2"), NSLocalizedString("Crisis", comment: "Blood pressure category: Crisis"):
             return .red
         default:
             return .gray
@@ -477,48 +477,44 @@ struct EditBloodPressureView: View {
     }
     
     var body: some View {
-        NavigationView {
-            Form {
-                Section(header: Text("Blood Pressure")) {
-                    TextField("Systolic (top)", text: $systolic)
-                        .keyboardType(.numberPad)
-                        .focused($systolicFieldIsFocused)
-                    TextField("Diastolic (bottom)", text: $diastolic)
-                        .keyboardType(.numberPad)
-                    DatePicker("Date & Time", selection: $date)
-                        .datePickerLTR()
-                }
-                
-                if let error = error {
-                    Text(error)
-                        .foregroundColor(.red)
+        Form {
+            Section(header: Text(NSLocalizedString("Blood Pressure", comment: "Section header for blood pressure"))) {
+                TextField(NSLocalizedString("Systolic (top)", comment: "Placeholder for systolic blood pressure"), text: $systolic)
+                    .keyboardType(.numberPad)
+                    .focused($systolicFieldIsFocused)
+                TextField(NSLocalizedString("Diastolic (bottom)", comment: "Placeholder for diastolic blood pressure"), text: $diastolic)
+                    .keyboardType(.numberPad)
+                DatePicker(NSLocalizedString("Date & Time", comment: "Date and time picker label"), selection: $date)
+                    .datePickerLTR()
+            }
+            
+            if let error = error {
+                Text(error)
+                    .foregroundColor(.red)
+            }
+        }
+        .navigationTitle(NSLocalizedString("Edit Reading", comment: "Navigation title for editing blood pressure reading"))
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .cancellationAction) {
+                Button(NSLocalizedString("Cancel", comment: "Cancel button text")) {
+                    dismiss()
                 }
             }
-            .navigationTitle("Edit Reading")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") {
-                        dismiss()
-                    }
-                }
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") {
-                        saveChanges()
-                    }
+            ToolbarItem(placement: .confirmationAction) {
+                Button(NSLocalizedString("Save", comment: "Save button text")) {
+                    saveChanges()
                 }
             }
         }
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.systolicFieldIsFocused = true
-            }
+            systolicFieldIsFocused = true
         }
     }
     
     private func saveChanges() {
         guard let sys = Int32(systolic), let dia = Int32(diastolic) else {
-            error = "Please enter valid numbers"
+            error = NSLocalizedString("Please enter valid numbers", comment: "Error message for invalid blood pressure numbers")
             return
         }
         
@@ -530,7 +526,7 @@ struct EditBloodPressureView: View {
             try viewContext.save()
             dismiss()
         } catch {
-            self.error = "Failed to save: \(error.localizedDescription)"
+            self.error = NSLocalizedString("Failed to save: \(error.localizedDescription)", comment: "Error message for failed save operation")
         }
     }
 }

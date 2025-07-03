@@ -419,39 +419,36 @@ struct EditWeightView: View {
     }
     
     var body: some View {
-        NavigationView {
-            Form {
-                Section(header: Text("Weight")) {
-                    TextField("Weight (kg)", text: $weight)
-                        .keyboardType(.decimalPad)
-                    DatePicker("Date & Time", selection: $date)
-                        .datePickerLTR()
-                }
-                
-                if let error = error {
-                    Text(error)
-                        .foregroundColor(.red)
+        Form {
+            Section(header: Text("Weight")) {
+                TextField("Weight (kg)", text: $weight)
+                    .keyboardType(.decimalPad)
+                    .focused($weightFieldIsFocused)
+                DatePicker("Date & Time", selection: $date)
+                    .datePickerLTR()
+            }
+            
+            if let error = error {
+                Text(error)
+                    .foregroundColor(.red)
+            }
+        }
+        .navigationTitle("Edit Reading")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .cancellationAction) {
+                Button("Cancel") {
+                    dismiss()
                 }
             }
-            .navigationTitle("Edit Reading")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") {
-                        dismiss()
-                    }
-                }
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") {
-                        saveChanges()
-                    }
+            ToolbarItem(placement: .confirmationAction) {
+                Button("Save") {
+                    saveChanges()
                 }
             }
         }
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.weightFieldIsFocused = true
-            }
+            weightFieldIsFocused = true
         }
     }
     

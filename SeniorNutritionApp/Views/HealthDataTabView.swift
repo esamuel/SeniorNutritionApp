@@ -55,14 +55,14 @@ struct HealthDataTabView: View {
                                     .font(.system(size: 40))
                                     .foregroundColor(.white)
                                     .background(Circle().fill(Color.red).frame(width: 56, height: 56))
-                                Text("Blood Pressure")
+                                Text(NSLocalizedString("Blood Pressure", comment: "Title for Blood Pressure section"))
                                     .font(.title2).bold()
                                     .foregroundColor(.red)
                                 Spacer()
                                 Button(action: { 
                                     showingAddBP = true 
                                 }) {
-                                    Label("Add", systemImage: "plus.circle.fill")
+                                    Label(NSLocalizedString("Add", comment: "Add button text"), systemImage: "plus.circle.fill")
                                         .font(.title3)
                                         .foregroundColor(.red)
                                 }
@@ -74,7 +74,7 @@ struct HealthDataTabView: View {
                             if let latestEntry = bpEntries.first {
                                 HStack {
                                     VStack(alignment: .leading, spacing: 4) {
-                                        Text("\(latestEntry.systolic)/\(latestEntry.diastolic) mmHg")
+                                        Text("\(latestEntry.systolic)/\(latestEntry.diastolic) \(NSLocalizedString("mmHg", comment: "Unit for blood pressure"))")
                                             .font(.title3).bold()
                                             .foregroundColor(.primary)
                                         Text(latestEntry.date ?? Date(), formatter: dateFormatter)
@@ -98,12 +98,12 @@ struct HealthDataTabView: View {
                                 .background(Color.red.opacity(0.1))
                                 .cornerRadius(10)
                             } else {
-                                Text("No entries yet. Tap + to add your first reading.")
+                                Text(NSLocalizedString("No entries yet. Tap + to add your first reading.", comment: "Message when no health entries exist"))
                                     .foregroundColor(.secondary)
                                     .padding()
                             }
                             
-                            Text("Tap to view history and charts")
+                            Text(NSLocalizedString("Tap to view history and charts", comment: "Instructions to view detailed health data"))
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                                 .frame(maxWidth: .infinity, alignment: .center)
@@ -132,14 +132,14 @@ struct HealthDataTabView: View {
                                     .font(.system(size: 40))
                                     .foregroundColor(.white)
                                     .background(Circle().fill(Color.orange).frame(width: 56, height: 56))
-                                Text("Blood Sugar")
+                                Text(NSLocalizedString("Blood Sugar", comment: "Title for Blood Sugar section"))
                                     .font(.title2).bold()
                                     .foregroundColor(.orange)
                                 Spacer()
                                 Button(action: { 
                                     showingAddBS = true 
                                 }) {
-                                    Label("Add", systemImage: "plus.circle.fill")
+                                    Label(NSLocalizedString("Add", comment: "Add button text"), systemImage: "plus.circle.fill")
                                         .font(.title3)
                                         .foregroundColor(.orange)
                                 }
@@ -151,7 +151,7 @@ struct HealthDataTabView: View {
                             if let latestEntry = bsEntries.first {
                                 HStack {
                                     VStack(alignment: .leading, spacing: 4) {
-                                        Text("\(Int(latestEntry.glucose)) mg/dL")
+                                        Text("\(Int(latestEntry.glucose)) \(NSLocalizedString("mg/dL", comment: "Unit for blood sugar"))")
                                             .font(.title3).bold()
                                             .foregroundColor(.primary)
                                         Text(latestEntry.date ?? Date(), formatter: dateFormatter)
@@ -175,12 +175,12 @@ struct HealthDataTabView: View {
                                 .background(Color.orange.opacity(0.1))
                                 .cornerRadius(10)
                             } else {
-                                Text("No entries yet. Tap + to add your first reading.")
+                                Text(NSLocalizedString("No entries yet. Tap + to add your first reading.", comment: "Message when no health entries exist"))
                                     .foregroundColor(.secondary)
                                     .padding()
                             }
                             
-                            Text("Tap to view history and charts")
+                            Text(NSLocalizedString("Tap to view history and charts", comment: "Instructions to view detailed health data"))
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                                 .frame(maxWidth: .infinity, alignment: .center)
@@ -209,14 +209,14 @@ struct HealthDataTabView: View {
                                     .font(.system(size: 40))
                                     .foregroundColor(.white)
                                     .background(Circle().fill(Color.blue).frame(width: 56, height: 56))
-                                Text("Heart Rate")
+                                Text(NSLocalizedString("Heart Rate", comment: "Title for Heart Rate section"))
                                     .font(.title2).bold()
                                     .foregroundColor(.blue)
                                 Spacer()
                                 Button(action: { 
                                     showingAddHR = true 
                                 }) {
-                                    Label("Add", systemImage: "plus.circle.fill")
+                                    Label(NSLocalizedString("Add", comment: "Add button text"), systemImage: "plus.circle.fill")
                                         .font(.title3)
                                         .foregroundColor(.blue)
                                 }
@@ -228,7 +228,7 @@ struct HealthDataTabView: View {
                             if let latestEntry = hrEntries.first {
                                 HStack {
                                     VStack(alignment: .leading, spacing: 4) {
-                                        Text("\(latestEntry.bpm) BPM")
+                                        Text("\(latestEntry.bpm) \(NSLocalizedString("BPM", comment: "Unit for heart rate"))")
                                             .font(.title3).bold()
                                             .foregroundColor(.primary)
                                         Text(latestEntry.date ?? Date(), formatter: dateFormatter)
@@ -252,12 +252,12 @@ struct HealthDataTabView: View {
                                 .background(Color.blue.opacity(0.1))
                                 .cornerRadius(10)
                             } else {
-                                Text("No entries yet. Tap + to add your first reading.")
+                                Text(NSLocalizedString("No entries yet. Tap + to add your first reading.", comment: "Message when no health entries exist"))
                                     .foregroundColor(.secondary)
                                     .padding()
                             }
                             
-                            Text("Tap to view history and charts")
+                            Text(NSLocalizedString("Tap to view history and charts", comment: "Instructions to view detailed health data"))
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                                 .frame(maxWidth: .infinity, alignment: .center)
@@ -286,14 +286,14 @@ struct HealthDataTabView: View {
                                     .font(.system(size: 40))
                                     .foregroundColor(.white)
                                     .background(Circle().fill(Color.green).frame(width: 56, height: 56))
-                                Text("Weight")
+                                Text(NSLocalizedString("Weight", comment: "Title for Weight section"))
                                     .font(.title2).bold()
                                     .foregroundColor(.green)
                                 Spacer()
                                 Button(action: { 
                                     showingAddWeight = true 
                                 }) {
-                                    Label("Add", systemImage: "plus.circle.fill")
+                                    Label(NSLocalizedString("Add", comment: "Add button text"), systemImage: "plus.circle.fill")
                                         .font(.title3)
                                         .foregroundColor(.green)
                                 }
@@ -305,7 +305,7 @@ struct HealthDataTabView: View {
                             if let latestEntry = weightEntries.first {
                                 HStack {
                                     VStack(alignment: .leading, spacing: 4) {
-                                        Text(String(format: "%.1f kg", latestEntry.weight))
+                                        Text(String(format: "%.1f \(NSLocalizedString("kg", comment: "Unit for weight"))", latestEntry.weight))
                                             .font(.title3).bold()
                                             .foregroundColor(.primary)
                                         Text(latestEntry.date ?? Date(), formatter: dateFormatter)
@@ -329,12 +329,12 @@ struct HealthDataTabView: View {
                                 .background(Color.green.opacity(0.1))
                                 .cornerRadius(10)
                             } else {
-                                Text("No entries yet. Tap + to add your first reading.")
+                                Text(NSLocalizedString("No entries yet. Tap + to add your first reading.", comment: "Message when no health entries exist"))
                                     .foregroundColor(.secondary)
                                     .padding()
                             }
                             
-                            Text("Tap to view history and charts")
+                            Text(NSLocalizedString("Tap to view history and charts", comment: "Instructions to view detailed health data"))
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                                 .frame(maxWidth: .infinity, alignment: .center)
@@ -357,7 +357,7 @@ struct HealthDataTabView: View {
                 }
                 .padding()
             }
-            .navigationTitle("Health")
+            .navigationTitle(NSLocalizedString("Health", comment: "Navigation title for Health view"))
         }
     }
 }

@@ -131,19 +131,15 @@ struct HomeView: View {
                         voiceManager.stopSpeaking()
                     } else {
                         var speech = String(format: NSLocalizedString("%@, %@. ", comment: ""), timeOfDay, userSettings.userProfile?.firstName ?? userSettings.userName)
-                        speech += NSLocalizedString("Medication Reminders.", comment: "")
-                        if nextMedicationDoses.isEmpty {
-                            speech += NSLocalizedString("No medications scheduled for today.", comment: "")
-                        } else {
-                            for pair in nextMedicationDoses.prefix(3) {
-                                let medName = pair.medication.name
-                                let timeString = timeUntil(pair.nextDose)
-                                speech += String(format: NSLocalizedString("%@ in %@.", comment: ""), medName, timeString)
-                            }
-                        }
-                        speech += String(format: NSLocalizedString("And your fasting status: %@. ", comment: ""), fastingManager.fastingState.title)
-                        speech += String(format: NSLocalizedString("Time remaining: %@. ", comment: ""), formatRemainingTime())
-                        speech += String(format: NSLocalizedString("%d percent remain.", comment: ""), calculatePercentageRemaining())
+                        speech += String(format: NSLocalizedString("Today is %@. ", comment: ""), formattedDate)
+                        
+                        // Read fasting data with spoken time format
+                        let remaining = calculateRemainingTime()
+                        let spokenTime = formatTimeForSpeech(hours: remaining.hours, minutes: remaining.minutes)
+                        let percentage = calculatePercentageRemaining()
+                        let windowType = fastingManager.fastingState == .eating ? NSLocalizedString("Eating reminder", comment: "") : NSLocalizedString("Fasting reminder", comment: "")
+                        
+                        speech += String(format: NSLocalizedString("%@ %@, %d percent remain.", comment: ""), windowType, spokenTime, percentage)
                         voiceManager.speak(speech, userSettings: userSettings)
                     }
                 }) {
@@ -734,6 +730,32 @@ struct HomeView: View {
         return String(format: "%d:%02d", remaining.hours, remaining.minutes)
     }
     
+    private func formatTimeForSpeech(hours: Int, minutes: Int) -> String {
+        var components: [String] = []
+        
+        if hours > 0 {
+            if hours == 1 {
+                components.append(NSLocalizedString("1 hour", comment: ""))
+            } else {
+                components.append(String(format: NSLocalizedString("%d hours", comment: ""), hours))
+            }
+        }
+        
+        if minutes > 0 {
+            if minutes == 1 {
+                components.append(NSLocalizedString("1 minute", comment: ""))
+            } else {
+                components.append(String(format: NSLocalizedString("%d minutes", comment: ""), minutes))
+            }
+        }
+        
+        if components.isEmpty {
+            return NSLocalizedString("0 minutes", comment: "")
+        }
+        
+        return components.joined(separator: NSLocalizedString(" and ", comment: ""))
+    }
+    
     private func calculatePercentageRemaining() -> Int {
         let remaining = calculateRemainingTime()
         let totalMinutes = fastingManager.fastingState == .fasting ? 
@@ -1089,18 +1111,22 @@ struct HomeView: View {
         let now = Date()
         
         if calendar.isDateInToday(date) {
-            return NSLocalizedString("Today", comment: "")
+            return NSLocalizedString("Today", comment: "Appointment is today")
         }
         
         if calendar.isDateInTomorrow(date) {
-            return NSLocalizedString("Tomorrow", comment: "")
+            return NSLocalizedString("Tomorrow", comment: "Appointment is tomorrow")
         }
         
         let components = calendar.dateComponents([.day], from: now, to: date)
         if let days = components.day, days > 0 {
-            return "\(days) day\(days == 1 ? NSLocalizedString("s", comment: "") : "")"
+            if days == 1 {
+                return String(format: NSLocalizedString("%d day", comment: "Single day until appointment"), days)
+            } else {
+                return String(format: NSLocalizedString("%d days", comment: "Multiple days until appointment"), days)
+            }
         } else {
-            return NSLocalizedString("Past", comment: "")
+            return NSLocalizedString("Past", comment: "Past appointment")
         }
     }
     

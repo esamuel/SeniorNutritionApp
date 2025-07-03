@@ -198,6 +198,14 @@
 "Read" = "Lire";
 "Read Welcome Summary" = "Lire le résumé d'accueil";
 "Reads out your greeting and medication reminders" = "Lit votre salutation et vos rappels de médicaments";
+"Eating reminder" = "Rappel d'alimentation";
+"Fasting reminder" = "Rappel de jeûne";
+"1 hour" = "1 heure";
+"%d hours" = "%d heures";
+"1 minute" = "1 minute";
+"%d minutes" = "%d minutes";
+"0 minutes" = "0 minute";
+" and " = " et ";
 "Age: %d years, %d months" = "Âge : %d ans, %d mois";
 "Age: %d months" = "Âge : %d mois";
 "Today is %@" = "Aujourd'hui c'est %@";
@@ -966,6 +974,35 @@
 "Weight" = "Poids";
 "When breaking your fast, include iodine-rich foods like seaweed, fish, or eggs to support thyroid function." = "Lorsque vous rompez votre jeûne, incluez des aliments riches en iode comme les algues, le poisson ou les œufs pour soutenir la fonction thyroïdienne.";
 "Work with your healthcare provider to adjust medication timing if needed to accommodate your fasting schedule." = "Collaborez avec votre professionnel de la santé pour ajuster l'heure de prise des médicaments si nécessaire pour s'adapter à votre programme de jeûne.";
+
+/* Detailed Fasting Protocol Information - French */
+/* 12:12 Protocol Details */
+"12:12_benefits" = "Introduction douce au jeûne intermittent\nAide à réguler la glycémie\nAméliore la qualité du sommeil\nPerturbation minimale des routines quotidiennes\nSoutient la santé digestive\nPlus facile à maintenir à long terme";
+
+"12:12_recommended" = "Débutants en jeûne intermittent\nPersonnes avec des horaires de médicaments réguliers\nPersonnes avec une vie sociale active\nCeux qui préfèrent dîner en famille\nPersonnes âgées commençant leur parcours de jeûne\nToute personne avec des sensibilités digestives";
+
+"12:12_guidelines" = "Commencez votre jeûne après le dîner (vers 19h-20h)\nSautez le petit-déjeuner ou prenez-le plus tard (vers 7h-8h)\nRestez hydraté pendant les périodes de jeûne\nRompez le jeûne avec un repas léger et nutritif\nPrenez les médicaments comme prescrit avec de la nourriture si nécessaire\nÉcoutez votre corps et ajustez si nécessaire";
+
+/* 14:10 Protocol Details */
+"14:10_benefits" = "Combustion des graisses améliorée par rapport à 12:12\nFlexibilité métabolique améliorée\nMeilleur contrôle de l'appétit\nClarté mentale accrue\nSoutient les processus de réparation cellulaire\nBénéfices plus significatifs pour la gestion du poids";
+
+"14:10_recommended" = "Jeûneurs expérimentés cherchant plus de bénéfices\nPersonnes avec un contrôle stable de la glycémie\nPersonnes cherchant une gestion du poids\nCeux avec des horaires matinaux flexibles\nPersonnes à l'aise avec des périodes de jeûne plus longues\nPersonnes cherchant des bénéfices métaboliques améliorés";
+
+"14:10_guidelines" = "Considérez arrêter de manger à 20h\nRompez le jeûne vers 10h\nPlanifiez les repas dans la fenêtre de 10 heures\nRestez actif mais évitez l'exercice intense pendant le jeûne\nSurveillez comment vous vous sentez et ajustez si nécessaire\nMaintenez une hydratation adéquate tout au long";
+
+/* 16:8 Protocol Details */
+"16:8_benefits" = "Bénéfices maximaux d'autophagie\nPotentiel significatif de combustion des graisses\nSensibilité à l'insuline améliorée\nClarté mentale et concentration accrues\nProcessus de réparation cellulaire plus forts\nFlexibilité métabolique optimale\nBénéfices maximaux pour la gestion du poids";
+
+"16:8_recommended" = "Jeûneurs expérimentés cherchant les bénéfices maximaux\nPersonnes avec des conditions de santé stables\nPersonnes à l'aise avec des périodes de jeûne plus longues\nPersonnes avec des horaires flexibles\nCeux cherchant des améliorations métaboliques significatives\nPersonnes avec des objectifs de gestion du poids";
+
+"16:8_guidelines" = "Arrêtez de manger à 19h\nRompez le jeûne à 11h\nPlanifiez 2-3 repas nutritifs dans la fenêtre d'alimentation\nRestez bien hydraté pendant tout le jeûne\nConsidérez la supplémentation en électrolytes\nRompez le jeûne avec des aliments riches en protéines\nSurveillez les niveaux d'énergie et ajustez selon les besoins";
+
+/* Custom Protocol Details */
+"Custom_benefits" = "Adapté à vos besoins spécifiques\nOptions d'horaire flexibles\nAdaptable à votre style de vie\nApproche personnalisée du jeûne\nPeut accommoder des considérations de santé uniques\nPermet une progression graduelle";
+
+"Custom_recommended" = "Personnes avec des besoins d'horaire uniques\nPersonnes avec des considérations de santé spécifiques\nCeux qui ont essayé d'autres protocoles\nPersonnes avec des routines quotidiennes variables\nPersonnes nécessitant des approches personnalisées\nCeux en transition entre protocoles";
+
+"Custom_guidelines" = "Choisissez des horaires qui conviennent à votre emploi du temps\nMaintenez des périodes de jeûne cohérentes\nÉcoutez les signaux de votre corps\nAjustez le protocole selon les besoins\nSuivez vos progrès\nConsultez les professionnels de santé pour des conseils";
 "Your Protocol: %@" = "Votre protocole : %@";
 
 /* Localized strings for Fasting Timer */
@@ -2429,3 +2466,74 @@
 "goal_reached" = "Vous avez atteint votre objectif !";
 "goal_below" = "Vous êtes en dessous de votre objectif";
 "goal_exceeded" = "Vous avez dépassé votre objectif";
+/* Appointment timing localization - French */
+"Today" = "Aujourd'hui";
+"Tomorrow" = "Demain";
+"Past" = "Passé";
+"%d day" = "%d jour";
+"%d days" = "%d jours";
+
+/* Health Data Tab Localization - French */
+"No entries yet. Tap + to add your first reading." = "Aucune entrée pour le moment. Appuyez sur + pour ajouter votre première lecture.";
+"Tap to view history and charts" = "Appuyez pour voir l'historique et les graphiques";
+
+/* Blood Pressure Detail View Localization - French */
+"N/A" = "N/D";
+"Latest" = "Dernier";
+"Average" = "Moyenne";
+"Normal" = "Normal";
+"Elevated" = "Élevée";
+"Stage 1" = "Stade 1";
+"Stage 2" = "Stade 2";
+"Crisis" = "Crise";
+"Your blood pressure is in the normal range. Keep up the good work!" = "Votre tension artérielle est dans la plage normale. Continuez ainsi !";
+"Your blood pressure is elevated. Consider lifestyle changes." = "Votre tension artérielle est élevée. Envisagez des changements de mode de vie.";
+"Your blood pressure is in hypertension stage 1. Consult your doctor." = "Votre tension artérielle est en hypertension stade 1. Consultez votre médecin.";
+"Your blood pressure is in hypertension stage 2. Seek immediate medical attention." = "Votre tension artérielle est en hypertension stade 2. Cherchez une attention médicale immédiate.";
+"Your blood pressure is critically high. Seek immediate medical attention!" = "Votre tension artérielle est critiquement élevée. Cherchez une attention médicale immédiate !";
+"Track your blood pressure regularly to see insights and trends." = "Surveillez votre tension artérielle régulièrement pour voir les perspectives et tendances.";
+"Trends" = "Tendances";
+"Time Range" = "Plage de Temps";
+"Week" = "Semaine";
+"Month" = "Mois";
+"3 Months" = "3 Mois";
+"No data available to display chart" = "Aucune donnée disponible pour afficher le graphique";
+"Systolic" = "Systolique";
+"Diastolic" = "Diastolique";
+"History" = "Historique";
+"No readings recorded yet" = "Aucune lecture enregistrée pour le moment";
+"Systolic (top)" = "Systolique (supérieure)";
+"Diastolic (bottom)" = "Diastolique (inférieure)";
+"Date & Time" = "Date et Heure";
+"Edit Reading" = "Modifier la Lecture";
+"Please enter valid numbers" = "Veuillez entrer des nombres valides";
+"Failed to save: \(error.localizedDescription)" = "Échec de la sauvegarde : \(error.localizedDescription)";
+
+/* Health Section Titles - French */
+"Blood Pressure" = "Tension Artérielle";
+"Blood Sugar" = "Glycémie";
+"Heart Rate" = "Fréquence Cardiaque";
+"Weight" = "Poids";
+
+/* Heart Rate Status Messages - French */
+"Your heart rate is in the normal range. Keep up the good work!" = "Votre fréquence cardiaque est dans la plage normale. Continuez ainsi !";
+"Your heart rate is elevated. If this persists, consider consulting your doctor." = "Votre fréquence cardiaque est élevée. Si cela persiste, envisagez de consulter votre médecin.";
+"Your heart rate is lower than normal. Consult your doctor." = "Votre fréquence cardiaque est plus basse que la normale. Consultez votre médecin.";
+"Your heart rate is very high. Consider medical attention if accompanied by other symptoms." = "Votre fréquence cardiaque est très élevée. Envisagez une attention médicale si accompagnée d'autres symptômes.";
+"Track your heart rate regularly to see insights and trends." = "Surveillez votre fréquence cardiaque régulièrement pour voir les perspectives et tendances.";
+"Start tracking your heart rate to see insights." = "Commencez à surveiller votre fréquence cardiaque pour voir les perspectives.";
+
+/* Weight Status Messages - French */
+"Your weight has been stable recently. Good job maintaining consistency!" = "Votre poids a été stable récemment. Bon travail pour maintenir la cohérence !";
+"You've gained %.1f kg recently. Monitor your intake if this wasn't intended." = "Vous avez pris %.1f kg récemment. Surveillez votre apport si ce n'était pas intentionnel.";
+"You've lost %.1f kg recently. If intentional, good progress!" = "Vous avez perdu %.1f kg récemment. Si c'était intentionnel, bon progrès !";
+"Track your weight regularly to see insights and trends." = "Surveillez votre poids régulièrement pour voir les perspectives et tendances.";
+
+/* Blood Sugar Status Messages - French */
+"Your blood sugar is in the normal range. Keep up the good work!" = "Votre glycémie est dans la plage normale. Continuez ainsi !";
+"Your blood sugar is in the pre-diabetic range. Consider lifestyle changes." = "Votre glycémie est dans la plage pré-diabétique. Envisagez des changements de mode de vie.";
+"Your blood sugar is in the diabetic range. Consult your doctor for guidance." = "Votre glycémie est dans la plage diabétique. Consultez votre médecin pour des conseils.";
+"Your blood sugar is low. Consider eating something with carbohydrates." = "Votre glycémie est basse. Envisagez de manger quelque chose avec des glucides.";
+"Your blood sugar is very low. Seek medical attention if you feel unwell." = "Votre glycémie est très basse. Cherchez une attention médicale si vous ne vous sentez pas bien.";
+"Monitor your blood sugar regularly." = "Surveillez votre glycémie régulièrement.";
+"Start tracking your blood sugar to see insights." = "Commencez à surveiller votre glycémie pour voir les perspectives.";

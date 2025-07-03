@@ -12,61 +12,57 @@ struct AddBloodPressureView: View {
     @FocusState private var systolicFieldIsFocused: Bool
     
     var body: some View {
-        NavigationView {
-            Form {
-                Section(header: Text(NSLocalizedString("Blood Pressure Reading", comment: "Section header for blood pressure reading input"))) {
-                    HStack {
-                        TextField(NSLocalizedString("Systolic", comment: "Placeholder for systolic blood pressure input"), text: $systolic)
-                            .keyboardType(.numberPad)
-                            .focused($systolicFieldIsFocused)
-                        Text(NSLocalizedString("mmHg", comment: "Unit for blood pressure"))
-                            .foregroundColor(.secondary)
-                    }
-                    
-                    HStack {
-                        TextField(NSLocalizedString("Diastolic", comment: "Placeholder for diastolic blood pressure input"), text: $diastolic)
-                            .keyboardType(.numberPad)
-                        Text(NSLocalizedString("mmHg", comment: "Unit for blood pressure"))
-                            .foregroundColor(.secondary)
-                    }
+        Form {
+            Section(header: Text(NSLocalizedString("Blood Pressure Reading", comment: "Section header for blood pressure reading input"))) {
+                HStack {
+                    TextField(NSLocalizedString("Systolic", comment: "Placeholder for systolic blood pressure input"), text: $systolic)
+                        .keyboardType(.numberPad)
+                        .focused($systolicFieldIsFocused)
+                    Text(NSLocalizedString("mmHg", comment: "Unit for blood pressure"))
+                        .foregroundColor(.secondary)
                 }
                 
-                Section {
-                    DatePicker(
-                        NSLocalizedString("Date and Time", comment: "Label for date and time picker"),
-                        selection: $date,
-                        displayedComponents: [.date, .hourAndMinute]
-                    )
-                }
-                
-                if let error = error {
-                    Section {
-                        Text(error)
-                            .foregroundColor(.red)
-                            .font(.system(size: userSettings.textSize.size))
-                    }
+                HStack {
+                    TextField(NSLocalizedString("Diastolic", comment: "Placeholder for diastolic blood pressure input"), text: $diastolic)
+                        .keyboardType(.numberPad)
+                    Text(NSLocalizedString("mmHg", comment: "Unit for blood pressure"))
+                        .foregroundColor(.secondary)
                 }
             }
-            .navigationTitle(NSLocalizedString("Add Blood Pressure", comment: "Navigation title for adding blood pressure entry"))
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button(NSLocalizedString("Cancel", comment: "Cancel button text")) {
-                        dismiss()
-                    }
+            
+            Section {
+                DatePicker(
+                    NSLocalizedString("Date and Time", comment: "Label for date and time picker"),
+                    selection: $date,
+                    displayedComponents: [.date, .hourAndMinute]
+                )
+            }
+            
+            if let error = error {
+                Section {
+                    Text(error)
+                        .foregroundColor(.red)
+                        .font(.system(size: userSettings.textSize.size))
                 }
-                ToolbarItem(placement: .confirmationAction) {
-                    Button(NSLocalizedString("Save", comment: "Save button text")) {
-                        saveReading()
-                    }
+            }
+        }
+        .navigationTitle(NSLocalizedString("Add Blood Pressure", comment: "Navigation title for adding blood pressure entry"))
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .cancellationAction) {
+                Button(NSLocalizedString("Cancel", comment: "Cancel button text")) {
+                    dismiss()
+                }
+            }
+            ToolbarItem(placement: .confirmationAction) {
+                Button(NSLocalizedString("Save", comment: "Save button text")) {
+                    saveReading()
                 }
             }
         }
         .font(.system(size: userSettings.textSize.size))
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.systolicFieldIsFocused = true
-            }
+            systolicFieldIsFocused = true
         }
     }
     

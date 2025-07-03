@@ -501,7 +501,7 @@ struct PersonalizedHealthTipsView: View {
         var speech = NSLocalizedString("General Fasting Tips", comment: "") + ". "
         
         for tip in generalFastingTips {
-            speech += "\(tip.title): \(tip.description) "
+            speech += "\(NSLocalizedString(tip.title, comment: "")): \(NSLocalizedString(tip.description, comment: "")) "
         }
         
         voiceManager.speak(speech, userSettings: userSettings)
@@ -519,7 +519,7 @@ struct PersonalizedHealthTipsView: View {
             
             let tips = healthTipsForCondition(condition)
             for tip in tips {
-                speech += "\(tip.title): \(tip.description) "
+                speech += "\(NSLocalizedString(tip.title, comment: "")): \(NSLocalizedString(tip.description, comment: "")) "
             }
         }
         
@@ -530,7 +530,7 @@ struct PersonalizedHealthTipsView: View {
         var speech = NSLocalizedString("Fasting Safety Guidelines", comment: "") + ". "
         
         for tip in fastingSafetyTips {
-            speech += "\(tip.title): \(tip.description) "
+            speech += "\(NSLocalizedString(tip.title, comment: "")): \(NSLocalizedString(tip.description, comment: "")) "
         }
         
         voiceManager.speak(speech, userSettings: userSettings)
@@ -540,7 +540,7 @@ struct PersonalizedHealthTipsView: View {
         var speech = NSLocalizedString("Benefits of Intermittent Fasting", comment: "") + ". "
         
         for tip in fastingBenefits {
-            speech += "\(tip.title): \(tip.description) "
+            speech += "\(NSLocalizedString(tip.title, comment: "")): \(NSLocalizedString(tip.description, comment: "")) "
         }
         
         voiceManager.speak(speech, userSettings: userSettings)

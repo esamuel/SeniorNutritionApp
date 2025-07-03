@@ -11,66 +11,61 @@ struct AddBloodSugarView: View {
     @FocusState private var bloodSugarFieldIsFocused: Bool
     
     var body: some View {
-        NavigationView {
-            Form {
-                Section(header: Text(NSLocalizedString("Blood Sugar Reading", comment: "Section header for blood sugar reading input"))) {
-                    HStack {
-                        TextField(NSLocalizedString("Blood Sugar", comment: "Placeholder for blood sugar input"), text: $bloodSugar)
-                            .keyboardType(.decimalPad)
-                            .focused($bloodSugarFieldIsFocused)
-                        Text(NSLocalizedString("mg/dL", comment: "Unit for blood sugar"))
-                            .foregroundColor(.secondary)
-                    }
-                }
-                
-                Section {
-                    DatePicker(
-                        NSLocalizedString("Date and Time", comment: "Label for date and time picker"),
-                        selection: $date,
-                        displayedComponents: [.date, .hourAndMinute]
-                    )
-                }
-                
-                if let error = error {
-                    Section {
-                        Text(error)
-                            .foregroundColor(.red)
-                            .font(.system(size: userSettings.textSize.size))
-                    }
-                }
-                
-                Section {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text(NSLocalizedString("Target Ranges:", comment: "Label for blood sugar target ranges"))
-                            .font(.system(size: userSettings.textSize.size, weight: .bold))
-                        Text(NSLocalizedString("Before meals: 80-130 mg/dL", comment: "Blood sugar target range before meals"))
-                        Text(NSLocalizedString("After meals: Less than 180 mg/dL", comment: "Blood sugar target range after meals"))
-                        Text(NSLocalizedString("Bedtime: 100-140 mg/dL", comment: "Blood sugar target range at bedtime"))
-                    }
-                    .font(.system(size: userSettings.textSize.size - 2))
-                    .foregroundColor(.secondary)
+        Form {
+            Section(header: Text(NSLocalizedString("Blood Sugar Reading", comment: "Section header for blood sugar reading input"))) {
+                HStack {
+                    TextField(NSLocalizedString("Blood Sugar", comment: "Placeholder for blood sugar input"), text: $bloodSugar)
+                        .keyboardType(.decimalPad)
+                        .focused($bloodSugarFieldIsFocused)
+                    Text(NSLocalizedString("mg/dL", comment: "Unit for blood sugar"))
+                        .foregroundColor(.secondary)
                 }
             }
-            .navigationTitle(NSLocalizedString("Add Blood Sugar", comment: "Navigation title for adding blood sugar entry"))
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button(NSLocalizedString("Cancel", comment: "Cancel button text")) {
-                        dismiss()
-                    }
+            
+            Section {
+                DatePicker(
+                    NSLocalizedString("Date and Time", comment: "Label for date and time picker"),
+                    selection: $date,
+                    displayedComponents: [.date, .hourAndMinute]
+                )
+            }
+            
+            if let error = error {
+                Section {
+                    Text(error)
+                        .foregroundColor(.red)
+                        .font(.system(size: userSettings.textSize.size))
                 }
-                ToolbarItem(placement: .confirmationAction) {
-                    Button(NSLocalizedString("Save", comment: "Save button text")) {
-                        saveReading()
-                    }
+            }
+            
+            Section(header: Text(NSLocalizedString("Target Ranges:", comment: "Label for blood sugar target ranges"))
+                .font(.system(size: userSettings.textSize.size, weight: .bold))) {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(NSLocalizedString("Before meals: 80-130 mg/dL", comment: "Blood sugar target range before meals"))
+                    Text(NSLocalizedString("After meals: Less than 180 mg/dL", comment: "Blood sugar target range after meals"))
+                    Text(NSLocalizedString("Bedtime: 100-140 mg/dL", comment: "Blood sugar target range at bedtime"))
+                }
+                .font(.system(size: userSettings.textSize.size - 2))
+                .foregroundColor(.secondary)
+            }
+        }
+        .navigationTitle(NSLocalizedString("Add Blood Sugar", comment: "Navigation title for adding blood sugar entry"))
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .cancellationAction) {
+                Button(NSLocalizedString("Cancel", comment: "Cancel button text")) {
+                    dismiss()
+                }
+            }
+            ToolbarItem(placement: .confirmationAction) {
+                Button(NSLocalizedString("Save", comment: "Save button text")) {
+                    saveReading()
                 }
             }
         }
         .font(.system(size: userSettings.textSize.size))
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.bloodSugarFieldIsFocused = true
-            }
+            bloodSugarFieldIsFocused = true
         }
     }
     

@@ -432,32 +432,30 @@ struct EditHeartRateView: View {
     }
     
     var body: some View {
-        NavigationView {
-            Form {
-                Section(header: Text("Heart Rate")) {
-                    TextField("Heart Rate (BPM)", text: $bpm)
-                        .keyboardType(.numberPad)
-                    DatePicker("Date & Time", selection: $date)
-                        .datePickerLTR()
-                }
-                
-                if let error = error {
-                    Text(error)
-                        .foregroundColor(.red)
+        Form {
+            Section(header: Text("Heart Rate")) {
+                TextField("Heart Rate (BPM)", text: $bpm)
+                    .keyboardType(.numberPad)
+                DatePicker("Date & Time", selection: $date)
+                    .datePickerLTR()
+            }
+            
+            if let error = error {
+                Text(error)
+                    .foregroundColor(.red)
+            }
+        }
+        .navigationTitle("Edit Reading")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .cancellationAction) {
+                Button("Cancel") {
+                    dismiss()
                 }
             }
-            .navigationTitle("Edit Reading")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") {
-                        dismiss()
-                    }
-                }
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") {
-                        saveChanges()
-                    }
+            ToolbarItem(placement: .confirmationAction) {
+                Button("Save") {
+                    saveChanges()
                 }
             }
         }

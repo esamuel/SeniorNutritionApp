@@ -11,54 +11,50 @@ struct AddHeartRateView: View {
     @FocusState private var heartRateFieldIsFocused: Bool
     
     var body: some View {
-        NavigationView {
-            Form {
-                Section(header: Text(NSLocalizedString("Heart Rate Reading", comment: "Section header for heart rate reading input"))) {
-                    HStack {
-                        TextField(NSLocalizedString("Heart Rate", comment: "Placeholder for heart rate input"), text: $heartRate)
-                            .keyboardType(.numberPad)
-                            .focused($heartRateFieldIsFocused)
-                        Text(NSLocalizedString("BPM", comment: "Unit for heart rate"))
-                            .foregroundColor(.secondary)
-                    }
-                }
-                
-                Section {
-                    DatePicker(
-                        NSLocalizedString("Date and Time", comment: "Label for date and time picker"),
-                        selection: $date,
-                        displayedComponents: [.date, .hourAndMinute]
-                    )
-                }
-                
-                if let error = error {
-                    Section {
-                        Text(error)
-                            .foregroundColor(.red)
-                            .font(.system(size: userSettings.textSize.size))
-                    }
+        Form {
+            Section(header: Text(NSLocalizedString("Heart Rate Reading", comment: "Section header for heart rate reading input"))) {
+                HStack {
+                    TextField(NSLocalizedString("Heart Rate", comment: "Placeholder for heart rate input"), text: $heartRate)
+                        .keyboardType(.numberPad)
+                        .focused($heartRateFieldIsFocused)
+                    Text(NSLocalizedString("BPM", comment: "Unit for heart rate"))
+                        .foregroundColor(.secondary)
                 }
             }
-            .navigationTitle(NSLocalizedString("Add Heart Rate", comment: "Navigation title for adding heart rate entry"))
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button(NSLocalizedString("Cancel", comment: "Cancel button text")) {
-                        dismiss()
-                    }
+            
+            Section {
+                DatePicker(
+                    NSLocalizedString("Date and Time", comment: "Label for date and time picker"),
+                    selection: $date,
+                    displayedComponents: [.date, .hourAndMinute]
+                )
+            }
+            
+            if let error = error {
+                Section {
+                    Text(error)
+                        .foregroundColor(.red)
+                        .font(.system(size: userSettings.textSize.size))
                 }
-                ToolbarItem(placement: .confirmationAction) {
-                    Button(NSLocalizedString("Save", comment: "Save button text")) {
-                        saveReading()
-                    }
+            }
+        }
+        .navigationTitle(NSLocalizedString("Add Heart Rate", comment: "Navigation title for adding heart rate entry"))
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .cancellationAction) {
+                Button(NSLocalizedString("Cancel", comment: "Cancel button text")) {
+                    dismiss()
+                }
+            }
+            ToolbarItem(placement: .confirmationAction) {
+                Button(NSLocalizedString("Save", comment: "Save button text")) {
+                    saveReading()
                 }
             }
         }
         .font(.system(size: userSettings.textSize.size))
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.heartRateFieldIsFocused = true
-            }
+            heartRateFieldIsFocused = true
         }
     }
     

@@ -55,6 +55,14 @@
 "Reads out your greeting and medication reminders" = "Lee tu saludo y recordatorios de medicamentos";
 "Read Today's Schedule" = "Leer Horario de Hoy";
 "Reads out your appointments and medications for today" = "Lee tus citas y medicamentos para hoy";
+"Eating reminder" = "Recordatorio de alimentación";
+"Fasting reminder" = "Recordatorio de ayuno";
+"1 hour" = "1 hora";
+"%d hours" = "%d horas";
+"1 minute" = "1 minuto";
+"%d minutes" = "%d minutos";
+"0 minutes" = "0 minutos";
+" and " = " y ";
 
 /* Date and Time Formatting */
 "s" = "s";
@@ -1427,3 +1435,104 @@
 "Skip" = "Omitir";
 "Next" = "Siguiente";
 "Get Started" = "Comenzar";
+
+/* Detailed Fasting Protocol Information - Spanish */
+/* 12:12 Protocol Details */
+"12:12_benefits" = "Introducción suave al ayuno intermitente\nAyuda a regular los niveles de azúcar en sangre\nMejora la calidad del sueño\nDisrupción mínima a las rutinas diarias\nApoya la salud digestiva\nMás fácil de mantener a largo plazo";
+
+"12:12_recommended" = "Principiantes en el ayuno intermitente\nPersonas con horarios regulares de medicación\nPersonas con vidas sociales activas\nQuienes prefieren cenar con la familia\nAdultos mayores comenzando su viaje de ayuno\nCualquiera con sensibilidades digestivas";
+
+"12:12_guidelines" = "Comience su ayuno después de la cena (alrededor de las 7-8 PM)\nOmita el desayuno o tómelo más tarde (alrededor de las 7-8 AM)\nManténgase hidratado durante los períodos de ayuno\nRompa el ayuno con una comida ligera y nutritiva\nTome medicamentos según lo prescrito con comida si es necesario\nEscuche a su cuerpo y ajuste según sea necesario";
+
+/* 14:10 Protocol Details */
+"14:10_benefits" = "Quema de grasa mejorada comparado con 12:12\nFlexibilidad metabólica mejorada\nMejor control del apetito\nMayor claridad mental\nApoya los procesos de reparación celular\nBeneficios más significativos para el control de peso";
+
+"14:10_recommended" = "Ayunadores experimentados buscando más beneficios\nPersonas con control estable del azúcar en sangre\nPersonas buscando control de peso\nAquellos con horarios matutinos flexibles\nPersonas cómodas con períodos de ayuno más largos\nPersonas buscando beneficios metabólicos mejorados";
+
+"14:10_guidelines" = "Considere terminar de comer a las 8 PM\nRompa el ayuno alrededor de las 10 AM\nPlanifique comidas dentro de la ventana de 10 horas\nManténgase activo pero evite ejercicio intenso durante el ayuno\nMonitoree cómo se siente y ajuste si es necesario\nMantenga hidratación adecuada durante todo el tiempo";
+
+/* 16:8 Protocol Details */
+"16:8_benefits" = "Máximos beneficios de autofagia\nPotencial significativo de quema de grasa\nSensibilidad mejorada a la insulina\nMayor claridad mental y enfoque\nProcesos de reparación celular más fuertes\nFlexibilidad metabólica óptima\nMáximos beneficios para el control de peso";
+
+"16:8_recommended" = "Ayunadores experimentados buscando máximos beneficios\nPersonas con condiciones de salud estables\nPersonas cómodas con períodos de ayuno más largos\nPersonas con horarios flexibles\nAquellos buscando mejoras metabólicas significativas\nPersonas con objetivos de control de peso";
+
+"16:8_guidelines" = "Termine de comer a las 7 PM\nRompa el ayuno a las 11 AM\nPlanifique 2-3 comidas nutritivas en la ventana de alimentación\nManténgase bien hidratado durante todo el ayuno\nConsidere suplementación de electrolitos\nRompa el ayuno con alimentos ricos en proteínas\nMonitoree los niveles de energía y ajuste según sea necesario";
+
+/* Custom Protocol Details */
+"Custom_benefits" = "Adaptado a sus necesidades específicas\nOpciones de horario flexibles\nAdaptable a su estilo de vida\nEnfoque personalizado al ayuno\nPuede acomodar consideraciones de salud únicas\nPermite progresión gradual";
+
+"Custom_recommended" = "Personas con necesidades de horario únicas\nPersonas con consideraciones de salud específicas\nAquellos que han probado otros protocolos\nPersonas con rutinas diarias variables\nPersonas que requieren enfoques personalizados\nAquellos en transición entre protocolos";
+
+"Custom_guidelines" = "Elija horarios que se ajusten a su horario\nMantenga períodos de ayuno consistentes\nEscuche las señales de su cuerpo\nAjuste el protocolo según sea necesario\nMantenga un registro de su progreso\nConsulte con proveedores de atención médica para orientación";
+
+/* Appointment timing localization - Spanish */
+"Today" = "Hoy";
+"Tomorrow" = "Mañana";
+"Past" = "Pasado";
+"%d day" = "%d día";
+"%d days" = "%d días";
+
+/* Health Data Tab Localization - Spanish */
+"No entries yet. Tap + to add your first reading." = "Aún no hay entradas. Toca + para agregar tu primera lectura.";
+"Tap to view history and charts" = "Toca para ver historial y gráficos";
+
+/* Blood Pressure Detail View Localization - Spanish */
+"N/A" = "N/D";
+"Latest" = "Último";
+"Average" = "Promedio";
+"Normal" = "Normal";
+"Elevated" = "Elevada";
+"Stage 1" = "Etapa 1";
+"Stage 2" = "Etapa 2";
+"Crisis" = "Crisis";
+"Your blood pressure is in the normal range. Keep up the good work!" = "Tu presión arterial está en el rango normal. ¡Sigue así!";
+"Your blood pressure is elevated. Consider lifestyle changes." = "Tu presión arterial está elevada. Considera cambios en el estilo de vida.";
+"Your blood pressure is in hypertension stage 1. Consult your doctor." = "Tu presión arterial está en hipertensión etapa 1. Consulta a tu médico.";
+"Your blood pressure is in hypertension stage 2. Seek immediate medical attention." = "Tu presión arterial está en hipertensión etapa 2. Busca atención médica inmediata.";
+"Your blood pressure is critically high. Seek immediate medical attention!" = "Tu presión arterial está críticamente alta. ¡Busca atención médica inmediata!";
+"Track your blood pressure regularly to see insights and trends." = "Monitorea tu presión arterial regularmente para ver perspectivas y tendencias.";
+"Trends" = "Tendencias";
+"Time Range" = "Rango de Tiempo";
+"Week" = "Semana";
+"Month" = "Mes";
+"3 Months" = "3 Meses";
+"No data available to display chart" = "No hay datos disponibles para mostrar el gráfico";
+"Systolic" = "Sistólica";
+"Diastolic" = "Diastólica";
+"History" = "Historial";
+"No readings recorded yet" = "Aún no se han registrado lecturas";
+"Systolic (top)" = "Sistólica (superior)";
+"Diastolic (bottom)" = "Diastólica (inferior)";
+"Date & Time" = "Fecha y Hora";
+"Edit Reading" = "Editar Lectura";
+"Please enter valid numbers" = "Por favor ingresa números válidos";
+"Failed to save: \(error.localizedDescription)" = "Error al guardar: \(error.localizedDescription)";
+
+/* Health Section Titles - Spanish */
+"Blood Pressure" = "Presión Arterial";
+"Blood Sugar" = "Azúcar en Sangre";
+"Heart Rate" = "Frecuencia Cardíaca";
+"Weight" = "Peso";
+
+/* Heart Rate Status Messages - Spanish */
+"Your heart rate is in the normal range. Keep up the good work!" = "Tu frecuencia cardíaca está en el rango normal. ¡Sigue así!";
+"Your heart rate is elevated. If this persists, consider consulting your doctor." = "Tu frecuencia cardíaca está elevada. Si esto persiste, considera consultar a tu médico.";
+"Your heart rate is lower than normal. Consult your doctor." = "Tu frecuencia cardíaca está más baja de lo normal. Consulta a tu médico.";
+"Your heart rate is very high. Consider medical attention if accompanied by other symptoms." = "Tu frecuencia cardíaca está muy alta. Considera atención médica si está acompañada de otros síntomas.";
+"Track your heart rate regularly to see insights and trends." = "Monitorea tu frecuencia cardíaca regularmente para ver perspectivas y tendencias.";
+"Start tracking your heart rate to see insights." = "Comienza a monitorear tu frecuencia cardíaca para ver perspectivas.";
+
+/* Weight Status Messages - Spanish */
+"Your weight has been stable recently. Good job maintaining consistency!" = "Tu peso ha estado estable recientemente. ¡Buen trabajo manteniendo la consistencia!";
+"You've gained %.1f kg recently. Monitor your intake if this wasn't intended." = "Has ganado %.1f kg recientemente. Monitorea tu ingesta si esto no era intencional.";
+"You've lost %.1f kg recently. If intentional, good progress!" = "Has perdido %.1f kg recientemente. ¡Si fue intencional, buen progreso!";
+"Track your weight regularly to see insights and trends." = "Monitorea tu peso regularmente para ver perspectivas y tendencias.";
+
+/* Blood Sugar Status Messages - Spanish */
+"Your blood sugar is in the normal range. Keep up the good work!" = "Tu azúcar en sangre está en el rango normal. ¡Sigue así!";
+"Your blood sugar is in the pre-diabetic range. Consider lifestyle changes." = "Tu azúcar en sangre está en el rango pre-diabético. Considera cambios en el estilo de vida.";
+"Your blood sugar is in the diabetic range. Consult your doctor for guidance." = "Tu azúcar en sangre está en el rango diabético. Consulta a tu médico para orientación.";
+"Your blood sugar is low. Consider eating something with carbohydrates." = "Tu azúcar en sangre está baja. Considera comer algo con carbohidratos.";
+"Your blood sugar is very low. Seek medical attention if you feel unwell." = "Tu azúcar en sangre está muy baja. Busca atención médica si te sientes mal.";
+"Monitor your blood sugar regularly." = "Monitorea tu azúcar en sangre regularmente.";
+"Start tracking your blood sugar to see insights." = "Comienza a monitorear tu azúcar en sangre para ver perspectivas.";

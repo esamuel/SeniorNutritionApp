@@ -51,6 +51,14 @@
 "No upcoming appointments" = "No upcoming appointments";
 "Add Appointment" = "Add Appointment";
 "%@, %@" = "%@, %@";
+"Eating reminder" = "Eating reminder";
+"Fasting reminder" = "Fasting reminder";
+"1 hour" = "1 hour";
+"%d hours" = "%d hours";
+"1 minute" = "1 minute";
+"%d minutes" = "%d minutes";
+"0 minutes" = "0 minutes";
+" and " = " and ";
 "Fasting Timer" = "Fasting Timer";
 "End Fasting Early" = "End Fasting Early";
 "Start Fasting" = "Start Fasting";
@@ -1365,3 +1373,160 @@
 "goal_reached" = "You have reached your goal!";
 "goal_below" = "You are below your goal";
 "goal_exceeded" = "You have exceeded your goal";
+
+/* Health Condition Tips */
+"Monitor Blood Sugar Closely" = "Monitor Blood Sugar Closely";
+"Check your blood glucose levels more frequently during fasting periods to ensure they remain within a safe range." = "Check your blood glucose levels more frequently during fasting periods to ensure they remain within a safe range.";
+"Shorter Fasting Windows" = "Shorter Fasting Windows";
+"Consider shorter fasting periods (12-14 hours) rather than extended fasts to avoid blood sugar fluctuations." = "Consider shorter fasting periods (12-14 hours) rather than extended fasts to avoid blood sugar fluctuations.";
+"Break Fast Appropriately" = "Break Fast Appropriately";
+"Break your fast with a balanced meal containing protein, healthy fats, and complex carbohydrates to prevent blood sugar spikes." = "Break your fast with a balanced meal containing protein, healthy fats, and complex carbohydrates to prevent blood sugar spikes.";
+"Monitor Blood Pressure" = "Monitor Blood Pressure";
+"Check your blood pressure regularly during fasting periods, as fasting can sometimes cause fluctuations." = "Check your blood pressure regularly during fasting periods, as fasting can sometimes cause fluctuations.";
+"Maintain Electrolyte Balance" = "Maintain Electrolyte Balance";
+"Consider adding a pinch of salt to your water or drinking sugar-free electrolyte beverages during longer fasts." = "Consider adding a pinch of salt to your water or drinking sugar-free electrolyte beverages during longer fasts.";
+"Gradual Transition" = "Gradual Transition";
+"If you take blood pressure medications, work with your doctor to monitor how fasting affects your blood pressure and adjust medications if necessary." = "If you take blood pressure medications, work with your doctor to monitor how fasting affects your blood pressure and adjust medications if necessary.";
+"Consult Your Nephrologist" = "Consult Your Nephrologist";
+"Kidney disease requires specialized fasting protocols. Always consult with your kidney specialist before fasting." = "Kidney disease requires specialized fasting protocols. Always consult with your kidney specialist before fasting.";
+"Shorter Fasting Periods" = "Shorter Fasting Periods";
+"Consider time-restricted eating (10-12 hours) rather than extended fasting periods to minimize stress on the kidneys." = "Consider time-restricted eating (10-12 hours) rather than extended fasting periods to minimize stress on the kidneys.";
+"Hydration Balance" = "Hydration Balance";
+"Follow your doctor's recommendations for fluid intake during fasting, as both over-hydration and dehydration can be problematic." = "Follow your doctor's recommendations for fluid intake during fasting, as both over-hydration and dehydration can be problematic.";
+"Monitor Electrolytes" = "Monitor Electrolytes";
+"Kidney disease affects electrolyte balance. Regular monitoring during fasting periods is essential." = "Kidney disease affects electrolyte balance. Regular monitoring during fasting periods is essential.";
+"Monitor Energy Levels" = "Monitor Energy Levels";
+"Pay attention to energy levels during fasting. Excessive fatigue may indicate a need to adjust your fasting schedule." = "Pay attention to energy levels during fasting. Excessive fatigue may indicate a need to adjust your fasting schedule.";
+"Iodine-Rich Foods" = "Iodine-Rich Foods";
+"When breaking your fast, include iodine-rich foods like seaweed, fish, or eggs to support thyroid function." = "When breaking your fast, include iodine-rich foods like seaweed, fish, or eggs to support thyroid function.";
+"Regular Testing" = "Regular Testing";
+"Continue regular thyroid function tests to ensure your condition remains stable while practicing intermittent fasting." = "Continue regular thyroid function tests to ensure your condition remains stable while practicing intermittent fasting.";
+"Anti-Inflammatory Benefits" = "Anti-Inflammatory Benefits";
+"Fasting may help reduce inflammation, potentially providing relief from arthritis symptoms." = "Fasting may help reduce inflammation, potentially providing relief from arthritis symptoms.";
+"Gentle Movement" = "Gentle Movement";
+"Incorporate gentle stretching or yoga during fasting periods to maintain joint mobility." = "Incorporate gentle stretching or yoga during fasting periods to maintain joint mobility.";
+"Anti-Inflammatory Foods" = "Anti-Inflammatory Foods";
+"Break your fast with anti-inflammatory foods like fatty fish, berries, turmeric, and leafy greens." = "Break your fast with anti-inflammatory foods like fatty fish, berries, turmeric, and leafy greens.";
+"Digestive Rest" = "Digestive Rest";
+"Fasting gives your digestive system time to rest and repair, which may help reduce symptoms." = "Fasting gives your digestive system time to rest and repair, which may help reduce symptoms.";
+"Gentle Refeeding" = "Gentle Refeeding";
+"Break your fast with easily digestible foods and avoid known trigger foods that aggravate your condition." = "Break your fast with easily digestible foods and avoid known trigger foods that aggravate your condition.";
+"Hydration with Care" = "Hydration with Care";
+"Stay hydrated but avoid carbonated or caffeinated beverages that might irritate your digestive tract." = "Stay hydrated but avoid carbonated or caffeinated beverages that might irritate your digestive tract.";
+"Probiotic Support" = "Probiotic Support";
+"Consider including probiotic-rich foods when breaking your fast to support gut health." = "Consider including probiotic-rich foods when breaking your fast to support gut health.";
+"Calcium Timing" = "Calcium Timing";
+"Ensure adequate calcium intake during your eating window. Consider calcium-rich foods like dairy, fortified plant milks, or leafy greens." = "Ensure adequate calcium intake during your eating window. Consider calcium-rich foods like dairy, fortified plant milks, or leafy greens.";
+"Weight-Bearing Exercise" = "Weight-Bearing Exercise";
+"Include weight-bearing exercises during your eating window to help maintain bone density." = "Include weight-bearing exercises during your eating window to help maintain bone density.";
+"Protein Intake" = "Protein Intake";
+"Ensure adequate protein intake during your eating window, as protein is essential for bone health." = "Ensure adequate protein intake during your eating window, as protein is essential for bone health.";
+"Consult Your Doctor" = "Consult Your Doctor";
+"Always discuss your fasting regimen with your healthcare provider to ensure it's safe for your specific health condition." = "Always discuss your fasting regimen with your healthcare provider to ensure it's safe for your specific health condition.";
+"Start Gradually" = "Start Gradually";
+"Begin with shorter fasting periods and gradually extend them as your body adapts." = "Begin with shorter fasting periods and gradually extend them as your body adapts.";
+"Listen to Your Body" = "Listen to Your Body";
+"Pay close attention to how your body responds to fasting and adjust your approach accordingly." = "Pay close attention to how your body responds to fasting and adjust your approach accordingly.";
+"Medication Management" = "Medication Management";
+"Work with your healthcare provider to adjust medication timing if needed to accommodate your fasting schedule." = "Work with your healthcare provider to adjust medication timing if needed to accommodate your fasting schedule.";
+
+/* Detailed Fasting Protocol Information */
+/* 12:12 Protocol Details */
+"12:12_benefits" = "Gentle introduction to intermittent fasting\nHelps regulate blood sugar levels\nImproves sleep quality\nMinimal disruption to daily routines\nSupports digestive health\nEasier to maintain long-term";
+
+"12:12_recommended" = "Beginners to intermittent fasting\nThose with regular medication schedules\nPeople with active social lives\nThose who prefer eating dinner with family\nSeniors starting their fasting journey\nAnyone with digestive sensitivities";
+
+"12:12_guidelines" = "Start your fast after dinner (around 7-8 PM)\nSkip breakfast or have it later (around 7-8 AM)\nStay hydrated during fasting periods\nBreak fast with a light, nutritious meal\nTake medications as prescribed with food if needed\nListen to your body and adjust if necessary";
+
+/* 14:10 Protocol Details */
+"14:10_benefits" = "Enhanced fat burning compared to 12:12\nImproved metabolic flexibility\nBetter appetite control\nIncreased mental clarity\nSupports cellular repair processes\nMore significant weight management benefits";
+
+"14:10_recommended" = "Experienced fasters looking for more benefits\nThose with stable blood sugar control\nPeople looking for weight management\nThose with flexible morning schedules\nIndividuals comfortable with longer fasting periods\nPeople seeking enhanced metabolic benefits";
+
+"14:10_guidelines" = "Consider ending eating by 8 PM\nBreak fast around 10 AM\nPlan meals within the 10-hour window\nStay active but avoid intense exercise while fasting\nMonitor how you feel and adjust if needed\nMaintain adequate hydration throughout";
+
+/* 16:8 Protocol Details */
+"16:8_benefits" = "Maximum autophagy benefits\nSignificant fat burning potential\nImproved insulin sensitivity\nEnhanced mental clarity and focus\nStronger cellular repair processes\nOptimal metabolic flexibility\nMaximum weight management benefits";
+
+"16:8_recommended" = "Experienced fasters seeking maximum benefits\nThose with stable health conditions\nPeople comfortable with longer fasting periods\nIndividuals with flexible schedules\nThose seeking significant metabolic improvements\nPeople with weight management goals";
+
+"16:8_guidelines" = "End eating by 7 PM\nBreak fast at 11 AM\nPlan 2-3 nutritious meals in eating window\nStay well hydrated throughout fasting\nConsider electrolyte supplementation\nBreak fast with protein-rich foods\nMonitor energy levels and adjust as needed";
+
+/* Custom Protocol Details */
+"Custom_benefits" = "Tailored to your specific needs\nFlexible scheduling options\nAdaptable to your lifestyle\nPersonalized approach to fasting\nCan accommodate unique health considerations\nAllows for gradual progression";
+
+"Custom_recommended" = "Those with unique scheduling needs\nPeople with specific health considerations\nThose who've tried other protocols\nPeople with varying daily routines\nIndividuals requiring personalized approaches\nThose transitioning between protocols";
+
+"Custom_guidelines" = "Choose times that fit your schedule\nMaintain consistent fasting periods\nListen to your body's signals\nAdjust the protocol as needed\nKeep track of your progress\nConsult healthcare providers for guidance";
+
+/* Appointment timing localization */
+"Today" = "Today";
+"Tomorrow" = "Tomorrow";
+"Past" = "Past";
+"%d day" = "%d day";
+"%d days" = "%d days";
+
+/* Health Data Tab Localization */
+"No entries yet. Tap + to add your first reading." = "No entries yet. Tap + to add your first reading.";
+"Tap to view history and charts" = "Tap to view history and charts";
+
+/* Blood Pressure Detail View Localization */
+"N/A" = "N/A";
+"Latest" = "Latest";
+"Average" = "Average";
+"Normal" = "Normal";
+"Elevated" = "Elevated";
+"Stage 1" = "Stage 1";
+"Stage 2" = "Stage 2";
+"Crisis" = "Crisis";
+"Your blood pressure is in the normal range. Keep up the good work!" = "Your blood pressure is in the normal range. Keep up the good work!";
+"Your blood pressure is elevated. Consider lifestyle changes." = "Your blood pressure is elevated. Consider lifestyle changes.";
+"Your blood pressure is in hypertension stage 1. Consult your doctor." = "Your blood pressure is in hypertension stage 1. Consult your doctor.";
+"Your blood pressure is in hypertension stage 2. Seek immediate medical attention." = "Your blood pressure is in hypertension stage 2. Seek immediate medical attention.";
+"Your blood pressure is critically high. Seek immediate medical attention!" = "Your blood pressure is critically high. Seek immediate medical attention!";
+"Track your blood pressure regularly to see insights and trends." = "Track your blood pressure regularly to see insights and trends.";
+"Trends" = "Trends";
+"Time Range" = "Time Range";
+"Week" = "Week";
+"Month" = "Month";
+"3 Months" = "3 Months";
+"No data available to display chart" = "No data available to display chart";
+"Systolic" = "Systolic";
+"Diastolic" = "Diastolic";
+"History" = "History";
+"No readings recorded yet" = "No readings recorded yet";
+"Systolic (top)" = "Systolic (top)";
+"Diastolic (bottom)" = "Diastolic (bottom)";
+"Date & Time" = "Date & Time";
+"Edit Reading" = "Edit Reading";
+"Please enter valid numbers" = "Please enter valid numbers";
+"Failed to save: \(error.localizedDescription)" = "Failed to save: \(error.localizedDescription)";
+
+/* Health Section Titles - English */
+"Blood Pressure" = "Blood Pressure";
+"Blood Sugar" = "Blood Sugar";
+"Heart Rate" = "Heart Rate";
+"Weight" = "Weight";
+
+/* Heart Rate Status Messages - English */
+"Your heart rate is in the normal range. Keep up the good work!" = "Your heart rate is in the normal range. Keep up the good work!";
+"Your heart rate is elevated. If this persists, consider consulting your doctor." = "Your heart rate is elevated. If this persists, consider consulting your doctor.";
+"Your heart rate is lower than normal. Consult your doctor." = "Your heart rate is lower than normal. Consult your doctor.";
+"Your heart rate is very high. Consider medical attention if accompanied by other symptoms." = "Your heart rate is very high. Consider medical attention if accompanied by other symptoms.";
+"Track your heart rate regularly to see insights and trends." = "Track your heart rate regularly to see insights and trends.";
+"Start tracking your heart rate to see insights." = "Start tracking your heart rate to see insights.";
+
+/* Weight Status Messages - English */
+"Your weight has been stable recently. Good job maintaining consistency!" = "Your weight has been stable recently. Good job maintaining consistency!";
+"You've gained %.1f kg recently. Monitor your intake if this wasn't intended." = "You've gained %.1f kg recently. Monitor your intake if this wasn't intended.";
+"You've lost %.1f kg recently. If intentional, good progress!" = "You've lost %.1f kg recently. If intentional, good progress!";
+"Track your weight regularly to see insights and trends." = "Track your weight regularly to see insights and trends.";
+
+/* Blood Sugar Status Messages - English */
+"Your blood sugar is in the normal range. Keep up the good work!" = "Your blood sugar is in the normal range. Keep up the good work!";
+"Your blood sugar is in the pre-diabetic range. Consider lifestyle changes." = "Your blood sugar is in the pre-diabetic range. Consider lifestyle changes.";
+"Your blood sugar is in the diabetic range. Consult your doctor for guidance." = "Your blood sugar is in the diabetic range. Consult your doctor for guidance.";
+"Your blood sugar is low. Consider eating something with carbohydrates." = "Your blood sugar is low. Consider eating something with carbohydrates.";
+"Your blood sugar is very low. Seek medical attention if you feel unwell." = "Your blood sugar is very low. Seek medical attention if you feel unwell.";
+"Monitor your blood sugar regularly." = "Monitor your blood sugar regularly.";
+"Start tracking your blood sugar to see insights." = "Start tracking your blood sugar to see insights.";
