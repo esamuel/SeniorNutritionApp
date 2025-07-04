@@ -1530,3 +1530,131 @@
 "Your blood sugar is very low. Seek medical attention if you feel unwell." = "Your blood sugar is very low. Seek medical attention if you feel unwell.";
 "Monitor your blood sugar regularly." = "Monitor your blood sugar regularly.";
 "Start tracking your blood sugar to see insights." = "Start tracking your blood sugar to see insights.";
+
+/* Notification Styles */
+"Regular" = "Regular";
+"Gentle" = "Gentle";
+
+/* Print Instructions Localization */
+"print_instructions_help" = "Printing Instructions:\n\n1. Make sure your iOS device is connected to a printer (Go to iOS Settings > Printers & Scanners to add one)\n\n2. When you select \"Print\", a sharing menu will appear with printing options\n\n3. Choose \"Print\" from the menu options\n\n4. Select your printer and print settings\n\n5. Tap \"Print\" to send the document to your printer\n\nNote: If you don't have a printer, you can save the document as a PDF by using the \"Save to Files\" option in the sharing menu.";
+
+"app_name" = "Senior Nutrition App";
+"print_document_title" = "Senior Nutrition App Document";
+"print_job_name" = "Senior Nutrition App Document";
+"print_date_label" = "Date";
+"print_footer_text" = "Printed from Senior Nutrition App";
+"print_support_contact" = "For further assistance, please contact support@seniornutritionapp.com";
+
+/* Medication Schedule Print */
+"medication_schedule_title" = "Medication Schedule";
+"medication_schedule_title_personalized" = "%@'s Medication Schedule";
+"no_medications_to_print" = "No medications to display";
+"no_medications_added" = "No medications have been added yet";
+"dosage_label" = "Dosage";
+"frequency_label" = "Frequency";
+"times_label" = "Times";
+"notes_label" = "Notes";
+
+/* Fasting Protocol Print */
+"fasting_protocol_title" = "Fasting Protocol Guide";
+"fasting_guide_title_personalized" = "%@'s Fasting Guide";
+"selected_protocol_label" = "Selected Protocol";
+"fasting_guidelines_title" = "Fasting Guidelines";
+"fasting_benefits_title" = "Benefits";
+
+/* Meal Suggestions Print */
+"meal_suggestions_title" = "Healthy Meal Suggestions";
+"meal_suggestions_title_personalized" = "%@'s Meal Suggestions";
+"breakfast_ideas_title" = "Breakfast Ideas";
+"lunch_ideas_title" = "Lunch Ideas";
+"dinner_ideas_title" = "Dinner Ideas";
+"snack_ideas_title" = "Healthy Snacks";
+
+"breakfast_suggestion_1" = "Oatmeal with berries and nuts";
+"breakfast_suggestion_2" = "Greek yogurt with granola and honey";
+"breakfast_suggestion_3" = "Veggie omelette with whole grain toast";
+"breakfast_suggestion_4" = "Smoothie with spinach, banana, and protein powder";
+
+"lunch_suggestion_1" = "Quinoa salad with vegetables and chickpeas";
+"lunch_suggestion_2" = "Turkey and avocado wrap with side salad";
+"lunch_suggestion_3" = "Lentil soup with whole grain bread";
+"lunch_suggestion_4" = "Grilled chicken salad with olive oil dressing";
+
+"dinner_suggestion_1" = "Baked salmon with roasted vegetables";
+"dinner_suggestion_2" = "Grilled chicken with sweet potato and broccoli";
+"dinner_suggestion_3" = "Bean and vegetable stir fry with brown rice";
+"dinner_suggestion_4" = "Whole grain pasta with tomato sauce and vegetables";
+
+"snack_suggestion_1" = "Apple slices with almond butter";
+"snack_suggestion_2" = "Handful of mixed nuts and dried fruit";
+"snack_suggestion_3" = "Carrot sticks with hummus";
+"snack_suggestion_4" = "Greek yogurt with berries";
+
+/* App Instructions Print */
+"app_instructions_title" = "Senior Nutrition App Instructions";
+"app_instructions_title_personalized" = "%@'s App Instructions";
+"medication_management_title" = "Medication Management";
+"fasting_timer_title" = "Fasting Timer";
+"nutrition_tracking_title" = "Nutrition Tracking";
+"app_settings_title" = "App Settings";
+
+/* Common Print Elements */
+"printed_from_app" = "Printed from Senior Nutrition App";
+
+"medication_step_1" = "Tap the 'Medications' tab at the bottom of the screen";
+"medication_step_2" = "To add a new medication, tap the '+' button";
+"medication_step_3" = "Fill in the medication details: name, dosage, schedule, etc.";
+"medication_step_4" = "Tap 'Save' to create the medication reminder";
+"medication_step_5" = "To edit or delete a medication, tap on it from the list";
+
+"fasting_step_1" = "Tap the 'Fasting' tab at the bottom of the screen";
+"fasting_step_2" = "Select your fasting protocol from the dropdown menu";
+"fasting_step_3" = "Tap 'Start Fast' to begin your fasting timer";
+"fasting_step_4" = "The app will notify you when your fasting period is complete";
+"fasting_step_5" = "Tap 'End Fast' when you break your fast";
+
+"nutrition_step_1" = "Tap the 'Nutrition' tab at the bottom of the screen";
+"nutrition_step_2" = "To add a meal, tap the '+' button";
+"nutrition_step_3" = "Enter the meal details or select from suggestions";
+"nutrition_step_4" = "View your nutrition summary and recommendations";
+"nutrition_step_5" = "Track your progress over time with the charts";
+
+"settings_step_1" = "Tap the 'Settings' tab at the bottom of the screen";
+"settings_step_2" = "Adjust text size for better readability";
+"settings_step_3" = "Toggle high contrast mode if needed";
+"settings_step_4" = "Set up voice assistance options";
+"settings_step_5" = "Configure notification preferences";
+
+/* Print Options */
+"Print Materials" = "Print Materials";
+"Medication Schedule" = "Medication Schedule";
+"Print your current medication schedule" = "Print your current medication schedule";
+"Fasting Guide" = "Fasting Guide";
+"Print your fasting protocol guide" = "Print your fasting protocol guide";
+"Meal Suggestions" = "Meal Suggestions";
+"Print healthy meal suggestions" = "Print healthy meal suggestions";
+"App Instructions" = "App Instructions";
+"Print step-by-step app instructions" = "Print step-by-step app instructions";
+"Help with Printing" = "Help with Printing";
+"OK" = "OK";
+"Print" = "Print";
+
+/* Medication Frequency Localization */
+"Daily" = "Daily";
+"Weekly on %@" = "Weekly on %@";
+"Every %d days" = "Every %d days";
+"Monthly on day %d" = "Monthly on day %d";
+
+/* Weekday Names */
+"Sunday" = "Sunday";
+"Monday" = "Monday";
+"Tuesday" = "Tuesday";
+"Wednesday" = "Wednesday";
+"Thursday" = "Thursday";
+"Friday" = "Friday";
+"Saturday" = "Saturday";
+
+/* Food Translation */
+"Translate All Foods" = "Translate All Foods";
+"Tap translate button to update food names" = "Tap translate button to update food names";
+"Translating foods to %@..." = "Translating foods to %@...";

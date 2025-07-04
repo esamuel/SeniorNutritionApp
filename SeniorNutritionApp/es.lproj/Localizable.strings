@@ -1536,3 +1536,127 @@
 "Your blood sugar is very low. Seek medical attention if you feel unwell." = "Tu azúcar en sangre está muy baja. Busca atención médica si te sientes mal.";
 "Monitor your blood sugar regularly." = "Monitorea tu azúcar en sangre regularmente.";
 "Start tracking your blood sugar to see insights." = "Comienza a monitorear tu azúcar en sangre para ver perspectivas.";
+
+/* Print Instructions Localization */
+"print_instructions_help" = "Instrucciones de Impresión:\n\n1. Asegúrese de que su dispositivo iOS esté conectado a una impresora (Vaya a Configuración de iOS > Impresoras y Escáneres para agregar una)\n\n2. Cuando seleccione \"Imprimir\", aparecerá un menú de compartir con opciones de impresión\n\n3. Elija \"Imprimir\" de las opciones del menú\n\n4. Seleccione su impresora y configuraciones de impresión\n\n5. Toque \"Imprimir\" para enviar el documento a su impresora\n\nNota: Si no tiene una impresora, puede guardar el documento como PDF usando la opción \"Guardar en Archivos\" en el menú de compartir.";
+
+"app_name" = "Aplicación Nutrición Senior";
+"print_document_title" = "Documento Aplicación Nutrición Senior";
+"print_job_name" = "Documento Aplicación Nutrición Senior";
+"print_date_label" = "Fecha";
+"print_footer_text" = "Impreso desde Aplicación Nutrición Senior";
+"print_support_contact" = "Para obtener asistencia adicional, por favor contacte support@seniornutritionapp.com";
+
+/* Medication Schedule Print */
+"medication_schedule_title" = "Horario de Medicamentos";
+"medication_schedule_title_personalized" = "Horario de Medicamentos de %@";
+"no_medications_to_print" = "No hay medicamentos para mostrar";
+"no_medications_added" = "Aún no se han agregado medicamentos";
+"dosage_label" = "Dosis";
+"frequency_label" = "Frecuencia";
+"times_label" = "Horarios";
+"notes_label" = "Notas";
+
+/* Fasting Protocol Print */
+"fasting_protocol_title" = "Guía del Protocolo de Ayuno";
+"fasting_guide_title_personalized" = "Guía de Ayuno de %@";
+"selected_protocol_label" = "Protocolo Seleccionado";
+"fasting_guidelines_title" = "Pautas de Ayuno";
+"fasting_benefits_title" = "Beneficios";
+
+/* Meal Suggestions Print */
+"meal_suggestions_title" = "Sugerencias de Comidas Saludables";
+"meal_suggestions_title_personalized" = "Sugerencias de Comidas de %@";
+"breakfast_ideas_title" = "Ideas para el Desayuno";
+"lunch_ideas_title" = "Ideas para el Almuerzo";
+"dinner_ideas_title" = "Ideas para la Cena";
+"snack_ideas_title" = "Refrigerios Saludables";
+
+"breakfast_suggestion_1" = "Avena con bayas y nueces";
+"breakfast_suggestion_2" = "Yogur griego con granola y miel";
+"breakfast_suggestion_3" = "Tortilla de verduras con pan integral";
+"breakfast_suggestion_4" = "Batido con espinacas, plátano y proteína en polvo";
+
+"lunch_suggestion_1" = "Ensalada de quinoa con verduras y garbanzos";
+"lunch_suggestion_2" = "Wrap de pavo y aguacate con ensalada de acompañamiento";
+"lunch_suggestion_3" = "Sopa de lentejas con pan integral";
+"lunch_suggestion_4" = "Ensalada de pollo a la parrilla con aderezo de aceite de oliva";
+
+"dinner_suggestion_1" = "Salmón al horno con verduras asadas";
+"dinner_suggestion_2" = "Pollo a la parrilla con batata y brócoli";
+"dinner_suggestion_3" = "Salteado de frijoles y verduras con arroz integral";
+"dinner_suggestion_4" = "Pasta integral con salsa de tomate y verduras";
+
+"snack_suggestion_1" = "Rodajas de manzana con mantequilla de almendra";
+"snack_suggestion_2" = "Puñado de nueces mixtas y frutos secos";
+"snack_suggestion_3" = "Palitos de zanahoria con hummus";
+"snack_suggestion_4" = "Yogur griego con bayas";
+
+/* App Instructions Print */
+"app_instructions_title" = "Instrucciones de la Aplicación Nutrición Senior";
+"app_instructions_title_personalized" = "Instrucciones de la Aplicación de %@";
+"medication_management_title" = "Gestión de Medicamentos";
+"fasting_timer_title" = "Temporizador de Ayuno";
+"nutrition_tracking_title" = "Seguimiento Nutricional";
+"app_settings_title" = "Configuración de la Aplicación";
+
+/* Common Print Elements */
+"printed_from_app" = "Impreso desde la Aplicación Nutrición Senior";
+
+"medication_step_1" = "Toque la pestaña 'Medicamentos' en la parte inferior de la pantalla";
+"medication_step_2" = "Para agregar un nuevo medicamento, toque el botón '+'";
+"medication_step_3" = "Complete los detalles del medicamento: nombre, dosis, horario, etc.";
+"medication_step_4" = "Toque 'Guardar' para crear el recordatorio de medicamento";
+"medication_step_5" = "Para editar o eliminar un medicamento, tóquelo en la lista";
+
+"fasting_step_1" = "Toque la pestaña 'Ayuno' en la parte inferior de la pantalla";
+"fasting_step_2" = "Seleccione su protocolo de ayuno del menú desplegable";
+"fasting_step_3" = "Toque 'Iniciar Ayuno' para comenzar su temporizador de ayuno";
+"fasting_step_4" = "La aplicación le notificará cuando su período de ayuno esté completo";
+"fasting_step_5" = "Toque 'Terminar Ayuno' cuando rompa su ayuno";
+
+"nutrition_step_1" = "Toque la pestaña 'Nutrición' en la parte inferior de la pantalla";
+"nutrition_step_2" = "Para agregar una comida, toque el botón '+'";
+"nutrition_step_3" = "Ingrese los detalles de la comida o seleccione de las sugerencias";
+"nutrition_step_4" = "Vea su resumen nutricional y recomendaciones";
+"nutrition_step_5" = "Siga su progreso a lo largo del tiempo con los gráficos";
+
+"settings_step_1" = "Toque la pestaña 'Configuración' en la parte inferior de la pantalla";
+"settings_step_2" = "Ajuste el tamaño del texto para mejor legibilidad";
+"settings_step_3" = "Active el modo de alto contraste si es necesario";
+"settings_step_4" = "Configure las opciones de asistencia de voz";
+"settings_step_5" = "Configure las preferencias de notificación";
+
+/* Print Options */
+"Print Materials" = "Materiales de Impresión";
+"Medication Schedule" = "Horario de Medicamentos";
+"Print your current medication schedule" = "Imprima su horario actual de medicamentos";
+"Fasting Guide" = "Guía de Ayuno";
+"Print your fasting protocol guide" = "Imprima su guía de protocolo de ayuno";
+"Meal Suggestions" = "Sugerencias de Comidas";
+"Print healthy meal suggestions" = "Imprima sugerencias de comidas saludables";
+"App Instructions" = "Instrucciones de la Aplicación";
+"Print step-by-step app instructions" = "Imprima instrucciones paso a paso de la aplicación";
+"Help with Printing" = "Ayuda con la Impresión";
+"OK" = "OK";
+"Print" = "Imprimir";
+
+/* Medication Frequency Localization */
+"Daily" = "Diario";
+"Weekly on %@" = "Semanal los %@";
+"Every %d days" = "Cada %d días";
+"Monthly on day %d" = "Mensual el día %d";
+
+/* Weekday Names */
+"Sunday" = "Domingo";
+"Monday" = "Lunes";
+"Tuesday" = "Martes";
+"Wednesday" = "Miércoles";
+"Thursday" = "Jueves";
+"Friday" = "Viernes";
+"Saturday" = "Sábado";
+
+/* Food Translation */
+"Translate All Foods" = "Traducir Todos los Alimentos";
+"Tap translate button to update food names" = "Toca el botón traducir para actualizar nombres de alimentos";
+"Translating foods to %@..." = "Traduciendo alimentos a %@...";

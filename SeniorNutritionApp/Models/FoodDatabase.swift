@@ -580,14 +580,18 @@ class FoodDatabaseService: ObservableObject {
         
         // Replace deprecated languageCode
         let lang: String
-        if #available(iOS 16, *) {
+        if #available(iOS 16.0, *) {
             lang = Locale.current.language.languageCode?.identifier ?? "en"
         } else {
             lang = Locale.current.languageCode ?? "en"
         }
         // For debugging - print current language
         print("Current app language: \(lang)")
-        print("Current locale language: \(Locale.current.languageCode ?? "unknown")")
+        if #available(iOS 16.0, *) {
+            print("Current locale language: \(Locale.current.language.languageCode?.identifier ?? "unknown")")
+        } else {
+            print("Current locale language: \(Locale.current.languageCode ?? "unknown")")
+        }
         
         // First, process BLT Sandwich explicitly
         print("\n--- Looking specifically for BLT Sandwich ---")

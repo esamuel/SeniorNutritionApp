@@ -95,6 +95,10 @@ extension DateFormatter {
     static func localizedTimeFormatter() -> DateFormatter {
         return localizedFormatter(dateStyle: .none, timeStyle: .short)
     }
+    
+    static func localizedDateFormatter() -> DateFormatter {
+        return localizedFormatter(dateStyle: .long, timeStyle: .none)
+    }
 }
 
 // MARK: - Date Extension

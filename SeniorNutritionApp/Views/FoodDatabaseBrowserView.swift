@@ -69,7 +69,7 @@ struct FoodDatabaseBrowserView: View {
                                 #endif
                                 
                                 // Translate all foods
-                                await foodDatabase.translateAllFoodItems()
+                                _ = await foodDatabase.translateAllFoodItems()
                                 
                                 // Update the foodDatabase to trigger UI refresh
                                 DispatchQueue.main.async {
@@ -184,7 +184,11 @@ struct FoodDatabaseBrowserView: View {
                 // Force refresh of language settings
                 let currentLanguage = LanguageManager.shared.currentLanguage
                 print("FoodDatabaseBrowserView appeared - current language: \(currentLanguage)")
-                print("Current locale: \(Locale.current.languageCode ?? "unknown")")
+                if #available(iOS 16.0, *) {
+                    print("Current locale: \(Locale.current.language.languageCode?.identifier ?? "unknown")")
+                } else {
+                    print("Current locale: \(Locale.current.languageCode ?? "unknown")")
+                }
                 
                 // Make sure language is applied
                 Bundle.setLanguage(currentLanguage)
@@ -210,7 +214,7 @@ struct FoodDatabaseBrowserView: View {
                     
                     // In the background, translate all foods (comprehensive)
                     Task.detached {
-                        await foodDatabase.translateAllFoodItems()
+                        _ = await foodDatabase.translateAllFoodItems()
                         
                         // Update UI again after comprehensive translation
                         DispatchQueue.main.async {
@@ -442,7 +446,7 @@ struct FoodDatabaseBrowserView: View {
                 
                 // Then translate all foods in the background
                 Task.detached {
-                    await self.foodDatabase.translateAllFoodItems()
+                                            _ = await self.foodDatabase.translateAllFoodItems()
                     
                     // Force another UI refresh after all translations are done
                     DispatchQueue.main.async {

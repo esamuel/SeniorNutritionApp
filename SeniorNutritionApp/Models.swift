@@ -172,6 +172,18 @@ enum Weekday: Int, Codable, CaseIterable, Identifiable, Comparable {
         case .saturday: return "Sat"
         }
     }
+    
+    var localizedName: String {
+        switch self {
+        case .sunday: return NSLocalizedString("Sunday", comment: "")
+        case .monday: return NSLocalizedString("Monday", comment: "")
+        case .tuesday: return NSLocalizedString("Tuesday", comment: "")
+        case .wednesday: return NSLocalizedString("Wednesday", comment: "")
+        case .thursday: return NSLocalizedString("Thursday", comment: "")
+        case .friday: return NSLocalizedString("Friday", comment: "")
+        case .saturday: return NSLocalizedString("Saturday", comment: "")
+        }
+    }
 
     // Comparable conformance
     static func < (lhs: Weekday, rhs: Weekday) -> Bool {

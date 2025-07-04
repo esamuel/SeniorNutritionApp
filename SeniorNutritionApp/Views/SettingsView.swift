@@ -142,7 +142,7 @@ struct SettingsView: View {
                         // Force translate all food items to current language
                         Task {
                             let foodDatabase = FoodDatabaseService()
-                            await foodDatabase.translateAllFoodItems()
+                            _ = await foodDatabase.translateAllFoodItems()
                             
                             // Provide user feedback
                             DispatchQueue.main.async {
@@ -768,8 +768,8 @@ struct PrintOptionsView: View {
             List {
                 Section {
                     printOptionButton(
-                        title: "Medication Schedule",
-                        description: "Print your current medication schedule",
+                        title: NSLocalizedString("Medication Schedule", comment: ""),
+                        description: NSLocalizedString("Print your current medication schedule", comment: ""),
                         icon: "pill.fill",
                         action: { // Action for Medication Schedule
                             selectedPreview = .medication
@@ -778,8 +778,8 @@ struct PrintOptionsView: View {
                     )
                     
                     printOptionButton(
-                        title: "Fasting Guide",
-                        description: "Print your fasting protocol guide",
+                        title: NSLocalizedString("Fasting Guide", comment: ""),
+                        description: NSLocalizedString("Print your fasting protocol guide", comment: ""),
                         icon: "timer",
                         action: { // Action for Fasting Guide
                             selectedPreview = .fasting
@@ -788,8 +788,8 @@ struct PrintOptionsView: View {
                     )
                     
                     printOptionButton(
-                        title: "Meal Suggestions",
-                        description: "Print healthy meal suggestions",
+                        title: NSLocalizedString("Meal Suggestions", comment: ""),
+                        description: NSLocalizedString("Print healthy meal suggestions", comment: ""),
                         icon: "fork.knife",
                         action: { // Action for Meal Suggestions
                             selectedPreview = .meals
@@ -798,8 +798,8 @@ struct PrintOptionsView: View {
                     )
                     
                     printOptionButton(
-                        title: "App Instructions",
-                        description: "Print step-by-step app instructions",
+                        title: NSLocalizedString("App Instructions", comment: ""),
+                        description: NSLocalizedString("Print step-by-step app instructions", comment: ""),
                         icon: "doc.text.fill",
                         action: { // Action for App Instructions
                             selectedPreview = .instructions
@@ -817,7 +817,7 @@ struct PrintOptionsView: View {
                                 .font(.system(size: 24))
                                 .foregroundColor(.blue)
                             
-                            Text("Help with Printing")
+                            Text(NSLocalizedString("Help with Printing", comment: ""))
                                 .font(.system(size: userSettings.textSize.size))
                             
                             Spacer()
@@ -826,38 +826,44 @@ struct PrintOptionsView: View {
                     }
                 }
             }
-            .navigationTitle("Print Materials")
+            .navigationTitle(NSLocalizedString("Print Materials", comment: ""))
             .navigationBarTitleDisplayMode(.large)
             .listStyle(InsetGroupedListStyle())
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Done") {
+                    Button(NSLocalizedString("Done", comment: "")) {
                         presentationMode.wrappedValue.dismiss()
                     }
                     .font(.system(size: userSettings.textSize.size))
                 }
             }
-            .alert("Printing Instructions", isPresented: $showPrintHelpAlert) {
-                Button("OK", role: .cancel) { }
+            .alert(NSLocalizedString("Help with Printing", comment: ""), isPresented: $showPrintHelpAlert) {
+                Button(NSLocalizedString("OK", comment: ""), role: .cancel) { }
             } message: {
-                Text(MedicationPrintService.shared.showPrintingInstructions())
+                Text(NSLocalizedString("print_instructions_help", comment: ""))
             }
             .sheet(isPresented: $showPreview) {
                 PrintPreviewSheet(
                     type: selectedPreview ?? .medication,
                     onPrint: {
-                        switch selectedPreview {
-                        case .medication:
-                            let medications = userSettings.medications.isEmpty ? [] : userSettings.medications
-                            MedicationPrintService.shared.printMedicationSchedule(medications: medications)
-                        case .fasting:
-                            MedicationPrintService.shared.printFastingProtocol(protocol: userSettings.activeFastingProtocol)
-                        case .meals:
-                            MedicationPrintService.shared.printMealSuggestions()
-                        case .instructions:
-                            MedicationPrintService.shared.printAppInstructions()
-                        case .none:
-                            break
+                        Task { @MainActor in
+                            switch selectedPreview {
+                            case .medication:
+                                let medications = userSettings.medications.isEmpty ? [] : userSettings.medications
+                                let userName = userSettings.userProfile?.firstName ?? userSettings.userName
+                                MedicationPrintService.shared.printMedicationSchedule(medications: medications, userName: userName)
+                            case .fasting:
+                                let userName = userSettings.userProfile?.firstName ?? userSettings.userName
+                                MedicationPrintService.shared.printFastingProtocolGuide(fastingProtocol: userSettings.activeFastingProtocol, userName: userName)
+                            case .meals:
+                                let userName = userSettings.userProfile?.firstName ?? userSettings.userName
+                                MedicationPrintService.shared.printMealSuggestions(userName: userName)
+                            case .instructions:
+                                let userName = userSettings.userProfile?.firstName ?? userSettings.userName
+                                MedicationPrintService.shared.printAppInstructions(userName: userName)
+                            case .none:
+                                break
+                            }
                         }
                     }
                 )
@@ -940,7 +946,7 @@ struct PrintPreviewSheet: View {
                     Button(action: {
                         presentationMode.wrappedValue.dismiss()
                     }) {
-                        Text("Cancel")
+                        Text(NSLocalizedString("Cancel", comment: ""))
                             .foregroundColor(.gray)
                             .font(.system(size: userSettings.textSize.size))
                             .frame(maxWidth: .infinity)
@@ -955,7 +961,7 @@ struct PrintPreviewSheet: View {
                     }) {
                         HStack {
                             Image(systemName: "printer.fill")
-                            Text("Print")
+                            Text(NSLocalizedString("Print", comment: ""))
                         }
                         .foregroundColor(.white)
                         .font(.system(size: userSettings.textSize.size))
@@ -989,13 +995,13 @@ struct PrintPreviewSheet: View {
     private func getTitle() -> String {
         switch type {
         case .medication:
-            return "Medication Schedule"
+            return NSLocalizedString("Medication Schedule", comment: "")
         case .fasting:
-            return "Fasting Protocol Guide"
+            return NSLocalizedString("Fasting Guide", comment: "")
         case .meals:
-            return "Meal Suggestions"
+            return NSLocalizedString("Meal Suggestions", comment: "")
         case .instructions:
-            return "App Instructions"
+            return NSLocalizedString("App Instructions", comment: "")
         }
     }
     

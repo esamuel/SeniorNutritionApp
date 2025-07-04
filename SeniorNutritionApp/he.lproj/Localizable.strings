@@ -1788,6 +1788,125 @@
 "meal_salmon_sushi_name" = "סושי סלמון";
 "meal_salmon_sushi_note" = "סלמון נא על אורז";
 
+/* Print Instructions Localization */
+"print_instructions_help" = "הוראות הדפסה:\n\n1. וודא שהמכשיר שלך מחובר למדפסת (עבור להגדרות iOS > מדפסות וסורקים כדי להוסיף אחת)\n\n2. כשתבחר \"הדפס\", תופיע תפריט שיתוף עם אפשרויות הדפסה\n\n3. בחר \"הדפס\" מאפשרויות התפריט\n\n4. בחר את המדפסת והגדרות ההדפסה\n\n5. לחץ \"הדפס\" כדי לשלוח את המסמך למדפסת\n\nהערה: אם אין לך מדפסת, תוכל לשמור את המסמך כ-PDF באמצעות האפשרות \"שמור לקבצים\" בתפריט השיתוף.";
+
+"app_name" = "אפליקציית תזונה לגיל השלישי";
+"print_document_title" = "מסמך אפליקציית תזונה לגיל השלישי";
+"print_job_name" = "מסמך אפליקציית תזונה לגיל השלישי";
+"print_date_label" = "תאריך";
+"print_footer_text" = "הודפס מאפליקציית תזונה לגיל השלישי";
+"print_support_contact" = "לקבלת סיוע נוסף, אנא פנה לכתובת support@seniornutritionapp.com";
+
+/* Medication Schedule Print */
+"medication_schedule_title" = "לוח זמנים של תרופות";
+"medication_schedule_title_personalized" = "לוח הזמנים של התרופות של %@";
+"no_medications_to_print" = "אין תרופות להצגה";
+"no_medications_added" = "לא נוספו תרופות עדיין";
+"dosage_label" = "מינון";
+"frequency_label" = "תדירות";
+"times_label" = "שעות";
+"notes_label" = "הערות";
+
+/* Fasting Protocol Print */
+"fasting_protocol_title" = "מדריך פרוטוקול צום";
+"fasting_guide_title_personalized" = "מדריך הצום של %@";
+"selected_protocol_label" = "פרוטוקול נבחר";
+"fasting_guidelines_title" = "הנחיות צום";
+"fasting_benefits_title" = "יתרונות";
+
+/* Meal Suggestions Print */
+"meal_suggestions_title" = "הצעות ארוחות בריאות";
+"meal_suggestions_title_personalized" = "הצעות הארוחות של %@";
+"breakfast_ideas_title" = "רעיונות לארוחת בוקר";
+"lunch_ideas_title" = "רעיונות לארוחת צהריים";
+"dinner_ideas_title" = "רעיונות לארוחת ערב";
+"snack_ideas_title" = "חטיפים בריאים";
+
+"breakfast_suggestion_1" = "שיבולת שועל עם פירות יער ואגוזים";
+"breakfast_suggestion_2" = "יוגורט יווני עם גרנולה ודבש";
+"breakfast_suggestion_3" = "חביתת ירקות עם לחם מלא";
+"breakfast_suggestion_4" = "שייק עם תרד, בננה ואבקת חלבון";
+
+"lunch_suggestion_1" = "סלט קינואה עם ירקות וחומוס";
+"lunch_suggestion_2" = "לחמניה עם הודו ואבוקדו עם סלט צדדי";
+"lunch_suggestion_3" = "מרק עדשים עם לחם מלא";
+"lunch_suggestion_4" = "סלט עוף צלוי עם רוטב זית";
+
+"dinner_suggestion_1" = "סלמון אפוי עם ירקות צלויים";
+"dinner_suggestion_2" = "עוף צלוי עם בטטה וברוקולי";
+"dinner_suggestion_3" = "מוקפץ שעועית וירקות עם אורז מלא";
+"dinner_suggestion_4" = "פסטה מלאה עם רוטב עגבניות וירקות";
+
+"snack_suggestion_1" = "פרוסות תפוח עם חמאת שקדים";
+"snack_suggestion_2" = "חופן אגוזים מעורבים ופירות יבשים";
+"snack_suggestion_3" = "מקלות גזר עם חומוס";
+"snack_suggestion_4" = "יוגורט יווני עם פירות יער";
+
+/* App Instructions Print */
+"app_instructions_title" = "הוראות אפליקציית תזונה לגיל השלישי";
+"app_instructions_title_personalized" = "הוראות האפליקציה של %@";
+"medication_management_title" = "ניהול תרופות";
+"fasting_timer_title" = "טיימר צום";
+"nutrition_tracking_title" = "מעקב תזונה";
+"app_settings_title" = "הגדרות האפליקציה";
+
+/* Common Print Elements */
+"printed_from_app" = "מודפס מאפליקציית תזונה לגיל השלישי";
+
+"medication_step_1" = "לחץ על הלשונית 'תרופות' בתחתית המסך";
+"medication_step_2" = "כדי להוסיף תרופה חדשה, לחץ על הכפתור '+'";
+"medication_step_3" = "מלא את פרטי התרופה: שם, מינון, לוח זמנים וכו'";
+"medication_step_4" = "לחץ 'שמור' כדי ליצור תזכורת תרופה";
+"medication_step_5" = "כדי לערוך או למחוק תרופה, לחץ עליה מהרשימה";
+
+"fasting_step_1" = "לחץ על הלשונית 'צום' בתחתית המסך";
+"fasting_step_2" = "בחר את פרוטוקול הצום שלך מהתפריט הנפתח";
+"fasting_step_3" = "לחץ 'התחל צום' כדי להתחיל את טיימר הצום";
+"fasting_step_4" = "האפליקציה תודיע לך כשתקופת הצום תושלם";
+"fasting_step_5" = "לחץ 'סיים צום' כשאתה מפסיק את הצום";
+
+"nutrition_step_1" = "לחץ על הלשונית 'תזונה' בתחתית המסך";
+"nutrition_step_2" = "כדי להוסיף ארוחה, לחץ על הכפתור '+'";
+"nutrition_step_3" = "הזן את פרטי הארוחה או בחר מההצעות";
+"nutrition_step_4" = "צפה בסיכום התזונה שלך ובהמלצות";
+"nutrition_step_5" = "עקוב אחר ההתקדמות שלך לאורך זמן עם הגרפים";
+
+"settings_step_1" = "לחץ על הלשונית 'הגדרות' בתחתית המסך";
+"settings_step_2" = "התאם את גודל הטקסט לקריאה טובה יותר";
+"settings_step_3" = "הפעל מצב ניגודיות גבוהה במידת הצורך";
+"settings_step_4" = "הגדר אפשרויות סיוע קולי";
+"settings_step_5" = "קבע העדפות התראות";
+
+/* Print Options */
+"Print Materials" = "חומרי הדפסה";
+"Medication Schedule" = "לוח זמנים תרופות";
+"Print your current medication schedule" = "הדפס את לוח הזמנים הנוכחי של התרופות";
+"Fasting Guide" = "מדריך צום";
+"Print your fasting protocol guide" = "הדפס את מדריך פרוטוקול הצום שלך";
+"Meal Suggestions" = "הצעות ארוחות";
+"Print healthy meal suggestions" = "הדפס הצעות ארוחות בריאות";
+"App Instructions" = "הוראות האפליקציה";
+"Print step-by-step app instructions" = "הדפס הוראות שלב אחר שלב של האפליקציה";
+"Help with Printing" = "עזרה בהדפסה";
+"OK" = "אישור";
+"Print" = "הדפס";
+
+/* Medication Frequency Localization */
+"Daily" = "יומי";
+"Weekly on %@" = "שבועי ב%@";
+"Every %d days" = "כל %d ימים";
+"Monthly on day %d" = "חודשי ביום %d";
+
+/* Weekday Names */
+"Sunday" = "ראשון";
+"Monday" = "שני";
+"Tuesday" = "שלישי";
+"Wednesday" = "רביעי";
+"Thursday" = "חמישי";
+"Friday" = "שישי";
+"Saturday" = "שבת";
+
 "meal_miso_glazed_cod_name" = "בקלה בזיגוג מיסו";
 "meal_miso_glazed_cod_note" = "זיגוג מיסו מתוק בסגנון יפני";
 
@@ -2966,3 +3085,8 @@
 "Your blood sugar is very low. Seek medical attention if you feel unwell." = "רמת הסוכר בדם שלך נמוכה מאוד. פנה לטיפול רפואי אם אתה מרגיש לא טוב.";
 "Monitor your blood sugar regularly." = "עקוב אחר רמת הסוכר בדם שלך באופן קבוע.";
 "Start tracking your blood sugar to see insights." = "התחל לעקוב אחר רמת הסוכר בדם שלך כדי לראות תובנות.";
+
+/* Food Translation */
+"Translate All Foods" = "תרגם את כל המזונות";
+"Tap translate button to update food names" = "הקש על כפתור התרגום כדי לעדכן שמות מזונות";
+"Translating foods to %@..." = "מתרגם מזונות ל%@...";

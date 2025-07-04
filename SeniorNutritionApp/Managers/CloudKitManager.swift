@@ -370,7 +370,7 @@ class CloudKitManager {
         group.enter()
         fetchAllUserProfiles { result in
             switch result {
-            case .success(let profiles):
+            case .success(_):
                 // Update local storage with fetched profiles
                 // Example: self.userProfiles = profiles
                 print("Successfully restored user profiles from iCloud.")
@@ -384,7 +384,7 @@ class CloudKitManager {
         group.enter()
         fetchAllMedications { result in
             switch result {
-            case .success(let medications):
+            case .success(_):
                 // Update local storage with fetched medications
                 // Example: self.medications = medications
                 print("Successfully restored medications from iCloud.")
@@ -398,7 +398,7 @@ class CloudKitManager {
         group.enter()
         fetchAllAppointments { result in
             switch result {
-            case .success(let appointments):
+            case .success(_):
                 // Update local storage with fetched appointments
                 // Example: self.appointments = appointments
                 print("Successfully restored appointments from iCloud.")
@@ -412,7 +412,7 @@ class CloudKitManager {
         group.enter()
         fetchAllEmergencyContacts { result in
             switch result {
-            case .success(let contacts):
+            case .success(_):
                 // Update local storage with fetched contacts
                 // Example: self.emergencyContacts = contacts
                 print("Successfully restored emergency contacts from iCloud.")

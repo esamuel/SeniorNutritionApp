@@ -106,7 +106,12 @@ struct VideoTutorialView: View {
     }
 
     private func generateThumbnail(for url: URL) {
-        let asset = AVAsset(url: url)
+        let asset: AVAsset
+        if #available(iOS 18.0, *) {
+            asset = AVURLAsset(url: url)
+        } else {
+            asset = AVAsset(url: url)
+        }
         let generator = AVAssetImageGenerator(asset: asset)
         generator.appliesPreferredTrackTransform = true
         let time = CMTime(seconds: 1, preferredTimescale: 60)

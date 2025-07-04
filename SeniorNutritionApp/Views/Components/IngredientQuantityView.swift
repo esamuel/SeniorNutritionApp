@@ -26,7 +26,7 @@ struct IngredientQuantityView: View {
                 .multilineTextAlignment(.trailing)
                 .frame(width: 60)
                 .font(.system(size: userSettings.textSize.size))
-                .onChange(of: quantity) { newValue in
+                .onChange(of: quantity) { _, newValue in
                     if let value = Double(newValue) {
                         updateQuantity(value)
                     }
@@ -41,7 +41,7 @@ struct IngredientQuantityView: View {
             .sheet(isPresented: $showingUnitPicker) {
                 UnitPickerView(
                     selectedUnit: $selectedUnit,
-                    suggestedUnits: UnitConverter.suggestedUnitsFor(foodCategory: ingredient.food.category ?? .other)
+                    suggestedUnits: UnitConverter.suggestedUnitsFor(foodCategory: ingredient.food.category)
                 ) { newUnit in
                     updateUnit(newUnit)
                 }

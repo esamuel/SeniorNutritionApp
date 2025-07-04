@@ -62,7 +62,12 @@ struct AppConfig {
         
         /// Get the emergency number info for the current country/region
         static var currentEmergencyInfo: EmergencyNumberInfo {
-            let countryCode = Locale.current.regionCode ?? "US"
+            let countryCode: String
+            if #available(iOS 16.0, *) {
+                countryCode = Locale.current.region?.identifier ?? "US"
+            } else {
+                countryCode = Locale.current.regionCode ?? "US"
+            }
             return countryEmergencyNumbers[countryCode] ?? EmergencyNumberInfo(number: "911", name: "Emergency Services")
         }
         

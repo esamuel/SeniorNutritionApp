@@ -67,7 +67,7 @@ struct VoiceSettingsView: View {
                         Text(gender.rawValue).tag(gender)
                     }
                 }
-                .onChange(of: userSettings.preferredVoiceGender) { newGender in
+                .onChange(of: userSettings.preferredVoiceGender) { _, newGender in
                     // When gender changes, clear preferredVoiceIdentifier so the app uses the best for that gender
                     userSettings.preferredVoiceIdentifier = nil
                 }

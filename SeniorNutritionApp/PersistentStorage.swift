@@ -1,7 +1,7 @@
 import Foundation
 
 // A class that manages data persistence even across app reinstalls
-class PersistentStorage {
+class PersistentStorage: @unchecked Sendable {
     static let shared = PersistentStorage()
     
     // Key for storing data
@@ -50,7 +50,11 @@ class PersistentStorage {
     // Save data to persistent storage
     func saveData<T: Encodable>(_ data: T, forKey key: String) async throws {
         return try await withCheckedThrowingContinuation { continuation in
-            saveQueue.async {
+            saveQueue.async { [weak self] in
+                guard let self = self else {
+                    continuation.resume(throwing: NSError(domain: "PersistentStorage", code: -1, userInfo: [NSLocalizedDescriptionKey: "Storage instance deallocated"]))
+                    return
+                }
                 do {
                     // Create a backup before saving
                     if FileManager.default.fileExists(atPath: self.dataFileURL.path) {
@@ -111,7 +115,8 @@ class PersistentStorage {
     
     // Delete data from persistent storage
     func deleteData(forKey key: String) {
-        saveQueue.async {
+        saveQueue.async { [weak self] in
+            guard let self = self else { return }
             do {
                 try FileManager.default.removeItem(at: self.dataFileURL)
                 print("Successfully deleted data for key: \(key)")

@@ -288,8 +288,8 @@ struct MedicationReminderDetailView: View {
             guard settings.authorizationStatus == .authorized else { return }
             
             // Schedule new notifications
-            let calendar = Calendar.current
-            let now = Date()
+            _ = Calendar.current
+            _ = Date()
             
             // Create notification content
             let content = UNMutableNotificationContent()

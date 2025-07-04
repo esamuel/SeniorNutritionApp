@@ -367,7 +367,6 @@ struct WeightDetailView: View {
             }
         }
         return NSLocalizedString("Track your weight regularly to see insights and trends.", comment: "Weight insights message")
-        return "Track your weight regularly to see insights and trends."
     }
     
     private var filteredEntries: [WeightEntry] {

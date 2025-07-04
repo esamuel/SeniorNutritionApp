@@ -6,118 +6,137 @@ struct MedicationPrintPreview: View {
     @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {
-        VStack {
-            Text("Medication Schedule")
-                .font(.title)
-                .fontWeight(.bold)
-                .padding(.bottom, 10)
-            
-            Text("Date: \(formattedDate())")
-                .font(.subheadline)
-                .padding(.bottom, 20)
-            
-            if userSettings.medications.isEmpty {
-                Text("No medications to display")
-                    .foregroundColor(.gray)
-                    .padding()
-            } else {
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 15) {
-                        ForEach(userSettings.medications) { medication in
-                            medicationCard(medication)
-                        }
-                    }
-                    .padding()
-                }
-            }
-            
-            Spacer()
-            
-            Text("Printed from Senior Nutrition App")
-                .font(.caption)
-                .foregroundColor(.gray)
-                .padding(.top, 20)
-        }
-        .padding()
-        .background(Color.white)
-        .foregroundColor(.black) // Force black text for PDF
-    }
-    
-    private func medicationCard(_ medication: Medication) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                Text(medication.name)
-                    .font(.system(size: 18, weight: .bold))
+        let userName = userSettings.userProfile?.firstName ?? userSettings.userName
+        
+        VStack(alignment: .leading, spacing: 20) {
+            // Header
+            VStack(alignment: .leading, spacing: 10) {
+                Text(String(format: NSLocalizedString("medication_schedule_title_personalized", comment: ""), userName))
+                    .font(.system(size: 24, weight: .bold))
+                    .foregroundColor(.black)
                 
-                Spacer()
-                
-                Text(medication.dosage)
+                Text(DateFormatter.localizedDateFormatter().string(from: Date()))
                     .font(.system(size: 16))
                     .foregroundColor(.gray)
             }
             
             Divider()
+                .background(Color.black)
             
-            HStack {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("Schedule:")
-                        .font(.caption)
+            // Content
+            if userSettings.medications.isEmpty {
+                VStack(spacing: 15) {
+                    Image(systemName: "pill.fill")
+                        .font(.system(size: 48))
                         .foregroundColor(.gray)
                     
-                    Text(scheduleDescription(for: medication))
-                        .font(.subheadline)
+                    Text(NSLocalizedString("no_medications_added", comment: ""))
+                        .font(.system(size: 18))
+                        .foregroundColor(.gray)
+                        .multilineTextAlignment(.center)
                 }
+                .frame(maxWidth: .infinity, minHeight: 200)
+            } else {
+                VStack(alignment: .leading, spacing: 15) {
+                    ForEach(userSettings.medications) { medication in
+                        medicationCard(medication)
+                    }
+                }
+            }
+            
+            Spacer()
+            
+            // Footer
+            HStack {
+                Spacer()
+                Text(NSLocalizedString("printed_from_app", comment: ""))
+                    .font(.system(size: 12))
+                    .foregroundColor(.gray)
+                Spacer()
+            }
+            .padding(.top, 20)
+        }
+        .padding(20)
+        .background(Color.white)
+        .foregroundColor(.black)
+    }
+    
+    private func medicationCard(_ medication: Medication) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            // Medication name and dosage
+            HStack {
+                Text(medication.name)
+                    .font(.system(size: 18, weight: .bold))
+                    .foregroundColor(.black)
                 
                 Spacer()
                 
-                if let shape = medication.shape {
-                    Text(shape.rawValue)
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 2)
-                        .background(Color.gray.opacity(0.2))
-                        .cornerRadius(4)
+                if !medication.dosage.isEmpty {
+                    Text(medication.dosage)
+                        .font(.system(size: 16))
+                        .foregroundColor(.black)
                 }
             }
             
+            // Frequency
+            HStack {
+                Text(NSLocalizedString("frequency_label", comment: "") + ":")
+                    .font(.system(size: 14, weight: .medium))
+                    .foregroundColor(.black)
+                Text(localizedFrequency(medication.frequency))
+                    .font(.system(size: 14))
+                    .foregroundColor(.black)
+            }
+            
+            // Times
+            if !medication.timesOfDay.isEmpty {
+                HStack {
+                    Text(NSLocalizedString("times_label", comment: "") + ":")
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundColor(.black)
+                    Text(medication.timesOfDay.map { String(format: "%02d:%02d", $0.hour, $0.minute) }.joined(separator: ", "))
+                        .font(.system(size: 14))
+                        .foregroundColor(.black)
+                }
+            }
+            
+            // Notes
             if let notes = medication.notes, !notes.isEmpty {
-                Text("Notes: \(notes)")
-                    .font(.caption)
-                    .foregroundColor(.gray)
-                    .padding(.top, 4)
+                HStack(alignment: .top) {
+                    Text(NSLocalizedString("notes_label", comment: "") + ":")
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundColor(.black)
+                    Text(notes)
+                        .font(.system(size: 14))
+                        .foregroundColor(.black)
+                }
             }
         }
-        .padding()
-        .background(Color(.systemGray6).opacity(0.5))
-        .cornerRadius(10)
+        .padding(15)
+        .background(Color.white)
         .overlay(
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+            RoundedRectangle(cornerRadius: 8)
+                .stroke(Color.black.opacity(0.3), lineWidth: 1)
         )
     }
     
-    // Helper function for formatting the date
-    private func formattedDate() -> String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .long
-        return formatter.string(from: Date())
-    }
-    
-    // Helper function for formatting the schedule
-    private func scheduleDescription(for medication: Medication) -> String {
-        switch medication.frequency {
+    private func localizedFrequency(_ frequency: ScheduleDetails) -> String {
+        switch frequency {
         case .daily:
-            return "Daily"
+            return NSLocalizedString("Daily", comment: "")
         case .weekly(let days):
-            let sortedDays = days.sorted()
-            return sortedDays.map { $0.shortName }.joined(separator: ", ")
-        case .interval(let days, let startDate):
-            let formatter = DateFormatter()
-            formatter.dateStyle = .short
-            return "Every \(days) days (from \(formatter.string(from: startDate)))"
+            if days.count == 7 {
+                return NSLocalizedString("Daily", comment: "")
+            } else if days.count == 1, let day = days.first {
+                return String(format: NSLocalizedString("Weekly on %@", comment: ""), day.localizedName)
+            } else {
+                let dayNames = days.sorted { $0.rawValue < $1.rawValue }.map { $0.localizedName }
+                return String(format: NSLocalizedString("Weekly on %@", comment: ""), dayNames.joined(separator: ", "))
+            }
+        case .interval(let days, _):
+            return String(format: NSLocalizedString("Every %d days", comment: ""), days)
         case .monthly(let day):
-            return "Monthly on day \(day)"
+            return String(format: NSLocalizedString("Monthly on day %d", comment: ""), day)
         }
     }
 }
@@ -128,279 +147,335 @@ struct FastingProtocolPreview: View {
     @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {
-        VStack {
-            Text("Fasting Protocol Guide")
-                .font(.title)
-                .fontWeight(.bold)
-                .padding(.bottom, 10)
-            
-            Text("Date: \(formattedDate())")
-                .font(.subheadline)
-                .padding(.bottom, 20)
-            
-            VStack(alignment: .leading, spacing: 15) {
-                Text("Your Protocol: \(userSettings.activeFastingProtocol.rawValue)")
-                    .font(.title3)
-                    .fontWeight(.semibold)
+        let userName = userSettings.userProfile?.firstName ?? userSettings.userName
+        
+        VStack(alignment: .leading, spacing: 20) {
+            // Header
+            VStack(alignment: .leading, spacing: 10) {
+                Text(String(format: NSLocalizedString("fasting_guide_title_personalized", comment: ""), userName))
+                    .font(.system(size: 24, weight: .bold))
+                    .foregroundColor(.black)
                 
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text("Fasting Hours:")
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-                        Text("\(userSettings.activeFastingProtocol.fastingHours) hours")
-                            .font(.body)
-                    }
-                    
-                    Spacer()
-                    
-                    VStack(alignment: .leading) {
-                        Text("Eating Window:")
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-                        Text("\(userSettings.activeFastingProtocol.eatingHours) hours")
-                            .font(.body)
-                    }
-                }
-                .padding()
-                .background(Color(.systemGray6).opacity(0.5))
-                .cornerRadius(10)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.gray.opacity(0.3), lineWidth: 1)
-                )
+                Text(DateFormatter.localizedDateFormatter().string(from: Date()))
+                    .font(.system(size: 16))
+                    .foregroundColor(.gray)
+            }
+            
+            Divider()
+                .background(Color.black)
+            
+            // Protocol Info
+            VStack(alignment: .leading, spacing: 15) {
+                Text(NSLocalizedString("selected_protocol_label", comment: "") + ": " + userSettings.activeFastingProtocol.localizedTitle)
+                    .font(.system(size: 18, weight: .semibold))
+                    .foregroundColor(.black)
                 
                 Text(userSettings.activeFastingProtocol.localizedDescription)
-                    .font(.body)
-                    .padding(.top, 8)
-                
-                Text("General Fasting Guidelines:")
-                    .font(.headline)
-                    .padding(.top, 20)
-                
-                VStack(alignment: .leading, spacing: 8) {
-                    bulletPoint("Stay hydrated during fasting periods")
-                    bulletPoint("Break your fast with a small, balanced meal")
-                    bulletPoint("Monitor how you feel and adjust as needed")
-                    bulletPoint("Consult with your doctor before starting any fasting regimen")
-                }
-                .padding()
-                .background(Color(.systemGray6).opacity(0.5))
-                .cornerRadius(10)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.gray.opacity(0.3), lineWidth: 1)
-                )
+                    .font(.system(size: 16))
+                    .foregroundColor(.black)
+                    .fixedSize(horizontal: false, vertical: true)
             }
-            .padding()
+            .padding(15)
+            .background(Color.white)
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color.black.opacity(0.3), lineWidth: 1)
+            )
+            
+            // Benefits
+            VStack(alignment: .leading, spacing: 10) {
+                Text(NSLocalizedString("fasting_benefits_title", comment: ""))
+                    .font(.system(size: 18, weight: .semibold))
+                    .foregroundColor(.black)
+                
+                ForEach(userSettings.activeFastingProtocol.benefits, id: \.self) { benefit in
+                    if !benefit.isEmpty {
+                        HStack(alignment: .top, spacing: 8) {
+                            Text("•")
+                                .font(.system(size: 16))
+                                .foregroundColor(.black)
+                            Text(benefit)
+                                .font(.system(size: 16))
+                                .foregroundColor(.black)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                    }
+                }
+            }
+            .padding(15)
+            .background(Color.white)
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color.black.opacity(0.3), lineWidth: 1)
+            )
+            
+            // Guidelines
+            VStack(alignment: .leading, spacing: 10) {
+                Text(NSLocalizedString("fasting_guidelines_title", comment: ""))
+                    .font(.system(size: 18, weight: .semibold))
+                    .foregroundColor(.black)
+                
+                ForEach(userSettings.activeFastingProtocol.guidelines, id: \.self) { guideline in
+                    if !guideline.isEmpty {
+                        HStack(alignment: .top, spacing: 8) {
+                            Text("•")
+                                .font(.system(size: 16))
+                                .foregroundColor(.black)
+                            Text(guideline)
+                                .font(.system(size: 16))
+                                .foregroundColor(.black)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                    }
+                }
+            }
+            .padding(15)
+            .background(Color.white)
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color.black.opacity(0.3), lineWidth: 1)
+            )
             
             Spacer()
             
-            Text("Printed from Senior Nutrition App")
-                .font(.caption)
-                .foregroundColor(.gray)
-                .padding(.top, 20)
+            // Footer
+            HStack {
+                Spacer()
+                Text(NSLocalizedString("printed_from_app", comment: ""))
+                    .font(.system(size: 12))
+                    .foregroundColor(.gray)
+                Spacer()
+            }
+            .padding(.top, 20)
         }
-        .padding()
+        .padding(20)
         .background(Color.white)
-        .foregroundColor(.black) // Force black text for PDF
-    }
-    
-    // Helper function for formatting the date
-    private func formattedDate() -> String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .long
-        return formatter.string(from: Date())
-    }
-    
-    private func bulletPoint(_ text: String) -> some View {
-        HStack(alignment: .top, spacing: 10) {
-            Text("•")
-            Text(text)
-                .fixedSize(horizontal: false, vertical: true)
-        }
+        .foregroundColor(.black)
     }
 }
 
 // Print preview view for meal suggestions
 struct MealSuggestionsPreview: View {
+    @EnvironmentObject private var userSettings: UserSettings
     @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {
-        VStack {
-            Text("Healthy Meal Suggestions")
-                .font(.title)
-                .fontWeight(.bold)
-                .padding(.bottom, 10)
+        let userName = userSettings.userProfile?.firstName ?? userSettings.userName
+        
+        VStack(alignment: .leading, spacing: 20) {
+            // Header
+            VStack(alignment: .leading, spacing: 10) {
+                Text(String(format: NSLocalizedString("meal_suggestions_title_personalized", comment: ""), userName))
+                    .font(.system(size: 24, weight: .bold))
+                    .foregroundColor(.black)
+                
+                Text(DateFormatter.localizedDateFormatter().string(from: Date()))
+                    .font(.system(size: 16))
+                    .foregroundColor(.gray)
+            }
             
-            Text("Date: \(formattedDate())")
-                .font(.subheadline)
-                .padding(.bottom, 20)
+            Divider()
+                .background(Color.black)
             
-            ScrollView {
-                VStack(alignment: .leading, spacing: 20) {
-                    mealCategory(title: "Breakfast Ideas", items: [
-                        "Oatmeal with berries and nuts",
-                        "Greek yogurt with honey and granola",
-                        "Vegetable omelet with whole grain toast"
-                    ])
-                    
-                    mealCategory(title: "Lunch Ideas", items: [
-                        "Quinoa salad with vegetables",
-                        "Grilled chicken with steamed vegetables",
-                        "Lentil soup with whole grain bread"
-                    ])
-                    
-                    mealCategory(title: "Dinner Ideas", items: [
-                        "Baked salmon with roasted vegetables",
-                        "Lean beef stir-fry with brown rice",
-                        "Vegetable pasta with tomato sauce"
-                    ])
-                    
-                    mealCategory(title: "Healthy Snacks", items: [
-                        "Apple slices with peanut butter",
-                        "Carrot sticks with hummus",
-                        "Greek yogurt with berries"
-                    ])
-                }
-                .padding()
+            // Meal Categories
+            VStack(alignment: .leading, spacing: 20) {
+                mealCategory(
+                    title: NSLocalizedString("breakfast_ideas_title", comment: ""),
+                    items: [
+                        NSLocalizedString("breakfast_suggestion_1", comment: ""),
+                        NSLocalizedString("breakfast_suggestion_2", comment: ""),
+                        NSLocalizedString("breakfast_suggestion_3", comment: ""),
+                        NSLocalizedString("breakfast_suggestion_4", comment: "")
+                    ]
+                )
+                
+                mealCategory(
+                    title: NSLocalizedString("lunch_ideas_title", comment: ""),
+                    items: [
+                        NSLocalizedString("lunch_suggestion_1", comment: ""),
+                        NSLocalizedString("lunch_suggestion_2", comment: ""),
+                        NSLocalizedString("lunch_suggestion_3", comment: ""),
+                        NSLocalizedString("lunch_suggestion_4", comment: "")
+                    ]
+                )
+                
+                mealCategory(
+                    title: NSLocalizedString("dinner_ideas_title", comment: ""),
+                    items: [
+                        NSLocalizedString("dinner_suggestion_1", comment: ""),
+                        NSLocalizedString("dinner_suggestion_2", comment: ""),
+                        NSLocalizedString("dinner_suggestion_3", comment: ""),
+                        NSLocalizedString("dinner_suggestion_4", comment: "")
+                    ]
+                )
+                
+                mealCategory(
+                    title: NSLocalizedString("snack_ideas_title", comment: ""),
+                    items: [
+                        NSLocalizedString("snack_suggestion_1", comment: ""),
+                        NSLocalizedString("snack_suggestion_2", comment: ""),
+                        NSLocalizedString("snack_suggestion_3", comment: ""),
+                        NSLocalizedString("snack_suggestion_4", comment: "")
+                    ]
+                )
             }
             
             Spacer()
             
-            Text("Printed from Senior Nutrition App")
-                .font(.caption)
-                .foregroundColor(.gray)
-                .padding(.top, 20)
+            // Footer
+            HStack {
+                Spacer()
+                Text(NSLocalizedString("printed_from_app", comment: ""))
+                    .font(.system(size: 12))
+                    .foregroundColor(.gray)
+                Spacer()
+            }
+            .padding(.top, 20)
         }
-        .padding()
+        .padding(20)
         .background(Color.white)
-        .foregroundColor(.black) // Force black text for PDF
-    }
-    
-    // Helper function for formatting the date
-    private func formattedDate() -> String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .long
-        return formatter.string(from: Date())
+        .foregroundColor(.black)
     }
     
     private func mealCategory(title: String, items: [String]) -> some View {
         VStack(alignment: .leading, spacing: 10) {
             Text(title)
-                .font(.title3)
-                .fontWeight(.semibold)
+                .font(.system(size: 18, weight: .semibold))
+                .foregroundColor(.black)
             
-            ForEach(items, id: \.self) { item in
-                HStack(alignment: .top) {
+            ForEach(items.filter { !$0.isEmpty }, id: \.self) { item in
+                HStack(alignment: .top, spacing: 8) {
                     Text("•")
-                        .padding(.trailing, 5)
+                        .font(.system(size: 16))
+                        .foregroundColor(.black)
                     Text(item)
+                        .font(.system(size: 16))
+                        .foregroundColor(.black)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
-                .padding(.vertical, 2)
             }
         }
-        .padding()
-        .background(Color(.systemGray6).opacity(0.5))
-        .cornerRadius(10)
+        .padding(15)
+        .background(Color.white)
         .overlay(
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+            RoundedRectangle(cornerRadius: 8)
+                .stroke(Color.black.opacity(0.3), lineWidth: 1)
         )
-        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
 // Print preview view for app instructions
 struct AppInstructionsPreview: View {
+    @EnvironmentObject private var userSettings: UserSettings
     @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {
-        VStack {
-            Text("App Instructions")
-                .font(.title)
-                .fontWeight(.bold)
-                .padding(.bottom, 10)
+        let userName = userSettings.userProfile?.firstName ?? userSettings.userName
+        
+        VStack(alignment: .leading, spacing: 20) {
+            // Header
+            VStack(alignment: .leading, spacing: 10) {
+                Text(String(format: NSLocalizedString("app_instructions_title_personalized", comment: ""), userName))
+                    .font(.system(size: 24, weight: .bold))
+                    .foregroundColor(.black)
+                
+                Text(DateFormatter.localizedDateFormatter().string(from: Date()))
+                    .font(.system(size: 16))
+                    .foregroundColor(.gray)
+            }
             
-            Text("Date: \(formattedDate())")
-                .font(.subheadline)
-                .padding(.bottom, 20)
+            Divider()
+                .background(Color.black)
             
-            ScrollView {
-                VStack(alignment: .leading, spacing: 20) {
-                    instructionSection(title: "Medication Management", steps: [
-                        "Add medications through the Medications tab",
-                        "Set up reminders for each medication",
-                        "Track your medication history",
-                        "Update dosages and schedules as needed"
-                    ])
-                    
-                    instructionSection(title: "Fasting Timer", steps: [
-                        "Select your fasting protocol",
-                        "Start and end your fasts with the timer",
-                        "View your fasting history",
-                        "Track your progress over time"
-                    ])
-                    
-                    instructionSection(title: "Nutrition Tracking", steps: [
-                        "Log your meals and snacks",
-                        "Get nutritional insights",
-                        "View personalized recommendations",
-                        "Monitor your dietary patterns"
-                    ])
-                    
-                    instructionSection(title: "Settings", steps: [
-                        "Customize text size",
-                        "Enable high contrast mode if needed",
-                        "Set up voice assistance",
-                        "Configure notification preferences"
-                    ])
-                }
-                .padding()
+            // Instruction Categories
+            VStack(alignment: .leading, spacing: 20) {
+                instructionCategory(
+                    title: NSLocalizedString("medication_management_title", comment: ""),
+                    steps: [
+                        NSLocalizedString("medication_instruction_1", comment: ""),
+                        NSLocalizedString("medication_instruction_2", comment: ""),
+                        NSLocalizedString("medication_instruction_3", comment: ""),
+                        NSLocalizedString("medication_instruction_4", comment: ""),
+                        NSLocalizedString("medication_instruction_5", comment: "")
+                    ]
+                )
+                
+                instructionCategory(
+                    title: NSLocalizedString("fasting_timer_title", comment: ""),
+                    steps: [
+                        NSLocalizedString("fasting_instruction_1", comment: ""),
+                        NSLocalizedString("fasting_instruction_2", comment: ""),
+                        NSLocalizedString("fasting_instruction_3", comment: ""),
+                        NSLocalizedString("fasting_instruction_4", comment: ""),
+                        NSLocalizedString("fasting_instruction_5", comment: "")
+                    ]
+                )
+                
+                instructionCategory(
+                    title: NSLocalizedString("nutrition_tracking_title", comment: ""),
+                    steps: [
+                        NSLocalizedString("nutrition_instruction_1", comment: ""),
+                        NSLocalizedString("nutrition_instruction_2", comment: ""),
+                        NSLocalizedString("nutrition_instruction_3", comment: ""),
+                        NSLocalizedString("nutrition_instruction_4", comment: ""),
+                        NSLocalizedString("nutrition_instruction_5", comment: "")
+                    ]
+                )
+                
+                instructionCategory(
+                    title: NSLocalizedString("app_settings_title", comment: ""),
+                    steps: [
+                        NSLocalizedString("settings_instruction_1", comment: ""),
+                        NSLocalizedString("settings_instruction_2", comment: ""),
+                        NSLocalizedString("settings_instruction_3", comment: ""),
+                        NSLocalizedString("settings_instruction_4", comment: ""),
+                        NSLocalizedString("settings_instruction_5", comment: "")
+                    ]
+                )
             }
             
             Spacer()
             
-            Text("Printed from Senior Nutrition App")
-                .font(.caption)
-                .foregroundColor(.gray)
-                .padding(.top, 20)
+            // Footer
+            HStack {
+                Spacer()
+                Text(NSLocalizedString("printed_from_app", comment: ""))
+                    .font(.system(size: 12))
+                    .foregroundColor(.gray)
+                Spacer()
+            }
+            .padding(.top, 20)
         }
-        .padding()
+        .padding(20)
         .background(Color.white)
-        .foregroundColor(.black) // Force black text for PDF
+        .foregroundColor(.black)
     }
     
-    // Helper function for formatting the date
-    private func formattedDate() -> String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .long
-        return formatter.string(from: Date())
-    }
-    
-    private func instructionSection(title: String, steps: [String]) -> some View {
+    private func instructionCategory(title: String, steps: [String]) -> some View {
         VStack(alignment: .leading, spacing: 10) {
             Text(title)
-                .font(.title3)
-                .fontWeight(.semibold)
+                .font(.system(size: 18, weight: .semibold))
+                .foregroundColor(.black)
             
-            ForEach(0..<steps.count, id: \.self) { index in
-                HStack(alignment: .top) {
+            ForEach(Array(steps.filter { !$0.isEmpty }.enumerated()), id: \.offset) { index, step in
+                HStack(alignment: .top, spacing: 8) {
                     Text("\(index + 1).")
+                        .font(.system(size: 16, weight: .medium))
+                        .foregroundColor(.black)
                         .frame(width: 20, alignment: .leading)
-                    Text(steps[index])
+                    Text(step)
+                        .font(.system(size: 16))
+                        .foregroundColor(.black)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
-                .padding(.vertical, 2)
             }
         }
-        .padding()
-        .background(Color(.systemGray6).opacity(0.5))
-        .cornerRadius(10)
+        .padding(15)
+        .background(Color.white)
         .overlay(
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+            RoundedRectangle(cornerRadius: 8)
+                .stroke(Color.black.opacity(0.3), lineWidth: 1)
         )
-        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
@@ -415,8 +490,10 @@ struct PrintPreviewViews_Previews: PreviewProvider {
                 .environmentObject(UserSettings())
             
             MealSuggestionsPreview()
+                .environmentObject(UserSettings())
             
             AppInstructionsPreview()
+                .environmentObject(UserSettings())
         }
     }
 }

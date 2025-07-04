@@ -39,7 +39,7 @@ struct PremiumFeaturesView: View {
                     if !premiumManager.isPremium {
                         Button(action: {
                             Task {
-                                await premiumManager.unlockPremium()
+                                premiumManager.unlockPremium()
                             }
                         }) {
                             Text("Unlock Premium")

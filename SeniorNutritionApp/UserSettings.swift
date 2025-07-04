@@ -330,7 +330,7 @@ class UserSettings: ObservableObject {
         // Load heavy data in background
         DispatchQueue.global(qos: .userInitiated).async {
             Task {
-                if let data: PersistentData = try await PersistentStorage.shared.loadData(forKey: self.localDataKey) {
+                if let data: PersistentData = PersistentStorage.shared.loadData(forKey: self.localDataKey) {
                     DispatchQueue.main.async {
                         self.textSize = data.textSize
                         self.highContrastMode = data.highContrastMode
@@ -457,14 +457,8 @@ class UserSettings: ObservableObject {
         UserDefaults.standard.removeObject(forKey: "notificationsEnabled")
 
         // Clear persistent storage (Important!)
-        Task {
-            do {
-                try await PersistentStorage.shared.deleteData(forKey: self.localDataKey)
-                print("DEBUG: Successfully cleared persistent storage for key: \(self.localDataKey)")
-            } catch {
-                print("Error clearing persistent storage: \(error)")
-            }
-        }
+        PersistentStorage.shared.deleteData(forKey: self.localDataKey)
+        print("DEBUG: Successfully cleared persistent storage for key: \(self.localDataKey)")
 
         // Trigger save of the now-default state (optional, depending on desired flow)
         // saveUserData() // Might be redundant if properties trigger saveUserData anyway

@@ -45,7 +45,13 @@ struct SpeechLanguagePickerView: View {
     
     // Helper function to get flag emoji for a locale
     private func getFlagEmoji(for locale: Locale) -> String {
-        let languageCode = locale.languageCode ?? "en"
+        let languageCode: String
+        
+        if #available(iOS 16.0, *) {
+            languageCode = locale.language.languageCode?.identifier ?? "en"
+        } else {
+            languageCode = locale.languageCode ?? "en"
+        }
         
         switch languageCode {
         case "en":

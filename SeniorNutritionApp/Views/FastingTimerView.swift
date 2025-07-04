@@ -53,7 +53,7 @@ private struct TimerSectionView: View {
                         .font(.system(size: textSize - 2))
                         .foregroundColor(.secondary)
                     Button(action: onShowLastMealPicker) {
-                        Text(lastMealTime.localizedTimeString())
+                        Text(DateFormatter.localizedTimeFormatter().string(from: lastMealTime))
                             .font(.system(size: textSize))
                     }
                 }
@@ -63,7 +63,7 @@ private struct TimerSectionView: View {
                         .font(.system(size: textSize - 2))
                         .foregroundColor(.secondary)
                     Button(action: onShowNextMealPicker) {
-                        Text(nextMealTime.localizedTimeString())
+                        Text(DateFormatter.localizedTimeFormatter().string(from: nextMealTime))
                             .font(.system(size: textSize))
                     }
                 }
@@ -279,7 +279,7 @@ struct FastingTimerView: View {
     }
     
     private func formatTimeRange(start: Date, end: Date) -> String {
-        return String.localizedTimeRange(start: start, end: end)
+        return "\(timeFormatter.string(from: start)) - \(timeFormatter.string(from: end))"
     }
     
     private func endFasting() {

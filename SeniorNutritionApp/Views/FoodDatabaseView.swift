@@ -108,7 +108,7 @@ struct FoodDatabaseView: View {
                 await foodDatabase.checkAndTranslateIfNeeded()
             }
         }
-        .onChange(of: LanguageManager.shared.currentLanguage) { _ in
+        .onChange(of: LanguageManager.shared.currentLanguage) { _, _ in
             // When language changes, retranslate foods
             Task {
                 await foodDatabase.checkAndTranslateIfNeeded()
