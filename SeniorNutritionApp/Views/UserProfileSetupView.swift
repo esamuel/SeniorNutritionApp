@@ -445,6 +445,8 @@ struct UserProfileSetupView: View {
         
         userSettings.userProfile = profile
         userSettings.isOnboardingComplete = true
+        // Also mark app tour as completed to avoid showing multiple onboarding screens
+        userSettings.markAppTourCompleted()
         dismiss()
     }
 }

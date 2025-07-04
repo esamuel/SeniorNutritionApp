@@ -317,19 +317,21 @@ class UserSettings: ObservableObject {
     // Load user data from persistent storage
     private func loadUserData(startTime: Date? = nil) {
         let loadStart = startTime ?? Date()
-        // Load lightweight settings synchronously
-        if let savedProfile = UserDefaults.standard.data(forKey: "userProfile"),
-           let decodedProfile = try? JSONDecoder().decode(UserProfile.self, from: savedProfile) {
-            self.userProfile = decodedProfile
-        }
-        self.isDarkMode = UserDefaults.standard.bool(forKey: "isDarkMode")
-        self.notificationsEnabled = UserDefaults.standard.bool(forKey: "notificationsEnabled")
-        // Mark as loaded so UI can appear
-        self.isLoaded = true
-
-        // Load heavy data in background
+        
+        // Load heavy data in background first, then mark as loaded
         DispatchQueue.global(qos: .userInitiated).async {
             Task {
+                // Load lightweight settings
+                DispatchQueue.main.async {
+                    if let savedProfile = UserDefaults.standard.data(forKey: "userProfile"),
+                       let decodedProfile = try? JSONDecoder().decode(UserProfile.self, from: savedProfile) {
+                        self.userProfile = decodedProfile
+                    }
+                    self.isDarkMode = UserDefaults.standard.bool(forKey: "isDarkMode")
+                    self.notificationsEnabled = UserDefaults.standard.bool(forKey: "notificationsEnabled")
+                }
+                
+                // Load persistent data
                 if let data: PersistentData = PersistentStorage.shared.loadData(forKey: self.localDataKey) {
                     DispatchQueue.main.async {
                         self.textSize = data.textSize
@@ -348,13 +350,21 @@ class UserSettings: ObservableObject {
                         self.userEmergencyContacts = data.userEmergencyContacts
                         self.preferredVoiceGender = data.preferredVoiceGender
                         self.speechRate = data.speechRate
+                        
+                        // Add a small delay to show the loading screen with old man image
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                            self.isLoaded = true
+                            let elapsed = Date().timeIntervalSince(loadStart)
+                            print("DEBUG: User data loaded in \(elapsed) seconds")
+                        }
                     }
-                    let elapsed = Date().timeIntervalSince(loadStart)
-                    print("DEBUG: User data loaded in \(elapsed) seconds")
                 } else {
                     print("DEBUG: No saved user data found")
-                    let elapsed = Date().timeIntervalSince(loadStart)
-                    print("DEBUG: User data load (empty) in \(elapsed) seconds")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        self.isLoaded = true
+                        let elapsed = Date().timeIntervalSince(loadStart)
+                        print("DEBUG: User data load (empty) in \(elapsed) seconds")
+                    }
                 }
             }
         }

@@ -42,12 +42,16 @@ struct BloodPressureDetailView: View {
             }
         }
         .sheet(isPresented: $showingAddEntry) {
-            AddBloodPressureView()
-                .environment(\.managedObjectContext, viewContext)
+            NavigationView {
+                AddBloodPressureView()
+                    .environment(\.managedObjectContext, viewContext)
+            }
         }
         .sheet(item: $selectedEntry) { entry in
-            EditBloodPressureView(entry: entry)
-                .environment(\.managedObjectContext, viewContext)
+            NavigationView {
+                EditBloodPressureView(entry: entry)
+                    .environment(\.managedObjectContext, viewContext)
+            }
         }
         .alert(NSLocalizedString("Delete Entry", comment: "Alert title for deleting entry"), isPresented: $showingDeleteAlert) {
             Button(NSLocalizedString("Delete", comment: "Delete button text"), role: .destructive) {

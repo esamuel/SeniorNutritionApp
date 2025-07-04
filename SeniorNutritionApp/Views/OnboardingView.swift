@@ -73,6 +73,8 @@ struct OnboardingView: View {
                     Button(action: {
                         if isFirstLaunch {
                             userSettings.isOnboardingComplete = true
+                            // Also mark app tour as completed to avoid showing multiple onboarding screens
+                            userSettings.markAppTourCompleted()
                         } else {
                             presentationMode.wrappedValue.dismiss()
                         }
@@ -122,6 +124,8 @@ struct OnboardingView: View {
                         Button(action: {
                             if isFirstLaunch {
                                 userSettings.isOnboardingComplete = true
+                                // Also mark app tour as completed to avoid showing multiple onboarding screens
+                                userSettings.markAppTourCompleted()
                             } else {
                                 presentationMode.wrappedValue.dismiss()
                             }

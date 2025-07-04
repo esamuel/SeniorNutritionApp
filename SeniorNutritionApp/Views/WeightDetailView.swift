@@ -43,14 +43,18 @@ struct WeightDetailView: View {
             }
         }
         .sheet(isPresented: $showingAddEntry) {
-            AddWeightView()
-                .environment(\.managedObjectContext, viewContext)
-                .environmentObject(userSettings)
+            NavigationView {
+                AddWeightView()
+                    .environment(\.managedObjectContext, viewContext)
+                    .environmentObject(userSettings)
+            }
         }
         .sheet(item: $selectedEntry) { entry in
-            EditWeightView(entry: entry)
-                .environment(\.managedObjectContext, viewContext)
-                .environmentObject(userSettings)
+            NavigationView {
+                EditWeightView(entry: entry)
+                    .environment(\.managedObjectContext, viewContext)
+                    .environmentObject(userSettings)
+            }
         }
         .alert(NSLocalizedString("Delete Entry", comment: "Alert title for deleting entry"), isPresented: $showingDeleteAlert) {
             Button(NSLocalizedString("Delete", comment: "Delete button text"), role: .destructive) {

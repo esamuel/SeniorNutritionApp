@@ -69,16 +69,24 @@ struct HealthView: View {
         .id(refreshID)
         .navigationTitle(NSLocalizedString("Health", comment: "Navigation title for Health view"))
         .sheet(isPresented: $showingBloodPressureInput) {
-            AddBloodPressureView()
+            NavigationView {
+                AddBloodPressureView()
+            }
         }
         .sheet(isPresented: $showingHeartRateInput) {
-            AddHeartRateView()
+            NavigationView {
+                AddHeartRateView()
+            }
         }
         .sheet(isPresented: $showingWeightInput) {
-            AddWeightView()
+            NavigationView {
+                AddWeightView()
+            }
         }
         .sheet(isPresented: $showingBloodSugarInput) {
-            AddBloodSugarView()
+            NavigationView {
+                AddBloodSugarView()
+            }
         }
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("LanguageDidChange"))) { _ in
             self.refreshID = UUID()

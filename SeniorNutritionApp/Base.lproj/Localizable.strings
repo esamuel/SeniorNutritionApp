@@ -1226,3 +1226,6 @@
 "Anti-Inflammatory Foods" = "Consider including foods rich in omega-3 fatty acids like fatty fish, walnuts, and flaxseeds, as they may help reduce inflammation.";
 "Turmeric and Ginger" = "These spices contain compounds that some people find helpful for reducing inflammation and joint pain.";
 "Limit Inflammatory Foods" = "You might want to consider reducing consumption of processed foods, refined sugars, and excessive omega-6 fatty acids, as they may increase inflammation.";
+
+/* Loading Screen */
+"Hold on, I'm coming..." = "Hold on, I'm coming...";

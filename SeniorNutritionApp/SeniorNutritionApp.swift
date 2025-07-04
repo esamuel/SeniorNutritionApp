@@ -26,6 +26,12 @@ struct SeniorNutritionApp: App {
                             .frame(height: 200)
                             .padding(.bottom, 20)
                         
+                        Text(NSLocalizedString("Hold on, I'm coming...", comment: "Loading message with old man"))
+                            .font(.title2)
+                            .fontWeight(.medium)
+                            .foregroundColor(.secondary)
+                            .padding(.bottom, 10)
+                        
                         ProgressView(NSLocalizedString("Loading", comment: ""))
                             .progressViewStyle(CircularProgressViewStyle())
                             .padding()

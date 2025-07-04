@@ -30,10 +30,14 @@ struct NutritionalDashboardView: View {
             .padding()
         }
         .onAppear {
-            Task { await mealManager.updateGoalsFromUserSettings(userSettings) }
+            Task { @MainActor in
+                await mealManager.updateGoalsFromUserSettings(userSettings)
+            }
         }
         .onChange(of: selectedDate) { _, _ in
-            Task { await mealManager.updateGoalsFromUserSettings(userSettings) }
+            Task { @MainActor in
+                await mealManager.updateGoalsFromUserSettings(userSettings)
+            }
         }
     }
     

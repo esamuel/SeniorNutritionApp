@@ -42,12 +42,16 @@ struct BloodSugarDetailView: View {
             }
         }
         .sheet(isPresented: $showingAddEntry) {
-            AddBloodSugarView()
-                .environment(\.managedObjectContext, viewContext)
+            NavigationView {
+                AddBloodSugarView()
+                    .environment(\.managedObjectContext, viewContext)
+            }
         }
         .sheet(item: $selectedEntry) { entry in
-            EditBloodSugarView(entry: entry)
-                .environment(\.managedObjectContext, viewContext)
+            NavigationView {
+                EditBloodSugarView(entry: entry)
+                    .environment(\.managedObjectContext, viewContext)
+            }
         }
         .alert(NSLocalizedString("Delete Entry", comment: "Alert title for deleting entry"), isPresented: $showingDeleteAlert) {
             Button(NSLocalizedString("Delete", comment: "Delete button text"), role: .destructive) {

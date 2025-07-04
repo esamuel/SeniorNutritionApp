@@ -116,12 +116,16 @@ struct HealthDataTabView: View {
                     }
                     .buttonStyle(PlainButtonStyle())
                     .sheet(isPresented: $showingAddBP) {
-                        AddBloodPressureView()
-                            .environment(\.managedObjectContext, viewContext)
+                        NavigationView {
+                            AddBloodPressureView()
+                                .environment(\.managedObjectContext, viewContext)
+                        }
                     }
                     .sheet(item: $bpEntryToEdit) { entry in
-                        EditBloodPressureView(entry: entry)
-                            .environment(\.managedObjectContext, viewContext)
+                        NavigationView {
+                            EditBloodPressureView(entry: entry)
+                                .environment(\.managedObjectContext, viewContext)
+                        }
                     }
                     
                     // Blood Sugar Card
@@ -193,12 +197,16 @@ struct HealthDataTabView: View {
                     }
                     .buttonStyle(PlainButtonStyle())
                     .sheet(isPresented: $showingAddBS) {
-                        AddBloodSugarView()
-                            .environment(\.managedObjectContext, viewContext)
+                        NavigationView {
+                            AddBloodSugarView()
+                                .environment(\.managedObjectContext, viewContext)
+                        }
                     }
                     .sheet(item: $bsEntryToEdit) { entry in
-                        EditBloodSugarView(entry: entry)
-                            .environment(\.managedObjectContext, viewContext)
+                        NavigationView {
+                            EditBloodSugarView(entry: entry)
+                                .environment(\.managedObjectContext, viewContext)
+                        }
                     }
                     
                     // Heart Rate Card
@@ -270,12 +278,16 @@ struct HealthDataTabView: View {
                     }
                     .buttonStyle(PlainButtonStyle())
                     .sheet(isPresented: $showingAddHR) {
-                        AddHeartRateView()
-                            .environment(\.managedObjectContext, viewContext)
+                        NavigationView {
+                            AddHeartRateView()
+                                .environment(\.managedObjectContext, viewContext)
+                        }
                     }
                     .sheet(item: $hrEntryToEdit) { entry in
-                        EditHeartRateView(entry: entry)
-                            .environment(\.managedObjectContext, viewContext)
+                        NavigationView {
+                            EditHeartRateView(entry: entry)
+                                .environment(\.managedObjectContext, viewContext)
+                        }
                     }
                     
                     // Weight Card
@@ -347,12 +359,16 @@ struct HealthDataTabView: View {
                     }
                     .buttonStyle(PlainButtonStyle())
                     .sheet(isPresented: $showingAddWeight) {
-                        AddWeightView()
-                            .environment(\.managedObjectContext, viewContext)
+                        NavigationView {
+                            AddWeightView()
+                                .environment(\.managedObjectContext, viewContext)
+                        }
                     }
                     .sheet(item: $weightEntryToEdit) { entry in
-                        EditWeightView(entry: entry)
-                            .environment(\.managedObjectContext, viewContext)
+                        NavigationView {
+                            EditWeightView(entry: entry)
+                                .environment(\.managedObjectContext, viewContext)
+                        }
                     }
                 }
                 .padding()
