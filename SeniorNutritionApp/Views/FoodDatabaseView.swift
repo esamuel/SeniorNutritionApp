@@ -62,7 +62,7 @@ struct FoodDatabaseView: View {
                         }
                     } else {
                         Button(action: {
-                            if premiumManager.checkFeatureAccess("recipe_builder") {
+                            if premiumManager.hasAccess(to: PremiumFeature.recipeBuilder) {
                                 showingRecipeBuilder = true
                             } else {
                                 showingPremiumAlert = true

@@ -62,7 +62,7 @@ struct RecipeBuilderView: View {
                     .onDelete(perform: deleteIngredient)
                     
                     Button(action: {
-                        if premiumManager.checkFeatureAccess("recipe_builder") {
+                        if premiumManager.hasAccess(to: PremiumFeature.recipeBuilder) {
                             showingFoodPicker = true
                         } else {
                             showingPremiumAlert = true

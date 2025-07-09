@@ -2,6 +2,7 @@ import SwiftUI
 import Combine
 import UserNotifications
 import Foundation
+import CoreData
 
 // User settings management
 @MainActor
@@ -189,6 +190,38 @@ class UserSettings: ObservableObject {
     
     let supportedLanguages: [String] = ["en", "es", "fr", "he"]
     
+    // MARK: - Health Data Access
+    
+    /// Get the latest weight from health data
+    func getLatestWeight() -> Double? {
+        let context = PersistenceController.shared.container.viewContext
+        let request = NSFetchRequest<WeightEntry>(entityName: "WeightEntry")
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \WeightEntry.date, ascending: false)]
+        request.fetchLimit = 1
+        
+        do {
+            let results = try context.fetch(request)
+            return results.first?.weight
+        } catch {
+            print("Error fetching latest weight: \(error)")
+            return nil
+        }
+    }
+    
+    /// Get the latest BMI using current weight from health data and profile height
+    func getCurrentBMI() -> Double? {
+        guard let profile = userProfile else { return nil }
+        let latestWeight = getLatestWeight()
+        return profile.calculateBMI(latestWeight: latestWeight)
+    }
+    
+    /// Get the current BMI category using latest weight
+    func getCurrentBMICategory() -> BMICategory? {
+        guard let profile = userProfile else { return nil }
+        let latestWeight = getLatestWeight()
+        return profile.getBMICategory(latestWeight: latestWeight)
+    }
+    
     private let localDataKey = "userData"
     
     private var cancellables = Set<AnyCancellable>()
@@ -232,6 +265,20 @@ class UserSettings: ObservableObject {
                 self?.selectedLanguage = lang
             }
         }.store(in: &cancellables)
+        
+        // Observe language changes to trigger profile data migration if needed
+        NotificationCenter.default.publisher(for: .languageDidChange)
+            .sink { [weak self] _ in
+                Task { @MainActor in
+                    self?.handleLanguageChange()
+                }
+            }
+            .store(in: &cancellables)
+        
+        // Perform initial migration check
+        Task { @MainActor in
+            await performInitialMigration()
+        }
     }
     
     // Force save user data synchronously
@@ -480,6 +527,49 @@ class UserSettings: ObservableObject {
         if !isLoaded {
             loadUserData(startTime: startTime)
         }
+    }
+    
+    // MARK: - Profile Translation Methods
+    
+    /// Performs initial migration of profile data to English keys if needed
+    @MainActor
+    private func performInitialMigration() async {
+        // Check if migration has already been performed
+        let migrationKey = "ProfileTranslationMigrationCompleted"
+        if UserDefaults.standard.bool(forKey: migrationKey) {
+            return
+        }
+        
+        print("UserSettings: Performing initial profile translation migration")
+        
+        // Migrate UserSettings dietary restrictions
+        ProfileTranslationUtils.migrateUserSettingsToEnglishKeys(self)
+        
+        // Migrate UserProfile if it exists
+        if let profile = userProfile {
+            let migratedProfile = ProfileTranslationUtils.migrateProfileToEnglishKeys(profile)
+            userProfile = migratedProfile
+        }
+        
+        // Mark migration as completed
+        UserDefaults.standard.set(true, forKey: migrationKey)
+        print("UserSettings: Profile translation migration completed")
+    }
+    
+    /// Handles language changes by refreshing profile data display
+    @MainActor
+    private func handleLanguageChange() {
+        print("UserSettings: Handling language change for profile data")
+        
+        // Force refresh of profile data to trigger UI updates with new translations
+        if let profile = userProfile {
+            // Create a copy to trigger the @Published update
+            let refreshedProfile = profile
+            userProfile = refreshedProfile
+        }
+        
+        // Force refresh of user settings to trigger UI updates
+        objectWillChange.send()
     }
 }
 

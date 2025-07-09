@@ -9,6 +9,7 @@ struct SeniorNutritionApp: App {
     @StateObject private var userCommonMeals = UserCommonMeals()
     @StateObject private var appointmentManager = AppointmentManager()
     @StateObject private var languageManager = LanguageManager.shared
+    @StateObject private var premiumManager = PremiumManager.shared
     private let healthTipsService = HealthTipsService.shared
     let persistenceController = PersistenceController.shared
     
@@ -56,6 +57,7 @@ struct SeniorNutritionApp: App {
                             .environmentObject(userCommonMeals)
                             .environmentObject(appointmentManager)
                             .environmentObject(languageManager)
+                            .environmentObject(premiumManager)
                             .environment(\.managedObjectContext, persistenceController.container.viewContext)
                             .environment(\.layoutDirection, languageManager.layoutDirection)
                             .preferredColorScheme(userSettings.isDarkMode ? .dark : .light)
@@ -68,6 +70,7 @@ struct SeniorNutritionApp: App {
                             .environmentObject(userCommonMeals)
                             .environmentObject(appointmentManager)
                             .environmentObject(languageManager)
+                            .environmentObject(premiumManager)
                             .environment(\.managedObjectContext, persistenceController.container.viewContext)
                             .environment(\.layoutDirection, languageManager.layoutDirection)
                             .preferredColorScheme(userSettings.isDarkMode ? .dark : .light)
@@ -81,6 +84,7 @@ struct SeniorNutritionApp: App {
                         .environmentObject(userCommonMeals)
                         .environmentObject(appointmentManager)
                         .environmentObject(languageManager)
+                        .environmentObject(premiumManager)
                         .environment(\.managedObjectContext, persistenceController.container.viewContext)
                         .environment(\.layoutDirection, languageManager.layoutDirection)
                         .preferredColorScheme(userSettings.isDarkMode ? .dark : .light)

@@ -6,8 +6,10 @@ import UIKit
 struct NutritionalDashboardView: View {
     @EnvironmentObject private var userSettings: UserSettings
     @EnvironmentObject var languageManager: LanguageManager
+    @EnvironmentObject private var premiumManager: PremiumManager
     @ObservedObject var mealManager: MealManager
     @State private var selectedDate = Date()
+    @State private var showingPremiumUpgrade = false
     
     var body: some View {
         ScrollView {
@@ -43,24 +45,53 @@ struct NutritionalDashboardView: View {
     
     // Date selector
     private var dateSelector: some View {
-        HStack {
-            Button(action: { moveDate(by: -1) }) {
-                Image(systemName: "chevron.left")
-                    .font(.system(size: userSettings.textSize.size))
+        VStack(spacing: 8) {
+            HStack {
+                Button(action: { moveDate(by: -1) }) {
+                    Image(systemName: "chevron.left")
+                        .font(.system(size: userSettings.textSize.size))
+                }
+                .disabled(!canNavigateToDate(selectedDate.addingTimeInterval(-24*60*60)))
+                
+                Text(dateFormatter.string(from: selectedDate))
+                    .font(.system(size: userSettings.textSize.size, weight: .bold))
+                    .frame(maxWidth: .infinity)
+                
+                Button(action: { moveDate(by: 1) }) {
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: userSettings.textSize.size))
+                }
+                .disabled(!canNavigateToDate(selectedDate.addingTimeInterval(24*60*60)))
             }
             
-            Text(dateFormatter.string(from: selectedDate))
-                .font(.system(size: userSettings.textSize.size, weight: .bold))
-                .frame(maxWidth: .infinity)
-            
-            Button(action: { moveDate(by: 1) }) {
-                Image(systemName: "chevron.right")
-                    .font(.system(size: userSettings.textSize.size))
+            // Premium limitation notice for Free users
+            if !premiumManager.hasAccess(to: PremiumFeature.extendedHistory) {
+                HStack {
+                    Image(systemName: "info.circle.fill")
+                        .foregroundColor(.orange)
+                    Text(NSLocalizedString("Free users can view up to 7 days of nutrition history. Upgrade for extended access.", comment: ""))
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    Spacer()
+                    Button(NSLocalizedString("Upgrade", comment: "")) {
+                        showingPremiumUpgrade = true
+                    }
+                    .font(.caption)
+                    .foregroundColor(.blue)
+                }
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .background(Color.orange.opacity(0.1))
+                .cornerRadius(8)
             }
         }
         .padding()
         .background(Color(.systemGray6))
         .cornerRadius(10)
+        .sheet(isPresented: $showingPremiumUpgrade) {
+            PremiumFeaturesView()
+                .environmentObject(premiumManager)
+        }
     }
     
     // Daily summary section
@@ -285,8 +316,26 @@ struct NutritionalDashboardView: View {
     // Helper functions
     private func moveDate(by days: Int) {
         if let newDate = Calendar.current.date(byAdding: .day, value: days, to: selectedDate) {
-            selectedDate = newDate
+            if canNavigateToDate(newDate) {
+                selectedDate = newDate
+            }
         }
+    }
+    
+    private func canNavigateToDate(_ date: Date) -> Bool {
+        // Always allow navigating to today or future dates
+        if date >= Calendar.current.startOfDay(for: Date()) {
+            return true
+        }
+        
+        // For past dates, check premium access
+        if premiumManager.hasAccess(to: PremiumFeature.extendedHistory) {
+            return true
+        }
+        
+        // Free users can only go back 7 days
+        let sevenDaysAgo = Calendar.current.date(byAdding: .day, value: -7, to: Date()) ?? Date()
+        return date >= Calendar.current.startOfDay(for: sevenDaysAgo)
     }
     
     private var dateFormatter: DateFormatter {

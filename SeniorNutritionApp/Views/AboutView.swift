@@ -1,4 +1,5 @@
 import SwiftUI
+import Foundation
 
 struct AboutView: View {
     @EnvironmentObject private var userSettings: UserSettings

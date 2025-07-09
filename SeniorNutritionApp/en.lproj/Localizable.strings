@@ -974,6 +974,17 @@
 /* BMI Classifications */
 "Severely Underweight" = "Severely Underweight";
 "Underweight" = "Underweight";
+"Normal Weight" = "Normal Weight";
+"Overweight" = "Overweight";
+"Obese Class I" = "Obese Class I";
+"Obese Class II" = "Obese Class II";
+"Obese Class III" = "Obese Class III";
+"BMI below 18.5" = "BMI below 18.5";
+"BMI 18.5 - 24.9" = "BMI 18.5 - 24.9";
+"BMI 25.0 - 29.9" = "BMI 25.0 - 29.9";
+"BMI 30.0 - 34.9" = "BMI 30.0 - 34.9";
+"BMI 35.0 - 39.9" = "BMI 35.0 - 39.9";
+"BMI 40.0 and above" = "BMI 40.0 and above";
 "Normal" = "Normal";
 "Overweight" = "Overweight";
 "Obese (Class I)" = "Obese (Class I)";

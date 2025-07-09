@@ -2186,6 +2186,17 @@
 /* BMI Classifications */
 "Severely Underweight" = "תת משקל חמור";
 "Underweight" = "תת משקל";
+"Normal Weight" = "משקל תקין";
+"Overweight" = "עודף משקל";
+"Obese Class I" = "השמנה דרגה א";
+"Obese Class II" = "השמנה דרגה ב";
+"Obese Class III" = "השמנה דרגה ג";
+"BMI below 18.5" = "BMI מתחת ל-18.5";
+"BMI 18.5 - 24.9" = "BMI 18.5 - 24.9";
+"BMI 25.0 - 29.9" = "BMI 25.0 - 29.9";
+"BMI 30.0 - 34.9" = "BMI 30.0 - 34.9";
+"BMI 35.0 - 39.9" = "BMI 35.0 - 39.9";
+"BMI 40.0 and above" = "BMI 40.0 ומעלה";
 "Normal" = "נורמלי";
 "Overweight" = "עודף משקל";
 "Obese (Class I)" = "השמנת יתר (דרגה א')";
@@ -3090,3 +3101,57 @@
 "Translate All Foods" = "תרגם את כל המזונות";
 "Tap translate button to update food names" = "הקש על כפתור התרגום כדי לעדכן שמות מזונות";
 "Translating foods to %@..." = "מתרגם מזונות ל%@...";
+
+/* Appointments Help */
+"Appointments Help" = "עזרה בתורים";
+"Organize and track your medical appointments" = "ארגן ועקוב אחר התורים הרפואיים שלך";
+
+/* Getting Started */
+"Tap the 'More' tab and select 'Appointments'" = "הקש על הכרטיסייה 'עוד' ובחר 'תורים'";
+"Tap 'Add Appointment' to create a new entry" = "הקש על 'הוסף תור' כדי ליצור רשומה חדשה";
+"Enter appointment details including date, time, and provider" = "הזן פרטי התור כולל תאריך, שעה וספק";
+"Add notes about what to discuss or prepare" = "הוסף הערות על מה לדון או להכין";
+"Set reminders to ensure you don't miss appointments" = "הגדר תזכורות כדי להבטיח שלא תפספס תורים";
+
+/* Key Features */
+"Key Features" = "תכונות עיקריות";
+"Appointment Scheduling: Add new appointments with full details" = "תזמון תורים: הוסף תורים חדשים עם פרטים מלאים";
+"Provider Information: Store doctor and facility contact details" = "מידע על ספק: שמור פרטי קשר של רופא ומתקן";
+"Reminder System: Get notifications before appointments" = "מערכת תזכורות: קבל התראות לפני תורים";
+"Notes & Preparation: Add important information to discuss" = "הערות והכנה: הוסף מידע חשוב לדיון";
+"Calendar View: See all appointments in chronological order" = "תצוגת לוח שנה: ראה את כל התורים בסדר כרונולוגי";
+"History Tracking: Keep records of past appointments" = "מעקב היסטוריה: שמור רשומות של תורים קודמים";
+"Location Details: Store addresses and directions" = "פרטי מיקום: שמור כתובות והנחיות";
+
+/* Best Practices */
+"Best Practices" = "שיטות עבודה מומלצות";
+"Add appointments as soon as you schedule them" = "הוסף תורים ברגע שאתה מתזמן אותם";
+"Include provider contact information for easy access" = "כלול מידע על איש קשר של הספק לגישה קלה";
+"Set reminders 1-2 days before appointments" = "הגדר תזכורות יום-יומיים לפני התורים";
+"Add notes about questions to ask or symptoms to discuss" = "הוסף הערות על שאלות לשאול או תסמינים לדון";
+"Record appointment outcomes and follow-up instructions" = "תעד תוצאות התור והוראות מעקב";
+"Keep a list of medications to bring to appointments" = "שמור רשימה של תרופות להביא לתורים";
+
+/* Organization Tips */
+"Organization Tips" = "טיפים לארגון";
+"Use consistent naming for providers and facilities" = "השתמש בשמות עקביים לספקים ומתקנים";
+"Add appointment type (checkup, specialist, test, etc.)" = "הוסף סוג תור (בדיקה, מומחה, בדיקה וכו')";
+"Include insurance information if needed" = "כלול מידע ביטוח במידת הצורך";
+"Note any special instructions (fasting, bring records, etc.)" = "ציין הוראות מיוחדות (צום, הבא רשומות וכו')";
+"Set different reminder times for different appointment types" = "הגדר זמני תזכורת שונים לסוגי תורים שונים";
+
+/* Integration with Other Features */
+"Integration with Other Features" = "שילוב עם תכונות אחרות";
+"Link appointments with medication reminders" = "קשר תורים עם תזכורות תרופות";
+"Prepare health data to share with providers" = "הכן נתוני בריאות לשיתוף עם ספקים";
+"Track symptoms before appointments" = "עקוב אחר תסמינים לפני תורים";
+"Record doctor's recommendations in notes" = "תעד המלצות הרופא בהערות";
+"Set follow-up reminders based on appointment outcomes" = "הגדר תזכורות מעקב על בסיס תוצאות התור";
+
+/* Troubleshooting */
+"Troubleshooting" = "פתרון בעיות";
+"If reminders aren't working, check notification settings" = "אם התזכורות לא עובדות, בדוק הגדרות התראות";
+"Use the search function to find specific appointments" = "השתמש בפונקציית החיפוש כדי למצוא תורים ספציפיים";
+"Export appointment data to share with caregivers" = "ייצא נתוני תורים לשיתוף עם מטפלים";
+"Backup your appointment data regularly" = "גבה את נתוני התורים שלך באופן קבוע";
+"Contact support if you need help with calendar sync" = "צור קשר עם התמיכה אם אתה צריך עזרה עם סנכרון לוח שנה";

@@ -3,6 +3,7 @@ import Foundation
 struct UnitConverter {
     static let volumeUnits = ["ml", "cups", "tbsp", "tsp", "fl oz"]
     static let weightUnits = ["g", "kg", "oz", "lb"]
+    static let heightUnits = ["cm", "ft", "in", "m"]
     
     static func convert(_ value: Double, from sourceUnit: String, to targetUnit: String) -> Double {
         // First convert to base unit (g or ml)
@@ -27,6 +28,12 @@ struct UnitConverter {
         case "tsp": return value * 4.92892
         case "fl oz": return value * 29.5735
         
+        // Height conversions to centimeters
+        case "cm": return value
+        case "m": return value * 100
+        case "ft": return value * 30.48
+        case "in": return value * 2.54
+        
         default: return value
         }
     }
@@ -46,6 +53,12 @@ struct UnitConverter {
         case "tsp": return value / 4.92892
         case "fl oz": return value / 29.5735
         
+        // Centimeters to height units
+        case "cm": return value
+        case "m": return value / 100
+        case "ft": return value / 30.48
+        case "in": return value / 2.54
+        
         default: return value
         }
     }
@@ -56,6 +69,10 @@ struct UnitConverter {
     
     static func isWeightUnit(_ unit: String) -> Bool {
         weightUnits.contains(unit.lowercased())
+    }
+    
+    static func isHeightUnit(_ unit: String) -> Bool {
+        heightUnits.contains(unit.lowercased())
     }
     
     static func defaultUnitFor(foodCategory: FoodCategory) -> String {

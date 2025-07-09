@@ -398,6 +398,53 @@ struct PersistentData: Codable {
     let speechRate: SpeechRate
 }
 
+// BMI Category enum based on WHO standards
+enum BMICategory: String, CaseIterable, Codable {
+    case underweight = "Underweight"
+    case normalWeight = "Normal Weight"
+    case overweight = "Overweight"
+    case obeseClass1 = "Obese Class I"
+    case obeseClass2 = "Obese Class II"
+    case obeseClass3 = "Obese Class III"
+    
+    var localizedTitle: String {
+        return NSLocalizedString(self.rawValue, comment: "BMI category")
+    }
+    
+    var color: Color {
+        switch self {
+        case .underweight: return .blue
+        case .normalWeight: return .green
+        case .overweight: return .orange
+        case .obeseClass1: return .red
+        case .obeseClass2: return .purple
+        case .obeseClass3: return .black
+        }
+    }
+    
+    var description: String {
+        switch self {
+        case .underweight: return NSLocalizedString("BMI below 18.5", comment: "BMI category description")
+        case .normalWeight: return NSLocalizedString("BMI 18.5 - 24.9", comment: "BMI category description")
+        case .overweight: return NSLocalizedString("BMI 25.0 - 29.9", comment: "BMI category description")
+        case .obeseClass1: return NSLocalizedString("BMI 30.0 - 34.9", comment: "BMI category description")
+        case .obeseClass2: return NSLocalizedString("BMI 35.0 - 39.9", comment: "BMI category description")
+        case .obeseClass3: return NSLocalizedString("BMI 40.0 and above", comment: "BMI category description")
+        }
+    }
+    
+    static func from(bmi: Double) -> BMICategory {
+        switch bmi {
+        case ..<18.5: return .underweight
+        case 18.5..<25.0: return .normalWeight
+        case 25.0..<30.0: return .overweight
+        case 30.0..<35.0: return .obeseClass1
+        case 35.0..<40.0: return .obeseClass2
+        default: return .obeseClass3
+        }
+    }
+}
+
 // User profile model
 struct UserProfile: Codable {
     var firstName: String
@@ -410,11 +457,29 @@ struct UserProfile: Codable {
     var dietaryRestrictions: [String]
     var emergencyContacts: [EmergencyContact]
     
-    /// BMI calculated as weight (kg) / (height (m))^2
-    var bmi: Double? {
-        guard height > 0, weight > 0 else { return nil }
+    /// BMI calculated using latest weight from health data and profile height
+    /// If no health data weight is available, falls back to profile weight
+    func calculateBMI(latestWeight: Double? = nil) -> Double? {
+        let weightToUse = latestWeight ?? weight
+        guard height > 0, weightToUse > 0 else { return nil }
         let heightMeters = height / 100.0
-        return weight / (heightMeters * heightMeters)
+        return weightToUse / (heightMeters * heightMeters)
+    }
+    
+    /// BMI category based on WHO standards using latest weight
+    func getBMICategory(latestWeight: Double? = nil) -> BMICategory? {
+        guard let bmiValue = calculateBMI(latestWeight: latestWeight) else { return nil }
+        return BMICategory.from(bmi: bmiValue)
+    }
+    
+    /// Legacy BMI calculation for backward compatibility
+    var bmi: Double? {
+        return calculateBMI()
+    }
+    
+    /// Legacy BMI category for backward compatibility
+    var bmiCategory: BMICategory? {
+        return getBMICategory()
     }
     
     var fullName: String {
@@ -658,4 +723,228 @@ struct Appointment: Identifiable, Codable {
         self.reminder = reminder
         self.isCompleted = isCompleted
     }
+}
+
+// MARK: - Subscription Models
+
+enum SubscriptionTier: String, CaseIterable, Codable {
+    case free = "free"
+    case advanced = "advanced" 
+    case premium = "premium"
+    
+    var displayName: String {
+        switch self {
+        case .free:
+            return NSLocalizedString("Free", comment: "Free subscription tier")
+        case .advanced:
+            return NSLocalizedString("Advanced", comment: "Advanced subscription tier")
+        case .premium:
+            return NSLocalizedString("Premium", comment: "Premium subscription tier")
+        }
+    }
+    
+    var localizedDescription: String {
+        switch self {
+        case .free:
+            return NSLocalizedString("Basic features for getting started", comment: "Free tier description")
+        case .advanced:
+            return NSLocalizedString("Enhanced features for serious users", comment: "Advanced tier description")
+        case .premium:
+            return NSLocalizedString("Complete access to all features", comment: "Premium tier description")
+        }
+    }
+    
+    var monthlyPrice: String {
+        switch self {
+        case .free:
+            return NSLocalizedString("Free", comment: "Free price")
+        case .advanced:
+            return "$9.99"
+        case .premium:
+            return "$19.99"
+        }
+    }
+    
+    var annualPrice: String {
+        switch self {
+        case .free:
+            return NSLocalizedString("Free", comment: "Free price")
+        case .advanced:
+            return "$59.99"
+        case .premium:
+            return "$119.99"
+        }
+    }
+    
+    var annualSavings: String {
+        switch self {
+        case .free:
+            return ""
+        case .advanced:
+            return NSLocalizedString("Save 50%", comment: "Annual savings")
+        case .premium:
+            return NSLocalizedString("Save 50%", comment: "Annual savings")
+        }
+    }
+    
+    // Feature access control
+    var analyticsHistoryDays: Int {
+        switch self {
+        case .free: return 7
+        case .advanced: return 90
+        case .premium: return 365
+        }
+    }
+    
+    var maxCustomFastingProtocols: Int {
+        switch self {
+        case .free: return 1
+        case .advanced: return 5
+        case .premium: return -1 // unlimited
+        }
+    }
+    
+    var hasDataExport: Bool {
+        switch self {
+        case .free: return false
+        case .advanced: return true
+        case .premium: return true
+        }
+    }
+    
+    var hasAdvancedAnalytics: Bool {
+        switch self {
+        case .free: return false
+        case .advanced: return true
+        case .premium: return true
+        }
+    }
+    
+    var hasVoiceAssistant: Bool {
+        switch self {
+        case .free: return false
+        case .advanced: return true
+        case .premium: return true
+        }
+    }
+    
+    var hasPersonalizedTips: Bool {
+        switch self {
+        case .free: return false
+        case .advanced: return true
+        case .premium: return true
+        }
+    }
+    
+    var hasPrioritySupport: Bool {
+        switch self {
+        case .free: return false
+        case .advanced: return true
+        case .premium: return true
+        }
+    }
+    
+    var hasCoachChat: Bool {
+        switch self {
+        case .free: return false
+        case .advanced: return false
+        case .premium: return true
+        }
+    }
+    
+    var hasAIDrivenSuggestions: Bool {
+        switch self {
+        case .free: return false
+        case .advanced: return false
+        case .premium: return true
+        }
+    }
+    
+    var hasFamilyAccess: Bool {
+        switch self {
+        case .free: return false
+        case .advanced: return false
+        case .premium: return true
+        }
+    }
+    
+    var hasCustomThemes: Bool {
+        switch self {
+        case .free: return false
+        case .advanced: return false
+        case .premium: return true
+        }
+    }
+    
+    var hasEarlyAccess: Bool {
+        switch self {
+        case .free: return false
+        case .advanced: return false
+        case .premium: return true
+        }
+    }
+    
+    var hasExclusiveContent: Bool {
+        switch self {
+        case .free: return false
+        case .advanced: return false
+        case .premium: return true
+        }
+    }
+    
+    var hasRecipeBuilder: Bool {
+        switch self {
+        case .free: return false
+        case .advanced: return true
+        case .premium: return true
+        }
+    }
+}
+
+enum SubscriptionStatus: String, Codable {
+    case notSubscribed = "not_subscribed"
+    case active = "active"
+    case expired = "expired"
+    case inGracePeriod = "grace_period"
+    case paused = "paused"
+    case cancelled = "cancelled"
+}
+
+struct SubscriptionInfo: Codable {
+    let tier: SubscriptionTier
+    let status: SubscriptionStatus
+    let expirationDate: Date?
+    let isDebugMode: Bool
+    let productId: String?
+    
+    init(tier: SubscriptionTier = .free, 
+         status: SubscriptionStatus = .notSubscribed, 
+         expirationDate: Date? = nil, 
+         isDebugMode: Bool = false,
+         productId: String? = nil) {
+        self.tier = tier
+        self.status = status
+        self.expirationDate = expirationDate
+        self.isDebugMode = isDebugMode
+        self.productId = productId
+    }
+}
+
+// MARK: - Premium Feature Identifiers
+
+struct PremiumFeature {
+    static let advancedAnalytics = "advanced_analytics"
+    static let dataExport = "data_export"
+    static let voiceAssistant = "voice_assistant"
+    static let personalizedTips = "personalized_tips"
+    static let prioritySupport = "priority_support"
+    static let coachChat = "coach_chat"
+    static let aiSuggestions = "ai_suggestions"
+    static let familyAccess = "family_access"
+    static let customThemes = "custom_themes"
+    static let earlyAccess = "early_access"
+    static let exclusiveContent = "exclusive_content"
+    static let unlimitedProtocols = "unlimited_protocols"
+    static let extendedHistory = "extended_history"
+    static let recipeBuilder = "recipe_builder"
 }

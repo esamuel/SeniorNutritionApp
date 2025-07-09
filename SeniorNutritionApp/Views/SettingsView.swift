@@ -386,6 +386,11 @@ struct SettingsView: View {
                             Text(NSLocalizedString("Translate Food Database", comment: ""))
                         }
                     }
+                    
+                    // Debug Subscription Tier Switcher
+                    #if DEBUG
+                    DebugSubscriptionTierSwitcher()
+                    #endif
                 }
             }
             .navigationTitle(NSLocalizedString("Settings", comment: ""))
@@ -1117,6 +1122,178 @@ struct PrintingBridge: UIViewRepresentable {
         return base
     }
 }
+
+// Debug Subscription Tier Switcher (only available in DEBUG builds)
+#if DEBUG
+struct DebugSubscriptionTierSwitcher: View {
+    @StateObject private var premiumManager = PremiumManager.shared
+    @EnvironmentObject private var userSettings: UserSettings
+    @State private var showingDebugAlert = false
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            // Debug Mode Toggle
+            Toggle(isOn: Binding(
+                get: { premiumManager.isDebugMode },
+                set: { newValue in
+                    if newValue {
+                        premiumManager.enableDebugMode()
+                    } else {
+                        premiumManager.disableDebugMode()
+                    }
+                }
+            )) {
+                HStack {
+                    Image(systemName: "wrench.and.screwdriver.fill")
+                        .foregroundColor(.orange)
+                        .frame(width: 30)
+                    
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Debug Mode")
+                            .font(.system(size: userSettings.textSize.size))
+                        Text("Enable subscription testing")
+                            .font(.system(size: userSettings.textSize.size - 2))
+                            .foregroundColor(.secondary)
+                    }
+                }
+            }
+            .padding(.vertical, 8)
+            .toggleStyle(SwitchToggleStyle(tint: .orange))
+            
+            // Current Subscription Status
+            HStack {
+                Image(systemName: "crown.fill")
+                    .foregroundColor(getTierColor())
+                    .frame(width: 30)
+                
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Current Tier")
+                        .font(.system(size: userSettings.textSize.size))
+                    Text(premiumManager.currentTier.displayName)
+                        .font(.system(size: userSettings.textSize.size - 2))
+                        .foregroundColor(getTierColor())
+                        .fontWeight(.semibold)
+                }
+                
+                Spacer()
+                
+                if premiumManager.isDebugMode {
+                    Text("DEBUG")
+                        .font(.system(size: userSettings.textSize.size - 4, weight: .bold))
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background(Color.orange)
+                        .cornerRadius(8)
+                }
+            }
+            .padding(.vertical, 8)
+            
+            // Tier Selection (only visible in debug mode)
+            if premiumManager.isDebugMode {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Select Debug Tier:")
+                        .font(.system(size: userSettings.textSize.size, weight: .semibold))
+                        .foregroundColor(.secondary)
+                    
+                    ForEach(SubscriptionTier.allCases, id: \.self) { tier in
+                        Button(action: {
+                            premiumManager.setDebugTier(tier)
+                            let generator = UIImpactFeedbackGenerator(style: .medium)
+                            generator.impactOccurred()
+                        }) {
+                            HStack {
+                                Image(systemName: premiumManager.currentTier == tier ? "checkmark.circle.fill" : "circle")
+                                    .foregroundColor(premiumManager.currentTier == tier ? .green : .gray)
+                                
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(tier.displayName)
+                                        .font(.system(size: userSettings.textSize.size))
+                                        .foregroundColor(.primary)
+                                    
+                                    Text(tier.localizedDescription)
+                                        .font(.system(size: userSettings.textSize.size - 2))
+                                        .foregroundColor(.secondary)
+                                }
+                                
+                                Spacer()
+                                
+                                if tier != .free {
+                                    Text(tier.monthlyPrice)
+                                        .font(.system(size: userSettings.textSize.size - 2, weight: .semibold))
+                                        .foregroundColor(.blue)
+                                }
+                            }
+                            .padding(.vertical, 4)
+                            .contentShape(Rectangle())
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+                .padding(.vertical, 8)
+            }
+            
+            // Feature Access Summary
+            if premiumManager.isDebugMode {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Feature Access:")
+                        .font(.system(size: userSettings.textSize.size, weight: .semibold))
+                        .foregroundColor(.secondary)
+                    
+                    LazyVGrid(columns: [
+                        GridItem(.flexible()),
+                        GridItem(.flexible())
+                    ], spacing: 8) {
+                        featureAccessItem("Analytics", premiumManager.hasAccess(to: PremiumFeature.advancedAnalytics))
+                        featureAccessItem("Export", premiumManager.hasAccess(to: PremiumFeature.dataExport))
+                        featureAccessItem("Voice", premiumManager.hasAccess(to: PremiumFeature.voiceAssistant))
+                        featureAccessItem("Tips", premiumManager.hasAccess(to: PremiumFeature.personalizedTips))
+                        featureAccessItem("Support", premiumManager.hasAccess(to: PremiumFeature.prioritySupport))
+                        featureAccessItem("Coach", premiumManager.hasAccess(to: PremiumFeature.coachChat))
+                    }
+                }
+                .padding(.vertical, 8)
+            }
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 12)
+        .background(Color.gray.opacity(0.1))
+        .cornerRadius(12)
+        .alert("Debug Mode Enabled", isPresented: $showingDebugAlert) {
+            Button("OK") { }
+        } message: {
+            Text("You can now test different subscription tiers. This is for development only and won't affect real purchases.")
+        }
+    }
+    
+    private func getTierColor() -> Color {
+        switch premiumManager.currentTier {
+        case .free:
+            return .gray
+        case .advanced:
+            return .blue
+        case .premium:
+            return .purple
+        }
+    }
+    
+    private func featureAccessItem(_ name: String, _ hasAccess: Bool) -> some View {
+        HStack {
+            Image(systemName: hasAccess ? "checkmark.circle.fill" : "xmark.circle.fill")
+                .foregroundColor(hasAccess ? .green : .red)
+                .font(.system(size: 12))
+            
+            Text(name)
+                .font(.system(size: userSettings.textSize.size - 4))
+                .foregroundColor(.primary)
+        }
+        .padding(.horizontal, 8)
+        .padding(.vertical, 4)
+        .background(hasAccess ? Color.green.opacity(0.1) : Color.red.opacity(0.1))
+        .cornerRadius(8)
+    }
+}
+#endif
 
 // Preview Provider (Restored)
 #if DEBUG

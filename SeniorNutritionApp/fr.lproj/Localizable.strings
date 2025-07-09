@@ -1378,6 +1378,17 @@
 /* BMI Classifications */
 "Severely Underweight" = "Insuffisance pondérale sévère";
 "Underweight" = "Insuffisance pondérale";
+"Normal Weight" = "Poids normal";
+"Overweight" = "Surpoids";
+"Obese Class I" = "Obésité classe I";
+"Obese Class II" = "Obésité classe II";
+"Obese Class III" = "Obésité classe III";
+"BMI below 18.5" = "IMC inférieur à 18,5";
+"BMI 18.5 - 24.9" = "IMC 18,5 - 24,9";
+"BMI 25.0 - 29.9" = "IMC 25,0 - 29,9";
+"BMI 30.0 - 34.9" = "IMC 30,0 - 34,9";
+"BMI 35.0 - 39.9" = "IMC 35,0 - 39,9";
+"BMI 40.0 and above" = "IMC 40,0 et plus";
 "Normal" = "Normal";
 "Overweight" = "Surpoids";
 "Obese (Class I)" = "Obésité (Classe I)";

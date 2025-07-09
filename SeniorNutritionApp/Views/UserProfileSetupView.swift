@@ -10,6 +10,8 @@ struct UserProfileSetupView: View {
     @State private var gender: String = "Other"
     @State private var height: String = ""
     @State private var weight: String = ""
+    @State private var heightUnit: String = "cm"
+    @State private var weightUnit: String = "kg"
     @State private var medicalConditions: [String] = []
     @State private var dietaryRestrictions: [String] = []
     
@@ -29,40 +31,11 @@ struct UserProfileSetupView: View {
     @State private var newMedicalCondition: String = ""
     @State private var newDietaryRestriction: String = ""
     
-    // Comprehensive list of medical conditions
-    private let medicalConditionOptions = [
-        NSLocalizedString("High Blood Pressure", comment: ""),
-        NSLocalizedString("Diabetes", comment: ""),
-        NSLocalizedString("Heart Disease", comment: ""),
-        NSLocalizedString("Arthritis", comment: ""),
-        NSLocalizedString("Osteoporosis", comment: ""),
-        NSLocalizedString("Asthma", comment: ""),
-        NSLocalizedString("COPD", comment: ""),
-        NSLocalizedString("Cancer", comment: ""),
-        NSLocalizedString("Stroke", comment: ""),
-        NSLocalizedString("Alzheimer's", comment: ""),
-        NSLocalizedString("Parkinson's", comment: ""),
-        NSLocalizedString("Kidney Disease", comment: ""),
-        NSLocalizedString("Thyroid Disorder", comment: ""),
-        NSLocalizedString("Chronic Pain", comment: "")
-    ]
+    // Comprehensive list of medical conditions (English keys for storage)
+    private let medicalConditionOptions = ProfileTranslationUtils.medicalConditionsEnglish
     
-    // Comprehensive list of dietary restrictions
-    private let dietaryRestrictionOptions = [
-        NSLocalizedString("Vegetarian", comment: ""),
-        NSLocalizedString("Vegan", comment: ""),
-        NSLocalizedString("Gluten-Free", comment: ""),
-        NSLocalizedString("Dairy-Free", comment: ""),
-        NSLocalizedString("Nut-Free", comment: ""),
-        NSLocalizedString("Low Sodium", comment: ""),
-        NSLocalizedString("Low Sugar", comment: ""),
-        NSLocalizedString("Low Fat", comment: ""),
-        NSLocalizedString("Kosher", comment: ""),
-        NSLocalizedString("Halal", comment: ""),
-        NSLocalizedString("Pescatarian", comment: ""),
-        NSLocalizedString("Keto", comment: ""),
-        NSLocalizedString("Paleo", comment: "")
-    ]
+    // Comprehensive list of dietary restrictions (English keys for storage)
+    private let dietaryRestrictionOptions = ProfileTranslationUtils.dietaryRestrictionsEnglish
     
     var body: some View {
         NavigationView {
@@ -121,17 +94,91 @@ struct UserProfileSetupView: View {
                 Section(header: Text(NSLocalizedString("Physical Information", comment: ""))
                         .font(.headline)
                         .foregroundColor(.green)) {
-                    TextField(NSLocalizedString("Height (cm)", comment: ""), text: $height)
+                    
+                    // Height input with unit selection
+                    HStack {
+                        TextField(NSLocalizedString("Height", comment: ""), text: $height)
                         .keyboardType(.decimalPad)
                         .padding(8)
                         .background(Color.green.opacity(0.1))
                         .cornerRadius(8)
                     
-                    TextField(NSLocalizedString("Weight (kg)", comment: ""), text: $weight)
+                        Picker("Height Unit", selection: $heightUnit) {
+                            Text("cm").tag("cm")
+                            Text("ft").tag("ft")
+                            Text("in").tag("in")
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
+                        .frame(width: 120)
+                    }
+                    
+                    // Weight input with unit selection
+                    HStack {
+                        TextField(NSLocalizedString("Weight", comment: ""), text: $weight)
                         .keyboardType(.decimalPad)
                         .padding(8)
                         .background(Color.green.opacity(0.1))
+                            .cornerRadius(8)
+                        
+                        Picker("Weight Unit", selection: $weightUnit) {
+                            Text("kg").tag("kg")
+                            Text("lb").tag("lb")
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
+                        .frame(width: 80)
+                    }
+                    
+                    // Show converted values for reference
+                    if !height.isEmpty || !weight.isEmpty {
+                        VStack(alignment: .leading, spacing: 8) {
+                            if !height.isEmpty, let heightValue = Double(height) {
+                                let heightCm = UnitConverter.convert(heightValue, from: heightUnit, to: "cm")
+                                let heightFt = UnitConverter.fromBaseUnit(heightCm, to: "ft")
+                                let heightIn = UnitConverter.fromBaseUnit(heightCm, to: "in")
+                                Text("Height: \(String(format: "%.1f", heightCm)) cm (\(Int(heightFt))' \(Int(heightIn.truncatingRemainder(dividingBy: 12)))\")")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                            
+                            if !weight.isEmpty, let weightValue = Double(weight) {
+                                let weightKg = UnitConverter.convert(weightValue, from: weightUnit, to: "kg")
+                                let weightLb = UnitConverter.fromBaseUnit(weightKg * 1000, to: "lb")
+                                Text("Weight: \(String(format: "%.1f", weightKg)) kg (\(Int(weightLb)) lb)")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                            
+                            // Show BMI calculation if both values are available
+                            if !height.isEmpty && !weight.isEmpty,
+                               let heightValue = Double(height),
+                               let weightValue = Double(weight) {
+                                let heightCm = UnitConverter.convert(heightValue, from: heightUnit, to: "cm")
+                                let weightKg = UnitConverter.convert(weightValue, from: weightUnit, to: "kg")
+                                
+                                if heightCm > 0 && weightKg > 0 {
+                                    let heightMeters = heightCm / 100.0
+                                    let bmi = weightKg / (heightMeters * heightMeters)
+                                    let category = BMICategory.from(bmi: bmi)
+                                    
+                                    HStack {
+                                        Text("BMI: \(String(format: "%.1f", bmi))")
+                                            .font(.caption)
+                                            .foregroundColor(.secondary)
+                                        Text("(\(category.localizedTitle))")
+                                            .font(.caption)
+                                            .foregroundColor(category.color)
+                                            .padding(.horizontal, 6)
+                                            .padding(.vertical, 2)
+                                            .background(category.color.opacity(0.2))
+                                            .cornerRadius(6)
+                                    }
+                                }
+                            }
+                        }
+                        .padding(8)
+                        .background(Color.green.opacity(0.05))
                         .cornerRadius(8)
+                    }
                 }
                 .listRowBackground(Color.clear)
                 
@@ -142,7 +189,7 @@ struct UserProfileSetupView: View {
                     // Display existing medical conditions with delete option
                     ForEach(medicalConditions, id: \.self) { condition in
                         HStack {
-                            Text(condition)
+                            Text(ProfileTranslationUtils.translateMedicalCondition(condition))
                             Spacer()
                             Button(action: {
                                 medicalConditions.removeAll { $0 == condition }
@@ -189,7 +236,7 @@ struct UserProfileSetupView: View {
                             }
                         }) {
                             HStack {
-                                Text(condition)
+                                Text(ProfileTranslationUtils.translateMedicalCondition(condition))
                                     .foregroundColor(.primary)
                                 Spacer()
                                 if medicalConditions.contains(condition) {
@@ -215,7 +262,7 @@ struct UserProfileSetupView: View {
                     // Display existing dietary restrictions with delete option
                     ForEach(dietaryRestrictions, id: \.self) { restriction in
                         HStack {
-                            Text(restriction)
+                            Text(ProfileTranslationUtils.translateDietaryRestriction(restriction))
                             Spacer()
                             Button(action: {
                                 dietaryRestrictions.removeAll { $0 == restriction }
@@ -262,7 +309,7 @@ struct UserProfileSetupView: View {
                             }
                         }) {
                             HStack {
-                                Text(restriction)
+                                Text(ProfileTranslationUtils.translateDietaryRestriction(restriction))
                                     .foregroundColor(.primary)
                                 Spacer()
                                 if dietaryRestrictions.contains(restriction) {
@@ -416,8 +463,13 @@ struct UserProfileSetupView: View {
             lastName = profile.lastName
             dateOfBirth = profile.dateOfBirth
             gender = profile.gender
-            height = String(Int(profile.height))
-            weight = String(Int(profile.weight))
+            
+            // Load height and weight with default units (cm and kg)
+            height = String(format: "%.1f", profile.height)
+            weight = String(format: "%.1f", profile.weight)
+            heightUnit = "cm"
+            weightUnit = "kg"
+            
             medicalConditions = profile.medicalConditions
             dietaryRestrictions = profile.dietaryRestrictions
             emergencyContacts = profile.emergencyContacts
@@ -429,13 +481,17 @@ struct UserProfileSetupView: View {
     }
     
     private func saveProfile() {
+        // Convert height and weight to metric units for storage
+        let heightCm = UnitConverter.convert(Double(height) ?? 0, from: heightUnit, to: "cm")
+        let weightKg = UnitConverter.convert(Double(weight) ?? 0, from: weightUnit, to: "kg")
+        
         let profile = UserProfile(
             firstName: firstName,
             lastName: lastName,
             dateOfBirth: dateOfBirth,
             gender: gender,
-            height: Double(height) ?? 0,
-            weight: Double(weight) ?? 0,
+            height: heightCm,
+            weight: weightKg,
             medicalConditions: medicalConditions,
             dietaryRestrictions: dietaryRestrictions,
             emergencyContacts: emergencyContacts

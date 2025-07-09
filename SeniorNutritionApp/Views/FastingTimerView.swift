@@ -402,11 +402,7 @@ struct FastingTimerView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        if userSettings.activeFastingProtocol == .custom {
-                            showingCustomProtocol = true
-                        } else {
                             showingProtocolPicker = true
-                        }
                     }) {
                         HStack {
                             Text(userSettings.activeFastingProtocol.localizedTitle)
@@ -459,6 +455,14 @@ struct FastingTimerView: View {
         .navigationViewStyle(StackNavigationViewStyle())
         .onAppear {
             fastingManager.setUserSettings(userSettings)
+            // Initialize custom protocol values if they exist
+            if userSettings.activeFastingProtocol == .custom {
+                let customProtocol = FastingProtocol.getCustomProtocol()
+                if customProtocol.fastingHours > 0 && customProtocol.eatingHours > 0 {
+                    customFastingHours = customProtocol.fastingHours
+                    customEatingHours = customProtocol.eatingHours
+                }
+            }
         }
     }
     
@@ -549,6 +553,14 @@ struct FastingTimerView: View {
             }
             .sheet(isPresented: $showingCustomProtocolSheet) {
                 customProtocolView
+                    .onAppear {
+                        // Initialize with existing custom protocol values if they exist
+                        let customProtocol = FastingProtocol.getCustomProtocol()
+                        if customProtocol.fastingHours > 0 && customProtocol.eatingHours > 0 {
+                            customFastingHours = customProtocol.fastingHours
+                            customEatingHours = customProtocol.eatingHours
+                        }
+                    }
             }
         }
     }

@@ -1660,3 +1660,16 @@
 "Translate All Foods" = "Traducir Todos los Alimentos";
 "Tap translate button to update food names" = "Toca el botón traducir para actualizar nombres de alimentos";
 "Translating foods to %@..." = "Traduciendo alimentos a %@...";
+
+/* BMI Categories */
+"Normal Weight" = "Peso normal";
+"Overweight" = "Sobrepeso";
+"Obese Class I" = "Obesidad clase I";
+"Obese Class II" = "Obesidad clase II";
+"Obese Class III" = "Obesidad clase III";
+"BMI below 18.5" = "IMC por debajo de 18.5";
+"BMI 18.5 - 24.9" = "IMC 18.5 - 24.9";
+"BMI 25.0 - 29.9" = "IMC 25.0 - 29.9";
+"BMI 30.0 - 34.9" = "IMC 30.0 - 34.9";
+"BMI 35.0 - 39.9" = "IMC 35.0 - 39.9";
+"BMI 40.0 and above" = "IMC 40.0 y superior";

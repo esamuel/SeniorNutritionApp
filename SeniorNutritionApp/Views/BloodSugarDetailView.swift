@@ -4,12 +4,15 @@ import Charts
 
 struct BloodSugarDetailView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @EnvironmentObject private var premiumManager: PremiumManager
     @FetchRequest private var entries: FetchedResults<BloodSugarEntry>
     
     @State private var showingAddEntry = false
     @State private var selectedEntry: BloodSugarEntry?
     @State private var showingDeleteAlert = false
+    @State private var showingPremiumAlert = false
     @State private var timeRange: TimeRange = .week
+    @State private var showingPremiumUpgrade = false
     
     init() {
         // Create a fetch request for blood sugar entries sorted by date
@@ -52,6 +55,18 @@ struct BloodSugarDetailView: View {
                 EditBloodSugarView(entry: entry)
                     .environment(\.managedObjectContext, viewContext)
             }
+        }
+        .sheet(isPresented: $showingPremiumUpgrade) {
+            PremiumFeaturesView()
+                .environmentObject(premiumManager)
+        }
+        .alert(NSLocalizedString("Premium Feature", comment: ""), isPresented: $showingPremiumAlert) {
+            Button(NSLocalizedString("Cancel", comment: ""), role: .cancel) { }
+            Button(NSLocalizedString("Upgrade", comment: "")) {
+                showingPremiumUpgrade = true
+            }
+        } message: {
+            Text(NSLocalizedString("Extended analytics history is available with Advanced or Premium subscription. Free users can view up to 7 days of data.", comment: ""))
         }
         .alert(NSLocalizedString("Delete Entry", comment: "Alert title for deleting entry"), isPresented: $showingDeleteAlert) {
             Button(NSLocalizedString("Delete", comment: "Delete button text"), role: .destructive) {
@@ -125,13 +140,62 @@ struct BloodSugarDetailView: View {
                 .font(.title2)
                 .bold()
             
-            // Time range picker
-            Picker(NSLocalizedString("Time Range", comment: "Time range picker label"), selection: $timeRange) {
-                Text(NSLocalizedString("Week", comment: "Time range option: Week")).tag(TimeRange.week)
-                Text(NSLocalizedString("Month", comment: "Time range option: Month")).tag(TimeRange.month)
-                Text(NSLocalizedString("3 Months", comment: "Time range option: Three Months")).tag(TimeRange.threeMonths)
+            // Time range picker with premium limitations
+            VStack(alignment: .leading, spacing: 8) {
+                Picker(NSLocalizedString("Time Range", comment: "Time range picker label"), selection: $timeRange) {
+                    Text(NSLocalizedString("Week", comment: "Time range option: Week")).tag(TimeRange.week)
+                    
+                    HStack {
+                        Text(NSLocalizedString("Month", comment: "Time range option: Month"))
+                        if !premiumManager.hasAccess(to: PremiumFeature.extendedHistory) {
+                            Image(systemName: "lock.fill")
+                                .foregroundColor(.orange)
+                                .font(.caption)
+                        }
+                    }
+                    .tag(TimeRange.month)
+                    .disabled(!premiumManager.hasAccess(to: PremiumFeature.extendedHistory))
+                    
+                    HStack {
+                        Text(NSLocalizedString("3 Months", comment: "Time range option: Three Months"))
+                        if !premiumManager.hasAccess(to: PremiumFeature.extendedHistory) {
+                            Image(systemName: "lock.fill")
+                                .foregroundColor(.orange)
+                                .font(.caption)
+                        }
+                    }
+                    .tag(TimeRange.threeMonths)
+                    .disabled(!premiumManager.hasAccess(to: PremiumFeature.extendedHistory))
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .onChange(of: timeRange) { oldValue, newValue in
+                    if !premiumManager.hasAccess(to: PremiumFeature.extendedHistory) && newValue != .week {
+                        timeRange = .week
+                        showingPremiumAlert = true
+                    }
+                }
+                
+                // Premium limitation notice for Free users
+                if !premiumManager.hasAccess(to: PremiumFeature.extendedHistory) {
+                    HStack {
+                        Image(systemName: "info.circle.fill")
+                            .foregroundColor(.orange)
+                        Text(NSLocalizedString("Free users can view up to 7 days of analytics. Upgrade for extended history.", comment: ""))
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        Spacer()
+                        Button(NSLocalizedString("Upgrade", comment: "")) {
+                            showingPremiumUpgrade = true
+                        }
+                        .font(.caption)
+                        .foregroundColor(.blue)
+                    }
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(Color.orange.opacity(0.1))
+                    .cornerRadius(8)
+                }
             }
-            .pickerStyle(SegmentedPickerStyle())
             .padding(.bottom, 8)
             
             if entries.isEmpty {
@@ -375,7 +439,10 @@ struct BloodSugarDetailView: View {
         let calendar = Calendar.current
         let filterDate: Date
         
-        switch timeRange {
+        // Apply premium limitations
+        let effectiveTimeRange = premiumManager.hasAccess(to: PremiumFeature.extendedHistory) ? timeRange : .week
+        
+        switch effectiveTimeRange {
         case .week:
             filterDate = calendar.date(byAdding: .day, value: -7, to: now) ?? now
         case .month:
