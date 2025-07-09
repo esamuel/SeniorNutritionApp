@@ -4,12 +4,15 @@ import Charts
 
 struct BloodPressureDetailView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @EnvironmentObject private var premiumManager: PremiumManager
     @FetchRequest private var entries: FetchedResults<BloodPressureEntry>
     
     @State private var showingAddEntry = false
     @State private var selectedEntry: BloodPressureEntry?
     @State private var showingDeleteAlert = false
+    @State private var showingPremiumAlert = false
     @State private var timeRange: TimeRange = .week
+    @State private var showingPremiumUpgrade = false
     
     init() {
         // Create a fetch request for blood pressure entries sorted by date
@@ -32,7 +35,7 @@ struct BloodPressureDetailView: View {
             }
             .padding()
         }
-        .navigationTitle("Blood Pressure")
+        .navigationTitle(NSLocalizedString("Blood Pressure", comment: "Navigation title for Blood Pressure detail view"))
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: { showingAddEntry = true }) {
@@ -42,25 +45,41 @@ struct BloodPressureDetailView: View {
             }
         }
         .sheet(isPresented: $showingAddEntry) {
-            AddBloodPressureView()
-                .environment(\.managedObjectContext, viewContext)
+            NavigationView {
+                AddBloodPressureView()
+                    .environment(\.managedObjectContext, viewContext)
+            }
         }
         .sheet(item: $selectedEntry) { entry in
-            EditBloodPressureView(entry: entry)
-                .environment(\.managedObjectContext, viewContext)
+            NavigationView {
+                EditBloodPressureView(entry: entry)
+                    .environment(\.managedObjectContext, viewContext)
+            }
         }
-        .alert("Delete Entry", isPresented: $showingDeleteAlert) {
-            Button("Delete", role: .destructive) {
+        .sheet(isPresented: $showingPremiumUpgrade) {
+            PremiumFeaturesView()
+                .environmentObject(premiumManager)
+        }
+        .alert(NSLocalizedString("Premium Feature", comment: ""), isPresented: $showingPremiumAlert) {
+            Button(NSLocalizedString("Cancel", comment: ""), role: .cancel) { }
+            Button(NSLocalizedString("Upgrade", comment: "")) {
+                showingPremiumUpgrade = true
+            }
+        } message: {
+            Text(NSLocalizedString("Extended analytics history is available with Advanced or Premium subscription. Free users can view up to 7 days of data.", comment: ""))
+        }
+        .alert(NSLocalizedString("Delete Entry", comment: "Alert title for deleting entry"), isPresented: $showingDeleteAlert) {
+            Button(NSLocalizedString("Delete", comment: "Delete button text"), role: .destructive) {
                 if let entry = selectedEntry {
                     deleteEntry(entry)
                     selectedEntry = nil
                 }
             }
-            Button("Cancel", role: .cancel) {
+            Button(NSLocalizedString("Cancel", comment: "Cancel button text"), role: .cancel) {
                 selectedEntry = nil
             }
         } message: {
-            Text("Are you sure you want to delete this entry? This action cannot be undone.")
+            Text(NSLocalizedString("Are you sure you want to delete this entry? This action cannot be undone.", comment: "Delete confirmation message"))
         }
     }
     
@@ -68,14 +87,14 @@ struct BloodPressureDetailView: View {
         VStack(spacing: 16) {
             HStack(spacing: 20) {
                 statsCard(
-                    title: "Latest",
+                    title: NSLocalizedString("Latest", comment: "Latest reading label"),
                     value: latestReading,
                     color: latestColor,
                     icon: "heart.fill"
                 )
                 
                 statsCard(
-                    title: "Average",
+                    title: NSLocalizedString("Average", comment: "Average reading label"),
                     value: averageReading,
                     color: averageColor,
                     icon: "chart.bar.fill"
@@ -111,27 +130,76 @@ struct BloodPressureDetailView: View {
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color(.systemGray6))
+        .background(Color(.secondarySystemBackground))
         .cornerRadius(12)
     }
     
     private var chartSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("Trends")
+            Text(NSLocalizedString("Trends", comment: "Trends section title"))
                 .font(.title2)
                 .bold()
             
-            // Time range picker
-            Picker("Time Range", selection: $timeRange) {
-                Text("Week").tag(TimeRange.week)
-                Text("Month").tag(TimeRange.month)
-                Text("3 Months").tag(TimeRange.threeMonths)
+            // Time range picker with premium limitations
+            VStack(alignment: .leading, spacing: 8) {
+                Picker(NSLocalizedString("Time Range", comment: "Time range picker label"), selection: $timeRange) {
+                    Text(NSLocalizedString("Week", comment: "Time range option: Week")).tag(TimeRange.week)
+                    
+                    HStack {
+                        Text(NSLocalizedString("Month", comment: "Time range option: Month"))
+                        if !premiumManager.hasAccess(to: PremiumFeature.extendedHistory) {
+                            Image(systemName: "lock.fill")
+                                .foregroundColor(.orange)
+                                .font(.caption)
+                        }
+                    }
+                    .tag(TimeRange.month)
+                    .disabled(!premiumManager.hasAccess(to: PremiumFeature.extendedHistory))
+                    
+                    HStack {
+                        Text(NSLocalizedString("3 Months", comment: "Time range option: Three Months"))
+                        if !premiumManager.hasAccess(to: PremiumFeature.extendedHistory) {
+                            Image(systemName: "lock.fill")
+                                .foregroundColor(.orange)
+                                .font(.caption)
+                        }
+                    }
+                    .tag(TimeRange.threeMonths)
+                    .disabled(!premiumManager.hasAccess(to: PremiumFeature.extendedHistory))
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .onChange(of: timeRange) { oldValue, newValue in
+                    if !premiumManager.hasAccess(to: PremiumFeature.extendedHistory) && newValue != .week {
+                        timeRange = .week
+                        showingPremiumAlert = true
+                    }
+                }
+                
+                // Premium limitation notice for Free users
+                if !premiumManager.hasAccess(to: PremiumFeature.extendedHistory) {
+                    HStack {
+                        Image(systemName: "info.circle.fill")
+                            .foregroundColor(.orange)
+                        Text(NSLocalizedString("Free users can view up to 7 days of analytics. Upgrade for extended history.", comment: ""))
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        Spacer()
+                        Button(NSLocalizedString("Upgrade", comment: "")) {
+                            showingPremiumUpgrade = true
+                        }
+                        .font(.caption)
+                        .foregroundColor(.blue)
+                    }
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(Color.orange.opacity(0.1))
+                    .cornerRadius(8)
+                }
             }
-            .pickerStyle(SegmentedPickerStyle())
             .padding(.bottom, 8)
             
             if entries.isEmpty {
-                Text("No data available to display chart")
+                Text(NSLocalizedString("No data available to display chart", comment: "Message when no chart data is available"))
                     .foregroundColor(.secondary)
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.vertical, 40)
@@ -144,7 +212,7 @@ struct BloodPressureDetailView: View {
             }
         }
         .padding()
-        .background(Color.white)
+        .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(radius: 2)
     }
@@ -175,7 +243,7 @@ struct BloodPressureDetailView: View {
                     x: .value("Date", entry.date ?? Date()),
                     y: .value("Systolic", entry.systolic)
                 )
-                .foregroundStyle(.red)
+                .foregroundStyle(Color.red.opacity(0.8))
                 .lineStyle(StrokeStyle(lineWidth: 2))
                 
                 // Diastolic line
@@ -183,7 +251,7 @@ struct BloodPressureDetailView: View {
                     x: .value("Date", entry.date ?? Date()),
                     y: .value("Diastolic", entry.diastolic)
                 )
-                .foregroundStyle(.blue)
+                .foregroundStyle(Color.blue.opacity(0.8))
                 .lineStyle(StrokeStyle(lineWidth: 2))
             }
             
@@ -209,6 +277,7 @@ struct BloodPressureDetailView: View {
                 if let date = value.as(Date.self) {
                     AxisValueLabel {
                         Text(date, format: self.timeRange.dateFormat)
+                            .foregroundColor(.primary)
                     }
                 }
             }
@@ -221,8 +290,8 @@ struct BloodPressureDetailView: View {
         }
         .chartLegend(position: .bottom, spacing: 20) {
             HStack {
-                LegendItem(color: .red, label: "Systolic")
-                LegendItem(color: .blue, label: "Diastolic")
+                LegendItem(color: .red, label: NSLocalizedString("Systolic", comment: "Chart legend for systolic blood pressure"))
+                LegendItem(color: .blue, label: NSLocalizedString("Diastolic", comment: "Chart legend for diastolic blood pressure"))
             }
         }
     }
@@ -245,12 +314,12 @@ struct BloodPressureDetailView: View {
     
     private var historySection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("History")
+            Text(NSLocalizedString("History", comment: "History section title"))
                 .font(.title2)
                 .bold()
             
             if entries.isEmpty {
-                Text("No recorded blood pressure entries")
+                Text(NSLocalizedString("No recorded blood pressure entries", comment: "Message when no blood pressure entries are recorded"))
                     .foregroundColor(.secondary)
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.vertical, 20)
@@ -278,7 +347,7 @@ struct BloodPressureDetailView: View {
             }
         }
         .padding()
-        .background(Color.white)
+        .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(radius: 2)
     }
@@ -286,7 +355,7 @@ struct BloodPressureDetailView: View {
     private func bloodPressureRow(entry: BloodPressureEntry) -> some View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
-                Text("\(entry.systolic)/\(entry.diastolic) mmHg")
+                Text("\(entry.systolic)/\(entry.diastolic) \(NSLocalizedString("mmHg", comment: "Unit for blood pressure"))")
                     .font(.system(size: 18, weight: .bold))
                     .foregroundColor(bloodPressureColor(systolic: Int(entry.systolic), diastolic: Int(entry.diastolic)))
                 
@@ -308,7 +377,7 @@ struct BloodPressureDetailView: View {
                 .cornerRadius(5)
         }
         .padding()
-        .background(Color(.systemGray6))
+        .background(Color(.secondarySystemBackground))
         .cornerRadius(12)
     }
     
@@ -328,7 +397,7 @@ struct BloodPressureDetailView: View {
         if let latest = entries.first {
             return "\(latest.systolic)/\(latest.diastolic)"
         }
-        return "N/A"
+        return NSLocalizedString("N/A", comment: "Not available abbreviation")
     }
     
     private var latestColor: Color {
@@ -340,7 +409,7 @@ struct BloodPressureDetailView: View {
     
     private var averageReading: String {
         if entries.isEmpty {
-            return "N/A"
+            return NSLocalizedString("N/A", comment: "Not available abbreviation")
         }
         
         let avgSystolic = entries.reduce(0) { $0 + Double($1.systolic) } / Double(entries.count)
@@ -364,21 +433,21 @@ struct BloodPressureDetailView: View {
         if let latest = entries.first {
             let category = bloodPressureCategory(systolic: Int(latest.systolic), diastolic: Int(latest.diastolic))
             switch category {
-            case "Normal":
-                return "Your blood pressure is in the normal range. Keep up the good work!"
-            case "Elevated":
-                return "Your blood pressure is slightly elevated. Consider lifestyle changes."
-            case "Stage 1":
-                return "Your blood pressure is in hypertension stage 1. Consult your doctor."
-            case "Stage 2":
-                return "Your blood pressure is in hypertension stage 2. Medical attention recommended."
-            case "Crisis":
-                return "Your blood pressure is critically high. Seek immediate medical attention!"
+            case NSLocalizedString("Normal", comment: "Blood pressure category: Normal"):
+                return NSLocalizedString("Your blood pressure is in the normal range. Keep up the good work!", comment: "Blood pressure status: normal")
+            case NSLocalizedString("Elevated", comment: "Blood pressure category: Elevated"):
+                return NSLocalizedString("Your blood pressure is elevated. Consider lifestyle changes.", comment: "Blood pressure status: elevated")
+            case NSLocalizedString("Stage 1", comment: "Blood pressure category: Stage 1"):
+                return NSLocalizedString("Your blood pressure is in hypertension stage 1. Consult your doctor.", comment: "Blood pressure status: hypertension stage 1")
+            case NSLocalizedString("Stage 2", comment: "Blood pressure category: Stage 2"):
+                return NSLocalizedString("Your blood pressure is in hypertension stage 2. Seek immediate medical attention.", comment: "Blood pressure status: hypertension stage 2")
+            case NSLocalizedString("Crisis", comment: "Blood pressure category: Crisis"):
+                return NSLocalizedString("Your blood pressure is critically high. Seek immediate medical attention!", comment: "Blood pressure status: crisis")
             default:
-                return "Monitor your blood pressure regularly."
+                return NSLocalizedString("Track your blood pressure regularly to see insights and trends.", comment: "Blood pressure status: default message")
             }
         }
-        return "Start tracking your blood pressure to see insights."
+        return NSLocalizedString("Track your blood pressure regularly to see insights and trends.", comment: "Blood pressure status: default message")
     }
     
     private var filteredEntries: [BloodPressureEntry] {
@@ -386,7 +455,10 @@ struct BloodPressureDetailView: View {
         let calendar = Calendar.current
         let filterDate: Date
         
-        switch timeRange {
+        // Apply premium limitations
+        let effectiveTimeRange = premiumManager.hasAccess(to: PremiumFeature.extendedHistory) ? timeRange : .week
+        
+        switch effectiveTimeRange {
         case .week:
             filterDate = calendar.date(byAdding: .day, value: -7, to: now) ?? now
         case .month:
@@ -406,15 +478,15 @@ struct BloodPressureDetailView: View {
     
     private func bloodPressureCategory(systolic: Int, diastolic: Int) -> String {
         if systolic >= 180 || diastolic >= 120 {
-            return "Crisis"
+            return NSLocalizedString("Crisis", comment: "Blood pressure category: Crisis")
         } else if systolic >= 140 || diastolic >= 90 {
-            return "Stage 2"
+            return NSLocalizedString("Stage 2", comment: "Blood pressure category: Stage 2")
         } else if (systolic >= 130 && systolic < 140) || (diastolic >= 80 && diastolic < 90) {
-            return "Stage 1"
+            return NSLocalizedString("Stage 1", comment: "Blood pressure category: Stage 1")
         } else if (systolic >= 120 && systolic < 130) && diastolic < 80 {
-            return "Elevated"
+            return NSLocalizedString("Elevated", comment: "Blood pressure category: Elevated")
         } else {
-            return "Normal"
+            return NSLocalizedString("Normal", comment: "Blood pressure category: Normal")
         }
     }
     
@@ -422,13 +494,13 @@ struct BloodPressureDetailView: View {
         let category = bloodPressureCategory(systolic: systolic, diastolic: diastolic)
         
         switch category {
-        case "Normal":
+        case NSLocalizedString("Normal", comment: "Blood pressure category: Normal"):
             return .green
-        case "Elevated":
+        case NSLocalizedString("Elevated", comment: "Blood pressure category: Elevated"):
             return .yellow
-        case "Stage 1":
+        case NSLocalizedString("Stage 1", comment: "Blood pressure category: Stage 1"):
             return .orange
-        case "Stage 2", "Crisis":
+        case NSLocalizedString("Stage 2", comment: "Blood pressure category: Stage 2"), NSLocalizedString("Crisis", comment: "Blood pressure category: Crisis"):
             return .red
         default:
             return .gray
@@ -476,48 +548,44 @@ struct EditBloodPressureView: View {
     }
     
     var body: some View {
-        NavigationView {
-            Form {
-                Section(header: Text("Blood Pressure")) {
-                    TextField("Systolic (top)", text: $systolic)
-                        .keyboardType(.numberPad)
-                        .focused($systolicFieldIsFocused)
-                    TextField("Diastolic (bottom)", text: $diastolic)
-                        .keyboardType(.numberPad)
-                    DatePicker("Date & Time", selection: $date)
-                        .datePickerLTR()
-                }
-                
-                if let error = error {
-                    Text(error)
-                        .foregroundColor(.red)
+        Form {
+            Section(header: Text(NSLocalizedString("Blood Pressure", comment: "Section header for blood pressure"))) {
+                TextField(NSLocalizedString("Systolic (top)", comment: "Placeholder for systolic blood pressure"), text: $systolic)
+                    .keyboardType(.numberPad)
+                    .focused($systolicFieldIsFocused)
+                TextField(NSLocalizedString("Diastolic (bottom)", comment: "Placeholder for diastolic blood pressure"), text: $diastolic)
+                    .keyboardType(.numberPad)
+                DatePicker(NSLocalizedString("Date & Time", comment: "Date and time picker label"), selection: $date)
+                    .datePickerLTR()
+            }
+            
+            if let error = error {
+                Text(error)
+                    .foregroundColor(.red)
+            }
+        }
+        .navigationTitle(NSLocalizedString("Edit Reading", comment: "Navigation title for editing blood pressure reading"))
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .cancellationAction) {
+                Button(NSLocalizedString("Cancel", comment: "Cancel button text")) {
+                    dismiss()
                 }
             }
-            .navigationTitle("Edit Reading")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") {
-                        dismiss()
-                    }
-                }
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") {
-                        saveChanges()
-                    }
+            ToolbarItem(placement: .confirmationAction) {
+                Button(NSLocalizedString("Save", comment: "Save button text")) {
+                    saveChanges()
                 }
             }
         }
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.systolicFieldIsFocused = true
-            }
+            systolicFieldIsFocused = true
         }
     }
     
     private func saveChanges() {
         guard let sys = Int32(systolic), let dia = Int32(diastolic) else {
-            error = "Please enter valid numbers"
+            error = NSLocalizedString("Please enter valid numbers", comment: "Error message for invalid blood pressure numbers")
             return
         }
         
@@ -529,7 +597,7 @@ struct EditBloodPressureView: View {
             try viewContext.save()
             dismiss()
         } catch {
-            self.error = "Failed to save: \(error.localizedDescription)"
+            self.error = NSLocalizedString("Failed to save: \(error.localizedDescription)", comment: "Error message for failed save operation")
         }
     }
 }

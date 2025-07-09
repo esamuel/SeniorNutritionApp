@@ -74,14 +74,14 @@ struct EditMedicationView: View {
                 VStack(spacing: 20) {
                     // Medication Details Section
                     VStack(alignment: .leading, spacing: 15) {
-                        Text("Medication Details")
+                        Text(NSLocalizedString("Medication Details", comment: ""))
                             .font(.system(size: userSettings.textSize.size, weight: .bold))
                             .padding(.horizontal)
                         
                         VStack(spacing: 15) {
                             // Name Input
                             HStack {
-                                TextField("Medication Name", text: $medicationName)
+                                TextField(NSLocalizedString("Medication Name", comment: ""), text: $medicationName)
                                     .font(.system(size: userSettings.textSize.size))
                                     .textFieldStyle(RoundedBorderTextFieldStyle())
                                 
@@ -123,7 +123,7 @@ struct EditMedicationView: View {
                             }
                             
                             // Dosage Input
-                            TextField("Dosage", text: $dosage)
+                            TextField(NSLocalizedString("Dosage", comment: ""), text: $dosage)
                                 .font(.system(size: userSettings.textSize.size))
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                         }
@@ -136,16 +136,17 @@ struct EditMedicationView: View {
                     
                     // Schedule Section
                     VStack(alignment: .leading, spacing: 15) {
-                        Text("Schedule")
+                        Text(NSLocalizedString("Schedule", comment: ""))
                             .font(.system(size: userSettings.textSize.size, weight: .bold))
                             .padding(.horizontal)
                         
                         VStack(spacing: 15) {
                             // Frequency Type Picker
-                            Picker("Frequency", selection: $selectedFrequencyType) {
-                                ForEach(FrequencyType.allCases) { type in
-                                    Text(type.rawValue).tag(type)
-                                }
+                            Picker(NSLocalizedString("Frequency", comment: ""), selection: $selectedFrequencyType) {
+                                Text(NSLocalizedString("Daily", comment: "")).tag(FrequencyType.daily)
+                                Text(NSLocalizedString("Weekly", comment: "")).tag(FrequencyType.weekly)
+                                Text(NSLocalizedString("Interval (in days)", comment: "")).tag(FrequencyType.interval)
+                                Text(NSLocalizedString("Monthly", comment: "")).tag(FrequencyType.monthly)
                             }
                             .pickerStyle(SegmentedPickerStyle())
                             .padding(.bottom, 5)
@@ -153,13 +154,14 @@ struct EditMedicationView: View {
                             // Conditional Inputs based on Frequency Type
                             switch selectedFrequencyType {
                             case .weekly:
+                                Text(NSLocalizedString("On these days:", comment: ""))
                                 WeekdayMultiSelector(selectedDays: $weeklySelectedDays)
                                     .padding(.vertical, 5)
                             case .interval:
-                                Stepper("Every \(intervalDays) days", value: $intervalDays, in: 1...30)
-                                DatePicker("Starting From", selection: $intervalStartDate, displayedComponents: .date)
+                                Stepper(String(format: NSLocalizedString("Every %d days", comment: "Stepper for interval days"), intervalDays), value: $intervalDays, in: 1...30)
+                                DatePicker(NSLocalizedString("Starting From", comment: ""), selection: $intervalStartDate, displayedComponents: .date)
                             case .monthly:
-                                Picker("Day of the Month", selection: $monthlySelectedDay) {
+                                Picker(NSLocalizedString("Day of the Month", comment: ""), selection: $monthlySelectedDay) {
                                     ForEach(1...31, id: \.self) { day in
                                         Text("\(day)").tag(day)
                                     }
@@ -171,7 +173,7 @@ struct EditMedicationView: View {
                             
                             Divider().padding(.vertical, 5)
                             
-                            Text("Time(s) to Take Medication")
+                            Text(NSLocalizedString("At these times:", comment: ""))
                                 .font(.system(size: userSettings.textSize.size - 1, weight: .semibold))
                                 .foregroundColor(.secondary)
                             
@@ -199,7 +201,7 @@ struct EditMedicationView: View {
                                     
                                     Spacer()
                                     
-                                    Button("Edit") {
+                                    Button(NSLocalizedString("Edit", comment: "")) {
                                         // Edit time of day
                                     }
                                     .font(.system(size: userSettings.textSize.size))
@@ -213,7 +215,7 @@ struct EditMedicationView: View {
                             }) {
                                 HStack {
                                     Image(systemName: "plus.circle.fill")
-                                    Text("Add Time")
+                                    Text(NSLocalizedString("Add Time", comment: ""))
                                 }
                                 .font(.system(size: userSettings.textSize.size))
                                 .foregroundColor(.blue)
@@ -224,16 +226,16 @@ struct EditMedicationView: View {
                     
                     // Frequency Section
                     VStack(alignment: .leading, spacing: 15) {
-                        Text("Frequency")
+                        Text(NSLocalizedString("Frequency", comment: ""))
                             .font(.system(size: userSettings.textSize.size, weight: .bold))
                             .padding(.horizontal)
                         
                         VStack(spacing: 15) {
-                            Picker("Frequency", selection: $selectedFrequencyType) {
-                                Text("Daily").tag(FrequencyType.daily)
-                                Text("Weekly").tag(FrequencyType.weekly)
-                                Text("Interval").tag(FrequencyType.interval)
-                                Text("Monthly").tag(FrequencyType.monthly)
+                            Picker(NSLocalizedString("Frequency", comment: ""), selection: $selectedFrequencyType) {
+                                Text(NSLocalizedString("Daily", comment: "")).tag(FrequencyType.daily)
+                                Text(NSLocalizedString("Weekly", comment: "")).tag(FrequencyType.weekly)
+                                Text(NSLocalizedString("Interval", comment: "")).tag(FrequencyType.interval)
+                                Text(NSLocalizedString("Monthly", comment: "")).tag(FrequencyType.monthly)
                             }
                             .pickerStyle(SegmentedPickerStyle())
                             .padding()
@@ -245,14 +247,14 @@ struct EditMedicationView: View {
                                 WeekdayMultiSelector(selectedDays: $weeklySelectedDays)
                             } else if selectedFrequencyType == .interval {
                                 HStack {
-                                    Text("Every")
+                                    Text(NSLocalizedString("Every", comment: ""))
                                         .font(.system(size: userSettings.textSize.size))
                                     
-                                    TextField("Interval Days", value: $intervalDays, formatter: NumberFormatter())
+                                    TextField(NSLocalizedString("Interval Days", comment: ""), value: $intervalDays, formatter: NumberFormatter())
                                         .font(.system(size: userSettings.textSize.size))
                                         .textFieldStyle(RoundedBorderTextFieldStyle())
                                     
-                                    Text("days")
+                                    Text(NSLocalizedString("days", comment: ""))
                                         .font(.system(size: userSettings.textSize.size))
                                 }
                                 .padding()
@@ -261,14 +263,14 @@ struct EditMedicationView: View {
                                 .shadow(radius: 2)
                             } else if selectedFrequencyType == .monthly {
                                 HStack {
-                                    Text("On the")
+                                    Text(NSLocalizedString("On the", comment: ""))
                                         .font(.system(size: userSettings.textSize.size))
                                     
-                                    TextField("Monthly Day", value: $monthlySelectedDay, formatter: NumberFormatter())
+                                    TextField(NSLocalizedString("Monthly Day", comment: ""), value: $monthlySelectedDay, formatter: NumberFormatter())
                                         .font(.system(size: userSettings.textSize.size))
                                         .textFieldStyle(RoundedBorderTextFieldStyle())
                                     
-                                    Text("day of the month")
+                                    Text(NSLocalizedString("day of the month", comment: ""))
                                         .font(.system(size: userSettings.textSize.size))
                                 }
                                 .padding()
@@ -282,19 +284,19 @@ struct EditMedicationView: View {
                     
                     // Take with Food Toggle and Appearance Settings
                     VStack(alignment: .leading, spacing: 15) {
-                        Text("Additional Settings")
+                        Text(NSLocalizedString("Pill Appearance", comment: ""))
                             .font(.system(size: userSettings.textSize.size, weight: .bold))
                             .padding(.horizontal)
                         
                         VStack(spacing: 15) {
-                            Toggle("Take with Food", isOn: $takeWithFood)
+                            Toggle(NSLocalizedString("Take with Food", comment: ""), isOn: $takeWithFood)
                                 .font(.system(size: userSettings.textSize.size))
                             
                             Divider()
                             
                             // Pill Shape Selection
                             VStack(alignment: .leading, spacing: 10) {
-                                Text("Pill Shape")
+                                Text(NSLocalizedString("Pill Shape", comment: ""))
                                     .font(.system(size: userSettings.textSize.size, weight: .semibold))
                                 
                                 HStack {
@@ -338,7 +340,7 @@ struct EditMedicationView: View {
                                     }
                                     .frame(width: 40, height: 40)
                                     
-                                    Button("Select Shape") {
+                                    Button(NSLocalizedString("Select Shape", comment: "")) {
                                         showingShapePicker = true
                                     }
                                     .font(.system(size: userSettings.textSize.size))
@@ -356,7 +358,7 @@ struct EditMedicationView: View {
                             
                             // Pill Color Selection
                             VStack(alignment: .leading, spacing: 10) {
-                                Text("Pill Color")
+                                Text(NSLocalizedString("Pill Color", comment: ""))
                                     .font(.system(size: userSettings.textSize.size, weight: .semibold))
                                 
                                 HStack {
@@ -365,7 +367,7 @@ struct EditMedicationView: View {
                                         .frame(width: 40, height: 40)
                                         .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1))
                                     
-                                    Button("Select Color") {
+                                    Button(NSLocalizedString("Select Color", comment: "")) {
                                         showingColorPicker = true
                                     }
                                     .font(.system(size: userSettings.textSize.size))
@@ -387,7 +389,7 @@ struct EditMedicationView: View {
                     
                     // Notes Section
                     VStack(alignment: .leading, spacing: 15) {
-                        Text("Notes")
+                        Text(NSLocalizedString("Additional Details", comment: ""))
                             .font(.system(size: userSettings.textSize.size, weight: .bold))
                             .padding(.horizontal)
                         
@@ -403,7 +405,7 @@ struct EditMedicationView: View {
                     
                     // Save Button
                     Button(action: saveMedication) {
-                        Text("Save Changes")
+                        Text(NSLocalizedString("Save Changes", comment: ""))
                             .font(.system(size: userSettings.textSize.size, weight: .bold))
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
@@ -416,11 +418,11 @@ struct EditMedicationView: View {
                 }
                 .padding(.vertical)
             }
-            .navigationTitle("Edit Medication")
+            .navigationTitle(NSLocalizedString("Edit Medication", comment: ""))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") {
+                    Button(NSLocalizedString("Cancel", comment: "")) {
                         dismiss()
                     }
                     .font(.system(size: userSettings.textSize.size))
@@ -488,7 +490,7 @@ struct EditMedicationView: View {
             
             // Schedule the new notification if a date was found
             if let actualNextDose = nextDoseDate {
-                let notificationTime = calendar.date(byAdding: .minute, value: -30, to: actualNextDose) ?? actualNextDose
+                let notificationTime = calendar.date(byAdding: .minute, value: -userSettings.medicationReminderLeadTime, to: actualNextDose) ?? actualNextDose
                 if notificationTime > now {
                     let content = UNMutableNotificationContent()
                     content.title = "Medication Reminder"

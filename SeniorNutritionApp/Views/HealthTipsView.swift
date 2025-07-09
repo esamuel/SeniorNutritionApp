@@ -1,8 +1,10 @@
 import SwiftUI
 
 struct HealthTipsView: View {
+    @EnvironmentObject var languageManager: LanguageManager
     @State private var selectedCategory: HealthTipCategory? = nil
     @State private var searchText = ""
+    @State private var refreshTrigger = false // Add this to force view refresh
     let healthTipsService = HealthTipsService.shared
     
     var body: some View {
@@ -12,7 +14,7 @@ struct HealthTipsView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 12) {
                         CategoryButton(
-                            title: "All",
+                            title: NSLocalizedString("All", comment: "All health tips category"),
                             isSelected: selectedCategory == nil,
                             action: { selectedCategory = nil }
                         )
@@ -43,9 +45,13 @@ struct HealthTipsView: View {
                     .padding(.vertical)
                 }
             }
-            .navigationTitle("Health Tips")
+            .navigationTitle(NSLocalizedString("Health Tips", comment: "Health tips screen title"))
             .navigationBarTitleDisplayMode(.inline)
-            .searchable(text: $searchText, prompt: "Search health tips")
+            .searchable(text: $searchText, prompt: NSLocalizedString("Search health tips", comment: "Search placeholder for health tips"))
+        }
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("LanguageDidChange"))) { _ in
+            // Force view refresh when language changes
+            refreshTrigger.toggle()
         }
     }
     

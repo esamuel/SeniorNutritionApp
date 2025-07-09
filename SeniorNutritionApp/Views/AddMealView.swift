@@ -356,6 +356,10 @@ struct AddMealView: View {
             .onAppear {
                 foodDatabase.loadFoodDatabase()
                 suggestMealTypeBasedOnTime()
+                // Ensure food database is translated for current language
+                Task {
+                    await foodDatabase.checkAndTranslateIfNeeded()
+                }
             }
         }
     }

@@ -9,6 +9,7 @@ struct SeniorNutritionApp: App {
     @StateObject private var userCommonMeals = UserCommonMeals()
     @StateObject private var appointmentManager = AppointmentManager()
     @StateObject private var languageManager = LanguageManager.shared
+    @StateObject private var premiumManager = PremiumManager.shared
     private let healthTipsService = HealthTipsService.shared
     let persistenceController = PersistenceController.shared
     
@@ -26,6 +27,12 @@ struct SeniorNutritionApp: App {
                             .frame(height: 200)
                             .padding(.bottom, 20)
                         
+                        Text(NSLocalizedString("Hold on, I'm coming...", comment: "Loading message with old man"))
+                            .font(.title2)
+                            .fontWeight(.medium)
+                            .foregroundColor(.secondary)
+                            .padding(.bottom, 10)
+                        
                         ProgressView(NSLocalizedString("Loading", comment: ""))
                             .progressViewStyle(CircularProgressViewStyle())
                             .padding()
@@ -42,17 +49,33 @@ struct SeniorNutritionApp: App {
                         }
                     }
                 } else if userSettings.isOnboardingComplete {
-                    MainTabView()
-                        .environmentObject(userSettings)
-                        .environmentObject(mealManager)
-                        .environmentObject(foodDatabase)
-                        .environmentObject(userCommonMeals)
-                        .environmentObject(appointmentManager)
-                        .environmentObject(languageManager)
-                        .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                        .environment(\.layoutDirection, languageManager.layoutDirection)
-                        .preferredColorScheme(userSettings.isDarkMode ? .dark : .light)
-                        .id(languageManager.currentLanguage)
+                    if userSettings.shouldShowAppTour() {
+                        AppTourView()
+                            .environmentObject(userSettings)
+                            .environmentObject(mealManager)
+                            .environmentObject(foodDatabase)
+                            .environmentObject(userCommonMeals)
+                            .environmentObject(appointmentManager)
+                            .environmentObject(languageManager)
+                            .environmentObject(premiumManager)
+                            .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                            .environment(\.layoutDirection, languageManager.layoutDirection)
+                            .preferredColorScheme(userSettings.isDarkMode ? .dark : .light)
+                            .id(languageManager.currentLanguage)
+                    } else {
+                        MainTabView()
+                            .environmentObject(userSettings)
+                            .environmentObject(mealManager)
+                            .environmentObject(foodDatabase)
+                            .environmentObject(userCommonMeals)
+                            .environmentObject(appointmentManager)
+                            .environmentObject(languageManager)
+                            .environmentObject(premiumManager)
+                            .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                            .environment(\.layoutDirection, languageManager.layoutDirection)
+                            .preferredColorScheme(userSettings.isDarkMode ? .dark : .light)
+                            .id(languageManager.currentLanguage)
+                    }
                 } else {
                     OnboardingView()
                         .environmentObject(userSettings)
@@ -61,6 +84,7 @@ struct SeniorNutritionApp: App {
                         .environmentObject(userCommonMeals)
                         .environmentObject(appointmentManager)
                         .environmentObject(languageManager)
+                        .environmentObject(premiumManager)
                         .environment(\.managedObjectContext, persistenceController.container.viewContext)
                         .environment(\.layoutDirection, languageManager.layoutDirection)
                         .preferredColorScheme(userSettings.isDarkMode ? .dark : .light)

@@ -39,14 +39,26 @@ struct CustomFastingProtocolView: View {
                     .cornerRadius(10)
                 }
             }
-            .navigationTitle(NSLocalizedString("Custom Protocol", comment: ""))
-            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(NSLocalizedString("Cancel", comment: "")) {
                         dismiss()
                     }
                     .font(.system(size: userSettings.textSize.size))
+                }
+                ToolbarItem(placement: .principal) {
+                    Text(NSLocalizedString("Custom Protocol", comment: ""))
+                        .font(.headline)
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.75)
+                        .multilineTextAlignment(.center)
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(NSLocalizedString("Save Protocol", comment: "")) {
+                        FastingProtocol.setCustomProtocol(fastingHours: fastingHours, eatingHours: eatingHours)
+                        userSettings.activeFastingProtocol = .custom
+                        dismiss()
+                    }
                 }
             }
         }

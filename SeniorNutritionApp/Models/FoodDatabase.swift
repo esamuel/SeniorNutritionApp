@@ -1,10 +1,29 @@
 import Foundation
 
+// MARK: - Cuisine Type
+enum CuisineType: String, Codable, CaseIterable {
+    case general = "General"
+    case chinese = "Chinese"
+    case russian = "Russian"
+    case middleEastern = "Middle Eastern"
+    case korean = "Korean"
+    case japanese = "Japanese"
+    case indian = "Indian"
+    case mexican = "Mexican"
+    case italian = "Italian"
+    
+    // Get localized cuisine name
+    var localizedString: String {
+        return NSLocalizedString(self.rawValue, comment: "Cuisine type")
+    }
+}
+
 // MARK: - Food Item
 struct FoodItem: Identifiable, Codable, Equatable {
     var id: UUID
     var name: String
     var category: FoodCategory
+    var cuisineType: CuisineType
     var nutritionalInfo: NutritionalInfo
     var servingSize: Double // in grams
     var servingUnit: String // e.g., "g", "oz", "cup"
@@ -16,6 +35,25 @@ struct FoodItem: Identifiable, Codable, Equatable {
     var notesFr: String?
     var notesEs: String?
     var notesHe: String?
+    
+    // Default initializer with general cuisine type for backward compatibility
+    init(id: UUID = UUID(), name: String, category: FoodCategory, cuisineType: CuisineType = .general, nutritionalInfo: NutritionalInfo, servingSize: Double, servingUnit: String, isCustom: Bool = false, notes: String? = nil, nameFr: String? = nil, nameEs: String? = nil, nameHe: String? = nil, notesFr: String? = nil, notesEs: String? = nil, notesHe: String? = nil) {
+        self.id = id
+        self.name = name
+        self.category = category
+        self.cuisineType = cuisineType
+        self.nutritionalInfo = nutritionalInfo
+        self.servingSize = servingSize
+        self.servingUnit = servingUnit
+        self.isCustom = isCustom
+        self.notes = notes
+        self.nameFr = nameFr
+        self.nameEs = nameEs
+        self.nameHe = nameHe
+        self.notesFr = notesFr
+        self.notesEs = notesEs
+        self.notesHe = notesHe
+    }
     
     // Computed property for nutritional info per 100g
     var nutritionalInfoPer100g: NutritionalInfo {
@@ -57,6 +95,7 @@ struct FoodItem: Identifiable, Codable, Equatable {
         lhs.id == rhs.id &&
         lhs.name == rhs.name &&
         lhs.category == rhs.category &&
+        lhs.cuisineType == rhs.cuisineType &&
         lhs.nutritionalInfo == rhs.nutritionalInfo &&
         lhs.servingSize == rhs.servingSize &&
         lhs.servingUnit == rhs.servingUnit &&
@@ -211,7 +250,7 @@ class FoodDatabaseService: ObservableObject {
         print("\n=== Starting to load food database ===")
         
         // Load all foods from all food item files
-        var allFoods = SampleFoodData.foods + NewFoodItems.foods + AdditionalFoodItems.foods + DairyFoodItems.foods + BeverageFoodItems.foods + SnackFoodItems.foods + FruitFoodItems.foods + PastaFoodItems.foods + CakeFoodItems.foods + BreadAndSandwichFoodItems.foods + StuffedDishFoodItems.foods + SeedFoodItems.foods + CondimentFoodItems.foods + FishMealItems.foods
+        var allFoods = SampleFoodData.foods + NewFoodItems.foods + AdditionalFoodItems.foods + DairyFoodItems.foods + BeverageFoodItems.foods + SnackFoodItems.foods + FruitFoodItems.foods + PastaFoodItems.foods + CakeFoodItems.foods + BreadAndSandwichFoodItems.foods + StuffedDishFoodItems.foods + SeedFoodItems.foods + CondimentFoodItems.foods + FishMealItems.foods + GrainDishItems.foods + ItalianCuisineItems.foods + VegetableFoodItems.foods + MexicanCuisineFoodItems.foods + IndianCuisineFoodItems.foods + ChineseCuisineFoodItems.foods + JapaneseCuisineFoodItems.foods + KoreanCuisineFoodItems.foods + MiddleEasternCuisineFoodItems.foods + RussianCuisineFoodItems.foods
         
         print("\nInitial food count: \(allFoods.count)")
         print("\nAvailable foods:")
@@ -517,6 +556,12 @@ class FoodDatabaseService: ObservableObject {
         return allFoods.filter { $0.category == category }
     }
     
+    // Get foods by cuisine type
+    func foodsByCuisine(_ cuisineType: CuisineType) -> [FoodItem] {
+        let allFoods = foodItems + customFoodItems
+        return allFoods.filter { $0.cuisineType == cuisineType }
+    }
+    
     // Save custom foods
     private func saveCustomFoods() {
         if let encoded = try? JSONEncoder().encode(customFoodItems) {
@@ -535,14 +580,18 @@ class FoodDatabaseService: ObservableObject {
         
         // Replace deprecated languageCode
         let lang: String
-        if #available(iOS 16, *) {
+        if #available(iOS 16.0, *) {
             lang = Locale.current.language.languageCode?.identifier ?? "en"
         } else {
             lang = Locale.current.languageCode ?? "en"
         }
         // For debugging - print current language
         print("Current app language: \(lang)")
-        print("Current locale language: \(Locale.current.languageCode ?? "unknown")")
+        if #available(iOS 16.0, *) {
+            print("Current locale language: \(Locale.current.language.languageCode?.identifier ?? "unknown")")
+        } else {
+            print("Current locale language: \(Locale.current.languageCode ?? "unknown")")
+        }
         
         // First, process BLT Sandwich explicitly
         print("\n--- Looking specifically for BLT Sandwich ---")
@@ -1002,13 +1051,132 @@ class FoodDatabaseService: ObservableObject {
     @MainActor
     func checkAndTranslateIfNeeded() async {
         let lang = LanguageManager.shared.currentLanguage
-        if lang != "en" && lastTranslatedLanguage != lang {
+        
+        // Always check if translations are missing, even if language hasn't changed
+        let needsTranslation = lang != "en" && (lastTranslatedLanguage != lang || hasIncompleteTranslations(for: lang))
+        
+        if needsTranslation {
             print("[FoodDatabaseService] Translating all foods for language: \(lang)")
+            
+            // First, translate the most common foods immediately for quick UI update
+            await translateCommonFoodsFirst(for: lang)
+            
+            // Then translate all remaining foods
             let _ = await translateAllFoodItems()
             lastTranslatedLanguage = lang
             DispatchQueue.main.async {
                 self.objectWillChange.send()
             }
         }
+    }
+    
+    // Translate the most common/visible foods first for immediate UI update
+    @MainActor
+    func translateCommonFoodsFirst(for language: String) async {
+        let commonFoods = [
+            "Cooked Green Peas", "Broccoli", "Beef Stew", "Oatmeal", "Greek Salad",
+            "Apple", "Banana", "Chicken", "Rice", "Pasta", "Bread", "Milk", "Cheese",
+            "Salmon", "Tuna", "Yogurt", "Eggs", "Spinach", "Carrot", "Potato"
+        ]
+        
+        let commonTranslations: [String: [String: String]] = [
+            "Cooked Green Peas": ["he": "אפונה ירוקה מבושלת", "fr": "Petits pois cuits", "es": "Guisantes verdes cocidos"],
+            "Broccoli": ["he": "ברוקולי", "fr": "Brocoli", "es": "Brócoli"],
+            "Beef Stew": ["he": "נזיד בקר", "fr": "Ragoût de bœuf", "es": "Estofado de carne"],
+            "Oatmeal": ["he": "שיבולת שועל", "fr": "Flocons d'avoine", "es": "Avena"],
+            "Greek Salad": ["he": "סלט יווני", "fr": "Salade grecque", "es": "Ensalada griega"],
+            "Apple": ["he": "תפוח", "fr": "Pomme", "es": "Manzana"],
+            "Banana": ["he": "בננה", "fr": "Banane", "es": "Plátano"],
+            "Chicken": ["he": "עוף", "fr": "Poulet", "es": "Pollo"],
+            "Rice": ["he": "אורז", "fr": "Riz", "es": "Arroz"],
+            "Pasta": ["he": "פסטה", "fr": "Pâtes", "es": "Pasta"],
+            "Bread": ["he": "לחם", "fr": "Pain", "es": "Pan"],
+            "Milk": ["he": "חלב", "fr": "Lait", "es": "Leche"],
+            "Cheese": ["he": "גבינה", "fr": "Fromage", "es": "Queso"],
+            "Salmon": ["he": "סלמון", "fr": "Saumon", "es": "Salmón"],
+            "Tuna": ["he": "טונה", "fr": "Thon", "es": "Atún"],
+            "Yogurt": ["he": "יוגורט", "fr": "Yaourt", "es": "Yogur"],
+            "Eggs": ["he": "ביצים", "fr": "Œufs", "es": "Huevos"],
+            "Spinach": ["he": "תרד", "fr": "Épinards", "es": "Espinacas"],
+            "Carrot": ["he": "גזר", "fr": "Carotte", "es": "Zanahoria"],
+            "Potato": ["he": "תפוח אדמה", "fr": "Pomme de terre", "es": "Papa"]
+        ]
+        
+        var updated = false
+        
+        for idx in foodItems.indices {
+            let foodName = foodItems[idx].name
+            
+            if commonFoods.contains(foodName) {
+                if let translations = commonTranslations[foodName] {
+                    switch language {
+                    case "he":
+                        if let heTranslation = translations["he"] {
+                            foodItems[idx].nameHe = heTranslation
+                            updated = true
+                            print("Quick Hebrew translation: \(foodName) -> \(heTranslation)")
+                        }
+                    case "fr":
+                        if let frTranslation = translations["fr"] {
+                            foodItems[idx].nameFr = frTranslation
+                            updated = true
+                            print("Quick French translation: \(foodName) -> \(frTranslation)")
+                        }
+                    case "es":
+                        if let esTranslation = translations["es"] {
+                            foodItems[idx].nameEs = esTranslation
+                            updated = true
+                            print("Quick Spanish translation: \(foodName) -> \(esTranslation)")
+                        }
+                    default:
+                        break
+                    }
+                }
+            }
+        }
+        
+        if updated {
+            // Save immediately for quick access
+            if let encoded = try? JSONEncoder().encode(foodItems) {
+                UserDefaults.standard.set(encoded, forKey: "savedFoods")
+                print("Saved quick translations to UserDefaults")
+            }
+            
+            // Force UI update
+            DispatchQueue.main.async {
+                self.objectWillChange.send()
+            }
+        }
+    }
+    
+    // Check if there are incomplete translations for the given language
+    private func hasIncompleteTranslations(for language: String) -> Bool {
+        // Check first 10 foods to see if they have translations
+        let sampleSize = min(10, foodItems.count)
+        let sampleFoods = Array(foodItems.prefix(sampleSize))
+        
+        for food in sampleFoods {
+            switch language {
+            case "he":
+                if food.nameHe == nil || food.nameHe?.isEmpty == true {
+                    print("[FoodDatabaseService] Missing Hebrew translation for: \(food.name)")
+                    return true
+                }
+            case "fr":
+                if food.nameFr == nil || food.nameFr?.isEmpty == true {
+                    print("[FoodDatabaseService] Missing French translation for: \(food.name)")
+                    return true
+                }
+            case "es":
+                if food.nameEs == nil || food.nameEs?.isEmpty == true {
+                    print("[FoodDatabaseService] Missing Spanish translation for: \(food.name)")
+                    return true
+                }
+            default:
+                break
+            }
+        }
+        
+        return false
     }
 } 

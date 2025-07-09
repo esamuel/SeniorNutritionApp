@@ -22,11 +22,13 @@ private struct TimerSectionView: View {
                     .stroke(lineWidth: 20)
                     .opacity(0.3)
                     .foregroundColor(fastingState == .fasting ? .green : .orange)
+                    .frame(width: 250, height: 250) // Set a specific size for the circle
                 
                 Circle()
                     .trim(from: 0, to: CGFloat(calculatePercentageRemaining()) / 100)
                     .stroke(style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
                     .foregroundColor(fastingState == .fasting ? .green : .orange)
+                    .frame(width: 250, height: 250) // Match the size of the background circle
                     .rotationEffect(Angle(degrees: -90))
                 
                 VStack(spacing: 5) {
@@ -34,7 +36,7 @@ private struct TimerSectionView: View {
                     Text(formatTimeString(hours: remaining.hours, minutes: remaining.minutes))
                         .font(.system(size: textSize + 20, weight: .bold))
                         .contentTransition(.numericText())
-                    Text(String(format: NSLocalizedString("%d percent remain.", comment: ""), calculatePercentageRemaining()))
+                    Text(String(format: "%d%%", calculatePercentageRemaining()))
                         .font(.system(size: textSize))
                         .foregroundColor(.secondary)
                         .contentTransition(.numericText())
@@ -46,12 +48,12 @@ private struct TimerSectionView: View {
             .padding(.bottom, 20)
             
             HStack {
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 5) {
                     Text(NSLocalizedString("Last Meal", comment: ""))
                         .font(.system(size: textSize - 2))
                         .foregroundColor(.secondary)
                     Button(action: onShowLastMealPicker) {
-                        Text(lastMealTime.localizedTimeString())
+                        Text(DateFormatter.localizedTimeFormatter().string(from: lastMealTime))
                             .font(.system(size: textSize))
                     }
                 }
@@ -61,7 +63,7 @@ private struct TimerSectionView: View {
                         .font(.system(size: textSize - 2))
                         .foregroundColor(.secondary)
                     Button(action: onShowNextMealPicker) {
-                        Text(nextMealTime.localizedTimeString())
+                        Text(DateFormatter.localizedTimeFormatter().string(from: nextMealTime))
                             .font(.system(size: textSize))
                     }
                 }
@@ -141,13 +143,82 @@ private struct TimerSectionView: View {
     }
     
     private func formatTimeString(hours: Int, minutes: Int) -> String {
-        return String(format: "%02d:%02d", hours, minutes)
+        return String(format: "%d:%02d", hours, minutes)
+    }
+}
+
+// MARK: - TimelineView
+struct TimelineView: View {
+    let lastMealTime: Date
+    let nextMealTime: Date
+    let textSize: CGFloat
+    let timeFormatter: DateFormatter
+
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack(alignment: .leading) {
+                // Background track
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color(.systemGray5))
+                    .frame(height: 40)
+
+                // Fasting window segment
+                let fastingStartPosition = timeToPosition(date: lastMealTime, width: geometry.size.width)
+                let fastingEndPosition = timeToPosition(date: nextMealTime, width: geometry.size.width)
+                let fastingWidth = max(0, fastingEndPosition - fastingStartPosition)
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color.red.opacity(0.6))
+                    .frame(width: fastingWidth, height: 40)
+                    .position(x: fastingStartPosition + fastingWidth/2, y: 20)
+
+                // Eating window segment
+                let eatingStartPosition = fastingEndPosition
+                let eatingEndPosition = timeToPosition(date: lastMealTime, width: geometry.size.width) + geometry.size.width
+                let eatingWidth = max(0, eatingEndPosition - eatingStartPosition)
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color.green.opacity(0.6))
+                    .frame(width: eatingWidth, height: 40)
+                    .position(x: eatingStartPosition + eatingWidth/2, y: 20)
+
+                // Current time indicator
+                Rectangle()
+                    .fill(Color.primary)
+                    .frame(width: 2, height: 50)
+                    .position(x: timeToPosition(date: Date(), width: geometry.size.width), y: 20)
+
+                // Time labels
+                VStack {
+                    Spacer()
+                    HStack {
+                        Text("12 AM")
+                            .font(.system(size: textSize - 4))
+                            .foregroundColor(.secondary)
+                        Spacer()
+                        Text("12 PM")
+                            .font(.system(size: textSize - 4))
+                            .foregroundColor(.secondary)
+                        Spacer()
+                        Text("12 AM")
+                            .font(.system(size: textSize - 4))
+                            .foregroundColor(.secondary)
+                    }
+                }
+            }
+        }
+        .frame(height: 60)
+    }
+
+    private func timeToPosition(date: Date, width: CGFloat) -> CGFloat {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.hour, .minute], from: date)
+        let totalMinutes = (components.hour ?? 0) * 60 + (components.minute ?? 0)
+        let percentage = CGFloat(totalMinutes) / CGFloat(24 * 60)
+        return percentage * width
     }
 }
 
 // MARK: - TimelineSectionView
 private struct TimelineSectionView: View {
-    let medications: [Medication]
     let lastMealTime: Date
     let nextMealTime: Date
     let textSize: CGFloat
@@ -175,26 +246,6 @@ private struct TimelineSectionView: View {
                 }
             }
             .padding(.top, 10)
-            
-            if !medications.isEmpty {
-                Text(NSLocalizedString("Medication Schedule", comment: ""))
-                    .font(.system(size: textSize - 2, weight: .medium))
-                    .padding(.top, 5)
-                
-                ForEach(medications) { medication in
-                    HStack {
-                        Image(systemName: "pill.fill")
-                            .foregroundColor(.blue)
-                        Text(medication.name)
-                            .font(.system(size: textSize - 2))
-                        Spacer()
-                        Text(formatFirstTime(for: medication))
-                            .font(.system(size: textSize - 2))
-                            .foregroundColor(.secondary)
-                    }
-                    .padding(.vertical, 5)
-                }
-            }
         }
         .padding()
         .background(Color(.systemBackground))
@@ -205,25 +256,12 @@ private struct TimelineSectionView: View {
     private func formatTimeRange(start: Date, end: Date) -> String {
         return "\(timeFormatter.string(from: start)) - \(timeFormatter.string(from: end))"
     }
-    
-    private func formatFirstTime(for medication: Medication) -> String {
-        guard let firstTime = medication.timesOfDay.first else { return "" }
-        
-        let calendar = Calendar.current
-        var components = DateComponents()
-        components.hour = firstTime.hour
-        components.minute = firstTime.minute
-        
-        if let date = calendar.date(from: components) {
-            return DateFormattingUtility.shared.formatTime(date)
-        }
-        return String(format: "%02d:%02d", firstTime.hour, firstTime.minute)
-    }
 }
 
 // MARK: - FastingTimerView
 struct FastingTimerView: View {
     @EnvironmentObject private var userSettings: UserSettings
+    @EnvironmentObject var languageManager: LanguageManager
     @StateObject private var fastingManager = FastingManager.shared
     
     @State private var showingProtocolPicker = false
@@ -237,11 +275,11 @@ struct FastingTimerView: View {
     
     // Use our localized time formatter
     private var timeFormatter: DateFormatter {
-        return FastingManager.getLocalizedTimeFormatter()
+        return DateFormatter.localizedTimeFormatter()
     }
     
     private func formatTimeRange(start: Date, end: Date) -> String {
-        return Date.localizedTimeRange(start: start, end: end)
+        return "\(timeFormatter.string(from: start)) - \(timeFormatter.string(from: end))"
     }
     
     private func endFasting() {
@@ -364,11 +402,7 @@ struct FastingTimerView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        if userSettings.activeFastingProtocol == .custom {
-                            showingCustomProtocol = true
-                        } else {
                             showingProtocolPicker = true
-                        }
                     }) {
                         HStack {
                             Text(userSettings.activeFastingProtocol.localizedTitle)
@@ -381,7 +415,7 @@ struct FastingTimerView: View {
                     .accessibilityLabel(NSLocalizedString("Change Fasting Protocol", comment: ""))
                 }
             }
-            .sheet(isPresented: $showingProtocolPicker) {
+                .sheet(isPresented: $showingProtocolPicker) {
                 protocolPickerView
             }
             .sheet(isPresented: $showingLastMealPicker) {
@@ -421,16 +455,23 @@ struct FastingTimerView: View {
         .navigationViewStyle(StackNavigationViewStyle())
         .onAppear {
             fastingManager.setUserSettings(userSettings)
+            // Initialize custom protocol values if they exist
+            if userSettings.activeFastingProtocol == .custom {
+                let customProtocol = FastingProtocol.getCustomProtocol()
+                if customProtocol.fastingHours > 0 && customProtocol.eatingHours > 0 {
+                    customFastingHours = customProtocol.fastingHours
+                    customEatingHours = customProtocol.eatingHours
+                }
+            }
         }
     }
     
-    // Current protocol section
     private var currentProtocolSection: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 15) {
             Text(String(format: NSLocalizedString("Current Protocol: %@", comment: ""), userSettings.activeFastingProtocol.localizedTitle))
                 .font(.system(size: userSettings.textSize.size, weight: .bold))
             
-            Text(userSettings.activeFastingProtocol.description.localized)
+            Text(userSettings.activeFastingProtocol.localizedDescription)
                 .font(.system(size: userSettings.textSize.size - 2))
                 .foregroundColor(.secondary)
         }
@@ -457,7 +498,6 @@ struct FastingTimerView: View {
     // Timeline section
     private var timelineSection: some View {
         TimelineSectionView(
-            medications: userSettings.medications,
             lastMealTime: fastingManager.lastMealTime,
             nextMealTime: fastingManager.nextMealTime,
             textSize: userSettings.textSize.size,
@@ -487,7 +527,7 @@ struct FastingTimerView: View {
                 VStack(spacing: 20) {
                     ForEach(FastingProtocol.allCases) { proto in
                         ProtocolCard(
-                            protocol: proto,
+                            fastingProtocol: proto,
                             isSelected: userSettings.activeFastingProtocol == proto,
                             onSelect: {
                                 if proto == .custom {
@@ -513,294 +553,132 @@ struct FastingTimerView: View {
             }
             .sheet(isPresented: $showingCustomProtocolSheet) {
                 customProtocolView
+                    .onAppear {
+                        // Initialize with existing custom protocol values if they exist
+                        let customProtocol = FastingProtocol.getCustomProtocol()
+                        if customProtocol.fastingHours > 0 && customProtocol.eatingHours > 0 {
+                            customFastingHours = customProtocol.fastingHours
+                            customEatingHours = customProtocol.eatingHours
+                        }
+                    }
             }
         }
     }
     
     // Protocol Card View
-    private struct ProtocolCard: View {
-        let `protocol`: FastingProtocol
-        let isSelected: Bool
-        let onSelect: () -> Void
-        @State private var isExpanded = false
-        @EnvironmentObject private var userSettings: UserSettings
-        
-        private var benefitsSection: some View {
-            VStack(alignment: .leading, spacing: 8) {
-                Text(NSLocalizedString("Benefits", comment: ""))
-                    .font(.system(size: userSettings.textSize.size, weight: .bold))
-                
-                ForEach(benefits, id: \.self) { benefit in
-                    HStack(alignment: .top, spacing: 8) {
+    // MARK: - ProtocolCard
+private struct ProtocolCard: View {
+    let fastingProtocol: FastingProtocol
+    let isSelected: Bool
+    let onSelect: () -> Void
+    @State private var isExpanded = false
+    @EnvironmentObject private var userSettings: UserSettings
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 15) {
+            Button(action: {
+                withAnimation(.spring()) {
+                    isExpanded.toggle()
+                }
+            }) {
+                HStack {
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text(fastingProtocol.localizedTitle)
+                            .font(.system(size: userSettings.textSize.size + 2, weight: .bold))
+                        Text(fastingProtocol.localizedDescription)
+                            .font(.system(size: userSettings.textSize.size - 1))
+                            .foregroundColor(.secondary)
+                    }
+                    Spacer()
+                    if isSelected {
                         Image(systemName: "checkmark.circle.fill")
                             .foregroundColor(.green)
-                        Text(NSLocalizedString(benefit, comment: ""))
-                            .font(.system(size: userSettings.textSize.size - 2))
+                            .font(.title)
                     }
+                    Image(systemName: "chevron.down")
+                        .foregroundColor(.gray)
+                        .rotationEffect(.degrees(isExpanded ? -180 : 0))
                 }
             }
-        }
-        
-        private var recommendedForSection: some View {
-            VStack(alignment: .leading, spacing: 8) {
-                Text(NSLocalizedString("Recommended For", comment: ""))
-                    .font(.system(size: userSettings.textSize.size, weight: .bold))
-                
-                ForEach(recommendedFor, id: \.self) { recommendation in
-                    HStack(alignment: .top, spacing: 8) {
-                        Image(systemName: "person.fill")
-                            .foregroundColor(.blue)
-                        Text(NSLocalizedString(recommendation, comment: ""))
-                            .font(.system(size: userSettings.textSize.size - 2))
+            .buttonStyle(PlainButtonStyle())
+
+            if isExpanded {
+                VStack(alignment: .leading, spacing: 20) {
+                    DetailSectionView(
+                        title: NSLocalizedString("Benefits", comment: ""),
+                        details: fastingProtocol.benefits,
+                        icon: "heart.fill",
+                        iconColor: .pink,
+                        textSize: userSettings.textSize.size
+                    )
+                    DetailSectionView(
+                        title: NSLocalizedString("Recommended For", comment: ""),
+                        details: fastingProtocol.recommendedFor,
+                        icon: "person.fill",
+                        iconColor: .blue,
+                        textSize: userSettings.textSize.size
+                    )
+                    DetailSectionView(
+                        title: NSLocalizedString("Guidelines", comment: ""),
+                        details: fastingProtocol.guidelines,
+                        icon: "list.bullet.clipboard.fill",
+                        iconColor: .orange,
+                        textSize: userSettings.textSize.size
+                    )
+                    
+                    Button(action: onSelect) {
+                        Text(isSelected ? NSLocalizedString("Currently Selected", comment: "") : NSLocalizedString("Select This Protocol", comment: ""))
+                            .font(.system(size: userSettings.textSize.size, weight: .semibold))
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(isSelected ? Color.gray : Color.blue)
+                            .cornerRadius(12)
+                            .shadow(radius: isSelected ? 0 : 3)
                     }
+                    .disabled(isSelected)
+                }
+                .padding(.top, 10)
+                .transition(.opacity)
+            }
+        }
+        .padding()
+        .background(Color(.secondarySystemBackground))
+        .cornerRadius(16)
+        .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 2)
+    }
+}
+
+// MARK: - DetailSectionView
+private struct DetailSectionView: View {
+    let title: String
+    let details: [String]
+    let icon: String
+    let iconColor: Color
+    let textSize: CGFloat
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                Image(systemName: icon)
+                    .foregroundColor(iconColor)
+                Text(title)
+                    .font(.system(size: textSize, weight: .bold))
+            }
+            
+            ForEach(details.filter { !$0.isEmpty }, id: \.self) { detail in
+                HStack(alignment: .top, spacing: 8) {
+                    Image(systemName: "checkmark.circle")
+                        .foregroundColor(.green)
+                        .font(.system(size: textSize - 2))
+                    Text(detail)
+                        .font(.system(size: textSize - 2))
+                    Spacer()
                 }
             }
-        }
-        
-        private var guidelinesSection: some View {
-            VStack(alignment: .leading, spacing: 8) {
-                Text(NSLocalizedString("Guidelines", comment: ""))
-                    .font(.system(size: userSettings.textSize.size, weight: .bold))
-                
-                ForEach(guidelines, id: \.self) { guideline in
-                    HStack(alignment: .top, spacing: 8) {
-                        Image(systemName: "info.circle.fill")
-                            .foregroundColor(.orange)
-                        Text(NSLocalizedString(guideline, comment: ""))
-                            .font(.system(size: userSettings.textSize.size - 2))
-                    }
-                }
-            }
-        }
-        
-        private var benefits: [String] {
-            switch `protocol` {
-            case .twelveTwelve:
-                return [
-                    "Gentle introduction to intermittent fasting",
-                    "Helps regulate blood sugar levels",
-                    "Supports better sleep patterns",
-                    "Minimal disruption to daily routine"
-                ]
-            case .fourteenTen:
-                return [
-                    "Enhanced fat burning",
-                    "Improved metabolic flexibility",
-                    "Better appetite control",
-                    "Increased mental clarity",
-                    "Supports cellular repair processes"
-                ]
-            case .sixteenEight:
-                return [
-                    "Maximum autophagy benefits",
-                    "Significant fat burning potential",
-                    "Improved insulin sensitivity",
-                    "Enhanced cognitive function",
-                    "Promotes cellular repair and longevity"
-                ]
-            case .custom:
-                return [
-                    "Tailored to your specific needs",
-                    "Flexible scheduling",
-                    "Adaptable to your lifestyle",
-                    "Can be adjusted as needed"
-                ]
-            }
-        }
-        
-        private var recommendedFor: [String] {
-            switch `protocol` {
-            case .twelveTwelve:
-                return [
-                    "Beginners to intermittent fasting",
-                    "Those with regular medication schedules",
-                    "People with active social lives",
-                    "Those who prefer eating dinner with family"
-                ]
-            case .fourteenTen:
-                return [
-                    "Experienced fasters looking for more benefits",
-                    "Those with stable blood sugar control",
-                    "People looking for weight management",
-                    "Those with flexible morning schedules"
-                ]
-            case .sixteenEight:
-                return [
-                    "Experienced fasters",
-                    "Those seeking maximum health benefits",
-                    "People with stable health conditions",
-                    "Those comfortable with longer fasting periods"
-                ]
-            case .custom:
-                return [
-                    "Those with unique scheduling needs",
-                    "People with specific health considerations",
-                    "Those who've tried other protocols",
-                    "People with varying daily routines"
-                ]
-            }
-        }
-        
-        private var guidelines: [String] {
-            switch `protocol` {
-            case .twelveTwelve:
-                return [
-                    "Start your fast after dinner",
-                    "Skip breakfast or have it later",
-                    "Stay hydrated during fasting",
-                    "Break fast with a light meal",
-                    "Take medications as prescribed with food if needed"
-                ]
-            case .fourteenTen:
-                return [
-                    "Consider ending eating by 8 PM",
-                    "Break fast around 10 AM",
-                    "Plan meals within the 10-hour window",
-                    "Stay active but avoid intense exercise while fasting",
-                    "Monitor how you feel and adjust if needed"
-                ]
-            case .sixteenEight:
-                return [
-                    "End eating by 7 PM",
-                    "Break fast at 11 AM",
-                    "Plan 2-3 nutritious meals in eating window",
-                    "Stay well hydrated",
-                    "Consider electrolyte supplementation",
-                    "Break fast with protein-rich foods"
-                ]
-            case .custom:
-                return [
-                    "Choose times that fit your schedule",
-                    "Maintain consistent fasting periods",
-                    "Listen to your body's signals",
-                    "Adjust the protocol as needed",
-                    "Keep track of your progress"
-                ]
-            }
-        }
-        
-        var body: some View {
-            VStack(alignment: .leading, spacing: 15) {
-                Button(action: {
-                    withAnimation {
-                        isExpanded.toggle()
-                    }
-                }) {
-                    HStack {
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text(`protocol`.localizedTitle)
-                                .font(.system(size: userSettings.textSize.size, weight: .bold))
-                            
-                            Text(`protocol`.description)
-                                .font(.system(size: userSettings.textSize.size - 2))
-                                .foregroundColor(.secondary)
-                            
-                            if `protocol` == .custom && userSettings.activeFastingProtocol == .custom {
-                                Text("\(UserDefaults.standard.integer(forKey: "customFastingHours")):\(UserDefaults.standard.integer(forKey: "customEatingHours")) Protocol")
-                                    .font(.system(size: userSettings.textSize.size - 2))
-                                    .foregroundColor(.blue)
-                            }
-                        }
-                        
-                        Spacer()
-                        
-                        Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
-                            .foregroundColor(.gray)
-                    }
-                }
-                .buttonStyle(PlainButtonStyle())
-                
-                if isExpanded {
-                    VStack(alignment: .leading, spacing: 15) {
-                        benefitsSection
-                        recommendedForSection
-                        guidelinesSection
-                        
-                        Button(action: onSelect) {
-                            Text(isSelected ? "Currently Selected" : "Select This Protocol")
-                                .font(.system(size: userSettings.textSize.size))
-                                .foregroundColor(.white)
-                                .frame(maxWidth: .infinity)
-                                .padding()
-                                .background(isSelected ? Color.green : Color.blue)
-                                .cornerRadius(10)
-                        }
-                        .disabled(isSelected)
-                    }
-                    .transition(.opacity.combined(with: .move(edge: .top)))
-                }
-            }
-            .padding()
-            .background(Color(.systemBackground))
-            .cornerRadius(16)
         }
     }
-    
-    // MARK: - TimelineView
-    private struct TimelineView: View {
-        let lastMealTime: Date
-        let nextMealTime: Date
-        let medications: [Medication]
-        let textSize: CGFloat
-        let timeFormatter: DateFormatter
-        
-        var body: some View {
-            GeometryReader { geometry in
-                ZStack(alignment: .leading) {
-                    // Background track
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color(.systemGray5))
-                        .frame(height: 40)
-                    // Fasting window segment
-                    let fastingStartPosition = timeToPosition(date: lastMealTime, width: geometry.size.width)
-                    let fastingEndPosition = timeToPosition(date: nextMealTime, width: geometry.size.width)
-                    let fastingWidth = max(0, fastingEndPosition - fastingStartPosition)
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.red)
-                        .frame(width: fastingWidth, height: 40)
-                        .position(x: fastingStartPosition + fastingWidth/2, y: 20)
-                    // Eating window segment
-                    let eatingStartPosition = fastingEndPosition
-                    let eatingEndPosition = timeToPosition(date: lastMealTime, width: geometry.size.width) + geometry.size.width
-                    let eatingWidth = max(0, eatingEndPosition - eatingStartPosition)
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.green)
-                        .frame(width: eatingWidth, height: 40)
-                        .position(x: eatingStartPosition + eatingWidth/2, y: 20)
-                    // Current time indicator
-                    Rectangle()
-                        .fill(Color.red)
-                        .frame(width: 2, height: 50)
-                        .position(x: timeToPosition(date: Date(), width: geometry.size.width), y: 20)
-                    // Time labels
-                    VStack {
-                        Spacer()
-                        HStack {
-                            Text("12 AM")
-                                .font(.system(size: textSize - 4))
-                                .foregroundColor(.secondary)
-                            Spacer()
-                            Text("12 PM")
-                                .font(.system(size: textSize - 4))
-                                .foregroundColor(.secondary)
-                            Spacer()
-                            Text("12 AM")
-                                .font(.system(size: textSize - 4))
-                                .foregroundColor(.secondary)
-                        }
-                    }
-                }
-            }
-        }
-        
-        private func timeToPosition(date: Date, width: CGFloat) -> CGFloat {
-            let calendar = Calendar.current
-            let components = calendar.dateComponents([.hour, .minute], from: date)
-            let totalMinutes = (components.hour ?? 0) * 60 + (components.minute ?? 0)
-            let percentage = CGFloat(totalMinutes) / CGFloat(24 * 60)
-            return percentage * width
-        }
-    }
+}
     
     // MARK: - ActionButtonsSectionView
     private struct ActionButtonsSectionView: View {
@@ -878,7 +756,11 @@ struct FastingTimerView: View {
         }
     }
     
-    struct FastingTimerView_Previews: PreviewProvider {
+
+
+
+
+struct FastingTimerView_Previews: PreviewProvider {
         static var previews: some View {
             FastingTimerView()
                 .environmentObject(UserSettings())

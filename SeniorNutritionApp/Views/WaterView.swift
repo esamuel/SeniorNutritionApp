@@ -119,7 +119,16 @@ struct WaterView: View {
                 .padding(.horizontal)
             }
         }
-        .navigationTitle(NSLocalizedString("Water Tracking", comment: ""))
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text(NSLocalizedString("Water Tracking", comment: ""))
+                    .font(.headline)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.75)
+                    .multilineTextAlignment(.center)
+            }
+        }
         .sheet(isPresented: $showingCustomAmount) {
             customAmountSheet
         }

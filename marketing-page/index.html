@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senior Nutrition App - Healthy Aging Made Simple</title>
+    <meta name="description" content="The complete nutrition and health tracking app designed specifically for adults 50+. Voice-guided meal logging, medication reminders, and personalized health insights.">
+    <meta name="keywords" content="senior nutrition, healthy aging, meal tracking, medication reminders, health monitoring, nutrition app for seniors">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .header .subtitle {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .header .description {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .btn-primary:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background: #f8f9fa;
+            transform: translateY(-2px);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .benefit-icon {
+            font-size: 1.5em;
+            color: #667eea;
+            margin-top: 5px;
+        }
+        
+        .benefit-content h4 {
+            font-size: 1.2em;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .benefit-content p {
+            color: #666;
+            font-size: 0.95em;
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .pricing-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
+        }
+        
+        .pricing-card.featured {
+            border: 3px solid #667eea;
+            transform: scale(1.05);
+        }
+        
+        .pricing-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #667eea;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+        
+        .pricing-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .pricing-card .price {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .pricing-card .period {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .pricing-features li {
+            padding: 8px 0;
+            color: #666;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .pricing-features li:before {
+            content: "✓";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        /* App Store Section */
+        .app-store {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .app-store h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        
+        .app-store p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .store-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .store-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            border: 2px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .store-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5em;
+            }
+            
+            .header .subtitle {
+                font-size: 1.2em;
+            }
+            
+            .section-title {
+                font-size: 2em;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <section class="header">
+        <div class="container">
+            <h1>🍎 Senior Nutrition App</h1>
+            <p class="subtitle">Healthy Aging Made Simple</p>
+            <p class="description">The complete nutrition and health tracking app designed specifically for adults 50+. Voice-guided meal logging, medication reminders, and personalized health insights.</p>
+            <div class="cta-buttons">
+                <a href="#features" class="btn btn-primary">Learn More</a>
+                <a href="#pricing" class="btn btn-secondary">Try Free for 7 Days</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Senior Nutrition App?</h2>
+            <p class="section-subtitle">Designed specifically for adults 50+ with features that make healthy aging simple and enjoyable</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎤</div>
+                    <h3>Voice-Guided Tracking</h3>
+                    <p>Simply speak your meals and let our advanced voice recognition log everything automatically. No typing required!</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💊</div>
+                    <h3>Smart Medication Management</h3>
+                    <p>Visual pill identification, custom reminders, and drug interaction alerts keep you safe and on schedule.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Comprehensive Health Monitoring</h3>
+                    <p>Track blood pressure, weight, heart rate, and more with beautiful charts and insights.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔬</div>
+                    <h3>Science-Based Nutrition</h3>
+                    <p>Focus on the 7 essential nutrients seniors need more of, backed by the latest research in healthy aging.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Multilingual Support</h3>
+                    <p>Available in English, Spanish, French, and Hebrew with culturally appropriate meal suggestions.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">👨‍⚕️</div>
+                    <h3>Healthcare Integration</h3>
+                    <p>Export detailed reports for your doctor visits and sync with Apple Health for complete care coordination.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="benefits">
+        <div class="container">
+            <h2 class="section-title">Built for Your Success</h2>
+            <p class="section-subtitle">Every feature is designed with seniors in mind</p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">✨</div>
+                    <div class="benefit-content">
+                        <h4>Easy to Use</h4>
+                        <p>Large text, simple navigation, and voice commands make the app accessible for everyone.</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">🔒</div>
+                    <div class="benefit-content">
+                        <h4>Privacy First</h4>
+                        <p>Your health data stays private and secure with end-to-end encryption and local storage.</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">📱</div>
+                    <div class="benefit-content">
+                        <h4>Works Offline</h4>
+                        <p>Track your meals and medications even without internet connection.</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">🎯</div>
+                    <div class="benefit-content">
+                        <h4>Personalized Insights</h4>
+                        <p>Get recommendations tailored to your age, health conditions, and dietary preferences.</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">🏆</div>
+                    <div class="benefit-content">
+                        <h4>Proven Results</h4>
+                        <p>Based on research from leading geriatric nutrition experts and clinical studies.</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">💬</div>
+                    <div class="benefit-content">
+                        <h4>24/7 Support</h4>
+                        <p>Get help in your preferred language with our dedicated senior support team.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">Choose Your Plan</h2>
+            <p class="section-subtitle">Start free, upgrade when you're ready</p>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Free</h3>
+                    <div class="price">$0</div>
+                    <div class="period">Forever</div>
+                    <ul class="pricing-features">
+                        <li>7-day health analytics</li>
+                        <li>Basic meal tracking</li>
+                        <li>Water reminders</li>
+                        <li>Essential features</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">Get Started</a>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <h3>Advanced</h3>
+                    <div class="price">$4.99</div>
+                    <div class="period">per month</div>
+                    <ul class="pricing-features">
+                        <li>30-day detailed analytics</li>
+                        <li>Voice assistant</li>
+                        <li>Data export</li>
+                        <li>Advanced reminders</li>
+                        <li>Personalized tips</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">7-Day Free Trial</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Premium</h3>
+                    <div class="price">$9.99</div>
+                    <div class="period">per month</div>
+                    <ul class="pricing-features">
+                        <li>Unlimited analytics</li>
+                        <li>AI meal suggestions</li>
+                        <li>Priority support</li>
+                        <li>Family sharing</li>
+                        <li>Custom themes</li>
+                        <li>Early access</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">Start Premium</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Store -->
+    <section class="app-store">
+        <div class="container">
+            <h2>Download Today</h2>
+            <p>Join thousands of seniors who are already living healthier lives</p>
+            <div class="store-buttons">
+                <a href="#" class="store-btn">📱 Download on App Store</a>
+                <a href="https://esamuel.github.io/senior-nutrition-support/" class="store-btn">🛠️ Support & Help</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="https://esamuel.github.io/senior-nutrition-support/">Support</a>
+                <a href="mailto:support@seniornutritionapp.com">Contact</a>
+            </div>
+            <p>&copy; 2024 Senior Nutrition App. All rights reserved.</p>
+            <p>Designed for adults 50+ to support healthy aging</p>
+        </div>
+    </footer>
+</body>
+</html> 

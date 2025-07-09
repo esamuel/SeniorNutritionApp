@@ -54,7 +54,7 @@ struct HealthTipsCarousel: View {
                     
                     if let action = onViewMoreTapped {
                         Button(action: action) {
-                            Text(NSLocalizedString("View More", comment: ""))
+                            Text(NSLocalizedString("View More", comment: "Button to view more health tips"))
                                 .font(.subheadline)
                                 .foregroundColor(.accentColor)
                         }

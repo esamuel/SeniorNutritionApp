@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct WaterReminderView: View {
+    @EnvironmentObject var languageManager: LanguageManager
     @StateObject private var manager = WaterReminderManager()
     @State private var showingSettings = false
     @State private var showingCustomAmount = false
@@ -86,8 +87,15 @@ struct WaterReminderView: View {
                     }
                 }
             }
-            .navigationTitle(NSLocalizedString("Water Reminder", comment: ""))
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text(NSLocalizedString("Water Reminder", comment: ""))
+                        .font(.headline)
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.75)
+                        .multilineTextAlignment(.center)
+                }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         showingSettings = true
@@ -118,6 +126,7 @@ struct WaterReminderView: View {
 
 struct WaterReminderSettingsView: View {
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject private var premiumManager: PremiumManager
     @ObservedObject var manager: WaterReminderManager
     @State private var dailyGoal: String
     @State private var selectedFrequency: ReminderFrequency
@@ -125,6 +134,7 @@ struct WaterReminderSettingsView: View {
     @State private var startTime: Date
     @State private var endTime: Date
     @State private var isEnabled: Bool
+    @State private var showingPremiumUpgrade = false
     
     init(manager: WaterReminderManager) {
         self.manager = manager
@@ -147,13 +157,9 @@ struct WaterReminderSettingsView: View {
                 Section(header: Text(NSLocalizedString("Reminder Settings", comment: ""))) {
                     Toggle(NSLocalizedString("Enable Reminders", comment: ""), isOn: $isEnabled)
                     
-                    Picker(NSLocalizedString("Frequency", comment: ""), selection: $selectedFrequency) {
-                        ForEach(ReminderFrequency.allCases) { frequency in
-                            Text(NSLocalizedString(frequency.rawValue, comment: "")).tag(frequency)
-                        }
-                    }
+                    frequencyPickerSection
                     
-                    if selectedFrequency == .custom {
+                    if selectedFrequency == .custom && premiumManager.hasAccess(to: PremiumFeature.voiceAssistant) {
                         TextField(NSLocalizedString("Custom Minutes", comment: ""), text: $customMinutes)
                             .keyboardType(.numberPad)
                     }
@@ -174,7 +180,78 @@ struct WaterReminderSettingsView: View {
                     dismiss()
                 }
             )
+            .sheet(isPresented: $showingPremiumUpgrade) {
+                PremiumFeaturesView()
+                    .environmentObject(premiumManager)
+            }
         }
+    }
+    
+    private var frequencyPickerSection: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(NSLocalizedString("Frequency", comment: ""))
+                .font(.headline)
+            
+            Picker(NSLocalizedString("Frequency", comment: ""), selection: $selectedFrequency) {
+                // Basic frequencies available to all users
+                Text(NSLocalizedString("Every Hour", comment: "")).tag(ReminderFrequency.everyHour)
+                Text(NSLocalizedString("Every 2 Hours", comment: "")).tag(ReminderFrequency.every2Hours)
+                
+                // Advanced frequencies for premium users only
+                if premiumManager.hasAccess(to: PremiumFeature.voiceAssistant) {
+                    Text(NSLocalizedString("Every 30 Minutes", comment: "")).tag(ReminderFrequency.every30Minutes)
+                    Text(NSLocalizedString("Every 3 Hours", comment: "")).tag(ReminderFrequency.every3Hours)
+                    Text(NSLocalizedString("Custom", comment: "")).tag(ReminderFrequency.custom)
+                } else {
+                    premiumLockedOption("Every 30 Minutes", .every30Minutes)
+                    premiumLockedOption("Every 3 Hours", .every3Hours)
+                    premiumLockedOption("Custom", .custom)
+                }
+            }
+            .onChange(of: selectedFrequency) { newValue in
+                if !premiumManager.hasAccess(to: PremiumFeature.voiceAssistant) && 
+                   (newValue == .every30Minutes || newValue == .every3Hours || newValue == .custom) {
+                    selectedFrequency = .everyHour
+                    showingPremiumUpgrade = true
+                }
+            }
+            
+            // Premium limitation notice for Free users
+            if !premiumManager.hasAccess(to: PremiumFeature.voiceAssistant) {
+                premiumNotice
+            }
+        }
+    }
+    
+    private func premiumLockedOption(_ title: String, _ frequency: ReminderFrequency) -> some View {
+        HStack {
+            Text(NSLocalizedString(title, comment: ""))
+            Image(systemName: "lock.fill")
+                .foregroundColor(.orange)
+                .font(.caption)
+        }
+        .tag(frequency)
+        .disabled(true)
+    }
+    
+    private var premiumNotice: some View {
+        HStack {
+            Image(systemName: "info.circle.fill")
+                .foregroundColor(.orange)
+            Text(NSLocalizedString("Advanced reminder frequencies are available with Advanced or Premium subscription.", comment: ""))
+                .font(.caption)
+                .foregroundColor(.secondary)
+            Spacer()
+            Button(NSLocalizedString("Upgrade", comment: "")) {
+                showingPremiumUpgrade = true
+            }
+            .font(.caption)
+            .foregroundColor(.blue)
+        }
+        .padding(.horizontal, 8)
+        .padding(.vertical, 4)
+        .background(Color.orange.opacity(0.1))
+        .cornerRadius(8)
     }
     
     private func saveSettings() {

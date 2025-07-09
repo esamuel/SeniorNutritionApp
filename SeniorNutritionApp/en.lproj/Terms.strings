@@ -1,0 +1,27 @@
+/* Terms of Use */
+"terms_of_use_title" = "Terms of Use";
+
+"terms_intro" = "Welcome to Senior Nutrition App. By accessing or using our application, you agree to be bound by these Terms of Use. Please read them carefully before using the app.";
+
+"terms_section_acceptance" = "Acceptance of Terms";
+"terms_content_acceptance" = "By downloading, installing, or using Senior Nutrition App, you acknowledge that you have read, understood, and agree to be bound by these Terms of Use. If you do not agree to these terms, please do not use this application. We reserve the right to modify these terms at any time, and such modifications shall be effective immediately upon posting. Your continued use of the app following any modifications indicates your acceptance of the modified terms.";
+
+"terms_section_health_disclaimer" = "Health Information Disclaimer";
+"terms_content_health_disclaimer" = "The Senior Nutrition App provides general nutrition and health information for educational purposes only. The content is not intended to be a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition. Never disregard professional medical advice or delay seeking it because of something you have read on this app. The use of any information provided on this app is solely at your own risk.";
+
+"terms_section_user_accounts" = "User Accounts and Data";
+"terms_content_user_accounts" = "You are responsible for maintaining the confidentiality of your account information and password. You agree to accept responsibility for all activities that occur under your account. You must provide accurate and complete information when creating your account. Your personal data will be processed according to our Privacy Policy. You may export or delete your data at any time through the app settings. We implement reasonable security measures to protect your data, but we cannot guarantee absolute security.";
+
+"terms_section_ip" = "Intellectual Property Rights";
+"terms_content_ip" = "The Senior Nutrition App and all its contents, features, and functionality (including but not limited to text, graphics, logos, icons, and software) are owned by us or our licensors and are protected by international copyright, trademark, and other intellectual property laws. You may not reproduce, distribute, modify, create derivative works of, publicly display, publicly perform, republish, download, store, or transmit any of the material on our app without our prior written consent.";
+
+"terms_section_termination" = "Termination of Use";
+"terms_content_termination" = "We may, in our sole discretion, terminate or suspend your access to all or part of the Senior Nutrition App for any or no reason, including without limitation, any violation of these Terms of Use. If you wish to terminate your account, you may simply discontinue using the app or delete your account through the app settings. All provisions of the Terms of Use which by their nature should survive termination shall survive, including, without limitation, ownership provisions, warranty disclaimers, indemnity, and limitations of liability.";
+
+"terms_section_liability" = "Limitation of Liability";
+"terms_content_liability" = "To the maximum extent permitted by applicable law, in no event shall the Senior Nutrition App, its affiliates, directors, employees, or licensors be liable for any direct, indirect, punitive, incidental, special, consequential, or exemplary damages, including without limitation, damages for loss of profits, goodwill, use, data, or other intangible losses, arising out of or relating to your use of, or inability to use, the app. Under no circumstance will our total liability to you for all damages, losses, or causes of action exceed the amount you paid for the app, or $50.00 if you have not purchased anything through the app.";
+
+"terms_section_governing_law" = "Governing Law";
+"terms_content_governing_law" = "These Terms of Use and any dispute arising out of or related to them or your use of the Senior Nutrition App shall be governed by and construed in accordance with the laws of the jurisdiction in which our company is registered, without giving effect to any choice or conflict of law provision. Any legal suit, action, or proceeding arising out of, or related to, these Terms of Use or the app shall be instituted exclusively in the courts of the jurisdiction in which our company is registered.";
+
+"terms_last_updated" = "Last Updated: July 1, 2025";

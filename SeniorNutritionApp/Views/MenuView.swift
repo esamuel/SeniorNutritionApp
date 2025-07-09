@@ -2,6 +2,7 @@ import SwiftUI
 
 struct MenuView: View {
     @EnvironmentObject private var userSettings: UserSettings
+    @EnvironmentObject var languageManager: LanguageManager
     @Environment(\.layoutDirection) private var layoutDirection
     
     var body: some View {
@@ -10,15 +11,7 @@ struct MenuView: View {
                 // HEALTH & WELLNESS section
                 Section(header: sectionHeader(NSLocalizedString("HEALTH & WELLNESS", comment: ""))) {
                     menuItem(icon: "pill.fill", title: NSLocalizedString("Medications", comment: ""), color: .purple)
-                    menuItem(icon: "calendar", title: NSLocalizedString("Appointments", comment: ""), color: .blue)
-                    menuItem(icon: "heart.fill", title: NSLocalizedString("Health", comment: ""), color: .red)
                     menuItem(icon: "lightbulb.fill", title: NSLocalizedString("Health Tips", comment: ""), color: .orange)
-                }
-                
-                // ACCOUNT & SETTINGS section
-                Section(header: sectionHeader(NSLocalizedString("ACCOUNT & SETTINGS", comment: ""))) {
-                    menuItem(icon: "person.fill", title: NSLocalizedString("Profile", comment: ""), color: .indigo)
-                    menuItem(icon: "gearshape.fill", title: NSLocalizedString("Settings", comment: ""), color: .gray)
                 }
                 
                 // HELP & SUPPORT section
@@ -64,16 +57,8 @@ struct MenuView: View {
             switch title {
             case NSLocalizedString("Medications", comment: ""):
                 MedicationsView()
-            case NSLocalizedString("Appointments", comment: ""):
-                AppointmentsView()
-            case NSLocalizedString("Health", comment: ""):
-                HealthView()
             case NSLocalizedString("Health Tips", comment: ""):
                 HealthTipsView()
-            case NSLocalizedString("Profile", comment: ""):
-                ProfileView()
-            case NSLocalizedString("Settings", comment: ""):
-                SettingsView()
             case NSLocalizedString("Help", comment: ""):
                 HelpView()
             case NSLocalizedString("Emergency Contacts", comment: ""):

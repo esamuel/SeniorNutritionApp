@@ -445,18 +445,22 @@ struct AppointmentRow: View {
         let now = Date()
         
         if calendar.isDateInToday(date) {
-            return "Today"
+            return NSLocalizedString("Today", comment: "Appointment is today")
         }
         
         if calendar.isDateInTomorrow(date) {
-            return "Tomorrow"
+            return NSLocalizedString("Tomorrow", comment: "Appointment is tomorrow")
         }
         
         let components = calendar.dateComponents([.day], from: now, to: date)
         if let days = components.day, days > 0 {
-            return "\(days) day\(days == 1 ? "" : "s")"
+            if days == 1 {
+                return String(format: NSLocalizedString("%d day", comment: "Single day until appointment"), days)
+            } else {
+                return String(format: NSLocalizedString("%d days", comment: "Multiple days until appointment"), days)
+            }
         } else {
-            return "Past"
+            return NSLocalizedString("Past", comment: "Past appointment")
         }
     }
 }

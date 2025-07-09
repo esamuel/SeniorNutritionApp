@@ -2,6 +2,7 @@ import SwiftUI
 #if canImport(UIKit)
 import UIKit
 #endif
+import Foundation
 
 struct OnboardingView: View {
     @EnvironmentObject private var userSettings: UserSettings
@@ -25,7 +26,7 @@ struct OnboardingView: View {
             title: "Track Your Meals & Nutrition",
             description: "Monitor your diet with our easy-to-use food tracking system, including nutritional analysis and personalized recommendations.",
             imageName: "fork.knife",
-            tips: ["Photo-based meal logging", "Built-in barcode scanner", "Voice input for hands-free recording"]
+            tips: ["Photo-based meal logging", "Built-in barcode scanner (Premium)", "Voice input for hands-free recording"]
         ),
         OnboardingPage(
             title: "Personalized Fasting Protocols",
@@ -72,6 +73,8 @@ struct OnboardingView: View {
                     Button(action: {
                         if isFirstLaunch {
                             userSettings.isOnboardingComplete = true
+                            // Also mark app tour as completed to avoid showing multiple onboarding screens
+                            userSettings.markAppTourCompleted()
                         } else {
                             presentationMode.wrappedValue.dismiss()
                         }
@@ -121,6 +124,8 @@ struct OnboardingView: View {
                         Button(action: {
                             if isFirstLaunch {
                                 userSettings.isOnboardingComplete = true
+                                // Also mark app tour as completed to avoid showing multiple onboarding screens
+                                userSettings.markAppTourCompleted()
                             } else {
                                 presentationMode.wrappedValue.dismiss()
                             }
@@ -185,40 +190,48 @@ struct OnboardingPageView: View {
     let page: OnboardingPage
     
     var body: some View {
-        VStack(spacing: 20) {
-            // App logo at the top
-            VStack(spacing: 15) {
-                AppLogoView(size: 140)
-                    .padding(.top, 20)
-                
-                // Small feature icon below
-                Image(systemName: page.imageName)
-                    .font(.system(size: 30))
-                    .foregroundColor(.blue)
-            }
-            .padding(.bottom, 5)
-            
-            Text(NSLocalizedString(page.title, comment: "Onboarding page title"))
-                .font(.title)
-                .fontWeight(.bold)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal)
-            
-            Text(NSLocalizedString(page.description, comment: "Onboarding page description"))
-                .font(.body)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal)
-            
-            VStack(alignment: .leading, spacing: 10) {
-                ForEach(page.tips, id: \.self) { tip in
-                    HStack {
-                        Image(systemName: "checkmark.circle.fill")
+        GeometryReader { geometry in
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 20) {
+                    // App logo at the top
+                    VStack(spacing: 15) {
+                        AppLogoView(size: min(140, geometry.size.width * 0.3))
+                            .padding(.top, 20)
+                        
+                        // Small feature icon below
+                        Image(systemName: page.imageName)
+                            .font(.system(size: 30))
                             .foregroundColor(.blue)
-                        Text(NSLocalizedString(tip, comment: "Onboarding tip"))
                     }
+                    .padding(.bottom, 5)
+                    
+                    Text(NSLocalizedString(page.title, comment: "Onboarding page title"))
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                        .fixedSize(horizontal: false, vertical: true)
+                    
+                    Text(NSLocalizedString(page.description, comment: "Onboarding page description"))
+                        .font(.body)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                        .fixedSize(horizontal: false, vertical: true)
+                    
+                    VStack(alignment: .leading, spacing: 10) {
+                        ForEach(page.tips, id: \.self) { tip in
+                            HStack {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .foregroundColor(.blue)
+                                Text(NSLocalizedString(tip, comment: "Onboarding tip"))
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }
+                        }
+                    }
+                    .padding()
                 }
+                .frame(minHeight: geometry.size.height)
             }
-            .padding()
         }
     }
 }
@@ -228,76 +241,6 @@ struct OnboardingPage {
     let description: String
     let imageName: String
     let tips: [String]
-}
-
-// Help popup for use throughout the app
-struct ContextualHelpView: View {
-    @Binding var isShowing: Bool
-    let title: String
-    let message: String
-    let icon: String
-    
-    var body: some View {
-        ZStack {
-            Color.black.opacity(0.3)
-                .edgesIgnoringSafeArea(.all)
-                .onTapGesture {
-                    withAnimation {
-                        isShowing = false
-                    }
-                }
-            
-            VStack(spacing: 20) {
-                // Header
-                HStack {
-                    Image(systemName: icon)
-                        .font(.system(size: 30))
-                        .foregroundColor(.blue)
-                    
-                    Text(title)
-                        .font(.system(size: 22, weight: .bold))
-                    
-                    Spacer()
-                    
-                    Button(action: {
-                        withAnimation {
-                            isShowing = false
-                        }
-                    }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.system(size: 24))
-                            .foregroundColor(.gray)
-                    }
-                }
-                
-                // Content
-                Text(message)
-                    .font(.system(size: 18))
-                    .multilineTextAlignment(.center)
-                    .fixedSize(horizontal: false, vertical: true)
-                
-                // Button
-                Button(action: {
-                    withAnimation {
-                        isShowing = false
-                    }
-                }) {
-                    Text("Got It")
-                        .font(.system(size: 18, weight: .bold))
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.blue)
-                        .cornerRadius(12)
-                }
-            }
-            .padding(30)
-            .background(Color(.systemBackground))
-            .cornerRadius(20)
-            .shadow(radius: 15)
-            .padding(40)
-        }
-    }
 }
 
 // Coach mark for highlighting features
@@ -331,7 +274,7 @@ struct CoachMark: View {
                     
                     // Message bubble
                     VStack {
-                        Text(message)
+                        Text(NSLocalizedString(message, comment: "Coach mark message"))
                             .font(.system(size: 18))
                             .foregroundColor(.white)
                             .padding()

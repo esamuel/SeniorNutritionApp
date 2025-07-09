@@ -30,7 +30,7 @@ struct MedicationsView: View {
                                     medicationToDelete = medication
                                     showingDeleteAlert = true
                                 } label: {
-                                    Label("Delete", systemImage: "trash")
+                                    Label(NSLocalizedString("Delete", comment: "Delete action"), systemImage: "trash")
                                 }
                             }
                     }
@@ -77,15 +77,15 @@ struct MedicationsView: View {
                 EditMedicationView(medication: medication)
             }
         }
-        .alert("Delete Medication", isPresented: $showingDeleteAlert) {
-            Button("Cancel", role: .cancel) { }
-            Button("Delete", role: .destructive) {
+        .alert(NSLocalizedString("Delete Medication", comment: "Alert title"), isPresented: $showingDeleteAlert) {
+            Button(NSLocalizedString("Cancel", comment: "Cancel button"), role: .cancel) { }
+            Button(NSLocalizedString("Delete", comment: "Delete button"), role: .destructive) {
                 if let medication = medicationToDelete {
                     deleteMedication(medication)
                 }
             }
         } message: {
-            Text("Are you sure you want to delete this medication? This action cannot be undone.")
+            Text(NSLocalizedString("Are you sure you want to delete this medication? This action cannot be undone.", comment: "Delete confirmation message"))
         }
         .onAppear {
             print("DEBUG: MedicationsView appearing with \(userSettings.medications.count) medications")
@@ -97,7 +97,7 @@ struct MedicationsView: View {
     
     private func deleteMedication(_ medication: Medication) {
         if let index = userSettings.medications.firstIndex(where: { $0.id == medication.id }) {
-            withAnimation {
+            _ = withAnimation {
                 userSettings.medications.remove(at: index)
             }
         }

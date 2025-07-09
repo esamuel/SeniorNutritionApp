@@ -1,0 +1,27 @@
+/* Terms of Use - French */
+"terms_of_use_title" = "Conditions d'Utilisation";
+
+"terms_intro" = "Bienvenue sur l'application Senior Nutrition. En accédant à notre application ou en l'utilisant, vous acceptez d'être lié par ces Conditions d'Utilisation. Veuillez les lire attentivement avant d'utiliser l'application.";
+
+"terms_section_acceptance" = "Acceptation des Conditions";
+"terms_content_acceptance" = "En téléchargeant, installant ou utilisant l'application Senior Nutrition, vous reconnaissez avoir lu, compris et accepté d'être lié par ces Conditions d'Utilisation. Si vous n'acceptez pas ces conditions, veuillez ne pas utiliser cette application. Nous nous réservons le droit de modifier ces conditions à tout moment, et ces modifications entreront en vigueur immédiatement après leur publication. Votre utilisation continue de l'application après toute modification indique votre acceptation des conditions modifiées.";
+
+"terms_section_health_disclaimer" = "Avertissement sur les Informations de Santé";
+"terms_content_health_disclaimer" = "L'application Senior Nutrition fournit des informations générales sur la nutrition et la santé à des fins éducatives uniquement. Le contenu n'est pas destiné à remplacer les conseils médicaux professionnels, le diagnostic ou le traitement. Consultez toujours votre médecin ou autre prestataire de santé qualifié pour toute question concernant une condition médicale. Ne jamais ignorer les conseils médicaux professionnels ou retarder leur consultation en raison de quelque chose que vous avez lu sur cette application. L'utilisation de toute information fournie sur cette application est uniquement à vos propres risques.";
+
+"terms_section_user_accounts" = "Comptes Utilisateurs et Données";
+"terms_content_user_accounts" = "Vous êtes responsable du maintien de la confidentialité des informations de votre compte et de votre mot de passe. Vous acceptez d'assumer la responsabilité de toutes les activités qui se produisent sous votre compte. Vous devez fournir des informations exactes et complètes lors de la création de votre compte. Vos données personnelles seront traitées conformément à notre Politique de Confidentialité. Vous pouvez exporter ou supprimer vos données à tout moment via les paramètres de l'application. Nous mettons en œuvre des mesures de sécurité raisonnables pour protéger vos données, mais nous ne pouvons garantir une sécurité absolue.";
+
+"terms_section_ip" = "Droits de Propriété Intellectuelle";
+"terms_content_ip" = "L'application Senior Nutrition et tout son contenu, fonctionnalités et fonctionnalités (y compris, mais sans s'y limiter, texte, graphiques, logos, icônes et logiciels) sont la propriété de notre société ou de nos concédants et sont protégés par les lois internationales sur le droit d'auteur, les marques déposées et autres lois sur la propriété intellectuelle. Vous ne pouvez pas reproduire, distribuer, modifier, créer des œuvres dérivées, afficher publiquement, exécuter publiquement, republier, télécharger, stocker ou transmettre tout matériel de notre application sans notre consentement écrit préalable.";
+
+"terms_section_termination" = "Résiliation d'Utilisation";
+"terms_content_termination" = "Nous pouvons, à notre seule discrétion, résilier ou suspendre votre accès à tout ou partie de l'application Senior Nutrition pour n'importe quelle raison ou sans raison, y compris, sans limitation, toute violation de ces Conditions d'Utilisation. Si vous souhaitez résilier votre compte, vous pouvez simplement cesser d'utiliser l'application ou supprimer votre compte via les paramètres de l'application. Toutes les dispositions des Conditions d'Utilisation qui, par leur nature, devraient survivre à la résiliation survivront, y compris, sans limitation, les dispositions de propriété, les avis de non-responsabilité de garantie, l'indemnité et les limitations de responsabilité.";
+
+"terms_section_liability" = "Limitation de Responsabilité";
+"terms_content_liability" = "Dans toute la mesure permise par la loi applicable, en aucun cas l'application Senior Nutrition, ses affiliés, directeurs, employés ou concédants ne seront responsables de dommages directs, indirects, punitifs, accessoires, spéciaux, consécutifs ou exemplaires, y compris, sans limitation, les dommages pour perte de profits, de bonne volonté, d'utilisation, de données ou autres pertes immatérielles, résultant de ou liés à votre utilisation ou à l'incapacité d'utiliser l'application. En aucun cas notre responsabilité totale envers vous pour tous dommages, pertes ou causes d'action ne dépassera le montant que vous avez payé pour l'application, ou 50,00 $ si vous n'avez rien acheté via l'application.";
+
+"terms_section_governing_law" = "Loi Applicable";
+"terms_content_governing_law" = "Ces Conditions d'Utilisation et tout litige découlant de ou lié à celles-ci ou à votre utilisation de l'application Senior Nutrition seront régis et interprétés conformément aux lois de la juridiction dans laquelle notre société est enregistrée, sans donner effet à aucune disposition sur le choix ou le conflit de lois. Tout procès, action ou procédure judiciaire découlant de, ou lié à, ces Conditions d'Utilisation ou à l'application sera institué exclusivement dans les tribunaux de la juridiction dans laquelle notre société est enregistrée.";
+
+"terms_last_updated" = "Dernière mise à jour: 1 juillet 2025";

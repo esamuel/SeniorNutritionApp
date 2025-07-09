@@ -11,66 +11,62 @@ struct AddWeightView: View {
     @FocusState private var weightFieldIsFocused: Bool
     
     var body: some View {
-        NavigationView {
-            Form {
-                Section(header: Text(NSLocalizedString("Weight Reading", comment: ""))) {
-                    HStack {
-                        TextField(NSLocalizedString("Weight", comment: ""), text: $weight)
-                            .keyboardType(.decimalPad)
-                            .focused($weightFieldIsFocused)
-                        Text("kg")
-                            .foregroundColor(.secondary)
-                    }
-                }
-                
-                Section {
-                    DatePicker(
-                        NSLocalizedString("Date and Time", comment: ""),
-                        selection: $date,
-                        displayedComponents: [.date, .hourAndMinute]
-                    )
-                }
-                
-                if let error = error {
-                    Section {
-                        Text(error)
-                            .foregroundColor(.red)
-                            .font(.system(size: userSettings.textSize.size))
-                    }
+        Form {
+            Section(header: Text(NSLocalizedString("Weight Reading", comment: "Section header for weight reading input"))) {
+                HStack {
+                    TextField(NSLocalizedString("Weight", comment: "Placeholder for weight input"), text: $weight)
+                        .keyboardType(.decimalPad)
+                        .focused($weightFieldIsFocused)
+                    Text(NSLocalizedString("kg", comment: "Unit for weight"))
+                        .foregroundColor(.secondary)
                 }
             }
-            .navigationTitle(NSLocalizedString("Add Weight", comment: ""))
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button(NSLocalizedString("Cancel", comment: "")) {
-                        dismiss()
-                    }
+            
+            Section {
+                DatePicker(
+                    NSLocalizedString("Date and Time", comment: "Label for date and time picker"),
+                    selection: $date,
+                    displayedComponents: [.date, .hourAndMinute]
+                )
+            }
+            
+            if let error = error {
+                Section {
+                    Text(error)
+                        .foregroundColor(.red)
+                        .font(.system(size: userSettings.textSize.size))
                 }
-                ToolbarItem(placement: .confirmationAction) {
-                    Button(NSLocalizedString("Save", comment: "")) {
-                        saveReading()
-                    }
+            }
+        }
+        .navigationTitle(NSLocalizedString("Add Weight", comment: "Navigation title for adding weight entry"))
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .cancellationAction) {
+                Button(NSLocalizedString("Cancel", comment: "Cancel button text")) {
+                    dismiss()
+                }
+            }
+            ToolbarItem(placement: .confirmationAction) {
+                Button(NSLocalizedString("Save", comment: "Save button text")) {
+                    saveReading()
                 }
             }
         }
         .font(.system(size: userSettings.textSize.size))
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.weightFieldIsFocused = true
-            }
+            weightFieldIsFocused = true
         }
     }
     
     private func saveReading() {
         guard let weightValue = Double(weight.replacingOccurrences(of: ",", with: ".")), weightValue > 0 else {
-            error = NSLocalizedString("Please enter a valid weight", comment: "")
+            error = NSLocalizedString("Please enter a valid weight", comment: "Error message for invalid weight")
             return
         }
         
         // Validate weight is within reasonable range (20-300 kg)
         guard weightValue >= 20 && weightValue <= 300 else {
-            error = NSLocalizedString("Weight should be between 20 and 300 kg", comment: "")
+            error = NSLocalizedString("Weight should be between 20 and 300 kg", comment: "Error message for weight out of range")
             return
         }
         
@@ -83,7 +79,7 @@ struct AddWeightView: View {
             try viewContext.save()
             dismiss()
         } catch {
-            self.error = NSLocalizedString("Failed to save. Please try again.", comment: "")
+            self.error = NSLocalizedString("Failed to save. Please try again.", comment: "Error message for failed save operation")
         }
     }
 }

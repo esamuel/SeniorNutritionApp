@@ -1,70 +1,53 @@
 import SwiftUI
 
 struct PrivacyPolicyView: View {
-    @Environment(\.layoutDirection) var layoutDirection
-    @EnvironmentObject var userSettings: UserSettings
-    
+    @EnvironmentObject private var userSettings: UserSettings
+
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading) {
-                Text(NSLocalizedString("Privacy Policy", comment: ""))
-                    .font(.system(size: userSettings.textSize.size * 1.5, weight: .bold))
-                    .padding(.bottom)
-                    .frame(maxWidth: .infinity, alignment: layoutDirection == .rightToLeft ? .trailing : .leading)
+            VStack(alignment: .leading, spacing: 24) {
+                HelpSectionHeader(title: NSLocalizedString("privacy_policy_title", comment: "Privacy Policy"))
+                
+                Text(NSLocalizedString("privacy_policy_intro", comment: "Introduction to privacy policy."))
+                    .font(.system(size: userSettings.textSize.size - 2))
 
-                Text(NSLocalizedString("Last Updated", comment: "") + ": " + NSLocalizedString("June 15, 2023", comment: ""))
-                    .font(.system(size: userSettings.textSize.size))
+                privacySection(
+                    title: NSLocalizedString("privacy_section_data_collection", comment: "Title for data collection section"),
+                    content: NSLocalizedString("privacy_content_data_collection", comment: "Content for data collection section")
+                )
+                privacySection(
+                    title: NSLocalizedString("privacy_section_data_usage", comment: "Title for data usage section"),
+                    content: NSLocalizedString("privacy_content_data_usage", comment: "Content for data usage section")
+                )
+                privacySection(
+                    title: NSLocalizedString("privacy_section_data_sharing", comment: "Title for data sharing section"),
+                    content: NSLocalizedString("privacy_content_data_sharing", comment: "Content for data sharing section")
+                )
+                privacySection(
+                    title: NSLocalizedString("privacy_section_data_security", comment: "Title for data security section"),
+                    content: NSLocalizedString("privacy_content_data_security", comment: "Content for data security section")
+                )
+                privacySection(
+                    title: NSLocalizedString("privacy_section_user_rights", comment: "Title for user rights section"),
+                    content: NSLocalizedString("privacy_content_user_rights", comment: "Content for user rights section")
+                )
+                privacySection(
+                    title: NSLocalizedString("privacy_section_policy_changes", comment: "Title for policy changes section"),
+                    content: NSLocalizedString("privacy_content_policy_changes", comment: "Content for policy changes section")
+                )
+                privacySection(
+                    title: NSLocalizedString("privacy_section_contact", comment: "Title for contact section"),
+                    content: NSLocalizedString("privacy_content_contact", comment: "Content for contact section")
+                )
+
+                Text(NSLocalizedString("Last Updated: June 1, 2025", comment: ""))
+                    .font(.caption)
                     .foregroundColor(.secondary)
-                    .padding(.bottom)
-                
-                Text(NSLocalizedString("Privacy Policy Introduction", comment: ""))
-                    .font(.system(size: userSettings.textSize.size))
-                    .padding(.bottom, 20)
-                
-                privacyPolicyContent
-                    .font(.system(size: userSettings.textSize.size))
-                
-                contactInformation
-                    .font(.system(size: userSettings.textSize.size))
-                    .padding(.top)
-                
-                Spacer()
             }
             .padding()
         }
-        .navigationTitle(NSLocalizedString("Privacy Policy", comment: ""))
-        .navigationBarTitleDisplayMode(.inline)
-    }
-    
-    private var privacyPolicyContent: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            privacySection(
-                title: NSLocalizedString("1. Information We Collect", comment: ""),
-                content: NSLocalizedString("Information We Collect Content", comment: "")
-            )
-            
-            privacySection(
-                title: NSLocalizedString("2. How We Use Your Information", comment: ""),
-                content: NSLocalizedString("How We Use Information Content", comment: "")
-            )
-            
-            privacySection(
-                title: NSLocalizedString("3. Information Sharing", comment: ""),
-                content: NSLocalizedString("Information Sharing Content", comment: "")
-            )
-            
-            // Add other sections as needed...
-        }
-    }
-    
-    private var contactInformation: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text(NSLocalizedString("Contact Information", comment: ""))
-                .font(.system(size: userSettings.textSize.size, weight: .bold))
-            
-            Text(NSLocalizedString("Support Email", comment: "") + ": support@seniornutritionapp.com")
-            Text(NSLocalizedString("Company Location", comment: "") + ": " + NSLocalizedString("Tel Aviv, Israel", comment: ""))
-        }
+        .navigationTitle(NSLocalizedString("privacy_policy_title", comment: "Privacy Policy"))
+        .background(Color(UIColor.systemGroupedBackground).edgesIgnoringSafeArea(.all))
     }
     
     private func privacySection(title: String, content: String) -> some View {

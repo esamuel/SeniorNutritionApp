@@ -80,7 +80,7 @@ struct MedicationReminderView: View {
                 
                 // Information Section
                 Section {
-                    InfoRow(systemImage: "bell.fill", text: "You will receive a reminder 30 minutes before each scheduled time")
+                    InfoRow(systemImage: "bell.fill", text: "You will receive a reminder at each scheduled time")
                     InfoRow(systemImage: "gear", text: "You can customize reminder times when adding or editing medications")
                     InfoRow(systemImage: "exclamationmark.triangle", text: "Make sure notifications are enabled in your device settings")
                 }
@@ -288,8 +288,8 @@ struct MedicationReminderDetailView: View {
             guard settings.authorizationStatus == .authorized else { return }
             
             // Schedule new notifications
-            let calendar = Calendar.current
-            let now = Date()
+            _ = Calendar.current
+            _ = Date()
             
             // Create notification content
             let content = UNMutableNotificationContent()

@@ -12,6 +12,7 @@ struct FoodDatabaseBrowserView: View {
     @StateObject private var foodDatabase = FoodDatabaseService()
     @State private var searchText = ""
     @State private var selectedCategory: FoodCategory?
+    @State private var selectedCuisine: CuisineType?
     @State private var showingFoodDetail = false
     @State private var selectedFood: FoodItem?
     @State private var showingAllCategories = true
@@ -68,7 +69,7 @@ struct FoodDatabaseBrowserView: View {
                                 #endif
                                 
                                 // Translate all foods
-                                await foodDatabase.translateAllFoodItems()
+                                _ = await foodDatabase.translateAllFoodItems()
                                 
                                 // Update the foodDatabase to trigger UI refresh
                                 DispatchQueue.main.async {
@@ -118,6 +119,19 @@ struct FoodDatabaseBrowserView: View {
                     }
                     .padding(.horizontal)
                     .padding(.vertical, 8)
+                }
+                
+                // Cuisine filter
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 10) {
+                        cuisineButton(nil)
+                        
+                        ForEach(CuisineType.allCases, id: \.self) { cuisine in
+                            cuisineButton(cuisine)
+                        }
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 4)
                 }
                 
                 // Food count
@@ -170,7 +184,11 @@ struct FoodDatabaseBrowserView: View {
                 // Force refresh of language settings
                 let currentLanguage = LanguageManager.shared.currentLanguage
                 print("FoodDatabaseBrowserView appeared - current language: \(currentLanguage)")
-                print("Current locale: \(Locale.current.languageCode ?? "unknown")")
+                if #available(iOS 16.0, *) {
+                    print("Current locale: \(Locale.current.language.languageCode?.identifier ?? "unknown")")
+                } else {
+                    print("Current locale: \(Locale.current.languageCode ?? "unknown")")
+                }
                 
                 // Make sure language is applied
                 Bundle.setLanguage(currentLanguage)
@@ -196,7 +214,7 @@ struct FoodDatabaseBrowserView: View {
                     
                     // In the background, translate all foods (comprehensive)
                     Task.detached {
-                        await foodDatabase.translateAllFoodItems()
+                        _ = await foodDatabase.translateAllFoodItems()
                         
                         // Update UI again after comprehensive translation
                         DispatchQueue.main.async {
@@ -274,6 +292,21 @@ struct FoodDatabaseBrowserView: View {
                 .padding(.vertical, 8)
                 .background((showingAllCategories && category == nil) || selectedCategory == category ? Color.blue : Color.gray.opacity(0.2))
                 .foregroundColor((showingAllCategories && category == nil) || selectedCategory == category ? .white : .primary)
+                .cornerRadius(20)
+        }
+    }
+    
+    // Cuisine button
+    private func cuisineButton(_ cuisine: CuisineType?) -> some View {
+        Button(action: {
+            selectedCuisine = cuisine
+        }) {
+            Text(cuisine?.localizedString ?? NSLocalizedString("All", comment: ""))
+                .font(.system(size: userSettings.textSize.size - 2))
+                .padding(.horizontal, 15)
+                .padding(.vertical, 8)
+                .background((selectedCuisine == cuisine) ? Color.blue : Color.gray.opacity(0.2))
+                .foregroundColor((selectedCuisine == cuisine) ? .white : .primary)
                 .cornerRadius(20)
         }
     }
@@ -359,6 +392,11 @@ struct FoodDatabaseBrowserView: View {
             foods = foods.filter { $0.category == category }
         }
         
+        // Apply cuisine filter
+        if let cuisine = selectedCuisine {
+            foods = foods.filter { $0.cuisineType == cuisine }
+        }
+        
         // Sort based on current language
         let currentLanguage: String
         if #available(iOS 16, *) {
@@ -408,7 +446,7 @@ struct FoodDatabaseBrowserView: View {
                 
                 // Then translate all foods in the background
                 Task.detached {
-                    await self.foodDatabase.translateAllFoodItems()
+                                            _ = await self.foodDatabase.translateAllFoodItems()
                     
                     // Force another UI refresh after all translations are done
                     DispatchQueue.main.async {

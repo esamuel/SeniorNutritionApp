@@ -13,7 +13,7 @@
 "Track Your Meals & Nutrition" = "Track Your Meals & Nutrition";
 "Monitor your diet with our easy-to-use food tracking system, including nutritional analysis and personalized recommendations." = "Monitor your diet with our easy-to-use food tracking system, including nutritional analysis and personalized recommendations.";
 "Photo-based meal logging" = "Photo-based meal logging";
-"Built-in barcode scanner" = "Built-in barcode scanner";
+"Built-in barcode scanner (Premium)" = "Built-in barcode scanner (Premium)";
 "Voice input for hands-free recording" = "Voice input for hands-free recording";
 "Personalized Fasting Protocols" = "Personalized Fasting Protocols";
 "Follow gentle, senior-friendly intermittent fasting schedules with built-in safety features and health monitoring." = "Follow gentle, senior-friendly intermittent fasting schedules with built-in safety features and health monitoring.";
@@ -1078,3 +1078,154 @@
 "Multi-language support (English, French, Spanish, Hebrew)" = "Multi-language support (English, French, Spanish, Hebrew)";
 "Enhanced accessibility with adjustable text sizes" = "Enhanced accessibility with adjustable text sizes";
 "Voice assistance for hands-free operation" = "Voice assistance for hands-free operation";
+
+/* Missing localization keys from PersonalizedNutritionTipsView */
+"Read General Tips" = "Read General Tips";
+"Reads out general nutrition tips for seniors" = "Reads out general nutrition tips for seniors";
+"Read Medical Condition Tips" = "Read Medical Condition Tips";
+"Reads out nutrition tips for your medical conditions" = "Reads out nutrition tips for your medical conditions";
+"Read Dietary Restriction Tips" = "Read Dietary Restriction Tips";
+"Reads out nutrition tips for your dietary restrictions" = "Reads out nutrition tips for your dietary restrictions";
+"Read Supplement Tips" = "Read Supplement Tips";
+"Reads out supplement recommendations for seniors" = "Reads out supplement recommendations for seniors";
+"For" = "For";
+
+/* Medical Condition Tips */
+"Low Glycemic Foods" = "Low Glycemic Foods";
+"Choose foods with a low glycemic index like non-starchy vegetables, berries, and whole grains to help manage blood sugar levels." = "Choose foods with a low glycemic index like non-starchy vegetables, berries, and whole grains to help manage blood sugar levels.";
+"Regular Meal Timing" = "Regular Meal Timing";
+"Eat meals at consistent times to help maintain stable blood sugar levels." = "Eat meals at consistent times to help maintain stable blood sugar levels.";
+"Fiber-Rich Foods" = "Fiber-Rich Foods";
+"Include plenty of fiber in your diet to slow sugar absorption and improve blood glucose control." = "Include plenty of fiber in your diet to slow sugar absorption and improve blood glucose control.";
+"Limit Sodium" = "Limit Sodium";
+"Reduce salt intake to help manage blood pressure. Aim for less than 2,300mg of sodium per day." = "Reduce salt intake to help manage blood pressure. Aim for less than 2,300mg of sodium per day.";
+"Heart-Healthy Fats" = "Heart-Healthy Fats";
+"Choose unsaturated fats like olive oil, avocados, and nuts while limiting saturated and trans fats." = "Choose unsaturated fats like olive oil, avocados, and nuts while limiting saturated and trans fats.";
+"DASH Diet" = "DASH Diet";
+"Consider following the DASH (Dietary Approaches to Stop Hypertension) diet, rich in fruits, vegetables, and low-fat dairy." = "Consider following the DASH (Dietary Approaches to Stop Hypertension) diet, rich in fruits, vegetables, and low-fat dairy.";
+"Anti-Inflammatory Foods" = "Anti-Inflammatory Foods";
+"Include foods rich in omega-3 fatty acids like fatty fish, walnuts, and flaxseeds to help reduce inflammation." = "Include foods rich in omega-3 fatty acids like fatty fish, walnuts, and flaxseeds to help reduce inflammation.";
+"Turmeric and Ginger" = "Turmeric and Ginger";
+"These spices contain compounds that may help reduce inflammation and joint pain." = "These spices contain compounds that may help reduce inflammation and joint pain.";
+"Limit Inflammatory Foods" = "Limit Inflammatory Foods";
+"Reduce consumption of processed foods, refined sugars, and excessive omega-6 fatty acids which can increase inflammation." = "Reduce consumption of processed foods, refined sugars, and excessive omega-6 fatty acids which can increase inflammation.";
+"Calcium-Rich Foods" = "Calcium-Rich Foods";
+"Include dairy products, fortified plant milks, leafy greens, and canned fish with bones to support bone health." = "Include dairy products, fortified plant milks, leafy greens, and canned fish with bones to support bone health.";
+"Ensure adequate vitamin D intake through sunlight exposure, fatty fish, and fortified foods to help calcium absorption." = "Ensure adequate vitamin D intake through sunlight exposure, fatty fish, and fortified foods to help calcium absorption.";
+"Magnesium and Vitamin K" = "Magnesium and Vitamin K";
+"These nutrients work with calcium to build bone. Find them in nuts, seeds, leafy greens, and fermented foods." = "These nutrients work with calcium to build bone. Find them in nuts, seeds, leafy greens, and fermented foods.";
+"Fluid Management" = "Fluid Management";
+"Monitor your fluid intake according to your doctor's recommendations." = "Monitor your fluid intake according to your doctor's recommendations.";
+"Phosphorus and Potassium" = "Phosphorus and Potassium";
+"You may need to limit foods high in phosphorus and potassium. Consult with a renal dietitian for personalized advice." = "You may need to limit foods high in phosphorus and potassium. Consult with a renal dietitian for personalized advice.";
+"Protein Balance" = "Protein Balance";
+"Balance protein intake - too much can strain kidneys, too little can lead to malnutrition. Follow your doctor's guidance." = "Balance protein intake - too much can strain kidneys, too little can lead to malnutrition. Follow your doctor's guidance.";
+"Strict Gluten Avoidance" = "Strict Gluten Avoidance";
+"Avoid all sources of gluten including wheat, barley, rye, and foods that may be cross-contaminated." = "Avoid all sources of gluten including wheat, barley, rye, and foods that may be cross-contaminated.";
+"Nutrient-Dense Alternatives" = "Nutrient-Dense Alternatives";
+"Choose naturally gluten-free whole foods like quinoa, rice, buckwheat, and amaranth for essential nutrients." = "Choose naturally gluten-free whole foods like quinoa, rice, buckwheat, and amaranth for essential nutrients.";
+"Label Reading" = "Label Reading";
+"Always check food labels for hidden sources of gluten and cross-contamination warnings." = "Always check food labels for hidden sources of gluten and cross-contamination warnings.";
+"Personalized Nutrition" = "Personalized Nutrition";
+"Consider consulting with a registered dietitian for nutrition advice tailored to your specific medical condition." = "Consider consulting with a registered dietitian for nutrition advice tailored to your specific medical condition.";
+"Keep a Food Journal" = "Keep a Food Journal";
+"Track how different foods affect your symptoms to identify patterns and triggers." = "Track how different foods affect your symptoms to identify patterns and triggers.";
+"Balanced Approach" = "Balanced Approach";
+"Focus on a balanced diet rich in whole foods while limiting processed foods and added sugars." = "Focus on a balanced diet rich in whole foods while limiting processed foods and added sugars.";
+
+/* Dietary Restriction Tips */
+"Complete Proteins" = "Complete Proteins";
+"Combine plant proteins like beans and rice to get all essential amino acids." = "Combine plant proteins like beans and rice to get all essential amino acids.";
+"Consider B12 supplements or fortified foods as this vitamin is primarily found in animal products." = "Consider B12 supplements or fortified foods as this vitamin is primarily found in animal products.";
+"Iron Sources" = "Iron Sources";
+"Include plant sources of iron like lentils, spinach, and fortified cereals, and pair with vitamin C for better absorption." = "Include plant sources of iron like lentils, spinach, and fortified cereals, and pair with vitamin C for better absorption.";
+"Essential Supplements" = "Essential Supplements";
+"Consider supplements for vitamin B12, vitamin D, omega-3 fatty acids, and possibly iodine and zinc." = "Consider supplements for vitamin B12, vitamin D, omega-3 fatty acids, and possibly iodine and zinc.";
+"Protein Variety" = "Protein Variety";
+"Include a variety of plant proteins daily: legumes, tofu, tempeh, seitan, nuts, and seeds." = "Include a variety of plant proteins daily: legumes, tofu, tempeh, seitan, nuts, and seeds.";
+"Calcium Sources" = "Calcium Sources";
+"Consume calcium-rich plant foods like fortified plant milks, tofu made with calcium sulfate, and leafy greens." = "Consume calcium-rich plant foods like fortified plant milks, tofu made with calcium sulfate, and leafy greens.";
+"Ensure adequate vitamin D from sunlight, supplements, or fortified foods to help with calcium absorption." = "Ensure adequate vitamin D from sunlight, supplements, or fortified foods to help with calcium absorption.";
+"Whole Food Alternatives" = "Whole Food Alternatives";
+"Choose naturally gluten-free whole grains like rice, quinoa, buckwheat, and millet for essential nutrients." = "Choose naturally gluten-free whole grains like rice, quinoa, buckwheat, and millet for essential nutrients.";
+"Cross-Contamination" = "Cross-Contamination";
+"Be aware of cross-contamination in food preparation. Use separate utensils and preparation areas." = "Be aware of cross-contamination in food preparation. Use separate utensils and preparation areas.";
+"Nutrient Deficiencies" = "Nutrient Deficiencies";
+"Gluten-free products are often lower in B vitamins, iron, and fiber. Choose fortified options or take supplements if needed." = "Gluten-free products are often lower in B vitamins, iron, and fiber. Choose fortified options or take supplements if needed.";
+"Alternative Proteins" = "Alternative Proteins";
+"Include seeds like sunflower, pumpkin, and chia seeds for similar nutritional benefits." = "Include seeds like sunflower, pumpkin, and chia seeds for similar nutritional benefits.";
+"Hidden Sources" = "Hidden Sources";
+"Be vigilant about checking food labels for nut ingredients and 'may contain' warnings." = "Be vigilant about checking food labels for nut ingredients and 'may contain' warnings.";
+"Nutrient Replacement" = "Nutrient Replacement";
+"Ensure adequate intake of vitamin E, magnesium, and healthy fats from other sources like avocados and olive oil." = "Ensure adequate intake of vitamin E, magnesium, and healthy fats from other sources like avocados and olive oil.";
+"Herbs and Spices" = "Herbs and Spices";
+"Use herbs, spices, citrus, and vinegar to add flavor to foods without adding sodium." = "Use herbs, spices, citrus, and vinegar to add flavor to foods without adding sodium.";
+"Processed Foods" = "Processed Foods";
+"Limit processed and packaged foods which often contain high amounts of hidden sodium." = "Limit processed and packaged foods which often contain high amounts of hidden sodium.";
+"Home Cooking" = "Home Cooking";
+"Prepare meals at home to control sodium content and gradually reduce salt to allow your taste buds to adjust." = "Prepare meals at home to control sodium content and gradually reduce salt to allow your taste buds to adjust.";
+"Natural Sweeteners" = "Natural Sweeteners";
+"Use small amounts of fruit or spices like cinnamon to add sweetness to foods without added sugar." = "Use small amounts of fruit or spices like cinnamon to add sweetness to foods without added sugar.";
+"Hidden Sugars" = "Hidden Sugars";
+"Check labels for ingredients ending in '-ose' (like fructose, glucose) and terms like 'syrup' or 'concentrate'." = "Check labels for ingredients ending in '-ose' (like fructose, glucose) and terms like 'syrup' or 'concentrate'.";
+"Gradual Reduction" = "Gradual Reduction";
+"Gradually reduce sugar intake to allow your taste preferences to adjust over time." = "Gradually reduce sugar intake to allow your taste preferences to adjust over time.";
+"Personalized Advice" = "Personalized Advice";
+"Consider consulting with a registered dietitian for personalized guidance on your specific dietary restriction." = "Consider consulting with a registered dietitian for personalized guidance on your specific dietary restriction.";
+"Become proficient at reading food labels to identify ingredients you need to avoid." = "Become proficient at reading food labels to identify ingredients you need to avoid.";
+"Nutrient Balance" = "Nutrient Balance";
+"Ensure your restricted diet still provides all essential nutrients through careful food choices or supplements if necessary." = "Ensure your restricted diet still provides all essential nutrients through careful food choices or supplements if necessary.";
+
+/* Health Tip Descriptions - Updated to be more suggestive */
+"health_tip_sleep_description" = "Consider aiming for 7-8 hours of quality sleep each night. A consistent sleep schedule may help regulate metabolism and support overall health.";
+"health_tip_stress_description" = "You might find it helpful to practice relaxation techniques like deep breathing, meditation, or gentle yoga to manage stress, which can impact heart health and digestion.";
+"health_tip_checkups_description" = "Regular health screenings can be beneficial. You may want to schedule check-ups with your doctor at least once a year, more if you have chronic conditions.";
+
+"health_tip_protein_description" = "Many seniors find that getting 1-1.2g of protein per kg of body weight daily from sources like lean meats, fish, eggs, dairy, and plant proteins helps maintain muscle mass.";
+"health_tip_fiber_description" = "You might want to include fiber-rich foods like whole grains, fruits, vegetables, and legumes in your diet to support digestive health and help manage cholesterol levels.";
+"health_tip_calcium_description" = "Many adults over 50 find that getting around 1200mg of calcium daily from dairy products, fortified plant milks, canned fish with bones, and leafy greens supports bone health.";
+"health_tip_vitaminD_description" = "Vitamin D may help with calcium absorption. You might want to get some sunlight exposure and consider discussing a supplement with your healthcare provider, especially during winter months.";
+
+"health_tip_fasting_hydration_description" = "You may want to drink plenty of water during your fasting periods. Consider aiming for at least 8-10 glasses daily to help prevent dehydration.";
+"health_tip_fasting_listen_body_description" = "If you feel unwell during fasting - such as experiencing dizziness, extreme fatigue, or confusion - you might want to consider breaking your fast and consulting your healthcare provider.";
+"health_tip_fasting_break_description" = "You might find it helpful to break your fast with easily digestible foods like soups, fruits, or small portions of protein to help avoid digestive discomfort.";
+"health_tip_fasting_sleep_description" = "Quality sleep may help support your fasting routine. You might want to maintain a consistent sleep schedule to help with your intermittent fasting goals.";
+
+"health_tip_hydration_reminder_description" = "You might find it helpful to set reminders to drink water throughout the day, as the sense of thirst can decrease with age.";
+"health_tip_hydration_foods_description" = "Consider including hydrating foods like watermelon, oranges, cucumber, and lettuce in your diet as additional sources of hydration beyond plain water.";
+
+"health_tip_activity_walking_description" = "A daily 30-minute walk may help improve circulation, heart health, and mood. Many seniors find this to be one of the most accessible and effective forms of exercise.";
+"health_tip_activity_strength_description" = "You might want to consider light strength training 2-3 times weekly, as many seniors find it helps maintain muscle mass, bone density, and independence.";
+
+"health_tip_medication_schedule_description" = "Taking medications at consistent times each day may help maintain steady levels in your bloodstream. You might want to discuss the best schedule with your healthcare provider.";
+"health_tip_medication_food_description" = "Some medications may need to be taken with food. Consider discussing with your healthcare provider about the best timing for your medications in relation to meals.";
+
+/* Medical Condition Tips - Updated to be more suggestive */
+"Monitor Blood Sugar Closely" = "Consider monitoring your blood sugar levels more frequently during fasting periods to help ensure they remain within your target range.";
+"Shorter Fasting Windows" = "You might want to consider shorter fasting periods (12-14 hours) rather than extended fasts to help maintain stable blood sugar levels.";
+"Medication Timing" = "You may want to discuss with your healthcare provider about adjusting the timing of diabetes medications during fasting periods.";
+"Break Fast Appropriately" = "Consider breaking your fast with a balanced meal containing protein, healthy fats, and complex carbohydrates to help maintain stable blood sugar levels.";
+
+"Monitor Blood Pressure" = "You might want to check your blood pressure regularly during fasting periods, as fasting can sometimes affect blood pressure levels.";
+"Stay Hydrated" = "Consider staying well-hydrated during fasting, as dehydration can affect blood pressure. You may want to drink plenty of water throughout your fasting window.";
+"Maintain Electrolyte Balance" = "You might find it helpful to add a pinch of salt to your water or drink sugar-free electrolyte beverages during longer fasts.";
+"Gradual Transition" = "If you take blood pressure medications, you may want to work with your healthcare provider to monitor how fasting affects your blood pressure and discuss any necessary adjustments.";
+
+"Consult Your Nephrologist" = "You might want to discuss fasting with your kidney specialist, as kidney disease may require specialized fasting protocols.";
+"Shorter Fasting Periods" = "Consider time-restricted eating (10-12 hours) rather than extended fasting periods, as this may help minimize stress on the kidneys.";
+"Hydration Balance" = "You may want to follow your healthcare provider's recommendations for fluid intake during fasting, as both over-hydration and dehydration can be concerns.";
+"Monitor Electrolytes" = "Since kidney disease can affect electrolyte balance, you might want to monitor your levels regularly during fasting periods.";
+
+/* Nutrition Tips - Updated to be more suggestive */
+"Low Glycemic Foods" = "You might want to consider choosing foods with a low glycemic index like non-starchy vegetables, berries, and whole grains to help manage blood sugar levels.";
+"Regular Meal Timing" = "Consider eating meals at consistent times to help maintain stable blood sugar levels.";
+"Fiber-Rich Foods" = "You may want to include plenty of fiber in your diet to help slow sugar absorption and support blood glucose control.";
+"Limit Sodium" = "You might find it helpful to reduce salt intake to help manage blood pressure. Consider aiming for less than 2,300mg of sodium per day.";
+"Heart-Healthy Fats" = "Consider choosing unsaturated fats like olive oil, avocados, and nuts while limiting saturated and trans fats.";
+"DASH Diet" = "You might want to look into the DASH (Dietary Approaches to Stop Hypertension) diet, which emphasizes fruits, vegetables, and low-fat dairy.";
+"Anti-Inflammatory Foods" = "Consider including foods rich in omega-3 fatty acids like fatty fish, walnuts, and flaxseeds, as they may help reduce inflammation.";
+"Turmeric and Ginger" = "These spices contain compounds that some people find helpful for reducing inflammation and joint pain.";
+"Limit Inflammatory Foods" = "You might want to consider reducing consumption of processed foods, refined sugars, and excessive omega-6 fatty acids, as they may increase inflammation.";
+
+/* Loading Screen */
+"Hold on, I'm coming..." = "Hold on, I'm coming...";

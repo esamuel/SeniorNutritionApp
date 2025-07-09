@@ -2,6 +2,7 @@ import SwiftUI
 import Combine
 import UserNotifications
 import Foundation
+import CoreData
 
 // User settings management
 @MainActor
@@ -41,6 +42,18 @@ class UserSettings: ObservableObject {
     @Published var isOnboardingComplete: Bool = false {
         didSet {
             saveUserData()
+        }
+    }
+    
+    // App Tour state
+    @Published var hasSeenAppTour: Bool = false {
+        didSet {
+            UserDefaults.standard.set(hasSeenAppTour, forKey: "hasSeenAppTour")
+        }
+    }
+    @Published var appTourVersion: String = "1.0" {
+        didSet {
+            UserDefaults.standard.set(appTourVersion, forKey: "appTourVersion")
         }
     }
     
@@ -128,7 +141,7 @@ class UserSettings: ObservableObject {
     @Published var medicationRemindersEnabled: Bool = true {
         didSet { saveUserData() }
     }
-    @Published var medicationReminderLeadTime: Int = 30 {
+    @Published var medicationReminderLeadTime: Int = 0 {
         didSet { saveUserData() }
     }
     @Published var mealWindowRemindersEnabled: Bool = true {
@@ -144,6 +157,20 @@ class UserSettings: ObservableObject {
         didSet { saveUserData() }
     }
     
+    // Emergency number settings
+    @Published var customEmergencyNumber: String? {
+        didSet {
+            UserDefaults.standard.set(customEmergencyNumber, forKey: "customEmergencyNumber")
+            saveUserData()
+        }
+    }
+    @Published var useCustomEmergencyNumber: Bool = false {
+        didSet {
+            UserDefaults.standard.set(useCustomEmergencyNumber, forKey: "useCustomEmergencyNumber")
+            saveUserData()
+        }
+    }
+    
     @Published var isLoaded: Bool = false
     
     @Published var selectedLanguage: String = UserDefaults.standard.string(forKey: "AppLanguage") ?? LanguageManager.shared.currentLanguage {
@@ -155,15 +182,62 @@ class UserSettings: ObservableObject {
         }
     }
     
+    @Published var dailyCalorieGoal: Int = 2000
+    @Published var macroGoalsEnabled: Bool = false
+    @Published var dailyProteinGoal: Int = 75
+    @Published var dailyCarbGoal: Int = 250
+    @Published var dailyFatGoal: Int = 70
+    
     let supportedLanguages: [String] = ["en", "es", "fr", "he"]
+    
+    // MARK: - Health Data Access
+    
+    /// Get the latest weight from health data
+    func getLatestWeight() -> Double? {
+        let context = PersistenceController.shared.container.viewContext
+        let request = NSFetchRequest<WeightEntry>(entityName: "WeightEntry")
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \WeightEntry.date, ascending: false)]
+        request.fetchLimit = 1
+        
+        do {
+            let results = try context.fetch(request)
+            return results.first?.weight
+        } catch {
+            print("Error fetching latest weight: \(error)")
+            return nil
+        }
+    }
+    
+    /// Get the latest BMI using current weight from health data and profile height
+    func getCurrentBMI() -> Double? {
+        guard let profile = userProfile else { return nil }
+        let latestWeight = getLatestWeight()
+        return profile.calculateBMI(latestWeight: latestWeight)
+    }
+    
+    /// Get the current BMI category using latest weight
+    func getCurrentBMICategory() -> BMICategory? {
+        guard let profile = userProfile else { return nil }
+        let latestWeight = getLatestWeight()
+        return profile.getBMICategory(latestWeight: latestWeight)
+    }
     
     private let localDataKey = "userData"
     
     private var cancellables = Set<AnyCancellable>()
     
     init() {
+        loadUserData()
         setupMedicationObservers()
-        self.medications = []
+        
+        // Initialize emergency number settings
+        self.customEmergencyNumber = UserDefaults.standard.string(forKey: "customEmergencyNumber")
+        self.useCustomEmergencyNumber = UserDefaults.standard.bool(forKey: "useCustomEmergencyNumber")
+        
+        // Initialize app tour settings
+        self.hasSeenAppTour = UserDefaults.standard.bool(forKey: "hasSeenAppTour")
+        self.appTourVersion = UserDefaults.standard.string(forKey: "appTourVersion") ?? "1.0"
+        
         // Synchronize selectedLanguage with LanguageManager
         if let saved = UserDefaults.standard.string(forKey: "AppLanguage") {
             print("UserSettings: Found saved language: \(saved)")
@@ -191,6 +265,20 @@ class UserSettings: ObservableObject {
                 self?.selectedLanguage = lang
             }
         }.store(in: &cancellables)
+        
+        // Observe language changes to trigger profile data migration if needed
+        NotificationCenter.default.publisher(for: .languageDidChange)
+            .sink { [weak self] _ in
+                Task { @MainActor in
+                    self?.handleLanguageChange()
+                }
+            }
+            .store(in: &cancellables)
+        
+        // Perform initial migration check
+        Task { @MainActor in
+            await performInitialMigration()
+        }
     }
     
     // Force save user data synchronously
@@ -276,20 +364,22 @@ class UserSettings: ObservableObject {
     // Load user data from persistent storage
     private func loadUserData(startTime: Date? = nil) {
         let loadStart = startTime ?? Date()
-        // Load lightweight settings synchronously
-        if let savedProfile = UserDefaults.standard.data(forKey: "userProfile"),
-           let decodedProfile = try? JSONDecoder().decode(UserProfile.self, from: savedProfile) {
-            self.userProfile = decodedProfile
-        }
-        self.isDarkMode = UserDefaults.standard.bool(forKey: "isDarkMode")
-        self.notificationsEnabled = UserDefaults.standard.bool(forKey: "notificationsEnabled")
-        // Mark as loaded so UI can appear
-        self.isLoaded = true
-
-        // Load heavy data in background
+        
+        // Load heavy data in background first, then mark as loaded
         DispatchQueue.global(qos: .userInitiated).async {
             Task {
-                if let data: PersistentData = try await PersistentStorage.shared.loadData(forKey: self.localDataKey) {
+                // Load lightweight settings
+                DispatchQueue.main.async {
+                    if let savedProfile = UserDefaults.standard.data(forKey: "userProfile"),
+                       let decodedProfile = try? JSONDecoder().decode(UserProfile.self, from: savedProfile) {
+                        self.userProfile = decodedProfile
+                    }
+                    self.isDarkMode = UserDefaults.standard.bool(forKey: "isDarkMode")
+                    self.notificationsEnabled = UserDefaults.standard.bool(forKey: "notificationsEnabled")
+                }
+                
+                // Load persistent data
+                if let data: PersistentData = PersistentStorage.shared.loadData(forKey: self.localDataKey) {
                     DispatchQueue.main.async {
                         self.textSize = data.textSize
                         self.highContrastMode = data.highContrastMode
@@ -307,13 +397,21 @@ class UserSettings: ObservableObject {
                         self.userEmergencyContacts = data.userEmergencyContacts
                         self.preferredVoiceGender = data.preferredVoiceGender
                         self.speechRate = data.speechRate
+                        
+                        // Add a small delay to show the loading screen with old man image
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                            self.isLoaded = true
+                            let elapsed = Date().timeIntervalSince(loadStart)
+                            print("DEBUG: User data loaded in \(elapsed) seconds")
+                        }
                     }
-                    let elapsed = Date().timeIntervalSince(loadStart)
-                    print("DEBUG: User data loaded in \(elapsed) seconds")
                 } else {
                     print("DEBUG: No saved user data found")
-                    let elapsed = Date().timeIntervalSince(loadStart)
-                    print("DEBUG: User data load (empty) in \(elapsed) seconds")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        self.isLoaded = true
+                        let elapsed = Date().timeIntervalSince(loadStart)
+                        print("DEBUG: User data load (empty) in \(elapsed) seconds")
+                    }
                 }
             }
         }
@@ -322,6 +420,48 @@ class UserSettings: ObservableObject {
     func updateProfile(_ profile: UserProfile) {
         self.userProfile = profile
         self.userName = profile.firstName
+    }
+    
+    // MARK: - Emergency Number Methods
+    
+    /// Get the effective emergency number (custom if set and enabled, otherwise country-based)
+    func getEffectiveEmergencyNumber() -> String {
+        if useCustomEmergencyNumber, let custom = customEmergencyNumber, !custom.isEmpty {
+            return custom
+        }
+        return AppConfig.Emergency.emergencyNumber
+    }
+    
+    /// Get the effective emergency service name
+    func getEffectiveEmergencyServiceName() -> String {
+        if useCustomEmergencyNumber, let custom = customEmergencyNumber, !custom.isEmpty {
+            return NSLocalizedString("Emergency Services", comment: "")
+        }
+        return AppConfig.Emergency.emergencyServiceName
+    }
+    
+    /// Get the detected country emergency info for display purposes
+    func getDetectedEmergencyInfo() -> EmergencyNumberInfo {
+        return AppConfig.Emergency.currentEmergencyInfo
+    }
+    
+    // MARK: - App Tour Methods
+    
+    /// Check if the app tour should be shown
+    func shouldShowAppTour() -> Bool {
+        // Show if user hasn't seen it yet, or if there's a new version
+        return !hasSeenAppTour || appTourVersion != "1.0"
+    }
+    
+    /// Mark the app tour as completed
+    func markAppTourCompleted() {
+        hasSeenAppTour = true
+        appTourVersion = "1.0"
+    }
+    
+    /// Reset app tour to show again (for testing or updates)
+    func resetAppTour() {
+        hasSeenAppTour = false
     }
     
     // Function to reset all settings to default
@@ -362,7 +502,7 @@ class UserSettings: ObservableObject {
 
         // Reset notification settings
         medicationRemindersEnabled = true
-        medicationReminderLeadTime = 30
+        medicationReminderLeadTime = 0
         mealWindowRemindersEnabled = true
         fastingRemindersEnabled = true
         dailyTipsEnabled = true
@@ -374,14 +514,8 @@ class UserSettings: ObservableObject {
         UserDefaults.standard.removeObject(forKey: "notificationsEnabled")
 
         // Clear persistent storage (Important!)
-        Task {
-            do {
-                try await PersistentStorage.shared.deleteData(forKey: self.localDataKey)
-                print("DEBUG: Successfully cleared persistent storage for key: \(self.localDataKey)")
-            } catch {
-                print("Error clearing persistent storage: \(error)")
-            }
-        }
+        PersistentStorage.shared.deleteData(forKey: self.localDataKey)
+        print("DEBUG: Successfully cleared persistent storage for key: \(self.localDataKey)")
 
         // Trigger save of the now-default state (optional, depending on desired flow)
         // saveUserData() // Might be redundant if properties trigger saveUserData anyway
@@ -393,6 +527,49 @@ class UserSettings: ObservableObject {
         if !isLoaded {
             loadUserData(startTime: startTime)
         }
+    }
+    
+    // MARK: - Profile Translation Methods
+    
+    /// Performs initial migration of profile data to English keys if needed
+    @MainActor
+    private func performInitialMigration() async {
+        // Check if migration has already been performed
+        let migrationKey = "ProfileTranslationMigrationCompleted"
+        if UserDefaults.standard.bool(forKey: migrationKey) {
+            return
+        }
+        
+        print("UserSettings: Performing initial profile translation migration")
+        
+        // Migrate UserSettings dietary restrictions
+        ProfileTranslationUtils.migrateUserSettingsToEnglishKeys(self)
+        
+        // Migrate UserProfile if it exists
+        if let profile = userProfile {
+            let migratedProfile = ProfileTranslationUtils.migrateProfileToEnglishKeys(profile)
+            userProfile = migratedProfile
+        }
+        
+        // Mark migration as completed
+        UserDefaults.standard.set(true, forKey: migrationKey)
+        print("UserSettings: Profile translation migration completed")
+    }
+    
+    /// Handles language changes by refreshing profile data display
+    @MainActor
+    private func handleLanguageChange() {
+        print("UserSettings: Handling language change for profile data")
+        
+        // Force refresh of profile data to trigger UI updates with new translations
+        if let profile = userProfile {
+            // Create a copy to trigger the @Published update
+            let refreshedProfile = profile
+            userProfile = refreshedProfile
+        }
+        
+        // Force refresh of user settings to trigger UI updates
+        objectWillChange.send()
     }
 }
 

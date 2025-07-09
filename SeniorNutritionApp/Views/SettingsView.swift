@@ -12,6 +12,7 @@ struct SettingsView: View {
     @State private var showingBackupInfoAlert = false // For backup/restore info
     @State private var showingOnboarding = false // NEW: controls onboarding sheet
     @State private var showingTranslationUtility = false
+    @State private var showingAppTourResetAlert = false
     enum BackupAlert: Identifiable {
         var id: String {
             switch self {
@@ -93,18 +94,32 @@ struct SettingsView: View {
                 
                 // Language section
                 Section(header: Text(NSLocalizedString("Language", comment: "")).font(.system(size: userSettings.textSize.size, weight: .bold))) {
-                    // Always show language picker
-                    Picker(NSLocalizedString("App Language", comment: ""), selection: $userSettings.selectedLanguage) {
-                        ForEach(userSettings.supportedLanguages, id: \.self) { code in
-                            Text(languageDisplayName(for: code)).tag(code)
+                    // Language picker with navigation
+                    NavigationLink(destination: LanguageSelectorView()) {
+                        HStack {
+                            Image(systemName: "globe")
+                                .foregroundColor(.blue)
+                                .frame(width: 30)
+                            
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(NSLocalizedString("App Language", comment: ""))
+                                    .font(.system(size: userSettings.textSize.size))
+                                
+                                HStack {
+                                    Text(getFlagEmoji(for: userSettings.selectedLanguage))
+                                        .font(.title3)
+                                    Text(languageDisplayName(for: userSettings.selectedLanguage))
+                                        .font(.system(size: userSettings.textSize.size - 2))
+                                        .foregroundColor(.secondary)
+                                }
+                            }
+                            
+                            Spacer()
+                            
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(.gray)
+                                .font(.caption)
                         }
-                    }
-                    .pickerStyle(MenuPickerStyle())
-                    .font(.system(size: userSettings.textSize.size))
-                    .onChange(of: userSettings.selectedLanguage) { newLang in
-                        // Disable follow system when manually selecting a language
-                        languageManager.followSystemLanguage = false
-                        LanguageManager.shared.setLanguage(newLang)
                     }
                     Button(action: {
                         // Explicitly force a refresh of the language system
@@ -119,6 +134,24 @@ struct SettingsView: View {
                         }
                     }) {
                         Label(NSLocalizedString("Fix Language Issues", comment: ""), systemImage: "arrow.triangle.2.circlepath")
+                            .padding(.vertical, 8)
+                    }
+                    
+                    // Add food database translation button
+                    Button(action: {
+                        // Force translate all food items to current language
+                        Task {
+                            let foodDatabase = FoodDatabaseService()
+                            _ = await foodDatabase.translateAllFoodItems()
+                            
+                            // Provide user feedback
+                            DispatchQueue.main.async {
+                                let generator = UINotificationFeedbackGenerator()
+                                generator.notificationOccurred(.success)
+                            }
+                        }
+                    }) {
+                        Label(NSLocalizedString("Translate Food Database", comment: ""), systemImage: "globe.badge.chevron.backward")
                             .padding(.vertical, 8)
                     }
                     Button(action: {
@@ -152,6 +185,68 @@ struct SettingsView: View {
                             .font(.caption)
                             .foregroundColor(.secondary)
                     }
+                }
+                
+                // Emergency Number section
+                Section(header: sectionHeader(NSLocalizedString("Emergency Number", comment: ""))) {
+                    VStack(alignment: .leading, spacing: 12) {
+                        // Show detected emergency number
+                        HStack {
+                            Image(systemName: "location.fill")
+                                .foregroundColor(.blue)
+                                .frame(width: 30)
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(NSLocalizedString("Detected for your region", comment: ""))
+                                    .font(.system(size: userSettings.textSize.size, weight: .semibold))
+                                Text("\(userSettings.getDetectedEmergencyInfo().name): \(userSettings.getDetectedEmergencyInfo().number)")
+                                    .font(.system(size: userSettings.textSize.size - 2))
+                                    .foregroundColor(.secondary)
+                            }
+                            Spacer()
+                        }
+                        
+                        Divider()
+                        
+                        // Toggle for custom emergency number
+                        Toggle(NSLocalizedString("Use Custom Emergency Number", comment: ""), isOn: $userSettings.useCustomEmergencyNumber)
+                            .font(.system(size: userSettings.textSize.size))
+                        
+                        // Custom emergency number input
+                        if userSettings.useCustomEmergencyNumber {
+                            VStack(alignment: .leading, spacing: 8) {
+                                Text(NSLocalizedString("Custom Emergency Number", comment: ""))
+                                    .font(.system(size: userSettings.textSize.size, weight: .semibold))
+                                TextField(NSLocalizedString("Enter emergency number", comment: ""), text: Binding(
+                                    get: { userSettings.customEmergencyNumber ?? "" },
+                                    set: { userSettings.customEmergencyNumber = $0.isEmpty ? nil : $0 }
+                                ))
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .keyboardType(.phonePad)
+                                .font(.system(size: userSettings.textSize.size))
+                                
+                                Text(NSLocalizedString("Make sure this is the correct emergency number for your location", comment: ""))
+                                    .font(.system(size: userSettings.textSize.size - 4))
+                                    .foregroundColor(.orange)
+                                    .padding(.top, 4)
+                            }
+                        }
+                        
+                        // Show currently active emergency number
+                        HStack {
+                            Image(systemName: "phone.fill")
+                                .foregroundColor(.red)
+                                .frame(width: 30)
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(NSLocalizedString("Currently active", comment: ""))
+                                    .font(.system(size: userSettings.textSize.size, weight: .semibold))
+                                Text("\(userSettings.getEffectiveEmergencyServiceName()): \(userSettings.getEffectiveEmergencyNumber())")
+                                    .font(.system(size: userSettings.textSize.size - 2))
+                                    .foregroundColor(.secondary)
+                            }
+                            Spacer()
+                        }
+                    }
+                    .padding(.vertical, 8)
                 }
                 
                 // Help & support section
@@ -199,6 +294,18 @@ struct SettingsView: View {
                     .sheet(isPresented: $showingOnboarding) {
                         OnboardingView(isFirstLaunch: false)
                             .environmentObject(userSettings)
+                    }
+                    
+                    // Reset App Tour Button
+                    Button(action: { 
+                        userSettings.resetAppTour()
+                        showingAppTourResetAlert = true
+                    }) {
+                        settingsRowContent(
+                            icon: "map.fill",
+                            title: NSLocalizedString("Show App Tour Again", comment: ""),
+                            color: .purple
+                        )
                     }
                     
                     // Backup Data Section updated for local backup
@@ -279,6 +386,11 @@ struct SettingsView: View {
                             Text(NSLocalizedString("Translate Food Database", comment: ""))
                         }
                     }
+                    
+                    // Debug Subscription Tier Switcher
+                    #if DEBUG
+                    DebugSubscriptionTierSwitcher()
+                    #endif
                 }
             }
             .navigationTitle(NSLocalizedString("Settings", comment: ""))
@@ -297,6 +409,11 @@ struct SettingsView: View {
                 Button("OK") { }
             } message: {
                 Text("Your app data (settings, medications, etc.) is typically included in your device's standard backups (iCloud or computer backups) if you have enabled them in your device settings. Restore data by restoring your device from a backup.")
+            }
+            .alert("App Tour Reset", isPresented: $showingAppTourResetAlert) {
+                Button("OK") { }
+            } message: {
+                Text("App tour has been reset. The tour will be shown again the next time you launch the app.")
             }
             // New unified alert for backup and restore results
             .alert(item: $backupAlert) { alert in
@@ -364,6 +481,17 @@ struct SettingsView: View {
         case "fr": return "Français"
         case "he": return "עברית"
         default: return code
+        }
+    }
+    
+    // Helper function to get flag emoji for language code
+    private func getFlagEmoji(for code: String) -> String {
+        switch code {
+        case "en": return "🇺🇸"
+        case "he": return "🇮🇱"
+        case "es": return "🇪🇸"
+        case "fr": return "🇫🇷"
+        default: return "��️"
         }
     }
     
@@ -645,8 +773,8 @@ struct PrintOptionsView: View {
             List {
                 Section {
                     printOptionButton(
-                        title: "Medication Schedule",
-                        description: "Print your current medication schedule",
+                        title: NSLocalizedString("Medication Schedule", comment: ""),
+                        description: NSLocalizedString("Print your current medication schedule", comment: ""),
                         icon: "pill.fill",
                         action: { // Action for Medication Schedule
                             selectedPreview = .medication
@@ -655,8 +783,8 @@ struct PrintOptionsView: View {
                     )
                     
                     printOptionButton(
-                        title: "Fasting Guide",
-                        description: "Print your fasting protocol guide",
+                        title: NSLocalizedString("Fasting Guide", comment: ""),
+                        description: NSLocalizedString("Print your fasting protocol guide", comment: ""),
                         icon: "timer",
                         action: { // Action for Fasting Guide
                             selectedPreview = .fasting
@@ -665,8 +793,8 @@ struct PrintOptionsView: View {
                     )
                     
                     printOptionButton(
-                        title: "Meal Suggestions",
-                        description: "Print healthy meal suggestions",
+                        title: NSLocalizedString("Meal Suggestions", comment: ""),
+                        description: NSLocalizedString("Print healthy meal suggestions", comment: ""),
                         icon: "fork.knife",
                         action: { // Action for Meal Suggestions
                             selectedPreview = .meals
@@ -675,8 +803,8 @@ struct PrintOptionsView: View {
                     )
                     
                     printOptionButton(
-                        title: "App Instructions",
-                        description: "Print step-by-step app instructions",
+                        title: NSLocalizedString("App Instructions", comment: ""),
+                        description: NSLocalizedString("Print step-by-step app instructions", comment: ""),
                         icon: "doc.text.fill",
                         action: { // Action for App Instructions
                             selectedPreview = .instructions
@@ -694,7 +822,7 @@ struct PrintOptionsView: View {
                                 .font(.system(size: 24))
                                 .foregroundColor(.blue)
                             
-                            Text("Help with Printing")
+                            Text(NSLocalizedString("Help with Printing", comment: ""))
                                 .font(.system(size: userSettings.textSize.size))
                             
                             Spacer()
@@ -703,38 +831,44 @@ struct PrintOptionsView: View {
                     }
                 }
             }
-            .navigationTitle("Print Materials")
+            .navigationTitle(NSLocalizedString("Print Materials", comment: ""))
             .navigationBarTitleDisplayMode(.large)
             .listStyle(InsetGroupedListStyle())
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Done") {
+                    Button(NSLocalizedString("Done", comment: "")) {
                         presentationMode.wrappedValue.dismiss()
                     }
                     .font(.system(size: userSettings.textSize.size))
                 }
             }
-            .alert("Printing Instructions", isPresented: $showPrintHelpAlert) {
-                Button("OK", role: .cancel) { }
+            .alert(NSLocalizedString("Help with Printing", comment: ""), isPresented: $showPrintHelpAlert) {
+                Button(NSLocalizedString("OK", comment: ""), role: .cancel) { }
             } message: {
-                Text(MedicationPrintService.shared.showPrintingInstructions())
+                Text(NSLocalizedString("print_instructions_help", comment: ""))
             }
             .sheet(isPresented: $showPreview) {
                 PrintPreviewSheet(
                     type: selectedPreview ?? .medication,
                     onPrint: {
-                        switch selectedPreview {
-                        case .medication:
-                            let medications = userSettings.medications.isEmpty ? [] : userSettings.medications
-                            MedicationPrintService.shared.printMedicationSchedule(medications: medications)
-                        case .fasting:
-                            MedicationPrintService.shared.printFastingProtocol(protocol: userSettings.activeFastingProtocol)
-                        case .meals:
-                            MedicationPrintService.shared.printMealSuggestions()
-                        case .instructions:
-                            MedicationPrintService.shared.printAppInstructions()
-                        case .none:
-                            break
+                        Task { @MainActor in
+                            switch selectedPreview {
+                            case .medication:
+                                let medications = userSettings.medications.isEmpty ? [] : userSettings.medications
+                                let userName = userSettings.userProfile?.firstName ?? userSettings.userName
+                                MedicationPrintService.shared.printMedicationSchedule(medications: medications, userName: userName)
+                            case .fasting:
+                                let userName = userSettings.userProfile?.firstName ?? userSettings.userName
+                                MedicationPrintService.shared.printFastingProtocolGuide(fastingProtocol: userSettings.activeFastingProtocol, userName: userName)
+                            case .meals:
+                                let userName = userSettings.userProfile?.firstName ?? userSettings.userName
+                                MedicationPrintService.shared.printMealSuggestions(userName: userName)
+                            case .instructions:
+                                let userName = userSettings.userProfile?.firstName ?? userSettings.userName
+                                MedicationPrintService.shared.printAppInstructions(userName: userName)
+                            case .none:
+                                break
+                            }
                         }
                     }
                 )
@@ -817,7 +951,7 @@ struct PrintPreviewSheet: View {
                     Button(action: {
                         presentationMode.wrappedValue.dismiss()
                     }) {
-                        Text("Cancel")
+                        Text(NSLocalizedString("Cancel", comment: ""))
                             .foregroundColor(.gray)
                             .font(.system(size: userSettings.textSize.size))
                             .frame(maxWidth: .infinity)
@@ -832,7 +966,7 @@ struct PrintPreviewSheet: View {
                     }) {
                         HStack {
                             Image(systemName: "printer.fill")
-                            Text("Print")
+                            Text(NSLocalizedString("Print", comment: ""))
                         }
                         .foregroundColor(.white)
                         .font(.system(size: userSettings.textSize.size))
@@ -866,13 +1000,13 @@ struct PrintPreviewSheet: View {
     private func getTitle() -> String {
         switch type {
         case .medication:
-            return "Medication Schedule"
+            return NSLocalizedString("Medication Schedule", comment: "")
         case .fasting:
-            return "Fasting Protocol Guide"
+            return NSLocalizedString("Fasting Guide", comment: "")
         case .meals:
-            return "Meal Suggestions"
+            return NSLocalizedString("Meal Suggestions", comment: "")
         case .instructions:
-            return "App Instructions"
+            return NSLocalizedString("App Instructions", comment: "")
         }
     }
     
@@ -988,6 +1122,178 @@ struct PrintingBridge: UIViewRepresentable {
         return base
     }
 }
+
+// Debug Subscription Tier Switcher (only available in DEBUG builds)
+#if DEBUG
+struct DebugSubscriptionTierSwitcher: View {
+    @StateObject private var premiumManager = PremiumManager.shared
+    @EnvironmentObject private var userSettings: UserSettings
+    @State private var showingDebugAlert = false
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            // Debug Mode Toggle
+            Toggle(isOn: Binding(
+                get: { premiumManager.isDebugMode },
+                set: { newValue in
+                    if newValue {
+                        premiumManager.enableDebugMode()
+                    } else {
+                        premiumManager.disableDebugMode()
+                    }
+                }
+            )) {
+                HStack {
+                    Image(systemName: "wrench.and.screwdriver.fill")
+                        .foregroundColor(.orange)
+                        .frame(width: 30)
+                    
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Debug Mode")
+                            .font(.system(size: userSettings.textSize.size))
+                        Text("Enable subscription testing")
+                            .font(.system(size: userSettings.textSize.size - 2))
+                            .foregroundColor(.secondary)
+                    }
+                }
+            }
+            .padding(.vertical, 8)
+            .toggleStyle(SwitchToggleStyle(tint: .orange))
+            
+            // Current Subscription Status
+            HStack {
+                Image(systemName: "crown.fill")
+                    .foregroundColor(getTierColor())
+                    .frame(width: 30)
+                
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Current Tier")
+                        .font(.system(size: userSettings.textSize.size))
+                    Text(premiumManager.currentTier.displayName)
+                        .font(.system(size: userSettings.textSize.size - 2))
+                        .foregroundColor(getTierColor())
+                        .fontWeight(.semibold)
+                }
+                
+                Spacer()
+                
+                if premiumManager.isDebugMode {
+                    Text("DEBUG")
+                        .font(.system(size: userSettings.textSize.size - 4, weight: .bold))
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background(Color.orange)
+                        .cornerRadius(8)
+                }
+            }
+            .padding(.vertical, 8)
+            
+            // Tier Selection (only visible in debug mode)
+            if premiumManager.isDebugMode {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Select Debug Tier:")
+                        .font(.system(size: userSettings.textSize.size, weight: .semibold))
+                        .foregroundColor(.secondary)
+                    
+                    ForEach(SubscriptionTier.allCases, id: \.self) { tier in
+                        Button(action: {
+                            premiumManager.setDebugTier(tier)
+                            let generator = UIImpactFeedbackGenerator(style: .medium)
+                            generator.impactOccurred()
+                        }) {
+                            HStack {
+                                Image(systemName: premiumManager.currentTier == tier ? "checkmark.circle.fill" : "circle")
+                                    .foregroundColor(premiumManager.currentTier == tier ? .green : .gray)
+                                
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(tier.displayName)
+                                        .font(.system(size: userSettings.textSize.size))
+                                        .foregroundColor(.primary)
+                                    
+                                    Text(tier.localizedDescription)
+                                        .font(.system(size: userSettings.textSize.size - 2))
+                                        .foregroundColor(.secondary)
+                                }
+                                
+                                Spacer()
+                                
+                                if tier != .free {
+                                    Text(tier.monthlyPrice)
+                                        .font(.system(size: userSettings.textSize.size - 2, weight: .semibold))
+                                        .foregroundColor(.blue)
+                                }
+                            }
+                            .padding(.vertical, 4)
+                            .contentShape(Rectangle())
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+                .padding(.vertical, 8)
+            }
+            
+            // Feature Access Summary
+            if premiumManager.isDebugMode {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Feature Access:")
+                        .font(.system(size: userSettings.textSize.size, weight: .semibold))
+                        .foregroundColor(.secondary)
+                    
+                    LazyVGrid(columns: [
+                        GridItem(.flexible()),
+                        GridItem(.flexible())
+                    ], spacing: 8) {
+                        featureAccessItem("Analytics", premiumManager.hasAccess(to: PremiumFeature.advancedAnalytics))
+                        featureAccessItem("Export", premiumManager.hasAccess(to: PremiumFeature.dataExport))
+                        featureAccessItem("Voice", premiumManager.hasAccess(to: PremiumFeature.voiceAssistant))
+                        featureAccessItem("Tips", premiumManager.hasAccess(to: PremiumFeature.personalizedTips))
+                        featureAccessItem("Support", premiumManager.hasAccess(to: PremiumFeature.prioritySupport))
+                        featureAccessItem("Coach", premiumManager.hasAccess(to: PremiumFeature.coachChat))
+                    }
+                }
+                .padding(.vertical, 8)
+            }
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 12)
+        .background(Color.gray.opacity(0.1))
+        .cornerRadius(12)
+        .alert("Debug Mode Enabled", isPresented: $showingDebugAlert) {
+            Button("OK") { }
+        } message: {
+            Text("You can now test different subscription tiers. This is for development only and won't affect real purchases.")
+        }
+    }
+    
+    private func getTierColor() -> Color {
+        switch premiumManager.currentTier {
+        case .free:
+            return .gray
+        case .advanced:
+            return .blue
+        case .premium:
+            return .purple
+        }
+    }
+    
+    private func featureAccessItem(_ name: String, _ hasAccess: Bool) -> some View {
+        HStack {
+            Image(systemName: hasAccess ? "checkmark.circle.fill" : "xmark.circle.fill")
+                .foregroundColor(hasAccess ? .green : .red)
+                .font(.system(size: 12))
+            
+            Text(name)
+                .font(.system(size: userSettings.textSize.size - 4))
+                .foregroundColor(.primary)
+        }
+        .padding(.horizontal, 8)
+        .padding(.vertical, 4)
+        .background(hasAccess ? Color.green.opacity(0.1) : Color.red.opacity(0.1))
+        .cornerRadius(8)
+    }
+}
+#endif
 
 // Preview Provider (Restored)
 #if DEBUG

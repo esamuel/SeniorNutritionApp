@@ -1,6 +1,14 @@
 import Foundation
 import SwiftUI
 import Combine
+// Add missing model imports
+
+// import the specific files if needed, e.g.:
+// import "Meal.swift"
+// import "NutritionalModels.swift"
+// import "NutritionalAnalysisService.swift"
+// import "UserProfile.swift"
+// import "NutritionalInfo.swift"
 
 class MealManager: ObservableObject {
     @Published var meals: [Meal] = []
@@ -202,5 +210,13 @@ class MealManager: ObservableObject {
             // If loading fails, start with empty array
             meals = []
         }
+    }
+    
+    /// Update nutritional goals from UserSettings (must be called from a Task or main actor context)
+    func updateGoalsFromUserSettings(_ userSettings: UserSettings) async {
+        nutritionalGoals.dailyCalories = Double(await userSettings.dailyCalorieGoal)
+        nutritionalGoals.dailyProtein = await userSettings.macroGoalsEnabled ? Double(await userSettings.dailyProteinGoal) : NutritionalGoals().dailyProtein
+        nutritionalGoals.dailyCarbohydrates = await userSettings.macroGoalsEnabled ? Double(await userSettings.dailyCarbGoal) : NutritionalGoals().dailyCarbohydrates
+        nutritionalGoals.dailyFat = await userSettings.macroGoalsEnabled ? Double(await userSettings.dailyFatGoal) : NutritionalGoals().dailyFat
     }
 } 

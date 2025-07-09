@@ -88,6 +88,10 @@ struct AddCommonMealView: View {
             }
             .onAppear {
                 foodDatabase.loadFoodDatabase()
+                // Ensure food database is translated for current language
+                Task {
+                    await foodDatabase.checkAndTranslateIfNeeded()
+                }
             }
         }
     }

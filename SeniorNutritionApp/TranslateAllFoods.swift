@@ -30,17 +30,26 @@ struct TranslateAllFoodsView: View {
                 Text("Test translation in:")
                     .fontWeight(.bold)
                 
-                Picker("Select Language", selection: $selectedLanguage) {
-                    ForEach(languages, id: \.self) {
-                        Text($0)
-                    }
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                .onChange(of: selectedLanguage) { newValue in
-                    let index = languages.firstIndex(of: newValue) ?? 0
-                    let langCode = languageCodes[index]
-                    if !langCode.isEmpty {
-                        LanguageManager.shared.setLanguage(langCode)
+                HStack(spacing: 15) {
+                    ForEach(Array(zip(languages, languageCodes).enumerated()), id: \.offset) { index, language in
+                        Button(action: {
+                            selectedLanguage = language.0
+                            if !language.1.isEmpty {
+                                LanguageManager.shared.setLanguage(language.1)
+                            }
+                        }) {
+                            VStack(spacing: 5) {
+                                Text(getFlagEmoji(for: language.1))
+                                    .font(.title2)
+                                Text(language.0)
+                                    .font(.caption)
+                                    .foregroundColor(selectedLanguage == language.0 ? .blue : .primary)
+                            }
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 5)
+                            .background(selectedLanguage == language.0 ? Color.blue.opacity(0.1) : Color.clear)
+                            .cornerRadius(8)
+                        }
                     }
                 }
                 .padding(.bottom)
@@ -262,6 +271,22 @@ struct TranslateAllFoodsView: View {
                 message = "Notes translations have been fixed!"
                 showingProgressDetails = true
             }
+        }
+    }
+    
+    // Helper function to get flag emoji for language code
+    private func getFlagEmoji(for code: String) -> String {
+        switch code {
+        case "en":
+            return "🇺🇸"
+        case "he":
+            return "🇮🇱"
+        case "es":
+            return "🇪🇸"
+        case "fr":
+            return "🇫🇷"
+        default:
+            return "🏳️"
         }
     }
 }

@@ -5,10 +5,10 @@ struct LanguageSelectorView: View {
     @Environment(\.presentationMode) var presentationMode
     
     let languages = [
-        ("English", "en"),
-        ("עברית", "he"),
-        ("Español", "es"),
-        ("Français", "fr")
+        ("English", "en", "🇺🇸"),
+        ("עברית", "he", "🇮🇱"),
+        ("Español", "es", "🇪🇸"),
+        ("Français", "fr", "🇫🇷")
     ]
     
     var body: some View {
@@ -20,10 +20,17 @@ struct LanguageSelectorView: View {
                         presentationMode.wrappedValue.dismiss()
                     }) {
                         HStack {
+                            // Country flag emoji
+                            Text(language.2)
+                                .font(.title2)
+                                .frame(width: 30, height: 20)
+                            
                             Text(language.0)
                                 .foregroundColor(.primary)
                                 .environment(\.layoutDirection, language.1 == "he" ? .rightToLeft : .leftToRight)
+                            
                             Spacer()
+                            
                             if languageManager.currentLanguage == language.1 {
                                 Image(systemName: "checkmark")
                                     .foregroundColor(.blue)

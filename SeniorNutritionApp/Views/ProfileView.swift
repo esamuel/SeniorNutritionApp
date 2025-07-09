@@ -44,7 +44,7 @@ struct DietaryRestrictionsView: View {
                     .foregroundColor(.secondary)
             } else {
                 ForEach(userSettings.userDietaryRestrictions, id: \.self) { restriction in
-                    Text(restriction)
+                    Text(ProfileTranslationUtils.translateDietaryRestriction(restriction))
                         .font(.system(size: userSettings.textSize.size))
                 }
             }
@@ -97,6 +97,10 @@ struct ProfileView: View {
     @State private var showingEditEmergencyContact = false
     @State private var contactToEdit: EmergencyContact?
     @State private var showingOnboarding = false
+    @State private var refreshTrigger = false
+    
+    // Publisher for language change notifications
+    private let languageChangePublisher = NotificationCenter.default.publisher(for: .languageDidChange)
     
     var body: some View {
         NavigationView {
@@ -131,11 +135,15 @@ struct ProfileView: View {
                     EditEmergencyContactView(isPresented: $showingEditEmergencyContact)
                 }
             }
+            .onReceive(languageChangePublisher) { _ in
+                // Force refresh when language changes to update translations
+                refreshTrigger.toggle()
+            }
         }
     }
     
     private func personalInformationSection(_ profile: UserProfile) -> some View {
-        Section(header: Text("Personal Information")
+        Section(header: Text(NSLocalizedString("Personal Information", comment: ""))
             .font(.system(size: userSettings.textSize.size, weight: .bold))
             .foregroundColor(.blue)) {
             
@@ -155,13 +163,50 @@ struct ProfileView: View {
     }
     
     private func healthInformationSection(_ profile: UserProfile) -> some View {
-        Section(header: Text("Physical Information")
+        Section(header: Text(NSLocalizedString("Physical Information", comment: ""))
             .font(.system(size: userSettings.textSize.size, weight: .bold))
             .foregroundColor(.green)) {
-            profileRow(title: "Height", value: "\(Int(profile.height)) cm", iconName: "ruler", color: .teal)
-            profileRow(title: "Weight", value: "\(Int(profile.weight)) kg", iconName: "scalemass", color: .cyan)
-            if let bmi = profile.bmi {
-                profileRow(title: "BMI", value: String(format: "%.1f", bmi), iconName: "figure.stand", color: .mint)
+            
+            // Height with both metric and imperial
+            let heightCm = profile.height
+            let heightFt = UnitConverter.fromBaseUnit(heightCm, to: "ft")
+            let heightIn = UnitConverter.fromBaseUnit(heightCm, to: "in")
+            let heightText = "\(Int(heightCm)) cm (\(Int(heightFt))' \(Int(heightIn.truncatingRemainder(dividingBy: 12)))\""
+            profileRow(title: "Height", value: heightText, iconName: "ruler", color: .teal)
+            
+            // Weight with both metric and imperial
+            let weightKg = profile.weight
+            let weightLb = UnitConverter.fromBaseUnit(weightKg * 1000, to: "lb") // Convert kg to g first, then to lb
+            let weightText = "\(Int(weightKg)) kg (\(Int(weightLb)) lb)"
+            profileRow(title: "Weight", value: weightText, iconName: "scalemass", color: .cyan)
+            
+            // BMI with category using latest weight from health data
+            if let bmi = userSettings.getCurrentBMI(), let category = userSettings.getCurrentBMICategory() {
+                VStack(alignment: .leading, spacing: 4) {
+                    HStack {
+                        Image(systemName: "figure.stand")
+                            .foregroundColor(.mint)
+                            .frame(width: 30)
+                        
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("BMI")
+                                .font(.system(size: userSettings.textSize.size - 2))
+                                .foregroundColor(.secondary)
+                            HStack {
+                                Text(String(format: "%.1f", bmi))
+                                    .font(.system(size: userSettings.textSize.size))
+                                Text("(\(category.localizedTitle))")
+                                    .font(.system(size: userSettings.textSize.size - 2))
+                                    .foregroundColor(category.color)
+                                    .padding(.horizontal, 8)
+                                    .padding(.vertical, 2)
+                                    .background(category.color.opacity(0.2))
+                                    .cornerRadius(8)
+                            }
+                        }
+                    }
+                }
+                .padding(.vertical, 4)
             } else {
                 profileRow(title: "BMI", value: "-", iconName: "figure.stand", color: .mint)
             }
@@ -171,50 +216,102 @@ struct ProfileView: View {
     
     private func medicalConditionsSection(_ profile: UserProfile) -> some View {
         Group {
-            if !profile.medicalConditions.isEmpty {
-                Section(header: Text("Medical Conditions")
-                    .font(.system(size: userSettings.textSize.size, weight: .bold))
-                    .foregroundColor(.red)) {
-                    
-                    ForEach(profile.medicalConditions, id: \.self) { condition in
+                Section(header: HStack {
+                    Text(NSLocalizedString("Medical Conditions", comment: ""))
+                        .font(.system(size: userSettings.textSize.size, weight: .bold))
+                        .foregroundColor(.red)
+                    Spacer()
+                    Button(action: {
+                        showingProfileSetup = true
+                    }) {
+                        Image(systemName: "pencil.circle")
+                            .foregroundColor(.blue)
+                    }
+                    Button(action: {
+                        if var updatedProfile = userSettings.userProfile {
+                            updatedProfile.medicalConditions = []
+                            userSettings.updateProfile(updatedProfile)
+                        }
+                    }) {
+                        Image(systemName: "trash.circle")
+                            .foregroundColor(.red)
+                    }
+                }) {
+                    if profile.medicalConditions.isEmpty {
                         HStack {
-                            Image(systemName: "heart.text.square")
-                                .foregroundColor(.red)
-                            Text(condition)
+                            Image(systemName: "info.circle")
+                                .foregroundColor(.secondary)
+                            Text(NSLocalizedString("No medical conditions added", comment: ""))
                                 .font(.system(size: userSettings.textSize.size))
+                                .foregroundColor(.secondary)
                         }
                         .padding(.vertical, 4)
+                    } else {
+                        ForEach(profile.medicalConditions, id: \.self) { condition in
+                            HStack {
+                                Image(systemName: "heart.text.square")
+                                    .foregroundColor(.red)
+                                Text(ProfileTranslationUtils.translateMedicalCondition(condition))
+                                    .font(.system(size: userSettings.textSize.size))
+                            }
+                            .padding(.vertical, 4)
+                        }
                     }
                 }
                 .listRowBackground(Color.red.opacity(0.05))
-            }
         }
     }
     
     private func dietaryRestrictionsSection(_ profile: UserProfile) -> some View {
         Group {
-            if !profile.dietaryRestrictions.isEmpty {
-                Section(header: Text("Dietary Restrictions")
-                    .font(.system(size: userSettings.textSize.size, weight: .bold))
-                    .foregroundColor(.orange)) {
-                    
-                    ForEach(profile.dietaryRestrictions, id: \.self) { restriction in
+                Section(header: HStack {
+                    Text(NSLocalizedString("Dietary Restrictions", comment: ""))
+                        .font(.system(size: userSettings.textSize.size, weight: .bold))
+                        .foregroundColor(.orange)
+                    Spacer()
+                    Button(action: {
+                        showingProfileSetup = true
+                    }) {
+                        Image(systemName: "pencil.circle")
+                            .foregroundColor(.blue)
+                    }
+                    Button(action: {
+                        if var updatedProfile = userSettings.userProfile {
+                            updatedProfile.dietaryRestrictions = []
+                            userSettings.updateProfile(updatedProfile)
+                        }
+                    }) {
+                        Image(systemName: "trash.circle")
+                            .foregroundColor(.red)
+                    }
+                }) {
+                    if profile.dietaryRestrictions.isEmpty {
                         HStack {
-                            Image(systemName: "fork.knife")
-                                .foregroundColor(.orange)
-                            Text(restriction)
+                            Image(systemName: "info.circle")
+                                .foregroundColor(.secondary)
+                            Text(NSLocalizedString("No dietary restrictions added", comment: ""))
                                 .font(.system(size: userSettings.textSize.size))
+                                .foregroundColor(.secondary)
                         }
                         .padding(.vertical, 4)
+                    } else {
+                        ForEach(profile.dietaryRestrictions, id: \.self) { restriction in
+                            HStack {
+                                Image(systemName: "fork.knife")
+                                    .foregroundColor(.orange)
+                                Text(ProfileTranslationUtils.translateDietaryRestriction(restriction))
+                                    .font(.system(size: userSettings.textSize.size))
+                            }
+                            .padding(.vertical, 4)
+                        }
                     }
                 }
                 .listRowBackground(Color.orange.opacity(0.05))
-            }
         }
     }
     
     private func emergencyContactsSection(_ profile: UserProfile) -> some View {
-        Section(header: Text("Emergency Contacts")
+        Section(header: Text(NSLocalizedString("Emergency Contacts", comment: ""))
             .font(.system(size: userSettings.textSize.size, weight: .bold))
             .foregroundColor(.purple)) {
             
@@ -358,18 +455,7 @@ struct EditProfileView: View {
         "Stress Reduction"
     ]
     
-    private let dietaryRestrictionOptions = [
-        "Vegetarian",
-        "Vegan",
-        "Gluten-Free",
-        "Dairy-Free",
-        "Nut-Free",
-        "Low Sodium",
-        "Low Sugar",
-        "Low Fat",
-        "Kosher",
-        "Halal"
-    ]
+    private let dietaryRestrictionOptions = ProfileTranslationUtils.dietaryRestrictionsEnglish
     
     init(isPresented: Binding<Bool>) {
         _isPresented = isPresented
@@ -416,7 +502,7 @@ struct EditProfileView: View {
                 
                 Section(header: Text("Dietary Restrictions").font(.system(size: userSettings.textSize.size))) {
                     ForEach(dietaryRestrictionOptions, id: \.self) { restriction in
-                        MultipleSelectionRow(title: restriction, isSelected: selectedDietaryRestrictions.contains(restriction)) {
+                        MultipleSelectionRow(title: ProfileTranslationUtils.translateDietaryRestriction(restriction), isSelected: selectedDietaryRestrictions.contains(restriction)) {
                             if selectedDietaryRestrictions.contains(restriction) {
                                 selectedDietaryRestrictions.remove(restriction)
                             } else {

@@ -24,6 +24,10 @@
     <string>We need access to your microphone to enable voice input for medication names and notes.</string>
     <key>NSSpeechRecognitionUsageDescription</key>
     <string>We need speech recognition to convert your voice into text for medication names and notes.</string>
+    <key>NSHealthShareUsageDescription</key>
+    <string>This app needs access to read your health data to provide personalized nutrition recommendations and track your wellness progress.</string>
+    <key>NSHealthUpdateUsageDescription</key>
+    <string>This app needs access to write health data to track your nutrition intake, weight, blood pressure, and other wellness metrics.</string>
     <key>UIApplicationSceneManifest</key>
     <dict>
         <key>UIApplicationSupportsMultipleScenes</key>

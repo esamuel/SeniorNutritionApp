@@ -2,6 +2,7 @@ import SwiftUI
 
 struct MainTabView: View {
     @EnvironmentObject private var userSettings: UserSettings
+    @EnvironmentObject var languageManager: LanguageManager
     @Environment(\.layoutDirection) private var layoutDirection
     @State private var selectedTab = 0 // 0 = Home tab (always opens to Home regardless of language)
     
