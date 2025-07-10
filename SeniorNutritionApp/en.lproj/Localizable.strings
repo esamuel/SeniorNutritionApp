@@ -961,6 +961,13 @@
 "Ding" = "Ding";
 "Other" = "Other";
 
+/* Notification Style Explanations */
+"Reminder Style Explanation:" = "Reminder Style Explanation:";
+"Silent notifications with visual alerts only. No sound or vibration." = "Silent notifications with visual alerts only. No sound or vibration.";
+"Standard notification sound with visual alerts. Balanced approach." = "Standard notification sound with visual alerts. Balanced approach.";
+"Critical alert sound that bypasses Do Not Disturb. Use for important medications." = "Critical alert sound that bypasses Do Not Disturb. Use for important medications.";
+"Settings Saved!" = "Settings Saved!";
+
 /* Gender Options */
 "Gender" = "Gender";
 "Male" = "Male";
@@ -1669,3 +1676,74 @@
 "Translate All Foods" = "Translate All Foods";
 "Tap translate button to update food names" = "Tap translate button to update food names";
 "Translating foods to %@..." = "Translating foods to %@...";
+
+/* First-Time User Guide */
+"First-Time Setup Guide" = "First-Time Setup Guide";
+"Complete guide for new users" = "Complete guide for new users";
+"Setup Progress" = "Setup Progress";
+"Skip Guide" = "Skip Guide";
+"Previous" = "Previous";
+"Next" = "Next";
+"Start Using App" = "Start Using App";
+"Stop Speaking" = "Stop Speaking";
+"Read Aloud" = "Read Aloud";
+"Why this matters:" = "Why this matters:";
+
+/* Guide Steps */
+"Welcome to Your Health Journey!" = "Welcome to Your Health Journey!";
+"Let's get you set up for personalized nutrition guidance" = "Let's get you set up for personalized nutrition guidance";
+"This quick setup will help us provide you with accurate nutrition analysis and personalized recommendations tailored specifically to your health needs." = "This quick setup will help us provide you with accurate nutrition analysis and personalized recommendations tailored specifically to your health needs.";
+"Let's Start!" = "Let's Start!";
+
+"Create Your Personal Profile" = "Create Your Personal Profile";
+"Essential information for personalized recommendations" = "Essential information for personalized recommendations";
+"Your personal information helps us calculate your specific nutritional needs, including daily calorie requirements, portion sizes, and nutrient recommendations based on your age, gender, and physical characteristics." = "Your personal information helps us calculate your specific nutritional needs, including daily calorie requirements, portion sizes, and nutrient recommendations based on your age, gender, and physical characteristics.";
+"Set Up Profile" = "Set Up Profile";
+
+"Add Physical Information" = "Add Physical Information";
+"Height, weight, and body measurements" = "Height, weight, and body measurements";
+"Your height and weight are crucial for calculating your Basal Metabolic Rate (BMR) and daily calorie needs. This ensures our nutrition analysis provides accurate recommendations for maintaining or reaching your health goals." = "Your height and weight are crucial for calculating your Basal Metabolic Rate (BMR) and daily calorie needs. This ensures our nutrition analysis provides accurate recommendations for maintaining or reaching your health goals.";
+"Add Measurements" = "Add Measurements";
+
+"Medical Conditions Matter" = "Medical Conditions Matter";
+"Help us keep you safe and healthy" = "Help us keep you safe and healthy";
+"Adding your medical conditions allows us to provide nutrition advice that's safe for your specific health situation. We'll warn you about foods that might interact with your conditions and suggest beneficial alternatives." = "Adding your medical conditions allows us to provide nutrition advice that's safe for your specific health situation. We'll warn you about foods that might interact with your conditions and suggest beneficial alternatives.";
+"Add Conditions" = "Add Conditions";
+
+"Dietary Restrictions & Preferences" = "Dietary Restrictions & Preferences";
+"Customize your nutrition experience" = "Customize your nutrition experience";
+"Whether you're vegetarian, have food allergies, or follow specific diets, this information ensures all our recommendations fit your lifestyle and dietary needs safely." = "Whether you're vegetarian, have food allergies, or follow specific diets, this information ensures all our recommendations fit your lifestyle and dietary needs safely.";
+"Set Preferences" = "Set Preferences";
+
+"Start Tracking Your Health" = "Start Tracking Your Health";
+"Begin your wellness journey" = "Begin your wellness journey";
+"Now that your profile is complete, you can start logging meals, tracking health metrics, and receiving personalized nutrition analysis. The more data you provide, the better our recommendations become!" = "Now that your profile is complete, you can start logging meals, tracking health metrics, and receiving personalized nutrition analysis. The more data you provide, the better our recommendations become!";
+"Start Tracking" = "Start Tracking";
+
+/* Guide Benefits */
+"Personalized nutrition recommendations" = "Personalized nutrition recommendations";
+"Accurate calorie and nutrient tracking" = "Accurate calorie and nutrient tracking";
+"Health-aware meal suggestions" = "Health-aware meal suggestions";
+"Better medication and meal timing" = "Better medication and meal timing";
+"Accurate daily calorie calculations" = "Accurate daily calorie calculations";
+"Age-appropriate nutrient recommendations" = "Age-appropriate nutrient recommendations";
+"Proper portion size guidance" = "Proper portion size guidance";
+"Gender-specific health considerations" = "Gender-specific health considerations";
+"Precise BMR and calorie calculations" = "Precise BMR and calorie calculations";
+"Accurate BMI tracking" = "Accurate BMI tracking";
+"Proper portion recommendations" = "Proper portion recommendations";
+"Weight management guidance" = "Weight management guidance";
+"Safe food recommendations" = "Safe food recommendations";
+"Condition-specific nutrition alerts" = "Condition-specific nutrition alerts";
+"Medication interaction warnings" = "Medication interaction warnings";
+"Tailored health advice" = "Tailored health advice";
+"Allergen-free recommendations" = "Allergen-free recommendations";
+"Diet-compliant meal suggestions" = "Diet-compliant meal suggestions";
+"Safe ingredient alternatives" = "Safe ingredient alternatives";
+"Personalized recipe filtering" = "Personalized recipe filtering";
+"Accurate nutrition analysis" = "Accurate nutrition analysis";
+"Personalized meal recommendations" = "Personalized meal recommendations";
+"Health trend monitoring" = "Health trend monitoring";
+"Progress tracking" = "Progress tracking";
+"Benefits include:" = "Benefits include:";
+

@@ -3155,3 +3155,86 @@
 "Export appointment data to share with caregivers" = "ייצא נתוני תורים לשיתוף עם מטפלים";
 "Backup your appointment data regularly" = "גבה את נתוני התורים שלך באופן קבוע";
 "Contact support if you need help with calendar sync" = "צור קשר עם התמיכה אם אתה צריך עזרה עם סנכרון לוח שנה";
+
+/* Notification Styles */
+"Regular" = "רגיל";
+"Gentle" = "עדין";
+"Urgent" = "דחוף";
+
+/* Notification Style Explanations */
+"Reminder Style Explanation:" = "הסבר על סגנון התזכורת:";
+"Silent notifications with visual alerts only. No sound or vibration." = "התראות שקטות עם התראות חזותיות בלבד. ללא צליל או רטט.";
+"Standard notification sound with visual alerts. Balanced approach." = "צליל התראה רגיל עם התראות חזותיות. גישה מאוזנת.";
+"Critical alert sound that bypasses Do Not Disturb. Use for important medications." = "צליל התראה קריטי שעוקף את 'נא לא להפריע'. השתמש עבור תרופות חשובות.";
+"Settings Saved!" = "הגדרות נשמרו!";
+
+/* First-Time User Guide */
+"First-Time Setup Guide" = "מדריך הגדרה ראשונית";
+"Complete guide for new users" = "מדריך מלא למשתמשים חדשים";
+"Setup Progress" = "התקדמות הגדרה";
+"Skip Guide" = "דלג על המדריך";
+"Previous" = "הקודם";
+"Next" = "הבא";
+"Start Using App" = "התחל להשתמש באפליקציה";
+"Stop Speaking" = "הפסק דיבור";
+"Read Aloud" = "קרא בקול";
+"Why this matters:" = "למה זה חשוב:";
+
+/* Guide Steps */
+"Welcome to Your Health Journey!" = "ברוכים הבאים למסע הבריאות שלכם!";
+"Let's get you set up for personalized nutrition guidance" = "בואו נגדיר אתכם להנחיות תזונה מותאמות אישית";
+"This quick setup will help us provide you with accurate nutrition analysis and personalized recommendations tailored specifically to your health needs." = "הגדרה מהירה זו תעזור לנו לספק לכם ניתוח תזונתי מדויק והמלצות מותאמות אישית בהתאם לצרכי הבריאות שלכם.";
+"Let's Start!" = "בואו נתחיל!";
+
+"Create Your Personal Profile" = "צרו את הפרופיל האישי שלכם";
+"Essential information for personalized recommendations" = "מידע חיוני להמלצות מותאמות אישית";
+"Your personal information helps us calculate your specific nutritional needs, including daily calorie requirements, portion sizes, and nutrient recommendations based on your age, gender, and physical characteristics." = "המידע האישי שלכם עוזר לנו לחשב את הצרכים התזונתיים הספציפיים שלכם, כולל דרישות קלוריות יומיות, גדלי מנות והמלצות לחומרי מזון על בסיס הגיל, המין והמאפיינים הפיזיים שלכם.";
+"Set Up Profile" = "הגדר פרופיל";
+
+"Add Physical Information" = "הוסף מידע פיזי";
+"Height, weight, and body measurements" = "גובה, משקל ומידות גוף";
+"Your height and weight are crucial for calculating your Basal Metabolic Rate (BMR) and daily calorie needs. This ensures our nutrition analysis provides accurate recommendations for maintaining or reaching your health goals." = "הגובה והמשקל שלכם חיוניים לחישוב קצב חילוף החומרים הבסיסי (BMR) והצרכים הקלוריים היומיים. זה מבטיח שהניתוח התזונתי שלנו מספק המלצות מדויקות לשמירה על יעדי הבריאות שלכם או השגתם.";
+"Add Measurements" = "הוסף מידות";
+
+"Medical Conditions Matter" = "מצבים רפואיים חשובים";
+"Help us keep you safe and healthy" = "עזרו לנו לשמור עליכם בטוחים ובריאים";
+"Adding your medical conditions allows us to provide nutrition advice that's safe for your specific health situation. We'll warn you about foods that might interact with your conditions and suggest beneficial alternatives." = "הוספת המצבים הרפואיים שלכם מאפשרת לנו לספק עצות תזונה בטוחות למצב הבריאותי הספציפי שלכם. אנו נזהיר אתכם מפני מזונות שעלולים להשפיע על המצבים שלכם ונציע חלופות מועילות.";
+"Add Conditions" = "הוסף מצבים";
+
+"Dietary Restrictions & Preferences" = "הגבלות תזונתיות והעדפות";
+"Customize your nutrition experience" = "התאימו את חוויית התזונה שלכם";
+"Whether you're vegetarian, have food allergies, or follow specific diets, this information ensures all our recommendations fit your lifestyle and dietary needs safely." = "בין אם אתם צמחוניים, סובלים מאלרגיות למזון או עוקבים אחר דיאטות ספציפיות, מידע זה מבטיח שכל ההמלצות שלנו מתאימות לאורח החיים והצרכים התזונתיים שלכם בבטחה.";
+"Set Preferences" = "הגדר העדפות";
+
+"Start Tracking Your Health" = "התחילו לעקוב אחר הבריאות שלכם";
+"Begin your wellness journey" = "התחילו את מסע הבריאות שלכם";
+"Now that your profile is complete, you can start logging meals, tracking health metrics, and receiving personalized nutrition analysis. The more data you provide, the better our recommendations become!" = "כעת כשהפרופיל שלכם מושלם, אתם יכולים להתחיל לרשום ארוחות, לעקוב אחר נתוני בריאות ולקבל ניתוח תזונתי מותאם אישית. ככל שתספקו יותר נתונים, ההמלצות שלנו יהיו טובות יותר!";
+"Start Tracking" = "התחל מעקב";
+
+/* Guide Benefits */
+"Personalized nutrition recommendations" = "המלצות תזונה מותאמות אישית";
+"Accurate calorie and nutrient tracking" = "מעקב מדויק אחר קלוריות וחומרי מזון";
+"Health-aware meal suggestions" = "הצעות ארוחה מודעות בריאות";
+"Better medication and meal timing" = "תזמון טוב יותר של תרופות וארוחות";
+"Accurate daily calorie calculations" = "חישובי קלוריות יומיות מדויקים";
+"Age-appropriate nutrient recommendations" = "המלצות חומרי מזון מתאימות לגיל";
+"Proper portion size guidance" = "הנחיות גודל מנה נכונות";
+"Gender-specific health considerations" = "שיקולי בריאות ספציפיים למין";
+"Precise BMR and calorie calculations" = "חישובי BMR וקלוריות מדויקים";
+"Accurate BMI tracking" = "מעקב BMI מדויק";
+"Proper portion recommendations" = "המלצות מנה נכונות";
+"Weight management guidance" = "הנחיות לניהול משקל";
+"Safe food recommendations" = "המלצות מזון בטוחות";
+"Condition-specific nutrition alerts" = "התראות תזונה ספציפיות למצב";
+"Medication interaction warnings" = "אזהרות אינטראקציה עם תרופות";
+"Tailored health advice" = "עצות בריאות מותאמות";
+"Allergen-free recommendations" = "המלצות נטולות אלרגנים";
+"Diet-compliant meal suggestions" = "הצעות ארוחה תואמות דיאטה";
+"Safe ingredient alternatives" = "חלופות מרכיבים בטוחות";
+"Personalized recipe filtering" = "סינון מתכונים מותאם אישית";
+"Accurate nutrition analysis" = "ניתוח תזונתי מדויק";
+"Personalized meal recommendations" = "המלצות ארוחה מותאמות אישית";
+"Health trend monitoring" = "מעקב מגמות בריאות";
+"Progress tracking" = "מעקב התקדמות";
+"Benefits include:" = "היתרונות כוללים:";
+

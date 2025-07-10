@@ -62,6 +62,12 @@ class NotificationManager {
                 content.title = "Medication Reminder"
                 content.body = "Time to take your \(medication.name) (\(medication.dosage))"
                 content.sound = sound
+                content.categoryIdentifier = "MEDICATION_REMINDER"
+                
+                // Improve Apple Watch notification appearance
+                if #available(iOS 15.0, *) {
+                    content.interruptionLevel = .active
+                }
                 let triggerDateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: notificationTime)
                 let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDateComponents, repeats: false)
                 let requestIdentifier = medication.id.uuidString + "-" + String(timeOfDay.hour) + ":" + String(timeOfDay.minute)
@@ -87,6 +93,12 @@ class NotificationManager {
             content.title = "Meal Window"
             content.body = "You can eat now."
             content.sound = sound
+            content.categoryIdentifier = "MEAL_WINDOW"
+            
+            // Improve Apple Watch notification appearance
+            if #available(iOS 15.0, *) {
+                content.interruptionLevel = .active
+            }
             let triggerDateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: eatingStart)
             let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDateComponents, repeats: false)
             let request = UNNotificationRequest(identifier: "mealWindowStart", content: content, trigger: trigger)
@@ -98,6 +110,12 @@ class NotificationManager {
             content.title = "Meal Window"
             content.body = "It's time to stop eating."
             content.sound = sound
+            content.categoryIdentifier = "MEAL_WINDOW"
+            
+            // Improve Apple Watch notification appearance
+            if #available(iOS 15.0, *) {
+                content.interruptionLevel = .active
+            }
             let triggerDateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: eatingEnd)
             let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDateComponents, repeats: false)
             let request = UNNotificationRequest(identifier: "mealWindowEnd", content: content, trigger: trigger)
@@ -119,6 +137,12 @@ class NotificationManager {
             content.title = "Fasting Reminder"
             content.body = "Fasting will start in 10 minutes."
             content.sound = sound
+            content.categoryIdentifier = "FASTING_REMINDER"
+            
+            // Improve Apple Watch notification appearance
+            if #available(iOS 15.0, *) {
+                content.interruptionLevel = .active
+            }
             let triggerDateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: fastingStart)
             let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDateComponents, repeats: false)
             let request = UNNotificationRequest(identifier: "fastingStartReminder", content: content, trigger: trigger)
@@ -131,6 +155,12 @@ class NotificationManager {
             content.title = "Fasting Reminder"
             content.body = "Fasting will end in 10 minutes."
             content.sound = sound
+            content.categoryIdentifier = "FASTING_REMINDER"
+            
+            // Improve Apple Watch notification appearance
+            if #available(iOS 15.0, *) {
+                content.interruptionLevel = .active
+            }
             let triggerDateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: fastingEnd)
             let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDateComponents, repeats: false)
             let request = UNNotificationRequest(identifier: "fastingEndReminder", content: content, trigger: trigger)
@@ -155,6 +185,12 @@ class NotificationManager {
         content.title = "Daily Health Tip"
         content.body = randomTip
         content.sound = sound
+        content.categoryIdentifier = "DAILY_TIP"
+        
+        // Improve Apple Watch notification appearance
+        if #available(iOS 15.0, *) {
+            content.interruptionLevel = .active
+        }
         var dateComponents = DateComponents()
         dateComponents.hour = 9
         dateComponents.minute = 0

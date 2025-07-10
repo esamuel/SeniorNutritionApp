@@ -89,6 +89,12 @@ class WaterReminderManager: ObservableObject {
         content.title = NSLocalizedString("Time to Hydrate!", comment: "Water reminder notification title")
         content.body = NSLocalizedString("Don't forget to drink some water", comment: "Water reminder notification body")
         content.sound = .default
+        content.categoryIdentifier = "WATER_REMINDER"
+        
+        // Improve Apple Watch notification appearance
+        if #available(iOS 15.0, *) {
+            content.interruptionLevel = .active
+        }
         
         let calendar = Calendar.current
         let now = Date()

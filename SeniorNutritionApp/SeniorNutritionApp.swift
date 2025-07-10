@@ -49,7 +49,20 @@ struct SeniorNutritionApp: App {
                         }
                     }
                 } else if userSettings.isOnboardingComplete {
-                    if userSettings.shouldShowAppTour() {
+                    if !userSettings.isFirstTimeGuideComplete {
+                        FirstTimeUserGuideView()
+                            .environmentObject(userSettings)
+                            .environmentObject(mealManager)
+                            .environmentObject(foodDatabase)
+                            .environmentObject(userCommonMeals)
+                            .environmentObject(appointmentManager)
+                            .environmentObject(languageManager)
+                            .environmentObject(premiumManager)
+                            .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                            .environment(\.layoutDirection, languageManager.layoutDirection)
+                            .preferredColorScheme(userSettings.isDarkMode ? .dark : .light)
+                            .id(languageManager.currentLanguage)
+                    } else if userSettings.shouldShowAppTour() {
                         AppTourView()
                             .environmentObject(userSettings)
                             .environmentObject(mealManager)

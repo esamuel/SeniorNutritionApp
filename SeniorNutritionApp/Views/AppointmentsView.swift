@@ -132,6 +132,12 @@ class AppointmentManager: ObservableObject {
         content.title = NSLocalizedString("Appointment Reminder", comment: "")
         content.body = String(format: NSLocalizedString("%@ - %@ in %@", comment: ""), appointment.title, appointment.type.localizedName, appointment.reminder.localizedName)
         content.sound = .default
+        content.categoryIdentifier = "APPOINTMENT_REMINDER"
+        
+        // Improve Apple Watch notification appearance
+        if #available(iOS 15.0, *) {
+            content.interruptionLevel = .active
+        }
         
         // Create trigger using date components
         let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: notificationTime)

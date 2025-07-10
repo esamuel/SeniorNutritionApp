@@ -9,6 +9,15 @@ struct HelpView: View {
             // Getting Started Section
             Section(header: Text(NSLocalizedString("Getting Started", comment: ""))
                 .font(.system(size: userSettings.textSize.size, weight: .bold))) {
+                NavigationLink(destination: FirstTimeUserGuideView()) {
+                    HelpCardView(
+                        title: NSLocalizedString("First-Time Setup Guide", comment: ""),
+                        subtitle: NSLocalizedString("Complete guide for new users", comment: ""),
+                        icon: "person.badge.plus",
+                        color: .green
+                    )
+                }
+                
                 NavigationLink(destination: OnboardingView(isFirstLaunch: false)) {
                     HelpCardView(
                         title: NSLocalizedString("App Tour", comment: ""),

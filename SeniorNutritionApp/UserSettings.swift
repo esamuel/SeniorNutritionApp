@@ -45,6 +45,13 @@ class UserSettings: ObservableObject {
         }
     }
     
+    // First-time user guide state
+    @Published var isFirstTimeGuideComplete: Bool = false {
+        didSet {
+            UserDefaults.standard.set(isFirstTimeGuideComplete, forKey: "isFirstTimeGuideComplete")
+        }
+    }
+    
     // App Tour state
     @Published var hasSeenAppTour: Bool = false {
         didSet {
@@ -237,6 +244,9 @@ class UserSettings: ObservableObject {
         // Initialize app tour settings
         self.hasSeenAppTour = UserDefaults.standard.bool(forKey: "hasSeenAppTour")
         self.appTourVersion = UserDefaults.standard.string(forKey: "appTourVersion") ?? "1.0"
+        
+        // Initialize first-time guide settings
+        self.isFirstTimeGuideComplete = UserDefaults.standard.bool(forKey: "isFirstTimeGuideComplete")
         
         // Synchronize selectedLanguage with LanguageManager
         if let saved = UserDefaults.standard.string(forKey: "AppLanguage") {

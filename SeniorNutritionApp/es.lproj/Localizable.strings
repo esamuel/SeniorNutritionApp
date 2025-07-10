@@ -1673,3 +1673,86 @@
 "BMI 30.0 - 34.9" = "IMC 30.0 - 34.9";
 "BMI 35.0 - 39.9" = "IMC 35.0 - 39.9";
 "BMI 40.0 and above" = "IMC 40.0 y superior";
+
+/* Notification Styles */
+"Regular" = "Regular";
+"Gentle" = "Suave";
+"Urgent" = "Urgente";
+
+/* Notification Style Explanations */
+"Reminder Style Explanation:" = "Explicación del estilo de recordatorio:";
+"Silent notifications with visual alerts only. No sound or vibration." = "Notificaciones silenciosas solo con alertas visuales. Sin sonido ni vibración.";
+"Standard notification sound with visual alerts. Balanced approach." = "Sonido de notificación estándar con alertas visuales. Enfoque equilibrado.";
+"Critical alert sound that bypasses Do Not Disturb. Use for important medications." = "Sonido de alerta crítica que omite No Molestar. Usar para medicamentos importantes.";
+"Settings Saved!" = "¡Configuración guardada!";
+
+/* First-Time User Guide */
+"First-Time Setup Guide" = "Guía de configuración inicial";
+"Complete guide for new users" = "Guía completa para nuevos usuarios";
+"Setup Progress" = "Progreso de configuración";
+"Skip Guide" = "Omitir guía";
+"Previous" = "Anterior";
+"Next" = "Siguiente";
+"Start Using App" = "Empezar a usar la app";
+"Stop Speaking" = "Detener habla";
+"Read Aloud" = "Leer en voz alta";
+"Why this matters:" = "Por qué esto importa:";
+
+/* Guide Steps */
+"Welcome to Your Health Journey!" = "¡Bienvenido a tu viaje de salud!";
+"Let's get you set up for personalized nutrition guidance" = "Configuremos tu guía nutricional personalizada";
+"This quick setup will help us provide you with accurate nutrition analysis and personalized recommendations tailored specifically to your health needs." = "Esta configuración rápida nos ayudará a proporcionarte análisis nutricional preciso y recomendaciones personalizadas adaptadas específicamente a tus necesidades de salud.";
+"Let's Start!" = "¡Empecemos!";
+
+"Create Your Personal Profile" = "Crea tu perfil personal";
+"Essential information for personalized recommendations" = "Información esencial para recomendaciones personalizadas";
+"Your personal information helps us calculate your specific nutritional needs, including daily calorie requirements, portion sizes, and nutrient recommendations based on your age, gender, and physical characteristics." = "Tu información personal nos ayuda a calcular tus necesidades nutricionales específicas, incluyendo requerimientos calóricos diarios, tamaños de porciones y recomendaciones de nutrientes basadas en tu edad, género y características físicas.";
+"Set Up Profile" = "Configurar perfil";
+
+"Add Physical Information" = "Agregar información física";
+"Height, weight, and body measurements" = "Altura, peso y medidas corporales";
+"Your height and weight are crucial for calculating your Basal Metabolic Rate (BMR) and daily calorie needs. This ensures our nutrition analysis provides accurate recommendations for maintaining or reaching your health goals." = "Tu altura y peso son cruciales para calcular tu tasa metabólica basal (TMB) y necesidades calóricas diarias. Esto asegura que nuestro análisis nutricional proporcione recomendaciones precisas para mantener o alcanzar tus objetivos de salud.";
+"Add Measurements" = "Agregar medidas";
+
+"Medical Conditions Matter" = "Las condiciones médicas importan";
+"Help us keep you safe and healthy" = "Ayúdanos a mantenerte seguro y saludable";
+"Adding your medical conditions allows us to provide nutrition advice that's safe for your specific health situation. We'll warn you about foods that might interact with your conditions and suggest beneficial alternatives." = "Agregar tus condiciones médicas nos permite proporcionar consejos nutricionales seguros para tu situación de salud específica. Te advertiremos sobre alimentos que podrían interactuar con tus condiciones y sugeriremos alternativas beneficiosas.";
+"Add Conditions" = "Agregar condiciones";
+
+"Dietary Restrictions & Preferences" = "Restricciones y preferencias dietéticas";
+"Customize your nutrition experience" = "Personaliza tu experiencia nutricional";
+"Whether you're vegetarian, have food allergies, or follow specific diets, this information ensures all our recommendations fit your lifestyle and dietary needs safely." = "Ya seas vegetariano, tengas alergias alimentarias o sigas dietas específicas, esta información asegura que todas nuestras recomendaciones se ajusten a tu estilo de vida y necesidades dietéticas de manera segura.";
+"Set Preferences" = "Establecer preferencias";
+
+"Start Tracking Your Health" = "Comienza a rastrear tu salud";
+"Begin your wellness journey" = "Comienza tu viaje de bienestar";
+"Now that your profile is complete, you can start logging meals, tracking health metrics, and receiving personalized nutrition analysis. The more data you provide, the better our recommendations become!" = "Ahora que tu perfil está completo, puedes comenzar a registrar comidas, rastrear métricas de salud y recibir análisis nutricional personalizado. ¡Cuantos más datos proporciones, mejores se vuelven nuestras recomendaciones!";
+"Start Tracking" = "Comenzar seguimiento";
+
+/* Guide Benefits */
+"Personalized nutrition recommendations" = "Recomendaciones nutricionales personalizadas";
+"Accurate calorie and nutrient tracking" = "Seguimiento preciso de calorías y nutrientes";
+"Health-aware meal suggestions" = "Sugerencias de comidas conscientes de la salud";
+"Better medication and meal timing" = "Mejor sincronización de medicamentos y comidas";
+"Accurate daily calorie calculations" = "Cálculos calóricos diarios precisos";
+"Age-appropriate nutrient recommendations" = "Recomendaciones de nutrientes apropiadas para la edad";
+"Proper portion size guidance" = "Guía de tamaño de porción adecuada";
+"Gender-specific health considerations" = "Consideraciones de salud específicas del género";
+"Precise BMR and calorie calculations" = "Cálculos precisos de TMB y calorías";
+"Accurate BMI tracking" = "Seguimiento preciso del IMC";
+"Proper portion recommendations" = "Recomendaciones de porciones adecuadas";
+"Weight management guidance" = "Guía de manejo del peso";
+"Safe food recommendations" = "Recomendaciones alimentarias seguras";
+"Condition-specific nutrition alerts" = "Alertas nutricionales específicas de condición";
+"Medication interaction warnings" = "Advertencias de interacción medicamentosa";
+"Tailored health advice" = "Consejos de salud personalizados";
+"Allergen-free recommendations" = "Recomendaciones libres de alérgenos";
+"Diet-compliant meal suggestions" = "Sugerencias de comidas compatibles con dieta";
+"Safe ingredient alternatives" = "Alternativas de ingredientes seguros";
+"Personalized recipe filtering" = "Filtrado de recetas personalizado";
+"Accurate nutrition analysis" = "Análisis nutricional preciso";
+"Personalized meal recommendations" = "Recomendaciones de comidas personalizadas";
+"Health trend monitoring" = "Monitoreo de tendencias de salud";
+"Progress tracking" = "Seguimiento de progreso";
+"Benefits include:" = "Los beneficios incluyen:";
+

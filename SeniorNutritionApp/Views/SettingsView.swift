@@ -11,6 +11,7 @@ struct SettingsView: View {
     @State private var showingResetAlert = false
     @State private var showingBackupInfoAlert = false // For backup/restore info
     @State private var showingOnboarding = false // NEW: controls onboarding sheet
+    @State private var showingFirstTimeGuide = false // NEW: controls first-time guide sheet
     @State private var showingTranslationUtility = false
     @State private var showingAppTourResetAlert = false
     enum BackupAlert: Identifiable {
@@ -283,6 +284,19 @@ struct SettingsView: View {
                         )
                     }
                     
+                    // First-Time Setup Guide Button
+                    Button(action: { showingFirstTimeGuide = true }) {
+                        settingsRowContent(
+                            icon: "person.badge.plus",
+                            title: NSLocalizedString("First-Time Setup Guide", comment: ""),
+                            color: .green
+                        )
+                    }
+                    .sheet(isPresented: $showingFirstTimeGuide) {
+                        FirstTimeUserGuideView()
+                            .environmentObject(userSettings)
+                    }
+                    
                     // Revisit Onboarding Button
                     Button(action: { showingOnboarding = true }) {
                         settingsRowContent(
@@ -491,7 +505,7 @@ struct SettingsView: View {
         case "he": return "🇮🇱"
         case "es": return "🇪🇸"
         case "fr": return "🇫🇷"
-        default: return "��️"
+        default: return "🌐"
         }
     }
     
@@ -533,7 +547,7 @@ struct NotificationsSettingsView: View {
                             .font(.system(size: userSettings.textSize.size - 2))
                         Spacer()
                         Picker("Lead Time", selection: $userSettings.medicationReminderLeadTime) {
-                            ForEach([0, 5, 10, 15, 30, 45, 60, 90, 120], id: \ .self) { min in
+                            ForEach([0, 5, 10, 15, 30, 45, 60, 90, 120], id: \.self) { min in
                                 Text("\(min) min").tag(min)
                             }
                         }
@@ -551,6 +565,7 @@ struct NotificationsSettingsView: View {
                     .font(.system(size: userSettings.textSize.size))
                     .padding(.vertical, 8)
             }
+            
             Section(header: Text("Reminder Style").font(.system(size: userSettings.textSize.size, weight: .bold))) {
                 Picker("Style", selection: $userSettings.notificationStyle) {
                     ForEach(NotificationStyle.allCases) { style in
@@ -559,13 +574,75 @@ struct NotificationsSettingsView: View {
                 }
                 .pickerStyle(SegmentedPickerStyle())
                 .tint(Color.blue)
+                
+                // Explanation for each style
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(NSLocalizedString("Reminder Style Explanation:", comment: ""))
+                        .font(.system(size: userSettings.textSize.size - 2, weight: .semibold))
+                        .foregroundColor(.secondary)
+                    
+                    switch userSettings.notificationStyle {
+                    case .gentle:
+                        HStack(alignment: .top, spacing: 8) {
+                            Image(systemName: "bell.slash.fill")
+                                .foregroundColor(.blue)
+                                .font(.system(size: 16))
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(NSLocalizedString("Gentle", comment: ""))
+                                    .font(.system(size: userSettings.textSize.size - 2, weight: .medium))
+                                Text(NSLocalizedString("Silent notifications with visual alerts only. No sound or vibration.", comment: ""))
+                                    .font(.system(size: userSettings.textSize.size - 4))
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                    case .regular:
+                        HStack(alignment: .top, spacing: 8) {
+                            Image(systemName: "bell.fill")
+                                .foregroundColor(.blue)
+                                .font(.system(size: 16))
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(NSLocalizedString("Regular", comment: ""))
+                                    .font(.system(size: userSettings.textSize.size - 2, weight: .medium))
+                                Text(NSLocalizedString("Standard notification sound with visual alerts. Balanced approach.", comment: ""))
+                                    .font(.system(size: userSettings.textSize.size - 4))
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                    case .urgent:
+                        HStack(alignment: .top, spacing: 8) {
+                            Image(systemName: "bell.badge.fill")
+                                .foregroundColor(.red)
+                                .font(.system(size: 16))
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(NSLocalizedString("Urgent", comment: ""))
+                                    .font(.system(size: userSettings.textSize.size - 2, weight: .medium))
+                                Text(NSLocalizedString("Critical alert sound that bypasses Do Not Disturb. Use for important medications.", comment: ""))
+                                    .font(.system(size: userSettings.textSize.size - 4))
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                    }
+                }
+                .padding(.vertical, 8)
             }
+            
             Section {
                 Button(action: {
-                    NotificationManager.shared.updateAllNotifications(userSettings: userSettings)
-                    showSaveConfirmation = true
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        showSaveConfirmation = false
+                    // Save settings and update notifications
+                    Task { @MainActor in
+                        NotificationManager.shared.updateAllNotifications(userSettings: userSettings)
+                        
+                        // Show confirmation
+                        withAnimation(.easeInOut(duration: 0.3)) {
+                            showSaveConfirmation = true
+                        }
+                        
+                        // Hide confirmation after 2 seconds
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            withAnimation(.easeInOut(duration: 0.3)) {
+                                showSaveConfirmation = false
+                            }
+                        }
                     }
                 }) {
                     Text("Save Settings")
@@ -577,15 +654,20 @@ struct NotificationsSettingsView: View {
                         .cornerRadius(10)
                 }
                 .padding(.vertical, 8)
+                
                 if showSaveConfirmation {
                     HStack {
                         Spacer()
-                        Text("Settings Saved!")
-                            .foregroundColor(.green)
-                            .font(.system(size: userSettings.textSize.size, weight: .semibold))
+                        HStack(spacing: 8) {
+                            Image(systemName: "checkmark.circle.fill")
+                                .foregroundColor(.green)
+                            Text(NSLocalizedString("Settings Saved!", comment: ""))
+                                .foregroundColor(.green)
+                                .font(.system(size: userSettings.textSize.size, weight: .semibold))
+                        }
                         Spacer()
                     }
-                    .transition(.opacity)
+                    .transition(.opacity.combined(with: .scale))
                 }
             }
             .listRowBackground(Color.clear)
