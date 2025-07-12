@@ -9,10 +9,12 @@ export default function Home() {
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <div className="flex items-center space-x-3">
-                <img 
+                <Image 
                   src="/images/app-icon.png" 
                   alt="Senior Nutrition App Icon" 
-                  className="w-10 h-10 rounded-lg shadow-sm"
+                  width={40}
+                  height={40}
+                  className="rounded-lg shadow-sm"
                 />
                 <h1 className="text-xl font-bold text-gray-900">Senior Nutrition</h1>
               </div>
@@ -31,6 +33,17 @@ export default function Home() {
       <section className="pt-24 pb-20 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
+            {/* App Icon Display */}
+            <div className="mb-8">
+              <Image 
+                src="/images/app-icon.png" 
+                alt="Senior Nutrition App Icon" 
+                width={120}
+                height={120}
+                className="mx-auto rounded-3xl shadow-2xl"
+              />
+            </div>
+            
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
               Your Personal
               <span className="text-blue-600"> Nutrition Companion</span>
