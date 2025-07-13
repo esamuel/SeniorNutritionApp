@@ -1,4 +1,14 @@
+"use client";
+
 import Image from "next/image";
+
+const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+  e.currentTarget.style.display = 'none';
+  const nextElement = e.currentTarget.nextElementSibling as HTMLElement;
+  if (nextElement) {
+    nextElement.style.display = 'flex';
+  }
+};
 
 export default function Home() {
   return (
@@ -62,24 +72,71 @@ export default function Home() {
               </a>
             </div>
             
-            {/* App Preview */}
+            {/* App Preview with Screenshots */}
             <div className="max-w-4xl mx-auto">
               <div className="bg-gray-900 rounded-2xl p-8 shadow-2xl">
                 <div className="grid md:grid-cols-3 gap-6">
-                  <div className="bg-white rounded-xl p-6 text-center">
-                    <div className="text-4xl mb-4">🍽️</div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Nutrition Tracking</h3>
-                    <p className="text-sm text-gray-600">Smart meal logging with nutritional analysis</p>
+                  <div className="bg-white rounded-xl overflow-hidden shadow-lg">
+                    <div className="h-64 bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center">
+                      <Image 
+                        src="/images/screenshots/nutrition-tracking.png" 
+                        alt="Nutrition Tracking Screen" 
+                        width={200}
+                        height={400}
+                        className="max-w-full max-h-full object-contain rounded-lg"
+                        onError={handleImageError}
+                      />
+                      <div className="hidden flex-col items-center justify-center text-center p-4">
+                        <div className="text-4xl mb-2">🍽️</div>
+                        <p className="text-sm text-gray-600">Add nutrition-tracking.png screenshot here</p>
+                      </div>
+                    </div>
+                    <div className="p-4 text-center">
+                      <h3 className="font-semibold text-gray-900 mb-2">Nutrition Tracking</h3>
+                      <p className="text-sm text-gray-600">Smart meal logging with nutritional analysis</p>
+                    </div>
                   </div>
-                  <div className="bg-white rounded-xl p-6 text-center">
-                    <div className="text-4xl mb-4">⏱️</div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Safe Fasting</h3>
-                    <p className="text-sm text-gray-600">Senior-friendly intermittent fasting protocols</p>
+                  
+                  <div className="bg-white rounded-xl overflow-hidden shadow-lg">
+                    <div className="h-64 bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center">
+                      <Image 
+                        src="/images/screenshots/fasting-timer.png" 
+                        alt="Fasting Timer Screen" 
+                        width={200}
+                        height={400}
+                        className="max-w-full max-h-full object-contain rounded-lg"
+                        onError={handleImageError}
+                      />
+                      <div className="hidden flex-col items-center justify-center text-center p-4">
+                        <div className="text-4xl mb-2">⏱️</div>
+                        <p className="text-sm text-gray-600">Add fasting-timer.png screenshot here</p>
+                      </div>
+                    </div>
+                    <div className="p-4 text-center">
+                      <h3 className="font-semibold text-gray-900 mb-2">Safe Fasting</h3>
+                      <p className="text-sm text-gray-600">Senior-friendly intermittent fasting protocols</p>
+                    </div>
                   </div>
-                  <div className="bg-white rounded-xl p-6 text-center">
-                    <div className="text-4xl mb-4">💊</div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Medication Management</h3>
-                    <p className="text-sm text-gray-600">Visual pill identification and smart reminders</p>
+                  
+                  <div className="bg-white rounded-xl overflow-hidden shadow-lg">
+                    <div className="h-64 bg-gradient-to-br from-purple-100 to-purple-200 flex items-center justify-center">
+                      <Image 
+                        src="/images/screenshots/medication-management.png" 
+                        alt="Medication Management Screen" 
+                        width={200}
+                        height={400}
+                        className="max-w-full max-h-full object-contain rounded-lg"
+                        onError={handleImageError}
+                      />
+                      <div className="hidden flex-col items-center justify-center text-center p-4">
+                        <div className="text-4xl mb-2">💊</div>
+                        <p className="text-sm text-gray-600">Add medication-management.png screenshot here</p>
+                      </div>
+                    </div>
+                    <div className="p-4 text-center">
+                      <h3 className="font-semibold text-gray-900 mb-2">Medication Management</h3>
+                      <p className="text-sm text-gray-600">Visual pill identification and smart reminders</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -98,9 +155,24 @@ export default function Home() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Nutrition Tracking */}
-            <div className="bg-green-50 p-8 rounded-2xl">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
-                <span className="text-2xl">🍽️</span>
+            <div className="bg-green-50 p-8 rounded-2xl hover:shadow-lg transition-shadow">
+              <div className="flex items-center justify-between mb-6">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+                  <span className="text-2xl">🍽️</span>
+                </div>
+                <div className="w-20 h-20 bg-white rounded-lg overflow-hidden shadow-sm">
+                  <Image 
+                    src="/images/screenshots/nutrition-tracking.png" 
+                    alt="Nutrition Tracking Preview" 
+                    width={80}
+                    height={160}
+                    className="w-full h-full object-cover"
+                        onError={handleImageError}
+                  />
+                  <div className="hidden w-full h-full bg-gray-200 items-center justify-center">
+                    <span className="text-xs text-gray-500">📸</span>
+                  </div>
+                </div>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">Smart Nutrition Tracking</h3>
               <ul className="text-gray-600 space-y-2">
@@ -113,9 +185,24 @@ export default function Home() {
             </div>
 
             {/* Fasting Timer */}
-            <div className="bg-orange-50 p-8 rounded-2xl">
-              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-6">
-                <span className="text-2xl">⏱️</span>
+            <div className="bg-orange-50 p-8 rounded-2xl hover:shadow-lg transition-shadow">
+              <div className="flex items-center justify-between mb-6">
+                <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center">
+                  <span className="text-2xl">⏱️</span>
+                </div>
+                <div className="w-20 h-20 bg-white rounded-lg overflow-hidden shadow-sm">
+                  <Image 
+                    src="/images/screenshots/fasting-timer.png" 
+                    alt="Fasting Timer Preview" 
+                    width={80}
+                    height={160}
+                    className="w-full h-full object-cover"
+                        onError={handleImageError}
+                  />
+                  <div className="hidden w-full h-full bg-gray-200 items-center justify-center">
+                    <span className="text-xs text-gray-500">📸</span>
+                  </div>
+                </div>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">Safe Fasting Protocols</h3>
               <ul className="text-gray-600 space-y-2">
@@ -128,9 +215,24 @@ export default function Home() {
             </div>
 
             {/* Health Monitoring */}
-            <div className="bg-red-50 p-8 rounded-2xl">
-              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-6">
-                <span className="text-2xl">❤️</span>
+            <div className="bg-red-50 p-8 rounded-2xl hover:shadow-lg transition-shadow">
+              <div className="flex items-center justify-between mb-6">
+                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center">
+                  <span className="text-2xl">❤️</span>
+                </div>
+                <div className="w-20 h-20 bg-white rounded-lg overflow-hidden shadow-sm">
+                  <Image 
+                    src="/images/screenshots/health-monitoring.png" 
+                    alt="Health Monitoring Preview" 
+                    width={80}
+                    height={160}
+                    className="w-full h-full object-cover"
+                        onError={handleImageError}
+                  />
+                  <div className="hidden w-full h-full bg-gray-200 items-center justify-center">
+                    <span className="text-xs text-gray-500">📸</span>
+                  </div>
+                </div>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">Vital Health Monitoring</h3>
               <ul className="text-gray-600 space-y-2">
@@ -143,9 +245,24 @@ export default function Home() {
             </div>
 
             {/* Medication Management */}
-            <div className="bg-purple-50 p-8 rounded-2xl">
-              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6">
-                <span className="text-2xl">💊</span>
+            <div className="bg-purple-50 p-8 rounded-2xl hover:shadow-lg transition-shadow">
+              <div className="flex items-center justify-between mb-6">
+                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center">
+                  <span className="text-2xl">💊</span>
+                </div>
+                <div className="w-20 h-20 bg-white rounded-lg overflow-hidden shadow-sm">
+                  <Image 
+                    src="/images/screenshots/medication-management.png" 
+                    alt="Medication Management Preview" 
+                    width={80}
+                    height={160}
+                    className="w-full h-full object-cover"
+                        onError={handleImageError}
+                  />
+                  <div className="hidden w-full h-full bg-gray-200 items-center justify-center">
+                    <span className="text-xs text-gray-500">📸</span>
+                  </div>
+                </div>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">Medication Management</h3>
               <ul className="text-gray-600 space-y-2">
@@ -158,9 +275,24 @@ export default function Home() {
             </div>
 
             {/* Appointment Tracking */}
-            <div className="bg-blue-50 p-8 rounded-2xl">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
-                <span className="text-2xl">📅</span>
+            <div className="bg-blue-50 p-8 rounded-2xl hover:shadow-lg transition-shadow">
+              <div className="flex items-center justify-between mb-6">
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+                  <span className="text-2xl">📅</span>
+                </div>
+                <div className="w-20 h-20 bg-white rounded-lg overflow-hidden shadow-sm">
+                  <Image 
+                    src="/images/screenshots/appointment-view.png" 
+                    alt="Appointment Management Preview" 
+                    width={80}
+                    height={160}
+                    className="w-full h-full object-cover"
+                        onError={handleImageError}
+                  />
+                  <div className="hidden w-full h-full bg-gray-200 items-center justify-center">
+                    <span className="text-xs text-gray-500">📸</span>
+                  </div>
+                </div>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">Appointment Management</h3>
               <ul className="text-gray-600 space-y-2">
@@ -173,9 +305,24 @@ export default function Home() {
             </div>
 
             {/* Accessibility */}
-            <div className="bg-indigo-50 p-8 rounded-2xl">
-              <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-6">
-                <span className="text-2xl">♿</span>
+            <div className="bg-indigo-50 p-8 rounded-2xl hover:shadow-lg transition-shadow">
+              <div className="flex items-center justify-between mb-6">
+                <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center">
+                  <span className="text-2xl">♿</span>
+                </div>
+                <div className="w-20 h-20 bg-white rounded-lg overflow-hidden shadow-sm">
+                  <Image 
+                    src="/images/screenshots/settings.png" 
+                    alt="Accessibility Settings Preview" 
+                    width={80}
+                    height={160}
+                    className="w-full h-full object-cover"
+                        onError={handleImageError}
+                  />
+                  <div className="hidden w-full h-full bg-gray-200 items-center justify-center">
+                    <span className="text-xs text-gray-500">📸</span>
+                  </div>
+                </div>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">Enhanced Accessibility</h3>
               <ul className="text-gray-600 space-y-2">
@@ -185,6 +332,144 @@ export default function Home() {
                 <li>• Simple, uncluttered interface</li>
                 <li>• Large, touch-friendly buttons</li>
               </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Screenshots Gallery */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">See the App in Action</h2>
+            <p className="text-xl text-gray-600">Real screenshots from the Senior Nutrition app interface</p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Home Screen */}
+            <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="h-80 bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg flex items-center justify-center mb-4 overflow-hidden">
+                <Image 
+                  src="/images/screenshots/home-screen.png" 
+                  alt="Home Dashboard Screen" 
+                  width={250}
+                  height={500}
+                  className="max-w-full max-h-full object-contain"
+                        onError={handleImageError}
+                />
+                <div className="hidden flex-col items-center justify-center text-center p-4">
+                  <div className="text-4xl mb-2">📱</div>
+                  <p className="text-sm text-gray-600 font-medium">Add home-screen.png</p>
+                  <p className="text-xs text-gray-500 mt-1">Main dashboard screenshot</p>
+                </div>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Dashboard Overview</h3>
+              <p className="text-gray-600">Your daily health summary and quick access to all features</p>
+            </div>
+            
+            {/* Health Monitoring */}
+            <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="h-80 bg-gradient-to-br from-red-100 to-red-200 rounded-lg flex items-center justify-center mb-4 overflow-hidden">
+                <Image 
+                  src="/images/screenshots/health-monitoring.png" 
+                  alt="Health Monitoring Screen" 
+                  width={250}
+                  height={500}
+                  className="max-w-full max-h-full object-contain"
+                        onError={handleImageError}
+                />
+                <div className="hidden flex-col items-center justify-center text-center p-4">
+                  <div className="text-4xl mb-2">❤️</div>
+                  <p className="text-sm text-gray-600 font-medium">Add health-monitoring.png</p>
+                  <p className="text-xs text-gray-500 mt-1">Health metrics dashboard</p>
+                </div>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Health Tracking</h3>
+              <p className="text-gray-600">Monitor vital signs, track trends, and view health analytics</p>
+            </div>
+            
+            {/* Appointments */}
+            <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="h-80 bg-gradient-to-br from-indigo-100 to-indigo-200 rounded-lg flex items-center justify-center mb-4 overflow-hidden">
+                <Image 
+                  src="/images/screenshots/appointment-view.png" 
+                  alt="Appointment Management Screen" 
+                  width={250}
+                  height={500}
+                  className="max-w-full max-h-full object-contain"
+                        onError={handleImageError}
+                />
+                <div className="hidden flex-col items-center justify-center text-center p-4">
+                  <div className="text-4xl mb-2">📅</div>
+                  <p className="text-sm text-gray-600 font-medium">Add appointment-view.png</p>
+                  <p className="text-xs text-gray-500 mt-1">Appointments calendar</p>
+                </div>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Appointments</h3>
+              <p className="text-gray-600">Never miss a medical appointment with smart reminders</p>
+            </div>
+            
+            {/* Nutrition Detail */}
+            <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="h-80 bg-gradient-to-br from-green-100 to-green-200 rounded-lg flex items-center justify-center mb-4 overflow-hidden">
+                <Image 
+                  src="/images/screenshots/nutrition-tracking.png" 
+                  alt="Detailed Nutrition Tracking" 
+                  width={250}
+                  height={500}
+                  className="max-w-full max-h-full object-contain"
+                        onError={handleImageError}
+                />
+                <div className="hidden flex-col items-center justify-center text-center p-4">
+                  <div className="text-4xl mb-2">🍽️</div>
+                  <p className="text-sm text-gray-600 font-medium">Add nutrition-tracking.png</p>
+                  <p className="text-xs text-gray-500 mt-1">Meal logging interface</p>
+                </div>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Nutrition Analysis</h3>
+              <p className="text-gray-600">Detailed meal tracking with nutritional breakdowns</p>
+            </div>
+            
+            {/* Fasting Timer */}
+            <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="h-80 bg-gradient-to-br from-orange-100 to-orange-200 rounded-lg flex items-center justify-center mb-4 overflow-hidden">
+                <Image 
+                  src="/images/screenshots/fasting-timer.png" 
+                  alt="Fasting Timer Interface" 
+                  width={250}
+                  height={500}
+                  className="max-w-full max-h-full object-contain"
+                        onError={handleImageError}
+                />
+                <div className="hidden flex-col items-center justify-center text-center p-4">
+                  <div className="text-4xl mb-2">⏱️</div>
+                  <p className="text-sm text-gray-600 font-medium">Add fasting-timer.png</p>
+                  <p className="text-xs text-gray-500 mt-1">Active fasting session</p>
+                </div>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Fasting Timer</h3>
+              <p className="text-gray-600">Safe intermittent fasting with emergency override</p>
+            </div>
+            
+            {/* Settings */}
+            <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="h-80 bg-gradient-to-br from-purple-100 to-purple-200 rounded-lg flex items-center justify-center mb-4 overflow-hidden">
+                <Image 
+                  src="/images/screenshots/settings.png" 
+                  alt="Settings and Preferences" 
+                  width={250}
+                  height={500}
+                  className="max-w-full max-h-full object-contain"
+                        onError={handleImageError}
+                />
+                <div className="hidden flex-col items-center justify-center text-center p-4">
+                  <div className="text-4xl mb-2">⚙️</div>
+                  <p className="text-sm text-gray-600 font-medium">Add settings.png</p>
+                  <p className="text-xs text-gray-500 mt-1">User preferences screen</p>
+                </div>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Personalization</h3>
+              <p className="text-gray-600">Customize the app for your specific needs and preferences</p>
             </div>
           </div>
         </div>
@@ -238,42 +523,62 @@ export default function Home() {
             
             <div className="bg-white rounded-2xl p-8 shadow-lg">
               <h3 className="text-xl font-bold text-gray-900 mb-6">Health Dashboard Preview</h3>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center p-4 bg-red-50 rounded-lg">
-                  <div className="flex items-center space-x-3">
-                    <span className="text-red-600">❤️</span>
-                    <span className="font-medium">Blood Pressure</span>
+              
+              {/* Screenshot Container */}
+              <div className="h-96 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex items-center justify-center mb-6 overflow-hidden">
+                <Image 
+                  src="/images/screenshots/health-monitoring.png" 
+                  alt="Health Monitoring Dashboard" 
+                  width={300}
+                  height={600}
+                  className="max-w-full max-h-full object-contain rounded-lg"
+                        onError={handleImageError}
+                />
+                <div className="hidden">
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center p-4 bg-red-50 rounded-lg">
+                      <div className="flex items-center space-x-3">
+                        <span className="text-red-600">❤️</span>
+                        <span className="font-medium">Blood Pressure</span>
+                      </div>
+                      <span className="font-bold text-red-600">120/80 mmHg</span>
+                    </div>
+                    
+                    <div className="flex justify-between items-center p-4 bg-orange-50 rounded-lg">
+                      <div className="flex items-center space-x-3">
+                        <span className="text-orange-600">📊</span>
+                        <span className="font-medium">Heart Rate</span>
+                      </div>
+                      <span className="font-bold text-orange-600">72 BPM</span>
+                    </div>
+                    
+                    <div className="flex justify-between items-center p-4 bg-blue-50 rounded-lg">
+                      <div className="flex items-center space-x-3">
+                        <span className="text-blue-600">⚖️</span>
+                        <span className="font-medium">Weight</span>
+                      </div>
+                      <span className="font-bold text-blue-600">75.2 kg</span>
+                    </div>
+                    
+                    <div className="flex justify-between items-center p-4 bg-purple-50 rounded-lg">
+                      <div className="flex items-center space-x-3">
+                        <span className="text-purple-600">🩸</span>
+                        <span className="font-medium">Blood Sugar</span>
+                      </div>
+                      <span className="font-bold text-purple-600">95 mg/dL</span>
+                    </div>
                   </div>
-                  <span className="font-bold text-red-600">120/80 mmHg</span>
-                </div>
-                
-                <div className="flex justify-between items-center p-4 bg-orange-50 rounded-lg">
-                  <div className="flex items-center space-x-3">
-                    <span className="text-orange-600">📊</span>
-                    <span className="font-medium">Heart Rate</span>
+                  
+                  <div className="mt-6 p-4 bg-green-50 rounded-lg">
+                    <p className="text-sm text-green-700 font-medium">✅ All readings within healthy ranges</p>
                   </div>
-                  <span className="font-bold text-orange-600">72 BPM</span>
-                </div>
-                
-                <div className="flex justify-between items-center p-4 bg-blue-50 rounded-lg">
-                  <div className="flex items-center space-x-3">
-                    <span className="text-blue-600">⚖️</span>
-                    <span className="font-medium">Weight</span>
-                  </div>
-                  <span className="font-bold text-blue-600">75.2 kg</span>
-                </div>
-                
-                <div className="flex justify-between items-center p-4 bg-purple-50 rounded-lg">
-                  <div className="flex items-center space-x-3">
-                    <span className="text-purple-600">🩸</span>
-                    <span className="font-medium">Blood Sugar</span>
-                  </div>
-                  <span className="font-bold text-purple-600">95 mg/dL</span>
                 </div>
               </div>
               
-              <div className="mt-6 p-4 bg-green-50 rounded-lg">
-                <p className="text-sm text-green-700 font-medium">✅ All readings within healthy ranges</p>
+              {/* Instructions for missing screenshot */}
+              <div className="text-center text-gray-500 text-sm">
+                <p>📸 Add <strong>health-monitoring.png</strong> screenshot to show actual health dashboard</p>
+                <p className="mt-1">Screenshot should show: Blood pressure, heart rate, weight, and blood sugar tracking</p>
               </div>
             </div>
           </div>

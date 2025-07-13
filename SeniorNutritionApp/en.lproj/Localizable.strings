@@ -558,7 +558,7 @@
 "medication_getting_started_body" = "The Medication Management feature helps you keep track of your medications, set reminders, and log when you've taken them. Here's how to get started:";
 "medication_getting_started_step1" = "Tap the 'Medications' tab at the bottom of your screen.";
 "medication_getting_started_step2" = "Tap 'Add Medication' to enter a new prescription or supplement.";
-"medication_getting_started_step3" = "Fill in the medication name, dosage, and frequency.";
+"medication_getting_started_step3" = "Fill in the medication name, dosage, frequency, and timing. You can also add notes about side effects or special instructions.";
 "medication_getting_started_step4" = "Set specific times for reminders to ensure you never miss a dose.";
 "medication_managing_reminders_title" = "Managing Reminders";
 "medication_managing_reminders_body" = "The app makes it easy to manage your medication schedule:";
@@ -1746,4 +1746,56 @@
 "Health trend monitoring" = "Health trend monitoring";
 "Progress tracking" = "Progress tracking";
 "Benefits include:" = "Benefits include:";
+
+/* App Preview Recording */
+"App Preview Recording" = "App Preview Recording";
+"Recording App Preview" = "Recording App Preview";
+"Start Recording" = "Start Recording";
+"Stop Recording" = "Stop Recording";
+"Demo Mode" = "Demo Mode";
+"Instructions" = "Instructions";
+"Storyboard" = "Storyboard";
+"App Preview Recording Guidelines" = "App Preview Recording Guidelines";
+"Recording too long (max 30 seconds)" = "⚠️ Recording too long (max 30 seconds)";
+"Create videos showcasing your app's key features" = "Create 15-30 second videos showcasing your app's key features";
+"App preview saved successfully" = "App preview saved successfully";
+
+/* Storyboard */
+"App Overview" = "App Overview";
+"Nutrition Tracking" = "Nutrition Tracking";
+"Medication Management" = "Medication Management";
+"Health Monitoring" = "Health Monitoring";
+"Recording Tips" = "Recording Tips";
+"Actions" = "Actions";
+"Close" = "Close";
+"Done" = "Done";
+
+// Nutrition Trends Feature
+"Daily" = "Daily";
+"Trends" = "Trends";
+"Time Range" = "Time Range";
+"Week" = "Week";
+"Month" = "Month";
+"3 Months" = "3 Months";
+"Nutrition Trends" = "Nutrition Trends";
+"No nutrition data available for the selected time range" = "No nutrition data available for the selected time range";
+"Goal" = "Goal";
+"Insights" = "Insights";
+"Add more meals to see nutrition insights and trends." = "Add more meals to see nutrition insights and trends.";
+"Great job! Your calorie intake is well-balanced and close to your goal." = "Great job! Your calorie intake is well-balanced and close to your goal.";
+"You're consuming about %.0f calories above your daily goal. Consider adjusting portion sizes or meal choices." = "You're consuming about %.0f calories above your daily goal. Consider adjusting portion sizes or meal choices.";
+"You're consuming about %.0f calories below your daily goal. Consider adding nutritious snacks or larger portions." = "You're consuming about %.0f calories below your daily goal. Consider adding nutritious snacks or larger portions.";
+"Free users can view up to 7 days of nutrition analytics. Upgrade for extended history." = "Free users can view up to 7 days of nutrition analytics. Upgrade for extended history.";
+"Extended nutrition analytics history is available with Advanced or Premium subscription. Free users can view up to 7 days of data." = "Extended nutrition analytics history is available with Advanced or Premium subscription. Free users can view up to 7 days of data.";
+"Premium Feature" = "Premium Feature";
+"Upgrade" = "Upgrade";
+
+/* Sample Medication Data */
+"Sample medication schedule for demonstration:" = "Sample medication schedule for demonstration:";
+"Lisinopril" = "Lisinopril";
+"Atorvastatin" = "Atorvastatin";
+"Vitamin D3" = "Vitamin D3";
+"Take with breakfast" = "Take with breakfast";
+"Take with dinner" = "Take with dinner";
+"Take with lunch" = "Take with lunch";
 

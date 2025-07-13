@@ -208,7 +208,7 @@ struct WaterReminderSettingsView: View {
                     premiumLockedOption("Custom", .custom)
                 }
             }
-            .onChange(of: selectedFrequency) { newValue in
+            .onChange(of: selectedFrequency) { _, newValue in
                 if !premiumManager.hasAccess(to: PremiumFeature.voiceAssistant) && 
                    (newValue == .every30Minutes || newValue == .every3Hours || newValue == .custom) {
                     selectedFrequency = .everyHour

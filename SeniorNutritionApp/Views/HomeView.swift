@@ -13,6 +13,7 @@ struct HomeView: View {
     @StateObject private var waterManager = WaterReminderManager()
     @EnvironmentObject private var appointmentManager: AppointmentManager
     @EnvironmentObject var languageManager: LanguageManager
+    @StateObject private var previewManager = AppPreviewManager.shared
     @State private var showingHelpSheet = false
     @State private var selectedMealType: MealType = .breakfast
     @State private var showingAddMeal = false
@@ -121,7 +122,7 @@ struct HomeView: View {
     private var welcomeSection: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
-                Text(String(format: NSLocalizedString("%@, %@", comment: ""), timeOfDay, userSettings.userProfile?.firstName ?? userSettings.userName))
+                Text(String(format: NSLocalizedString("%@, %@", comment: ""), timeOfDay, previewManager.isDemoMode ? AppPreviewManager.DemoData.userName : (userSettings.userProfile?.firstName ?? userSettings.userName)))
                     .font(.system(size: userSettings.textSize.size + 4, weight: .bold))
                 
                 Spacer()
@@ -194,7 +195,19 @@ struct HomeView: View {
                     .font(.system(size: userSettings.textSize.size, weight: .bold))
                     .foregroundColor(.red)
                 
-                if nextMedicationDoses.isEmpty {
+                if previewManager.isDemoMode {
+                    // Show demo medication data
+                    ForEach(0..<3, id: \.self) { index in
+                        let demoMed = AppPreviewManager.DemoData.sampleMedications[index]
+                        HStack {
+                            Image(systemName: "bell.fill")
+                                .foregroundColor(.red)
+                            Text(String(format: NSLocalizedString("%@ at %@", comment: ""), demoMed.0, demoMed.2))
+                                .font(.system(size: userSettings.textSize.size))
+                                .foregroundColor(.red)
+                        }
+                    }
+                } else if nextMedicationDoses.isEmpty {
                     Text(NSLocalizedString("No medications scheduled for today", comment: ""))
                         .font(.system(size: userSettings.textSize.size))
                         .foregroundColor(.secondary)

@@ -14,6 +14,7 @@ struct SettingsView: View {
     @State private var showingFirstTimeGuide = false // NEW: controls first-time guide sheet
     @State private var showingTranslationUtility = false
     @State private var showingAppTourResetAlert = false
+    @State private var showingVideoTutorials = false
     enum BackupAlert: Identifiable {
         var id: String {
             switch self {
@@ -252,19 +253,17 @@ struct SettingsView: View {
                 
                 // Help & support section
                 Section(header: sectionHeader(NSLocalizedString("Help & Support", comment: ""))) {
-                    settingsRow(
-                        icon: "video.fill",
-                        title: NSLocalizedString("Video Tutorials", comment: ""),
-                        color: .red,
-                        action: { /* Show video tutorials */ }
-                    )
-                    
-                    settingsRow(
-                        icon: "person.fill.questionmark",
-                        title: NSLocalizedString("Get Live Support", comment: ""),
-                        color: .green,
-                        action: { showingHelpOptions = true }
-                    )
+                    Button(action: { showingVideoTutorials = true }) {
+                        settingsRowContent(
+                            icon: "video.fill",
+                            title: NSLocalizedString("Video Tutorials", comment: ""),
+                            color: .red
+                        )
+                    }
+                    .sheet(isPresented: $showingVideoTutorials) {
+                        VideoTutorialsView()
+                            .environmentObject(userSettings)
+                    }
                     
                     settingsRow(
                         icon: "printer.fill",
@@ -308,18 +307,6 @@ struct SettingsView: View {
                     .sheet(isPresented: $showingOnboarding) {
                         OnboardingView(isFirstLaunch: false)
                             .environmentObject(userSettings)
-                    }
-                    
-                    // Reset App Tour Button
-                    Button(action: { 
-                        userSettings.resetAppTour()
-                        showingAppTourResetAlert = true
-                    }) {
-                        settingsRowContent(
-                            icon: "map.fill",
-                            title: NSLocalizedString("Show App Tour Again", comment: ""),
-                            color: .purple
-                        )
                     }
                     
                     // Backup Data Section updated for local backup
@@ -400,6 +387,17 @@ struct SettingsView: View {
                             Text(NSLocalizedString("Translate Food Database", comment: ""))
                         }
                     }
+                    
+                    // App Preview Recording
+                    #if DEBUG
+                    NavigationLink(destination: AppPreviewRecordingView()) {
+                        HStack {
+                            Image(systemName: "video.fill")
+                                .foregroundColor(.red)
+                            Text("App Preview Recording")
+                        }
+                    }
+                    #endif
                     
                     // Debug Subscription Tier Switcher
                     #if DEBUG
@@ -930,31 +928,8 @@ struct PrintOptionsView: View {
                 Text(NSLocalizedString("print_instructions_help", comment: ""))
             }
             .sheet(isPresented: $showPreview) {
-                PrintPreviewSheet(
-                    type: selectedPreview ?? .medication,
-                    onPrint: {
-                        Task { @MainActor in
-                            switch selectedPreview {
-                            case .medication:
-                                let medications = userSettings.medications.isEmpty ? [] : userSettings.medications
-                                let userName = userSettings.userProfile?.firstName ?? userSettings.userName
-                                MedicationPrintService.shared.printMedicationSchedule(medications: medications, userName: userName)
-                            case .fasting:
-                                let userName = userSettings.userProfile?.firstName ?? userSettings.userName
-                                MedicationPrintService.shared.printFastingProtocolGuide(fastingProtocol: userSettings.activeFastingProtocol, userName: userName)
-                            case .meals:
-                                let userName = userSettings.userProfile?.firstName ?? userSettings.userName
-                                MedicationPrintService.shared.printMealSuggestions(userName: userName)
-                            case .instructions:
-                                let userName = userSettings.userProfile?.firstName ?? userSettings.userName
-                                MedicationPrintService.shared.printAppInstructions(userName: userName)
-                            case .none:
-                                break
-                            }
-                        }
-                    }
-                )
-                .environmentObject(userSettings)
+                PrintPreviewSheet(type: selectedPreview ?? .medication)
+                    .environmentObject(userSettings)
             }
         }
     }
@@ -995,12 +970,10 @@ struct PrintOptionsView: View {
 // Print Preview Sheet with direct printing functionality
 struct PrintPreviewSheet: View {
     let type: PrintOptionsView.PrintPreviewType
-    let onPrint: () -> Void
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject private var userSettings: UserSettings
     
-    // State to control the print action sheet
-    @State private var showingPrintOptions = false
+
     
     var body: some View {
         NavigationView {
@@ -1043,8 +1016,24 @@ struct PrintPreviewSheet: View {
                     }
                     
                     Button(action: {
-                        // Show the print options directly
-                        showingPrintOptions = true
+                        // Call the print service directly
+                        Task { @MainActor in
+                            switch type {
+                            case .medication:
+                                let medications = userSettings.medications.isEmpty ? [] : userSettings.medications
+                                let userName = userSettings.userProfile?.firstName ?? userSettings.userName
+                                MedicationPrintService.shared.printMedicationSchedule(medications: medications, userName: userName)
+                            case .fasting:
+                                let userName = userSettings.userProfile?.firstName ?? userSettings.userName
+                                MedicationPrintService.shared.printFastingProtocolGuide(fastingProtocol: userSettings.activeFastingProtocol, userName: userName)
+                            case .meals:
+                                let userName = userSettings.userProfile?.firstName ?? userSettings.userName
+                                MedicationPrintService.shared.printMealSuggestions(userName: userName)
+                            case .instructions:
+                                let userName = userSettings.userProfile?.firstName ?? userSettings.userName
+                                MedicationPrintService.shared.printAppInstructions(userName: userName)
+                            }
+                        }
                     }) {
                         HStack {
                             Image(systemName: "printer.fill")
@@ -1072,10 +1061,7 @@ struct PrintPreviewSheet: View {
                     }
                 }
             }
-            .background(
-                // This is a hidden view that handles the actual printing
-                PrintingBridge(isPresented: $showingPrintOptions, content: getContentForPrinting())
-            )
+
         }
     }
     
@@ -1092,118 +1078,10 @@ struct PrintPreviewSheet: View {
         }
     }
     
-    private func getContentForPrinting() -> AnyView {
-        switch type {
-        case .medication:
-            return AnyView(MedicationPrintPreview().environmentObject(userSettings))
-        case .fasting:
-            return AnyView(FastingProtocolPreview().environmentObject(userSettings))
-        case .meals:
-            return AnyView(MealSuggestionsPreview())
-        case .instructions:
-            return AnyView(AppInstructionsPreview())
-        }
-    }
+
 }
 
-// UIKit bridge for printing SwiftUI views
-struct PrintingBridge: UIViewRepresentable {
-    @Binding var isPresented: Bool
-    let content: AnyView
 
-    // Diagnostic state for fallback alert
-    class Coordinator: NSObject {
-        var didShowPrint = false
-    }
-    
-    func makeCoordinator() -> Coordinator {
-        Coordinator()
-    }
-
-    func makeUIView(context: Context) -> UIView {
-        let view = UIView()
-        return view
-    }
-    
-    func updateUIView(_ uiView: UIView, context: Context) {
-        if isPresented {
-            // Reset the flag
-            isPresented = false
-            
-            // Create a hosting controller for the SwiftUI content
-            let hostingController = UIHostingController(rootView: content)
-            let printContent = hostingController.view!
-            
-            // Set a reasonable size for the content
-            let pageWidth = UIScreen.main.bounds.width
-            printContent.frame = CGRect(x: 0, y: 0, width: pageWidth, height: 1000)
-            printContent.backgroundColor = .white
-            
-            // Allow the view to layout its contents
-            printContent.layoutIfNeeded()
-            
-            // Create a print info object
-            let printInfo = UIPrintInfo(dictionary: nil)
-            printInfo.outputType = .general
-            printInfo.jobName = "Senior Nutrition App Document"
-            
-            // Create a print controller
-            let printController = UIPrintInteractionController.shared
-            printController.printInfo = printInfo
-            printController.printFormatter = printContent.viewPrintFormatter()
-            
-            // Find the top-most view controller
-            let topController = topMostViewController()
-            print("[Print Debug] Top-most VC: \(String(describing: topController))")
-            
-            DispatchQueue.main.async {
-                if let topVC = topController {
-                    print("[Print Debug] Presenting print dialog from top-most VC")
-                    printController.present(from: topVC.view.bounds, in: topVC.view, animated: true, completionHandler: { (controller, completed, error) in
-                        if let error = error {
-                            print("[Print Debug] Printing error: \(error.localizedDescription)")
-                        }
-                        if completed {
-                            print("[Print Debug] Print dialog was shown successfully.")
-                        } else {
-                            print("[Print Debug] Print dialog was NOT shown (user cancelled or error)")
-                        }
-                    })
-                } else {
-                    print("[Print Debug] No top-most VC found. Falling back to present(animated:)")
-                    printController.present(animated: true, completionHandler: { (controller, completed, error) in
-                        if let error = error {
-                            print("[Print Debug] Printing error: \(error.localizedDescription)")
-                        }
-                        if completed {
-                            print("[Print Debug] Print dialog was shown successfully.")
-                        } else {
-                            print("[Print Debug] Print dialog was NOT shown (user cancelled or error)")
-                        }
-                    })
-                }
-            }
-        }
-    }
-
-    // Helper to get the top-most UIViewController
-    private func topMostViewController(base: UIViewController? = UIApplication.shared.connectedScenes
-        .compactMap { ($0 as? UIWindowScene)?.keyWindow }
-        .first?.rootViewController) -> UIViewController? {
-        if let nav = base as? UINavigationController {
-            return topMostViewController(base: nav.visibleViewController)
-        }
-        if let tab = base as? UITabBarController {
-            if let selected = tab.selectedViewController {
-                return topMostViewController(base: selected)
-            }
-        }
-        if let presented = base?.presentedViewController {
-            return topMostViewController(base: presented)
-        }
-        return base
-    }
-}
 
 // Debug Subscription Tier Switcher (only available in DEBUG builds)
 #if DEBUG

@@ -24,23 +24,20 @@ struct MedicationPrintPreview: View {
                 .background(Color.black)
             
             // Content
-            if userSettings.medications.isEmpty {
-                VStack(spacing: 15) {
-                    Image(systemName: "pill.fill")
-                        .font(.system(size: 48))
+            VStack(alignment: .leading, spacing: 15) {
+                let medicationsToShow = userSettings.medications.isEmpty ? getSampleMedications() : userSettings.medications
+                
+                if userSettings.medications.isEmpty {
+                    // Show note that this is sample data
+                    Text(NSLocalizedString("Sample medication schedule for demonstration:", comment: ""))
+                        .font(.system(size: 14))
+                        .italic()
                         .foregroundColor(.gray)
-                    
-                    Text(NSLocalizedString("no_medications_added", comment: ""))
-                        .font(.system(size: 18))
-                        .foregroundColor(.gray)
-                        .multilineTextAlignment(.center)
+                        .padding(.bottom, 10)
                 }
-                .frame(maxWidth: .infinity, minHeight: 200)
-            } else {
-                VStack(alignment: .leading, spacing: 15) {
-                    ForEach(userSettings.medications) { medication in
-                        medicationCard(medication)
-                    }
+                
+                ForEach(medicationsToShow) { medication in
+                    medicationCard(medication)
                 }
             }
             
@@ -59,6 +56,42 @@ struct MedicationPrintPreview: View {
         .padding(20)
         .background(Color.white)
         .foregroundColor(.black)
+    }
+    
+    // Provide sample medications for demonstration when user has no medications
+    private func getSampleMedications() -> [Medication] {
+        return [
+            Medication(
+                name: NSLocalizedString("Lisinopril", comment: "Sample medication name"),
+                dosage: "10mg",
+                frequency: .daily,
+                timesOfDay: [TimeOfDay(hour: 8, minute: 0)],
+                takeWithFood: true,
+                notes: NSLocalizedString("Take with breakfast", comment: "Sample medication note"),
+                color: .blue,
+                shape: .capsule
+            ),
+            Medication(
+                name: NSLocalizedString("Atorvastatin", comment: "Sample medication name"),
+                dosage: "20mg",
+                frequency: .daily,
+                timesOfDay: [TimeOfDay(hour: 21, minute: 0)],
+                takeWithFood: true,
+                notes: NSLocalizedString("Take with dinner", comment: "Sample medication note"),
+                color: .white,
+                shape: .oval
+            ),
+            Medication(
+                name: NSLocalizedString("Vitamin D3", comment: "Sample medication name"),
+                dosage: "2000 IU",
+                frequency: .daily,
+                timesOfDay: [TimeOfDay(hour: 12, minute: 0)],
+                takeWithFood: false,
+                notes: NSLocalizedString("Take with lunch", comment: "Sample medication note"),
+                color: .yellow,
+                shape: .round
+            )
+        ]
     }
     
     private func medicationCard(_ medication: Medication) -> some View {
@@ -392,44 +425,44 @@ struct AppInstructionsPreview: View {
                 instructionCategory(
                     title: NSLocalizedString("medication_management_title", comment: ""),
                     steps: [
-                        NSLocalizedString("medication_instruction_1", comment: ""),
-                        NSLocalizedString("medication_instruction_2", comment: ""),
-                        NSLocalizedString("medication_instruction_3", comment: ""),
-                        NSLocalizedString("medication_instruction_4", comment: ""),
-                        NSLocalizedString("medication_instruction_5", comment: "")
+                        NSLocalizedString("medication_step_1", comment: ""),
+                        NSLocalizedString("medication_step_2", comment: ""),
+                        NSLocalizedString("medication_step_3", comment: ""),
+                        NSLocalizedString("medication_step_4", comment: ""),
+                        NSLocalizedString("medication_step_5", comment: "")
                     ]
                 )
                 
                 instructionCategory(
                     title: NSLocalizedString("fasting_timer_title", comment: ""),
                     steps: [
-                        NSLocalizedString("fasting_instruction_1", comment: ""),
-                        NSLocalizedString("fasting_instruction_2", comment: ""),
-                        NSLocalizedString("fasting_instruction_3", comment: ""),
-                        NSLocalizedString("fasting_instruction_4", comment: ""),
-                        NSLocalizedString("fasting_instruction_5", comment: "")
+                        NSLocalizedString("fasting_step_1", comment: ""),
+                        NSLocalizedString("fasting_step_2", comment: ""),
+                        NSLocalizedString("fasting_step_3", comment: ""),
+                        NSLocalizedString("fasting_step_4", comment: ""),
+                        NSLocalizedString("fasting_step_5", comment: "")
                     ]
                 )
                 
                 instructionCategory(
                     title: NSLocalizedString("nutrition_tracking_title", comment: ""),
                     steps: [
-                        NSLocalizedString("nutrition_instruction_1", comment: ""),
-                        NSLocalizedString("nutrition_instruction_2", comment: ""),
-                        NSLocalizedString("nutrition_instruction_3", comment: ""),
-                        NSLocalizedString("nutrition_instruction_4", comment: ""),
-                        NSLocalizedString("nutrition_instruction_5", comment: "")
+                        NSLocalizedString("nutrition_step_1", comment: ""),
+                        NSLocalizedString("nutrition_step_2", comment: ""),
+                        NSLocalizedString("nutrition_step_3", comment: ""),
+                        NSLocalizedString("nutrition_step_4", comment: ""),
+                        NSLocalizedString("nutrition_step_5", comment: "")
                     ]
                 )
                 
                 instructionCategory(
                     title: NSLocalizedString("app_settings_title", comment: ""),
                     steps: [
-                        NSLocalizedString("settings_instruction_1", comment: ""),
-                        NSLocalizedString("settings_instruction_2", comment: ""),
-                        NSLocalizedString("settings_instruction_3", comment: ""),
-                        NSLocalizedString("settings_instruction_4", comment: ""),
-                        NSLocalizedString("settings_instruction_5", comment: "")
+                        NSLocalizedString("settings_step_1", comment: ""),
+                        NSLocalizedString("settings_step_2", comment: ""),
+                        NSLocalizedString("settings_step_3", comment: ""),
+                        NSLocalizedString("settings_step_4", comment: ""),
+                        NSLocalizedString("settings_step_5", comment: "")
                     ]
                 )
             }

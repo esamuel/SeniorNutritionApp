@@ -562,23 +562,75 @@ class MedicationPrintService: ObservableObject {
     
     private init() {}
     
-    // Method to get PDF data from a SwiftUI view
+    // Provide sample medications for demonstration when user has no medications
+    private func getSampleMedications() -> [Medication] {
+        return [
+            Medication(
+                name: NSLocalizedString("Lisinopril", comment: "Sample medication name"),
+                dosage: "10mg",
+                frequency: .daily,
+                timesOfDay: [TimeOfDay(hour: 8, minute: 0)],
+                takeWithFood: true,
+                notes: NSLocalizedString("Take with breakfast", comment: "Sample medication note"),
+                color: .blue,
+                shape: .capsule
+            ),
+            Medication(
+                name: NSLocalizedString("Atorvastatin", comment: "Sample medication name"),
+                dosage: "20mg",
+                frequency: .daily,
+                timesOfDay: [TimeOfDay(hour: 21, minute: 0)],
+                takeWithFood: true,
+                notes: NSLocalizedString("Take with dinner", comment: "Sample medication note"),
+                color: .white,
+                shape: .oval
+            ),
+            Medication(
+                name: NSLocalizedString("Vitamin D3", comment: "Sample medication name"),
+                dosage: "2000 IU",
+                frequency: .daily,
+                timesOfDay: [TimeOfDay(hour: 12, minute: 0)],
+                takeWithFood: false,
+                notes: NSLocalizedString("Take with lunch", comment: "Sample medication note"),
+                color: .yellow,
+                shape: .round
+            )
+        ]
+    }
+    
+    // Method to get PDF data from a SwiftUI view using UIHostingController and UIGraphicsPDFRenderer
     @MainActor
     private func getPDFData<Content: View>(from view: Content) -> Data? {
-        let renderer = ImageRenderer(content: view)
-        renderer.scale = 2.0
+        // Set the desired page size (US Letter: 8.5" x 11" = 612 x 792 points)
+        let pageSize = CGSize(width: 612, height: 792)
         
-        // Use uiImage instead of pdf for iOS compatibility
-        if let uiImage = renderer.uiImage {
-            return uiImage.pngData()
+        // Create a UIHostingController with the SwiftUI view
+        let hostingController = UIHostingController(rootView: view.frame(width: pageSize.width, height: pageSize.height))
+        let window = UIWindow(frame: CGRect(origin: .zero, size: pageSize))
+        window.rootViewController = hostingController
+        window.makeKeyAndVisible()
+        
+        // Ensure layout is up to date
+        hostingController.view.frame = CGRect(origin: .zero, size: pageSize)
+        hostingController.view.setNeedsLayout()
+        hostingController.view.layoutIfNeeded()
+        
+        // Render the view's layer into a PDF context
+        let pdfRenderer = UIGraphicsPDFRenderer(bounds: CGRect(origin: .zero, size: pageSize))
+        let data = pdfRenderer.pdfData { ctx in
+            ctx.beginPage()
+            hostingController.view.layer.render(in: ctx.cgContext)
         }
-        return nil
+        
+        return data.isEmpty ? nil : data
     }
     
     // Print medication schedule
     @MainActor
     func printMedicationSchedule(medications: [Medication], userName: String) {
-        let printView = MedicationPrintContentView(medications: medications, userName: userName)
+        // If no medications, provide sample data for demonstration
+        let medicationsToUse = medications.isEmpty ? getSampleMedications() : medications
+        let printView = MedicationPrintContentView(medications: medicationsToUse, userName: userName)
         
         guard let pdfData = getPDFData(from: printView) else {
             print("Failed to generate PDF data")

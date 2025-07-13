@@ -1756,3 +1756,32 @@
 "Progress tracking" = "Seguimiento de progreso";
 "Benefits include:" = "Los beneficios incluyen:";
 
+// Nutrition Trends Feature
+"Daily" = "Diario";
+"Trends" = "Tendencias";
+"Time Range" = "Rango de Tiempo";
+"Week" = "Semana";
+"Month" = "Mes";
+"3 Months" = "3 Meses";
+"Nutrition Trends" = "Tendencias Nutricionales";
+"No nutrition data available for the selected time range" = "No hay datos nutricionales disponibles para el rango de tiempo seleccionado";
+"Goal" = "Objetivo";
+"Insights" = "Análisis";
+"Add more meals to see nutrition insights and trends." = "Agrega más comidas para ver análisis y tendencias nutricionales.";
+"Great job! Your calorie intake is well-balanced and close to your goal." = "¡Excelente trabajo! Tu ingesta calórica está bien equilibrada y cerca de tu objetivo.";
+"You're consuming about %.0f calories above your daily goal. Consider adjusting portion sizes or meal choices." = "Estás consumiendo aproximadamente %.0f calorías por encima de tu objetivo diario. Considera ajustar las porciones o las opciones de comida.";
+"You're consuming about %.0f calories below your daily goal. Consider adding nutritious snacks or larger portions." = "Estás consumiendo aproximadamente %.0f calorías por debajo de tu objetivo diario. Considera agregar bocadillos nutritivos o porciones más grandes.";
+"Free users can view up to 7 days of nutrition analytics. Upgrade for extended history." = "Los usuarios gratuitos pueden ver hasta 7 días de análisis nutricional. Actualiza para historial extendido.";
+"Extended nutrition analytics history is available with Advanced or Premium subscription. Free users can view up to 7 days of data." = "El historial extendido de análisis nutricional está disponible con suscripción Avanzada o Premium. Los usuarios gratuitos pueden ver hasta 7 días de datos.";
+"Premium Feature" = "Función Premium";
+"Upgrade" = "Actualizar";
+
+/* Sample Medication Data */
+"Sample medication schedule for demonstration:" = "Horario de medicamentos de muestra para demostración:";
+"Lisinopril" = "Lisinopril";
+"Atorvastatin" = "Atorvastatina";
+"Vitamin D3" = "Vitamina D3";
+"Take with breakfast" = "Tomar con el desayuno";
+"Take with dinner" = "Tomar con la cena";
+"Take with lunch" = "Tomar con el almuerzo";
+

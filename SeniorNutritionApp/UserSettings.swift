@@ -179,6 +179,7 @@ class UserSettings: ObservableObject {
     }
     
     @Published var isLoaded: Bool = false
+    @Published var isDemoMode: Bool = false // For app preview recordings
     
     @Published var selectedLanguage: String = UserDefaults.standard.string(forKey: "AppLanguage") ?? LanguageManager.shared.currentLanguage {
         didSet {

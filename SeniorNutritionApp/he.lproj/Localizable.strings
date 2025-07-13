@@ -3238,3 +3238,32 @@
 "Progress tracking" = "מעקב התקדמות";
 "Benefits include:" = "היתרונות כוללים:";
 
+// Nutrition Trends Feature
+"Daily" = "יומי";
+"Trends" = "מגמות";
+"Time Range" = "טווח זמן";
+"Week" = "שבוע";
+"Month" = "חודש";
+"3 Months" = "3 חודשים";
+"Nutrition Trends" = "מגמות תזונה";
+"No nutrition data available for the selected time range" = "אין נתוני תזונה זמינים לטווח הזמן שנבחר";
+"Goal" = "יעד";
+"Insights" = "תובנות";
+"Add more meals to see nutrition insights and trends." = "הוסף עוד ארוחות כדי לראות תובנות ומגמות תזונה.";
+"Great job! Your calorie intake is well-balanced and close to your goal." = "עבודה מעולה! צריכת הקלוריות שלך מאוזנת וקרובה ליעד שלך.";
+"You're consuming about %.0f calories above your daily goal. Consider adjusting portion sizes or meal choices." = "אתה צורך בערך %.0f קלוריות מעל היעד היומי שלך. שקול להתאים גדלי מנות או בחירות ארוחות.";
+"You're consuming about %.0f calories below your daily goal. Consider adding nutritious snacks or larger portions." = "אתה צורך בערך %.0f קלוריות מתחת ליעד היומי שלך. שקול להוסיף חטיפים מזינים או מנות גדולות יותר.";
+"Free users can view up to 7 days of nutrition analytics. Upgrade for extended history." = "משתמשים חינמיים יכולים לראות עד 7 ימים של ניתוח תזונה. שדרג להיסטוריה מורחבת.";
+"Extended nutrition analytics history is available with Advanced or Premium subscription. Free users can view up to 7 days of data." = "היסטוריית ניתוח תזונה מורחבת זמינה עם מנוי מתקדם או פרמיום. משתמשים חינמיים יכולים לראות עד 7 ימים של נתונים.";
+"Premium Feature" = "תכונה פרמיום";
+"Upgrade" = "שדרג";
+
+/* Sample Medication Data */
+"Sample medication schedule for demonstration:" = "לוח זמנים לתרופות לדוגמה להדגמה:";
+"Lisinopril" = "ליזינופריל";
+"Atorvastatin" = "אטורווסטטין";
+"Vitamin D3" = "ויטמין D3";
+"Take with breakfast" = "לקחת עם ארוחת הבוקר";
+"Take with dinner" = "לקחת עם ארוחת הערב";
+"Take with lunch" = "לקחת עם ארוחת הצהריים";
+

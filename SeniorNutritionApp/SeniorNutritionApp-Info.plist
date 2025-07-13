@@ -62,5 +62,9 @@
         <string>UIInterfaceOrientationLandscapeLeft</string>
         <string>UIInterfaceOrientationLandscapeRight</string>
     </array>
+    <key>ITSAppUsesNonExemptEncryption</key>
+    <false/>
+    <key>ITSEncryptionExportComplianceCode</key>
+    <string>a5e36f7dc8b5788560dc9c5cf6b1056f</string>
 </dict>
 </plist> 
