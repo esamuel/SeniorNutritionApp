@@ -1799,3 +1799,10 @@
 "Take with dinner" = "Take with dinner";
 "Take with lunch" = "Take with lunch";
 
+"Disclaimer.Modal.Title" = "Important Disclaimer";
+"Disclaimer.Modal.Body" = "The information provided by Senior Nutrition is for educational purposes only and is not intended as medical advice. Always consult your physician or a qualified healthcare provider before making any changes to your diet, medication, or fasting routine. If you feel unwell, stop immediately and seek medical attention.";
+"Disclaimer.Modal.Button" = "I Understand";
+"Disclaimer.Fasting.Banner" = "Fasting advice is for educational purposes only. Always consult your doctor before starting a fast. If you feel unwell, stop immediately and seek medical attention.";
+"Disclaimer.HealthTips.Banner" = "Health tips are for educational purposes only. Always consult your doctor before making changes to your health routine.";
+"Disclaimer.NutritionTips.Banner" = "Nutrition tips are for educational purposes only. Always consult your doctor or a registered dietitian before making changes to your diet.";
+

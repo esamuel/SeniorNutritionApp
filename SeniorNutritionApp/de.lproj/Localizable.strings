@@ -1,0 +1,12 @@
+/* HealthKit Integration */
+"Data will sync with Apple Health" = "Die Daten werden mit Apple Health synchronisiert";
+"Synced with Apple Health" = "Mit Apple Health synchronisiert";
+"Add Notes (Optional)" = "Notizen hinzufügen (Optional)";
+"Enter notes about this measurement" = "Geben Sie Notizen zu dieser Messung ein";
+"Last synced with Apple Health:" = "Zuletzt mit Apple Health synchronisiert:";
+"Never" = "Nie";
+"Just now" = "Gerade eben";
+"%@ ago" = "vor %@";
+"Sync Status" = "Synchronisierungsstatus";
+"This data is synced with Apple Health" = "Diese Daten werden mit Apple Health synchronisiert";
+"Health Data" = "Gesundheitsdaten"; 

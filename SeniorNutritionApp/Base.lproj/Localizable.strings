@@ -1229,3 +1229,16 @@
 
 /* Loading Screen */
 "Hold on, I'm coming..." = "Hold on, I'm coming...";
+
+/* HealthKit Integration */
+"Data will sync with Apple Health" = "Data will sync with Apple Health";
+"Synced with Apple Health" = "Synced with Apple Health";
+"Add Notes (Optional)" = "Add Notes (Optional)";
+"Enter notes about this measurement" = "Enter notes about this measurement";
+"Last synced with Apple Health:" = "Last synced with Apple Health:";
+"Never" = "Never";
+"Just now" = "Just now";
+"%@ ago" = "%@ ago";
+"Sync Status" = "Sync Status";
+"This data is synced with Apple Health" = "This data is synced with Apple Health";
+"Health Data" = "Health Data";

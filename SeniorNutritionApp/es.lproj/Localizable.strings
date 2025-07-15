@@ -1322,7 +1322,7 @@
 "faq_emergency_number_answer" = "La aplicación detecta automáticamente su región y usa el número de emergencia apropiado (911 para EE.UU., 112 para UE, etc.). También puede establecer un número de emergencia personalizado en Configuración > Número de Emergencia.";
 
 "faq_emergency_contacts" = "¿Cómo agrego contactos de emergencia?";
-"faq_emergency_contacts_answer" = "Vaya a la sección de Contactos de Emergencia para agregar miembros de la familia, cuidadores o proveedores de atención médica. Estos contactos pueden ser llamados directamente desde la aplicación en caso de emergencia.";
+"faq_emergency_contacts_answer" = "Vaya a la sección de Contactos de Emergencia para agregar miembros de la familia, cuidadores o proveedores de atención médica. Estos contactos pueden ser llamados directamente desde la aplicación en caso de una emergencia.";
 
 "faq_emergency_medical" = "¿Qué información médica debo incluir?";
 "faq_emergency_medical_answer" = "Incluya información médica importante como alergias, medicamentos actuales, condiciones crónicas y contactos de emergencia. Esta información puede ser crucial para los servicios de emergencia y proveedores de atención médica.";
@@ -1784,4 +1784,24 @@
 "Take with breakfast" = "Tomar con el desayuno";
 "Take with dinner" = "Tomar con la cena";
 "Take with lunch" = "Tomar con el almuerzo";
+
+"Disclaimer.Modal.Title" = "Aviso importante";
+"Disclaimer.Modal.Body" = "La información proporcionada por Senior Nutrition es solo para fines educativos y no constituye asesoramiento médico. Consulte siempre a su médico o a un profesional de la salud calificado antes de realizar cambios en su dieta, medicación o rutina de ayuno. Si se siente mal, deténgase de inmediato y busque atención médica.";
+"Disclaimer.Modal.Button" = "Entiendo";
+"Disclaimer.Fasting.Banner" = "El consejo sobre el ayuno es solo para fines educativos. Consulte siempre a su médico antes de comenzar un ayuno. Si se siente mal, deténgase de inmediato y busque atención médica.";
+"Disclaimer.HealthTips.Banner" = "Los consejos de salud son solo para fines educativos. Consulte siempre a su médico antes de realizar cambios en su rutina de salud.";
+"Disclaimer.NutritionTips.Banner" = "Los consejos de nutrición son solo para fines educativos. Consulte siempre a su médico o a un dietista registrado antes de realizar cambios en su dieta.";
+
+/* HealthKit Integration */
+"Data will sync with Apple Health" = "Los datos se sincronizarán con Apple Health";
+"Synced with Apple Health" = "Sincronizado con Apple Health";
+"Add Notes (Optional)" = "Agregar notas (Opcional)";
+"Enter notes about this measurement" = "Ingrese notas sobre esta medición";
+"Last synced with Apple Health:" = "Última sincronización con Apple Health:";
+"Never" = "Nunca";
+"Just now" = "Ahora mismo";
+"%@ ago" = "hace %@";
+"Sync Status" = "Estado de sincronización";
+"This data is synced with Apple Health" = "Estos datos están sincronizados con Apple Health";
+"Health Data" = "Datos de salud";
 

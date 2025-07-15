@@ -12,6 +12,10 @@
 "All Cuisines" = "כל המטבחים";
 "No foods in this cuisine" = "אין מזון במטבח זה";
 
+/* Disclaimer Messages */
+"Disclaimer.Fasting.Banner" = "עצות הצום הן למטרות חינוכיות בלבד. התייעץ תמיד עם הרופא שלך לפני התחלת צום. אם אינך חש בטוב, הפסק מיד ופנה לקבלת טיפול רפואי.";
+"Disclaimer.NutritionTips.Banner" = "עצות התזונה הן למטרות חינוכיות בלבד. התייעץ תמיד עם הרופא שלך או דיאטנית מוסמכת לפני ביצוע שינויים בתזונה שלך.";
+
 /* About Section */
 "About" = "אודות";
 "About the App" = "אודות האפליקציה";
@@ -239,6 +243,19 @@
 "Video tutorials and live support" = "הדרכות וידאו ותמיכה חיה";
 "Health data visualization" = "הדמיית נתוני בריאות";
 "Emergency contact system" = "מערכת אנשי קשר לחירום";
+
+/* HealthKit Integration */
+"Data will sync with Apple Health" = "הנתונים יסונכרנו עם Apple Health";
+"Synced with Apple Health" = "מסונכרן עם Apple Health";
+"Add Notes (Optional)" = "הוסף הערות (אופציונלי)";
+"Enter notes about this measurement" = "הזן הערות על מדידה זו";
+"Last synced with Apple Health:" = "סנכרון אחרון עם Apple Health:";
+"Never" = "אף פעם";
+"Just now" = "זה עתה";
+"%@ ago" = "לפני %@";
+"Sync Status" = "מצב סנכרון";
+"This data is synced with Apple Health" = "נתונים אלה מסונכרנים עם Apple Health";
+"Health Data" = "נתוני בריאות";
 "Language" = "שפה";
 "Done" = "סיום";
 "English" = "אנגלית";

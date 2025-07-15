@@ -12,6 +12,10 @@
 "All Cuisines" = "Toutes les Cuisines";
 "No foods in this cuisine" = "Aucun aliment dans cette cuisine";
 
+/* Disclaimer Messages */
+"Disclaimer.Fasting.Banner" = "Les conseils de jeûne sont fournis à titre éducatif uniquement. Consultez toujours votre médecin avant de commencer un jeûne. Si vous ne vous sentez pas bien, arrêtez immédiatement et consultez un médecin.";
+"Disclaimer.NutritionTips.Banner" = "Les conseils nutritionnels sont fournis à titre éducatif uniquement. Consultez toujours votre médecin ou un diététicien agréé avant de modifier votre régime alimentaire.";
+
 "Onboarding Loaded" = "Chargement de l'accueil";
 "Skip" = "Passer";
 "Close" = "Fermer";
@@ -244,6 +248,18 @@
 "Monitor daily hydration and set water intake goals" = "Surveillez l'hydratation quotidienne et fixez des objectifs de consommation d'eau";
 "Set reminders, track medications, and manage your health" = "Définissez des rappels, suivez les médicaments et gérez votre santé";
 "Health Data" = "Données de santé";
+
+/* HealthKit Integration */
+"Data will sync with Apple Health" = "Les données seront synchronisées avec Apple Health";
+"Synced with Apple Health" = "Synchronisé avec Apple Health";
+"Add Notes (Optional)" = "Ajouter des notes (Facultatif)";
+"Enter notes about this measurement" = "Entrez des notes sur cette mesure";
+"Last synced with Apple Health:" = "Dernière synchronisation avec Apple Health :";
+"Never" = "Jamais";
+"Just now" = "À l'instant";
+"%@ ago" = "il y a %@";
+"Sync Status" = "État de synchronisation";
+"This data is synced with Apple Health" = "Ces données sont synchronisées avec Apple Health";
 "Track blood pressure, blood sugar, heart rate, and weight" = "Suivez la tension artérielle, la glycémie, la fréquence cardiaque et le poids";
 "Manage doctor's appointments and health check-ups" = "Gérez les rendez-vous chez le médecin et les bilans de santé";
 "Control the app with your voice" = "Contrôlez l'application avec votre voix";
@@ -632,21 +648,21 @@
 "faq_nutrition_goals_setting" = "Puis-je définir mes propres objectifs nutritionnels ?";
 "faq_nutrition_goals_setting_answer" = "Oui, vous pouvez définir des objectifs personnalisés pour les calories, les macronutriments et les micronutriments en fonction des recommandations de votre médecin.";
 "faq_fasting_what_is" = "Qu'est-ce que le jeûne intermittent ?";
-"faq_fasting_what_is_answer" = "Le jeûne intermittent est un modèle alimentaire qui alterne entre des périodes de jeûne et d'alimentation. Consultez la section d'aide sur le jeûne pour en savoir plus.";
-"faq_fasting_safe" = "Le jeûne est-il sans danger pour les seniors ?";
-"faq_fasting_safe_answer" = "Le jeûne peut offrir des avantages pour la santé, mais il est important de consulter votre médecin avant de commencer tout nouveau régime de jeûne, surtout si vous avez des problèmes de santé sous-jacents.";
-"faq_fasting_protocols" = "Quels protocoles de jeûne l'application prend-elle en charge ?";
-"faq_fasting_protocols_answer" = "L'application prend en charge les protocoles de jeûne courants comme 16:8, 18:6 et 5:2. Vous pouvez également créer un programme de jeûne personnalisé.";
-"faq_fasting_medications" = "Puis-je prendre des médicaments pendant le jeûne ?";
-"faq_fasting_medications_answer" = "Certains médicaments doivent être pris avec de la nourriture. Veuillez consulter votre médecin ou votre pharmacien pour savoir comment gérer vos médicaments pendant les périodes de jeûne.";
-"faq_fasting_emergency_stop" = "Que dois-je faire si je me sens mal pendant un jeûne ?";
-"faq_fasting_emergency_stop_answer" = "Si vous vous sentez mal, il est important d'arrêter votre jeûne immédiatement. Écoutez votre corps et consultez un professionnel de la santé si les symptômes persistent.";
-"faq_water_how_much" = "Combien d'eau devrais-je boire chaque jour ?";
-"faq_water_how_much_answer" = "Les besoins en hydratation varient. L'application fournit une recommandation personnalisée basée sur votre profil, mais il est toujours préférable de consulter votre médecin.";
-"faq_water_reminders" = "Puis-je définir des rappels pour boire de l'eau ?";
-"faq_water_reminders_answer" = "Oui, vous pouvez configurer des rappels personnalisables tout au long de la journée pour vous aider à atteindre vos objectifs d'hydratation.";
-"faq_water_other_drinks" = "D'autres boissons comptent-elles dans mon apport hydrique ?";
-"faq_water_other_drinks_answer" = "Bien que l'eau soit la meilleure, d'autres liquides comme les tisanes et les bouillons peuvent contribuer à votre hydratation. L'application vous permet de suivre différents types de boissons.";
+"faq_fasting_what_is_answer" = "Le jeûne intermittent est un modèle alimentaire qui alterne entre des périodes de jeûne et d'alimentation. Il ne spécifie pas quels aliments manger, mais quand les manger. L'application vous aide à suivre ces périodes en toute sécurité.";
+"faq_fasting_safe" = "Le jeûne intermittent est-il sûr pour les personnes âgées ?";
+"faq_fasting_safe_answer" = "Le jeûne intermittent peut être sûr pour les personnes âgées en bonne santé, mais vous devez toujours consulter votre fournisseur de soins de santé avant de commencer. L'application inclut des fonctionnalités de sécurité et des rappels pour vous aider à jeûner en toute sécurité.";
+"faq_fasting_protocols" = "Quels protocoles de jeûne sont disponibles ?";
+"faq_fasting_protocols_answer" = "L'application inclut des protocoles prédéfinis comme 16:8, 18:6, 20:4 et 5:2. Vous pouvez également créer des protocoles personnalisés. Tous les protocoles incluent des fonctionnalités de sécurité et des rappels.";
+"faq_fasting_medications" = "Comment gérer mes médicaments pendant le jeûne ?";
+"faq_fasting_medications_answer" = "Certains médicaments doivent être pris avec de la nourriture. L'application vous rappellera ces exigences et vous aidera à programmer les médicaments pendant vos fenêtres d'alimentation.";
+"faq_fasting_emergency_stop" = "Que faire si je me sens mal pendant le jeûne ?";
+"faq_fasting_emergency_stop_answer" = "Si vous ressentez des vertiges, une faiblesse, de la confusion ou tout symptôme inquiétant, arrêtez le jeûne immédiatement en utilisant le bouton d'annulation d'urgence dans l'application et consultez un professionnel de santé.";
+"faq_water_how_much" = "Combien d'eau dois-je boire ?";
+"faq_water_how_much_answer" = "La recommandation générale est de 8-10 verres d'eau par jour, mais cela peut varier selon votre âge, poids, niveau d'activité et climat. L'application vous aide à définir un objectif personnalisé.";
+"faq_water_reminders" = "Comment fonctionnent les rappels d'eau ?";
+"faq_water_reminders_answer" = "Vous pouvez configurer des rappels d'hydratation dans la section Suivi de l'Eau. L'application enverra des notifications à intervalles réguliers pour vous rappeler de boire de l'eau.";
+"faq_water_other_drinks" = "Puis-je suivre d'autres boissons que l'eau ?";
+"faq_water_other_drinks_answer" = "Oui, vous pouvez suivre le thé, le café, les jus et autres boissons. Cependant, l'eau pure est le meilleur choix pour l'hydratation. L'application vous aidera à maintenir un bon équilibre.";
 "faq_medication_add" = "Comment ajouter mes médicaments ?";
 "faq_medication_add_answer" = "Allez à la section 'Médicaments', appuyez sur 'Ajouter un médicament', et entrez le nom, le dosage et l'horaire. Vous pouvez également scanner le code-barres sur l'emballage de votre médicament.";
 "faq_medication_reminders" = "Comment fonctionnent les rappels de médicaments ?";
