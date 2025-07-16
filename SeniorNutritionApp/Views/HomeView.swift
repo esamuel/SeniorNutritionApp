@@ -128,9 +128,7 @@ struct HomeView: View {
                 Spacer()
                 
                 Button(action: {
-                    if voiceManager.isSpeaking {
-                        voiceManager.stopSpeaking()
-                    } else {
+                    if TTSRouter.shared.elevenLabsTTS.audioPlayer?.isPlaying == true || VoiceManager.shared.isSpeaking { TTSRouter.shared.stopSpeaking() } else {
                         var speech = String(format: NSLocalizedString("%@, %@. ", comment: ""), timeOfDay, userSettings.userProfile?.firstName ?? userSettings.userName)
                         speech += String(format: NSLocalizedString("Today is %@. ", comment: ""), formattedDate)
                         
@@ -141,15 +139,15 @@ struct HomeView: View {
                         let windowType = fastingManager.fastingState == .eating ? NSLocalizedString("Eating reminder", comment: "") : NSLocalizedString("Fasting reminder", comment: "")
                         
                         speech += String(format: NSLocalizedString("%@ %@, %d percent remain.", comment: ""), windowType, spokenTime, percentage)
-                        voiceManager.speak(speech, userSettings: userSettings)
+                        TTSRouter.shared.speak(speech, userSettings: userSettings)
                     }
                 }) {
                     HStack(spacing: 4) {
-                        Image(systemName: voiceManager.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
+                        Image(systemName: VoiceManager.shared.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
                             .foregroundColor(.white)
                             .imageScale(.large)
                             
-                        if voiceManager.isSpeaking {
+                        if VoiceManager.shared.isSpeaking {
                             Text(NSLocalizedString("Stop", comment: ""))
                                 .font(.system(size: userSettings.textSize.size - 2))
                                 .foregroundColor(.white)
@@ -434,11 +432,11 @@ struct HomeView: View {
                     readTodaysSchedule()
                 }) {
                     HStack(spacing: 4) {
-                        Image(systemName: voiceManager.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
+                        Image(systemName: VoiceManager.shared.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
                             .foregroundColor(.white)
                             .imageScale(.large)
                             
-                        if voiceManager.isSpeaking {
+                        if VoiceManager.shared.isSpeaking {
                             Text(NSLocalizedString("Stop", comment: ""))
                                 .font(.system(size: userSettings.textSize.size - 2))
                                 .foregroundColor(.white)
@@ -1004,6 +1002,10 @@ struct HomeView: View {
                             ]
                         )
                         
+                        // Add citations for the tips
+                        CitationsView(categories: [.hydration, .fasting, .medication])
+                            .padding(.top, 8)
+                        
                         // Emergency Section
                         InfoSection(
                             title: NSLocalizedString("Emergency Information", comment: ""),
@@ -1063,13 +1065,13 @@ struct HomeView: View {
                     
                     if let onSpeak = onSpeak {
                         Button(action: {
-                            if voiceManager.isSpeaking {
-                                voiceManager.stopSpeaking()
+                            if VoiceManager.shared.isSpeaking {
+                                VoiceManager.shared.stopSpeaking()
                             } else {
                                 onSpeak()
                             }
                         }) {
-                            Image(systemName: voiceManager.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
+                            Image(systemName: VoiceManager.shared.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
                                 .foregroundColor(.blue)
                         }
                     }
@@ -1145,8 +1147,8 @@ struct HomeView: View {
     
     // Add a new helper method for reading today's schedule
     private func readTodaysSchedule() {
-        if voiceManager.isSpeaking {
-            voiceManager.stopSpeaking()
+        if VoiceManager.shared.isSpeaking {
+            VoiceManager.shared.stopSpeaking()
             return
         }
         
@@ -1171,7 +1173,7 @@ struct HomeView: View {
             speechText += NSLocalizedString("No medications scheduled for today.", comment: "")
         }
         
-        voiceManager.speak(speechText, userSettings: userSettings)
+        TTSRouter.shared.speak(speechText, userSettings: userSettings)
     }
 }
 

@@ -39,6 +39,10 @@ struct MealAnalysisView: View {
                 if !analysisResult.healthWarnings.isEmpty || !analysisResult.positiveEffects.isEmpty {
                     recommendationsSection
                 }
+                
+                // Citations section
+                CitationsView(categories: [.mealAnalysis, .nutrition])
+                    .padding(.top, 8)
             }
             .padding()
         }
