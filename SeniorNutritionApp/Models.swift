@@ -456,6 +456,48 @@ struct UserProfile: Codable {
     var medicalConditions: [String]
     var dietaryRestrictions: [String]
     var emergencyContacts: [EmergencyContact]
+    var activityLevel: ActivityLevel
+    var preferredBMRFormula: BMRFormula
+    
+    // Initialize with default values for new properties to support existing profiles
+    init(firstName: String = "", lastName: String = "", dateOfBirth: Date = Date(), gender: String = "Other", height: Double = 170.0, weight: Double = 70.0, medicalConditions: [String] = [], dietaryRestrictions: [String] = [], emergencyContacts: [EmergencyContact] = [], activityLevel: ActivityLevel = .lightlyActive, preferredBMRFormula: BMRFormula = .mifflinStJeor) {
+        self.firstName = firstName
+        self.lastName = lastName
+        self.dateOfBirth = dateOfBirth
+        self.gender = gender
+        self.height = height
+        self.weight = weight
+        self.medicalConditions = medicalConditions
+        self.dietaryRestrictions = dietaryRestrictions
+        self.emergencyContacts = emergencyContacts
+        self.activityLevel = activityLevel
+        self.preferredBMRFormula = preferredBMRFormula
+    }
+    
+    // Custom decoder to handle existing profiles without new properties
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        firstName = try container.decode(String.self, forKey: .firstName)
+        lastName = try container.decode(String.self, forKey: .lastName)
+        dateOfBirth = try container.decode(Date.self, forKey: .dateOfBirth)
+        gender = try container.decode(String.self, forKey: .gender)
+        height = try container.decode(Double.self, forKey: .height)
+        weight = try container.decode(Double.self, forKey: .weight)
+        medicalConditions = try container.decode([String].self, forKey: .medicalConditions)
+        dietaryRestrictions = try container.decode([String].self, forKey: .dietaryRestrictions)
+        emergencyContacts = try container.decode([EmergencyContact].self, forKey: .emergencyContacts)
+        
+        // Handle new properties with defaults for backward compatibility
+        activityLevel = try container.decodeIfPresent(ActivityLevel.self, forKey: .activityLevel) ?? .lightlyActive
+        preferredBMRFormula = try container.decodeIfPresent(BMRFormula.self, forKey: .preferredBMRFormula) ?? .mifflinStJeor
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+        case firstName, lastName, dateOfBirth, gender, height, weight
+        case medicalConditions, dietaryRestrictions, emergencyContacts
+        case activityLevel, preferredBMRFormula
+    }
     
     /// BMI calculated using latest weight from health data and profile height
     /// If no health data weight is available, falls back to profile weight
@@ -520,6 +562,109 @@ struct UserProfile: Codable {
             months = months % 12
         }
         return months
+    }
+    
+    // MARK: - Calorie Calculations
+    
+    /// Calculate BMR using the user's preferred formula
+    /// - Parameter latestWeight: Optional latest weight from health data
+    /// - Returns: BMR in calories per day
+    func calculateBMR(latestWeight: Double? = nil) -> Double? {
+        let weightToUse = latestWeight ?? weight
+        guard CalorieCalculationService.validateInputs(weight: weightToUse, height: height, age: age) else {
+            return nil
+        }
+        
+        switch preferredBMRFormula {
+        case .harrisBenedict:
+            return CalorieCalculationService.calculateBMRHarrisBenedict(
+                weight: weightToUse, height: height, age: age, gender: gender
+            )
+        case .mifflinStJeor:
+            return CalorieCalculationService.calculateBMRMifflinStJeor(
+                weight: weightToUse, height: height, age: age, gender: gender
+            )
+        }
+    }
+    
+    /// Calculate TDEE (Total Daily Energy Expenditure)
+    /// - Parameter latestWeight: Optional latest weight from health data
+    /// - Returns: TDEE in calories per day
+    func calculateTDEE(latestWeight: Double? = nil) -> Double? {
+        guard let bmr = calculateBMR(latestWeight: latestWeight) else { return nil }
+        return CalorieCalculationService.calculateTDEE(bmr: bmr, activityLevel: activityLevel)
+    }
+    
+    /// Get complete calorie calculation result
+    /// - Parameter latestWeight: Optional latest weight from health data
+    /// - Returns: Complete calorie calculation with BMR, TDEE, and goal recommendations
+    func getCalorieCalculationResult(latestWeight: Double? = nil) -> CalorieCalculationResult? {
+        let weightToUse = latestWeight ?? weight
+        guard CalorieCalculationService.validateInputs(weight: weightToUse, height: height, age: age) else {
+            return nil
+        }
+        
+        let result = CalorieCalculationService.calculateCalorieNeeds(
+            weight: weightToUse,
+            height: height,
+            age: age,
+            gender: gender,
+            activityLevel: activityLevel,
+            formula: preferredBMRFormula
+        )
+        
+        return result
+    }
+    
+    /// Get recommended daily calorie goal based on health goals
+    /// - Parameters:
+    ///   - healthGoals: User's health goals
+    ///   - latestWeight: Optional latest weight from health data
+    /// - Returns: Recommended daily calorie target
+    func getRecommendedCalorieGoal(healthGoals: [String], latestWeight: Double? = nil) -> Int? {
+        guard let calculationResult = getCalorieCalculationResult(latestWeight: latestWeight) else {
+            return nil
+        }
+        
+        let baseRecommendation = CalorieCalculationService.getRecommendedCalorieGoal(
+            from: calculationResult,
+            healthGoals: healthGoals
+        )
+        
+        // Apply senior-specific adjustments
+        let adjustedCalories = CalorieCalculationService.applySeniorAdjustments(
+            baseCalories: Double(baseRecommendation),
+            age: age,
+            healthConditions: medicalConditions
+        )
+        
+        return Int(adjustedCalories.rounded())
+    }
+    
+    /// Get calorie goal explanation text for UI
+    /// - Parameters:
+    ///   - healthGoals: User's health goals
+    ///   - latestWeight: Optional latest weight from health data
+    /// - Returns: Formatted explanation text
+    func getCalorieGoalExplanation(healthGoals: [String], latestWeight: Double? = nil) -> String? {
+        guard let result = getCalorieCalculationResult(latestWeight: latestWeight),
+              let recommendedGoal = getRecommendedCalorieGoal(healthGoals: healthGoals, latestWeight: latestWeight) else {
+            return nil
+        }
+        
+        let bmrText = CalorieCalculationService.formatCalories(result.bmr)
+        let tdeeText = CalorieCalculationService.formatCalories(result.tdee)
+        let goalText = "\(recommendedGoal)"
+        
+        let baseExplanation = String(format: NSLocalizedString("Based on your profile: BMR %@ cal/day × %@ activity = %@ cal/day maintenance. Recommended goal: %@ cal/day.", comment: "Calorie calculation explanation"), bmrText, result.activityLevel.rawValue, tdeeText, goalText)
+        
+        if healthGoals.contains("Weight Loss") || healthGoals.contains("Lose Weight") {
+            return baseExplanation + " " + NSLocalizedString("(500 cal deficit for 1 lb/week weight loss)", comment: "Weight loss explanation")
+        } else if healthGoals.contains("Weight Gain") || healthGoals.contains("Gain Weight") {
+            return baseExplanation + " " + NSLocalizedString("(500 cal surplus for 1 lb/week weight gain)", comment: "Weight gain explanation")
+        }
+        
+        return baseExplanation
     }
 }
 

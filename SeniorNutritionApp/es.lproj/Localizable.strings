@@ -1792,16 +1792,41 @@
 "Disclaimer.HealthTips.Banner" = "Los consejos de salud son solo para fines educativos. Consulte siempre a su médico antes de realizar cambios en su rutina de salud.";
 "Disclaimer.NutritionTips.Banner" = "Los consejos de nutrición son solo para fines educativos. Consulte siempre a su médico o a un dietista registrado antes de realizar cambios en su dieta.";
 
-/* HealthKit Integration */
-"Data will sync with Apple Health" = "Los datos se sincronizarán con Apple Health";
-"Synced with Apple Health" = "Sincronizado con Apple Health";
+
 "Add Notes (Optional)" = "Agregar notas (Opcional)";
 "Enter notes about this measurement" = "Ingrese notas sobre esta medición";
-"Last synced with Apple Health:" = "Última sincronización con Apple Health:";
 "Never" = "Nunca";
 "Just now" = "Ahora mismo";
 "%@ ago" = "hace %@";
 "Sync Status" = "Estado de sincronización";
-"This data is synced with Apple Health" = "Estos datos están sincronizados con Apple Health";
 "Health Data" = "Datos de salud";
+
+/* Calorie Calculation - Activity Levels */
+"Little or no exercise" = "Poco o ningún ejercicio";
+"Light exercise 1-3 days/week" = "Ejercicio ligero 1-3 días/semana";
+"Moderate exercise 3-5 days/week" = "Ejercicio moderado 3-5 días/semana";
+"Hard exercise 6-7 days/week" = "Ejercicio intenso 6-7 días/semana";
+"Very hard exercise or physical job" = "Ejercicio muy intenso o trabajo físico";
+
+/* Calorie Calculation - BMR Formulas */
+"Harris-Benedict (Traditional)" = "Harris-Benedict (Tradicional)";
+"Mifflin-St Jeor (More accurate for seniors)" = "Mifflin-St Jeor (Más preciso para adultos mayores)";
+
+/* Calorie Calculation - Nutrition Goals */
+"Use calculated calorie goal" = "Usar objetivo calórico calculado";
+"Based on your profile and activity level" = "Basado en tu perfil y nivel de actividad";
+"Calorie Calculation Details" = "Detalles del cálculo calórico";
+"BMR:" = "TMB:";
+"TDEE:" = "TDEE:";
+
+/* Calorie Calculation - Profile Setup */
+"Activity Level" = "Nivel de actividad";
+"Select your typical activity level to calculate accurate calorie needs:" = "Selecciona tu nivel de actividad típico para calcular las necesidades calóricas precisas:";
+"Calorie Calculation Method:" = "Método de cálculo calórico:";
+"Estimated Daily Calorie Needs:" = "Necesidades calóricas diarias estimadas:";
+
+/* Calorie Calculation - Explanations */
+"Based on your profile: BMR %@ cal/day × %@ activity = %@ cal/day maintenance. Recommended goal: %@ cal/day." = "Basado en tu perfil: TMB %@ cal/día × actividad %@ = %@ cal/día mantenimiento. Objetivo recomendado: %@ cal/día.";
+"(500 cal deficit for 1 lb/week weight loss)" = "(déficit de 500 cal para perder 1 lb/semana)";
+"(500 cal surplus for 1 lb/week weight gain)" = "(superávit de 500 cal para ganar 1 lb/semana)";
 

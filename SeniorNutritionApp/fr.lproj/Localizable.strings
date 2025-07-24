@@ -249,17 +249,7 @@
 "Set reminders, track medications, and manage your health" = "Définissez des rappels, suivez les médicaments et gérez votre santé";
 "Health Data" = "Données de santé";
 
-/* HealthKit Integration */
-"Data will sync with Apple Health" = "Les données seront synchronisées avec Apple Health";
-"Synced with Apple Health" = "Synchronisé avec Apple Health";
-"Add Notes (Optional)" = "Ajouter des notes (Facultatif)";
-"Enter notes about this measurement" = "Entrez des notes sur cette mesure";
-"Last synced with Apple Health:" = "Dernière synchronisation avec Apple Health :";
-"Never" = "Jamais";
-"Just now" = "À l'instant";
-"%@ ago" = "il y a %@";
-"Sync Status" = "État de synchronisation";
-"This data is synced with Apple Health" = "Ces données sont synchronisées avec Apple Health";
+
 "Track blood pressure, blood sugar, heart rate, and weight" = "Suivez la tension artérielle, la glycémie, la fréquence cardiaque et le poids";
 "Manage doctor's appointments and health check-ups" = "Gérez les rendez-vous chez le médecin et les bilans de santé";
 "Control the app with your voice" = "Contrôlez l'application avec votre voix";
@@ -2425,10 +2415,6 @@
 
 /* Voice Assistance */
 "voice_assistance_help_title" = "Aide de l'assistance vocale";
-"voice_assistance_help_description" = "Utilisez des commandes vocales pour naviguer dans l'application";
-"voice_assistance_getting_started_intro" = "L'assistance vocale vous permet de contrôler l'application en mode mains libres. Voici comment l'activer et l'utiliser :";
-"voice_assistance_step_1" = "Allez dans 'Paramètres' > 'Accessibilité' > 'Assistance vocale'";
-"voice_assistance_step_2" = "Activez le bouton 'Activer l'assistance vocale'";
 "voice_assistance_step_3" = "Utilisez le mot-clé d'activation (par exemple, 'Bonjour Senior Nutrition') pour commencer à écouter";
 "voice_assistance_step_4" = "Énoncez votre commande clairement";
 "voice_assistance_commands_header" = "Commandes vocales courantes";
@@ -2799,4 +2785,33 @@
 "Take with breakfast" = "Prendre avec le petit-déjeuner";
 "Take with dinner" = "Prendre avec le dîner";
 "Take with lunch" = "Prendre avec le déjeuner";
+
+/* Calorie Calculation - Activity Levels */
+"Little or no exercise" = "Peu ou pas d'exercice";
+"Light exercise 1-3 days/week" = "Exercice léger 1-3 jours/semaine";
+"Moderate exercise 3-5 days/week" = "Exercice modéré 3-5 jours/semaine";
+"Hard exercise 6-7 days/week" = "Exercice intense 6-7 jours/semaine";
+"Very hard exercise or physical job" = "Exercice très intense ou travail physique";
+
+/* Calorie Calculation - BMR Formulas */
+"Harris-Benedict (Traditional)" = "Harris-Benedict (Traditionnel)";
+"Mifflin-St Jeor (More accurate for seniors)" = "Mifflin-St Jeor (Plus précis pour les seniors)";
+
+/* Calorie Calculation - Nutrition Goals */
+"Use calculated calorie goal" = "Utiliser l'objectif calorique calculé";
+"Based on your profile and activity level" = "Basé sur votre profil et niveau d'activité";
+"Calorie Calculation Details" = "Détails du calcul calorique";
+"BMR:" = "MB:";
+"TDEE:" = "TDEE:";
+
+/* Calorie Calculation - Profile Setup */
+"Activity Level" = "Niveau d'activité";
+"Select your typical activity level to calculate accurate calorie needs:" = "Sélectionnez votre niveau d'activité typique pour calculer les besoins caloriques précis:";
+"Calorie Calculation Method:" = "Méthode de calcul calorique:";
+"Estimated Daily Calorie Needs:" = "Besoins caloriques quotidiens estimés:";
+
+/* Calorie Calculation - Explanations */
+"Based on your profile: BMR %@ cal/day × %@ activity = %@ cal/day maintenance. Recommended goal: %@ cal/day." = "Basé sur votre profil: MB %@ cal/jour × activité %@ = %@ cal/jour maintenance. Objectif recommandé: %@ cal/jour.";
+"(500 cal deficit for 1 lb/week weight loss)" = "(déficit de 500 cal pour perdre 1 lb/semaine)";
+"(500 cal surplus for 1 lb/week weight gain)" = "(surplus de 500 cal pour gagner 1 lb/semaine)";
 

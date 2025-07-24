@@ -191,6 +191,7 @@ class UserSettings: ObservableObject {
     }
     
     @Published var dailyCalorieGoal: Int = 2000
+    @Published var useCalculatedCalories: Bool = true  // Whether to use calculated vs manual calorie goals
     @Published var macroGoalsEnabled: Bool = false
     @Published var dailyProteinGoal: Int = 75
     @Published var dailyCarbGoal: Int = 250
@@ -228,6 +229,68 @@ class UserSettings: ObservableObject {
         guard let profile = userProfile else { return nil }
         let latestWeight = getLatestWeight()
         return profile.getBMICategory(latestWeight: latestWeight)
+    }
+    
+    // MARK: - Calorie Goal Management
+    
+    /// Get the effective daily calorie goal (calculated or manual)
+    func getEffectiveDailyCalorieGoal() -> Int {
+        if useCalculatedCalories, let profile = userProfile {
+            let latestWeight = getLatestWeight()
+            if let calculatedGoal = profile.getRecommendedCalorieGoal(healthGoals: userHealthGoals, latestWeight: latestWeight) {
+                return calculatedGoal
+            }
+        }
+        return dailyCalorieGoal
+    }
+    
+    /// Get the calculated daily calorie goal (if profile exists)
+    func getCalculatedDailyCalorieGoal() -> Int? {
+        guard let profile = userProfile else { return nil }
+        let latestWeight = getLatestWeight()
+        return profile.getRecommendedCalorieGoal(healthGoals: userHealthGoals, latestWeight: latestWeight)
+    }
+    
+    /// Get calorie calculation explanation text
+    func getCalorieCalculationExplanation() -> String? {
+        guard let profile = userProfile else { return nil }
+        let latestWeight = getLatestWeight()
+        return profile.getCalorieGoalExplanation(healthGoals: userHealthGoals, latestWeight: latestWeight)
+    }
+    
+    /// Update calorie goal to use calculated value
+    func useCalculatedCalorieGoal() {
+        if let calculatedGoal = getCalculatedDailyCalorieGoal() {
+            dailyCalorieGoal = calculatedGoal
+            useCalculatedCalories = true
+            saveUserData()
+        }
+    }
+    
+    /// Update calorie goal to use manual value
+    func useManualCalorieGoal(_ manualGoal: Int) {
+        dailyCalorieGoal = manualGoal
+        useCalculatedCalories = false
+        saveUserData()
+    }
+    
+    /// Check if calculated calorie goal is available
+    func hasCalculatedCalorieGoal() -> Bool {
+        return getCalculatedDailyCalorieGoal() != nil
+    }
+    
+    /// Get BMR value if profile exists
+    func getCurrentBMR() -> Double? {
+        guard let profile = userProfile else { return nil }
+        let latestWeight = getLatestWeight()
+        return profile.calculateBMR(latestWeight: latestWeight)
+    }
+    
+    /// Get TDEE value if profile exists
+    func getCurrentTDEE() -> Double? {
+        guard let profile = userProfile else { return nil }
+        let latestWeight = getLatestWeight()
+        return profile.calculateTDEE(latestWeight: latestWeight)
     }
     
     private let localDataKey = "userData"

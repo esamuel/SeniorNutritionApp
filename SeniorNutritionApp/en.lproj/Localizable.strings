@@ -1806,3 +1806,32 @@
 "Disclaimer.HealthTips.Banner" = "Health tips are for educational purposes only. Always consult your doctor before making changes to your health routine.";
 "Disclaimer.NutritionTips.Banner" = "Nutrition tips are for educational purposes only. Always consult your doctor or a registered dietitian before making changes to your diet.";
 
+/* Calorie Calculation - Activity Levels */
+"Little or no exercise" = "Little or no exercise";
+"Light exercise 1-3 days/week" = "Light exercise 1-3 days/week";
+"Moderate exercise 3-5 days/week" = "Moderate exercise 3-5 days/week";
+"Hard exercise 6-7 days/week" = "Hard exercise 6-7 days/week";
+"Very hard exercise or physical job" = "Very hard exercise or physical job";
+
+/* Calorie Calculation - BMR Formulas */
+"Harris-Benedict (Traditional)" = "Harris-Benedict (Traditional)";
+"Mifflin-St Jeor (More accurate for seniors)" = "Mifflin-St Jeor (More accurate for seniors)";
+
+/* Calorie Calculation - Nutrition Goals */
+"Use calculated calorie goal" = "Use calculated calorie goal";
+"Based on your profile and activity level" = "Based on your profile and activity level";
+"Calorie Calculation Details" = "Calorie Calculation Details";
+"BMR:" = "BMR:";
+"TDEE:" = "TDEE:";
+
+/* Calorie Calculation - Profile Setup */
+"Activity Level" = "Activity Level";
+"Select your typical activity level to calculate accurate calorie needs:" = "Select your typical activity level to calculate accurate calorie needs:";
+"Calorie Calculation Method:" = "Calorie Calculation Method:";
+"Estimated Daily Calorie Needs:" = "Estimated Daily Calorie Needs:";
+
+/* Calorie Calculation - Explanations */
+"Based on your profile: BMR %@ cal/day × %@ activity = %@ cal/day maintenance. Recommended goal: %@ cal/day." = "Based on your profile: BMR %@ cal/day × %@ activity = %@ cal/day maintenance. Recommended goal: %@ cal/day.";
+"(500 cal deficit for 1 lb/week weight loss)" = "(500 cal deficit for 1 lb/week weight loss)";
+"(500 cal surplus for 1 lb/week weight gain)" = "(500 cal surplus for 1 lb/week weight gain)";
+

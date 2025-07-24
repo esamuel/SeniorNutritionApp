@@ -12,6 +12,8 @@ struct UserProfileSetupView: View {
     @State private var weight: String = ""
     @State private var heightUnit: String = "cm"
     @State private var weightUnit: String = "kg"
+    @State private var activityLevel: ActivityLevel = .lightlyActive
+    @State private var preferredBMRFormula: BMRFormula = .mifflinStJeor
     @State private var medicalConditions: [String] = []
     @State private var dietaryRestrictions: [String] = []
     
@@ -178,6 +180,71 @@ struct UserProfileSetupView: View {
                         .padding(8)
                         .background(Color.green.opacity(0.05))
                         .cornerRadius(8)
+                    }
+                }
+                .listRowBackground(Color.clear)
+                
+                // Activity Level Section
+                Section(header: Text(NSLocalizedString("Activity Level", comment: ""))
+                        .font(.headline)
+                        .foregroundColor(.blue)) {
+                    
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text(NSLocalizedString("Select your typical activity level to calculate accurate calorie needs:", comment: ""))
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        
+                        ActivityLevelSelectorView(selectedLevel: $activityLevel)
+                        
+                        BMRFormulaSelectorView(selectedFormula: $preferredBMRFormula)
+                        
+                        // Show calculated calorie preview if possible
+                        if !height.isEmpty && !weight.isEmpty, 
+                           let heightValue = Double(height),
+                           let weightValue = Double(weight) {
+                            let heightCm = UnitConverter.convert(heightValue, from: heightUnit, to: "cm")
+                            let weightKg = UnitConverter.convert(weightValue, from: weightUnit, to: "kg")
+                            let age = Calendar.current.dateComponents([.year], from: dateOfBirth, to: Date()).year ?? 65
+                            
+                            if CalorieCalculationService.validateInputs(weight: weightKg, height: heightCm, age: age) {
+                                let result = CalorieCalculationService.calculateCalorieNeeds(
+                                    weight: weightKg,
+                                    height: heightCm,
+                                    age: age,
+                                    gender: gender,
+                                    activityLevel: activityLevel,
+                                    formula: preferredBMRFormula
+                                )
+                                
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text(NSLocalizedString("Estimated Daily Calorie Needs:", comment: ""))
+                                        .font(.caption)
+                                        .fontWeight(.medium)
+                                    
+                                    HStack {
+                                        Text("BMR:")
+                                            .font(.caption)
+                                        Spacer()
+                                        Text("\(Int(result.bmr.rounded())) cal/day")
+                                            .font(.caption)
+                                            .fontWeight(.medium)
+                                    }
+                                    
+                                    HStack {
+                                        Text("TDEE:")
+                                            .font(.caption)
+                                        Spacer()
+                                        Text("\(Int(result.tdee.rounded())) cal/day")
+                                            .font(.caption)
+                                            .fontWeight(.medium)
+                                            .foregroundColor(.blue)
+                                    }
+                                }
+                                .padding()
+                                .background(Color.blue.opacity(0.1))
+                                .cornerRadius(8)
+                            }
+                        }
                     }
                 }
                 .listRowBackground(Color.clear)
@@ -470,6 +537,10 @@ struct UserProfileSetupView: View {
             heightUnit = "cm"
             weightUnit = "kg"
             
+            // Load activity level and BMR formula
+            activityLevel = profile.activityLevel
+            preferredBMRFormula = profile.preferredBMRFormula
+            
             medicalConditions = profile.medicalConditions
             dietaryRestrictions = profile.dietaryRestrictions
             emergencyContacts = profile.emergencyContacts
@@ -494,7 +565,9 @@ struct UserProfileSetupView: View {
             weight: weightKg,
             medicalConditions: medicalConditions,
             dietaryRestrictions: dietaryRestrictions,
-            emergencyContacts: emergencyContacts
+            emergencyContacts: emergencyContacts,
+            activityLevel: activityLevel,
+            preferredBMRFormula: preferredBMRFormula
         )
         
         print("DEBUG: Saving profile with \(emergencyContacts.count) emergency contacts")
@@ -504,6 +577,175 @@ struct UserProfileSetupView: View {
         // Also mark app tour as completed to avoid showing multiple onboarding screens
         userSettings.markAppTourCompleted()
         dismiss()
+    }
+    
+    // Helper function to get appropriate icons for activity levels
+    private func getActivityIcon(for level: ActivityLevel) -> String {
+        switch level {
+        case .sedentary:
+            return "figure.seated.side"
+        case .lightlyActive:
+            return "figure.walk"
+        case .moderatelyActive:
+            return "figure.run"
+        case .veryActive:
+            return "figure.strengthtraining.traditional"
+        case .extraActive:
+            return "figure.boxing"
+        }
+    }
+}
+
+// MARK: - Activity Level Selector Component
+struct ActivityLevelSelectorView: View {
+    @Binding var selectedLevel: ActivityLevel
+    
+    var body: some View {
+        VStack(spacing: 12) {
+            ForEach(ActivityLevel.allCases) { level in
+                activityLevelButton(for: level)
+            }
+        }
+    }
+    
+    private func activityLevelButton(for level: ActivityLevel) -> some View {
+        Button(action: {
+            selectedLevel = level
+        }) {
+            HStack(spacing: 16) {
+                activityIcon(for: level)
+                activityTextContent(for: level)
+                Spacer()
+                selectionIndicator(for: level)
+            }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 12)
+            .background(activityBackground(for: level))
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+    
+    private func activityIcon(for level: ActivityLevel) -> some View {
+        ZStack {
+            Circle()
+                .fill(selectedLevel == level ? Color.blue : Color.gray.opacity(0.2))
+                .frame(width: 50, height: 50)
+            
+            Image(systemName: getActivityIcon(for: level))
+                .font(.title2)
+                .foregroundColor(selectedLevel == level ? .white : .gray)
+        }
+    }
+    
+    private func activityTextContent(for level: ActivityLevel) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(NSLocalizedString(level.rawValue, comment: ""))
+                .font(.headline)
+                .foregroundColor(selectedLevel == level ? .blue : .primary)
+                .fontWeight(selectedLevel == level ? .semibold : .regular)
+            
+            Text(NSLocalizedString(level.description, comment: ""))
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+                .multilineTextAlignment(.leading)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+    }
+    
+    private func selectionIndicator(for level: ActivityLevel) -> some View {
+        Image(systemName: selectedLevel == level ? "checkmark.circle.fill" : "circle")
+            .font(.title2)
+            .foregroundColor(selectedLevel == level ? .blue : .gray.opacity(0.4))
+    }
+    
+    private func activityBackground(for level: ActivityLevel) -> some View {
+        RoundedRectangle(cornerRadius: 12)
+            .fill(selectedLevel == level ? Color.blue.opacity(0.1) : Color.gray.opacity(0.05))
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(selectedLevel == level ? Color.blue : Color.gray.opacity(0.2), 
+                           lineWidth: selectedLevel == level ? 2 : 1)
+            )
+    }
+    
+    private func getActivityIcon(for level: ActivityLevel) -> String {
+        switch level {
+        case .sedentary: return "figure.seated.side"
+        case .lightlyActive: return "figure.walk"
+        case .moderatelyActive: return "figure.run"
+        case .veryActive: return "figure.strengthtraining.traditional"
+        case .extraActive: return "figure.boxing"
+        }
+    }
+}
+
+// MARK: - BMR Formula Selector Component
+struct BMRFormulaSelectorView: View {
+    @Binding var selectedFormula: BMRFormula
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text(NSLocalizedString("Calorie Calculation Method:", comment: ""))
+                .font(.caption)
+                .fontWeight(.medium)
+            
+            VStack(spacing: 8) {
+                ForEach(BMRFormula.allCases) { formula in
+                    formulaButton(for: formula)
+                }
+            }
+        }
+    }
+    
+    private func formulaButton(for formula: BMRFormula) -> some View {
+        Button(action: {
+            selectedFormula = formula
+        }) {
+            HStack(spacing: 12) {
+                formulaIcon(for: formula)
+                formulaText(for: formula)
+                Spacer()
+                formulaSelectionIndicator(for: formula)
+            }
+            .padding(.horizontal, 12)
+            .padding(.vertical, 8)
+            .background(formulaBackground(for: formula))
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+    
+    private func formulaIcon(for formula: BMRFormula) -> some View {
+        ZStack {
+            Circle()
+                .fill(selectedFormula == formula ? Color.green : Color.gray.opacity(0.2))
+                .frame(width: 30, height: 30)
+            
+            Image(systemName: "function")
+                .font(.caption)
+                .foregroundColor(selectedFormula == formula ? .white : .gray)
+        }
+    }
+    
+    private func formulaText(for formula: BMRFormula) -> some View {
+        Text(NSLocalizedString(formula.description, comment: ""))
+            .font(.subheadline)
+            .foregroundColor(selectedFormula == formula ? .green : .primary)
+            .multilineTextAlignment(.leading)
+    }
+    
+    private func formulaSelectionIndicator(for formula: BMRFormula) -> some View {
+        Image(systemName: selectedFormula == formula ? "checkmark.circle.fill" : "circle")
+            .font(.title3)
+            .foregroundColor(selectedFormula == formula ? .green : .gray.opacity(0.4))
+    }
+    
+    private func formulaBackground(for formula: BMRFormula) -> some View {
+        RoundedRectangle(cornerRadius: 8)
+            .fill(selectedFormula == formula ? Color.green.opacity(0.1) : Color.gray.opacity(0.05))
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(selectedFormula == formula ? Color.green : Color.gray.opacity(0.2), lineWidth: 1)
+            )
     }
 }
 
