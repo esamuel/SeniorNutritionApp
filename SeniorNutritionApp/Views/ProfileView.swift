@@ -102,6 +102,9 @@ struct ProfileView: View {
     // Publisher for language change notifications
     private let languageChangePublisher = NotificationCenter.default.publisher(for: .languageDidChange)
     
+    // Publisher for weight update notifications
+    private let weightUpdatePublisher = NotificationCenter.default.publisher(for: NSNotification.Name("UserWeightUpdated"))
+    
     var body: some View {
         NavigationView {
             List {
@@ -116,6 +119,7 @@ struct ProfileView: View {
                         .font(.system(size: userSettings.textSize.size))
                 }
             }
+            .id(refreshTrigger) // Force refresh when refreshTrigger changes
             .navigationTitle(NSLocalizedString("Profile", comment: ""))
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
@@ -138,6 +142,16 @@ struct ProfileView: View {
             .onReceive(languageChangePublisher) { _ in
                 // Force refresh when language changes to update translations
                 refreshTrigger.toggle()
+            }
+            .onReceive(weightUpdatePublisher) { notification in
+                // Force refresh when weight is updated to recalculate BMI
+                print("🔔 ProfileView: Received UserWeightUpdated notification")
+                if let userInfo = notification.userInfo,
+                   let newWeight = userInfo["newWeight"] as? Double {
+                    print("📊 ProfileView: New weight from notification: \(newWeight) kg")
+                }
+                refreshTrigger.toggle()
+                print("🔄 ProfileView: Triggered refresh")
             }
         }
     }
@@ -174,11 +188,14 @@ struct ProfileView: View {
             let heightText = "\(Int(heightCm)) cm (\(Int(heightFt))' \(Int(heightIn.truncatingRemainder(dividingBy: 12)))\""
             profileRow(title: "Height", value: heightText, iconName: "ruler", color: .teal)
             
-            // Weight with both metric and imperial
-            let weightKg = profile.weight
+            // Weight with both metric and imperial - always use fresh data
+            let weightKg = userSettings.userProfile?.weight ?? profile.weight
             let weightLb = UnitConverter.fromBaseUnit(weightKg * 1000, to: "lb") // Convert kg to g first, then to lb
             let weightText = "\(Int(weightKg)) kg (\(Int(weightLb)) lb)"
             profileRow(title: "Weight", value: weightText, iconName: "scalemass", color: .cyan)
+                .onAppear {
+                    print("📊 ProfileView: Displaying weight: \(weightKg) kg (from profile: \(profile.weight) kg)")
+                }
             
             // BMI with category using latest weight from health data
             if let bmi = userSettings.getCurrentBMI(), let category = userSettings.getCurrentBMICategory() {

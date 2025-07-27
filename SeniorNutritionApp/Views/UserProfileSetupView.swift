@@ -39,460 +39,97 @@ struct UserProfileSetupView: View {
     // Comprehensive list of dietary restrictions (English keys for storage)
     private let dietaryRestrictionOptions = ProfileTranslationUtils.dietaryRestrictionsEnglish
     
+    // Computed properties to avoid complex expressions in body
+    private var tempProfile: UserProfile {
+        UserProfile(
+            firstName: firstName,
+            lastName: lastName,
+            dateOfBirth: dateOfBirth,
+            gender: gender,
+            height: Double(height) ?? 0,
+            weight: Double(weight) ?? 0,
+            medicalConditions: medicalConditions,
+            dietaryRestrictions: dietaryRestrictions,
+            emergencyContacts: emergencyContacts
+        )
+    }
+    
+    private var ageText: String {
+        let profile = tempProfile
+        return profile.age > 0 ? "\(profile.age) years, \(profile.ageMonths) months" : "\(profile.ageMonths) months"
+    }
+    
+    private var shouldShowCaloriePreview: Bool {
+        !height.isEmpty && !weight.isEmpty
+    }
+    
+    private var calorieCalculationResult: (heightCm: Double, weightKg: Double, age: Int, result: CalorieCalculationResult)? {
+        guard let heightValue = Double(height),
+              let weightValue = Double(weight) else { return nil }
+        
+        let heightCm = UnitConverter.convert(heightValue, from: heightUnit, to: "cm")
+        let weightKg = UnitConverter.convert(weightValue, from: weightUnit, to: "kg")
+        let age = Calendar.current.dateComponents([.year], from: dateOfBirth, to: Date()).year ?? 65
+        
+        guard CalorieCalculationService.validateInputs(weight: weightKg, height: heightCm, age: age) else { return nil }
+        
+        let result = CalorieCalculationService.calculateCalorieNeeds(
+            weight: weightKg,
+            height: heightCm,
+            age: age,
+            gender: gender,
+            activityLevel: activityLevel,
+            formula: preferredBMRFormula
+        )
+        
+        return (heightCm, weightKg, age, result)
+    }
+    
+    private var heightConversions: (cm: Double, ft: Double, inches: Double)? {
+        guard let heightValue = Double(height) else { return nil }
+        let heightCm = UnitConverter.convert(heightValue, from: heightUnit, to: "cm")
+        let heightFt = UnitConverter.fromBaseUnit(heightCm, to: "ft")
+        let heightIn = UnitConverter.fromBaseUnit(heightCm, to: "in")
+        return (heightCm, heightFt, heightIn)
+    }
+    
+    private var weightConversions: (kg: Double, lb: Double)? {
+        guard let weightValue = Double(weight) else { return nil }
+        let weightKg = UnitConverter.convert(weightValue, from: weightUnit, to: "kg")
+        let weightLb = UnitConverter.fromBaseUnit(weightKg * 1000, to: "lb")
+        return (weightKg, weightLb)
+    }
+    
+    private var bmiCalculation: (bmi: Double, category: BMICategory)? {
+        guard let heightValue = Double(height),
+              let weightValue = Double(weight) else { return nil }
+        
+        let heightCm = UnitConverter.convert(heightValue, from: heightUnit, to: "cm")
+        let weightKg = UnitConverter.convert(weightValue, from: weightUnit, to: "kg")
+        
+        guard heightCm > 0 && weightKg > 0 else { return nil }
+        
+        let heightMeters = heightCm / 100.0
+        let bmi = weightKg / (heightMeters * heightMeters)
+        let category = BMICategory.from(bmi: bmi)
+        
+        return (bmi, category)
+    }
+    
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text(NSLocalizedString("Personal Information", comment: ""))
-                        .font(.headline)
-                        .foregroundColor(.blue)) {
-                    TextField(NSLocalizedString("First Name", comment: ""), text: $firstName)
-                        .padding(8)
-                        .background(Color.blue.opacity(0.1))
-                        .cornerRadius(8)
-                    
-                    TextField(NSLocalizedString("Last Name", comment: ""), text: $lastName)
-                        .padding(8)
-                        .background(Color.blue.opacity(0.1))
-                        .cornerRadius(8)
-                    
-                    DatePicker(NSLocalizedString("Date of Birth", comment: ""), selection: $dateOfBirth, displayedComponents: .date)
-                        .datePickerStyle(CompactDatePickerStyle())
-                        .datePickerLTR()
-                        .padding(8)
-                        .background(Color.blue.opacity(0.1))
-                        .cornerRadius(8)
-                    
-                    // Display calculated age from date of birth
-                    let tempProfile = UserProfile(
-                        firstName: firstName,
-                        lastName: lastName,
-                        dateOfBirth: dateOfBirth,
-                        gender: gender,
-                        height: Double(height) ?? 0,
-                        weight: Double(weight) ?? 0,
-                        medicalConditions: medicalConditions,
-                        dietaryRestrictions: dietaryRestrictions,
-                        emergencyContacts: emergencyContacts
-                    )
-                    let ageText = tempProfile.age > 0 ? "\(tempProfile.age) years, \(tempProfile.ageMonths) months" : "\(tempProfile.ageMonths) months"
-                    Text("Age: \(ageText)")
-                        .padding(8)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .background(Color.blue.opacity(0.1))
-                        .cornerRadius(8)
-                    
-                    Picker("Gender", selection: $gender) {
-                        ForEach(genderOptions, id: \.self) { option in
-                            Text(option).tag(option)
-                        }
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .padding(8)
-                    .background(Color.blue.opacity(0.1))
-                    .cornerRadius(8)
-                }
-                .listRowBackground(Color.clear)
-                
-                Section(header: Text(NSLocalizedString("Physical Information", comment: ""))
-                        .font(.headline)
-                        .foregroundColor(.green)) {
-                    
-                    // Height input with unit selection
-                    HStack {
-                        TextField(NSLocalizedString("Height", comment: ""), text: $height)
-                        .keyboardType(.decimalPad)
-                        .padding(8)
-                        .background(Color.green.opacity(0.1))
-                        .cornerRadius(8)
-                    
-                        Picker("Height Unit", selection: $heightUnit) {
-                            Text("cm").tag("cm")
-                            Text("ft").tag("ft")
-                            Text("in").tag("in")
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                        .frame(width: 120)
-                    }
-                    
-                    // Weight input with unit selection
-                    HStack {
-                        TextField(NSLocalizedString("Weight", comment: ""), text: $weight)
-                        .keyboardType(.decimalPad)
-                        .padding(8)
-                        .background(Color.green.opacity(0.1))
-                            .cornerRadius(8)
-                        
-                        Picker("Weight Unit", selection: $weightUnit) {
-                            Text("kg").tag("kg")
-                            Text("lb").tag("lb")
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                        .frame(width: 80)
-                    }
-                    
-                    // Show converted values for reference
-                    if !height.isEmpty || !weight.isEmpty {
-                        VStack(alignment: .leading, spacing: 8) {
-                            if !height.isEmpty, let heightValue = Double(height) {
-                                let heightCm = UnitConverter.convert(heightValue, from: heightUnit, to: "cm")
-                                let heightFt = UnitConverter.fromBaseUnit(heightCm, to: "ft")
-                                let heightIn = UnitConverter.fromBaseUnit(heightCm, to: "in")
-                                Text("Height: \(String(format: "%.1f", heightCm)) cm (\(Int(heightFt))' \(Int(heightIn.truncatingRemainder(dividingBy: 12)))\")")
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
-                            }
-                            
-                            if !weight.isEmpty, let weightValue = Double(weight) {
-                                let weightKg = UnitConverter.convert(weightValue, from: weightUnit, to: "kg")
-                                let weightLb = UnitConverter.fromBaseUnit(weightKg * 1000, to: "lb")
-                                Text("Weight: \(String(format: "%.1f", weightKg)) kg (\(Int(weightLb)) lb)")
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
-                            }
-                            
-                            // Show BMI calculation if both values are available
-                            if !height.isEmpty && !weight.isEmpty,
-                               let heightValue = Double(height),
-                               let weightValue = Double(weight) {
-                                let heightCm = UnitConverter.convert(heightValue, from: heightUnit, to: "cm")
-                                let weightKg = UnitConverter.convert(weightValue, from: weightUnit, to: "kg")
-                                
-                                if heightCm > 0 && weightKg > 0 {
-                                    let heightMeters = heightCm / 100.0
-                                    let bmi = weightKg / (heightMeters * heightMeters)
-                                    let category = BMICategory.from(bmi: bmi)
-                                    
-                                    HStack {
-                                        Text("BMI: \(String(format: "%.1f", bmi))")
-                                            .font(.caption)
-                                            .foregroundColor(.secondary)
-                                        Text("(\(category.localizedTitle))")
-                                            .font(.caption)
-                                            .foregroundColor(category.color)
-                                            .padding(.horizontal, 6)
-                                            .padding(.vertical, 2)
-                                            .background(category.color.opacity(0.2))
-                                            .cornerRadius(6)
-                                    }
-                                }
-                            }
-                        }
-                        .padding(8)
-                        .background(Color.green.opacity(0.05))
-                        .cornerRadius(8)
-                    }
-                }
-                .listRowBackground(Color.clear)
-                
-                // Activity Level Section
-                Section(header: Text(NSLocalizedString("Activity Level", comment: ""))
-                        .font(.headline)
-                        .foregroundColor(.blue)) {
-                    
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text(NSLocalizedString("Select your typical activity level to calculate accurate calorie needs:", comment: ""))
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                        
-                        ActivityLevelSelectorView(selectedLevel: $activityLevel)
-                        
-                        BMRFormulaSelectorView(selectedFormula: $preferredBMRFormula)
-                        
-                        // Show calculated calorie preview if possible
-                        if !height.isEmpty && !weight.isEmpty, 
-                           let heightValue = Double(height),
-                           let weightValue = Double(weight) {
-                            let heightCm = UnitConverter.convert(heightValue, from: heightUnit, to: "cm")
-                            let weightKg = UnitConverter.convert(weightValue, from: weightUnit, to: "kg")
-                            let age = Calendar.current.dateComponents([.year], from: dateOfBirth, to: Date()).year ?? 65
-                            
-                            if CalorieCalculationService.validateInputs(weight: weightKg, height: heightCm, age: age) {
-                                let result = CalorieCalculationService.calculateCalorieNeeds(
-                                    weight: weightKg,
-                                    height: heightCm,
-                                    age: age,
-                                    gender: gender,
-                                    activityLevel: activityLevel,
-                                    formula: preferredBMRFormula
-                                )
-                                
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(NSLocalizedString("Estimated Daily Calorie Needs:", comment: ""))
-                                        .font(.caption)
-                                        .fontWeight(.medium)
-                                    
-                                    HStack {
-                                        Text("BMR:")
-                                            .font(.caption)
-                                        Spacer()
-                                        Text("\(Int(result.bmr.rounded())) cal/day")
-                                            .font(.caption)
-                                            .fontWeight(.medium)
-                                    }
-                                    
-                                    HStack {
-                                        Text("TDEE:")
-                                            .font(.caption)
-                                        Spacer()
-                                        Text("\(Int(result.tdee.rounded())) cal/day")
-                                            .font(.caption)
-                                            .fontWeight(.medium)
-                                            .foregroundColor(.blue)
-                                    }
-                                }
-                                .padding()
-                                .background(Color.blue.opacity(0.1))
-                                .cornerRadius(8)
-                            }
-                        }
-                    }
-                }
-                .listRowBackground(Color.clear)
-                
-                Section(header: Text(NSLocalizedString("Medical Conditions", comment: ""))
-                        .font(.headline)
-                        .foregroundColor(.orange)) {
-                    
-                    // Display existing medical conditions with delete option
-                    ForEach(medicalConditions, id: \.self) { condition in
-                        HStack {
-                            Text(ProfileTranslationUtils.translateMedicalCondition(condition))
-                            Spacer()
-                            Button(action: {
-                                medicalConditions.removeAll { $0 == condition }
-                            }) {
-                                Image(systemName: "xmark.circle.fill")
-                                    .foregroundColor(.red)
-                            }
-                        }
-                        .padding(8)
-                        .background(Color.orange.opacity(0.1))
-                        .cornerRadius(8)
-                    }
-                    
-                    // Add new medical condition
-                    HStack {
-                        TextField(NSLocalizedString("Add medical condition", comment: ""), text: $newMedicalCondition)
-                        Button(action: {
-                            if !newMedicalCondition.isEmpty && !medicalConditions.contains(newMedicalCondition) {
-                                medicalConditions.append(newMedicalCondition)
-                                newMedicalCondition = ""
-                            }
-                        }) {
-                            Image(systemName: "plus.circle.fill")
-                                .foregroundColor(.green)
-                        }
-                        .disabled(newMedicalCondition.isEmpty)
-                    }
-                    .padding(8)
-                    .background(Color.orange.opacity(0.1))
-                    .cornerRadius(8)
-                    
-                    // Common medical conditions list
-                    Text(NSLocalizedString("Select from common conditions:", comment: ""))
-                        .font(.headline)
-                        .foregroundColor(.secondary)
-                        .padding(.top, 8)
-                    
-                    ForEach(medicalConditionOptions, id: \.self) { condition in
-                        Button(action: {
-                            if medicalConditions.contains(condition) {
-                                medicalConditions.removeAll { $0 == condition }
-                            } else {
-                                medicalConditions.append(condition)
-                            }
-                        }) {
-                            HStack {
-                                Text(ProfileTranslationUtils.translateMedicalCondition(condition))
-                                    .foregroundColor(.primary)
-                                Spacer()
-                                if medicalConditions.contains(condition) {
-                                    Image(systemName: "checkmark.circle.fill")
-                                        .foregroundColor(.green)
-                                } else {
-                                    Image(systemName: "plus.circle")
-                                        .foregroundColor(.blue)
-                                }
-                            }
-                        }
-                        .padding(8)
-                        .background(medicalConditions.contains(condition) ? Color.orange.opacity(0.15) : Color.orange.opacity(0.05))
-                        .cornerRadius(8)
-                    }
-                }
-                .listRowBackground(Color.clear)
-                
-                Section(header: Text(NSLocalizedString("Dietary Restrictions", comment: ""))
-                        .font(.headline)
-                        .foregroundColor(.purple)) {
-                    
-                    // Display existing dietary restrictions with delete option
-                    ForEach(dietaryRestrictions, id: \.self) { restriction in
-                        HStack {
-                            Text(ProfileTranslationUtils.translateDietaryRestriction(restriction))
-                            Spacer()
-                            Button(action: {
-                                dietaryRestrictions.removeAll { $0 == restriction }
-                            }) {
-                                Image(systemName: "xmark.circle.fill")
-                                    .foregroundColor(.red)
-                            }
-                        }
-                        .padding(8)
-                        .background(Color.purple.opacity(0.1))
-                        .cornerRadius(8)
-                    }
-                    
-                    // Add new dietary restriction
-                    HStack {
-                        TextField(NSLocalizedString("Add dietary restriction", comment: ""), text: $newDietaryRestriction)
-                        Button(action: {
-                            if !newDietaryRestriction.isEmpty && !dietaryRestrictions.contains(newDietaryRestriction) {
-                                dietaryRestrictions.append(newDietaryRestriction)
-                                newDietaryRestriction = ""
-                            }
-                        }) {
-                            Image(systemName: "plus.circle.fill")
-                                .foregroundColor(.green)
-                        }
-                        .disabled(newDietaryRestriction.isEmpty)
-                    }
-                    .padding(8)
-                    .background(Color.purple.opacity(0.1))
-                    .cornerRadius(8)
-                    
-                    // Common dietary restrictions list
-                    Text(NSLocalizedString("Select from common restrictions:", comment: ""))
-                        .font(.headline)
-                        .foregroundColor(.secondary)
-                        .padding(.top, 8)
-                    
-                    ForEach(dietaryRestrictionOptions, id: \.self) { restriction in
-                        Button(action: {
-                            if dietaryRestrictions.contains(restriction) {
-                                dietaryRestrictions.removeAll { $0 == restriction }
-                            } else {
-                                dietaryRestrictions.append(restriction)
-                            }
-                        }) {
-                            HStack {
-                                Text(ProfileTranslationUtils.translateDietaryRestriction(restriction))
-                                    .foregroundColor(.primary)
-                                Spacer()
-                                if dietaryRestrictions.contains(restriction) {
-                                    Image(systemName: "checkmark.circle.fill")
-                                        .foregroundColor(.green)
-                                } else {
-                                    Image(systemName: "plus.circle")
-                                        .foregroundColor(.blue)
-                                }
-                            }
-                        }
-                        .padding(8)
-                        .background(dietaryRestrictions.contains(restriction) ? Color.purple.opacity(0.15) : Color.purple.opacity(0.05))
-                        .cornerRadius(8)
-                    }
-
-                }
-                .listRowBackground(Color.clear)
-                
-                // Enhanced Emergency Contacts Section with list of current contacts
-                Section(header: Text(NSLocalizedString("Emergency Contacts", comment: ""))
-                        .font(.headline)
-                        .foregroundColor(.pink)) {
-                    
-                    // Show existing emergency contacts
-                    ForEach(emergencyContacts) { contact in
-                        VStack(alignment: .leading, spacing: 5) {
-                            HStack {
-                                Image(systemName: "person.crop.circle.fill")
-                                    .foregroundColor(.pink)
-                                Text(contact.name)
-                                    .fontWeight(.bold)
-                                
-                                Spacer()
-                                
-                                Button(action: {
-                                    // Remove this contact
-                                    emergencyContacts.removeAll { $0.id == contact.id }
-                                }) {
-                                    Image(systemName: "trash.circle.fill")
-                                        .foregroundColor(.red)
-                                        .font(.system(size: 20))
-                                }
-                            }
-                            
-                            HStack {
-                                Image(systemName: "phone.fill")
-                                    .foregroundColor(.green)
-                                Text(contact.phoneNumber)
-                            }
-                            
-                            HStack {
-                                Image(systemName: "person.2.fill")
-                                    .foregroundColor(.blue)
-                                Text(contact.relationship.rawValue)
-                                    .foregroundColor(.secondary)
-                            }
-                        }
-                        .padding(8)
-                        .background(Color.pink.opacity(0.1))
-                        .cornerRadius(8)
-                    }
-                    
-                    // Add new contact form
-                    TextField("Contact Name", text: $emergencyContactName)
-                        .padding(8)
-                        .background(Color.pink.opacity(0.1))
-                        .cornerRadius(8)
-                    
-                    Picker("Relationship", selection: $emergencyContactRelationship) {
-                        ForEach(Relationship.allCases, id: \.self) { relationship in
-                            Text(relationship.rawValue).tag(relationship)
-                        }
-                    }
-                    .padding(8)
-                    .background(Color.pink.opacity(0.1))
-                    .cornerRadius(8)
-                    
-                    TextField("Phone Number", text: $emergencyContactPhone)
-                        .keyboardType(.phonePad)
-                        .padding(8)
-                        .background(Color.pink.opacity(0.1))
-                        .cornerRadius(8)
-                    
-                    Button(action: {
-                        addEmergencyContact()
-                    }) {
-                        HStack {
-                            Image(systemName: "plus.circle.fill")
-                            Text("Add Contact")
-                        }
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding(10)
-                        .background(
-                            (!emergencyContactName.isEmpty && !emergencyContactPhone.isEmpty) ? 
-                                Color.pink : Color.gray.opacity(0.5)
-                        )
-                        .cornerRadius(8)
-                    }
-                    .disabled(emergencyContactName.isEmpty || emergencyContactPhone.isEmpty)
-                }
-                .listRowBackground(Color.clear)
+                personalInfoSection
+                physicalInfoSection
+                activityLevelSection
+                medicalConditionsSection
+                dietaryRestrictionsSection
+                emergencyContactsSection
+                saveProfileSection
             }
             .navigationTitle(NSLocalizedString("Profile Setup", comment: ""))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(NSLocalizedString("Save", comment: "")) {
-                        saveProfile()
-                    }
-                    .disabled(firstName.isEmpty || lastName.isEmpty || height.isEmpty || weight.isEmpty)
-                    .foregroundColor(.blue)
-                    .fontWeight(.bold)
-                }
-                
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(NSLocalizedString("Cancel", comment: "")) {
                         dismiss()
@@ -504,6 +141,448 @@ struct UserProfileSetupView: View {
                 loadExistingProfile()
             }
         }
+    }
+    
+    // MARK: - View Sections
+    
+    private var personalInfoSection: some View {
+        Section(header: Text(NSLocalizedString("Personal Information", comment: ""))
+                .font(.headline)
+                .foregroundColor(.blue)) {
+            TextField(NSLocalizedString("First Name", comment: ""), text: $firstName)
+                .padding(8)
+                .background(Color.blue.opacity(0.1))
+                .cornerRadius(8)
+            
+            TextField(NSLocalizedString("Last Name", comment: ""), text: $lastName)
+                .padding(8)
+                .background(Color.blue.opacity(0.1))
+                .cornerRadius(8)
+            
+            DatePicker(NSLocalizedString("Date of Birth", comment: ""), selection: $dateOfBirth, displayedComponents: .date)
+                .datePickerStyle(CompactDatePickerStyle())
+                .datePickerLTR()
+                .padding(8)
+                .background(Color.blue.opacity(0.1))
+                .cornerRadius(8)
+            
+            Text("Age: \(ageText)")
+                .padding(8)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color.blue.opacity(0.1))
+                .cornerRadius(8)
+            
+            Picker("Gender", selection: $gender) {
+                ForEach(genderOptions, id: \.self) { option in
+                    Text(option).tag(option)
+                }
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            .padding(8)
+            .background(Color.blue.opacity(0.1))
+            .cornerRadius(8)
+        }
+        .listRowBackground(Color.clear)
+    }
+    
+    private var physicalInfoSection: some View {
+        Section(header: Text(NSLocalizedString("Physical Information", comment: ""))
+                .font(.headline)
+                .foregroundColor(.green)) {
+            
+            HStack {
+                TextField(NSLocalizedString("Height", comment: ""), text: $height)
+                .keyboardType(.decimalPad)
+                .padding(8)
+                .background(Color.green.opacity(0.1))
+                .cornerRadius(8)
+            
+                Picker("Height Unit", selection: $heightUnit) {
+                    Text("cm").tag("cm")
+                    Text("ft").tag("ft")
+                    Text("in").tag("in")
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .frame(width: 120)
+            }
+            
+            HStack {
+                TextField(NSLocalizedString("Weight", comment: ""), text: $weight)
+                .keyboardType(.decimalPad)
+                .padding(8)
+                .background(Color.green.opacity(0.1))
+                    .cornerRadius(8)
+                
+                Picker("Weight Unit", selection: $weightUnit) {
+                    Text("kg").tag("kg")
+                    Text("lb").tag("lb")
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .frame(width: 80)
+            }
+            
+            if !height.isEmpty || !weight.isEmpty {
+                VStack(alignment: .leading, spacing: 8) {
+                    if !height.isEmpty, let heightConv = heightConversions {
+                        Text("Height: \(String(format: "%.1f", heightConv.cm)) cm (\(Int(heightConv.ft))' \(Int(heightConv.inches.truncatingRemainder(dividingBy: 12)))\")")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                    
+                    if !weight.isEmpty, let weightConv = weightConversions {
+                        Text("Weight: \(String(format: "%.1f", weightConv.kg)) kg (\(Int(weightConv.lb)) lb)")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                    
+                    if !height.isEmpty && !weight.isEmpty,
+                       let bmiCalc = bmiCalculation {
+                        HStack {
+                            Text("BMI: \(String(format: "%.1f", bmiCalc.bmi))")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                            Text("(\(bmiCalc.category.localizedTitle))")
+                                .font(.caption)
+                                .foregroundColor(bmiCalc.category.color)
+                                .padding(.horizontal, 6)
+                                .padding(.vertical, 2)
+                                .background(bmiCalc.category.color.opacity(0.2))
+                                .cornerRadius(6)
+                        }
+                    }
+                }
+                .padding(8)
+                .background(Color.green.opacity(0.05))
+                .cornerRadius(8)
+            }
+        }
+        .listRowBackground(Color.clear)
+    }
+    
+    private var activityLevelSection: some View {
+        Section(header: Text(NSLocalizedString("Activity Level", comment: ""))
+                .font(.headline)
+                .foregroundColor(.blue)) {
+            
+            VStack(alignment: .leading, spacing: 12) {
+                Text(NSLocalizedString("Select your typical activity level to calculate accurate calorie needs:", comment: ""))
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                
+                ActivityLevelSelectorView(selectedLevel: $activityLevel)
+                
+                BMRFormulaSelectorView(selectedFormula: $preferredBMRFormula)
+                
+                if shouldShowCaloriePreview,
+                   let calculation = calorieCalculationResult {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(NSLocalizedString("Estimated Daily Calorie Needs:", comment: ""))
+                            .font(.caption)
+                            .fontWeight(.medium)
+                        
+                        HStack {
+                            Text("BMR:")
+                                .font(.caption)
+                            Spacer()
+                            Text("\(Int(calculation.result.bmr.rounded())) cal/day")
+                                .font(.caption)
+                                .fontWeight(.medium)
+                        }
+                        
+                        HStack {
+                            Text("TDEE:")
+                                .font(.caption)
+                            Spacer()
+                            Text("\(Int(calculation.result.tdee.rounded())) cal/day")
+                                .font(.caption)
+                                .fontWeight(.medium)
+                                .foregroundColor(.blue)
+                        }
+                    }
+                    .padding()
+                    .background(Color.blue.opacity(0.1))
+                    .cornerRadius(8)
+                }
+            }
+        }
+        .listRowBackground(Color.clear)
+    }
+    
+    private var medicalConditionsSection: some View {
+        Section(header: Text(NSLocalizedString("Medical Conditions", comment: ""))
+                .font(.headline)
+                .foregroundColor(.orange)) {
+            
+            ForEach(medicalConditions, id: \.self) { condition in
+                HStack {
+                    Text(ProfileTranslationUtils.translateMedicalCondition(condition))
+                    Spacer()
+                    Button(action: {
+                        medicalConditions.removeAll { $0 == condition }
+                    }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(.red)
+                    }
+                }
+                .padding(8)
+                .background(Color.orange.opacity(0.1))
+                .cornerRadius(8)
+            }
+            
+            HStack {
+                TextField(NSLocalizedString("Add medical condition", comment: ""), text: $newMedicalCondition)
+                Button(action: {
+                    if !newMedicalCondition.isEmpty && !medicalConditions.contains(newMedicalCondition) {
+                        medicalConditions.append(newMedicalCondition)
+                        newMedicalCondition = ""
+                    }
+                }) {
+                    Image(systemName: "plus.circle.fill")
+                        .foregroundColor(.green)
+                }
+                .disabled(newMedicalCondition.isEmpty)
+            }
+            .padding(8)
+            .background(Color.orange.opacity(0.1))
+            .cornerRadius(8)
+            
+            Text(NSLocalizedString("Select from common conditions:", comment: ""))
+                .font(.headline)
+                .foregroundColor(.secondary)
+                .padding(.top, 8)
+            
+            ForEach(medicalConditionOptions, id: \.self) { condition in
+                Button(action: {
+                    if medicalConditions.contains(condition) {
+                        medicalConditions.removeAll { $0 == condition }
+                    } else {
+                        medicalConditions.append(condition)
+                    }
+                }) {
+                    HStack {
+                        Text(ProfileTranslationUtils.translateMedicalCondition(condition))
+                            .foregroundColor(.primary)
+                        Spacer()
+                        if medicalConditions.contains(condition) {
+                            Image(systemName: "checkmark.circle.fill")
+                                .foregroundColor(.green)
+                        } else {
+                            Image(systemName: "plus.circle")
+                                .foregroundColor(.blue)
+                        }
+                    }
+                }
+                .padding(8)
+                .background(medicalConditions.contains(condition) ? Color.orange.opacity(0.15) : Color.orange.opacity(0.05))
+                .cornerRadius(8)
+            }
+        }
+        .listRowBackground(Color.clear)
+    }
+    
+    private var dietaryRestrictionsSection: some View {
+        Section(header: Text(NSLocalizedString("Dietary Restrictions", comment: ""))
+                .font(.headline)
+                .foregroundColor(.purple)) {
+            
+            ForEach(dietaryRestrictions, id: \.self) { restriction in
+                HStack {
+                    Text(ProfileTranslationUtils.translateDietaryRestriction(restriction))
+                    Spacer()
+                    Button(action: {
+                        dietaryRestrictions.removeAll { $0 == restriction }
+                    }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(.red)
+                    }
+                }
+                .padding(8)
+                .background(Color.purple.opacity(0.1))
+                .cornerRadius(8)
+            }
+            
+            HStack {
+                TextField(NSLocalizedString("Add dietary restriction", comment: ""), text: $newDietaryRestriction)
+                Button(action: {
+                    if !newDietaryRestriction.isEmpty && !dietaryRestrictions.contains(newDietaryRestriction) {
+                        dietaryRestrictions.append(newDietaryRestriction)
+                        newDietaryRestriction = ""
+                    }
+                }) {
+                    Image(systemName: "plus.circle.fill")
+                        .foregroundColor(.green)
+                }
+                .disabled(newDietaryRestriction.isEmpty)
+            }
+            .padding(8)
+            .background(Color.purple.opacity(0.1))
+            .cornerRadius(8)
+            
+            Text(NSLocalizedString("Select from common restrictions:", comment: ""))
+                .font(.headline)
+                .foregroundColor(.secondary)
+                .padding(.top, 8)
+            
+            ForEach(dietaryRestrictionOptions, id: \.self) { restriction in
+                Button(action: {
+                    if dietaryRestrictions.contains(restriction) {
+                        dietaryRestrictions.removeAll { $0 == restriction }
+                    } else {
+                        dietaryRestrictions.append(restriction)
+                    }
+                }) {
+                    HStack {
+                        Text(ProfileTranslationUtils.translateDietaryRestriction(restriction))
+                            .foregroundColor(.primary)
+                        Spacer()
+                        if dietaryRestrictions.contains(restriction) {
+                            Image(systemName: "checkmark.circle.fill")
+                                .foregroundColor(.green)
+                        } else {
+                            Image(systemName: "plus.circle")
+                                .foregroundColor(.blue)
+                        }
+                    }
+                }
+                .padding(8)
+                .background(dietaryRestrictions.contains(restriction) ? Color.purple.opacity(0.15) : Color.purple.opacity(0.05))
+                .cornerRadius(8)
+            }
+        }
+        .listRowBackground(Color.clear)
+    }
+    
+    private var emergencyContactsSection: some View {
+        Section(header: Text(NSLocalizedString("Emergency Contacts", comment: ""))
+                .font(.headline)
+                .foregroundColor(.pink)) {
+            
+            ForEach(emergencyContacts) { contact in
+                VStack(alignment: .leading, spacing: 5) {
+                    HStack {
+                        Image(systemName: "person.crop.circle.fill")
+                            .foregroundColor(.pink)
+                        Text(contact.name)
+                            .fontWeight(.bold)
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            emergencyContacts.removeAll { $0.id == contact.id }
+                        }) {
+                            Image(systemName: "trash.circle.fill")
+                                .foregroundColor(.red)
+                                .font(.system(size: 20))
+                        }
+                    }
+                    
+                    HStack {
+                        Image(systemName: "phone.fill")
+                            .foregroundColor(.green)
+                        Text(contact.phoneNumber)
+                    }
+                    
+                    HStack {
+                        Image(systemName: "person.2.fill")
+                            .foregroundColor(.blue)
+                        Text(contact.relationship.rawValue)
+                            .foregroundColor(.secondary)
+                    }
+                }
+                .padding(8)
+                .background(Color.pink.opacity(0.1))
+                .cornerRadius(8)
+            }
+            
+            TextField("Contact Name", text: $emergencyContactName)
+                .padding(8)
+                .background(Color.pink.opacity(0.1))
+                .cornerRadius(8)
+            
+            Picker("Relationship", selection: $emergencyContactRelationship) {
+                ForEach(Relationship.allCases, id: \.self) { relationship in
+                    Text(relationship.rawValue).tag(relationship)
+                }
+            }
+            .padding(8)
+            .background(Color.pink.opacity(0.1))
+            .cornerRadius(8)
+            
+            TextField("Phone Number", text: $emergencyContactPhone)
+                .keyboardType(.phonePad)
+                .padding(8)
+                .background(Color.pink.opacity(0.1))
+                .cornerRadius(8)
+            
+            Button(action: {
+                addEmergencyContact()
+            }) {
+                HStack {
+                    Image(systemName: "plus.circle.fill")
+                    Text("Add Contact")
+                }
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity)
+                .padding(10)
+                .background(
+                    (!emergencyContactName.isEmpty && !emergencyContactPhone.isEmpty) ? 
+                        Color.pink : Color.gray.opacity(0.5)
+                )
+                .cornerRadius(8)
+            }
+            .disabled(emergencyContactName.isEmpty || emergencyContactPhone.isEmpty)
+        }
+        .listRowBackground(Color.clear)
+    }
+    
+    private var saveProfileSection: some View {
+        Section {
+            VStack(spacing: 16) {
+                Text(NSLocalizedString("Please review your information carefully. This data will be used to provide personalized nutrition recommendations and health tracking.", comment: ""))
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal)
+                
+                Button(action: {
+                    saveProfile()
+                }) {
+                    HStack {
+                        Image(systemName: "person.circle.fill")
+                            .font(.title2)
+                        Text(NSLocalizedString("Save Profile", comment: ""))
+                            .font(.headline)
+                            .fontWeight(.bold)
+                    }
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 16)
+                    .background(
+                        (firstName.isEmpty || lastName.isEmpty || height.isEmpty || weight.isEmpty) ? 
+                            LinearGradient(
+                                gradient: Gradient(colors: [Color.gray.opacity(0.5), Color.gray.opacity(0.5)]),
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            ) :
+                            LinearGradient(
+                                gradient: Gradient(colors: [Color.blue, Color.blue.opacity(0.8)]),
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                    )
+                    .cornerRadius(12)
+                    .shadow(color: Color.blue.opacity(0.3), radius: 4, x: 0, y: 2)
+                }
+                .disabled(firstName.isEmpty || lastName.isEmpty || height.isEmpty || weight.isEmpty)
+                
+                Text(NSLocalizedString("Your profile data is stored securely on your device.", comment: ""))
+                    .font(.caption2)
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.center)
+            }
+            .padding(.vertical, 8)
+        }
+        .listRowBackground(Color.clear)
     }
     
     // Function to add a new emergency contact

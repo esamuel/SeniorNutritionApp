@@ -9,6 +9,7 @@ struct VideoTutorialView: View {
     @State private var isPlaying = false
     @State private var showingAlert = false
     @State private var alertMessage = ""
+    @State private var showingFullScreen = false
 
     var body: some View {
         VStack {
@@ -16,7 +17,15 @@ struct VideoTutorialView: View {
                 VideoPlayer(player: player)
                     .frame(height: 200)
                     .cornerRadius(12)
-                    .overlay(playButton, alignment: .center)
+                    .overlay(
+                        HStack {
+                            playButton
+                            Spacer()
+                            fullScreenButton
+                        }
+                        .padding(.horizontal, 16),
+                        alignment: .center
+                    )
                     .onAppear {
                         if !isPlaying {
                             player.pause()
@@ -28,7 +37,15 @@ struct VideoTutorialView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(height: 200)
                     .cornerRadius(12)
-                    .overlay(playButton, alignment: .center)
+                    .overlay(
+                        HStack {
+                            playButton
+                            Spacer()
+                            fullScreenButton
+                        }
+                        .padding(.horizontal, 16),
+                        alignment: .center
+                    )
             } else {
                 placeholderView
             }
@@ -36,6 +53,11 @@ struct VideoTutorialView: View {
         .onAppear(perform: setupPlayer)
         .alert(isPresented: $showingAlert) {
             Alert(title: Text("Video Not Found"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+        }
+        .fullScreenCover(isPresented: $showingFullScreen) {
+            if let player = player {
+                FullScreenVideoPlayer(player: player, isPresented: $showingFullScreen)
+            }
         }
     }
     
@@ -87,19 +109,17 @@ struct VideoTutorialView: View {
     }
 
     private func findVideoURL() -> URL? {
-        // Check main bundle
+        // Check main bundle first
         if let url = Bundle.main.url(forResource: videoName, withExtension: videoType) {
             return url
         }
         
-        // Check in a specific 'Resources/Videos' directory relative to the file
-        let fileManager = FileManager.default
-        let projectDir = URL(fileURLWithPath: #file).deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
-        let videosDir = projectDir.appendingPathComponent("Resources/Videos")
-        let potentialURL = videosDir.appendingPathComponent("\(videoName).\(videoType)")
+        // For development: Check the Resources/Videos directory in the project
+        let resourcesPath = "/Users/samueleskenasy/Documents/SeniorNutritionApp/Resources/Videos"
+        let videoPath = "\(resourcesPath)/\(videoName).\(videoType)"
         
-        if fileManager.fileExists(atPath: potentialURL.path) {
-            return potentialURL
+        if FileManager.default.fileExists(atPath: videoPath) {
+            return URL(fileURLWithPath: videoPath)
         }
         
         return nil
@@ -121,6 +141,51 @@ struct VideoTutorialView: View {
                 DispatchQueue.main.async {
                     self.thumbnail = UIImage(cgImage: cgImage)
                 }
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private var fullScreenButton: some View {
+        Button(action: {
+            showingFullScreen = true
+        }) {
+            Image(systemName: "arrow.up.left.and.arrow.down.right")
+                .font(.title2)
+                .foregroundColor(.white.opacity(0.8))
+        }
+    }
+}
+
+struct FullScreenVideoPlayer: View {
+    let player: AVPlayer
+    @Binding var isPresented: Bool
+    
+    var body: some View {
+        ZStack {
+            Color.black.ignoresSafeArea()
+            
+            VideoPlayer(player: player)
+                .onAppear {
+                    player.play()
+                }
+                .onDisappear {
+                    player.pause()
+                }
+            
+            VStack {
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        isPresented = false
+                    }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.title)
+                            .foregroundColor(.white.opacity(0.8))
+                    }
+                    .padding()
+                }
+                Spacer()
             }
         }
     }

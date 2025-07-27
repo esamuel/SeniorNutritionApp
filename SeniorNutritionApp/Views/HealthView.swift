@@ -92,6 +92,10 @@ struct HealthView: View {
             self.refreshID = UUID()
             self.activities = getRecentActivities()
         }
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("UserWeightUpdated"))) { _ in
+            self.refreshID = UUID()
+            self.activities = getRecentActivities()
+        }
         .onAppear {
             self.activities = getRecentActivities()
         }
@@ -117,6 +121,9 @@ struct HealthView: View {
     private var overviewTab: some View {
         ScrollView {
             VStack(spacing: 20) {
+                // Health identification banner
+                HealthScreenBanner()
+                
                 // Health Summary Card
                 summaryCard
                 
@@ -125,6 +132,9 @@ struct HealthView: View {
                 
                 // Health Goals Card
                 goalsCard
+                
+                // Privacy notice
+                HealthDataPrivacyNotice()
             }
             .padding()
         }
@@ -133,6 +143,9 @@ struct HealthView: View {
     private var vitalsTab: some View {
         ScrollView {
             VStack(spacing: 20) {
+                // Health identification banner for vitals
+                HealthScreenBanner()
+                
                 // Blood Pressure Card
                 vitalsCard(
                     title: NSLocalizedString("Blood Pressure", comment: "Title for Blood Pressure vital card"),
@@ -357,6 +370,9 @@ struct HealthView: View {
                     .font(.system(size: userSettings.textSize.size - 2))
                     .foregroundColor(.blue)
             }
+            
+            // Health data identification
+            HealthDataBrandingView(healthDataType: title)
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)

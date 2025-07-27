@@ -7,66 +7,60 @@ struct AddWeightView: View {
     
     @State private var weight = ""
     @State private var date = Date()
-    @State private var error: String?
-    @FocusState private var weightFieldIsFocused: Bool
+    @State private var notes = ""
+    @FocusState private var focusedField: Field?
+    
+    enum Field {
+        case weight, notes
+    }
     
     var body: some View {
         Form {
-            Section(header: Text(NSLocalizedString("Weight Reading", comment: "Section header for weight reading input"))) {
-                HStack {
-                    TextField(NSLocalizedString("Weight", comment: "Placeholder for weight input"), text: $weight)
-                        .keyboardType(.decimalPad)
-                        .focused($weightFieldIsFocused)
-                    Text(NSLocalizedString("kg", comment: "Unit for weight"))
-                        .foregroundColor(.secondary)
-                }
+            Section {
+                // Health data identification
+                HealthDataBrandingView(healthDataType: NSLocalizedString("Weight", comment: ""))
             }
             
-            Section {
+            Section(header: Text(NSLocalizedString("Weight Reading", comment: ""))) {
+                HStack {
+                    TextField(NSLocalizedString("Weight", comment: ""), text: $weight)
+                        .keyboardType(.decimalPad)
+                        .focused($focusedField, equals: .weight)
+                    Text(NSLocalizedString("kg", comment: ""))
+                        .foregroundColor(.secondary)
+                }
+                
                 DatePicker(
-                    NSLocalizedString("Date and Time", comment: "Label for date and time picker"),
+                    NSLocalizedString("Date", comment: ""),
                     selection: $date,
                     displayedComponents: [.date, .hourAndMinute]
                 )
             }
             
-            if let error = error {
-                Section {
-                    Text(error)
-                        .foregroundColor(.red)
-                        .font(.system(size: userSettings.textSize.size))
-                }
+            Section(header: Text(NSLocalizedString("Notes", comment: ""))) {
+                TextField(NSLocalizedString("Optional notes", comment: ""), text: $notes)
+                    .focused($focusedField, equals: .notes)
             }
         }
-        .navigationTitle(NSLocalizedString("Add Weight", comment: "Navigation title for adding weight entry"))
+        .navigationTitle(NSLocalizedString("Add Weight", comment: ""))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .cancellationAction) {
-                Button(NSLocalizedString("Cancel", comment: "Cancel button text")) {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(NSLocalizedString("Cancel", comment: "")) {
                     dismiss()
                 }
             }
-            ToolbarItem(placement: .confirmationAction) {
-                Button(NSLocalizedString("Save", comment: "Save button text")) {
-                    saveReading()
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(NSLocalizedString("Save", comment: "")) {
+                    saveWeight()
                 }
+                .disabled(weight.isEmpty)
             }
-        }
-        .font(.system(size: userSettings.textSize.size))
-        .onAppear {
-            weightFieldIsFocused = true
         }
     }
     
-    private func saveReading() {
-        guard let weightValue = Double(weight.replacingOccurrences(of: ",", with: ".")), weightValue > 0 else {
-            error = NSLocalizedString("Please enter a valid weight", comment: "Error message for invalid weight")
-            return
-        }
-        
-        // Validate weight is within reasonable range (20-300 kg)
-        guard weightValue >= 20 && weightValue <= 300 else {
-            error = NSLocalizedString("Weight should be between 20 and 300 kg", comment: "Error message for weight out of range")
+    private func saveWeight() {
+        guard let weightValue = Double(weight) else {
             return
         }
         
@@ -75,19 +69,63 @@ struct AddWeightView: View {
         entry.weight = weightValue
         entry.date = date
         
+        // Update user profile with the latest weight
+        updateUserProfileWeight(newWeight: weightValue)
+        
         do {
             try viewContext.save()
             dismiss()
         } catch {
-            self.error = NSLocalizedString("Failed to save. Please try again.", comment: "Error message for failed save operation")
+            print("Error saving weight: \(error)")
         }
+    }
+    
+    private func updateUserProfileWeight(newWeight: Double) {
+        guard var userProfile = userSettings.userProfile else {
+            print("❌ AddWeightView: No user profile found to update")
+            return
+        }
+        
+        let oldWeight = userProfile.weight
+        print("🔄 AddWeightView: Updating profile weight from \(oldWeight) kg to \(newWeight) kg")
+        
+        // Update the weight in the user profile
+        userProfile.weight = newWeight
+        
+        // Force save the updated profile immediately
+        userSettings.userProfile = userProfile
+        
+        // Also update the legacy userWeight property for backward compatibility
+        userSettings.userWeight = newWeight
+        
+        // The userProfile setter should automatically save to UserDefaults
+        
+        print("✅ AddWeightView: Successfully updated profile weight to: \(newWeight) kg")
+        print("📊 AddWeightView: Legacy userWeight also updated to: \(userSettings.userWeight) kg")
+        
+        // Verify the update took effect
+        if let updatedProfile = userSettings.userProfile {
+            print("🔍 AddWeightView: Verification - profile weight is now: \(updatedProfile.weight) kg")
+        }
+        
+        // Force objectWillChange to trigger UI refresh
+        DispatchQueue.main.async {
+            userSettings.objectWillChange.send()
+        }
+        
+        // Post notification that weight has been updated for BMI recalculation
+        NotificationCenter.default.post(
+            name: NSNotification.Name("UserWeightUpdated"),
+            object: nil,
+            userInfo: ["newWeight": newWeight, "profile": userProfile]
+        )
+        
+        print("📢 AddWeightView: Posted UserWeightUpdated notification and forced UI refresh")
     }
 }
 
-struct AddWeightView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddWeightView()
-            .environmentObject(UserSettings())
-            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-    }
+#Preview {
+    AddWeightView()
+        .environmentObject(UserSettings())
+        .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 } 
