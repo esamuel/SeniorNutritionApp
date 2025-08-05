@@ -260,7 +260,6 @@
 "Hebrew" = "עברית";
 "Spanish" = "ספרדית";
 "French" = "צרפתית";
-"German" = "גרמנית";
 
 /* Fasting Protocol Titles */
 "12:12 (Gentle)" = "12:12 (עדין)";
@@ -1241,7 +1240,6 @@
 "Voice Settings: Configure voice assistant and reading features" = "הגדרות קול: הגדר את העוזר הקולי ותכונות הקריאה";
 "Appearance: Toggle dark mode, high contrast, and other visual options" = "מראה: הפעל מצב כהה, ניגודיות גבוהה ואפשרויות חזותיות אחרות";
 "Language: Change the app language (English, Spanish, French, Hebrew)" = "שפה: שנה את שפת האפליקציה (אנגלית, ספרדית, צרפתית, עברית)";
-"Language: Change the app language (English, Spanish, French, German, Hebrew)" = "שפה: שנה את שפת האפליקציה (אנגלית, ספרדית, צרפתית, גרמנית, עברית)";
 "Notifications: Customize alert types, sounds, and timing" = "התראות: התאם אישית סוגי התראות, צלילים ותזמון";
 "Data Management: Back up and restore your app data" = "ניהול נתונים: גבה ושחזר את נתוני האפליקציה שלך";
 
@@ -3298,4 +3296,136 @@
 "Based on your profile: BMR %@ cal/day × %@ activity = %@ cal/day maintenance. Recommended goal: %@ cal/day." = "מבוסס על הפרופיל שלכם: BMR %@ קלוריות/יום × פעילות %@ = %@ קלוריות/יום תחזוקה. יעד מומלץ: %@ קלוריות/יום.";
 "(500 cal deficit for 1 lb/week weight loss)" = "(גירעון של 500 קלוריות לירידה של 1 פאונד/שבוע)";
 "(500 cal surplus for 1 lb/week weight gain)" = "(עודף של 500 קלוריות לעלייה של 1 פאונד/שבוע)";
+
+/* Health Data Identification - App Store Compliance */
+"Health Data" = "נתוני בריאות";
+"Health & Wellness Tracking" = "מעקב בריאות ורווחה";
+"Monitor your health metrics safely and securely" = "עקבו אחרי מדדי הבריאות שלכם בצורה בטוחה ומאובטחת";
+"Your Health Data Privacy" = "פרטיות נתוני הבריאות שלכם";
+"This app stores and manages your health information securely on your device." = "האפליקציה הזו מאחסנת ומנהלת את מידע הבריאות שלכם בצורה מאובטחת במכשיר שלכם.";
+"All health data is stored securely on your device" = "כל נתוני הבריאות מאוחסנים בצורה מאובטחת במכשיר שלכם";
+"No health information is shared without your permission" = "שום מידע בריאותי לא משותף ללא הרשאתכם";
+"Data is encrypted and protected" = "הנתונים מוצפנים ומוגנים";
+
+/* Health App Disclaimer */
+"Health & Wellness App" = "אפליקציית בריאות ורווחה";
+"Health Data Categories" = "קטגוריות נתוני בריאות";
+"Important Medical Disclaimer" = "הסתייגות רפואית חשובה";
+"Health App Information" = "מידע על אפליקציית הבריאות";
+"I Understand - Continue" = "אני מבין/ה - המשך";
+
+/* Health Categories */
+"Cardiovascular" = "לב וכלי דם";
+"Blood pressure and heart rate monitoring" = "מעקב לחץ דם וקצב לב";
+"Glucose level tracking for diabetes management" = "מעקב רמות גלוקוז לניהול סוכרת";
+"Body Metrics" = "מדדי גוף";
+"Weight tracking and BMI calculations" = "מעקב משקל וחישובי BMI";
+"Meal tracking and nutritional analysis" = "מעקב ארוחות וניתוח תזונתי";
+
+/* Updated Onboarding Strings */
+"Start with a 7-day free trial, then continue for just $9.99/month." = "התחילו עם ניסיון חינמי של 7 ימים, ואז המשיכו תמורת 9.99$ בלבד לחודש.";
+"Simple Subscription Model" = "מודל מנוי פשוט";
+"Enjoy full access with our straightforward pricing: 7 days free, then just $9.99/month. Cancel anytime." = "נהנו מגישה מלאה עם התמחור הפשוט שלנו: 7 ימים חינם, ואז 9.99$ בלבד לחודש. ביטול בכל עת.";
+"7-day free trial with no commitment" = "ניסיון חינמי של 7 ימים ללא התחייבות";
+"$9.99/month after trial period" = "9.99$ לחודש לאחר תקופת הניסיון";
+"Cancel anytime through App Store" = "ביטול בכל עת דרך האפ סטור";
+
+/* Onboarding Disclaimer */
+"Important Disclaimer" = "הסתייגות חשובה";
+"The information provided by Senior Nutrition is for educational purposes only and is not intended as medical advice. Always consult your physician or a qualified healthcare provider before making any changes to your diet, medication, or fasting routine. If you feel unwell, stop immediately and seek medical attention." = "המידע הניתן על ידי התזונה הבוגרת מיועד למטרות חינוכיות בלבד ואינו מיועד כייעוץ רפואי. התייעצו תמיד עם הרופא שלכם או עם ספק שירותי בריאות מוסמך לפני ביצוע שינויים כלשהם בתזונה, בתרופות או בשגרת הצום שלכם. אם אתם מרגישים לא בטוב, הפסיקו מיד ופנו לטיפול רפואי.";
+"I Understand" = "אני מבין/ה";
+
+/* Complete Onboarding Pages */
+"Welcome to Senior Nutrition" = "ברוכים הבאים ל-Senior Nutrition";
+"Your personal nutrition companion designed specifically for seniors, with enhanced accessibility and intuitive navigation. Start with a 7-day free trial, then continue for just $9.99/month." = "מלווה התזונה האישי שלכם שתוכנן במיוחד לגיל השלישי, עם נגישות משופרת וניווט אינטואיטיבי. התחילו עם ניסיון חינמי של 7 ימים, ואז המשיכו תמורת 9.99$ בלבד לחודש.";
+"Customizable text size for easier reading" = "גודל טקסט הניתן להתאמה אישית לקריאה קלה יותר";
+"Language support for English, French, Spanish, and Hebrew" = "תמיכה בשפות: אנגלית, צרפתית, ספרדית ועברית";
+
+"Track Your Meals & Nutrition" = "עקבו אחר הארוחות והתזונה שלכם";
+"Monitor your diet with our easy-to-use food tracking system, including nutritional analysis and personalized recommendations." = "עקבו אחר התזונה שלכם עם מערכת מעקב המזון הקלה לשימוש שלנו, הכוללת ניתוח תזונתי והמלצות מותאמות אישית.";
+"Photo-based meal logging" = "רישום ארוחות מבוסס תמונות";
+"Built-in barcode scanner" = "סורק ברקוד מובנה";
+"Voice input for hands-free recording" = "קלט קולי לרישום ללא שימוש בידיים";
+
+"Personalized Fasting Protocols" = "פרוטוקולי צום מותאמים אישית";
+"Follow gentle, senior-friendly intermittent fasting schedules with built-in safety features and health monitoring." = "עקבו אחר לוחות זמנים עדינים של צום לסירוגין ידידותיים לגיל השלישי עם תכונות בטיחות מובנות ומעקב בריאות.";
+"Multiple preset protocols available" = "פרוטוקולים קבועים מרובים זמינים";
+"Real-time progress tracking" = "מעקב התקדמות בזמן אמת";
+"Emergency override with one tap" = "עקיפת חירום במגע אחד";
+
+"Health Data Tracking" = "מעקב נתוני בריאות";
+"Monitor vital health metrics like blood pressure, weight, blood sugar, and heart rate with detailed visualizations and trend analysis." = "עקבו אחר מדדי בריאות חיוניים כמו לחץ דם, משקל, סוכר בדם וקצב לב עם הדמיות מפורטות וניתוח מגמות.";
+"Easy data entry with voice option" = "הזנת נתונים קלה עם אפשרות קולית";
+"Visual trends and patterns" = "מגמות וצורות חזותיות";
+"Exportable reports for doctor visits" = "דוחות הניתנים לייצוא לביקורי רופא";
+
+"Appointment Management" = "ניהול תורים";
+"Never miss a medical appointment with our comprehensive calendar system, reminders, and location tracking." = "לעולם לא תפספסו תור רפואי עם מערכת לוח השנה המקיפה שלנו, התזכורות ומעקב המיקום.";
+"Schedule doctor visits and check-ups" = "קביעת ביקורי רופא ובדיקות";
+"Get timely reminders" = "קבלת תזכורות בזמן";
+"Store location and provider details" = "אחסון פרטי מיקום וספק";
+
+"Comprehensive Medication Management" = "ניהול תרופות מקיף";
+"Keep track of all your medications with automatic reminders and integration with your fasting schedule." = "עקבו אחר כל התרופות שלכם עם תזכורות אוטומטיות ואינטגרציה עם לוח הצום שלכם.";
+"Visual pill identification" = "זיהוי כדורים חזותי";
+"Meal requirements tracking" = "מעקב דרישות ארוחות";
+"Smart notifications synchronized with your routine" = "התראות חכמות המסונכרנות עם השגרה שלכם";
+
+"Health Monitoring & Support" = "מעקב בריאות ותמיכה";
+"Track key health metrics and get personalized guidance with continuous support whenever you need it." = "עקבו אחר מדדי בריאות מרכזיים וקבלו הדרכה מותאמת אישית עם תמיכה רציפה בכל עת שתזדקקו לה.";
+"Video tutorials and live support" = "מדריכי וידאו ותמיכה חיה";
+"Health data visualization" = "הדמיית נתוני בריאות";
+"Emergency contact system" = "מערכת קשר חירום";
+
+/* Subscription Information Localization */
+"Subscription Information" = "מידע על מנוי";
+"Clear information about our premium features and pricing" = "מידע ברור על התכונות הפרמיום והתמחור שלנו";
+"How Our App Works" = "כיצד האפליקציה שלנו עובדת";
+"subscription_info_how_app_works_content" = "אפליקציית התזונה הבוגרת משתמשת במודל עסקי פרימיום:\n\n• התכונות הבסיסיות חינמיות לחלוטין\n• מנוי פרמיום פותח תכונות מתקדמות\n• כל הרכישות דרך האפ סטור של אפל\n• ניסיון חינמי של 7 ימים עם גישה מלאה";
+"Who Benefits from Premium?" = "מי נהנה מפרמיום?";
+"subscription_info_who_benefits_content" = "מנויי פרמיום מיועדים עבור:\n\n• מבוגרים מעל 50 המנהלים מצבי בריאות\n• קשישים הרוצים עצות תזונה מותאמות אישית\n• מטפלים משפחתיים המסייעים לקרובים מבוגרים\n• משתמשים מודעי בריאות המחפשים מעקב מתקדם";
+"Subscription Options" = "אפשרויות מנוי";
+"subscription_info_options_content" = "כל המנויים נרכשים דרך אפל:\n\n• פרמיום חודשי: $9.99/חודש\n• פרמיום שנתי: $99.99/שנה (17% חיסכון)\n• ניסיון חינמי של 7 ימים כלול\n• ביטול בכל עת בהגדרות iOS";
+"Feature Comparison" = "השוואת תכונות";
+"Free Features" = "תכונות חינמיות";
+"Premium Features ($9.99/month)" = "תכונות פרמיום ($9.99/חודש)";
+"How to Purchase" = "איך לרכוש";
+"subscription_info_how_to_purchase_content" = "כל המנויים מנוהלים על ידי אפל:\n\n1. לחצו על \"שדרוג לפרמיום\" באפליקציה\n2. בחרו תוכנית חודשית או שנתי\n3. אשרו עם Face ID, Touch ID או סיסמה\n4. התחילו את הניסיון החינמי של 7 ימים מיד\n\nנהלו את המנוי שלכם בכל עת בהגדרות iOS > [השם שלכם] > מנויים.";
+"Our Commitment" = "המחויבות שלנו";
+"subscription_info_commitment_content" = "אנו מאמינים בתמחור שקוף:\n\n• אין עמלות נסתרות או חיובים מפתיעים\n• הבחנה ברורה של תכונות\n• תהליך ביטול קל\n• כל התכונות מתוארות בבירור\n• מיקוד בפרטיות (ללא מכירת נתונים)";
+"Your Current Status" = "הסטטוס הנוכחי שלכם";
+"Premium Subscriber" = "מנוי פרמיום";
+"Free User" = "משתמש חינמי";
+"Free trial: %d days remaining" = "ניסיון חינמי: %d ימים נותרו";
+"Upgrade to Premium" = "שדרוג לפרמיום";
+
+/* Medical Citations Localization */
+"Medical sources for health information provided in this tip:" = "מקורות רפואיים למידע הבריאות הניתן בעצה זו:";
+"View Source" = "צפה במקור";
+"health_disclaimer" = "הסתייגות: מידע זה מיועד למטרות חינוכיות בלבד ואינו אמור להחליף עצה רפואית מקצועית. התייעצו תמיד עם ספק הבריאות שלכם לפני קבלת החלטות בריאות.";
+"Medical Sources" = "מקורות רפואיים";
+"Sources & References" = "מקורות והפניות";
+"No citations available for this section." = "אין ציטוטים זמינים לחלק זה.";
+
+/* About View Localization */
+"Senior Nutrition" = "Senior Nutrition";
+"Version 1.0.0" = "גרסה 1.0.0";
+"About the App" = "אודות האפליקציה";
+"about_app_description" = "Senior Nutrition היא אפליקציית בריאות ורווחה מקיפה המיועדת במיוחד למבוגרים בני 50 ומעלה. המשימה שלנו היא לתמוך בהזדקנות בריאה דרך הדרכה תזונתית מותאמת אישית, שיטות אכילה מודעת ופרוטוקולי צום בטוחים המותאמים לקשישים.";
+"Our Vision" = "החזון שלנו";
+"about_vision_description" = "אנו מאמינים שתזונה נכונה היא בסיסית להזדקנות בריאה. האפליקציה שלנו משלבת את המחקר העדכני ביותר בתזונה לקשישים עם טכנולוגיה ידידותית למשתמש כדי לעזור למבוגרים לשמור על הבריאות, העצמאות ואיכות החיים שלהם.";
+"Key Features" = "תכונות מרכזיות";
+"about_feature_nutrition" = "מעקב תזונתי מותאם אישית והמלצות";
+"about_feature_fasting" = "פרוטוקולי צום ידידותיים לקשישים עם תכונות בטיחות";
+"about_feature_medication" = "אינטגרציה של לוחות זמנים של תרופות וארוחות";
+"about_feature_languages" = "תמיכה רב-לשונית (אנגלית, צרפתית, ספרדית, עברית)";
+"about_feature_accessibility" = "נגישות משופרת עם גדלי טקסט הניתנים להתאמה";
+"about_feature_voice" = "סיוע קולי לפעולה ללא ידיים";
+"The Story Behind" = "הסיפור מאחורי";
+"about_story_description" = "אפליקציה זו נולדה מהבנה עמוקה של הצרכים התזונתיים הייחודיים של קשישים והאתגרים העומדים בפניהם בשמירה על הרגלי אכילה בריאים. עבדנו בשיתוף הדוק עם תזונאים, מומחים בטיפול גריאטרי וקשישים עצמם כדי ליצור כלי שהוא גם מקיף וגם קל לשימוש.";
+"Safety First" = "בטיחות קודם כל";
+"about_safety_description" = "כל התכונות שלנו, במיוחד פרוטוקולי הצום, מעוצבות עם בטיחות הקשישים בראש. אנו משלבים תזכורות קבועות, בדיקות בריאות ואפשרויות עקיפה חירום כדי להבטיח חוויה בטוחה ובריאה.";
+"Contact Us" = "צרו קשר";
+"about_disclaimer" = "אפליקציה זו מיועדת למטרות מידע בלבד ואינה אמורה להחליף עצה רפואית מקצועית. התייעצו תמיד עם ספק הبריאות שלכם לפני התחלת כל דיאטה או תוכנית צום חדשה.";
+"About" = "אודות";
 

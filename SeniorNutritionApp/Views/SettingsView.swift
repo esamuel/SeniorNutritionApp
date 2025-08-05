@@ -15,6 +15,7 @@ struct SettingsView: View {
     @State private var showingTranslationUtility = false
     @State private var showingAppTourResetAlert = false
     @State private var showingVideoTutorials = false
+    @State private var showingDataExport = false
     enum BackupAlert: Identifiable {
         var id: String {
             switch self {
@@ -189,6 +190,57 @@ struct SettingsView: View {
                     }
                 }
                 
+                // Health Data Information section
+                Section(header: sectionHeader(NSLocalizedString("Health Data Information", comment: ""))) {
+                    // Health App Identification
+                    NavigationLink(destination: HealthDataDisclaimerView()) {
+                        HStack {
+                            Image(systemName: "cross.circle.fill")
+                                .foregroundColor(.red)
+                                .frame(width: 30)
+                            
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(NSLocalizedString("Health App Information", comment: ""))
+                                    .font(.system(size: userSettings.textSize.size))
+                                
+                                Text(NSLocalizedString("About health data tracking & privacy", comment: ""))
+                                    .font(.system(size: userSettings.textSize.size - 2))
+                                    .foregroundColor(.secondary)
+                            }
+                            
+                            Spacer()
+                            
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(.gray)
+                                .font(.system(size: 12))
+                        }
+                    }
+                    
+                    // Health Data Privacy Link
+                    NavigationLink(destination: HealthDataPrivacyNotice()) {
+                        HStack {
+                            Image(systemName: "lock.shield.fill")
+                                .foregroundColor(.blue)
+                                .frame(width: 30)
+                            
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(NSLocalizedString("Data Privacy", comment: ""))
+                                    .font(.system(size: userSettings.textSize.size))
+                                
+                                Text(NSLocalizedString("How your health data is protected", comment: ""))
+                                    .font(.system(size: userSettings.textSize.size - 2))
+                                    .foregroundColor(.secondary)
+                            }
+                            
+                            Spacer()
+                            
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(.gray)
+                                .font(.system(size: 12))
+                        }
+                    }
+                }
+                
                 // Emergency Number section
                 Section(header: sectionHeader(NSLocalizedString("Emergency Number", comment: ""))) {
                     VStack(alignment: .leading, spacing: 12) {
@@ -309,6 +361,36 @@ struct SettingsView: View {
                             .environmentObject(userSettings)
                     }
                     
+                    // Premium Health Data Export
+                    NavigationLink(destination: DataExportView()) {
+                        HStack {
+                            Image(systemName: "square.and.arrow.up.fill")
+                                .foregroundColor(.purple)
+                                .frame(width: 30)
+                            
+                            VStack(alignment: .leading, spacing: 2) {
+                                HStack {
+                                    Text(NSLocalizedString("Export Health Data", comment: ""))
+                                        .font(.system(size: userSettings.textSize.size))
+                                    
+                                    Image(systemName: "crown.fill")
+                                        .foregroundColor(.purple)
+                                        .font(.system(size: userSettings.textSize.size - 4))
+                                }
+                                
+                                Text(NSLocalizedString("PDF reports & CSV data export", comment: ""))
+                                    .font(.system(size: userSettings.textSize.size - 2))
+                                    .foregroundColor(.secondary)
+                            }
+                            
+                            Spacer()
+                            
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(.gray)
+                                .font(.system(size: 12))
+                        }
+                    }
+                    
                     // Backup Data Section updated for local backup
                     VStack(alignment: .leading, spacing: 16) {
                         Text(NSLocalizedString("Local Backup", comment: ""))
@@ -352,6 +434,15 @@ struct SettingsView: View {
                         )
                     }
                     
+                    // Subscription Info - for Apple Review compliance
+                    NavigationLink(destination: SubscriptionInfoView()) {
+                        settingsRowContent(
+                            icon: "creditcard.circle.fill",
+                            title: NSLocalizedString("Subscription Information", comment: ""),
+                            color: .purple
+                        )
+                    }
+                    
                     HStack {
                         Text(NSLocalizedString("Version", comment: ""))
                             .font(.system(size: userSettings.textSize.size))
@@ -375,8 +466,37 @@ struct SettingsView: View {
                     }
                 }
                 
-                // Add a button to trigger food translations in the settings
+                // Development & Testing Section
                 Section(header: Text(NSLocalizedString("Development & Testing", comment: ""))) {
+                    // Premium Access Toggle for Testing
+                    Toggle(isOn: Binding(
+                        get: { PremiumManager.shared.hasFullAccess },
+                        set: { newValue in
+                            if newValue {
+                                PremiumManager.shared.enableDebugMode()
+                                PremiumManager.shared.setDebugTier(.premium)
+                            } else {
+                                PremiumManager.shared.setDebugTier(.free)
+                            }
+                        }
+                    )) {
+                        HStack {
+                            Image(systemName: "crown.fill")
+                                .foregroundColor(.purple)
+                                .frame(width: 30)
+                            
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("Premium Access")
+                                    .font(.system(size: userSettings.textSize.size))
+                                Text("Enable all premium features for testing")
+                                    .font(.system(size: userSettings.textSize.size - 2))
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                    }
+                    .padding(.vertical, 8)
+                    .toggleStyle(SwitchToggleStyle(tint: .purple))
+                    
                     Button(action: {
                         // Present the translation utility
                         showingTranslationUtility = true
@@ -384,6 +504,7 @@ struct SettingsView: View {
                         HStack {
                             Image(systemName: "globe")
                                 .foregroundColor(.blue)
+                                .frame(width: 30)
                             Text(NSLocalizedString("Translate Food Database", comment: ""))
                         }
                     }
@@ -394,12 +515,13 @@ struct SettingsView: View {
                         HStack {
                             Image(systemName: "video.fill")
                                 .foregroundColor(.red)
+                                .frame(width: 30)
                             Text("App Preview Recording")
                         }
                     }
                     #endif
                     
-                    // Debug Subscription Tier Switcher
+                    // Advanced Debug Subscription Tier Switcher
                     #if DEBUG
                     DebugSubscriptionTierSwitcher()
                     #endif
@@ -1230,8 +1352,6 @@ struct DebugSubscriptionTierSwitcher: View {
         switch premiumManager.currentTier {
         case .free:
             return .gray
-        case .advanced:
-            return .blue
         case .premium:
             return .purple
         }

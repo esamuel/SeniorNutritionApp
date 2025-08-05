@@ -274,7 +274,7 @@
 "Text Size: Adjust text size for better readability" = "Text Size: Adjust text size for better readability";
 "Voice Settings: Configure voice assistant and reading features" = "Voice Settings: Configure voice assistant and reading features";
 "Appearance: Toggle dark mode, high contrast, and other visual options" = "Appearance: Toggle dark mode, high contrast, and other visual options";
-"Language: Change the app language (English, Spanish, French, German, Hebrew)" = "Language: Change the app language (English, Spanish, French, German, Hebrew)";
+"Language: Change the app language (English, Spanish, French, Hebrew)" = "Language: Change the app language (English, Spanish, French, Hebrew)";
 "Notifications: Customize alert types, sounds, and timing" = "Notifications: Customize alert types, sounds, and timing";
 "Data Management: Back up and restore your app data" = "Data Management: Back up and restore your app data";
 
@@ -1834,4 +1834,136 @@
 "Based on your profile: BMR %@ cal/day × %@ activity = %@ cal/day maintenance. Recommended goal: %@ cal/day." = "Based on your profile: BMR %@ cal/day × %@ activity = %@ cal/day maintenance. Recommended goal: %@ cal/day.";
 "(500 cal deficit for 1 lb/week weight loss)" = "(500 cal deficit for 1 lb/week weight loss)";
 "(500 cal surplus for 1 lb/week weight gain)" = "(500 cal surplus for 1 lb/week weight gain)";
+
+/* Health Data Identification - App Store Compliance */
+"Health Data" = "Health Data";
+"Health & Wellness Tracking" = "Health & Wellness Tracking";
+"Monitor your health metrics safely and securely" = "Monitor your health metrics safely and securely";
+"Your Health Data Privacy" = "Your Health Data Privacy";
+"This app stores and manages your health information securely on your device." = "This app stores and manages your health information securely on your device.";
+"All health data is stored securely on your device" = "All health data is stored securely on your device";
+"No health information is shared without your permission" = "No health information is shared without your permission";
+"Data is encrypted and protected" = "Data is encrypted and protected";
+
+/* Health App Disclaimer */
+"Health & Wellness App" = "Health & Wellness App";
+"Health Data Categories" = "Health Data Categories";
+"Important Medical Disclaimer" = "Important Medical Disclaimer";
+"Health App Information" = "Health App Information";
+"I Understand - Continue" = "I Understand - Continue";
+
+/* Health Categories */
+"Cardiovascular" = "Cardiovascular";
+"Blood pressure and heart rate monitoring" = "Blood pressure and heart rate monitoring";
+"Glucose level tracking for diabetes management" = "Glucose level tracking for diabetes management";
+"Body Metrics" = "Body Metrics";
+"Weight tracking and BMI calculations" = "Weight tracking and BMI calculations";
+"Meal tracking and nutritional analysis" = "Meal tracking and nutritional analysis";
+
+/* Updated Onboarding Strings */
+"Start with a 7-day free trial, then continue for just $9.99/month." = "Start with a 7-day free trial, then continue for just $9.99/month.";
+"Simple Subscription Model" = "Simple Subscription Model";
+"Enjoy full access with our straightforward pricing: 7 days free, then just $9.99/month. Cancel anytime." = "Enjoy full access with our straightforward pricing: 7 days free, then just $9.99/month. Cancel anytime.";
+"7-day free trial with no commitment" = "7-day free trial with no commitment";
+"$9.99/month after trial period" = "$9.99/month after trial period";
+"Cancel anytime through App Store" = "Cancel anytime through App Store";
+
+/* Onboarding Disclaimer */
+"Important Disclaimer" = "Important Disclaimer";
+"The information provided by Senior Nutrition is for educational purposes only and is not intended as medical advice. Always consult your physician or a qualified healthcare provider before making any changes to your diet, medication, or fasting routine. If you feel unwell, stop immediately and seek medical attention." = "The information provided by Senior Nutrition is for educational purposes only and is not intended as medical advice. Always consult your physician or a qualified healthcare provider before making any changes to your diet, medication, or fasting routine. If you feel unwell, stop immediately and seek medical attention.";
+"I Understand" = "I Understand";
+
+/* Complete Onboarding Pages */
+"Welcome to Senior Nutrition" = "Welcome to Senior Nutrition";
+"Your personal nutrition companion designed specifically for seniors, with enhanced accessibility and intuitive navigation. Start with a 7-day free trial, then continue for just $9.99/month." = "Your personal nutrition companion designed specifically for seniors, with enhanced accessibility and intuitive navigation. Start with a 7-day free trial, then continue for just $9.99/month.";
+"Customizable text size for easier reading" = "Customizable text size for easier reading";
+"Language support for English, French, Spanish, and Hebrew" = "Language support for English, French, Spanish, and Hebrew";
+
+"Track Your Meals & Nutrition" = "Track Your Meals & Nutrition";
+"Monitor your diet with our easy-to-use food tracking system, including nutritional analysis and personalized recommendations." = "Monitor your diet with our easy-to-use food tracking system, including nutritional analysis and personalized recommendations.";
+"Photo-based meal logging" = "Photo-based meal logging";
+"Built-in barcode scanner" = "Built-in barcode scanner";
+"Voice input for hands-free recording" = "Voice input for hands-free recording";
+
+"Personalized Fasting Protocols" = "Personalized Fasting Protocols";
+"Follow gentle, senior-friendly intermittent fasting schedules with built-in safety features and health monitoring." = "Follow gentle, senior-friendly intermittent fasting schedules with built-in safety features and health monitoring.";
+"Multiple preset protocols available" = "Multiple preset protocols available";
+"Real-time progress tracking" = "Real-time progress tracking";
+"Emergency override with one tap" = "Emergency override with one tap";
+
+"Health Data Tracking" = "Health Data Tracking";
+"Monitor vital health metrics like blood pressure, weight, blood sugar, and heart rate with detailed visualizations and trend analysis." = "Monitor vital health metrics like blood pressure, weight, blood sugar, and heart rate with detailed visualizations and trend analysis.";
+"Easy data entry with voice option" = "Easy data entry with voice option";
+"Visual trends and patterns" = "Visual trends and patterns";
+"Exportable reports for doctor visits" = "Exportable reports for doctor visits";
+
+"Appointment Management" = "Appointment Management";
+"Never miss a medical appointment with our comprehensive calendar system, reminders, and location tracking." = "Never miss a medical appointment with our comprehensive calendar system, reminders, and location tracking.";
+"Schedule doctor visits and check-ups" = "Schedule doctor visits and check-ups";
+"Get timely reminders" = "Get timely reminders";
+"Store location and provider details" = "Store location and provider details";
+
+"Comprehensive Medication Management" = "Comprehensive Medication Management";
+"Keep track of all your medications with automatic reminders and integration with your fasting schedule." = "Keep track of all your medications with automatic reminders and integration with your fasting schedule.";
+"Visual pill identification" = "Visual pill identification";
+"Meal requirements tracking" = "Meal requirements tracking";
+"Smart notifications synchronized with your routine" = "Smart notifications synchronized with your routine";
+
+"Health Monitoring & Support" = "Health Monitoring & Support";
+"Track key health metrics and get personalized guidance with continuous support whenever you need it." = "Track key health metrics and get personalized guidance with continuous support whenever you need it.";
+"Video tutorials and live support" = "Video tutorials and live support";
+"Health data visualization" = "Health data visualization";
+"Emergency contact system" = "Emergency contact system";
+
+/* Subscription Information Localization */
+"Subscription Information" = "Subscription Information";
+"Clear information about our premium features and pricing" = "Clear information about our premium features and pricing";
+"How Our App Works" = "How Our App Works";
+"subscription_info_how_app_works_content" = "Senior Nutrition App uses a freemium business model:\n\n• Core features are completely free\n• Premium subscription unlocks advanced features\n• All purchases are through Apple's App Store\n• 7-day free trial with full access";
+"Who Benefits from Premium?" = "Who Benefits from Premium?";
+"subscription_info_who_benefits_content" = "Premium subscriptions are designed for:\n\n• Adults 50+ managing health conditions\n• Seniors wanting personalized nutrition advice\n• Family caregivers helping older relatives\n• Health-conscious users seeking advanced tracking";
+"Subscription Options" = "Subscription Options";
+"subscription_info_options_content" = "All subscriptions are purchased through Apple:\n\n• Monthly Premium: $9.99/month\n• Annual Premium: $99.99/year (17% savings)\n• 7-day free trial included\n• Cancel anytime in iOS Settings";
+"Feature Comparison" = "Feature Comparison";
+"Free Features" = "Free Features";
+"Premium Features ($9.99/month)" = "Premium Features ($9.99/month)";
+"How to Purchase" = "How to Purchase";
+"subscription_info_how_to_purchase_content" = "All subscriptions are handled by Apple:\n\n1. Tap \"Upgrade to Premium\" in the app\n2. Choose monthly or annual plan\n3. Confirm with Face ID, Touch ID, or password\n4. Start your 7-day free trial immediately\n\nManage your subscription anytime in iOS Settings > [Your Name] > Subscriptions.";
+"Our Commitment" = "Our Commitment";
+"subscription_info_commitment_content" = "We believe in transparent pricing:\n\n• No hidden fees or surprise charges\n• Clear feature differentiation\n• Easy cancellation process\n• All features clearly described\n• Privacy-focused (no data selling)";
+"Your Current Status" = "Your Current Status";
+"Premium Subscriber" = "Premium Subscriber";
+"Free User" = "Free User";
+"Free trial: %d days remaining" = "Free trial: %d days remaining";
+"Upgrade to Premium" = "Upgrade to Premium";
+
+/* Medical Citations Localization */
+"Medical sources for health information provided in this tip:" = "Medical sources for health information provided in this tip:";
+"View Source" = "View Source";
+"health_disclaimer" = "Disclaimer: This information is for educational purposes only and should not replace professional medical advice. Always consult with your healthcare provider before making health decisions.";
+"Medical Sources" = "Medical Sources";
+"Sources & References" = "Sources & References";
+"No citations available for this section." = "No citations available for this section.";
+
+/* About View Localization */
+"Senior Nutrition" = "Senior Nutrition";
+"Version 1.0.0" = "Version 1.0.0";
+"About the App" = "About the App";
+"about_app_description" = "Senior Nutrition is a comprehensive health and wellness app designed specifically for adults aged 50 and above. Our mission is to support healthy aging through personalized nutrition guidance, mindful eating practices, and safe fasting protocols tailored for seniors.";
+"Our Vision" = "Our Vision";
+"about_vision_description" = "We believe that proper nutrition is fundamental to healthy aging. Our app combines the latest research in senior nutrition with user-friendly technology to help older adults maintain their health, independence, and quality of life.";
+"Key Features" = "Key Features";
+"about_feature_nutrition" = "Personalized nutrition tracking and recommendations";
+"about_feature_fasting" = "Senior-friendly fasting protocols with safety features";
+"about_feature_medication" = "Medication and meal schedule integration";
+"about_feature_languages" = "Multi-language support (English, French, Spanish, Hebrew)";
+"about_feature_accessibility" = "Enhanced accessibility with adjustable text sizes";
+"about_feature_voice" = "Voice assistance for hands-free operation";
+"The Story Behind" = "The Story Behind";
+"about_story_description" = "This app was born from a deep understanding of the unique nutritional needs of seniors and the challenges they face in maintaining healthy eating habits. We worked closely with nutritionists, geriatric care specialists, and seniors themselves to create a tool that's both comprehensive and easy to use.";
+"Safety First" = "Safety First";
+"about_safety_description" = "All our features, especially the fasting protocols, are designed with senior safety in mind. We incorporate regular reminders, health checks, and emergency override options to ensure a safe and healthy experience.";
+"Contact Us" = "Contact Us";
+"about_disclaimer" = "This app is designed for informational purposes only and should not replace professional medical advice. Always consult with your healthcare provider before starting any new diet or fasting program.";
+"About" = "About";
 

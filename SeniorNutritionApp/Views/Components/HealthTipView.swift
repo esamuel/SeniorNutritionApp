@@ -4,6 +4,8 @@ struct HealthTipView: View {
     let tip: HealthTip
     var showIcon: Bool = true
     var compact: Bool = false
+    var showCitations: Bool = true
+    @State private var showingCitations = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: compact ? 4 : 8) {
@@ -21,6 +23,18 @@ struct HealthTipView: View {
                     .foregroundColor(.primary)
                 
                 Spacer()
+                
+                // Citations button - required for Apple Review compliance
+                if showCitations && !tip.citations.isEmpty {
+                    Button(action: {
+                        showingCitations = true
+                    }) {
+                        Image(systemName: "info.circle")
+                            .font(.caption)
+                            .foregroundColor(.blue)
+                    }
+                    .accessibilityLabel("View medical sources")
+                }
             }
             
             Text(tip.localizedDescription)
@@ -33,6 +47,65 @@ struct HealthTipView: View {
         .background(Color(.systemBackground))
         .cornerRadius(12)
         .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
+        .sheet(isPresented: $showingCitations) {
+            HealthTipCitationsView(citations: tip.citations, tipTitle: tip.localizedTitle)
+        }
+    }
+}
+
+// MARK: - Health Tip Citations View for Apple Review compliance
+struct HealthTipCitationsView: View {
+    let citations: [MedicalCitation]
+    let tipTitle: String
+    @Environment(\.presentationMode) private var presentationMode
+    
+    var body: some View {
+        NavigationView {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 16) {
+                    Text(NSLocalizedString("Medical sources for health information provided in this tip:", comment: "Citation explanation text"))
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                        .padding(.horizontal)
+                    
+                    ForEach(citations) { citation in
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text(citation.formattedReference)
+                                .font(.footnote)
+                                .foregroundColor(.primary)
+                            
+                            if let url = citation.url {
+                                Link(NSLocalizedString("View Source", comment: "Link to view citation source"), destination: URL(string: url)!)
+                                    .font(.caption)
+                                    .foregroundColor(.blue)
+                            }
+                        }
+                        .padding()
+                        .background(Color(.systemGray6))
+                        .cornerRadius(8)
+                        .padding(.horizontal)
+                    }
+                    
+                    Text(NSLocalizedString("health_disclaimer", comment: "Health information disclaimer"))
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                        .padding()
+                        .background(Color(.systemGray6))
+                        .cornerRadius(8)
+                        .padding(.horizontal)
+                }
+                .padding(.vertical)
+            }
+            .navigationTitle(NSLocalizedString("Medical Sources", comment: "Navigation title for medical sources"))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(NSLocalizedString("Done", comment: "Done button")) {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                }
+            }
+        }
     }
 }
 

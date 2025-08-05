@@ -1830,3 +1830,135 @@
 "(500 cal deficit for 1 lb/week weight loss)" = "(déficit de 500 cal para perder 1 lb/semana)";
 "(500 cal surplus for 1 lb/week weight gain)" = "(superávit de 500 cal para ganar 1 lb/semana)";
 
+/* Health Data Identification - App Store Compliance */
+"Health Data" = "Datos de Salud";
+"Health & Wellness Tracking" = "Seguimiento de Salud y Bienestar";
+"Monitor your health metrics safely and securely" = "Monitorea tus métricas de salud de forma segura";
+"Your Health Data Privacy" = "Privacidad de tus Datos de Salud";
+"This app stores and manages your health information securely on your device." = "Esta aplicación almacena y gestiona tu información de salud de forma segura en tu dispositivo.";
+"All health data is stored securely on your device" = "Todos los datos de salud se almacenan de forma segura en tu dispositivo";
+"No health information is shared without your permission" = "No se comparte información de salud sin tu permiso";
+"Data is encrypted and protected" = "Los datos están cifrados y protegidos";
+
+/* Health App Disclaimer */
+"Health & Wellness App" = "Aplicación de Salud y Bienestar";
+"Health Data Categories" = "Categorías de Datos de Salud";
+"Important Medical Disclaimer" = "Importante Descargo Médico";
+"Health App Information" = "Información de la Aplicación de Salud";
+"I Understand - Continue" = "Entiendo - Continuar";
+
+/* Health Categories */
+"Cardiovascular" = "Cardiovascular";
+"Blood pressure and heart rate monitoring" = "Monitoreo de presión arterial y frecuencia cardíaca";
+"Glucose level tracking for diabetes management" = "Seguimiento de niveles de glucosa para el manejo de diabetes";
+"Body Metrics" = "Métricas Corporales";
+"Weight tracking and BMI calculations" = "Seguimiento de peso y cálculos de IMC";
+"Meal tracking and nutritional analysis" = "Seguimiento de comidas y análisis nutricional";
+
+/* Updated Onboarding Strings */
+"Start with a 7-day free trial, then continue for just $9.99/month." = "Comienza con una prueba gratuita de 7 días, luego continúa por solo $9.99/mes.";
+"Simple Subscription Model" = "Modelo de Suscripción Simple";
+"Enjoy full access with our straightforward pricing: 7 days free, then just $9.99/month. Cancel anytime." = "Disfruta de acceso completo con nuestro precio directo: 7 días gratis, luego solo $9.99/mes. Cancela en cualquier momento.";
+"7-day free trial with no commitment" = "Prueba gratuita de 7 días sin compromiso";
+"$9.99/month after trial period" = "$9.99/mes después del período de prueba";
+"Cancel anytime through App Store" = "Cancela en cualquier momento a través de App Store";
+
+/* Onboarding Disclaimer */
+"Important Disclaimer" = "Descargo Importante";
+"The information provided by Senior Nutrition is for educational purposes only and is not intended as medical advice. Always consult your physician or a qualified healthcare provider before making any changes to your diet, medication, or fasting routine. If you feel unwell, stop immediately and seek medical attention." = "La información proporcionada por Senior Nutrition es solo para fines educativos y no está destinada como consejo médico. Siempre consulte a su médico o a un proveedor de atención médica calificado antes de realizar cambios en su dieta, medicamentos o rutina de ayuno. Si se siente mal, deténgase inmediatamente y busque atención médica.";
+"I Understand" = "Entiendo";
+
+/* Complete Onboarding Pages */
+"Welcome to Senior Nutrition" = "Bienvenido a Senior Nutrition";
+"Your personal nutrition companion designed specifically for seniors, with enhanced accessibility and intuitive navigation. Start with a 7-day free trial, then continue for just $9.99/month." = "Su compañero personal de nutrición diseñado específicamente para personas mayores, con accesibilidad mejorada y navegación intuitiva. Comience con una prueba gratuita de 7 días, luego continúe por solo $9.99/mes.";
+"Customizable text size for easier reading" = "Tamaño de texto personalizable para lectura más fácil";
+"Language support for English, French, Spanish, and Hebrew" = "Soporte de idiomas para inglés, francés, español y hebreo";
+
+"Track Your Meals & Nutrition" = "Rastree sus Comidas y Nutrición";
+"Monitor your diet with our easy-to-use food tracking system, including nutritional analysis and personalized recommendations." = "Monitoree su dieta con nuestro sistema de seguimiento de alimentos fácil de usar, incluyendo análisis nutricional y recomendaciones personalizadas.";
+"Photo-based meal logging" = "Registro de comidas basado en fotos";
+"Built-in barcode scanner" = "Escáner de código de barras integrado";
+"Voice input for hands-free recording" = "Entrada de voz para grabación manos libres";
+
+"Personalized Fasting Protocols" = "Protocolos de Ayuno Personalizados";
+"Follow gentle, senior-friendly intermittent fasting schedules with built-in safety features and health monitoring." = "Siga horarios de ayuno intermitente suaves y amigables para personas mayores con características de seguridad integradas y monitoreo de salud.";
+"Multiple preset protocols available" = "Múltiples protocolos preestablecidos disponibles";
+"Real-time progress tracking" = "Seguimiento de progreso en tiempo real";
+"Emergency override with one tap" = "Anulación de emergencia con un toque";
+
+"Health Data Tracking" = "Seguimiento de Datos de Salud";
+"Monitor vital health metrics like blood pressure, weight, blood sugar, and heart rate with detailed visualizations and trend analysis." = "Monitoree métricas vitales de salud como presión arterial, peso, azúcar en sangre y frecuencia cardíaca con visualizaciones detalladas y análisis de tendencias.";
+"Easy data entry with voice option" = "Entrada de datos fácil con opción de voz";
+"Visual trends and patterns" = "Tendencias y patrones visuales";
+"Exportable reports for doctor visits" = "Informes exportables para visitas médicas";
+
+"Appointment Management" = "Gestión de Citas";
+"Never miss a medical appointment with our comprehensive calendar system, reminders, and location tracking." = "Nunca pierda una cita médica con nuestro sistema de calendario integral, recordatorios y seguimiento de ubicación.";
+"Schedule doctor visits and check-ups" = "Programar visitas médicas y chequeos";
+"Get timely reminders" = "Recibir recordatorios oportunos";
+"Store location and provider details" = "Almacenar ubicación y detalles del proveedor";
+
+"Comprehensive Medication Management" = "Gestión Integral de Medicamentos";
+"Keep track of all your medications with automatic reminders and integration with your fasting schedule." = "Mantenga un registro de todos sus medicamentos con recordatorios automáticos e integración con su horario de ayuno.";
+"Visual pill identification" = "Identificación visual de píldoras";
+"Meal requirements tracking" = "Seguimiento de requisitos de comidas";
+"Smart notifications synchronized with your routine" = "Notificaciones inteligentes sincronizadas con su rutina";
+
+"Health Monitoring & Support" = "Monitoreo de Salud y Soporte";
+"Track key health metrics and get personalized guidance with continuous support whenever you need it." = "Rastree métricas clave de salud y obtenga orientación personalizada con soporte continuo cuando lo necesite.";
+"Video tutorials and live support" = "Tutoriales en video y soporte en vivo";
+"Health data visualization" = "Visualización de datos de salud";
+"Emergency contact system" = "Sistema de contacto de emergencia";
+
+/* Subscription Information Localization */
+"Subscription Information" = "Información de Suscripción";
+"Clear information about our premium features and pricing" = "Información clara sobre nuestras funciones premium y precios";
+"How Our App Works" = "Cómo Funciona Nuestra Aplicación";
+"subscription_info_how_app_works_content" = "Senior Nutrition App usa un modelo de negocio freemium:\n\n• Las funciones principales son completamente gratuitas\n• La suscripción Premium desbloquea funciones avanzadas\n• Todas las compras son a través de App Store de Apple\n• Prueba gratuita de 7 días con acceso completo";
+"Who Benefits from Premium?" = "¿Quién se Beneficia del Premium?";
+"subscription_info_who_benefits_content" = "Las suscripciones Premium están diseñadas para:\n\n• Adultos de 50+ que manejan condiciones de salud\n• Personas mayores que quieren consejos de nutrición personalizados\n• Cuidadores familiares que ayudan a parientes mayores\n• Usuarios conscientes de la salud que buscan seguimiento avanzado";
+"Subscription Options" = "Opciones de Suscripción";
+"subscription_info_options_content" = "Todas las suscripciones se compran a través de Apple:\n\n• Premium Mensual: $9.99/mes\n• Premium Anual: $99.99/año (17% de ahorro)\n• Prueba gratuita de 7 días incluida\n• Cancela en cualquier momento en Configuración de iOS";
+"Feature Comparison" = "Comparación de Funciones";
+"Free Features" = "Funciones Gratuitas";
+"Premium Features ($9.99/month)" = "Funciones Premium ($9.99/mes)";
+"How to Purchase" = "Cómo Comprar";
+"subscription_info_how_to_purchase_content" = "Todas las suscripciones son manejadas por Apple:\n\n1. Toca \"Actualizar a Premium\" en la aplicación\n2. Elige plan mensual o anual\n3. Confirma con Face ID, Touch ID o contraseña\n4. Comienza tu prueba gratuita de 7 días inmediatamente\n\nManeja tu suscripción en cualquier momento en Configuración de iOS > [Tu Nombre] > Suscripciones.";
+"Our Commitment" = "Nuestro Compromiso";
+"subscription_info_commitment_content" = "Creemos en precios transparentes:\n\n• Sin tarifas ocultas o cargos sorpresa\n• Diferenciación clara de funciones\n• Proceso de cancelación fácil\n• Todas las funciones claramente descritas\n• Enfocados en privacidad (sin venta de datos)";
+"Your Current Status" = "Tu Estado Actual";
+"Premium Subscriber" = "Suscriptor Premium";
+"Free User" = "Usuario Gratuito";
+"Free trial: %d days remaining" = "Prueba gratuita: %d días restantes";
+"Upgrade to Premium" = "Actualizar a Premium";
+
+/* Medical Citations Localization */
+"Medical sources for health information provided in this tip:" = "Fuentes médicas para la información de salud proporcionada en este consejo:";
+"View Source" = "Ver Fuente";
+"health_disclaimer" = "Descargo de responsabilidad: Esta información es solo para fines educativos y no debe reemplazar el consejo médico profesional. Siempre consulte con su proveedor de atención médica antes de tomar decisiones de salud.";
+"Medical Sources" = "Fuentes Médicas";
+"Sources & References" = "Fuentes y Referencias";
+"No citations available for this section." = "No hay citas disponibles para esta sección.";
+
+/* About View Localization */
+"Senior Nutrition" = "Senior Nutrition";
+"Version 1.0.0" = "Versión 1.0.0";
+"About the App" = "Acerca de la Aplicación";
+"about_app_description" = "Senior Nutrition es una aplicación integral de salud y bienestar diseñada específicamente para adultos de 50 años en adelante. Nuestra misión es apoyar el envejecimiento saludable a través de orientación nutricional personalizada, prácticas de alimentación consciente y protocolos de ayuno seguros adaptados para personas mayores.";
+"Our Vision" = "Nuestra Visión";
+"about_vision_description" = "Creemos que la nutrición adecuada es fundamental para el envejecimiento saludable. Nuestra aplicación combina la investigación más reciente en nutrición para personas mayores con tecnología fácil de usar para ayudar a los adultos mayores a mantener su salud, independencia y calidad de vida.";
+"Key Features" = "Características Principales";
+"about_feature_nutrition" = "Seguimiento nutricional personalizado y recomendaciones";
+"about_feature_fasting" = "Protocolos de ayuno amigables para personas mayores con características de seguridad";
+"about_feature_medication" = "Integración de horarios de medicamentos y comidas";
+"about_feature_languages" = "Soporte multiidioma (inglés, francés, español, hebreo)";
+"about_feature_accessibility" = "Accesibilidad mejorada con tamaños de texto ajustables";
+"about_feature_voice" = "Asistencia de voz para operación manos libres";
+"The Story Behind" = "La Historia Detrás";
+"about_story_description" = "Esta aplicación nació de una comprensión profunda de las necesidades nutricionales únicas de las personas mayores y los desafíos que enfrentan para mantener hábitos alimentarios saludables. Trabajamos estrechamente con nutricionistas, especialistas en cuidado geriátrico y las propias personas mayores para crear una herramienta que sea tanto integral como fácil de usar.";
+"Safety First" = "Seguridad Primero";
+"about_safety_description" = "Todas nuestras características, especialmente los protocolos de ayuno, están diseñadas teniendo en mente la seguridad de las personas mayores. Incorporamos recordatorios regulares, controles de salud y opciones de anulación de emergencia para garantizar una experiencia segura y saludable.";
+"Contact Us" = "Contáctanos";
+"about_disclaimer" = "Esta aplicación está diseñada solo para fines informativos y no debe reemplazar el consejo médico profesional. Siempre consulte con su proveedor de atención médica antes de comenzar cualquier nueva dieta o programa de ayuno.";
+"About" = "Acerca de";
+
