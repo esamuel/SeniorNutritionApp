@@ -26,7 +26,7 @@ With over 54 million Americans aged 65 and older, the need for age-appropriate h
 
 **True Multilingual Support**: Available in English, Spanish, French, and Hebrew with right-to-left (RTL) text support, ensuring cultural and linguistic accessibility.
 
-**Healthcare Integration**: Generate detailed reports for medical consultations and sync with Apple Health for comprehensive care coordination.
+**Healthcare Integration**: Generate detailed reports for medical consultations for comprehensive care coordination.
 
 ### **Senior-Friendly Design Philosophy**
 
@@ -52,14 +52,13 @@ Healthcare professionals have praised the app's clinical integration capabilitie
 
 ### **Pricing and Availability**
 
-The Senior Nutrition App is available now on the App Store with a freemium model:
-- **Free Tier**: Basic nutrition tracking, medication reminders, and health monitoring
-- **Advanced Tier**: $4.99/month with 7-day free trial, includes advanced analytics and export features
-- **Premium Tier**: $9.99/month with AI-powered insights, family sharing, and priority support
+The Senior Nutrition App is available now on the App Store with a simple, transparent pricing model:
+- **7-Day Free Trial**: Full access to all features with no commitment required
+- **Monthly Subscription**: $9.99/month after trial with complete access to all premium features including AI-powered insights, advanced analytics, data export, family sharing, and priority support
 
 ### **Future Development**
 
-Planned features include Apple Watch integration, Siri Shortcuts, enhanced HealthKit integration, and expanded language support. The development team is also exploring partnerships with healthcare providers and senior living communities.
+Planned features include Apple Watch integration, Siri Shortcuts, and expanded language support. The development team is also exploring partnerships with healthcare providers and senior living communities.
 
 ### **About the Senior Nutrition App**
 

@@ -1,17 +1,26 @@
+const withMDX = require('@next/mdx')({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [require('remark-gfm')],
+    rehypePlugins: [],
+  },
+})
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'localhost',
+        hostname: 'seniornutritionapp.com',
       },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+      }
     ],
-    formats: ['image/webp', 'image/avif'],
-  },
-  experimental: {
-    optimizePackageImports: ['@heroicons/react'],
   },
 }
 
-module.exports = nextConfig 
+module.exports = withMDX(nextConfig) 

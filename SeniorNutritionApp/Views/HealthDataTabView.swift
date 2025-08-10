@@ -47,6 +47,11 @@ struct HealthDataTabView: View {
         NavigationView {
             ScrollView {
                 VStack(spacing: 24) {
+                    // Health identification banner
+                    HealthScreenBanner()
+                    
+                    // Privacy notice
+                    HealthDataPrivacyNotice()
                     // Blood Pressure Card
                     NavigationLink(destination: BloodPressureDetailView()) {
                         VStack(alignment: .leading, spacing: 12) {
@@ -108,6 +113,9 @@ struct HealthDataTabView: View {
                                 .foregroundColor(.secondary)
                                 .frame(maxWidth: .infinity, alignment: .center)
                                 .padding(.top, 5)
+                            
+                            // Health data identification
+                            HealthDataBrandingView(healthDataType: NSLocalizedString("Blood Pressure", comment: ""))
                         }
                         .padding()
                         .background(Color.red.opacity(0.15))
@@ -189,6 +197,9 @@ struct HealthDataTabView: View {
                                 .foregroundColor(.secondary)
                                 .frame(maxWidth: .infinity, alignment: .center)
                                 .padding(.top, 5)
+                            
+                            // Health data identification
+                            HealthDataBrandingView(healthDataType: NSLocalizedString("Blood Sugar", comment: ""))
                         }
                         .padding()
                         .background(Color.orange.opacity(0.15))
@@ -270,6 +281,9 @@ struct HealthDataTabView: View {
                                 .foregroundColor(.secondary)
                                 .frame(maxWidth: .infinity, alignment: .center)
                                 .padding(.top, 5)
+                            
+                            // Health data identification
+                            HealthDataBrandingView(healthDataType: NSLocalizedString("Heart Rate", comment: ""))
                         }
                         .padding()
                         .background(Color.blue.opacity(0.15))
@@ -351,6 +365,9 @@ struct HealthDataTabView: View {
                                 .foregroundColor(.secondary)
                                 .frame(maxWidth: .infinity, alignment: .center)
                                 .padding(.top, 5)
+                            
+                            // Health data identification
+                            HealthDataBrandingView(healthDataType: NSLocalizedString("Weight", comment: ""))
                         }
                         .padding()
                         .background(Color.green.opacity(0.15))

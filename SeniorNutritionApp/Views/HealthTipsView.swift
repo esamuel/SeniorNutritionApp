@@ -7,9 +7,46 @@ struct HealthTipsView: View {
     @State private var refreshTrigger = false // Add this to force view refresh
     let healthTipsService = HealthTipsService.shared
     
+    private var citationCategories: [CitationCategory] {
+        if let category = selectedCategory {
+            switch category {
+            case .general:
+                return [.seniorHealth]
+            case .nutrition:
+                return [.nutrition]
+            case .fasting:
+                return [.fasting]
+            case .hydration:
+                return [.hydration]
+            case .activity:
+                return [.seniorHealth]
+            case .medication:
+                return [.medication]
+            case .seniorSpecific:
+                return [.seniorHealth]
+            }
+        } else {
+            return CitationCategory.allCases
+        }
+    }
+    
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
+                // Doctor Note Banner
+                HStack {
+                    Image(systemName: "stethoscope")
+                        .foregroundColor(.blue)
+                    Text("Health tips are for educational purposes only. Always consult your doctor before making changes to your health routine.")
+                        .font(.footnote)
+                        .foregroundColor(.blue)
+                        .multilineTextAlignment(.leading)
+                }
+                .padding()
+                .background(Color.blue.opacity(0.08))
+                .cornerRadius(12)
+                .padding([.top, .horizontal])
+                
                 // Category selector
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 12) {
@@ -41,6 +78,10 @@ struct HealthTipsView: View {
                             HealthTipView(tip: tip)
                                 .padding(.horizontal)
                         }
+                        
+                        // Add citations section
+                        CitationsView(categories: citationCategories)
+                            .padding(.horizontal)
                     }
                     .padding(.vertical)
                 }

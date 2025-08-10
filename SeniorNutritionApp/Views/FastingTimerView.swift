@@ -377,6 +377,18 @@ struct FastingTimerView: View {
         NavigationView {
             ScrollView {
                 VStack(spacing: 30) {
+                    // Disclaimer Banner
+                    HStack {
+                        Image(systemName: "exclamationmark.triangle.fill").foregroundColor(.orange)
+                        Text(NSLocalizedString("Disclaimer.Fasting.Banner", comment: ""))
+                            .font(.footnote)
+                            .foregroundColor(.orange)
+                            .multilineTextAlignment(.leading)
+                    }
+                    .padding()
+                    .background(Color.orange.opacity(0.1))
+                    .cornerRadius(12)
+                    .padding([.top, .horizontal])
                     // Current protocol and status
                     currentProtocolSection
                     
@@ -744,6 +756,10 @@ private struct DetailSectionView: View {
                         .foregroundColor(.blue)
                         .padding(.top, 5)
                 }
+                
+                // Add citations for fasting health tips
+                CitationsView(categories: [.fasting, .hydration])
+                    .padding(.top, 10)
             }
             .padding()
             .background(Color(.systemBackground))

@@ -1,0 +1,837 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -scheme SeniorNutritionApp -workspace SeniorNutritionApp.xcodeproj/project.xcworkspace -destination "platform=iOS Simulator,name=iPhone 16" build
+
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (1 target)
+    Target 'SeniorNutritionApp' in project 'SeniorNutritionApp' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/momc --dry-run --action generate --swift-version 5.0 --sdkroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk --iphonesimulator-deployment-target 18.4 --module SeniorNutritionApp /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/SeniorNutritionApp.xcdatamodeld /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/CoreDataGenerated/SeniorNutritionApp
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --print-asset-tag-combinations --output-format xml1 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Preview Content/Preview Assets.xcassets /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Assets.xcassets
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --version --output-format xml1
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+Build description signature: a6d035fca5d5f42ea362978d2936e49e
+Build description path: /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/XCBuildData/a6d035fca5d5f42ea362978d2936e49e.xcbuilddata
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator18.5-22F76-d5fc8ad4295d2ef488fb7d0f804ce0c4.sdkstatcache
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -o /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator18.5-22F76-d5fc8ad4295d2ef488fb7d0f804ce0c4.sdkstatcache
+
+CreateBuildDirectory /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp.xcodeproj
+    builtin-create-build-directory /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator
+
+CreateBuildDirectory /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp.xcodeproj
+    builtin-create-build-directory /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator
+
+WriteAuxiliaryFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp-dc68471e8addaa2ddc2bb09825de8dcc-VFS-iphonesimulator/all-product-headers.yaml
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp.xcodeproj
+    write-file /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp-dc68471e8addaa2ddc2bb09825de8dcc-VFS-iphonesimulator/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp.hmap (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    write-file /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp.hmap
+
+WriteAuxiliaryFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp.DependencyStaticMetadataFileList (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    write-file /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp.DependencyStaticMetadataFileList
+
+WriteAuxiliaryFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp.DependencyMetadataFileList (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    write-file /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp.DependencyMetadataFileList
+
+WriteAuxiliaryFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp-project-headers.hmap (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    write-file /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp-project-headers.hmap
+
+WriteAuxiliaryFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp-own-target-headers.hmap (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    write-file /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp-own-target-headers.hmap
+
+WriteAuxiliaryFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp-generated-files.hmap (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    write-file /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp-generated-files.hmap
+
+WriteAuxiliaryFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp-all-target-headers.hmap (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    write-file /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp-all-target-headers.hmap
+
+WriteAuxiliaryFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp-all-non-framework-target-headers.hmap (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    write-file /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp-DebugDylibPath-normal-arm64.txt (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    write-file /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp-DebugDylibPath-normal-arm64.txt
+
+WriteAuxiliaryFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp-DebugDylibInstallName-normal-arm64.txt (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    write-file /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp-DebugDylibInstallName-normal-arm64.txt
+
+WriteAuxiliaryFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/Objects-normal/arm64/SeniorNutritionApp.SwiftConstValuesFileList (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    write-file /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/Objects-normal/arm64/SeniorNutritionApp.SwiftConstValuesFileList
+
+WriteAuxiliaryFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/Objects-normal/arm64/SeniorNutritionApp_const_extract_protocols.json (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    write-file /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/Objects-normal/arm64/SeniorNutritionApp_const_extract_protocols.json
+
+WriteAuxiliaryFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/Objects-normal/arm64/SeniorNutritionApp.SwiftFileList (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    write-file /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/Objects-normal/arm64/SeniorNutritionApp.SwiftFileList
+
+WriteAuxiliaryFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/Objects-normal/arm64/SeniorNutritionApp.LinkFileList (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    write-file /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/Objects-normal/arm64/SeniorNutritionApp.LinkFileList
+
+WriteAuxiliaryFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/Objects-normal/arm64/SeniorNutritionApp-OutputFileMap.json (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    write-file /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/Objects-normal/arm64/SeniorNutritionApp-OutputFileMap.json
+
+WriteAuxiliaryFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/Entitlements-Simulated.plist (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    write-file /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/Entitlements-Simulated.plist
+
+MkDir /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    /bin/mkdir -p /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app
+
+ProcessProductPackaging /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/SeniorNutritionApp.entitlements /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp.app.xcent (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+    Entitlements:
+    
+    {
+}
+    
+    builtin-productPackagingUtility /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/SeniorNutritionApp.entitlements -entitlements -format xml -o /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp.app.xcent
+
+ProcessProductPackagingDER /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp.app.xcent /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp.app.xcent.der (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    /usr/bin/derq query -f xml -i /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp.app.xcent -o /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp.app.xcent.der --raw
+
+ProcessProductPackaging /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/SeniorNutritionApp.entitlements /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp.app-Simulated.xcent (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+    Entitlements:
+    
+    {
+    "application-identifier" = "2X955T7VJ9.com.samueleskenasy.SeniorNutritionApp";
+    "aps-environment" = development;
+    "com.apple.developer.icloud-container-identifiers" =     (
+        "iCloud.com.samueleskenasy.SeniorNutritionApp"
+    );
+    "com.apple.developer.icloud-services" =     (
+        CloudKit
+    );
+}
+    
+    builtin-productPackagingUtility /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/SeniorNutritionApp.entitlements -entitlements -format xml -o /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp.app-Simulated.xcent
+
+ProcessProductPackagingDER /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp.app-Simulated.xcent /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp.app-Simulated.xcent.der (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    /usr/bin/derq query -f xml -i /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp.app-Simulated.xcent -o /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp.app-Simulated.xcent.der --raw
+
+MkDir /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/assetcatalog_output/unthinned (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    /bin/mkdir -p /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/assetcatalog_output/unthinned
+
+GenerateAssetSymbols /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Preview\ Content/Preview\ Assets.xcassets /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Assets.xcassets (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    /Applications/Xcode.app/Contents/Developer/usr/bin/actool /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Preview\ Content/Preview\ Assets.xcassets /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Assets.xcassets --compile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app --output-format human-readable-text --notices --warnings --export-dependency-info /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/assetcatalog_dependencies --output-partial-info-plist /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/assetcatalog_generated_info.plist --app-icon AppIcon --accent-color AccentColor --compress-pngs --enable-on-demand-resources YES --development-region en --target-device iphone --target-device ipad --minimum-deployment-target 18.4 --platform iphonesimulator --bundle-identifier com.samueleskenasy.SeniorNutritionApp --generate-swift-asset-symbols /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/GeneratedAssetSymbols.swift --generate-objc-asset-symbols /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/GeneratedAssetSymbols.h --generate-asset-symbol-index /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/GeneratedAssetSymbols-Index.plist
+/* com.apple.actool.compilation-results */
+/Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/GeneratedAssetSymbols-Index.plist
+/Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/GeneratedAssetSymbols.h
+/Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/GeneratedAssetSymbols.swift
+
+
+MkDir /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/assetcatalog_output/thinned (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    /bin/mkdir -p /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/assetcatalog_output/thinned
+
+DataModelCompile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/ /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/SeniorNutritionApp.xcdatamodeld (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    /Applications/Xcode.app/Contents/Developer/usr/bin/momc --sdkroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk --iphonesimulator-deployment-target 18.4 --module SeniorNutritionApp /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/SeniorNutritionApp.xcdatamodeld /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/
+SeniorNutritionApp.xcdatamodel: note: Model SeniorNutritionApp version checksum: ZAJ+pC4S0xki7I5BJMVaDWzeRKKeKrN7kUgo6ZFjQpA=
+
+CpResource /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/he.lproj/Localizable.strings.bak /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/he.lproj/Localizable.strings.bak (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/he.lproj/Localizable.strings.bak /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/he.lproj
+
+DataModelCodegen /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/SeniorNutritionApp.xcdatamodeld (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    /Applications/Xcode.app/Contents/Developer/usr/bin/momc --action generate --swift-version 5.0 --sdkroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk --iphonesimulator-deployment-target 18.4 --module SeniorNutritionApp /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/SeniorNutritionApp.xcdatamodeld /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/CoreDataGenerated/SeniorNutritionApp
+
+Ld /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/__preview.dylib normal (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios18.4-simulator -dynamiclib -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -O0 -L/Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator -F/Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator -install_name @rpath/SeniorNutritionApp.debug.dylib -dead_strip -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -debug_variant -Xlinker -dependency_info -Xlinker /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/Objects-normal/arm64/SeniorNutritionApp_dependency_info.dat -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp.app-Simulated.xcent -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __ents_der -Xlinker /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp.app-Simulated.xcent.der -Xlinker -no_adhoc_codesign -o /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/__preview.dylib
+
+CpResource /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/food_database_backup_summary.json /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/food_database_backup_summary.json (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/food_database_backup_summary.json /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app
+
+CpResource /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/FoodDatabase.json /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Resources/FoodDatabase.json (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Resources/FoodDatabase.json /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app
+
+CopyStringsFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/he.lproj/Terms.strings /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/he.lproj/Terms.strings (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    builtin-copyStrings --validate --outputencoding binary --outfilename Terms.strings --outdir /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/he.lproj -- /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/he.lproj/Terms.strings
+/Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/he.lproj/Terms.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+
+CopyStringsFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/he.lproj/Localizable.stringsdict /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/he.lproj/Localizable.stringsdict (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.stringsdict --outdir /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/he.lproj -- /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/he.lproj/Localizable.stringsdict
+/Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/he.lproj/Localizable.stringsdict:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+
+CopyStringsFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/he.lproj/Localizable.strings /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/he.lproj/Localizable.strings (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/he.lproj -- /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/he.lproj/Localizable.strings
+/Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/he.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+
+CopyStringsFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/fr.lproj/Terms.strings /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/fr.lproj/Terms.strings (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    builtin-copyStrings --validate --outputencoding binary --outfilename Terms.strings --outdir /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/fr.lproj -- /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/fr.lproj/Terms.strings
+/Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/fr.lproj/Terms.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+
+CopyStringsFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/fr.lproj/Localizable.stringsdict /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/fr.lproj/Localizable.stringsdict (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.stringsdict --outdir /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/fr.lproj -- /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/fr.lproj/Localizable.stringsdict
+/Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/fr.lproj/Localizable.stringsdict:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+
+CopyStringsFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/fr.lproj/Localizable.strings /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/fr.lproj/Localizable.strings (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/fr.lproj -- /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/fr.lproj/Localizable.strings
+/Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/fr.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+
+CopyStringsFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/es.lproj/Terms.strings /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/es.lproj/Terms.strings (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    builtin-copyStrings --validate --outputencoding binary --outfilename Terms.strings --outdir /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/es.lproj -- /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/es.lproj/Terms.strings
+/Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/es.lproj/Terms.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+
+CopyStringsFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/es.lproj/Localizable.stringsdict /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/es.lproj/Localizable.stringsdict (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.stringsdict --outdir /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/es.lproj -- /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/es.lproj/Localizable.stringsdict
+/Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/es.lproj/Localizable.stringsdict:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+
+CopyStringsFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/es.lproj/Localizable.strings /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/es.lproj/Localizable.strings (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/es.lproj -- /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/es.lproj/Localizable.strings
+/Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/es.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+
+CopyStringsFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/en.lproj/Terms.strings /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/en.lproj/Terms.strings (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    builtin-copyStrings --validate --outputencoding binary --outfilename Terms.strings --outdir /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/en.lproj -- /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/en.lproj/Terms.strings
+/Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/en.lproj/Terms.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+
+CopyStringsFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/en.lproj/Localizable.stringsdict /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/en.lproj/Localizable.stringsdict (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.stringsdict --outdir /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/en.lproj -- /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/en.lproj/Localizable.stringsdict
+/Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/en.lproj/Localizable.stringsdict:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+
+CopyStringsFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/en.lproj/Localizable.strings /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/en.lproj/Localizable.strings (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/en.lproj -- /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/en.lproj/Localizable.strings
+/Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/en.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+
+CopyStringsFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/de.lproj/Localizable.strings /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/de.lproj/Localizable.strings (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/de.lproj -- /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/de.lproj/Localizable.strings
+/Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/de.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+
+CopyStringsFile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/Base.lproj/Localizable.strings /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Base.lproj/Localizable.strings (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app/Base.lproj -- /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Base.lproj/Localizable.strings
+/Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Base.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+
+CompileAssetCatalogVariant thinned /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/SeniorNutritionApp.app /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Preview\ Content/Preview\ Assets.xcassets /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Assets.xcassets (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    /Applications/Xcode.app/Contents/Developer/usr/bin/actool /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Preview\ Content/Preview\ Assets.xcassets /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Assets.xcassets --compile /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/assetcatalog_output/thinned --output-format human-readable-text --notices --warnings --export-dependency-info /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/assetcatalog_dependencies_thinned --output-partial-info-plist /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/assetcatalog_generated_info.plist_thinned --app-icon AppIcon --accent-color AccentColor --compress-pngs --enable-on-demand-resources YES --filter-for-thinning-device-configuration iPhone17,3 --filter-for-device-os-version 18.5 --development-region en --target-device iphone --target-device ipad --minimum-deployment-target 18.4 --platform iphonesimulator
+
+SwiftDriver SeniorNutritionApp normal arm64 com.apple.xcode.tools.swift.compiler (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name SeniorNutritionApp -Onone -enforce-exclusivity\=checked @/Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/Objects-normal/arm64/SeniorNutritionApp.SwiftFileList -DDEBUG -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -target arm64-apple-ios18.4-simulator -g -module-cache-path /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -enable-testing -index-store-path /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Index.noindex/DataStore -swift-version 5 -I /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator -F /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator -emit-localized-strings -emit-localized-strings-path /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/Objects-normal/arm64 -c -j8 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator18.5-22F76-d5fc8ad4295d2ef488fb7d0f804ce0c4.sdkstatcache -output-file-map /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/Objects-normal/arm64/SeniorNutritionApp-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/Objects-normal/arm64/SeniorNutritionApp.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/Objects-normal/arm64/SeniorNutritionApp_const_extract_protocols.json -Xcc -iquote -Xcc /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp-generated-files.hmap -Xcc -I/Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp-own-target-headers.hmap -Xcc -I/Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp-all-target-headers.hmap -Xcc -iquote -Xcc /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp-project-headers.hmap -Xcc -I/Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources-normal/arm64 -Xcc -I/Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/arm64 -Xcc -I/Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/Objects-normal/arm64/SeniorNutritionApp-Swift.h -working-directory /Users/samueleskenasy/Documents/SeniorNutritionApp -experimental-emit-module-separately -disable-cmo
+
+SwiftCompile normal arm64 Compiling\ FAQView.swift,\ FastingTimerHelpView.swift,\ TranslationManager.swift,\ FastingTimerView.swift,\ HelpView.swift,\ CitationsView.swift,\ ProfileHeaderView.swift,\ VideoTutorialsView.swift,\ MedicationInputView.swift,\ Enhanced3DPillView.swift,\ SampleFoodData.swift,\ NutritionalAlertView.swift,\ DatePicker+RTL.swift,\ MealAnalyzableExtensions.swift,\ WaterTrackingHelpView.swift,\ AddWeightView.swift,\ UnitConverter.swift,\ FoodDatabaseBrowserView.swift,\ UserCommonMeals.swift,\ OnboardingView.swift,\ AboutView.swift,\ AccessibilityHelpView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/FAQView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/FastingTimerHelpView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Utilities/TranslationManager.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/FastingTimerView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/HelpView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/Components/CitationsView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/ProfileHeaderView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/VideoTutorialsView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/MedicationInputView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/Enhanced3DPillView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/SampleFoodData.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/NutritionalAlertView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Extensions/DatePicker+RTL.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/MealAnalyzableExtensions.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/WaterTrackingHelpView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AddWeightView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Utils/UnitConverter.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/FoodDatabaseBrowserView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/UserCommonMeals.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/OnboardingView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AboutView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AccessibilityHelpView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/FAQView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/FastingTimerHelpView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Utilities/TranslationManager.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/FastingTimerView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/HelpView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/Components/CitationsView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/ProfileHeaderView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/VideoTutorialsView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/MedicationInputView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/Enhanced3DPillView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/SampleFoodData.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/NutritionalAlertView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Extensions/DatePicker+RTL.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/MealAnalyzableExtensions.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/WaterTrackingHelpView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AddWeightView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Utils/UnitConverter.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/FoodDatabaseBrowserView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/UserCommonMeals.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/OnboardingView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AboutView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AccessibilityHelpView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 Compiling\ HealthDataTabView.swift,\ PillShapes.swift,\ TranslateAllFoods.swift,\ FruitFoodItems.swift,\ GrainDishItems.swift,\ ProfileTranslationUtils.swift,\ SpeechRecognitionManager.swift,\ VoiceManager.swift,\ WaterReminderManager.swift,\ CustomShapes.swift,\ MexicanCuisineFoodItems.swift,\ MiddleEasternCuisineFoodItems.swift,\ NewFoodItems.swift,\ DateFormatter+Localization.swift,\ AppPreviewStoryboardView.swift,\ CloudKitManager.swift,\ LanguageManager.swift,\ HelpComponents.swift,\ PrivacyPolicyView.swift,\ AppModels+BackupConversion.swift,\ UserProfileSetupView.swift,\ MedicationHelpView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/HealthDataTabView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/PillShapes.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/TranslateAllFoods.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/FruitFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/GrainDishItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Utilities/ProfileTranslationUtils.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Managers/SpeechRecognitionManager.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Managers/VoiceManager.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Managers/WaterReminderManager.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/CustomShapes.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/MexicanCuisineFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/MiddleEasternCuisineFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/NewFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Utilities/DateFormatter+Localization.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AppPreviewStoryboardView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Managers/CloudKitManager.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Managers/LanguageManager.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/HelpComponents.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/PrivacyPolicyView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/AppModels+BackupConversion.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/UserProfileSetupView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/MedicationHelpView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/HealthDataTabView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/PillShapes.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/TranslateAllFoods.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/FruitFoodItems.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/GrainDishItems.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Utilities/ProfileTranslationUtils.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Managers/SpeechRecognitionManager.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Managers/VoiceManager.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Managers/WaterReminderManager.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/CustomShapes.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/MexicanCuisineFoodItems.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/MiddleEasternCuisineFoodItems.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/NewFoodItems.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Utilities/DateFormatter+Localization.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AppPreviewStoryboardView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Managers/CloudKitManager.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Managers/LanguageManager.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/HelpComponents.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/PrivacyPolicyView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/AppModels+BackupConversion.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/UserProfileSetupView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/MedicationHelpView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 Compiling\ SnackFoodItems.swift,\ NutritionGoalsView.swift,\ MedicationModels.swift,\ MedicationPrintService.swift,\ DairyFoodItems.swift,\ AppModels.swift,\ CondimentFoodItems.swift,\ WeightDetailView.swift,\ PremiumManager.swift,\ TipRowView.swift,\ VoiceSettings.swift,\ FoodSearchView.swift,\ PersonalizedNutritionTipsView.swift,\ RecipeDetailView.swift,\ AdditionalFoodItems.swift,\ CustomFastingProtocolView.swift,\ AppPreviewManager.swift,\ AppointmentsView.swift,\ TimePickerView.swift,\ HeartRateDetailView.swift,\ PrintPreviewViews.swift,\ LocalizedDateView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/SnackFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/NutritionGoalsView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/MedicationModels.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Services/MedicationPrintService.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/DairyFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/AppModels.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/CondimentFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/WeightDetailView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Managers/PremiumManager.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/Components/TipRowView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/VoiceSettings.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/FoodSearchView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/PersonalizedNutritionTipsView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/RecipeDetailView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/AdditionalFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/CustomFastingProtocolView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Managers/AppPreviewManager.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AppointmentsView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/TimePickerView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/HeartRateDetailView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/PrintPreviewViews.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/Components/LocalizedDateView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/SnackFoodItems.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/NutritionGoalsView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/MedicationModels.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Services/MedicationPrintService.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/DairyFoodItems.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/AppModels.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/CondimentFoodItems.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/WeightDetailView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Managers/PremiumManager.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/Components/TipRowView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/VoiceSettings.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/FoodSearchView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/PersonalizedNutritionTipsView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/RecipeDetailView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/AdditionalFoodItems.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/CustomFastingProtocolView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Managers/AppPreviewManager.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AppointmentsView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/TimePickerView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/HeartRateDetailView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/PrintPreviewViews.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/Components/LocalizedDateView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ SeniorNutritionApp (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+Failed frontend command:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift-frontend -frontend -emit-module -experimental-skip-non-inlinable-function-bodies-without-types /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/SnackFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/NutritionGoalsView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/MedicationModels.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Services/MedicationPrintService.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/DairyFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/AppModels.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/CondimentFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/WeightDetailView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Managers/PremiumManager.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/Components/TipRowView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/VoiceSettings.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/FoodSearchView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/PersonalizedNutritionTipsView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/RecipeDetailView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/AdditionalFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/CustomFastingProtocolView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Managers/AppPreviewManager.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AppointmentsView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/TimePickerView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/HeartRateDetailView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/PrintPreviewViews.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/Components/LocalizedDateView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Bundle+Language.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/BreadAndSandwichFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/MealAnalysisView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/EmergencyContactsView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/Recipe.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Utilities/LocalizationHelper.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/Meal.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Utilities/LocalizationUtils.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Extensions/View+Extensions.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/Components/HealthTipView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/Components/IngredientQuantityView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/VoiceSettingsView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/SeniorNutritionApp.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Managers/RecipeManager.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/MedicationView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/StuffedDishFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/NutritionHelpView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/BackupModels.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/BeverageFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/FishMealItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/CakeFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/SearchBar.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/HealthDataTabView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/PillShapes.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/TranslateAllFoods.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/FruitFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/GrainDishItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Utilities/ProfileTranslationUtils.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Managers/SpeechRecognitionManager.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Managers/VoiceManager.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Managers/WaterReminderManager.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/CustomShapes.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/MexicanCuisineFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/MiddleEasternCuisineFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/NewFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Utilities/DateFormatter+Localization.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AppPreviewStoryboardView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Managers/CloudKitManager.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Managers/LanguageManager.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/HelpComponents.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/PrivacyPolicyView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/AppModels+BackupConversion.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/UserProfileSetupView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/MedicationHelpView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/FastingManager.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/HealthDataModels.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/Enhanced3DPillPreview.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/RussianCuisineFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/Meal+Localization.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/WaterReminderView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Config/AppConfig.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/MenuView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/TextSize.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/NutritionView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/SettingsView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/HealthMonitoringHelpView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/UserSettings.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Utilities/DateFormattingUtility.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/PillShapeView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/FirstTimeUserGuideView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/Components/RTLSafeDatePicker.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/EditAppointmentView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AddMealView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/String+Localization.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/NutritionalAnalysisService.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AppTourView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/FAQView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/FastingTimerHelpView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Utilities/TranslationManager.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/FastingTimerView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/HelpView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/Components/CitationsView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/ProfileHeaderView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/VideoTutorialsView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/MedicationInputView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/Enhanced3DPillView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/SampleFoodData.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/NutritionalAlertView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Extensions/DatePicker+RTL.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/MealAnalyzableExtensions.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/WaterTrackingHelpView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AddWeightView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Utils/UnitConverter.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/FoodDatabaseBrowserView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/UserCommonMeals.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/OnboardingView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AboutView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AccessibilityHelpView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AddAppointmentView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AddBloodPressureView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AddBloodSugarView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/ChineseCuisineFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/SpeechLanguagePickerView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/HealthTipsView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/PlaceholderView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/LanguagePickerView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/LanguageSelectorView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/EditMealView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/NutritionalModels.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/BloodPressureDetailView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/VideoTutorialView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/HomeView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/FastingView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/MedicationReminderView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/FoodDatabase.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/SeedFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/ColorPickerView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/MealManager.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/NutritionalDashboardView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/WaterView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/Citations.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/RecipeBuilderView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/FoodDatabaseView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/VegetableFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/PersonalizedHealthTipsView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/ContentView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AddCommonMealView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AddFoodView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/NutritionalAlertModifier.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/ProfileView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/HealthTips.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/IndianCuisineFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/ItalianCuisineItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/JapaneseCuisineFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/HealthView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/PremiumFeaturesView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/TermsOfUseView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/PersistentStorage.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Managers/LocalDataManager.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Managers/NotificationManager.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/MainTabView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/EditMedicationView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AppointmentHelpView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/PastaFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/KoreanCuisineFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/BloodSugarDetailView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/VoiceAssistanceHelpView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AddHeartRateView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Persistence.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/MedicationsView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/FoodDBUpdater.swift /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/CoreDataGenerated/SeniorNutritionApp/BloodPressureEntry+CoreDataClass.swift /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/CoreDataGenerated/SeniorNutritionApp/BloodPressureEntry+CoreDataProperties.swift /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/CoreDataGenerated/SeniorNutritionApp/BloodSugarEntry+CoreDataClass.swift /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/CoreDataGenerated/SeniorNutritionApp/BloodSugarEntry+CoreDataProperties.swift /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/CoreDataGenerated/SeniorNutritionApp/HeartRateEntry+CoreDataClass.swift /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/CoreDataGenerated/SeniorNutritionApp/HeartRateEntry+CoreDataProperties.swift /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/CoreDataGenerated/SeniorNutritionApp/WeightEntry+CoreDataClass.swift /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/CoreDataGenerated/SeniorNutritionApp/WeightEntry+CoreDataProperties.swift /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/CoreDataGenerated/SeniorNutritionApp/SeniorNutritionApp+CoreDataModel.swift /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/GeneratedAssetSymbols.swift -target arm64-apple-ios18.4-simulator -Xllvm -aarch64-use-tbi -enable-objc-interop -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -I /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator -F /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator -no-color-diagnostics -enable-testing -g -debug-info-format\=dwarf -dwarf-version\=5 -module-cache-path /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -profile-generate -profile-coverage-mapping -swift-version 5 -enforce-exclusivity\=checked -Onone -D DEBUG -serialize-debugging-options -const-gather-protocols-file /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/Objects-normal/arm64/SeniorNutritionApp_const_extract_protocols.json -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -empty-abi-descriptor -validate-clang-modules-once -clang-build-session-file /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -working-directory -Xcc /Users/samueleskenasy/Documents/SeniorNutritionApp -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift -enable-anonymous-context-mangled-names -file-compilation-dir /Users/samueleskenasy/Documents/SeniorNutritionApp -Xcc -ivfsstatcache -Xcc /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator18.5-22F76-d5fc8ad4295d2ef488fb7d0f804ce0c4.sdkstatcache -Xcc -I/Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/swift-overrides.hmap -Xcc -iquote -Xcc /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp-generated-files.hmap -Xcc -I/Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp-own-target-headers.hmap -Xcc -I/Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp-all-target-headers.hmap -Xcc -iquote -Xcc /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/SeniorNutritionApp-project-headers.hmap -Xcc -I/Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources-normal/arm64 -Xcc -I/Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/arm64 -Xcc -I/Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources -Xcc -DDEBUG\=1 -module-name SeniorNutritionApp -frontend-parseable-output -disable-clang-spi -target-sdk-version 18.5 -target-sdk-name iphonesimulator18.5 -external-plugin-path /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/swift/host/plugins\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server -external-plugin-path /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/local/lib/swift/host/plugins\#/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/swift-plugin-server -in-process-plugin-server-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/libSwiftInProcPluginServer.dylib -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/local/lib/swift/host/plugins -emit-module-doc-path /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/Objects-normal/arm64/SeniorNutritionApp.swiftdoc -emit-module-source-info-path /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/Objects-normal/arm64/SeniorNutritionApp.swiftsourceinfo -emit-objc-header-path /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/Objects-normal/arm64/SeniorNutritionApp-Swift.h -serialize-diagnostics-path /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/Objects-normal/arm64/SeniorNutritionApp-master-emit-module.dia -emit-dependencies-path /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/Objects-normal/arm64/SeniorNutritionApp-master-emit-module.d -o /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/Objects-normal/arm64/SeniorNutritionApp.swiftmodule -emit-abi-descriptor-path /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/Objects-normal/arm64/SeniorNutritionApp.abi.json
+
+EmitSwiftModule normal arm64 (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+/Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/VoiceSettingsView.swift:39:30: error: invalid redeclaration of 'elevenLabsTTS'
+    @StateObject private var elevenLabsTTS = ElevenLabsTTS()
+                             ^
+/Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/VoiceSettingsView.swift:34:33: note: 'elevenLabsTTS' previously declared here
+    @ObservedObject private var elevenLabsTTS = TTSRouter.shared.elevenLabsTTS
+                                ^
+/Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/VoiceSettingsView.swift:34:33: note: 'elevenLabsTTS' previously declared here
+    @ObservedObject private var elevenLabsTTS = TTSRouter.shared.elevenLabsTTS
+                                ^
+/Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/VoiceSettingsView.swift:39:30: error: invalid redeclaration of synthesized property '$elevenLabsTTS'
+    @StateObject private var elevenLabsTTS = ElevenLabsTTS()
+                             ^
+/Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/VoiceSettingsView.swift:34:33: note: '$elevenLabsTTS' synthesized for property wrapper projected value
+    @ObservedObject private var elevenLabsTTS = TTSRouter.shared.elevenLabsTTS
+                                ^
+/Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/VoiceSettingsView.swift:39:30: error: invalid redeclaration of synthesized property '_elevenLabsTTS'
+    @StateObject private var elevenLabsTTS = ElevenLabsTTS()
+                             ^
+/Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/VoiceSettingsView.swift:34:33: note: '_elevenLabsTTS' synthesized for property wrapper backing storage
+    @ObservedObject private var elevenLabsTTS = TTSRouter.shared.elevenLabsTTS
+                                ^
+
+SwiftCompile normal arm64 Compiling\ Citations.swift,\ RecipeBuilderView.swift,\ FoodDatabaseView.swift,\ VegetableFoodItems.swift,\ PersonalizedHealthTipsView.swift,\ Models.swift,\ ContentView.swift,\ AddCommonMealView.swift,\ AddFoodView.swift,\ NutritionalAlertModifier.swift,\ ProfileView.swift,\ HealthTips.swift,\ IndianCuisineFoodItems.swift,\ ItalianCuisineItems.swift,\ JapaneseCuisineFoodItems.swift,\ HealthView.swift,\ PremiumFeaturesView.swift,\ TermsOfUseView.swift,\ PersistentStorage.swift,\ LocalDataManager.swift,\ NotificationManager.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/Citations.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/RecipeBuilderView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/FoodDatabaseView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/VegetableFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/PersonalizedHealthTipsView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/ContentView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AddCommonMealView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AddFoodView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/NutritionalAlertModifier.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/ProfileView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/HealthTips.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/IndianCuisineFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/ItalianCuisineItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/JapaneseCuisineFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/HealthView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/PremiumFeaturesView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/TermsOfUseView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/PersistentStorage.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Managers/LocalDataManager.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Managers/NotificationManager.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/Citations.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/RecipeBuilderView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/FoodDatabaseView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/VegetableFoodItems.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/PersonalizedHealthTipsView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/ContentView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AddCommonMealView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AddFoodView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/NutritionalAlertModifier.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/ProfileView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/HealthTips.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/IndianCuisineFoodItems.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/ItalianCuisineItems.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/JapaneseCuisineFoodItems.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/HealthView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/PremiumFeaturesView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/TermsOfUseView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/PersistentStorage.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Managers/LocalDataManager.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Managers/NotificationManager.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 Compiling\ MainTabView.swift,\ EditMedicationView.swift,\ AppointmentHelpView.swift,\ PastaFoodItems.swift,\ KoreanCuisineFoodItems.swift,\ BloodSugarDetailView.swift,\ VoiceAssistanceHelpView.swift,\ AddHeartRateView.swift,\ Persistence.swift,\ MedicationsView.swift,\ FoodDBUpdater.swift,\ BloodPressureEntry+CoreDataClass.swift,\ BloodPressureEntry+CoreDataProperties.swift,\ BloodSugarEntry+CoreDataClass.swift,\ BloodSugarEntry+CoreDataProperties.swift,\ HeartRateEntry+CoreDataClass.swift,\ HeartRateEntry+CoreDataProperties.swift,\ WeightEntry+CoreDataClass.swift,\ WeightEntry+CoreDataProperties.swift,\ SeniorNutritionApp+CoreDataModel.swift,\ GeneratedAssetSymbols.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/MainTabView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/EditMedicationView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AppointmentHelpView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/PastaFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/KoreanCuisineFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/BloodSugarDetailView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/VoiceAssistanceHelpView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AddHeartRateView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Persistence.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/MedicationsView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/FoodDBUpdater.swift /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/CoreDataGenerated/SeniorNutritionApp/BloodPressureEntry+CoreDataClass.swift /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/CoreDataGenerated/SeniorNutritionApp/BloodPressureEntry+CoreDataProperties.swift /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/CoreDataGenerated/SeniorNutritionApp/BloodSugarEntry+CoreDataClass.swift /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/CoreDataGenerated/SeniorNutritionApp/BloodSugarEntry+CoreDataProperties.swift /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/CoreDataGenerated/SeniorNutritionApp/HeartRateEntry+CoreDataClass.swift /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/CoreDataGenerated/SeniorNutritionApp/HeartRateEntry+CoreDataProperties.swift /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/CoreDataGenerated/SeniorNutritionApp/WeightEntry+CoreDataClass.swift /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/CoreDataGenerated/SeniorNutritionApp/WeightEntry+CoreDataProperties.swift /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/CoreDataGenerated/SeniorNutritionApp/SeniorNutritionApp+CoreDataModel.swift /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/MainTabView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/EditMedicationView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AppointmentHelpView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/PastaFoodItems.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/KoreanCuisineFoodItems.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/BloodSugarDetailView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/VoiceAssistanceHelpView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AddHeartRateView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Persistence.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/MedicationsView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/FoodDBUpdater.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/CoreDataGenerated/SeniorNutritionApp/BloodPressureEntry+CoreDataClass.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/CoreDataGenerated/SeniorNutritionApp/BloodPressureEntry+CoreDataProperties.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/CoreDataGenerated/SeniorNutritionApp/BloodSugarEntry+CoreDataClass.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/CoreDataGenerated/SeniorNutritionApp/BloodSugarEntry+CoreDataProperties.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/CoreDataGenerated/SeniorNutritionApp/HeartRateEntry+CoreDataClass.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/CoreDataGenerated/SeniorNutritionApp/HeartRateEntry+CoreDataProperties.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/CoreDataGenerated/SeniorNutritionApp/WeightEntry+CoreDataClass.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/CoreDataGenerated/SeniorNutritionApp/WeightEntry+CoreDataProperties.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/CoreDataGenerated/SeniorNutritionApp/SeniorNutritionApp+CoreDataModel.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Library/Developer/Xcode/DerivedData/SeniorNutritionApp-cbuknbuyodzumfdupkhjpjxqnlxh/Build/Intermediates.noindex/SeniorNutritionApp.build/Debug-iphonesimulator/SeniorNutritionApp.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 Compiling\ FastingManager.swift,\ HealthDataModels.swift,\ Enhanced3DPillPreview.swift,\ RussianCuisineFoodItems.swift,\ Meal+Localization.swift,\ WaterReminderView.swift,\ AppConfig.swift,\ MenuView.swift,\ TextSize.swift,\ NutritionView.swift,\ SettingsView.swift,\ HealthMonitoringHelpView.swift,\ UserSettings.swift,\ DateFormattingUtility.swift,\ PillShapeView.swift,\ FirstTimeUserGuideView.swift,\ RTLSafeDatePicker.swift,\ EditAppointmentView.swift,\ AddMealView.swift,\ String+Localization.swift,\ NutritionalAnalysisService.swift,\ AppTourView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/FastingManager.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/HealthDataModels.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/Enhanced3DPillPreview.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/RussianCuisineFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/Meal+Localization.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/WaterReminderView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Config/AppConfig.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/MenuView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/TextSize.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/NutritionView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/SettingsView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/HealthMonitoringHelpView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/UserSettings.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Utilities/DateFormattingUtility.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/PillShapeView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/FirstTimeUserGuideView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/Components/RTLSafeDatePicker.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/EditAppointmentView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AddMealView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/String+Localization.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/NutritionalAnalysisService.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AppTourView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/FastingManager.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/HealthDataModels.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/Enhanced3DPillPreview.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/RussianCuisineFoodItems.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/Meal+Localization.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/WaterReminderView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Config/AppConfig.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/MenuView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/TextSize.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/NutritionView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/SettingsView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/HealthMonitoringHelpView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/UserSettings.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Utilities/DateFormattingUtility.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/PillShapeView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/FirstTimeUserGuideView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/Components/RTLSafeDatePicker.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/EditAppointmentView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AddMealView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/String+Localization.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/NutritionalAnalysisService.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AppTourView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+    cd /Users/samueleskenasy/Documents/SeniorNutritionApp
+    
+
+SwiftCompile normal arm64 Compiling\ AddAppointmentView.swift,\ AddBloodPressureView.swift,\ AddBloodSugarView.swift,\ ChineseCuisineFoodItems.swift,\ SpeechLanguagePickerView.swift,\ HealthTipsView.swift,\ PlaceholderView.swift,\ LanguagePickerView.swift,\ LanguageSelectorView.swift,\ EditMealView.swift,\ NutritionalModels.swift,\ BloodPressureDetailView.swift,\ VideoTutorialView.swift,\ HomeView.swift,\ FastingView.swift,\ MedicationReminderView.swift,\ FoodDatabase.swift,\ SeedFoodItems.swift,\ ColorPickerView.swift,\ MealManager.swift,\ NutritionalDashboardView.swift,\ WaterView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AddAppointmentView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AddBloodPressureView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/AddBloodSugarView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/ChineseCuisineFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/SpeechLanguagePickerView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/HealthTipsView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/PlaceholderView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/LanguagePickerView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/LanguageSelectorView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/EditMealView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/NutritionalModels.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/BloodPressureDetailView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/VideoTutorialView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/HomeView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/FastingView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/MedicationReminderView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/FoodDatabase.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/SeedFoodItems.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/ColorPickerView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Models/MealManager.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/NutritionalDashboardView.swift /Users/samueleskenasy/Documents/SeniorNutritionApp/SeniorNutritionApp/Views/WaterView.swift (in target 'SeniorNutritionApp' from project 'SeniorNutritionApp')
+Command SwiftCompile failed with a nonzero exit code
+

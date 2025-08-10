@@ -97,6 +97,24 @@ struct MedicationHelpView: View {
                         .font(.system(size: userSettings.textSize.size - 2))
                         .foregroundColor(.blue)
                 }
+                
+                // Medical Disclaimer Section
+                VStack(alignment: .leading, spacing: 10) {
+                    HStack {
+                        Image(systemName: "stethoscope")
+                            .foregroundColor(.blue)
+                        Text(NSLocalizedString("Important: This app is for tracking purposes only. Always follow your healthcare provider's instructions regarding your medications.", comment: ""))
+                            .font(.system(size: userSettings.textSize.size - 2))
+                            .foregroundColor(.blue)
+                            .multilineTextAlignment(.leading)
+                    }
+                    .padding()
+                    .background(Color.blue.opacity(0.08))
+                    .cornerRadius(12)
+                    
+                    // Add citations for medication information
+                    CitationsView(categories: [.medication])
+                }
             }
             .padding()
         }

@@ -10,8 +10,6 @@ class PremiumManager: ObservableObject {
     
     // App Store product IDs (these would be configured in App Store Connect)
     static let productIDs = [
-        "senior_nutrition_advanced_monthly",
-        "senior_nutrition_advanced_annual",
         "senior_nutrition_premium_monthly", 
         "senior_nutrition_premium_annual"
     ]
@@ -25,8 +23,14 @@ class PremiumManager: ObservableObject {
             self.subscriptionInfo = savedInfo
             self.isDebugMode = savedInfo.isDebugMode
         } else {
-            // Default to free tier
-            self.subscriptionInfo = SubscriptionInfo()
+            // New users get 7-day free trial
+            let trialEndDate = Calendar.current.date(byAdding: .day, value: 7, to: Date())
+            self.subscriptionInfo = SubscriptionInfo(
+                tier: .free,
+                status: .freeTrial,
+                expirationDate: trialEndDate,
+                isDebugMode: false
+            )
             self.isDebugMode = false
         }
     }
@@ -38,58 +42,44 @@ class PremiumManager: ObservableObject {
     }
     
     var isActive: Bool {
-        return subscriptionInfo.status == .active || isDebugMode
+        return subscriptionInfo.status == .active || subscriptionInfo.status == .freeTrial || isDebugMode
     }
     
     var isPremium: Bool {
         return currentTier == .premium && isActive
     }
     
-    var isAdvanced: Bool {
-        return (currentTier == .advanced || currentTier == .premium) && isActive
+    var isInFreeTrial: Bool {
+        return subscriptionInfo.status == .freeTrial && !isTrialExpired()
     }
     
     var isFree: Bool {
-        return currentTier == .free || !isActive
+        return currentTier == .free && !isActive
+    }
+    
+    var hasFullAccess: Bool {
+        return isPremium || isInFreeTrial || isDebugMode
+    }
+    
+    // MARK: - Trial Management
+    
+    func isTrialExpired() -> Bool {
+        guard let expirationDate = subscriptionInfo.expirationDate else { return true }
+        return Date() > expirationDate
+    }
+    
+    func daysLeftInTrial() -> Int {
+        guard subscriptionInfo.status == .freeTrial,
+              let expirationDate = subscriptionInfo.expirationDate else { return 0 }
+        let daysLeft = Calendar.current.dateComponents([.day], from: Date(), to: expirationDate).day ?? 0
+        return max(0, daysLeft)
     }
     
     // MARK: - Feature Access Control
     
     func hasAccess(to feature: String) -> Bool {
-        guard isActive else { return currentTier.hasDataExport == false } // Only free features if not active
-        
-        switch feature {
-        case PremiumFeature.advancedAnalytics:
-            return currentTier.hasAdvancedAnalytics
-        case PremiumFeature.dataExport:
-            return currentTier.hasDataExport
-        case PremiumFeature.voiceAssistant:
-            return currentTier.hasVoiceAssistant
-        case PremiumFeature.personalizedTips:
-            return currentTier.hasPersonalizedTips
-        case PremiumFeature.prioritySupport:
-            return currentTier.hasPrioritySupport
-        case PremiumFeature.coachChat:
-            return currentTier.hasCoachChat
-        case PremiumFeature.aiSuggestions:
-            return currentTier.hasAIDrivenSuggestions
-        case PremiumFeature.familyAccess:
-            return currentTier.hasFamilyAccess
-        case PremiumFeature.customThemes:
-            return currentTier.hasCustomThemes
-        case PremiumFeature.earlyAccess:
-            return currentTier.hasEarlyAccess
-        case PremiumFeature.exclusiveContent:
-            return currentTier.hasExclusiveContent
-        case PremiumFeature.unlimitedProtocols:
-            return currentTier.maxCustomFastingProtocols == -1
-        case PremiumFeature.extendedHistory:
-            return currentTier.analyticsHistoryDays > 7
-        case PremiumFeature.recipeBuilder:
-            return currentTier.hasRecipeBuilder
-        default:
-            return false
-        }
+        // During free trial or premium subscription, user has full access to all features
+        return hasFullAccess
     }
     
     func getAnalyticsHistoryLimit() -> Int {
@@ -178,8 +168,18 @@ class PremiumManager: ObservableObject {
         // TODO: Implement StoreKit 2 status checking
         // This would verify current subscription status with App Store
         
-        // For now, just check if subscription has expired
-        if let expirationDate = subscriptionInfo.expirationDate,
+        // Check if free trial has expired
+        if subscriptionInfo.status == .freeTrial && isTrialExpired() && !isDebugMode {
+            updateSubscriptionInfo(
+                tier: .free,
+                status: .expired,
+                expirationDate: subscriptionInfo.expirationDate
+            )
+        }
+        
+        // Check if subscription has expired
+        if subscriptionInfo.status == .active,
+           let expirationDate = subscriptionInfo.expirationDate,
            expirationDate < Date(),
            !isDebugMode {
             updateSubscriptionInfo(
@@ -231,12 +231,7 @@ class PremiumManager: ObservableObject {
     }
     
     func getRequiredTier(for feature: String) -> SubscriptionTier {
-        switch feature {
-        case PremiumFeature.coachChat, PremiumFeature.aiSuggestions, PremiumFeature.familyAccess, 
-             PremiumFeature.customThemes, PremiumFeature.earlyAccess, PremiumFeature.exclusiveContent:
-            return .premium
-        default:
-            return .advanced
-        }
+        // All premium features now require premium tier
+        return .premium
     }
 }

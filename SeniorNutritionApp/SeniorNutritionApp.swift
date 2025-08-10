@@ -24,18 +24,24 @@ struct SeniorNutritionApp: App {
                         Image("Oldman-wolking")
                             .resizable()
                             .scaledToFit()
-                            .frame(height: 200)
-                            .padding(.bottom, 20)
+                            .frame(height: 150)
+                            .padding(.bottom, 16)
                         
-                        Text(NSLocalizedString("Hold on, I'm coming...", comment: "Loading message with old man"))
-                            .font(.title2)
-                            .fontWeight(.medium)
-                            .foregroundColor(.secondary)
-                            .padding(.bottom, 10)
+                        Text(NSLocalizedString("Senior Nutrition", comment: "App name"))
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .foregroundColor(.primary)
+                            .padding(.bottom, 8)
                         
-                        ProgressView(NSLocalizedString("Loading", comment: ""))
-                            .progressViewStyle(CircularProgressViewStyle())
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .blue))
+                            .scaleEffect(1.2)
                             .padding()
+                        
+                        Text(NSLocalizedString("Loading your data...", comment: "Loading message"))
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                        
                         Spacer()
                     }
                     .onAppear {

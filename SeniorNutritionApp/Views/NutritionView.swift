@@ -22,10 +22,25 @@ struct NutritionView: View {
     @State private var showingCommonMealDeleteAlert = false
     @State private var commonMealToDelete: Meal?
     @State private var showingNutritionGoals = false
+    @State private var showingAIMealSuggestions = false
 
     var body: some View {
         NavigationView {
-            VStack {
+            VStack(spacing: 0) {
+                // Disclaimer Banner
+                HStack {
+                    Image(systemName: "stethoscope")
+                        .foregroundColor(.blue)
+                    Text(NSLocalizedString("Disclaimer.NutritionTips.Banner", comment: ""))
+                        .font(.footnote)
+                        .foregroundColor(.blue)
+                        .multilineTextAlignment(.leading)
+                }
+                .padding()
+                .background(Color.blue.opacity(0.08))
+                .cornerRadius(12)
+                .padding([.top, .horizontal])
+
                 Picker(NSLocalizedString("View", comment: ""), selection: $selectedTab) {
                     Text(NSLocalizedString("Dashboard", comment: "")).tag(0)
                     Text(NSLocalizedString("Meals", comment: "")).tag(1)
@@ -125,6 +140,10 @@ struct NutritionView: View {
             }
             .sheet(isPresented: $showingFoodDatabase) {
                 FoodDatabaseBrowserView()
+                    .environmentObject(userSettings)
+            }
+            .sheet(isPresented: $showingAIMealSuggestions) {
+                AIMealSuggestionsView()
                     .environmentObject(userSettings)
             }
             .onAppear {
@@ -421,14 +440,32 @@ struct NutritionView: View {
                 title: NSLocalizedString("Healthy Fats", comment: ""),
                 description: NSLocalizedString("Include sources of healthy fats like olive oil, avocados, and nuts.", comment: "")
             )
-            Button(action: {
-                showingPersonalizedTips = true
-            }) {
-                Text(NSLocalizedString("View More Tips", comment: ""))
-                    .font(.system(size: userSettings.textSize.size - 2))
-                    .foregroundColor(.blue)
-                    .padding(.top, 5)
+            HStack(spacing: 12) {
+                Button(action: {
+                    showingPersonalizedTips = true
+                }) {
+                    Text(NSLocalizedString("View More Tips", comment: ""))
+                        .font(.system(size: userSettings.textSize.size - 2))
+                        .foregroundColor(.blue)
+                }
+                
+                if userSettings.enableAIFeatures {
+                    Button(action: {
+                        showingAIMealSuggestions = true
+                    }) {
+                        HStack(spacing: 4) {
+                            Image(systemName: "crown.fill")
+                                .font(.system(size: userSettings.textSize.size - 4))
+                                .foregroundColor(.purple)
+                            
+                            Text(NSLocalizedString("AI Suggestions", comment: ""))
+                                .font(.system(size: userSettings.textSize.size - 2))
+                                .foregroundColor(.purple)
+                        }
+                    }
+                }
             }
+            .padding(.top, 5)
         }
         .padding()
         .background(Color(.systemBackground))

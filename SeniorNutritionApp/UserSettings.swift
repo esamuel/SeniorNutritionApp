@@ -45,6 +45,13 @@ class UserSettings: ObservableObject {
         }
     }
     
+    // Feature Flags - For App Store submission control
+    @Published var enableAIFeatures: Bool = false {
+        didSet {
+            saveUserData()
+        }
+    }
+    
     // First-time user guide state
     @Published var isFirstTimeGuideComplete: Bool = false {
         didSet {
@@ -379,7 +386,8 @@ class UserSettings: ObservableObject {
             userDietaryRestrictions: userDietaryRestrictions,
             userEmergencyContacts: userEmergencyContacts,
             preferredVoiceGender: preferredVoiceGender,
-            speechRate: speechRate
+            speechRate: speechRate,
+            enableAIFeatures: enableAIFeatures
         )
         
         do {
@@ -424,7 +432,8 @@ class UserSettings: ObservableObject {
                     userDietaryRestrictions: userDietaryRestrictions,
                     userEmergencyContacts: userEmergencyContacts,
                     preferredVoiceGender: preferredVoiceGender,
-                    speechRate: speechRate
+                    speechRate: speechRate,
+                    enableAIFeatures: enableAIFeatures
                 )
                 
                 try await PersistentStorage.shared.saveData(data, forKey: localDataKey)
@@ -439,56 +448,39 @@ class UserSettings: ObservableObject {
     private func loadUserData(startTime: Date? = nil) {
         let loadStart = startTime ?? Date()
         
-        // Load heavy data in background first, then mark as loaded
-        DispatchQueue.global(qos: .userInitiated).async {
-            Task {
-                // Load lightweight settings
-                DispatchQueue.main.async {
-                    if let savedProfile = UserDefaults.standard.data(forKey: "userProfile"),
-                       let decodedProfile = try? JSONDecoder().decode(UserProfile.self, from: savedProfile) {
-                        self.userProfile = decodedProfile
-                    }
-                    self.isDarkMode = UserDefaults.standard.bool(forKey: "isDarkMode")
-                    self.notificationsEnabled = UserDefaults.standard.bool(forKey: "notificationsEnabled")
-                }
-                
-                // Load persistent data
-                if let data: PersistentData = PersistentStorage.shared.loadData(forKey: self.localDataKey) {
-                    DispatchQueue.main.async {
-                        self.textSize = data.textSize
-                        self.highContrastMode = data.highContrastMode
-                        self.useVoiceInput = data.useVoiceInput
-                        self.activeFastingProtocol = data.activeFastingProtocol
-                        self.medications = data.medications
-                        self.isOnboardingComplete = data.isOnboardingComplete
-                        self.userName = data.userName
-                        self.userAge = data.userAge
-                        self.userGender = data.userGender
-                        self.userHeight = data.userHeight
-                        self.userWeight = data.userWeight
-                        self.userHealthGoals = data.userHealthGoals
-                        self.userDietaryRestrictions = data.userDietaryRestrictions
-                        self.userEmergencyContacts = data.userEmergencyContacts
-                        self.preferredVoiceGender = data.preferredVoiceGender
-                        self.speechRate = data.speechRate
-                        
-                        // Add a small delay to show the loading screen with old man image
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                            self.isLoaded = true
-                            let elapsed = Date().timeIntervalSince(loadStart)
-                            print("DEBUG: User data loaded in \(elapsed) seconds")
-                        }
-                    }
-                } else {
-                    print("DEBUG: No saved user data found")
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                        self.isLoaded = true
-                        let elapsed = Date().timeIntervalSince(loadStart)
-                        print("DEBUG: User data load (empty) in \(elapsed) seconds")
-                    }
-                }
-            }
+        // Simplified synchronous loading to prevent threading issues
+        if let savedProfile = UserDefaults.standard.data(forKey: "userProfile"),
+           let decodedProfile = try? JSONDecoder().decode(UserProfile.self, from: savedProfile) {
+            self.userProfile = decodedProfile
         }
+        self.isDarkMode = UserDefaults.standard.bool(forKey: "isDarkMode")
+        self.notificationsEnabled = UserDefaults.standard.bool(forKey: "notificationsEnabled")
+        
+        // Load persistent data
+        if let data: PersistentData = PersistentStorage.shared.loadData(forKey: self.localDataKey) {
+            self.textSize = data.textSize
+            self.highContrastMode = data.highContrastMode
+            self.useVoiceInput = data.useVoiceInput
+            self.activeFastingProtocol = data.activeFastingProtocol
+            self.medications = data.medications
+            self.isOnboardingComplete = data.isOnboardingComplete
+            self.userName = data.userName
+            self.userAge = data.userAge
+            self.userGender = data.userGender
+            self.userHeight = data.userHeight
+            self.userWeight = data.userWeight
+            self.userHealthGoals = data.userHealthGoals
+            self.userDietaryRestrictions = data.userDietaryRestrictions
+            self.userEmergencyContacts = data.userEmergencyContacts
+            self.preferredVoiceGender = data.preferredVoiceGender
+            self.speechRate = data.speechRate
+            self.enableAIFeatures = data.enableAIFeatures ?? false
+        }
+        
+        // Mark as loaded immediately
+        self.isLoaded = true
+        let elapsed = Date().timeIntervalSince(loadStart)
+        print("DEBUG: User data loaded in \(elapsed) seconds")
     }
     
     func updateProfile(_ profile: UserProfile) {

@@ -6,10 +6,13 @@ struct HealthMonitoringHelpView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
+                // Health identification banner
+                HealthScreenBanner()
+                
                 // Header
                 VStack(alignment: .leading, spacing: 10) {
                     HStack {
-                        Image(systemName: "heart.fill")
+                        Image(systemName: "heart.text.square.fill")
                             .font(.system(size: 40))
                             .foregroundColor(.pink)
                         
@@ -25,7 +28,7 @@ struct HealthMonitoringHelpView: View {
                 .padding(.bottom, 20)
                 
                 // Available Metrics Section
-                HelpSection(
+                HealthHelpSection(
                     title: NSLocalizedString("Available Health Metrics", comment: ""),
                     content: [
                         NSLocalizedString("Blood Pressure: Track systolic and diastolic readings", comment: ""),
@@ -36,66 +39,32 @@ struct HealthMonitoringHelpView: View {
                     ]
                 )
                 
-                // Getting Started Section
-                HelpSection(
-                    title: NSLocalizedString("Getting Started", comment: ""),
+                // Data Privacy Section
+                HealthHelpSection(
+                    title: NSLocalizedString("Data Privacy", comment: ""),
                     content: [
-                        NSLocalizedString("Tap the 'Health' tab at the bottom of your screen", comment: ""),
-                        NSLocalizedString("Select the health metric you want to track", comment: ""),
-                        NSLocalizedString("Tap 'Add' to enter a new reading", comment: ""),
-                        NSLocalizedString("Enter your measurement and any notes", comment: ""),
-                        NSLocalizedString("View your history and trends over time", comment: "")
+                        NSLocalizedString("Your health data is encrypted and stored securely", comment: ""),
+                        NSLocalizedString("Health data is never shared without your permission", comment: "")
                     ]
                 )
                 
-                // Features Section
-                HelpSection(
-                    title: NSLocalizedString("Key Features", comment: ""),
-                    content: [
-                        NSLocalizedString("Data Entry: Easy input forms for each health metric", comment: ""),
-                        NSLocalizedString("History Tracking: View all your past readings", comment: ""),
-                        NSLocalizedString("Trend Analysis: See patterns and changes over time", comment: ""),
-                        NSLocalizedString("Target Ranges: Set personal health goals", comment: ""),
-                        NSLocalizedString("Export Data: Share with healthcare providers", comment: ""),
-                        NSLocalizedString("Reminders: Get notifications for regular check-ins", comment: "")
-                    ]
-                )
-                
-                // Health Tips Section
-                HelpSection(
-                    title: NSLocalizedString("Health Monitoring Tips", comment: ""),
-                    content: [
-                        NSLocalizedString("Take measurements at the same time each day", comment: ""),
-                        NSLocalizedString("Use proper equipment for accurate readings", comment: ""),
-                        NSLocalizedString("Record any factors that might affect your readings", comment: ""),
-                        NSLocalizedString("Share your data with your healthcare provider", comment: ""),
-                        NSLocalizedString("Set realistic health goals with your doctor", comment: "")
-                    ]
-                )
-                
-                // Privacy Section
-                HelpSection(
-                    title: NSLocalizedString("Privacy & Security", comment: ""),
-                    content: [
-                        NSLocalizedString("Your health data is stored locally on your device", comment: ""),
-                        NSLocalizedString("Data is encrypted and secure", comment: ""),
-                        NSLocalizedString("You control what data to share", comment: ""),
-                        NSLocalizedString("No health data is sent to third parties", comment: ""),
-                        NSLocalizedString("You can export or delete your data anytime", comment: "")
-                    ]
-                )
-                
-                // Troubleshooting Section
-                HelpSection(
-                    title: NSLocalizedString("Troubleshooting", comment: ""),
-                    content: [
-                        NSLocalizedString("If readings seem unusual, double-check your measurements", comment: ""),
-                        NSLocalizedString("Use the notes field to record any special circumstances", comment: ""),
-                        NSLocalizedString("Set up reminders to maintain consistent tracking", comment: ""),
-                        NSLocalizedString("Export your data regularly as a backup", comment: ""),
-                        NSLocalizedString("Contact support if you need help with data entry", comment: "")
-                    ]
-                )
+                // Medical Disclaimer Section
+                VStack(alignment: .leading, spacing: 10) {
+                    HStack {
+                        Image(systemName: "stethoscope")
+                            .foregroundColor(.blue)
+                        Text(NSLocalizedString("Important: This app is for tracking and educational purposes only. Always consult your healthcare provider for medical advice and treatment decisions.", comment: ""))
+                            .font(.system(size: userSettings.textSize.size - 2))
+                            .foregroundColor(.blue)
+                            .multilineTextAlignment(.leading)
+                    }
+                    .padding()
+                    .background(Color.blue.opacity(0.08))
+                    .cornerRadius(12)
+                    
+                    // Add citations for health monitoring information
+                    CitationsView(categories: [.seniorHealth])
+                }
             }
             .padding()
         }
@@ -104,11 +73,33 @@ struct HealthMonitoringHelpView: View {
     }
 }
 
-struct HealthMonitoringHelpView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            HealthMonitoringHelpView()
-                .environmentObject(UserSettings())
+// Renamed from HelpSection to HealthHelpSection to avoid naming conflict
+struct HealthHelpSection: View {
+    let title: String
+    let content: [String]
+    @EnvironmentObject private var userSettings: UserSettings
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text(title)
+                .font(.system(size: userSettings.textSize.size, weight: .bold))
+            
+            ForEach(content, id: \.self) { item in
+                HStack(alignment: .top) {
+                    Image(systemName: "checkmark.circle.fill")
+                        .foregroundColor(.green)
+                        .font(.system(size: userSettings.textSize.size - 2))
+                    
+                    Text(item)
+                        .font(.system(size: userSettings.textSize.size - 2))
+                }
+                .padding(.vertical, 2)
+            }
         }
     }
+}
+
+#Preview {
+    HealthMonitoringHelpView()
+        .environmentObject(UserSettings())
 } 

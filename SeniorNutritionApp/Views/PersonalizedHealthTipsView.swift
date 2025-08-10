@@ -8,9 +8,10 @@ import SwiftUI
 import Foundation
 
 struct PersonalizedHealthTipsView: View {
+    @ObservedObject var ttsRouter = TTSRouter.shared
+    @ObservedObject var voiceManager = VoiceManager.shared
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var userSettings: UserSettings
-    @StateObject private var voiceManager = VoiceManager.shared
     
     @State private var isReadingGeneralTips = false
     @State private var isReadingConditionTips = false
@@ -20,7 +21,21 @@ struct PersonalizedHealthTipsView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(spacing: 25) {
+                VStack(spacing: 0) {
+                    // Doctor Note Banner
+                    HStack {
+                        Image(systemName: "stethoscope")
+                            .foregroundColor(.blue)
+                        Text("Health tips are for educational purposes only. Always consult your doctor before making changes to your health routine.")
+                            .font(.footnote)
+                            .foregroundColor(.blue)
+                            .multilineTextAlignment(.leading)
+                    }
+                    .padding()
+                    .background(Color.blue.opacity(0.08))
+                    .cornerRadius(12)
+                    .padding([.top, .horizontal])
+                    
                     // General fasting tips
                     tipSection(
                         title: NSLocalizedString("General Fasting Tips", comment: ""),
@@ -32,6 +47,9 @@ struct PersonalizedHealthTipsView: View {
                             ForEach(generalFastingTips, id: \.title) { tip in
                                 tipRow(title: NSLocalizedString(tip.title, comment: ""), description: NSLocalizedString(tip.description, comment: ""))
                             }
+                            
+                            // Add citations for general fasting tips
+                            CitationsView(categories: [.fasting])
                         }
                     )
                     
@@ -61,6 +79,9 @@ struct PersonalizedHealthTipsView: View {
                                             .padding(.vertical, 8)
                                     }
                                 }
+                                
+                                // Add citations for health conditions
+                                CitationsView(categories: [.seniorHealth])
                             }
                         )
                     }
@@ -76,6 +97,9 @@ struct PersonalizedHealthTipsView: View {
                             ForEach(fastingSafetyTips, id: \.title) { tip in
                                 tipRow(title: tip.title, description: tip.description)
                             }
+                            
+                            // Add citations for fasting safety
+                            CitationsView(categories: [.fasting])
                         }
                     )
                     
@@ -90,6 +114,9 @@ struct PersonalizedHealthTipsView: View {
                             ForEach(fastingBenefits, id: \.title) { tip in
                                 tipRow(title: tip.title, description: tip.description)
                             }
+                            
+                            // Add citations for fasting benefits
+                            CitationsView(categories: [.fasting])
                         }
                     )
                 }
@@ -105,7 +132,11 @@ struct PersonalizedHealthTipsView: View {
                 }
             }
             .onDisappear {
-                voiceManager.stopSpeaking()
+                TTSRouter.shared.stopSpeaking()
+                isReadingGeneralTips = false
+                isReadingConditionTips = false
+                isReadingFastingTips = false
+                isReadingSafetyTips = false
             }
         }
     }
@@ -129,12 +160,12 @@ struct PersonalizedHealthTipsView: View {
                 Spacer()
                 
                 Button(action: {
-                    if isReading.wrappedValue {
-                        voiceManager.stopSpeaking()
+                    if isReading.wrappedValue || TTSRouter.shared.isSpeaking { 
+                        TTSRouter.shared.stopSpeaking()
                         isReading.wrappedValue = false
                     } else {
                         // Stop any other reading first
-                        voiceManager.stopSpeaking()
+                        TTSRouter.shared.stopSpeaking()
                         isReadingGeneralTips = false
                         isReadingConditionTips = false
                         isReadingFastingTips = false
@@ -146,16 +177,16 @@ struct PersonalizedHealthTipsView: View {
                     }
                 }) {
                     HStack(spacing: 4) {
-                        Image(systemName: isReading.wrappedValue ? "speaker.wave.2.fill" : "speaker.wave.2")
+                        Image(systemName: (isReading.wrappedValue || TTSRouter.shared.isSpeaking) ? "speaker.wave.2.fill" : "speaker.wave.2")
                             .foregroundColor(.white)
                             .imageScale(.large)
-                        
-                        if isReading.wrappedValue {
-                            Text("Stop")
+                            
+                        if isReading.wrappedValue || TTSRouter.shared.isSpeaking {
+                            Text(NSLocalizedString("Stop", comment: ""))
                                 .font(.system(size: userSettings.textSize.size - 2))
                                 .foregroundColor(.white)
                         } else {
-                            Text("Read")
+                            Text(NSLocalizedString("Read", comment: ""))
                                 .font(.system(size: userSettings.textSize.size - 2))
                                 .foregroundColor(.white)
                         }
@@ -504,7 +535,11 @@ struct PersonalizedHealthTipsView: View {
             speech += "\(NSLocalizedString(tip.title, comment: "")): \(NSLocalizedString(tip.description, comment: "")) "
         }
         
-        voiceManager.speak(speech, userSettings: userSettings)
+        TTSRouter.shared.speak(speech, userSettings: userSettings) { success in
+            DispatchQueue.main.async {
+                isReadingGeneralTips = false
+            }
+        }
     }
     
     private func readConditionTips() {
@@ -523,7 +558,11 @@ struct PersonalizedHealthTipsView: View {
             }
         }
         
-        voiceManager.speak(speech, userSettings: userSettings)
+        TTSRouter.shared.speak(speech, userSettings: userSettings) { success in
+            DispatchQueue.main.async {
+                isReadingConditionTips = false
+            }
+        }
     }
     
     private func readSafetyTips() {
@@ -533,7 +572,11 @@ struct PersonalizedHealthTipsView: View {
             speech += "\(NSLocalizedString(tip.title, comment: "")): \(NSLocalizedString(tip.description, comment: "")) "
         }
         
-        voiceManager.speak(speech, userSettings: userSettings)
+        TTSRouter.shared.speak(speech, userSettings: userSettings) { success in
+            DispatchQueue.main.async {
+                isReadingSafetyTips = false
+            }
+        }
     }
     
     private func readFastingBenefits() {
@@ -543,7 +586,11 @@ struct PersonalizedHealthTipsView: View {
             speech += "\(NSLocalizedString(tip.title, comment: "")): \(NSLocalizedString(tip.description, comment: "")) "
         }
         
-        voiceManager.speak(speech, userSettings: userSettings)
+        TTSRouter.shared.speak(speech, userSettings: userSettings) { success in
+            DispatchQueue.main.async {
+                isReadingFastingTips = false
+            }
+        }
     }
 }
 

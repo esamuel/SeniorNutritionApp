@@ -238,7 +238,7 @@ struct WaterReminderSettingsView: View {
         HStack {
             Image(systemName: "info.circle.fill")
                 .foregroundColor(.orange)
-            Text(NSLocalizedString("Advanced reminder frequencies are available with Advanced or Premium subscription.", comment: ""))
+            Text(NSLocalizedString("Advanced reminder frequencies are available with Premium subscription.", comment: ""))
                 .font(.caption)
                 .foregroundColor(.secondary)
             Spacer()

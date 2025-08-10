@@ -156,16 +156,30 @@ class FoodDatabaseService: ObservableObject {
     @Published var lastTranslatedLanguage: String? = nil
     
     init() {
-        // IMPORTANT: Force a complete database reset to apply category changes
-        print("\n=== CATEGORY CONSOLIDATION: Forcing complete database reset ===")
-        UserDefaults.standard.removeObject(forKey: "savedFoods")
-        UserDefaults.standard.removeObject(forKey: "savedCustomFoods")
+        // Load basic database first for faster startup
+        loadFoodDatabase()
         
-        // Force reset the database to include new foods
-        resetToDefaultFoods()
-        Task {
-            await self.checkAndTranslateIfNeeded()
+        // Temporarily disable background operations to prevent freezing
+        // TODO: Re-enable when performance issues are resolved
+        print("FoodDatabase: Initialized with basic data only")
+    }
+    
+    @MainActor
+    private func performBackgroundInitialization() async {
+        // IMPORTANT: Force a complete database reset to apply category changes (only if needed)
+        let shouldReset = UserDefaults.standard.bool(forKey: "needsDatabaseReset")
+        if shouldReset {
+            print("\n=== CATEGORY CONSOLIDATION: Forcing complete database reset ===")
+            UserDefaults.standard.removeObject(forKey: "savedFoods")
+            UserDefaults.standard.removeObject(forKey: "savedCustomFoods")
+            UserDefaults.standard.set(false, forKey: "needsDatabaseReset")
+            
+            // Force reset the database to include new foods
+            resetToDefaultFoods()
         }
+        
+        // Check translations in background
+        await self.checkAndTranslateIfNeeded()
     }
     
     // Populate translations for default foods if missing

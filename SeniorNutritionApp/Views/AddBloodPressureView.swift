@@ -1,4 +1,5 @@
 import SwiftUI
+import CoreData
 
 struct AddBloodPressureView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -8,77 +9,61 @@ struct AddBloodPressureView: View {
     @State private var systolic = ""
     @State private var diastolic = ""
     @State private var date = Date()
-    @State private var error: String?
-    @FocusState private var systolicFieldIsFocused: Bool
+    @State private var notes = ""
+    @FocusState private var focusedField: Field?
+    
+    enum Field {
+        case systolic, diastolic, notes
+    }
     
     var body: some View {
         Form {
-            Section(header: Text(NSLocalizedString("Blood Pressure Reading", comment: "Section header for blood pressure reading input"))) {
-                HStack {
-                    TextField(NSLocalizedString("Systolic", comment: "Placeholder for systolic blood pressure input"), text: $systolic)
-                        .keyboardType(.numberPad)
-                        .focused($systolicFieldIsFocused)
-                    Text(NSLocalizedString("mmHg", comment: "Unit for blood pressure"))
-                        .foregroundColor(.secondary)
-                }
-                
-                HStack {
-                    TextField(NSLocalizedString("Diastolic", comment: "Placeholder for diastolic blood pressure input"), text: $diastolic)
-                        .keyboardType(.numberPad)
-                    Text(NSLocalizedString("mmHg", comment: "Unit for blood pressure"))
-                        .foregroundColor(.secondary)
-                }
+            Section {
+                // Health data identification
+                HealthDataBrandingView(healthDataType: NSLocalizedString("Blood Pressure", comment: ""))
             }
             
-            Section {
+            Section(header: Text(NSLocalizedString("Blood Pressure Reading", comment: ""))) {
+                TextField(NSLocalizedString("Systolic", comment: ""), text: $systolic)
+                    .keyboardType(.numberPad)
+                    .focused($focusedField, equals: .systolic)
+                
+                TextField(NSLocalizedString("Diastolic", comment: ""), text: $diastolic)
+                    .keyboardType(.numberPad)
+                    .focused($focusedField, equals: .diastolic)
+                
                 DatePicker(
-                    NSLocalizedString("Date and Time", comment: "Label for date and time picker"),
+                    NSLocalizedString("Date", comment: ""),
                     selection: $date,
                     displayedComponents: [.date, .hourAndMinute]
                 )
             }
             
-            if let error = error {
-                Section {
-                    Text(error)
-                        .foregroundColor(.red)
-                        .font(.system(size: userSettings.textSize.size))
-                }
+            Section(header: Text(NSLocalizedString("Notes", comment: ""))) {
+                TextField(NSLocalizedString("Optional notes", comment: ""), text: $notes)
+                    .focused($focusedField, equals: .notes)
             }
         }
-        .navigationTitle(NSLocalizedString("Add Blood Pressure", comment: "Navigation title for adding blood pressure entry"))
+        .navigationTitle(NSLocalizedString("Add Blood Pressure", comment: ""))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .cancellationAction) {
-                Button(NSLocalizedString("Cancel", comment: "Cancel button text")) {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(NSLocalizedString("Cancel", comment: "")) {
                     dismiss()
                 }
             }
-            ToolbarItem(placement: .confirmationAction) {
-                Button(NSLocalizedString("Save", comment: "Save button text")) {
-                    saveReading()
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(NSLocalizedString("Save", comment: "")) {
+                    saveBloodPressure()
                 }
+                .disabled(systolic.isEmpty || diastolic.isEmpty)
             }
-        }
-        .font(.system(size: userSettings.textSize.size))
-        .onAppear {
-            systolicFieldIsFocused = true
         }
     }
     
-    private func saveReading() {
-        guard let systolicValue = Int32(systolic), systolicValue > 0 else {
-            error = NSLocalizedString("Please enter a valid systolic pressure", comment: "Error message for invalid systolic pressure")
-            return
-        }
-        
-        guard let diastolicValue = Int32(diastolic), diastolicValue > 0 else {
-            error = NSLocalizedString("Please enter a valid diastolic pressure", comment: "Error message for invalid diastolic pressure")
-            return
-        }
-        
-        guard systolicValue >= diastolicValue else {
-            error = NSLocalizedString("Systolic pressure must be higher than diastolic pressure", comment: "Error message when systolic is not higher than diastolic")
+    private func saveBloodPressure() {
+        guard let systolicValue = Int32(systolic),
+              let diastolicValue = Int32(diastolic) else {
             return
         }
         
@@ -92,15 +77,13 @@ struct AddBloodPressureView: View {
             try viewContext.save()
             dismiss()
         } catch {
-            self.error = NSLocalizedString("Failed to save. Please try again.", comment: "Error message for failed save operation")
+            print("Error saving blood pressure: \(error)")
         }
     }
 }
 
-struct AddBloodPressureView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddBloodPressureView()
-            .environmentObject(UserSettings())
-            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-    }
+#Preview {
+    AddBloodPressureView()
+        .environmentObject(UserSettings())
+        .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 } 

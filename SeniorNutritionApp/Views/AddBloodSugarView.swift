@@ -7,77 +7,60 @@ struct AddBloodSugarView: View {
     
     @State private var bloodSugar = ""
     @State private var date = Date()
-    @State private var error: String?
-    @FocusState private var bloodSugarFieldIsFocused: Bool
+    @State private var notes = ""
+    @FocusState private var focusedField: Field?
+    
+    enum Field {
+        case bloodSugar, notes
+    }
     
     var body: some View {
         Form {
-            Section(header: Text(NSLocalizedString("Blood Sugar Reading", comment: "Section header for blood sugar reading input"))) {
-                HStack {
-                    TextField(NSLocalizedString("Blood Sugar", comment: "Placeholder for blood sugar input"), text: $bloodSugar)
-                        .keyboardType(.decimalPad)
-                        .focused($bloodSugarFieldIsFocused)
-                    Text(NSLocalizedString("mg/dL", comment: "Unit for blood sugar"))
-                        .foregroundColor(.secondary)
-                }
+            Section {
+                // Health data identification
+                HealthDataBrandingView(healthDataType: NSLocalizedString("Blood Sugar", comment: ""))
             }
             
-            Section {
+            Section(header: Text(NSLocalizedString("Blood Sugar Reading", comment: ""))) {
+                HStack {
+                    TextField(NSLocalizedString("Blood Sugar", comment: ""), text: $bloodSugar)
+                        .keyboardType(.decimalPad)
+                        .focused($focusedField, equals: .bloodSugar)
+                    Text(NSLocalizedString("mg/dL", comment: ""))
+                        .foregroundColor(.secondary)
+                }
+                
                 DatePicker(
-                    NSLocalizedString("Date and Time", comment: "Label for date and time picker"),
+                    NSLocalizedString("Date", comment: ""),
                     selection: $date,
                     displayedComponents: [.date, .hourAndMinute]
                 )
             }
             
-            if let error = error {
-                Section {
-                    Text(error)
-                        .foregroundColor(.red)
-                        .font(.system(size: userSettings.textSize.size))
-                }
-            }
-            
-            Section(header: Text(NSLocalizedString("Target Ranges:", comment: "Label for blood sugar target ranges"))
-                .font(.system(size: userSettings.textSize.size, weight: .bold))) {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text(NSLocalizedString("Before meals: 80-130 mg/dL", comment: "Blood sugar target range before meals"))
-                    Text(NSLocalizedString("After meals: Less than 180 mg/dL", comment: "Blood sugar target range after meals"))
-                    Text(NSLocalizedString("Bedtime: 100-140 mg/dL", comment: "Blood sugar target range at bedtime"))
-                }
-                .font(.system(size: userSettings.textSize.size - 2))
-                .foregroundColor(.secondary)
+            Section(header: Text(NSLocalizedString("Notes", comment: ""))) {
+                TextField(NSLocalizedString("Optional notes", comment: ""), text: $notes)
+                    .focused($focusedField, equals: .notes)
             }
         }
-        .navigationTitle(NSLocalizedString("Add Blood Sugar", comment: "Navigation title for adding blood sugar entry"))
+        .navigationTitle(NSLocalizedString("Add Blood Sugar", comment: ""))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .cancellationAction) {
-                Button(NSLocalizedString("Cancel", comment: "Cancel button text")) {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(NSLocalizedString("Cancel", comment: "")) {
                     dismiss()
                 }
             }
-            ToolbarItem(placement: .confirmationAction) {
-                Button(NSLocalizedString("Save", comment: "Save button text")) {
-                    saveReading()
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(NSLocalizedString("Save", comment: "")) {
+                    saveBloodSugar()
                 }
+                .disabled(bloodSugar.isEmpty)
             }
-        }
-        .font(.system(size: userSettings.textSize.size))
-        .onAppear {
-            bloodSugarFieldIsFocused = true
         }
     }
     
-    private func saveReading() {
-        guard let glucoseValue = Double(bloodSugar.replacingOccurrences(of: ",", with: ".")), glucoseValue > 0 else {
-            error = NSLocalizedString("Please enter a valid blood sugar reading", comment: "Error message for invalid blood sugar reading")
-            return
-        }
-        
-        // Validate blood sugar is within reasonable range (20-600 mg/dL)
-        guard glucoseValue >= 20 && glucoseValue <= 600 else {
-            error = NSLocalizedString("Blood sugar should be between 20 and 600 mg/dL", comment: "Error message for blood sugar out of range")
+    private func saveBloodSugar() {
+        guard let glucoseValue = Double(bloodSugar) else {
             return
         }
         
@@ -90,15 +73,13 @@ struct AddBloodSugarView: View {
             try viewContext.save()
             dismiss()
         } catch {
-            self.error = NSLocalizedString("Failed to save. Please try again.", comment: "Error message for failed save operation")
+            print("Error saving blood sugar: \(error)")
         }
     }
 }
 
-struct AddBloodSugarView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddBloodSugarView()
-            .environmentObject(UserSettings())
-            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-    }
+#Preview {
+    AddBloodSugarView()
+        .environmentObject(UserSettings())
+        .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 } 

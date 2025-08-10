@@ -1,0 +1,136 @@
+{
+  "timestamp": "2025-07-10T16:49:58.530989",
+  "session_summary": {
+    "vegetables_added": 30,
+    "fruits_added": 30,
+    "pasta_added": 33,
+    "total_new_items": 93
+  },
+  "food_files": [
+    {
+      "file": "SeniorNutritionApp/Models/VegetableFoodItems.swift",
+      "item_count": 0,
+      "exists": false
+    },
+    {
+      "file": "SeniorNutritionApp/Models/FruitFoodItems.swift",
+      "item_count": 0,
+      "exists": false
+    },
+    {
+      "file": "SeniorNutritionApp/Models/PastaFoodItems.swift",
+      "item_count": 0,
+      "exists": false
+    },
+    {
+      "file": "SeniorNutritionApp/Models/FoodDatabase.swift",
+      "item_count": 0,
+      "exists": false
+    },
+    {
+      "file": "SeniorNutritionApp/Models/SampleFoodData.swift",
+      "item_count": 0,
+      "exists": false
+    },
+    {
+      "file": "SeniorNutritionApp/Models/NewFoodItems.swift",
+      "item_count": 0,
+      "exists": false
+    },
+    {
+      "file": "SeniorNutritionApp/Models/AdditionalFoodItems.swift",
+      "item_count": 0,
+      "exists": false
+    },
+    {
+      "file": "SeniorNutritionApp/Models/DairyFoodItems.swift",
+      "item_count": 0,
+      "exists": false
+    },
+    {
+      "file": "SeniorNutritionApp/Models/BeverageFoodItems.swift",
+      "item_count": 0,
+      "exists": false
+    },
+    {
+      "file": "SeniorNutritionApp/Models/SnackFoodItems.swift",
+      "item_count": 0,
+      "exists": false
+    },
+    {
+      "file": "SeniorNutritionApp/Models/CakeFoodItems.swift",
+      "item_count": 0,
+      "exists": false
+    },
+    {
+      "file": "SeniorNutritionApp/Models/BreadAndSandwichFoodItems.swift",
+      "item_count": 0,
+      "exists": false
+    },
+    {
+      "file": "SeniorNutritionApp/Models/StuffedDishFoodItems.swift",
+      "item_count": 0,
+      "exists": false
+    },
+    {
+      "file": "SeniorNutritionApp/Models/SeedFoodItems.swift",
+      "item_count": 0,
+      "exists": false
+    },
+    {
+      "file": "SeniorNutritionApp/Models/CondimentFoodItems.swift",
+      "item_count": 0,
+      "exists": false
+    },
+    {
+      "file": "SeniorNutritionApp/Models/FishMealItems.swift",
+      "item_count": 0,
+      "exists": false
+    },
+    {
+      "file": "SeniorNutritionApp/Models/GrainDishItems.swift",
+      "item_count": 0,
+      "exists": false
+    },
+    {
+      "file": "SeniorNutritionApp/Models/ItalianCuisineItems.swift",
+      "item_count": 0,
+      "exists": false
+    },
+    {
+      "file": "SeniorNutritionApp/Models/MexicanCuisineFoodItems.swift",
+      "item_count": 0,
+      "exists": false
+    },
+    {
+      "file": "SeniorNutritionApp/Models/IndianCuisineFoodItems.swift",
+      "item_count": 0,
+      "exists": false
+    },
+    {
+      "file": "SeniorNutritionApp/Models/ChineseCuisineFoodItems.swift",
+      "item_count": 0,
+      "exists": false
+    },
+    {
+      "file": "SeniorNutritionApp/Models/JapaneseCuisineFoodItems.swift",
+      "item_count": 0,
+      "exists": false
+    },
+    {
+      "file": "SeniorNutritionApp/Models/KoreanCuisineFoodItems.swift",
+      "item_count": 0,
+      "exists": false
+    },
+    {
+      "file": "SeniorNutritionApp/Models/MiddleEasternCuisineFoodItems.swift",
+      "item_count": 0,
+      "exists": false
+    },
+    {
+      "file": "SeniorNutritionApp/Models/RussianCuisineFoodItems.swift",
+      "item_count": 0,
+      "exists": false
+    }
+  ]
+}

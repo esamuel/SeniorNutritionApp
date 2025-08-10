@@ -1,9 +1,10 @@
 import SwiftUI
 
 struct FirstTimeUserGuideView: View {
+    @ObservedObject var ttsRouter = TTSRouter.shared
+    @ObservedObject var voiceManager = VoiceManager.shared
     @EnvironmentObject private var userSettings: UserSettings
     @Environment(\.dismiss) private var dismiss
-    @StateObject private var voiceManager = VoiceManager.shared
     @State private var currentStep = 0
     @State private var showingProfileSetup = false
     @State private var showingHealthDataEntry = false
@@ -214,16 +215,16 @@ struct FirstTimeUserGuideView: View {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        if voiceManager.isSpeaking {
-                            voiceManager.stopSpeaking()
-                        } else {
-                            speakCurrentStep()
+                        if TTSRouter.shared.isSpeaking { 
+                            TTSRouter.shared.stopSpeaking() 
+                        } else { 
+                            speakCurrentStep() 
                         }
                     }) {
-                        Image(systemName: voiceManager.isSpeaking ? "speaker.slash.fill" : "speaker.wave.2.fill")
+                        Image(systemName: TTSRouter.shared.isSpeaking ? "speaker.slash.fill" : "speaker.wave.2.fill")
                             .foregroundColor(.blue)
                     }
-                    .accessibilityLabel(voiceManager.isSpeaking ? NSLocalizedString("Stop Speaking", comment: "") : NSLocalizedString("Read Aloud", comment: ""))
+                    .accessibilityLabel(TTSRouter.shared.isSpeaking ? NSLocalizedString("Stop Speaking", comment: "") : NSLocalizedString("Read Aloud", comment: ""))
                 }
             }
         }
@@ -262,7 +263,7 @@ struct FirstTimeUserGuideView: View {
         \(NSLocalizedString("Benefits include:", comment: ""))
         \(step.benefits.map { NSLocalizedString($0, comment: "") }.joined(separator: ". "))
         """
-        voiceManager.speak(textToSpeak, userSettings: userSettings)
+        TTSRouter.shared.speak(textToSpeak, userSettings: userSettings)
     }
 }
 

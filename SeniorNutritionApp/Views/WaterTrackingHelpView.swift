@@ -81,6 +81,24 @@ struct WaterTrackingHelpView: View {
                         NSLocalizedString("Check your weekly progress to see patterns", comment: "")
                     ]
                 )
+                
+                // Medical Disclaimer Section
+                VStack(alignment: .leading, spacing: 10) {
+                    HStack {
+                        Image(systemName: "stethoscope")
+                            .foregroundColor(.blue)
+                        Text(NSLocalizedString("Important: This app provides general hydration guidance. Consult your healthcare provider for specific fluid intake recommendations based on your health conditions.", comment: ""))
+                            .font(.system(size: userSettings.textSize.size - 2))
+                            .foregroundColor(.blue)
+                            .multilineTextAlignment(.leading)
+                    }
+                    .padding()
+                    .background(Color.blue.opacity(0.08))
+                    .cornerRadius(12)
+                    
+                    // Add citations for hydration information
+                    CitationsView(categories: [.hydration])
+                }
             }
             .padding()
         }

@@ -4,14 +4,31 @@ import UIKit
 #endif
 
 struct PersonalizedNutritionTipsView: View {
+    @ObservedObject var ttsRouter = TTSRouter.shared
+    @ObservedObject var voiceManager = VoiceManager.shared
     @EnvironmentObject private var userSettings: UserSettings
     @Environment(\.presentationMode) private var presentationMode
-    @StateObject private var voiceManager = VoiceManager.shared
+    @State private var isReadingGeneralTips = false
+    @State private var isReadingConditionTips = false
     
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(alignment: .leading, spacing: 20) {
+                VStack(spacing: 0) {
+                    // Doctor Note Banner
+                    HStack {
+                        Image(systemName: "stethoscope")
+                            .foregroundColor(.blue)
+                        Text("Nutrition tips are for educational purposes only. Always consult your doctor or a registered dietitian before making changes to your diet.")
+                            .font(.footnote)
+                            .foregroundColor(.blue)
+                            .multilineTextAlignment(.leading)
+                    }
+                    .padding()
+                    .background(Color.blue.opacity(0.08))
+                    .cornerRadius(12)
+                    .padding([.top, .horizontal])
+                    
                     generalTipsSection
                     
                     if let profile = userSettings.userProfile, !profile.medicalConditions.isEmpty {
@@ -52,43 +69,6 @@ struct PersonalizedNutritionTipsView: View {
                     description: description
                 )
             }
-            HStack {
-                Text(NSLocalizedString("General Nutrition Tips for Seniors", comment: ""))
-                    .font(.system(size: userSettings.textSize.size, weight: .bold))
-                    .foregroundColor(.primary)
-                
-                Spacer()
-                
-                Button(action: {
-                    if voiceManager.isSpeaking {
-                        voiceManager.stopSpeaking()
-                    } else {
-                    readGeneralTips()
-                    }
-                }) {
-                    HStack(spacing: 4) {
-                        Image(systemName: voiceManager.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
-                            .foregroundColor(.white)
-                            .imageScale(.large)
-                        
-                        if voiceManager.isSpeaking {
-                            Text("Stop")
-                                .font(.system(size: userSettings.textSize.size - 2))
-                                .foregroundColor(.white)
-                        } else {
-                            Text("Read")
-                                .font(.system(size: userSettings.textSize.size - 2))
-                                .foregroundColor(.white)
-                        }
-                    }
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 6)
-                    .background(Color.blue)
-                    .cornerRadius(20)
-                }
-                .accessibilityLabel(NSLocalizedString("Read General Tips", comment: ""))
-                .accessibilityHint(NSLocalizedString("Reads out general nutrition tips for seniors", comment: ""))
-            }
             
             nutritionTip(
                 icon: "leaf.fill",
@@ -119,6 +99,9 @@ struct PersonalizedNutritionTipsView: View {
                 title: NSLocalizedString("Vitamin D", comment: ""),
                 description: NSLocalizedString("Get adequate vitamin D through sunlight exposure and foods like fatty fish, egg yolks, and fortified foods.", comment: "")
             )
+            
+            // Add citations for general nutrition tips
+            CitationsView(categories: [.nutrition, .seniorHealth])
         }
         .padding()
         .background(Color(.systemBackground))
@@ -131,23 +114,23 @@ struct PersonalizedNutritionTipsView: View {
             HStack {
                 Text(NSLocalizedString("Tips for Your Medical Conditions", comment: ""))
                     .font(.system(size: userSettings.textSize.size, weight: .bold))
-                    .foregroundColor(.primary)
-                
                 Spacer()
-                
                 Button(action: {
-                    if voiceManager.isSpeaking {
-                        voiceManager.stopSpeaking()
+                    if isReadingConditionTips || TTSRouter.shared.isSpeaking { 
+                        TTSRouter.shared.stopSpeaking()
+                        isReadingConditionTips = false
+                        isReadingGeneralTips = false
                     } else {
-                    readMedicalConditionTips(conditions)
+                        isReadingConditionTips = true
+                        readMedicalConditionTips(conditions)
                     }
                 }) {
                     HStack(spacing: 4) {
-                        Image(systemName: voiceManager.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
+                        Image(systemName: (isReadingConditionTips || TTSRouter.shared.isSpeaking) ? "speaker.wave.2.fill" : "speaker.wave.2")
                             .foregroundColor(.white)
                             .imageScale(.large)
                         
-                        if voiceManager.isSpeaking {
+                        if isReadingConditionTips || TTSRouter.shared.isSpeaking {
                             Text(NSLocalizedString("Stop", comment: ""))
                                 .font(.system(size: userSettings.textSize.size - 2))
                                 .foregroundColor(.white)
@@ -177,6 +160,9 @@ struct PersonalizedNutritionTipsView: View {
                     )
                 }
             }
+            
+            // Add citations for medical conditions
+            CitationsView(categories: [.nutrition, .seniorHealth])
         }
         .padding()
         .background(Color(.systemBackground))
@@ -189,23 +175,22 @@ struct PersonalizedNutritionTipsView: View {
             HStack {
                 Text(NSLocalizedString("Tips for Your Dietary Restrictions", comment: ""))
                     .font(.system(size: userSettings.textSize.size, weight: .bold))
-                    .foregroundColor(.primary)
-                
                 Spacer()
-                
                 Button(action: {
-                    if voiceManager.isSpeaking {
-                        voiceManager.stopSpeaking()
+                    if TTSRouter.shared.isSpeaking { 
+                        TTSRouter.shared.stopSpeaking()
+                        isReadingConditionTips = false
+                        isReadingGeneralTips = false
                     } else {
-                    readDietaryRestrictionTips(restrictions)
+                        readDietaryRestrictionTips(restrictions)
                     }
                 }) {
                     HStack(spacing: 4) {
-                        Image(systemName: voiceManager.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
+                        Image(systemName: TTSRouter.shared.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
                             .foregroundColor(.white)
                             .imageScale(.large)
                         
-                        if voiceManager.isSpeaking {
+                        if TTSRouter.shared.isSpeaking {
                             Text(NSLocalizedString("Stop", comment: ""))
                                 .font(.system(size: userSettings.textSize.size - 2))
                                 .foregroundColor(.white)
@@ -235,6 +220,9 @@ struct PersonalizedNutritionTipsView: View {
                     )
                 }
             }
+            
+            // Add citations for dietary restrictions
+            CitationsView(categories: [.nutrition])
         }
         .padding()
         .background(Color(.systemBackground))
@@ -244,39 +232,8 @@ struct PersonalizedNutritionTipsView: View {
     
     private var supplementsSection: some View {
         VStack(alignment: .leading, spacing: 15) {
-            HStack {
-                Text(NSLocalizedString("Supplements to Consider", comment: ""))
-                    .font(.system(size: userSettings.textSize.size, weight: .bold))
-                    .foregroundColor(.primary)
-                
-                Spacer()
-                
-                Button(action: {
-                    readSupplementTips()
-                }) {
-                    HStack(spacing: 4) {
-                        Image(systemName: voiceManager.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
-                            .foregroundColor(.white)
-                            .imageScale(.large)
-                        
-                        if voiceManager.isSpeaking {
-                            Text("Stop")
-                                .font(.system(size: userSettings.textSize.size - 2))
-                                .foregroundColor(.white)
-                        } else {
-                            Text("Read")
-                                .font(.system(size: userSettings.textSize.size - 2))
-                                .foregroundColor(.white)
-                        }
-                    }
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 6)
-                    .background(Color.blue)
-                    .cornerRadius(20)
-                }
-                .accessibilityLabel("Read Supplement Tips")
-                .accessibilityHint("Reads out supplement recommendations for seniors")
-            }
+            Text(NSLocalizedString("Supplements to Consider", comment: ""))
+                .font(.system(size: userSettings.textSize.size, weight: .bold))
             
             nutritionTip(
                 icon: "pills.fill",
@@ -300,6 +257,9 @@ struct PersonalizedNutritionTipsView: View {
                 .font(.system(size: userSettings.textSize.size - 2))
                 .foregroundColor(.secondary)
                 .padding(.top, 5)
+            
+            // Add citations for supplements
+            CitationsView(categories: [.nutrition, .seniorHealth])
         }
         .padding()
         .background(Color(.systemBackground))
@@ -549,7 +509,11 @@ struct PersonalizedNutritionTipsView: View {
                    NSLocalizedString("Vitamin D", comment: "") + ": " + 
                    NSLocalizedString("Get adequate vitamin D through sunlight exposure and foods like fatty fish, egg yolks, and fortified foods.", comment: "")
         
-        voiceManager.speak(speech, userSettings: userSettings)
+        TTSRouter.shared.speak(speech, userSettings: userSettings) { success in
+            DispatchQueue.main.async {
+                isReadingGeneralTips = false
+            }
+        }
     }
     
     private func readMedicalConditionTips(_ conditions: [String]) {
@@ -564,7 +528,11 @@ struct PersonalizedNutritionTipsView: View {
             }
         }
         
-        voiceManager.speak(speech, userSettings: userSettings)
+        TTSRouter.shared.speak(speech, userSettings: userSettings) { success in
+            DispatchQueue.main.async {
+                isReadingConditionTips = false
+            }
+        }
     }
     
     private func readDietaryRestrictionTips(_ restrictions: [String]) {
@@ -579,7 +547,7 @@ struct PersonalizedNutritionTipsView: View {
             }
         }
         
-        voiceManager.speak(speech, userSettings: userSettings)
+        TTSRouter.shared.speak(speech, userSettings: userSettings)
     }
     
     private func readSupplementTips() {
@@ -589,7 +557,7 @@ struct PersonalizedNutritionTipsView: View {
                    NSLocalizedString("Vitamin D3", comment: "") + ": " + NSLocalizedString("Important for calcium absorption and immune function. Consider a supplement if you have limited sun exposure.", comment: "") + " " +
                    NSLocalizedString("Note: Always consult with your healthcare provider before starting any supplement regimen.", comment: "")
         
-        voiceManager.speak(speech, userSettings: userSettings)
+        TTSRouter.shared.speak(speech, userSettings: userSettings)
     }
 }
 

@@ -294,7 +294,6 @@
 - Caregiver support groups
 
 ### **Technology Partners**
-- Apple Health integration
 - Pharmacy apps
 - Telehealth platforms
 - Wearable device companies

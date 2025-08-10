@@ -24,10 +24,6 @@
     <string>We need access to your microphone to enable voice input for medication names and notes.</string>
     <key>NSSpeechRecognitionUsageDescription</key>
     <string>We need speech recognition to convert your voice into text for medication names and notes.</string>
-    <key>NSHealthShareUsageDescription</key>
-    <string>This app needs access to read your health data to provide personalized nutrition recommendations and track your wellness progress.</string>
-    <key>NSHealthUpdateUsageDescription</key>
-    <string>This app needs access to write health data to track your nutrition intake, weight, blood pressure, and other wellness metrics.</string>
     <key>UIApplicationSceneManifest</key>
     <dict>
         <key>UIApplicationSupportsMultipleScenes</key>
@@ -66,5 +62,38 @@
     <false/>
     <key>ITSEncryptionExportComplianceCode</key>
     <string>a5e36f7dc8b5788560dc9c5cf6b1056f</string>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSExceptionDomains</key>
+        <dict>
+            <key>localhost</key>
+            <dict>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+                <key>NSExceptionMinimumTLSVersion</key>
+                <string>TLSv1.0</string>
+                <key>NSExceptionRequiresForwardSecrecy</key>
+                <false/>
+            </dict>
+            <key>127.0.0.1</key>
+            <dict>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+                <key>NSExceptionMinimumTLSVersion</key>
+                <string>TLSv1.0</string>
+                <key>NSExceptionRequiresForwardSecrecy</key>
+                <false/>
+            </dict>
+            <key>10.10.1.167</key>
+            <dict>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+                <key>NSExceptionMinimumTLSVersion</key>
+                <string>TLSv1.0</string>
+                <key>NSExceptionRequiresForwardSecrecy</key>
+                <false/>
+            </dict>
+        </dict>
+    </dict>
 </dict>
 </plist> 

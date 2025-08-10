@@ -66,7 +66,7 @@ struct ColorPickerView: View {
                         .stroke(Color.gray, lineWidth: 1)
                 )
                 .overlay(
-                    selectedColor.toHex() == color.toHex() ?
+                    selectedColor.toHexString() == color.toHexString() ?
                     Image(systemName: "checkmark")
                         .foregroundColor(color.isBright() ? .black : .white)
                     : nil
@@ -75,24 +75,6 @@ struct ColorPickerView: View {
     }
 }
 
-// Helper extension to determine if a color is bright or dark
-extension Color {
-    func isBright() -> Bool {
-        let uiColor = UIColor(self)
-        var red: CGFloat = 0
-        var green: CGFloat = 0
-        var blue: CGFloat = 0
-        var alpha: CGFloat = 0
-        
-        uiColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-        
-        // Calculate perceived brightness using the formula
-        // (0.299*R + 0.587*G + 0.114*B)
-        let brightness = (0.299 * red + 0.587 * green + 0.114 * blue)
-        
-        return brightness > 0.6
-    }
-}
 
 struct ColorPickerView_Previews: PreviewProvider {
     static var previews: some View {

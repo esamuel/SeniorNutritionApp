@@ -298,38 +298,65 @@ struct MedicationInputView: View {
             Text(NSLocalizedString("Pill Appearance", comment: ""))
                 .font(.system(size: userSettings.textSize.size, weight: .bold))
                 .padding(.horizontal)
-            VStack(spacing: 15) {
-                // 3D Pill Preview
-                HStack(spacing: 20) {
-                    Pill3DView(shape: mapToPill3DShape(selectedShape), color: selectedColor)
-                        .frame(width: 80, height: 40)
-                        .padding(.vertical, 8)
-                    Button(NSLocalizedString("Select Shape", comment: "")) {
-                        showingShapePicker = true
+            
+            VStack(spacing: 20) {
+                // Enhanced 3D Pill Preview
+                VStack(spacing: 12) {
+                    Text(NSLocalizedString("Preview", comment: ""))
+                        .font(.system(size: userSettings.textSize.size - 1, weight: .semibold))
+                        .foregroundColor(.secondary)
+                    
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 16)
+                            .fill(Color(.systemGray6))
+                            .frame(height: 120)
+                        
+                        Enhanced3DPill(shape: mapToEnhanced3DShape(selectedShape), color: selectedColor)
+                            .scaleEffect(1.2)
                     }
-                    .font(.system(size: userSettings.textSize.size))
-                    .padding(.leading, 8)
-                    Spacer()
-                }
-                .sheet(isPresented: $showingShapePicker) {
-                    PillShapeView(selectedShape: $selectedShape)
-                        .environmentObject(userSettings)
-                }
-                // Color Picker
-                HStack {
-                    Text(NSLocalizedString("Pill Color", comment: ""))
+                    
+                    Button(action: { showingShapePicker = true }) {
+                        HStack {
+                            Image(systemName: "pills.fill")
+                            Text(NSLocalizedString("Change Shape", comment: ""))
+                        }
                         .font(.system(size: userSettings.textSize.size))
-                    Spacer()
-                    Button(action: { showingColorPicker = true }) {
-                        Circle()
-                            .fill(selectedColor)
-                            .frame(width: 30, height: 30)
-                            .overlay(Circle().stroke(Color.gray, lineWidth: 1))
+                        .foregroundColor(.blue)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 8)
+                        .background(Color.blue.opacity(0.1))
+                        .cornerRadius(20)
                     }
                 }
-                .sheet(isPresented: $showingColorPicker) {
-                    ColorPicker(NSLocalizedString("Select Pill Color", comment: ""), selection: $selectedColor)
-                        .padding()
+                
+                Divider()
+                
+                // Enhanced Color Selection
+                VStack(spacing: 12) {
+                    Text(NSLocalizedString("Color Selection", comment: ""))
+                        .font(.system(size: userSettings.textSize.size - 1, weight: .semibold))
+                        .foregroundColor(.secondary)
+                    
+                    // Pharmaceutical color palette
+                    LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 8), count: 7), spacing: 8) {
+                        ForEach(pharmaceuticalColors, id: \.name) { colorInfo in
+                            pharmaceuticalColorButton(color: colorInfo.color, name: colorInfo.name)
+                        }
+                    }
+                    
+                    // Custom color picker button
+                    Button(action: { showingColorPicker = true }) {
+                        HStack {
+                            Image(systemName: "paintpalette.fill")
+                            Text(NSLocalizedString("Custom Color", comment: ""))
+                        }
+                        .font(.system(size: userSettings.textSize.size - 1))
+                        .foregroundColor(.blue)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 8)
+                        .background(Color.blue.opacity(0.1))
+                        .cornerRadius(20)
+                    }
                 }
             }
             .padding()
@@ -338,10 +365,36 @@ struct MedicationInputView: View {
             .shadow(radius: 2)
         }
         .padding(.horizontal)
+        .sheet(isPresented: $showingShapePicker) {
+            PillShapeView(selectedShape: $selectedShape)
+                .environmentObject(userSettings)
+        }
+        .sheet(isPresented: $showingColorPicker) {
+            EnhancedColorPickerView(selectedColor: $selectedColor)
+                .environmentObject(userSettings)
+        }
     }
     
-    // Helper to map app PillShape to Pill3DView.PillShape
-    private func mapToPill3DShape(_ shape: PillShape) -> Pill3DView.PillShape {
+    // Pharmaceutical-inspired color palette
+    private let pharmaceuticalColors: [(name: String, color: Color)] = [
+        ("White", Color(red: 0.98, green: 0.98, blue: 0.98)),
+        ("Yellow", Color(red: 0.97, green: 0.85, blue: 0.3)),
+        ("Orange", Color(red: 0.98, green: 0.6, blue: 0.3)),
+        ("Pink", Color(red: 0.99, green: 0.75, blue: 0.8)),
+        ("Red", Color(red: 0.95, green: 0.3, blue: 0.25)),
+        ("Purple", Color(red: 0.6, green: 0.4, blue: 0.8)),
+        ("Blue", Color(red: 0.35, green: 0.55, blue: 0.85)),
+        ("Mint", Color(red: 0.75, green: 0.95, blue: 0.8)),
+        ("Green", Color(red: 0.3, green: 0.75, blue: 0.4)),
+        ("Brown", Color(red: 0.65, green: 0.45, blue: 0.25)),
+        ("Gray", Color(red: 0.75, green: 0.75, blue: 0.75)),
+        ("Cream", Color(red: 0.96, green: 0.93, blue: 0.86)),
+        ("L.Blue", Color(red: 0.7, green: 0.85, blue: 0.98)),
+        ("Black", Color(red: 0.25, green: 0.25, blue: 0.25))
+    ]
+    
+    // Helper to map app PillShape to Enhanced3DPill.PillShape
+    private func mapToEnhanced3DShape(_ shape: PillShape) -> Enhanced3DPill.PillShape {
         switch shape {
         case .round: return .round
         case .oval: return .oval
@@ -350,6 +403,29 @@ struct MedicationInputView: View {
         case .diamond: return .diamond
         case .triangle: return .triangle
         case .other: return .capsule // fallback
+        }
+    }
+    
+    // Enhanced pharmaceutical color button
+    private func pharmaceuticalColorButton(color: Color, name: String) -> some View {
+        Button(action: {
+            selectedColor = color
+        }) {
+            VStack(spacing: 4) {
+                Circle()
+                    .fill(color)
+                    .frame(width: 32, height: 32)
+                    .overlay(
+                        Circle()
+                            .stroke(selectedColor.toHexString() == color.toHexString() ? Color.blue : Color.gray.opacity(0.3), lineWidth: selectedColor.toHexString() == color.toHexString() ? 3 : 1)
+                    )
+                    .shadow(color: Color.black.opacity(0.15), radius: 2, x: 1, y: 1)
+                
+                Text(name)
+                    .font(.system(size: userSettings.textSize.size - 4))
+                    .foregroundColor(.secondary)
+                    .lineLimit(1)
+            }
         }
     }
 }

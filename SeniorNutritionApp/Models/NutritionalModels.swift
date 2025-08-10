@@ -273,8 +273,8 @@ enum MealType: String, CaseIterable, Identifiable, Codable {
         switch self {
         case .breakfast: return "sunrise.fill"
         case .lunch: return "sun.max.fill"
-        case .dinner: return "sunset.fill"
-        case .snack: return "lightbulb.fill"
+        case .dinner: return "moon.fill"
+        case .snack: return "leaf.fill"
         }
     }
     
@@ -290,9 +290,13 @@ enum MealType: String, CaseIterable, Identifiable, Codable {
     var color: Color {
         switch self {
         case .breakfast: return .orange
-        case .lunch: return .yellow
-        case .dinner: return .blue
+        case .lunch: return .blue
+        case .dinner: return .purple
         case .snack: return .green
         }
+    }
+    
+    var displayName: String {
+        return localizedName
     }
 } 

@@ -60,7 +60,7 @@ struct NutritionalDashboardView: View {
                 showingPremiumUpgrade = true
             }
         } message: {
-            Text(NSLocalizedString("Extended nutrition analytics history is available with Advanced or Premium subscription. Free users can view up to 7 days of data.", comment: ""))
+            Text(NSLocalizedString("Extended nutrition analytics history is available with Premium subscription. Free users can view up to 7 days of data.", comment: ""))
         }
     }
     

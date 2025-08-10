@@ -66,7 +66,7 @@ struct BloodPressureDetailView: View {
                 showingPremiumUpgrade = true
             }
         } message: {
-            Text(NSLocalizedString("Extended analytics history is available with Advanced or Premium subscription. Free users can view up to 7 days of data.", comment: ""))
+            Text(NSLocalizedString("Extended analytics history is available with Premium subscription. Free users can view up to 7 days of data.", comment: ""))
         }
         .alert(NSLocalizedString("Delete Entry", comment: "Alert title for deleting entry"), isPresented: $showingDeleteAlert) {
             Button(NSLocalizedString("Delete", comment: "Delete button text"), role: .destructive) {

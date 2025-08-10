@@ -1,6 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import { useLanguage } from "./contexts/LanguageContext";
+import LanguageSwitcher from "./components/LanguageSwitcher";
+import { useState } from "react";
+import Navbar from "./components/Navbar";
 
 const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
   e.currentTarget.style.display = 'none';
@@ -11,34 +15,12 @@ const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
 };
 
 export default function Home() {
+  const { t, language } = useLanguage();
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-white">
-      {/* Navigation */}
-      <nav className="bg-white shadow-sm fixed w-full top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <div className="flex items-center space-x-3">
-                <Image 
-                  src="/images/app-icon.png" 
-                  alt="Senior Nutrition App Icon" 
-                  width={40}
-                  height={40}
-                  className="rounded-lg shadow-sm"
-                />
-                <h1 className="text-xl font-bold text-gray-900">Senior Nutrition</h1>
-              </div>
-            </div>
-            <div className="hidden md:flex items-center space-x-8">
-              <a href="#features" className="text-gray-700 hover:text-blue-600 transition-colors">Features</a>
-              <a href="#health" className="text-gray-700 hover:text-blue-600 transition-colors">Health Tracking</a>
-              <a href="#safety" className="text-gray-700 hover:text-blue-600 transition-colors">Safety</a>
-              <a href="#download" className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">Download App</a>
-            </div>
-          </div>
-        </div>
-      </nav>
-
+      <Navbar />
       {/* Hero Section */}
       <section className="pt-24 pb-20 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -55,20 +37,19 @@ export default function Home() {
             </div>
             
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Your Personal
-              <span className="text-blue-600"> Nutrition Companion</span>
-              <br />for Healthy Aging
+              {t('hero.title.part1')}
+              <span className="text-blue-600"> {t('hero.title.part2')}</span>
+              <br />{t('hero.title.part3')}
             </h1>
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Senior Nutrition is a comprehensive health and wellness app designed specifically for adults aged 50 and above. 
-              Track nutrition, manage medications, monitor health metrics, and follow safe fasting protocols - all in one accessible app.
+              {t('hero.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <a href="#download" className="bg-blue-600 text-white px-8 py-4 rounded-lg font-medium hover:bg-blue-700 transition-colors text-lg">
-                📱 Download on App Store
+                {t('hero.download')}
               </a>
               <a href="#features" className="border border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-medium hover:bg-gray-50 transition-colors text-lg">
-                Explore Features
+                {t('hero.explore')}
               </a>
             </div>
             
@@ -92,7 +73,7 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="p-4 text-center">
-                      <h3 className="font-semibold text-gray-900 mb-2">Nutrition Tracking</h3>
+                      <h3 className="font-semibold text-gray-900 mb-2">{t('features.nutrition.title')}</h3>
                       <p className="text-sm text-gray-600">Smart meal logging with nutritional analysis</p>
                     </div>
                   </div>
@@ -113,7 +94,7 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="p-4 text-center">
-                      <h3 className="font-semibold text-gray-900 mb-2">Safe Fasting</h3>
+                      <h3 className="font-semibold text-gray-900 mb-2">{t('features.fasting.title')}</h3>
                       <p className="text-sm text-gray-600">Senior-friendly intermittent fasting protocols</p>
                     </div>
                   </div>
@@ -134,7 +115,7 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="p-4 text-center">
-                      <h3 className="font-semibold text-gray-900 mb-2">Medication Management</h3>
+                      <h3 className="font-semibold text-gray-900 mb-2">{t('features.medication.title')}</h3>
                       <p className="text-sm text-gray-600">Visual pill identification and smart reminders</p>
                     </div>
                   </div>
@@ -149,8 +130,8 @@ export default function Home() {
       <section id="features" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Comprehensive Health Management</h2>
-            <p className="text-xl text-gray-600">Everything you need to maintain your health and independence as you age</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t('features.title')}</h2>
+            <p className="text-xl text-gray-600">{t('features.subtitle')}</p>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -174,13 +155,13 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Smart Nutrition Tracking</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">{t('features.nutrition.title')}</h3>
               <ul className="text-gray-600 space-y-2">
-                <li>• Photo-based meal logging</li>
-                <li>• Barcode scanner for packaged foods</li>
-                <li>• Voice input for hands-free recording</li>
-                <li>• Personalized nutritional analysis</li>
-                <li>• Senior-specific dietary recommendations</li>
+                <li>• {t('features.nutrition.photo')}</li>
+                <li>• {t('features.nutrition.barcode')}</li>
+                <li>• {t('features.nutrition.voice')}</li>
+                <li>• {t('features.nutrition.analysis')}</li>
+                <li>• {t('features.nutrition.recommendations')}</li>
               </ul>
             </div>
 
@@ -204,43 +185,13 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Safe Fasting Protocols</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">{t('features.fasting.title')}</h3>
               <ul className="text-gray-600 space-y-2">
-                <li>• Multiple fasting options (12:12, 14:10, 16:8)</li>
-                <li>• Real-time progress tracking</li>
-                <li>• Emergency override with one tap</li>
-                <li>• Integration with medication schedules</li>
-                <li>• Health safety indicators</li>
-              </ul>
-            </div>
-
-            {/* Health Monitoring */}
-            <div className="bg-red-50 p-8 rounded-2xl hover:shadow-lg transition-shadow">
-              <div className="flex items-center justify-between mb-6">
-                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center">
-                  <span className="text-2xl">❤️</span>
-                </div>
-                <div className="w-20 h-20 bg-white rounded-lg overflow-hidden shadow-sm">
-                  <Image 
-                    src="/images/screenshots/health-monitoring.png" 
-                    alt="Health Monitoring Preview" 
-                    width={80}
-                    height={160}
-                    className="w-full h-full object-cover"
-                        onError={handleImageError}
-                  />
-                  <div className="hidden w-full h-full bg-gray-200 items-center justify-center">
-                    <span className="text-xs text-gray-500">📸</span>
-                  </div>
-                </div>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Vital Health Monitoring</h3>
-              <ul className="text-gray-600 space-y-2">
-                <li>• Blood pressure tracking</li>
-                <li>• Blood sugar monitoring</li>
-                <li>• Heart rate recording</li>
-                <li>• Weight management</li>
-                <li>• Visual trends and analytics</li>
+                <li>• {t('features.fasting.options')}</li>
+                <li>• {t('features.fasting.tracking')}</li>
+                <li>• {t('features.fasting.emergency')}</li>
+                <li>• {t('features.fasting.integration')}</li>
+                <li>• {t('features.fasting.safety')}</li>
               </ul>
             </div>
 
@@ -264,20 +215,50 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Medication Management</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">{t('features.medication.title')}</h3>
               <ul className="text-gray-600 space-y-2">
-                <li>• 3D pill shape and color identification</li>
-                <li>• Smart scheduling with fasting alerts</li>
-                <li>• Refill reminders</li>
-                <li>• Food and timing requirements</li>
-                <li>• Medication history tracking</li>
+                <li>• {t('features.medication.visual')}</li>
+                <li>• {t('features.medication.reminders')}</li>
+                <li>• {t('features.medication.schedule')}</li>
+                <li>• {t('features.medication.interactions')}</li>
+                <li>• {t('features.medication.export')}</li>
               </ul>
             </div>
 
-            {/* Appointment Tracking */}
+            {/* Health Monitoring */}
             <div className="bg-blue-50 p-8 rounded-2xl hover:shadow-lg transition-shadow">
               <div className="flex items-center justify-between mb-6">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+                  <span className="text-2xl">❤️</span>
+                </div>
+                <div className="w-20 h-20 bg-white rounded-lg overflow-hidden shadow-sm">
+                  <Image 
+                    src="/images/screenshots/health-monitoring.png" 
+                    alt="Health Monitoring Preview" 
+                    width={80}
+                    height={160}
+                    className="w-full h-full object-cover"
+                        onError={handleImageError}
+                  />
+                  <div className="hidden w-full h-full bg-gray-200 items-center justify-center">
+                    <span className="text-xs text-gray-500">📸</span>
+                  </div>
+                </div>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">{t('features.health.title')}</h3>
+              <ul className="text-gray-600 space-y-2">
+                <li>• {t('features.health.blood')}</li>
+                <li>• {t('features.health.heart')}</li>
+                <li>• {t('features.health.weight')}</li>
+                <li>• {t('features.health.sugar')}</li>
+                <li>• {t('features.health.trends')}</li>
+              </ul>
+            </div>
+
+            {/* Appointment Management */}
+            <div className="bg-indigo-50 p-8 rounded-2xl hover:shadow-lg transition-shadow">
+              <div className="flex items-center justify-between mb-6">
+                <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center">
                   <span className="text-2xl">📅</span>
                 </div>
                 <div className="w-20 h-20 bg-white rounded-lg overflow-hidden shadow-sm">
@@ -294,26 +275,26 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Appointment Management</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">{t('features.appointments.title')}</h3>
               <ul className="text-gray-600 space-y-2">
-                <li>• Easy medical appointment scheduling</li>
-                <li>• Customizable advance reminders</li>
-                <li>• Provider and location storage</li>
-                <li>• Calendar integration</li>
-                <li>• Caregiver sharing options</li>
+                <li>• {t('features.appointments.schedule')}</li>
+                <li>• {t('features.appointments.reminders')}</li>
+                <li>• {t('features.appointments.notes')}</li>
+                <li>• {t('features.appointments.export')}</li>
+                <li>• {t('features.appointments.coordination')}</li>
               </ul>
             </div>
 
-            {/* Accessibility */}
-            <div className="bg-indigo-50 p-8 rounded-2xl hover:shadow-lg transition-shadow">
+            {/* Voice Assistance */}
+            <div className="bg-pink-50 p-8 rounded-2xl hover:shadow-lg transition-shadow">
               <div className="flex items-center justify-between mb-6">
-                <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center">
-                  <span className="text-2xl">♿</span>
+                <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center">
+                  <span className="text-2xl">🎤</span>
                 </div>
                 <div className="w-20 h-20 bg-white rounded-lg overflow-hidden shadow-sm">
                   <Image 
-                    src="/images/screenshots/settings.png" 
-                    alt="Accessibility Settings Preview" 
+                    src="/images/screenshots/home-screen.png" 
+                    alt="Voice Assistance Preview" 
                     width={80}
                     height={160}
                     className="w-full h-full object-cover"
@@ -324,222 +305,80 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Enhanced Accessibility</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Voice Assistance</h3>
               <ul className="text-gray-600 space-y-2">
-                <li>• Adjustable text sizes</li>
-                <li>• Voice assistance throughout</li>
                 <li>• Multi-language support</li>
-                <li>• Simple, uncluttered interface</li>
-                <li>• Large, touch-friendly buttons</li>
+                <li>• Voice-guided meal logging</li>
+                <li>• Hands-free medication reminders</li>
+                <li>• Accessibility features</li>
+                <li>• Senior-friendly voice commands</li>
               </ul>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Screenshots Gallery */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+      {/* Health Monitoring Section */}
+      <section id="health" className="py-20 bg-gradient-to-r from-green-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">See the App in Action</h2>
-            <p className="text-xl text-gray-600">Real screenshots from the Senior Nutrition app interface</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t('health.section.title')}</h2>
+            <p className="text-xl text-gray-600">{t('health.section.subtitle')}</p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Home Screen */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="h-80 bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg flex items-center justify-center mb-4 overflow-hidden">
-                <Image 
-                  src="/images/screenshots/home-screen.png" 
-                  alt="Home Dashboard Screen" 
-                  width={250}
-                  height={500}
-                  className="max-w-full max-h-full object-contain"
-                        onError={handleImageError}
-                />
-                <div className="hidden flex-col items-center justify-center text-center p-4">
-                  <div className="text-4xl mb-2">📱</div>
-                  <p className="text-sm text-gray-600 font-medium">Add home-screen.png</p>
-                  <p className="text-xs text-gray-500 mt-1">Main dashboard screenshot</p>
-                </div>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Dashboard Overview</h3>
-              <p className="text-gray-600">Your daily health summary and quick access to all features</p>
-            </div>
-            
-            {/* Health Monitoring */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="h-80 bg-gradient-to-br from-red-100 to-red-200 rounded-lg flex items-center justify-center mb-4 overflow-hidden">
-                <Image 
-                  src="/images/screenshots/health-monitoring.png" 
-                  alt="Health Monitoring Screen" 
-                  width={250}
-                  height={500}
-                  className="max-w-full max-h-full object-contain"
-                        onError={handleImageError}
-                />
-                <div className="hidden flex-col items-center justify-center text-center p-4">
-                  <div className="text-4xl mb-2">❤️</div>
-                  <p className="text-sm text-gray-600 font-medium">Add health-monitoring.png</p>
-                  <p className="text-xs text-gray-500 mt-1">Health metrics dashboard</p>
-                </div>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Health Tracking</h3>
-              <p className="text-gray-600">Monitor vital signs, track trends, and view health analytics</p>
-            </div>
-            
-            {/* Appointments */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="h-80 bg-gradient-to-br from-indigo-100 to-indigo-200 rounded-lg flex items-center justify-center mb-4 overflow-hidden">
-                <Image 
-                  src="/images/screenshots/appointment-view.png" 
-                  alt="Appointment Management Screen" 
-                  width={250}
-                  height={500}
-                  className="max-w-full max-h-full object-contain"
-                        onError={handleImageError}
-                />
-                <div className="hidden flex-col items-center justify-center text-center p-4">
-                  <div className="text-4xl mb-2">📅</div>
-                  <p className="text-sm text-gray-600 font-medium">Add appointment-view.png</p>
-                  <p className="text-xs text-gray-500 mt-1">Appointments calendar</p>
-                </div>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Appointments</h3>
-              <p className="text-gray-600">Never miss a medical appointment with smart reminders</p>
-            </div>
-            
-            {/* Nutrition Detail */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="h-80 bg-gradient-to-br from-green-100 to-green-200 rounded-lg flex items-center justify-center mb-4 overflow-hidden">
-                <Image 
-                  src="/images/screenshots/nutrition-tracking.png" 
-                  alt="Detailed Nutrition Tracking" 
-                  width={250}
-                  height={500}
-                  className="max-w-full max-h-full object-contain"
-                        onError={handleImageError}
-                />
-                <div className="hidden flex-col items-center justify-center text-center p-4">
-                  <div className="text-4xl mb-2">🍽️</div>
-                  <p className="text-sm text-gray-600 font-medium">Add nutrition-tracking.png</p>
-                  <p className="text-xs text-gray-500 mt-1">Meal logging interface</p>
-                </div>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Nutrition Analysis</h3>
-              <p className="text-gray-600">Detailed meal tracking with nutritional breakdowns</p>
-            </div>
-            
-            {/* Fasting Timer */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="h-80 bg-gradient-to-br from-orange-100 to-orange-200 rounded-lg flex items-center justify-center mb-4 overflow-hidden">
-                <Image 
-                  src="/images/screenshots/fasting-timer.png" 
-                  alt="Fasting Timer Interface" 
-                  width={250}
-                  height={500}
-                  className="max-w-full max-h-full object-contain"
-                        onError={handleImageError}
-                />
-                <div className="hidden flex-col items-center justify-center text-center p-4">
-                  <div className="text-4xl mb-2">⏱️</div>
-                  <p className="text-sm text-gray-600 font-medium">Add fasting-timer.png</p>
-                  <p className="text-xs text-gray-500 mt-1">Active fasting session</p>
-                </div>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Fasting Timer</h3>
-              <p className="text-gray-600">Safe intermittent fasting with emergency override</p>
-            </div>
-            
-            {/* Settings */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="h-80 bg-gradient-to-br from-purple-100 to-purple-200 rounded-lg flex items-center justify-center mb-4 overflow-hidden">
-                <Image 
-                  src="/images/screenshots/settings.png" 
-                  alt="Settings and Preferences" 
-                  width={250}
-                  height={500}
-                  className="max-w-full max-h-full object-contain"
-                        onError={handleImageError}
-                />
-                <div className="hidden flex-col items-center justify-center text-center p-4">
-                  <div className="text-4xl mb-2">⚙️</div>
-                  <p className="text-sm text-gray-600 font-medium">Add settings.png</p>
-                  <p className="text-xs text-gray-500 mt-1">User preferences screen</p>
-                </div>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Personalization</h3>
-              <p className="text-gray-600">Customize the app for your specific needs and preferences</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Health Tracking Deep Dive */}
-      <section id="health" className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                Complete Health Monitoring
-              </h2>
-              <p className="text-lg text-gray-600 mb-8">
-                Track all your vital health metrics with easy data entry, visual trends, and exportable reports 
-                perfect for sharing with your healthcare providers.
-              </p>
-              
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-red-600 text-sm">❤️</span>
+                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-xl">❤️</span>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">Blood Pressure & Heart Rate</h3>
-                    <p className="text-gray-600">Track systolic/diastolic readings and heart rate with customizable target ranges</p>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">{t('health.metric.blood_pressure.title')}</h3>
+                    <p className="text-gray-600">{t('health.metric.blood_pressure.desc')}</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-purple-600 text-sm">🩸</span>
+                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-xl">💓</span>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">Blood Sugar Monitoring</h3>
-                    <p className="text-gray-600">Monitor glucose levels with diabetes management features and trend analysis</p>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">{t('health.metric.heart_rate.title')}</h3>
+                    <p className="text-gray-600">{t('health.metric.heart_rate.desc')}</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-blue-600 text-sm">⚖️</span>
+                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-xl">⚖️</span>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">Weight & BMI Tracking</h3>
-                    <p className="text-gray-600">Monitor weight changes with automatic BMI calculation and trend visualization</p>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">{t('health.metric.weight.title')}</h3>
+                    <p className="text-gray-600">{t('health.metric.weight.desc')}</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-xl">🩸</span>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">{t('health.metric.blood_sugar.title')}</h3>
+                    <p className="text-gray-600">{t('health.metric.blood_sugar.desc')}</p>
                   </div>
                 </div>
               </div>
             </div>
             
-            <div className="bg-white rounded-2xl p-8 shadow-lg">
-              <h3 className="text-xl font-bold text-gray-900 mb-6">Health Dashboard Preview</h3>
+            <div className="bg-white rounded-2xl p-8 shadow-xl">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">{t('health.summary.title')}</h3>
               
-              {/* Screenshot Container */}
-              <div className="h-96 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex items-center justify-center mb-6 overflow-hidden">
-                <Image 
-                  src="/images/screenshots/health-monitoring.png" 
-                  alt="Health Monitoring Dashboard" 
-                  width={300}
-                  height={600}
-                  className="max-w-full max-h-full object-contain rounded-lg"
-                        onError={handleImageError}
-                />
-                <div className="hidden">
                   <div className="space-y-4">
                     <div className="flex justify-between items-center p-4 bg-red-50 rounded-lg">
                       <div className="flex items-center space-x-3">
                         <span className="text-red-600">❤️</span>
-                        <span className="font-medium">Blood Pressure</span>
+                    <span className="font-medium">{t('health.summary.blood_pressure')}</span>
                       </div>
                       <span className="font-bold text-red-600">120/80 mmHg</span>
                     </div>
@@ -547,7 +386,7 @@ export default function Home() {
                     <div className="flex justify-between items-center p-4 bg-orange-50 rounded-lg">
                       <div className="flex items-center space-x-3">
                         <span className="text-orange-600">📊</span>
-                        <span className="font-medium">Heart Rate</span>
+                    <span className="font-medium">{t('health.summary.heart_rate')}</span>
                       </div>
                       <span className="font-bold text-orange-600">72 BPM</span>
                     </div>
@@ -555,7 +394,7 @@ export default function Home() {
                     <div className="flex justify-between items-center p-4 bg-blue-50 rounded-lg">
                       <div className="flex items-center space-x-3">
                         <span className="text-blue-600">⚖️</span>
-                        <span className="font-medium">Weight</span>
+                    <span className="font-medium">{t('health.summary.weight')}</span>
                       </div>
                       <span className="font-bold text-blue-600">75.2 kg</span>
                     </div>
@@ -563,23 +402,21 @@ export default function Home() {
                     <div className="flex justify-between items-center p-4 bg-purple-50 rounded-lg">
                       <div className="flex items-center space-x-3">
                         <span className="text-purple-600">🩸</span>
-                        <span className="font-medium">Blood Sugar</span>
+                    <span className="font-medium">{t('health.summary.blood_sugar')}</span>
                       </div>
                       <span className="font-bold text-purple-600">95 mg/dL</span>
                     </div>
                   </div>
                   
                   <div className="mt-6 p-4 bg-green-50 rounded-lg">
-                    <p className="text-sm text-green-700 font-medium">✅ All readings within healthy ranges</p>
-                  </div>
-                </div>
+                <p className="text-sm text-green-700 font-medium">✅ {t('health.summary.healthy')}</p>
+              </div>
               </div>
               
               {/* Instructions for missing screenshot */}
               <div className="text-center text-gray-500 text-sm">
                 <p>📸 Add <strong>health-monitoring.png</strong> screenshot to show actual health dashboard</p>
                 <p className="mt-1">Screenshot should show: Blood pressure, heart rate, weight, and blood sugar tracking</p>
-              </div>
             </div>
           </div>
         </div>
@@ -589,8 +426,8 @@ export default function Home() {
       <section id="safety" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Safety First, Always</h2>
-            <p className="text-xl text-gray-600">Designed specifically for seniors with safety features and emergency protocols</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t('safety.title')}</h2>
+            <p className="text-xl text-gray-600">{t('safety.subtitle')}</p>
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
@@ -598,24 +435,24 @@ export default function Home() {
               <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-3xl">🛡️</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Emergency Override</h3>
-              <p className="text-gray-600">One-tap emergency override for fasting protocols when you need immediate nutrition or medication</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">{t('safety.emergency.title')}</h3>
+              <p className="text-gray-600">{t('safety.emergency.desc')}</p>
             </div>
             
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-3xl">👨‍⚕️</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Healthcare Integration</h3>
-              <p className="text-gray-600">Export all your health data to share with doctors and healthcare providers for better care coordination</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">{t('safety.healthcare.title')}</h3>
+              <p className="text-gray-600">{t('safety.healthcare.desc')}</p>
             </div>
             
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-3xl">🔒</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Privacy Protection</h3>
-              <p className="text-gray-600">Your health data stays on your device. Encrypted, secure, and never shared with third parties without your consent</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">{t('safety.privacy.title')}</h3>
+              <p className="text-gray-600">{t('safety.privacy.desc')}</p>
             </div>
           </div>
         </div>
@@ -624,25 +461,25 @@ export default function Home() {
       {/* Language Support */}
       <section className="py-20 bg-gradient-to-r from-blue-50 to-indigo-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Available in Multiple Languages</h2>
-          <p className="text-xl text-gray-600 mb-12">Designed to serve diverse communities with full language support</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">{t('language.title')}</h2>
+          <p className="text-xl text-gray-600 mb-12">{t('language.subtitle')}</p>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="bg-white p-6 rounded-xl shadow-sm">
               <div className="text-3xl mb-3">🇺🇸</div>
-              <h3 className="font-semibold">English</h3>
+              <h3 className="font-semibold">{t('language.english')}</h3>
             </div>
             <div className="bg-white p-6 rounded-xl shadow-sm">
               <div className="text-3xl mb-3">🇮🇱</div>
-              <h3 className="font-semibold">עברית</h3>
+              <h3 className="font-semibold">{t('language.hebrew')}</h3>
             </div>
             <div className="bg-white p-6 rounded-xl shadow-sm">
               <div className="text-3xl mb-3">🇫🇷</div>
-              <h3 className="font-semibold">Français</h3>
+              <h3 className="font-semibold">{t('language.french')}</h3>
             </div>
             <div className="bg-white p-6 rounded-xl shadow-sm">
               <div className="text-3xl mb-3">🇪🇸</div>
-              <h3 className="font-semibold">Español</h3>
+              <h3 className="font-semibold">{t('language.spanish')}</h3>
             </div>
           </div>
         </div>
@@ -651,33 +488,33 @@ export default function Home() {
       {/* Download Section */}
       <section id="download" className="py-20 bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Start Your Health Journey?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">{t('download.title')}</h2>
           <p className="text-xl text-gray-300 mb-12">
-            Download Senior Nutrition today and take control of your health with confidence
+            {t('download.subtitle')}
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
             <a 
-              href="https://apps.apple.com/app/senior-nutrition" 
+              // href removed for Coming Soon
               className="bg-white text-gray-900 px-8 py-4 rounded-lg font-medium hover:bg-gray-100 transition-colors text-lg flex items-center justify-center space-x-3"
             >
               <span className="text-2xl">📱</span>
-              <span>Download on the App Store</span>
+              <span>{t('download.button')}</span>
             </a>
           </div>
           
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div>
               <div className="text-3xl font-bold text-blue-400 mb-2">50+</div>
-              <p className="text-gray-300">Age range designed for</p>
+              <p className="text-gray-300">{t('download.age')}</p>
             </div>
             <div>
               <div className="text-3xl font-bold text-green-400 mb-2">4.8★</div>
-              <p className="text-gray-300">Average user rating</p>
+              <p className="text-gray-300">{t('download.rating')}</p>
             </div>
             <div>
               <div className="text-3xl font-bold text-purple-400 mb-2">10K+</div>
-              <p className="text-gray-300">Happy users</p>
+              <p className="text-gray-300">{t('download.users')}</p>
             </div>
           </div>
         </div>
@@ -697,34 +534,34 @@ export default function Home() {
                 <h3 className="text-lg font-semibold text-gray-900">Senior Nutrition</h3>
               </div>
               <p className="text-gray-600">
-                Your comprehensive health companion designed specifically for seniors, supporting healthy aging through personalized nutrition and wellness tracking.
+                {t('footer.description')}
               </p>
             </div>
             
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Features</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('footer.features.title')}</h3>
               <ul className="space-y-2 text-gray-600">
-                <li>Nutrition Tracking</li>
-                <li>Fasting Protocols</li>
-                <li>Health Monitoring</li>
-                <li>Medication Management</li>
-                <li>Appointment Scheduling</li>
+                <li>{t('footer.features.nutrition')}</li>
+                <li>{t('footer.features.fasting')}</li>
+                <li>{t('footer.features.health')}</li>
+                <li>{t('footer.features.medication')}</li>
+                <li>{t('footer.features.appointments')}</li>
               </ul>
             </div>
             
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Support</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('footer.support.title')}</h3>
               <ul className="space-y-2 text-gray-600">
-                <li>Help Center</li>
-                <li>Video Tutorials</li>
-                <li>Contact Support</li>
-                <li>Privacy Policy</li>
-                <li>Terms of Service</li>
+                <li>{t('footer.support.help')}</li>
+                <li>{t('footer.support.tutorials')}</li>
+                <li>{t('footer.support.contact')}</li>
+                <li>{t('footer.support.privacy')}</li>
+                <li>{t('footer.support.terms')}</li>
               </ul>
             </div>
             
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Connect</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('footer.connect.title')}</h3>
               <ul className="space-y-2 text-gray-600">
                 <li>support@seniornutrition.com</li>
                 <li>+1 (800) 123-4567</li>
@@ -735,7 +572,7 @@ export default function Home() {
           </div>
           
           <div className="border-t border-gray-200 mt-8 pt-8 text-center text-gray-600">
-            <p>&copy; 2024 Senior Nutrition App. All rights reserved. Designed for healthy aging with safety and accessibility in mind.</p>
+            <p>{t('footer.copyright')}</p>
           </div>
         </div>
       </footer>

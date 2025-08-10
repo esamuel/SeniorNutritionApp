@@ -1,0 +1,8 @@
+ProfileSetup.mp4
+Resources/
+SeniorNutritionApp.xcarchive/
+build/
+*.xcarchive
+SeniorNutritionApp/
+*.mp4
+FoodDatabase_Backup*/

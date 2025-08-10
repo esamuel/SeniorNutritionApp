@@ -4,12 +4,12 @@ struct VideoTutorialsView: View {
     @EnvironmentObject private var userSettings: UserSettings
 
     private let tutorials = [
-        VideoTutorial(titleKey: "video_title_getting_started", descriptionKey: "video_desc_getting_started", videoName: "GettingStarted", videoType: "mov"),
-        VideoTutorial(titleKey: "video_title_profile", descriptionKey: "video_desc_profile", videoName: "ProfileSetup", videoType: "mp4"),
-        VideoTutorial(titleKey: "video_title_medication", descriptionKey: "video_desc_medication", videoName: "MedicationManagement", videoType: "mp4"),
-        VideoTutorial(titleKey: "video_title_fasting", descriptionKey: "video_desc_fasting", videoName: "FastingTimer", videoType: "mp4"),
-        VideoTutorial(titleKey: "video_title_nutrition", descriptionKey: "video_desc_nutrition", videoName: "NutritionTracking", videoType: "mp4"),
-        VideoTutorial(titleKey: "video_title_accessibility", descriptionKey: "video_desc_accessibility", videoName: "AccessibilityFeatures", videoType: "mp4")
+        VideoTutorial(titleKey: "video_getting_started_title", descriptionKey: "video_getting_started_description", videoName: "GettingStarted", videoType: "mov"),
+        VideoTutorial(titleKey: "video_profile_management_title", descriptionKey: "video_profile_management_description", videoName: "ProfileSetup", videoType: "mp4"),
+        VideoTutorial(titleKey: "video_medication_management_title", descriptionKey: "video_medication_management_description", videoName: "MedicationManagement", videoType: "mp4"),
+        VideoTutorial(titleKey: "video_fasting_timer_title", descriptionKey: "video_fasting_timer_description", videoName: "FastingTimer", videoType: "mp4"),
+        VideoTutorial(titleKey: "video_nutrition_tracking_title", descriptionKey: "video_nutrition_tracking_description", videoName: "NutritionTracking", videoType: "mp4"),
+        VideoTutorial(titleKey: "video_accessibility_features_title", descriptionKey: "video_accessibility_features_description", videoName: "AccessibilityFeatures", videoType: "mp4")
     ]
 
     var body: some View {

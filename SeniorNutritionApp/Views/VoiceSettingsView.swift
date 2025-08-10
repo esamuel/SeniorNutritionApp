@@ -30,11 +30,12 @@ var canUseHumanLikeVoice: Bool {
 
 struct VoiceSettingsView: View {
     @EnvironmentObject private var userSettings: UserSettings
-    @StateObject private var voiceManager = VoiceManager.shared
+    @ObservedObject private var voiceManager = VoiceManager.shared
+    @ObservedObject private var elevenLabsTTS = TTSRouter.shared.elevenLabsTTS
     @State private var showingVoiceList = false
     @AppStorage("selectedVoiceEngine") private var selectedVoiceEngine: VoiceEngine = .system
     @State private var showUpgradeAlert = false
-    @StateObject private var elevenLabsTTS = ElevenLabsTTS()
+    @AppStorage("elevenLabsSelectedVoiceId") private var persistedElevenLabsVoiceId: String = "21m00Tcm4TlvDq8ikWAM" // Default to Rachel
     
     var body: some View {
         Form {
@@ -80,14 +81,19 @@ struct VoiceSettingsView: View {
                     if elevenLabsTTS.availableVoices.isEmpty {
                         Text("Loading voices...")
                     } else {
-                        Picker("AI Voice", selection: $elevenLabsTTS.selectedVoiceId) {
+                        Picker("AI Voice", selection: $persistedElevenLabsVoiceId) {
                             ForEach(elevenLabsTTS.availableVoices) { voice in
                                 Text("\(voice.name) (\(voice.labels["gender"] ?? "") - \(voice.labels["language"] ?? ""))")
                                     .tag(voice.voice_id)
                             }
                         }
-                        .onChange(of: elevenLabsTTS.selectedVoiceId) { oldValue, newValue in
+                        .onChange(of: persistedElevenLabsVoiceId) { oldValue, newValue in
+                            elevenLabsTTS.selectedVoiceId = newValue
                             TTSRouter.shared.elevenLabsTTS.selectedVoiceId = newValue
+                        }
+                        .onAppear {
+                            elevenLabsTTS.selectedVoiceId = persistedElevenLabsVoiceId
+                            TTSRouter.shared.elevenLabsTTS.selectedVoiceId = persistedElevenLabsVoiceId
                         }
                     }
                 }
@@ -167,23 +173,20 @@ struct VoiceSettingsView: View {
                 }
                 
                 Button(action: {
-                    // Use NSLocalizedString to ensure proper localization
-                    let testText = String(format: NSLocalizedString("This is a test of the voice settings", comment: "") + ". " + NSLocalizedString("I am speaking at", comment: "") + " %@ " + NSLocalizedString("rate", comment: "") + ".", userSettings.speechRate.rawValue)
-                    
-                    if selectedVoiceEngine == .system {
-                        TTSRouter.shared.speak(testText, userSettings: userSettings)
-                    } else if canUseHumanLikeVoice {
-                        TTSRouter.shared.elevenLabsTTS.speak(text: testText)
+                    // If TTS is currently playing, stop it
+                    if TTSRouter.shared.isSpeaking {
+                        TTSRouter.shared.stopSpeaking()
                     } else {
-                        showUpgradeAlert = true
+                        // Use NSLocalizedString to ensure proper localization
+                        let testText = String(format: NSLocalizedString("This is a test of the voice settings", comment: "") + ". " + NSLocalizedString("I am speaking at", comment: "") + " %@ " + NSLocalizedString("rate", comment: "") + ".", userSettings.speechRate.rawValue)
+                        TTSRouter.shared.speak(testText, userSettings: userSettings)
                     }
                 }) {
                     HStack(spacing: 4) {
-                        Image(systemName: TTSRouter.shared.elevenLabsTTS.audioPlayer?.isPlaying == true || VoiceManager.shared.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
+                        Image(systemName: TTSRouter.shared.isSpeaking ? "speaker.wave.2.fill" : "speaker.wave.2")
                             .foregroundColor(.white)
                             .imageScale(.large)
-                        
-                        if TTSRouter.shared.elevenLabsTTS.audioPlayer?.isPlaying == true || VoiceManager.shared.isSpeaking {
+                        if TTSRouter.shared.isSpeaking {
                             Text("Stop")
                                 .font(.system(size: 16))
                                 .foregroundColor(.white)
@@ -593,7 +596,6 @@ struct VoiceListView: View {
             "en-ZA": "English (South Africa)",
             "en-IN": "English (India)",
             "fr-FR": "French",
-            "de-DE": "German",
             "it-IT": "Italian",
             "es-ES": "Spanish (Spain)",
             "es-MX": "Spanish (Mexico)",
@@ -668,98 +670,6 @@ struct VoiceSettingsView_Previews: PreviewProvider {
         NavigationView {
             VoiceSettingsView()
                 .environmentObject(UserSettings())
-        }
-    }
-}
-
-import Foundation
-import AVFoundation
-
-typealias ElevenLabsVoiceLabels = [String: String]
-struct ElevenLabsVoice: Identifiable, Codable {
-    let voice_id: String
-    let name: String
-    let labels: ElevenLabsVoiceLabels
-    var id: String { voice_id }
-}
-
-typealias ElevenLabsVoicesResponse = [String: [ElevenLabsVoice]]
-
-class ElevenLabsTTS: ObservableObject {
-    let apiKey = "sk_7af8c15f9bf82108f037ba22f8704eda0d385ed99c150d26"
-    @Published var availableVoices: [ElevenLabsVoice] = []
-    @Published var selectedVoiceId: String = "21m00Tcm4TlvDq8ikWAM" // Rachel (English)
-    var audioPlayer: AVAudioPlayer?
-
-    init() {
-        fetchVoices()
-    }
-
-    func fetchVoices() {
-        guard let url = URL(string: "https://api.elevenlabs.io/v1/voices") else { return }
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        request.setValue(apiKey, forHTTPHeaderField: "xi-api-key")
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else { return }
-            do {
-                let json = try JSONSerialization.jsonObject(with: data) as? [String: Any]
-                if let voicesArr = json?["voices"] as? [[String: Any]] {
-                    let voices = voicesArr.compactMap { dict -> ElevenLabsVoice? in
-                        guard let voice_id = dict["voice_id"] as? String,
-                              let name = dict["name"] as? String,
-                              let labels = dict["labels"] as? [String: String] else { return nil }
-                        return ElevenLabsVoice(voice_id: voice_id, name: name, labels: labels)
-                    }
-                    DispatchQueue.main.async {
-                        self.availableVoices = voices
-                        if let first = voices.first { self.selectedVoiceId = first.voice_id }
-                    }
-                }
-            } catch { print("Failed to parse ElevenLabs voices: \(error)") }
-        }
-        task.resume()
-    }
-
-    func speak(text: String) {
-        let voiceId = selectedVoiceId
-        let url = URL(string: "https://api.elevenlabs.io/v1/text-to-speech/\(voiceId)")!
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("audio/mpeg", forHTTPHeaderField: "Accept")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue(apiKey, forHTTPHeaderField: "xi-api-key")
-
-        let body: [String: Any] = [
-            "text": text,
-            "model_id": "eleven_monolingual_v1",
-            "voice_settings": [
-                "stability": 0.5,
-                "similarity_boost": 0.75
-            ] as [String: Any]
-        ]
-        request.httpBody = try? JSONSerialization.data(withJSONObject: body)
-
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                let errorMessage = error?.localizedDescription ?? "Unknown error"
-                print("Error: \(errorMessage)")
-                return
-            }
-            DispatchQueue.main.async {
-                self.playAudio(data: data)
-            }
-        }
-        task.resume()
-    }
-
-    private func playAudio(data: Data) {
-        do {
-            self.audioPlayer = try AVAudioPlayer(data: data)
-            self.audioPlayer?.prepareToPlay()
-            self.audioPlayer?.play()
-        } catch {
-            print("Audio playback error: \(error)")
         }
     }
 }

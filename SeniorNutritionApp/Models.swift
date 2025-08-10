@@ -396,6 +396,60 @@ struct PersistentData: Codable {
     let userEmergencyContacts: [EmergencyContact]
     let preferredVoiceGender: VoiceGender
     let speechRate: SpeechRate
+    let enableAIFeatures: Bool?
+    
+    // Custom decoder to handle backward compatibility
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        textSize = try container.decode(TextSize.self, forKey: .textSize)
+        highContrastMode = try container.decode(Bool.self, forKey: .highContrastMode)
+        useVoiceInput = try container.decode(Bool.self, forKey: .useVoiceInput)
+        activeFastingProtocol = try container.decode(FastingProtocol.self, forKey: .activeFastingProtocol)
+        medications = try container.decode([Medication].self, forKey: .medications)
+        isOnboardingComplete = try container.decode(Bool.self, forKey: .isOnboardingComplete)
+        userName = try container.decode(String.self, forKey: .userName)
+        userAge = try container.decode(Int.self, forKey: .userAge)
+        userGender = try container.decode(String.self, forKey: .userGender)
+        userHeight = try container.decode(Double.self, forKey: .userHeight)
+        userWeight = try container.decode(Double.self, forKey: .userWeight)
+        userHealthGoals = try container.decode([String].self, forKey: .userHealthGoals)
+        userDietaryRestrictions = try container.decode([String].self, forKey: .userDietaryRestrictions)
+        userEmergencyContacts = try container.decode([EmergencyContact].self, forKey: .userEmergencyContacts)
+        preferredVoiceGender = try container.decode(VoiceGender.self, forKey: .preferredVoiceGender)
+        speechRate = try container.decode(SpeechRate.self, forKey: .speechRate)
+        
+        // Handle backward compatibility - default to false if not present
+        enableAIFeatures = try container.decodeIfPresent(Bool.self, forKey: .enableAIFeatures) ?? false
+    }
+    
+    // Manual initializer
+    init(textSize: TextSize, highContrastMode: Bool, useVoiceInput: Bool, activeFastingProtocol: FastingProtocol, medications: [Medication], isOnboardingComplete: Bool, userName: String, userAge: Int, userGender: String, userHeight: Double, userWeight: Double, userHealthGoals: [String], userDietaryRestrictions: [String], userEmergencyContacts: [EmergencyContact], preferredVoiceGender: VoiceGender, speechRate: SpeechRate, enableAIFeatures: Bool) {
+        self.textSize = textSize
+        self.highContrastMode = highContrastMode
+        self.useVoiceInput = useVoiceInput
+        self.activeFastingProtocol = activeFastingProtocol
+        self.medications = medications
+        self.isOnboardingComplete = isOnboardingComplete
+        self.userName = userName
+        self.userAge = userAge
+        self.userGender = userGender
+        self.userHeight = userHeight
+        self.userWeight = userWeight
+        self.userHealthGoals = userHealthGoals
+        self.userDietaryRestrictions = userDietaryRestrictions
+        self.userEmergencyContacts = userEmergencyContacts
+        self.preferredVoiceGender = preferredVoiceGender
+        self.speechRate = speechRate
+        self.enableAIFeatures = enableAIFeatures
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+        case textSize, highContrastMode, useVoiceInput, activeFastingProtocol, medications
+        case isOnboardingComplete, userName, userAge, userGender, userHeight, userWeight
+        case userHealthGoals, userDietaryRestrictions, userEmergencyContacts
+        case preferredVoiceGender, speechRate, enableAIFeatures
+    }
 }
 
 // BMI Category enum based on WHO standards
@@ -874,15 +928,12 @@ struct Appointment: Identifiable, Codable {
 
 enum SubscriptionTier: String, CaseIterable, Codable {
     case free = "free"
-    case advanced = "advanced" 
     case premium = "premium"
     
     var displayName: String {
         switch self {
         case .free:
-            return NSLocalizedString("Free", comment: "Free subscription tier")
-        case .advanced:
-            return NSLocalizedString("Advanced", comment: "Advanced subscription tier")
+            return NSLocalizedString("Free Trial", comment: "Free trial tier")
         case .premium:
             return NSLocalizedString("Premium", comment: "Premium subscription tier")
         }
@@ -891,22 +942,18 @@ enum SubscriptionTier: String, CaseIterable, Codable {
     var localizedDescription: String {
         switch self {
         case .free:
-            return NSLocalizedString("Basic features for getting started", comment: "Free tier description")
-        case .advanced:
-            return NSLocalizedString("Enhanced features for serious users", comment: "Advanced tier description")
+            return NSLocalizedString("7-day free trial with full access", comment: "Free trial description")
         case .premium:
-            return NSLocalizedString("Complete access to all features", comment: "Premium tier description")
+            return NSLocalizedString("Full access to all features", comment: "Premium tier description")
         }
     }
     
     var monthlyPrice: String {
         switch self {
         case .free:
-            return NSLocalizedString("Free", comment: "Free price")
-        case .advanced:
-            return "$9.99"
+            return NSLocalizedString("Free for 7 days", comment: "Free trial price")
         case .premium:
-            return "$19.99"
+            return "$9.99"
         }
     }
     
@@ -914,10 +961,8 @@ enum SubscriptionTier: String, CaseIterable, Codable {
         switch self {
         case .free:
             return NSLocalizedString("Free", comment: "Free price")
-        case .advanced:
-            return "$59.99"
         case .premium:
-            return "$119.99"
+            return "$99.99"
         }
     }
     
@@ -925,122 +970,106 @@ enum SubscriptionTier: String, CaseIterable, Codable {
         switch self {
         case .free:
             return ""
-        case .advanced:
-            return NSLocalizedString("Save 50%", comment: "Annual savings")
         case .premium:
-            return NSLocalizedString("Save 50%", comment: "Annual savings")
+            return NSLocalizedString("Save 17%", comment: "Annual savings")
         }
     }
     
-    // Feature access control
+    // Feature access control - Free trial gives full access
     var analyticsHistoryDays: Int {
         switch self {
-        case .free: return 7
-        case .advanced: return 90
+        case .free: return 365 // Full access during trial
         case .premium: return 365
         }
     }
     
     var maxCustomFastingProtocols: Int {
         switch self {
-        case .free: return 1
-        case .advanced: return 5
+        case .free: return -1 // Unlimited during trial
         case .premium: return -1 // unlimited
         }
     }
     
     var hasDataExport: Bool {
         switch self {
-        case .free: return false
-        case .advanced: return true
+        case .free: return true // Full access during trial
         case .premium: return true
         }
     }
     
     var hasAdvancedAnalytics: Bool {
         switch self {
-        case .free: return false
-        case .advanced: return true
+        case .free: return true // Full access during trial
         case .premium: return true
         }
     }
     
     var hasVoiceAssistant: Bool {
         switch self {
-        case .free: return false
-        case .advanced: return true
+        case .free: return true // Full access during trial
         case .premium: return true
         }
     }
     
     var hasPersonalizedTips: Bool {
         switch self {
-        case .free: return false
-        case .advanced: return true
+        case .free: return true // Full access during trial
         case .premium: return true
         }
     }
     
     var hasPrioritySupport: Bool {
         switch self {
-        case .free: return false
-        case .advanced: return true
+        case .free: return true // Full access during trial
         case .premium: return true
         }
     }
     
     var hasCoachChat: Bool {
         switch self {
-        case .free: return false
-        case .advanced: return false
+        case .free: return true // Full access during trial
         case .premium: return true
         }
     }
     
     var hasAIDrivenSuggestions: Bool {
         switch self {
-        case .free: return false
-        case .advanced: return false
+        case .free: return true // Full access during trial
         case .premium: return true
         }
     }
     
     var hasFamilyAccess: Bool {
         switch self {
-        case .free: return false
-        case .advanced: return false
+        case .free: return true // Full access during trial
         case .premium: return true
         }
     }
     
     var hasCustomThemes: Bool {
         switch self {
-        case .free: return false
-        case .advanced: return false
+        case .free: return true // Full access during trial
         case .premium: return true
         }
     }
     
     var hasEarlyAccess: Bool {
         switch self {
-        case .free: return false
-        case .advanced: return false
+        case .free: return true // Full access during trial
         case .premium: return true
         }
     }
     
     var hasExclusiveContent: Bool {
         switch self {
-        case .free: return false
-        case .advanced: return false
+        case .free: return true // Full access during trial
         case .premium: return true
         }
     }
     
     var hasRecipeBuilder: Bool {
         switch self {
-        case .free: return false
-        case .advanced: return true
+        case .free: return true // Full access during trial
         case .premium: return true
         }
     }
@@ -1048,6 +1077,7 @@ enum SubscriptionTier: String, CaseIterable, Codable {
 
 enum SubscriptionStatus: String, Codable {
     case notSubscribed = "not_subscribed"
+    case freeTrial = "free_trial"
     case active = "active"
     case expired = "expired"
     case inGracePeriod = "grace_period"

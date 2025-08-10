@@ -9,6 +9,7 @@ struct OnboardingView: View {
     @State private var currentPage = 0
     @Environment(\.presentationMode) private var presentationMode
     let isFirstLaunch: Bool
+    @State private var showDisclaimer = true
     
     init(isFirstLaunch: Bool = true) {
         self.isFirstLaunch = isFirstLaunch
@@ -18,15 +19,15 @@ struct OnboardingView: View {
     private let pages: [OnboardingPage] = [
         OnboardingPage(
             title: "Welcome to Senior Nutrition",
-            description: "Your personal nutrition companion designed specifically for seniors, with enhanced accessibility and intuitive navigation.",
+            description: "Your personal nutrition companion designed specifically for seniors, with enhanced accessibility and intuitive navigation. Start with a 7-day free trial, then continue for just $9.99/month.",
             imageName: "heart.fill",
-            tips: ["Customizable text size for easier reading", "Language support for English, French, Spanish, and Hebrew", "Simple, uncluttered interface with voice assistance"]
+            tips: ["7-day free trial with full access", "Customizable text size for easier reading", "Language support for English, French, Spanish, and Hebrew"]
         ),
         OnboardingPage(
             title: "Track Your Meals & Nutrition",
             description: "Monitor your diet with our easy-to-use food tracking system, including nutritional analysis and personalized recommendations.",
             imageName: "fork.knife",
-            tips: ["Photo-based meal logging", "Built-in barcode scanner (Premium)", "Voice input for hands-free recording"]
+            tips: ["Photo-based meal logging", "Built-in barcode scanner", "Voice input for hands-free recording"]
         ),
         OnboardingPage(
             title: "Personalized Fasting Protocols",
@@ -57,6 +58,12 @@ struct OnboardingView: View {
             description: "Track key health metrics and get personalized guidance with continuous support whenever you need it.",
             imageName: "person.fill.questionmark",
             tips: ["Video tutorials and live support", "Health data visualization", "Emergency contact system"]
+        ),
+        OnboardingPage(
+            title: "Simple Subscription Model",
+            description: "Enjoy full access with our straightforward pricing: 7 days free, then just $9.99/month. Cancel anytime.",
+            imageName: "creditcard.fill",
+            tips: ["7-day free trial with no commitment", "$9.99/month after trial period", "Cancel anytime through App Store"]
         )
     ]
     
@@ -139,6 +146,32 @@ struct OnboardingView: View {
                     }
                 }
                 .padding()
+            }
+            
+            // Disclaimer Modal
+            if showDisclaimer {
+                Color.black.opacity(0.5).edgesIgnoringSafeArea(.all)
+                VStack(spacing: 24) {
+                    Text(NSLocalizedString("Important Disclaimer", comment: "Disclaimer title"))
+                        .font(.title2).bold()
+                    Text(NSLocalizedString("The information provided by Senior Nutrition is for educational purposes only and is not intended as medical advice. Always consult your physician or a qualified healthcare provider before making any changes to your diet, medication, or fasting routine. If you feel unwell, stop immediately and seek medical attention.", comment: "Disclaimer text"))
+                        .font(.body)
+                        .multilineTextAlignment(.center)
+                    Button(action: { showDisclaimer = false }) {
+                        Text(NSLocalizedString("I Understand", comment: "Disclaimer button"))
+                            .font(.headline)
+                            .padding(.horizontal, 32)
+                            .padding(.vertical, 12)
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+                }
+                .padding()
+                .background(Color(.systemBackground))
+                .cornerRadius(20)
+                .shadow(radius: 20)
+                .padding(32)
             }
         }
     }
