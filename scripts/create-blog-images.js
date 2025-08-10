@@ -12,14 +12,22 @@ function createPlaceholderImages() {
     fs.mkdirSync(blogImagesDir, { recursive: true });
   }
   
-  // List of image files we need
-  const neededImages = [
-    '10-heart-healthy-foods-every-senior-should-include-in-the.jpg',
-    'the-complete-guide-to-staying-hydrated-as-a-senior.jpg',
-    'sleep-better-at-60-a-seniors-guide-to-quality-rest.jpg',
-    'brain-health-and-memory-keeping-your-mind-sharp-after-5.jpg',
-    'social-connection-and-loneliness-building-relationshi.jpg'
+  // Generate image filenames based on blog titles (truncated to 50 chars)
+  const blogTitles = [
+    "10 Heart-Healthy Foods Every Senior Should Include in Their Diet",
+    "The Complete Guide to Staying Hydrated as a Senior", 
+    "Sleep Better at 60+: A Senior's Guide to Quality Rest",
+    "Brain Health and Memory: Keeping Your Mind Sharp After 50",
+    "Social Connection and Loneliness: Building Relationships in Your Golden Years"
   ];
+  
+  const neededImages = blogTitles.map(title => 
+    title
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .substring(0, 50) + '.jpg'
+  );
   
   // Check if we have a source image to copy from
   const existingImages = fs.readdirSync(blogImagesDir).filter(file => 

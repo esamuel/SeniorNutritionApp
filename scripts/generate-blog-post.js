@@ -744,6 +744,15 @@ function generateFilename(title) {
     .substring(0, 50) + '.mdx';
 }
 
+// Generate image filename from title (used for image paths)
+function generateImageFilename(title) {
+  return title
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .substring(0, 50) + '.jpg';
+}
+
 // Generate current date in YYYY-MM-DD format
 function getCurrentDate() {
   const now = new Date();
@@ -764,7 +773,7 @@ author:
   bio: "${topic.author.bio}"
 category: "${topic.category}"
 tags: [${topic.tags.map(tag => `"${tag}"`).join(', ')}]
-image: "/images/blog/${generateFilename(topic.title).replace('.mdx', '.jpg')}"
+image: "/images/blog/${generateImageFilename(topic.title)}"
 readingTime: "8 min read"
 ---
 
