@@ -1,0 +1,95 @@
+name: Auto Generate Blog Post
+
+on:
+  schedule:
+    # Run every 4 days at 9 AM UTC (adjust timezone as needed)
+    - cron: '0 9 */4 * *'
+  workflow_dispatch: # Allow manual triggering for testing
+
+jobs:
+  generate-blog-post:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Generate new blog post
+      run: node scripts/generate-blog-post.js
+    
+    - name: Check if new post was created
+      id: check_changes
+      run: |
+        if git diff --quiet && git diff --cached --quiet; then
+          echo "No new blog post was created"
+          echo "changes_made=false" >> $GITHUB_OUTPUT
+        else
+          echo "New blog post was created"
+          echo "changes_made=true" >> $GITHUB_OUTPUT
+        fi
+    
+    - name: Create placeholder blog images
+      if: steps.check_changes.outputs.changes_made == 'true'
+      run: |
+        # Create any missing blog image directories
+        mkdir -p public/images/blog
+        
+        # For now, we'll copy existing images as placeholders
+        # You can replace this with actual image generation logic
+        if [ -f "public/images/blog/16-8-fasting-guide.jpg" ]; then
+          # Find the newest blog post file
+          newest_post=$(ls -t src/app/blog/posts/*.mdx | head -n 1)
+          post_filename=$(basename "$newest_post" .mdx)
+          
+          # Copy an existing image as placeholder if the new image doesn't exist
+          if [ ! -f "public/images/blog/${post_filename}.jpg" ]; then
+            cp "public/images/blog/16-8-fasting-guide.jpg" "public/images/blog/${post_filename}.jpg"
+            echo "Created placeholder image for new blog post"
+          fi
+        fi
+    
+    - name: Commit and push new blog post
+      if: steps.check_changes.outputs.changes_made == 'true'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        # Get the newest blog post for commit message
+        newest_post=$(ls -t src/app/blog/posts/*.mdx | head -n 1)
+        post_title=$(grep "^title:" "$newest_post" | sed 's/title: *"\([^"]*\)".*/\1/')
+        
+        git add .
+        git commit -m "🤖 Auto-generate blog post: $post_title
+
+- Generated new blog post every 4 days
+- Automated content creation for consistent publishing
+- Added placeholder image for new post
+
+🤖 Generated with [Claude Code](https://claude.ai/code)
+
+Co-Authored-By: Claude <noreply@anthropic.com>"
+        
+        git push
+        
+        echo "Successfully pushed new blog post: $post_title"
+    
+    - name: Trigger Vercel deployment
+      if: steps.check_changes.outputs.changes_made == 'true'
+      run: |
+        echo "New blog post has been pushed to main branch"
+        echo "Vercel will automatically deploy the changes"
+        
+        # Optional: Add webhook to trigger immediate deployment
+        # curl -X POST "https://api.vercel.com/v1/integrations/deploy/..." \
+        #   -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}"
