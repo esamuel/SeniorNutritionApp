@@ -5,7 +5,7 @@ struct PremiumFeaturesView: View {
     @EnvironmentObject private var userSettings: UserSettings
     @StateObject private var premiumManager = PremiumManager.shared
     @Environment(\.presentationMode) private var presentationMode
-    @State private var selectedTier: SubscriptionTier = .advanced
+    // Single premium tier - matches App Store metadata
     
     var body: some View {
         NavigationView {
@@ -17,14 +17,29 @@ struct PremiumFeaturesView: View {
                             .font(.system(size: 60))
                             .foregroundColor(.purple)
                         
-                        Text("Upgrade Your Plan")
-                            .font(.system(size: userSettings.textSize.size + 8, weight: .bold))
-                        
-                        Text("Choose the plan that's right for you")
-                            .font(.system(size: userSettings.textSize.size))
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(.secondary)
-                            .padding(.horizontal)
+                        if premiumManager.isInFreeTrial {
+                            Text("Free Trial Active")
+                                .font(.system(size: userSettings.textSize.size + 8, weight: .bold))
+                            
+                            Text("\(premiumManager.daysLeftInTrial()) days remaining")
+                                .font(.system(size: userSettings.textSize.size))
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(.secondary)
+                                .padding(.horizontal)
+                        } else if premiumManager.isPremium {
+                            Text("Premium Subscriber")
+                                .font(.system(size: userSettings.textSize.size + 8, weight: .bold))
+                                .foregroundColor(.green)
+                        } else {
+                            Text("Start Your Premium Journey")
+                                .font(.system(size: userSettings.textSize.size + 8, weight: .bold))
+                            
+                            Text("Get access to all premium features")
+                                .font(.system(size: userSettings.textSize.size))
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(.secondary)
+                                .padding(.horizontal)
+                        }
                     }
                     .padding(.vertical, 20)
                     
@@ -55,26 +70,26 @@ struct PremiumFeaturesView: View {
                         .padding(.horizontal)
                     }
                     
-                    // Tier Selection
-                    VStack(spacing: 15) {
-                        ForEach(SubscriptionTier.allCases.filter { $0 != .free }, id: \.self) { tier in
+                    // Single Premium Tier
+                    if !premiumManager.isPremium {
+                        VStack(spacing: 15) {
                             TierCard(
-                                tier: tier,
-                                isSelected: selectedTier == tier,
-                                onSelect: { selectedTier = tier }
+                                tier: .premium,
+                                isSelected: true,
+                                onSelect: { }
                             )
                         }
+                        .padding(.horizontal)
                     }
-                    .padding(.horizontal)
                     
                     // Purchase Button
-                    if premiumManager.currentTier == .free || premiumManager.currentTier.rawValue < selectedTier.rawValue {
+                    if !premiumManager.isPremium {
                         VStack(spacing: 12) {
                         Button(action: {
                             Task {
                                     if premiumManager.isDebugMode {
                                         // In debug mode, just set the tier
-                                        premiumManager.setDebugTier(selectedTier)
+                                        premiumManager.setDebugTier(.premium)
                                         presentationMode.wrappedValue.dismiss()
                                     } else {
                                         // In production, this would trigger the purchase flow
@@ -83,16 +98,20 @@ struct PremiumFeaturesView: View {
                             }
                         }) {
                                 VStack(spacing: 4) {
-                                    Text("Upgrade to \(selectedTier.displayName)")
-                                .font(.system(size: userSettings.textSize.size, weight: .semibold))
+                                    if premiumManager.isInFreeTrial {
+                                        Text("Continue with Premium")
+                                    } else {
+                                        Text("Start Free Trial")
+                                    }
                                     
-                                    Text(selectedTier.monthlyPrice + "/month")
+                                    Text("$9.99/month or $99.99/year after trial")
                                         .font(.system(size: userSettings.textSize.size - 2))
                                 }
+                                .font(.system(size: userSettings.textSize.size, weight: .semibold))
                                 .foregroundColor(.white)
                                 .frame(maxWidth: .infinity)
                                 .padding()
-                                .background(selectedTier == .premium ? Color.purple : Color.blue)
+                                .background(Color.purple)
                                 .cornerRadius(12)
                             }
                             
@@ -108,9 +127,32 @@ struct PremiumFeaturesView: View {
                         .padding(.top, 10)
                     }
                     
-                    // Feature Comparison
-                    FeatureComparisonView()
+                    // Premium Benefits Info
+                    if premiumManager.isInFreeTrial {
+                        VStack(alignment: .leading, spacing: 12) {
+                            Text("Your Trial Includes:")
+                                .font(.system(size: userSettings.textSize.size + 2, weight: .bold))
+                                .padding(.horizontal)
+                            
+                            VStack(alignment: .leading, spacing: 8) {
+                                ForEach(getKeyFeatures(for: .premium), id: \.self) { feature in
+                                    HStack {
+                                        Image(systemName: "checkmark.circle.fill")
+                                            .foregroundColor(.green)
+                                            .font(.system(size: 14))
+                                        
+                                        Text(feature)
+                                            .font(.system(size: userSettings.textSize.size - 1))
+                                            .foregroundColor(.primary)
+                                        
+                                        Spacer()
+                                    }
+                                }
+                            }
+                            .padding(.horizontal)
+                        }
                         .padding(.top, 20)
+                    }
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
@@ -124,6 +166,29 @@ struct PremiumFeaturesView: View {
             }
         }
     }
+    
+    private func getKeyFeatures(for tier: SubscriptionTier) -> [String] {
+        switch tier {
+        case .free:
+            return [
+                "7-day free trial",
+                "Full access to all features",
+                "No commitment required"
+            ]
+        case .premium:
+            return [
+                "Advanced analytics & insights",
+                "Data export (PDF/CSV)",
+                "Voice assistance",
+                "Personalized health tips",
+                "1-on-1 nutritionist chat",
+                "AI-driven meal suggestions",
+                "Family/caregiver access",
+                "Unlimited fasting protocols",
+                "Priority support"
+            ]
+        }
+    }
 }
 
 struct TierCard: View {
@@ -131,6 +196,29 @@ struct TierCard: View {
     let tier: SubscriptionTier
     let isSelected: Bool
     let onSelect: () -> Void
+    
+    private func getKeyFeatures(for tier: SubscriptionTier) -> [String] {
+        switch tier {
+        case .free:
+            return [
+                "7-day free trial",
+                "Full access to all features",
+                "No commitment required"
+            ]
+        case .premium:
+            return [
+                "Advanced analytics & insights",
+                "Data export (PDF/CSV)",
+                "Voice assistance",
+                "Personalized health tips",
+                "1-on-1 nutritionist chat",
+                "AI-driven meal suggestions",
+                "Family/caregiver access",
+                "Unlimited fasting protocols",
+                "Priority support"
+            ]
+        }
+    }
     
     var body: some View {
         Button(action: onSelect) {
@@ -207,120 +295,6 @@ struct TierCard: View {
         .buttonStyle(.plain)
     }
     
-    private func getKeyFeatures(for tier: SubscriptionTier) -> [String] {
-        switch tier {
-        case .free:
-            return []
-        case .advanced:
-            return [
-                "Advanced analytics (90 days)",
-                "Data export (PDF/CSV)",
-                "Voice assistance",
-                "Personalized health tips",
-                "Priority email support",
-                "5 custom fasting protocols"
-            ]
-        case .premium:
-            return [
-                "Everything in Advanced",
-                "1-on-1 nutritionist chat",
-                "AI-driven meal suggestions",
-                "Family/caregiver access",
-                "Custom app themes",
-                "Unlimited fasting protocols",
-                "Early access to new features",
-                "Premium live chat support"
-            ]
-        }
-    }
-}
-
-struct FeatureComparisonView: View {
-    @EnvironmentObject private var userSettings: UserSettings
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 15) {
-            Text("Feature Comparison")
-                .font(.system(size: userSettings.textSize.size + 2, weight: .bold))
-                .padding(.horizontal)
-            
-            VStack(spacing: 0) {
-                // Header row
-                HStack {
-                    Text("Feature")
-                        .font(.system(size: userSettings.textSize.size - 2, weight: .semibold))
-        .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    Text("Free")
-                        .font(.system(size: userSettings.textSize.size - 2, weight: .semibold))
-                        .frame(width: 60)
-                    
-                    Text("Advanced")
-                        .font(.system(size: userSettings.textSize.size - 2, weight: .semibold))
-                        .frame(width: 80)
-                    
-                    Text("Premium")
-                        .font(.system(size: userSettings.textSize.size - 2, weight: .semibold))
-                        .frame(width: 70)
-                }
-        .padding()
-                .background(Color(.systemGray5))
-                
-                // Feature rows
-                ForEach(comparisonFeatures, id: \.name) { feature in
-                    HStack {
-                        Text(feature.name)
-                            .font(.system(size: userSettings.textSize.size - 3))
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        
-                        Image(systemName: feature.free ? "checkmark.circle.fill" : "xmark.circle.fill")
-                            .foregroundColor(feature.free ? .green : .red)
-                            .frame(width: 60)
-                        
-                        Image(systemName: feature.advanced ? "checkmark.circle.fill" : "xmark.circle.fill")
-                            .foregroundColor(feature.advanced ? .green : .red)
-                            .frame(width: 80)
-                        
-                        Image(systemName: feature.premium ? "checkmark.circle.fill" : "xmark.circle.fill")
-                            .foregroundColor(feature.premium ? .green : .red)
-                            .frame(width: 70)
-                    }
-                    .padding(.horizontal)
-                    .padding(.vertical, 8)
-                    .background(Color(.systemBackground))
-                }
-            }
-        .background(Color(.systemGray6))
-        .cornerRadius(12)
-            .padding(.horizontal)
-        }
-    }
-    
-    private var comparisonFeatures: [ComparisonFeature] {
-        [
-            ComparisonFeature(name: "Basic nutrition tracking", free: true, advanced: true, premium: true),
-            ComparisonFeature(name: "Basic fasting protocols", free: true, advanced: true, premium: true),
-            ComparisonFeature(name: "Medication reminders", free: true, advanced: true, premium: true),
-            ComparisonFeature(name: "7-day analytics", free: true, advanced: false, premium: false),
-            ComparisonFeature(name: "90-day analytics", free: false, advanced: true, premium: true),
-            ComparisonFeature(name: "1-year analytics", free: false, advanced: false, premium: true),
-            ComparisonFeature(name: "Data export", free: false, advanced: true, premium: true),
-            ComparisonFeature(name: "Voice assistance", free: false, advanced: true, premium: true),
-            ComparisonFeature(name: "Personalized tips", free: false, advanced: true, premium: true),
-            ComparisonFeature(name: "Priority support", free: false, advanced: true, premium: true),
-            ComparisonFeature(name: "Nutritionist chat", free: false, advanced: false, premium: true),
-            ComparisonFeature(name: "AI suggestions", free: false, advanced: false, premium: true),
-            ComparisonFeature(name: "Family access", free: false, advanced: false, premium: true),
-            ComparisonFeature(name: "Custom themes", free: false, advanced: false, premium: true)
-        ]
-    }
-}
-
-struct ComparisonFeature {
-    let name: String
-    let free: Bool
-    let advanced: Bool
-    let premium: Bool
 }
 
 #Preview {
